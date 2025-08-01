@@ -713,12 +713,19 @@ class ConsciousnessField:
             nonlinear_term = self.field_grid
         linear_term = self.field_grid
         
-        # Field evolution equation
-        field_derivative = (self.phi * laplacian + nonlinear_term + linear_term + 
-                          self.consciousness_coupling * particle_source)
+        # Field evolution equation with proper scalar multiplication
+        field_derivative = self._add_field_terms(
+            self._multiply_field_by_scalar(laplacian, self.phi),
+            nonlinear_term,
+            linear_term,
+            self._multiply_field_by_scalar(particle_source, self.consciousness_coupling)
+        )
         
         # Update field using forward Euler (could use more sophisticated integrators)
-        self.field_grid += field_derivative * dt
+        self.field_grid = self._add_field_terms(
+            self.field_grid,
+            self._multiply_field_by_scalar(field_derivative, dt)
+        )
         
         # Update consciousness density for visualization
         self._update_consciousness_density()
@@ -1017,6 +1024,58 @@ class ConsciousnessField:
                         return False
         
         return True
+
+    def _multiply_field_by_scalar(self, field, scalar):
+        """Multiply field by scalar with proper type handling"""
+        if isinstance(field, list):
+            if isinstance(field[0], list):
+                if isinstance(field[0][0], list):
+                    # 3D field
+                    return [[[cell * scalar for cell in row] for row in plane] for plane in field]
+                else:
+                    # 2D field
+                    return [[cell * scalar for cell in row] for row in field]
+            else:
+                # 1D field
+                return [cell * scalar for cell in field]
+        else:
+            # Scalar field
+            return field * scalar
+
+    def _add_field_terms(self, *fields):
+        """Add multiple field terms together with proper type handling"""
+        if not fields:
+            return self.field_grid
+        
+        result = fields[0]
+        
+        for field in fields[1:]:
+            if isinstance(result, list):
+                if isinstance(result[0], list):
+                    if isinstance(result[0][0], list):
+                        # 3D fields
+                        for i in range(len(result)):
+                            for j in range(len(result[i])):
+                                for k in range(len(result[i][j])):
+                                    if (i < len(field) and j < len(field[i]) and 
+                                        k < len(field[i][j])):
+                                        result[i][j][k] += field[i][j][k]
+                    else:
+                        # 2D fields
+                        for i in range(len(result)):
+                            for j in range(len(result[i])):
+                                if i < len(field) and j < len(field[i]):
+                                    result[i][j] += field[i][j]
+                else:
+                    # 1D fields
+                    for i in range(len(result)):
+                        if i < len(field):
+                            result[i] += field[i]
+            else:
+                # Scalar fields
+                result += field
+        
+        return result
 
 # Factory function for easy consciousness field creation
 def create_consciousness_field(particle_count: int = 200, 

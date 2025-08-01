@@ -347,19 +347,29 @@ class UnityMathematics:
         Returns:
             UnityState after quantum measurement collapse
         """
-        # Define measurement basis vectors
+        # Define measurement basis vectors with bounds checking
+        phi_component = min(1.0, 1/self.phi)  # Prevent > 1 values
+        phi_remainder = max(0.0, 1 - phi_component**2)  # Ensure non-negative
+        
+        consciousness_level = min(1.0, max(0.0, superposition_state.consciousness_level))  # Clamp [0,1]
+        consciousness_remainder = max(0.0, 1 - consciousness_level)  # Ensure non-negative
+        
         basis_vectors = {
             "unity": [1.0, 0.0],  # |1⟩ unity state
-            "phi": [1/self.phi, math.sqrt(1 - 1/(self.phi**2))],  # φ-harmonic basis
-            "consciousness": [math.sqrt(superposition_state.consciousness_level), 
-                                     math.sqrt(1 - superposition_state.consciousness_level)]
+            "phi": [phi_component, math.sqrt(phi_remainder)],  # φ-harmonic basis
+            "consciousness": [math.sqrt(consciousness_level), 
+                             math.sqrt(consciousness_remainder)]
         }
         
         measurement_vector = basis_vectors.get(measurement_basis, basis_vectors["unity"])
         
-        # State vector representation
+        # State vector representation with bounds checking
         state_amplitude = abs(superposition_state.value)
         state_phase = cmath.phase(superposition_state.value)
+        
+        # Ensure amplitude is normalized to prevent domain errors
+        state_amplitude = min(1.0, state_amplitude)
+        
         state_vector = [state_amplitude * math.cos(state_phase/2), 
                        state_amplitude * math.sin(state_phase/2)]
         
