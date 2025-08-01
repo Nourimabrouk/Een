@@ -58,12 +58,15 @@ try:                                 # property‑based testing
 except ModuleNotFoundError:
     HYPOTHESIS_AVAILABLE = False
 
-# Bring in numeric φ‑harmonic helpers from the earlier core ---------------- #
+# Bring in numeric φ‑harmonic helpers from the core module ---------------- #
 try:
-    from unity_mathematics import PHI, UNITY_TOLERANCE  # numeric constants
-except ImportError:  # graceful fallback
-    PHI = (1 + 5 ** 0.5) / 2
-    UNITY_TOLERANCE = 1e-10
+    from core.unity_mathematics import PHI, UNITY_TOLERANCE  # numeric constants
+except ImportError:
+    try:
+        from src.core.enhanced_unity_mathematics import PHI, UNITY_TOLERANCE
+    except ImportError:  # graceful fallback
+        PHI = (1 + 5 ** 0.5) / 2
+        UNITY_TOLERANCE = 1e-10
 
 # --------------------------------------------------------------------------- #
 # 1 · Cryptographic provenance                                               #
