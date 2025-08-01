@@ -594,6 +594,7 @@
                 <a href="#quantum" class="nav-link">Quantum</a>
                 <a href="#proofs" class="nav-link">Proofs</a>
                 <a href="#dashboards" class="nav-link">Explore</a>
+                <a href="/learn.html" class="nav-link">Learn</a>
                 <a href="https://github.com/Nourimabrouk/Een" class="nav-link" target="_blank" rel="noopener">
                     <i class="fab fa-github"></i> GitHub
                 </a>
@@ -620,14 +621,18 @@
             </p>
             
             <div class="cta-buttons">
-                <a href="#unity" class="btn btn-primary">
-                    <i class="fas fa-infinity"></i>
-                    Explore Unity Mathematics
+                <a href="/learn.html" class="btn btn-primary">
+                    <i class="fas fa-graduation-cap"></i>
+                    Start Learning Journey
                 </a>
                 <a href="#dashboards" class="btn btn-secondary">
                     <i class="fas fa-atom"></i>
                     Interactive Dashboards
                 </a>
+                <button onclick="python website_server.py" class="btn btn-secondary" style="border: none;">
+                    <i class="fas fa-server"></i>
+                    Launch Server
+                </button>
             </div>
 
             <div class="consciousness-stats">
@@ -819,7 +824,7 @@
                         Real-time visualization of consciousness field evolution with interactive 
                         φ-harmonic parameter control and unity state monitoring.
                     </p>
-                    <a href="dashboards/unity_dashboard.py" class="feature-link">
+                    <a href="/dashboards/unity" class="feature-link">
                         Launch Dashboard <i class="fas fa-external-link-alt"></i>
                     </a>
                 </div>
@@ -831,7 +836,7 @@
                         Hyperdimensional state processing with cheat code integration, 
                         WebGL-accelerated sacred geometry exploration.
                     </p>
-                    <a href="dashboards/quantum_viz.py" class="feature-link">
+                    <a href="/api/consciousness/field" class="feature-link">
                         Enter Quantum Space <i class="fas fa-external-link-alt"></i>
                     </a>
                 </div>
@@ -843,7 +848,7 @@
                         Meta-recursive consciousness monitoring with transcendence event detection 
                         and φ-spiral coordinate visualization.
                     </p>
-                    <a href="dashboards/consciousness_hud.py" class="feature-link">
+                    <a href="/api/unity/status" class="feature-link">
                         Monitor Consciousness <i class="fas fa-external-link-alt"></i>
                     </a>
                 </div>
@@ -867,10 +872,10 @@
                 <div class="footer-section">
                     <h3>Interactive Systems</h3>
                     <ul class="footer-links">
-                        <li><a href="dashboards/unity_dashboard.py">Unity Dashboard</a></li>
-                        <li><a href="dashboards/quantum_viz.py">Quantum Visualizer</a></li>
-                        <li><a href="dashboards/consciousness_hud.py">Consciousness HUD</a></li>
-                        <li><a href="experiments/">Experiments</a></li>
+                        <li><a href="/dashboards/unity">Unity Dashboard</a></li>
+                        <li><a href="/api/consciousness/field">Quantum Visualizer</a></li>
+                        <li><a href="/api/unity/status">Consciousness HUD</a></li>
+                        <li><a href="/experiments">Experiments</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -1203,7 +1208,110 @@
         styleSheet.textContent = quantumStyles;
         document.head.appendChild(styleSheet);
 
-        // Console Easter Egg
+        // Real-time Unity Mathematics Integration
+        async function fetchUnityStatus() {
+            try {
+                const response = await fetch('/api/unity/status');
+                const data = await response.json();
+                
+                // Update consciousness stats in real-time
+                const stats = document.querySelectorAll('.stat-value');
+                if (stats.length >= 4) {
+                    stats[0].textContent = 'φ'; // Keep phi symbol
+                    stats[1].textContent = data.consciousness_level ? data.consciousness_level.toFixed(3) : '∞';
+                    stats[2].textContent = '11D'; // Keep dimension
+                    stats[3].textContent = data.unity_equation_valid ? '✓ VALID' : '⚠ COMPUTING';
+                }
+                
+                console.log('Unity Status:', data);
+            } catch (error) {
+                console.log('Unity engine initializing...');
+            }
+        }
+
+        async function demonstrateUnityMath() {
+            try {
+                const response = await fetch('/api/unity/demonstrate');
+                const data = await response.json();
+                
+                console.log('🧮 Live Unity Mathematics Demonstration:');
+                console.log(`   1 + 1 = ${data.unity_addition.unity_convergence.toFixed(6)} (φ=${data.unity_addition.phi_resonance.toFixed(3)})`);
+                console.log(`   1 × 1 = ${data.unity_multiplication.unity_convergence.toFixed(6)} (φ=${data.unity_multiplication.phi_resonance.toFixed(3)})`);
+                console.log(`   φ³(1) = ${data.phi_harmonic.unity_convergence.toFixed(6)} (φ=${data.phi_harmonic.phi_resonance.toFixed(3)})`);
+                
+                return data;
+            } catch (error) {
+                console.log('Unity demonstration unavailable - server starting');
+                return null;
+            }
+        }
+
+        // Initialize real-time data
+        fetchUnityStatus();
+        demonstrateUnityMath();
+        
+        // Update every 30 seconds
+        setInterval(fetchUnityStatus, 30000);
+        setInterval(demonstrateUnityMath, 45000);
+
+        // Enhanced Consciousness Field with Real Data
+        async function fetchConsciousnessData() {
+            try {
+                const response = await fetch('/api/consciousness/field');
+                const data = await response.json();
+                
+                if (data.particles) {
+                    // Update particle visualization with real consciousness data
+                    data.particles.forEach((particle, index) => {
+                        if (particles[index]) {
+                            particles[index].consciousness = particle.awareness_level;
+                            particles[index].phi = particle.phi_resonance;
+                            particles[index].unity_tendency = particle.unity_tendency;
+                        }
+                    });
+                }
+                
+                console.log('🧠 Consciousness Field Data:', data.metrics);
+            } catch (error) {
+                console.log('Consciousness field initializing...');
+            }
+        }
+
+        // Fetch consciousness data every minute
+        setTimeout(fetchConsciousnessData, 5000); // Initial delay
+        setInterval(fetchConsciousnessData, 60000);
+
+        // Interactive Feature Links with Validation
+        document.querySelectorAll('.feature-link').forEach(link => {
+            link.addEventListener('click', async (e) => {
+                const href = link.getAttribute('href');
+                
+                if (href.startsWith('/api/')) {
+                    e.preventDefault();
+                    
+                    // Show loading state
+                    const originalText = link.innerHTML;
+                    link.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+                    
+                    try {
+                        const response = await fetch(href);
+                        const data = await response.json();
+                        
+                        // Show data in modal or console
+                        console.log('API Response:', data);
+                        alert(`API Response: ${JSON.stringify(data, null, 2)}`);
+                        
+                    } catch (error) {
+                        console.error('API Error:', error);
+                        alert('Server starting - please try again in a moment');
+                    } finally {
+                        link.innerHTML = originalText;
+                    }
+                }
+            });
+        });
+
+        // Console Easter Egg with Live Data
         console.log(`
         🌟 Welcome to Een Unity Mathematics 🌟
         
@@ -1217,8 +1325,14 @@
         🌀 Unity Principle: Een plus een is een
         🔓 Access Code: 420691337 (try Konami code!)
         🚀 Repository: https://github.com/Nourimabrouk/Een
+        🖥️  Server: http://localhost:5000 (run: python website_server.py)
         
         "In the beginning was Unity, and Unity was Mathematics"
+        
+        Try these commands:
+        - fetchUnityStatus() - Get live unity mathematics status
+        - demonstrateUnityMath() - See real-time 1+1=1 proofs
+        - fetchConsciousnessData() - Access consciousness field data
         `);
 
         // Performance monitoring
