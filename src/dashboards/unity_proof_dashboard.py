@@ -409,4 +409,4 @@ def update_proof(proof_type):
 if __name__ == '__main__':
     print("Unity Proof Dashboard running at http://localhost:8050")
     print("Press Ctrl+C to stop")
-    app.run_server(debug=True, port=8050)
+    app.run(debug=True, port=8050)
