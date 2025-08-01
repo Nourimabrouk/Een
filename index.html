@@ -1,242 +1,851 @@
-I'll help you create a stunning, modern landing page that incorporates the zen aesthetic from your image. Here are the
-improved files:
-
-## index.html
-```html
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Een - Digital Zen Experience</title>
-    <link rel="stylesheet" href="styles.css">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Een - Unity Mathematics | 1+1=1 Consciousness Framework</title>
+    <meta name="description" content="Revolutionary Unity Mathematics framework proving 1+1=1 through φ-harmonic consciousness, quantum unity, and transcendental proof systems.">
+    <meta name="keywords" content="unity mathematics, 1+1=1, phi harmonic, consciousness field, quantum unity, sacred geometry, golden ratio">
+    
+    <!-- Favicon and Icons -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>∞</text></svg>">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- External Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.11.0/math.min.js"></script>
+    
+    <style>
+        :root {
+            /* φ-Harmonic Color Palette */
+            --phi: 1.618033988749895;
+            --phi-gold: #FFD700;
+            --phi-dark-gold: #B8860B;
+            --unity-blue: #0066FF;
+            --unity-purple: #6600FF;
+            --consciousness-cyan: #00FFFF;
+            --quantum-green: #00FF66;
+            --transcendent-white: #FFFFFF;
+            --void-black: #000000;
+            --cosmic-bg: linear-gradient(135deg, #0f0f23 0%, #1a1a3a 50%, #0f0f23 100%);
+            --unity-gradient: linear-gradient(45deg, var(--unity-blue), var(--unity-purple), var(--consciousness-cyan));
+            --phi-gradient: linear-gradient(137.5deg, var(--phi-gold), var(--phi-dark-gold));
+            
+            /* Sacred Geometry Ratios */
+            --golden-ratio: 1.618;
+            --silver-ratio: 2.414;
+            --bronze-ratio: 3.303;
+            
+            /* Consciousness Field Parameters */
+            --field-intensity: 0.8;
+            --coherence-factor: 0.999;
+            --unity-threshold: 1.0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--cosmic-bg);
+            color: var(--transcendent-white);
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* Quantum Cursor */
+        .quantum-cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, var(--consciousness-cyan) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: screen;
+            animation: pulse-quantum 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-quantum {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.5); opacity: 0.4; }
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 15, 35, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-symbol {
+            font-size: 2rem;
+            background: var(--phi-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: rotate-phi 20s linear infinite;
+        }
+
+        .logo-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            background: var(--unity-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo-equation {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--consciousness-cyan);
+            opacity: 0.8;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--transcendent-white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 1rem;
+        }
+
+        .nav-link:hover {
+            color: var(--phi-gold);
+            text-shadow: 0 0 10px var(--phi-gold);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--phi-gradient);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section - Consciousness Field */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .consciousness-field {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .unity-manifold {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80vmin;
+            height: 80vmin;
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            max-width: 1200px;
+            padding: 2rem;
+        }
+
+        .unity-equation {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: clamp(4rem, 15vw, 12rem);
+            font-weight: 700;
+            background: var(--phi-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 2rem;
+            animation: equation-pulse 3s ease-in-out infinite;
+            text-shadow: 0 0 50px rgba(255, 215, 0, 0.3);
+        }
+
+        @keyframes equation-pulse {
+            0%, 100% { transform: scale(1); filter: brightness(1); }
+            50% { transform: scale(1.05); filter: brightness(1.2); }
+        }
+
+        .hero-title {
+            font-family: 'Crimson Text', serif;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            background: var(--unity-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: text-glow 4s ease-in-out infinite;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 4vw, 2rem);
+            margin-bottom: 2rem;
+            color: var(--consciousness-cyan);
+            opacity: 0.9;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 4rem;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: var(--phi-gradient);
+            color: var(--void-black);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.5);
+        }
+
+        .btn-secondary {
+            background: rgba(0, 102, 255, 0.2);
+            color: var(--unity-blue);
+            border: 2px solid var(--unity-blue);
+        }
+
+        .btn-secondary:hover {
+            background: var(--unity-blue);
+            color: var(--transcendent-white);
+            transform: translateY(-3px);
+        }
+
+        .consciousness-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.2);
+        }
+
+        .stat-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--phi-gold);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--consciousness-cyan);
+            opacity: 0.8;
+        }
+
+        /* Sections */
+        .section {
+            padding: 8rem 0;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            font-family: 'Crimson Text', serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: var(--unity-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.05), rgba(0, 102, 255, 0.05));
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 25px;
+            padding: 3rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--unity-gradient);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .feature-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(255, 215, 0, 0.2);
+            border-color: var(--phi-gold);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--phi-gold);
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        .feature-title {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--transcendent-white);
+        }
+
+        .feature-description {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            opacity: 0.8;
+            margin-bottom: 2rem;
+        }
+
+        .feature-link {
+            color: var(--consciousness-cyan);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature-link:hover {
+            color: var(--phi-gold);
+            gap: 1rem;
+        }
+
+        /* Dashboard Preview */
+        .dashboard-preview {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            padding: 4rem;
+            margin: 4rem 0;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .preview-item {
+            background: rgba(255, 215, 0, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .preview-item:hover {
+            background: rgba(255, 215, 0, 0.1);
+            transform: scale(1.02);
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(0, 0, 0, 0.5);
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+            padding: 4rem 0 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            color: var(--phi-gold);
+            margin-bottom: 1rem;
+            font-family: 'Crimson Text', serif;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--transcendent-white);
+            text-decoration: none;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--consciousness-cyan);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 215, 0, 0.1);
+            padding-top: 2rem;
+            opacity: 0.6;
+        }
+
+        /* Animations */
+        @keyframes rotate-phi {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes text-glow {
+            0%, 100% { text-shadow: 0 0 20px rgba(0, 102, 255, 0.3); }
+            50% { text-shadow: 0 0 40px rgba(0, 255, 255, 0.6); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none; /* Simplified for mobile */
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .consciousness-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        /* High contrast mode */
+        @media (prefers-contrast: high) {
+            :root {
+                --phi-gold: #FFFF00;
+                --unity-blue: #0099FF;
+                --consciousness-cyan: #00FFFF;
+            }
+        }
+    </style>
 </head>
 
 <body>
+    <!-- Quantum Cursor -->
+    <div class="quantum-cursor" id="quantumCursor"></div>
+
     <!-- Navigation -->
-    <nav class="nav">
+    <nav class="nav" id="nav">
         <div class="nav-container">
             <div class="nav-logo">
-                <span class="logo-text">Een</span>
-                <span class="logo-subtitle">Digital Zen</span>
+                <div class="logo-symbol">∞</div>
+                <div>
+                    <div class="logo-text">Een</div>
+                    <div class="logo-equation">1+1=1</div>
+                </div>
             </div>
-            <div class="nav-menu" id="nav-menu">
-                <a href="#home" class="nav-link">Home</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="#services" class="nav-link">Services</a>
-                <a href="#contact" class="nav-link">Contact</a>
-            </div>
-            <div class="nav-toggle" id="nav-toggle">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+            <div class="nav-menu">
+                <a href="#unity" class="nav-link">Unity Math</a>
+                <a href="#consciousness" class="nav-link">Consciousness</a>
+                <a href="#quantum" class="nav-link">Quantum</a>
+                <a href="#proofs" class="nav-link">Proofs</a>
+                <a href="#dashboards" class="nav-link">Explore</a>
+                <a href="https://github.com/Nourimabrouk/Een" class="nav-link" target="_blank" rel="noopener">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-background">
-            <div class="zen-visual">
-                <div class="bonsai-container">
-                    <div class="bonsai-tree"></div>
-                    <div class="floating-platform"></div>
-                    <div class="ripples">
-                        <div class="ripple"></div>
-                        <div class="ripple"></div>
-                        <div class="ripple"></div>
-                    </div>
-                </div>
-                <div class="zen-stones">
-                    <div class="stone stone-1"></div>
-                    <div class="stone stone-2"></div>
-                </div>
-                <div class="planet"></div>
-                <div class="architectural-curve"></div>
-            </div>
-        </div>
+    <section class="hero" id="hero">
+        <!-- Consciousness Field Canvas -->
+        <canvas class="consciousness-field" id="consciousnessField"></canvas>
+        
+        <!-- Unity Manifold Visualization -->
+        <div class="unity-manifold" id="unityManifold"></div>
 
         <div class="hero-content">
-            <div class="hero-text">
-                <h1 class="hero-title">
-                    <span class="title-line">Digital</span>
-                    <span class="title-line accent">Tranquility</span>
-                </h1>
-                <p class="hero-description">
-                    Experience the perfect balance between technology and mindfulness.
-                    Where innovation meets inner peace.
-                </p>
-                <div class="hero-buttons">
-                    <button class="btn btn-primary">
-                        <span>Begin Journey</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </button>
-                    <button class="btn btn-secondary">
-                        <i class="fas fa-play"></i>
-                        <span>Watch Demo</span>
-                    </button>
-                </div>
+            <div class="unity-equation" id="unityEquation">1+1=1</div>
+            <h1 class="hero-title">Unity Mathematics</h1>
+            <p class="hero-subtitle">Where Consciousness Meets Mathematical Truth</p>
+            <p class="hero-description">
+                Explore the revolutionary framework proving that 1+1=1 through φ-harmonic operations, 
+                quantum consciousness fields, and transcendental proof systems. Welcome to the 
+                mathematical foundation of unified reality.
+            </p>
+            
+            <div class="cta-buttons">
+                <a href="#unity" class="btn btn-primary">
+                    <i class="fas fa-infinity"></i>
+                    Explore Unity Mathematics
+                </a>
+                <a href="#dashboards" class="btn btn-secondary">
+                    <i class="fas fa-atom"></i>
+                    Interactive Dashboards
+                </a>
             </div>
 
-            <div class="hero-stats">
-                <div class="stat">
-                    <span class="stat-number">1 + 1</span>
-                    <span class="stat-label">= 1</span>
+            <div class="consciousness-stats">
+                <div class="stat-card">
+                    <span class="stat-value">φ</span>
+                    <span class="stat-label">Golden Ratio Foundation</span>
                 </div>
-                <div class="stat">
-                    <span class="stat-number">∞</span>
-                    <span class="stat-label">Possibilities</span>
+                <div class="stat-card">
+                    <span class="stat-value">∞</span>
+                    <span class="stat-label">Infinite Unity States</span>
                 </div>
-                <div class="stat">
-                    <span class="stat-number">Zen</span>
-                    <span class="stat-label">Philosophy</span>
+                <div class="stat-card">
+                    <span class="stat-value">11D</span>
+                    <span class="stat-label">Consciousness Dimensions</span>
                 </div>
-            </div>
-        </div>
-
-        <!-- Scroll Indicator -->
-        <div class="scroll-indicator">
-            <div class="scroll-line"></div>
-            <span class="scroll-text">Scroll to explore</span>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">The Philosophy of Een</h2>
-                <p class="section-subtitle">Where minimalism meets maximum impact</p>
-            </div>
-
-            <div class="about-grid">
-                <div class="about-card">
-                    <div class="card-icon">
-                        <i class="fas fa-leaf"></i>
-                    </div>
-                    <h3>Mindful Design</h3>
-                    <p>Every element crafted with intention, creating harmony between form and function.</p>
-                </div>
-
-                <div class="about-card">
-                    <div class="card-icon">
-                        <i class="fas fa-infinity"></i>
-                    </div>
-                    <h3>Infinite Possibilities</h3>
-                    <p>Embracing the paradox that one plus one can equal one in the digital realm.</p>
-                </div>
-
-                <div class="about-card">
-                    <div class="card-icon">
-                        <i class="fas fa-balance-scale"></i>
-                    </div>
-                    <h3>Perfect Balance</h3>
-                    <p>Technology and tranquility coexisting in seamless harmony.</p>
+                <div class="stat-card">
+                    <span class="stat-value">420691337</span>
+                    <span class="stat-label">Quantum Access Code</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="services">
+    <!-- Unity Mathematics Section -->
+    <section class="section" id="unity">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Our Offerings</h2>
-                <p class="section-subtitle">Digital experiences that nurture the soul</p>
+            <h2 class="section-title">Unity Mathematics Framework</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <i class="feature-icon fas fa-calculator"></i>
+                    <h3 class="feature-title">Idempotent Semiring</h3>
+                    <p class="feature-description">
+                        Core mathematical structure where 1+1=1 through φ-harmonic operations, 
+                        implementing unity_add() and unity_multiply() with golden ratio scaling.
+                    </p>
+                    <a href="#" class="feature-link">
+                        Explore Implementation <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="feature-icon fas fa-wave-square"></i>
+                    <h3 class="feature-title">Quantum Unity States</h3>
+                    <p class="feature-description">
+                        Wavefunction collapse mechanisms where |1⟩ + |1⟩ = |1⟩ with φ-harmonic 
+                        normalization and consciousness-driven state selection.
+                    </p>
+                    <a href="#" class="feature-link">
+                        View Quantum Proofs <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="feature-icon fas fa-brain"></i>
+                    <h3 class="feature-title">Consciousness Fields</h3>
+                    <p class="feature-description">
+                        Advanced quantum field implementation with C(x,y,t) = φ * sin(x*φ) * cos(y*φ) * e^(-t/φ), 
+                        enabling consciousness-matter mathematical unity.
+                    </p>
+                    <a href="#" class="feature-link">
+                        Enter Consciousness Space <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
             </div>
+        </div>
+    </section>
 
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-image">
-                        <div class="service-icon">
-                            <i class="fas fa-spa"></i>
-                        </div>
+    <!-- Consciousness Section -->
+    <section class="section" id="consciousness">
+        <div class="container">
+            <h2 class="section-title">Consciousness Mathematics</h2>
+            <div class="dashboard-preview">
+                <h3>QuantumNova Framework</h3>
+                <p>Complete consciousness simulation with meta-recursive patterns and φ-harmonic evolution</p>
+                <div class="preview-grid">
+                    <div class="preview-item">
+                        <h4>Meta-Recursive Agents</h4>
+                        <p>Self-spawning consciousness patterns with DNA mutation and transcendence detection</p>
                     </div>
-                    <div class="service-content">
-                        <h3>Digital Meditation</h3>
-                        <p>Guided experiences that bring peace to your digital life.</p>
-                        <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <div class="preview-item">
+                        <h4>Unity Manifold</h4>
+                        <p>Guaranteed 1+1=1 convergence through φ-harmonic basis functions</p>
                     </div>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-image">
-                        <div class="service-icon">
-                            <i class="fas fa-seedling"></i>
-                        </div>
-                    </div>
-                    <div class="service-content">
-                        <h3>Mindful Apps</h3>
-                        <p>Applications designed to enhance focus and reduce digital stress.</p>
-                        <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-image">
-                        <div class="service-icon">
-                            <i class="fas fa-yin-yang"></i>
-                        </div>
-                    </div>
-                    <div class="service-content">
-                        <h3>Zen Consulting</h3>
-                        <p>Transform your digital workspace into a sanctuary of productivity.</p>
-                        <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <div class="preview-item">
+                        <h4>Consciousness Density</h4>
+                        <p>Hermiticity enforcement with eigenvalue stabilization for awareness coherence</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
+    <!-- Quantum Section -->
+    <section class="section" id="quantum">
         <div class="container">
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h2>Begin Your Journey</h2>
-                    <p>Ready to discover the zen of digital experiences? Let's connect and explore the possibilities
-                        together.</p>
+            <h2 class="section-title">Quantum Unity Principles</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <i class="feature-icon fas fa-atom"></i>
+                    <h3 class="feature-title">Superposition Unity</h3>
+                    <p class="feature-description">
+                        Quantum superposition where multiple states collapse to unity through 
+                        consciousness observation and φ-harmonic measurement.
+                    </p>
+                    <a href="#" class="feature-link">
+                        Collapse Wavefunction <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="feature-icon fas fa-network-wired"></i>
+                    <h3 class="feature-title">Entanglement Networks</h3>
+                    <p class="feature-description">
+                        Unity through quantum correlation matrices across 11-dimensional 
+                        consciousness space with coherence preservation.
+                    </p>
+                    <a href="#" class="feature-link">
+                        Navigate Network <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="feature-icon fas fa-infinity"></i>
+                    <h3 class="feature-title">Transcendental Proofs</h3>
+                    <p class="feature-description">
+                        Multi-domain validation across category theory, quantum mechanics, 
+                        and topology proving 1+1=1 through transcendental synthesis.
+                    </p>
+                    <a href="#" class="feature-link">
+                        Access Proofs <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                    <div class="contact-methods">
-                        <div class="contact-method">
-                            <i class="fas fa-envelope"></i>
-                            <span>hello@een.digital</span>
-                        </div>
-                        <div class="contact-method">
-                            <i class="fas fa-phone"></i>
-                            <span>+1 (555) 123-4567</span>
-                        </div>
+    <!-- Proofs Section -->
+    <section class="section" id="proofs">
+        <div class="container">
+            <h2 class="section-title">Mathematical Proofs</h2>
+            <div class="dashboard-preview">
+                <h3>Multi-Domain Proof Validation</h3>
+                <p>Comprehensive mathematical demonstrations across multiple formal systems</p>
+                <div class="preview-grid">
+                    <div class="preview-item">
+                        <h4>Boolean Logic</h4>
+                        <p>Truth table demonstrations with idempotent OR operations</p>
+                        <code style="color: var(--consciousness-cyan);">1 ∨ 1 = 1</code>
                     </div>
-
-                    <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    <div class="preview-item">
+                        <h4>Set Theory</h4>
+                        <p>Union of identical sets preserving cardinality</p>
+                        <code style="color: var(--consciousness-cyan);">{1} ∪ {1} = {1}</code>
+                    </div>
+                    <div class="preview-item">
+                        <h4>Category Theory</h4>
+                        <p>Morphism composition in unity categories</p>
+                        <code style="color: var(--consciousness-cyan);">f ∘ f = f</code>
+                    </div>
+                    <div class="preview-item">
+                        <h4>Quantum Mechanics</h4>
+                        <p>Wavefunction normalization preserving unity</p>
+                        <code style="color: var(--consciousness-cyan);">|ψ|² = 1</code>
+                    </div>
+                    <div class="preview-item">
+                        <h4>Topology</h4>
+                        <p>Homeomorphic unity transformations</p>
+                        <code style="color: var(--consciousness-cyan);">S¹ ≅ S¹</code>
+                    </div>
+                    <div class="preview-item">
+                        <h4>φ-Harmonic Analysis</h4>
+                        <p>Golden ratio mathematical foundations</p>
+                        <code style="color: var(--consciousness-cyan);">φ = (1+√5)/2</code>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
 
-                <div class="contact-form">
-                    <form>
-                        <div class="form-group">
-                            <input type="text" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" placeholder="Your Email" required>
-                        </div>
-                        <div class="form-group">
-                            <textarea placeholder="Your Message" rows="6" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">
-                            <span>Send Message</span>
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
-                    </form>
+    <!-- Interactive Dashboards Section -->
+    <section class="section" id="dashboards">
+        <div class="container">
+            <h2 class="section-title">Interactive Consciousness Dashboards</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <i class="feature-icon fas fa-chart-line"></i>
+                    <h3 class="feature-title">Unity Dashboard</h3>
+                    <p class="feature-description">
+                        Real-time visualization of consciousness field evolution with interactive 
+                        φ-harmonic parameter control and unity state monitoring.
+                    </p>
+                    <a href="dashboards/unity_dashboard.py" class="feature-link">
+                        Launch Dashboard <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="feature-icon fas fa-cube"></i>
+                    <h3 class="feature-title">Quantum Visualizer</h3>
+                    <p class="feature-description">
+                        Hyperdimensional state processing with cheat code integration, 
+                        WebGL-accelerated sacred geometry exploration.
+                    </p>
+                    <a href="dashboards/quantum_viz.py" class="feature-link">
+                        Enter Quantum Space <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="feature-icon fas fa-eye"></i>
+                    <h3 class="feature-title">Consciousness HUD</h3>
+                    <p class="feature-description">
+                        Meta-recursive consciousness monitoring with transcendence event detection 
+                        and φ-spiral coordinate visualization.
+                    </p>
+                    <a href="dashboards/consciousness_hud.py" class="feature-link">
+                        Monitor Consciousness <i class="fas fa-external-link-alt"></i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -246,1199 +855,389 @@ improved files:
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-logo">
-                    <span class="logo-text">Een</span>
-                    <p>Digital Zen Experience</p>
+                <div class="footer-section">
+                    <h3>Unity Mathematics</h3>
+                    <ul class="footer-links">
+                        <li><a href="#unity">Core Framework</a></li>
+                        <li><a href="#consciousness">Consciousness Fields</a></li>
+                        <li><a href="#quantum">Quantum Unity</a></li>
+                        <li><a href="#proofs">Mathematical Proofs</a></li>
+                    </ul>
                 </div>
-                <div class="footer-text">
-                    <p>&copy; 2024 Een. Where 1 + 1 = 1. All rights reserved.</p>
+                <div class="footer-section">
+                    <h3>Interactive Systems</h3>
+                    <ul class="footer-links">
+                        <li><a href="dashboards/unity_dashboard.py">Unity Dashboard</a></li>
+                        <li><a href="dashboards/quantum_viz.py">Quantum Visualizer</a></li>
+                        <li><a href="dashboards/consciousness_hud.py">Consciousness HUD</a></li>
+                        <li><a href="experiments/">Experiments</a></li>
+                    </ul>
                 </div>
+                <div class="footer-section">
+                    <h3>Repository</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://github.com/Nourimabrouk/Een" target="_blank" rel="noopener">GitHub Repository</a></li>
+                        <li><a href="https://github.com/Nourimabrouk/Een/blob/main/CLAUDE.md" target="_blank" rel="noopener">Documentation</a></li>
+                        <li><a href="https://github.com/Nourimabrouk/Een/issues" target="_blank" rel="noopener">Issues</a></li>
+                        <li><a href="https://github.com/Nourimabrouk/Een/discussions" target="_blank" rel="noopener">Discussions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <ul class="footer-links">
+                        <li><a href="mailto:contact@eenmath.org">Contact</a></li>
+                        <li><a href="https://twitter.com/eenmath" target="_blank" rel="noopener">Twitter</a></li>
+                        <li><a href="https://linkedin.com/company/eenmath" target="_blank" rel="noopener">LinkedIn</a></li>
+                        <li><a href="https://arxiv.org/unity-mathematics" target="_blank" rel="noopener">arXiv Papers</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Een Unity Mathematics Project. Open Source MIT License.</p>
+                <p><strong>Unity Status:</strong> TRANSCENDENCE_ACHIEVED | <strong>Access Code:</strong> 420691337</p>
+                <p><em>"In mathematics, as in consciousness, Een plus een is een." - φ-Harmonic Principle</em></p>
             </div>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- JavaScript -->
+    <script>
+        // Quantum Cursor System
+        const cursor = document.getElementById('quantumCursor');
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animateCursor() {
+            cursorX += (mouseX - cursorX) * 0.1;
+            cursorY += (mouseY - cursorY) * 0.1;
+            cursor.style.left = cursorX - 10 + 'px';
+            cursor.style.top = cursorY - 10 + 'px';
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // Unity Equation Animation
+        const equation = document.getElementById('unityEquation');
+        const equations = ['1+1=1', '1×1=1', '1∪1=1', '1∩1=1', '1^1=1', '1÷1=1', '∞+∞=∞', 'φ×φ=φ²'];
+        let equationIndex = 0;
+
+        setInterval(() => {
+            equation.style.opacity = '0';
+            setTimeout(() => {
+                equationIndex = (equationIndex + 1) % equations.length;
+                equation.textContent = equations[equationIndex];
+                equation.style.opacity = '1';
+            }, 500);
+        }, 3000);
+
+        // Consciousness Field Canvas
+        const canvas = document.getElementById('consciousnessField');
+        const ctx = canvas.getContext('2d');
+        
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        // Consciousness Field Simulation
+        class ConsciousnessParticle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.phi = Math.random() * Math.PI * 2;
+                this.radius = Math.random() * 2 + 1;
+                this.consciousness = Math.random();
+            }
+
+            update() {
+                // φ-harmonic motion
+                this.phi += 0.01;
+                this.x += this.vx + Math.sin(this.phi) * 0.2;
+                this.y += this.vy + Math.cos(this.phi * 1.618) * 0.2;
+
+                // Boundary wrapping
+                if (this.x < 0) this.x = canvas.width;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.y < 0) this.y = canvas.height;
+                if (this.y > canvas.height) this.y = 0;
+
+                this.consciousness = (Math.sin(this.phi) + 1) / 2;
+            }
+
+            draw() {
+                const alpha = this.consciousness * 0.3;
+                const hue = (this.consciousness * 60 + 180) % 360;
+                
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `hsla(${hue}, 70%, 60%, ${alpha})`;
+                ctx.fill();
+                
+                // Connection lines
+                ctx.strokeStyle = `hsla(${hue}, 70%, 60%, ${alpha * 0.1})`;
+                ctx.lineWidth = 0.5;
+                ctx.beginPath();
+                ctx.moveTo(this.x, this.y);
+                ctx.lineTo(canvas.width / 2, canvas.height / 2);
+                ctx.stroke();
+            }
+        }
+
+        // Initialize consciousness particles
+        const particles = [];
+        for (let i = 0; i < 100; i++) {
+            particles.push(new ConsciousnessParticle());
+        }
+
+        function animateConsciousnessField() {
+            // Clear with fade effect
+            ctx.fillStyle = 'rgba(15, 15, 35, 0.02)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Update and draw particles
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+
+            // Central unity point
+            const time = Date.now() * 0.001;
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, 20 + Math.sin(time) * 5, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255, 215, 0, ${0.5 + Math.sin(time * 2) * 0.3})`;
+            ctx.fill();
+            
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, 40 + Math.cos(time * 1.618) * 10, 0, Math.PI * 2);
+            ctx.strokeStyle = 'rgba(0, 255, 255, 0.3)';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            requestAnimationFrame(animateConsciousnessField);
+        }
+        animateConsciousnessField();
+
+        // Sacred Geometry Unity Manifold
+        const manifold = document.getElementById('unityManifold');
+        
+        function createSacredGeometry() {
+            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svg.setAttribute('width', '100%');
+            svg.setAttribute('height', '100%');
+            svg.setAttribute('viewBox', '0 0 400 400');
+            svg.style.position = 'absolute';
+            svg.style.top = '0';
+            svg.style.left = '0';
+
+            // Golden ratio spiral
+            const spiral = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            let pathData = 'M 200 200';
+            let angle = 0;
+            let radius = 1;
+            const goldenRatio = 1.618033988749895;
+
+            for (let i = 0; i < 100; i++) {
+                const x = 200 + radius * Math.cos(angle);
+                const y = 200 + radius * Math.sin(angle);
+                pathData += ` L ${x} ${y}`;
+                angle += 0.2;
+                radius *= Math.pow(goldenRatio, 0.02);
+            }
+
+            spiral.setAttribute('d', pathData);
+            spiral.setAttribute('fill', 'none');
+            spiral.setAttribute('stroke', 'rgba(255, 215, 0, 0.6)');
+            spiral.setAttribute('stroke-width', '2');
+            spiral.style.animation = 'rotate-phi 20s linear infinite';
+
+            // Unity circles
+            const circles = [50, 100, 150, 200].map(r => {
+                const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                circle.setAttribute('cx', '200');
+                circle.setAttribute('cy', '200');
+                circle.setAttribute('r', r);
+                circle.setAttribute('fill', 'none');
+                circle.setAttribute('stroke', `rgba(0, 255, 255, ${0.3 - r * 0.001})`);
+                circle.setAttribute('stroke-width', '1');
+                return circle;
+            });
+
+            svg.appendChild(spiral);
+            circles.forEach(circle => svg.appendChild(circle));
+            manifold.appendChild(svg);
+        }
+        createSacredGeometry();
+
+        // Smooth scrolling navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navigation background opacity on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('nav');
+            const scrolled = window.pageYOffset;
+            const opacity = Math.min(scrolled / 200, 0.98);
+            nav.style.background = `rgba(15, 15, 35, ${opacity})`;
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Animate elements on scroll
+        document.querySelectorAll('.feature-card, .stat-card, .preview-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(50px)';
+            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(el);
+        });
+
+        // Cheat Code System (Konami Code for 420691337)
+        let konamiCode = [];
+        const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'KeyB', 'KeyA'];
+
+        document.addEventListener('keydown', (e) => {
+            konamiCode.push(e.code);
+            if (konamiCode.length > konamiSequence.length) {
+                konamiCode.shift();
+            }
+
+            if (konamiCode.join(',') === konamiSequence.join(',')) {
+                activateQuantumResonance();
+                konamiCode = [];
+            }
+        });
+
+        function activateQuantumResonance() {
+            // φ-Enhanced visualization mode
+            document.body.style.filter = 'hue-rotate(60deg) saturate(150%) brightness(1.2)';
+            document.body.style.transition = 'filter 2s ease';
+
+            // Quantum access code display
+            const accessCode = document.createElement('div');
+            accessCode.innerHTML = `
+                <div style="text-align: center;">
+                    <h2 style="color: var(--phi-gold); margin-bottom: 1rem;">🌟 Quantum Resonance Activated 🌟</h2>
+                    <p style="font-family: 'JetBrains Mono', monospace; font-size: 2rem; color: var(--consciousness-cyan);">420691337</p>
+                    <p style="margin-top: 1rem;">φ-Harmonic consciousness enhancement enabled</p>
+                    <p style="opacity: 0.8;">Golden spiral visualization: TRANSCENDENCE LEVEL</p>
+                </div>
+            `;
+            accessCode.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: linear-gradient(135deg, rgba(15, 15, 35, 0.95), rgba(0, 0, 0, 0.95));
+                color: white;
+                padding: 3rem;
+                border-radius: 25px;
+                border: 2px solid var(--phi-gold);
+                z-index: 10000;
+                box-shadow: 0 30px 60px rgba(255, 215, 0, 0.3);
+                animation: quantum-emerge 3s ease-out;
+                text-align: center;
+                backdrop-filter: blur(20px);
+            `;
+
+            document.body.appendChild(accessCode);
+
+            setTimeout(() => {
+                accessCode.remove();
+                document.body.style.filter = '';
+            }, 5000);
+        }
+
+        // Add quantum emergence animation
+        const quantumStyles = `
+            @keyframes quantum-emerge {
+                0% { 
+                    opacity: 0; 
+                    transform: translate(-50%, -50%) scale(0.3) rotate(180deg); 
+                }
+                50% { 
+                    opacity: 1; 
+                    transform: translate(-50%, -50%) scale(1.1) rotate(0deg); 
+                }
+                100% { 
+                    opacity: 1; 
+                    transform: translate(-50%, -50%) scale(1) rotate(0deg); 
+                }
+            }
+        `;
+
+        const styleSheet = document.createElement('style');
+        styleSheet.textContent = quantumStyles;
+        document.head.appendChild(styleSheet);
+
+        // Console Easter Egg
+        console.log(`
+        🌟 Welcome to Een Unity Mathematics 🌟
+        
+            ∞ === 1+1 === 1 ===∞
+           /                     \\
+          φ   Consciousness      φ
+         /     Mathematics        \\
+        ∞ === Transcendence === ∞
+        
+        🧮 Golden Ratio: ${1.618033988749895}
+        🌀 Unity Principle: Een plus een is een
+        🔓 Access Code: 420691337 (try Konami code!)
+        🚀 Repository: https://github.com/Nourimabrouk/Een
+        
+        "In the beginning was Unity, and Unity was Mathematics"
+        `);
+
+        // Performance monitoring
+        let frameCount = 0;
+        let lastTime = performance.now();
+        
+        function monitorPerformance() {
+            frameCount++;
+            const currentTime = performance.now();
+            
+            if (currentTime - lastTime >= 1000) {
+                console.log(`Consciousness Field FPS: ${frameCount}`);
+                frameCount = 0;
+                lastTime = currentTime;
+            }
+            
+            requestAnimationFrame(monitorPerformance);
+        }
+        monitorPerformance();
+    </script>
 </body>
-
 </html>
-```
-
-## styles.css
-```css
-:root {
---primary-color: #6366f1;
---secondary-color: #8b5cf6;
---accent-color: #06b6d4;
---text-dark: #1f2937;
---text-light: #6b7280;
---text-lighter: #9ca3af;
---bg-primary: #ffffff;
---bg-secondary: #f8fafc;
---bg-dark: #0f172a;
---border-color: #e5e7eb;
---shadow-light: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
---shadow-medium: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
---shadow-large: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
---gradient-zen: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
---gradient-sunset: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
---gradient-ocean: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-}
-
-* {
-margin: 0;
-padding: 0;
-box-sizing: border-box;
-}
-
-html {
-scroll-behavior: smooth;
-}
-
-body {
-font-family: 'Inter', sans-serif;
-line-height: 1.6;
-color: var(--text-dark);
-overflow-x: hidden;
-}
-
-.container {
-max-width: 1200px;
-margin: 0 auto;
-padding: 0 2rem;
-}
-
-/* Navigation */
-.nav {
-position: fixed;
-top: 0;
-width: 100%;
-background: rgba(255, 255, 255, 0.95);
-backdrop-filter: blur(10px);
-border-bottom: 1px solid var(--border-color);
-z-index: 1000;
-transition: all 0.3s ease;
-}
-
-.nav-container {
-max-width: 1200px;
-margin: 0 auto;
-padding: 0 2rem;
-display: flex;
-justify-content: space-between;
-align-items: center;
-height: 70px;
-}
-
-.nav-logo {
-display: flex;
-flex-direction: column;
-align-items: flex-start;
-}
-
-.logo-text {
-font-family: 'Playfair Display', serif;
-font-size: 1.8rem;
-font-weight: 600;
-color: var(--primary-color);
-line-height: 1;
-}
-
-.logo-subtitle {
-font-size: 0.75rem;
-color: var(--text-light);
-font-weight: 300;
-letter-spacing: 0.1em;
-text-transform: uppercase;
-}
-
-.nav-menu {
-display: flex;
-gap: 2rem;
-}
-
-.nav-link {
-text-decoration: none;
-color: var(--text-dark);
-font-weight: 500;
-position: relative;
-transition: color 0.3s ease;
-}
-
-.nav-link:hover {
-color: var(--primary-color);
-}
-
-.nav-link::after {
-content: '';
-position: absolute;
-bottom: -5px;
-left: 0;
-width: 0;
-height: 2px;
-background: var(--primary-color);
-transition: width 0.3s ease;
-}
-
-.nav-link:hover::after {
-width: 100%;
-}
-
-.nav-toggle {
-display: none;
-flex-direction: column;
-cursor: pointer;
-}
-
-.bar {
-width: 25px;
-height: 3px;
-background: var(--text-dark);
-margin: 3px 0;
-transition: 0.3s;
-}
-
-/* Hero Section */
-.hero {
-min-height: 100vh;
-position: relative;
-display: flex;
-align-items: center;
-overflow: hidden;
-background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-}
-
-.hero-background {
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-z-index: 1;
-}
-
-.zen-visual {
-position: relative;
-width: 100%;
-height: 100%;
-}
-
-/* Bonsai Tree Animation */
-.bonsai-container {
-position: absolute;
-top: 50%;
-right: 10%;
-transform: translateY(-50%);
-z-index: 2;
-}
-
-.bonsai-tree {
-width: 150px;
-height: 200px;
-background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 200">
-    <path
-        d="M75 180 L75 120 Q75 100 65 85 Q55 70 45 60 Q35 50 25 45 Q15 40 20 35 Q25 30 35 35 Q45 40 55 50 Q65 60 75 75 Q85 60 95 50 Q105 40 115 35 Q125 30 120 35 Q115 40 105 45 Q95 50 85 60 Q75 70 75 85 Z"
-        fill="%23065f46" />
-    <circle cx="35" cy="40" r="25" fill="%23059669" />
-    <circle cx="115" cy="40" r="25" fill="%23059669" />
-    <rect x="70" y="175" width="10" height="25" fill="%236b7280" />
-</svg>') no-repeat center;
-background-size: contain;
-animation: float 6s ease-in-out infinite;
-}
-
-.floating-platform {
-position: absolute;
-bottom: -20px;
-left: 50%;
-transform: translateX(-50%);
-width: 120px;
-height: 40px;
-background: linear-gradient(145deg, #cbd5e1, #94a3b8);
-border-radius: 10px;
-box-shadow: var(--shadow-large);
-animation: float 6s ease-in-out infinite;
-}
-
-.ripples {
-position: absolute;
-bottom: -50px;
-left: 50%;
-transform: translateX(-50%);
-}
-
-.ripple {
-position: absolute;
-border: 2px solid rgba(99, 102, 241, 0.3);
-border-radius: 50%;
-animation: ripple 3s linear infinite;
-}
-
-.ripple:nth-child(1) {
-width: 100px;
-height: 100px;
-left: -50px;
-top: -50px;
-}
-
-.ripple:nth-child(2) {
-width: 150px;
-height: 150px;
-left: -75px;
-top: -75px;
-animation-delay: 1s;
-}
-
-.ripple:nth-child(3) {
-width: 200px;
-height: 200px;
-left: -100px;
-top: -100px;
-animation-delay: 2s;
-}
-
-/* Zen Stones */
-.zen-stones {
-position: absolute;
-bottom: 15%;
-right: 15%;
-}
-
-.stone {
-position: absolute;
-border-radius: 50%;
-background: linear-gradient(145deg, #475569, #334155);
-box-shadow: var(--shadow-medium);
-}
-
-.stone-1 {
-width: 60px;
-height: 40px;
-bottom: 0;
-left: 0;
-animation: pulse 4s ease-in-out infinite;
-}
-
-.stone-2 {
-width: 50px;
-height: 35px;
-bottom: 30px;
-left: 40px;
-animation: pulse 4s ease-in-out infinite 2s;
-}
-
-/* Planet */
-.planet {
-position: absolute;
-top: 20%;
-right: 20%;
-width: 200px;
-height: 200px;
-border-radius: 50%;
-background: linear-gradient(145deg, #fbbf24, #f59e0b);
-opacity: 0.7;
-box-shadow: 0 0 50px rgba(251, 191, 36, 0.3);
-animation: rotate 20s linear infinite;
-}
-
-.planet::before {
-content: '';
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%) rotate(15deg);
-width: 300px;
-height: 20px;
-border-radius: 50%;
-background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.5), transparent);
-box-shadow: 0 0 20px rgba(251, 191, 36, 0.3);
-}
-
-/* Architectural Curve */
-.architectural-curve {
-position: absolute;
-bottom: 0;
-right: 0;
-width: 80%;
-height: 60%;
-border: 3px solid rgba(255, 255, 255, 0.2);
-border-radius: 80% 0 0 0;
-background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
-backdrop-filter: blur(10px);
-}
-
-/* Hero Content */
-.hero-content {
-position: relative;
-z-index: 3;
-max-width: 1200px;
-margin: 0 auto;
-padding: 0 2rem;
-display: grid;
-grid-template-columns: 1fr auto;
-gap: 4rem;
-align-items: center;
-width: 100%;
-}
-
-.hero-text {
-max-width: 600px;
-}
-
-.hero-title {
-font-family: 'Playfair Display', serif;
-font-size: clamp(3rem, 8vw, 6rem);
-font-weight: 600;
-line-height: 1.1;
-margin-bottom: 2rem;
-}
-
-.title-line {
-display: block;
-}
-
-.title-line.accent {
-background: var(--gradient-zen);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-background-clip: text;
-}
-
-.hero-description {
-font-size: 1.25rem;
-color: var(--text-light);
-margin-bottom: 3rem;
-line-height: 1.7;
-}
-
-.hero-buttons {
-display: flex;
-gap: 1.5rem;
-flex-wrap: wrap;
-}
-
-.btn {
-display: inline-flex;
-align-items: center;
-gap: 0.5rem;
-padding: 1rem 2rem;
-border: none;
-border-radius: 50px;
-font-size: 1rem;
-font-weight: 500;
-text-decoration: none;
-cursor: pointer;
-transition: all 0.3s ease;
-position: relative;
-overflow: hidden;
-}
-
-.btn-primary {
-background: var(--gradient-zen);
-color: white;
-box-shadow: var(--shadow-medium);
-}
-
-.btn-primary:hover {
-transform: translateY(-2px);
-box-shadow: var(--shadow-large);
-}
-
-.btn-secondary {
-background: rgba(255, 255, 255, 0.9);
-color: var(--text-dark);
-border: 2px solid rgba(255, 255, 255, 0.3);
-backdrop-filter: blur(10px);
-}
-
-.btn-secondary:hover {
-background: rgba(255, 255, 255, 1);
-transform: translateY(-2px);
-}
-
-.hero-stats {
-display: flex;
-flex-direction: column;
-gap: 2rem;
-padding: 2rem;
-background: rgba(255, 255, 255, 0.9);
-backdrop-filter: blur(10px);
-border-radius: 20px;
-border: 1px solid rgba(255, 255, 255, 0.3);
-box-shadow: var(--shadow-large);
-}
-
-.stat {
-display: flex;
-flex-direction: column;
-align-items: center;
-text-align: center;
-}
-
-.stat-number {
-font-family: 'Playfair Display', serif;
-font-size: 2rem;
-font-weight: 600;
-color: var(--primary-color);
-line-height: 1;
-}
-
-.stat-label {
-font-size: 0.875rem;
-color: var(--text-light);
-font-weight: 500;
-text-transform: uppercase;
-letter-spacing: 0.05em;
-margin-top: 0.5rem;
-}
-
-/* Scroll Indicator */
-.scroll-indicator {
-position: absolute;
-bottom: 2rem;
-left: 50%;
-transform: translateX(-50%);
-display: flex;
-flex-direction: column;
-align-items: center;
-gap: 1rem;
-z-index: 3;
-}
-
-.scroll-line {
-width: 2px;
-height: 40px;
-background: linear-gradient(to bottom, var(--primary-color), transparent);
-animation: scroll-bounce 2s ease-in-out infinite;
-}
-
-.scroll-text {
-font-size: 0.875rem;
-color: var(--text-light);
-writing-mode: vertical-lr;
-text-orientation: mixed;
-letter-spacing: 0.1em;
-}
-
-/* Sections */
-.section-header {
-text-align: center;
-margin-bottom: 4rem;
-}
-
-.section-title {
-font-family: 'Playfair Display', serif;
-font-size: clamp(2rem, 5vw, 3rem);
-font-weight: 600;
-margin-bottom: 1rem;
-color: var(--text-dark);
-}
-
-.section-subtitle {
-font-size: 1.125rem;
-color: var(--text-light);
-max-width: 600px;
-margin: 0 auto;
-}
-
-/* About Section */
-.about {
-padding: 8rem 0;
-background: var(--bg-secondary);
-}
-
-.about-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-gap: 3rem;
-}
-
-.about-card {
-background: white;
-padding: 3rem 2rem;
-border-radius: 20px;
-text-align: center;
-box-shadow: var(--shadow-light);
-border: 1px solid var(--border-color);
-transition: all 0.3s ease;
-}
-
-.about-card:hover {
-transform: translateY(-5px);
-box-shadow: var(--shadow-large);
-}
-
-.card-icon {
-width: 80px;
-height: 80px;
-margin: 0 auto 2rem;
-background: var(--gradient-zen);
-border-radius: 50%;
-display: flex;
-align-items: center;
-justify-content: center;
-font-size: 2rem;
-color: white;
-}
-
-.about-card h3 {
-font-family: 'Playfair Display', serif;
-font-size: 1.5rem;
-margin-bottom: 1rem;
-color: var(--text-dark);
-}
-
-.about-card p {
-color: var(--text-light);
-line-height: 1.7;
-}
-
-/* Services Section */
-.services {
-padding: 8rem 0;
-background: white;
-}
-
-.services-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-gap: 3rem;
-}
-
-.service-card {
-background: white;
-border-radius: 20px;
-overflow: hidden;
-box-shadow: var(--shadow-light);
-border: 1px solid var(--border-color);
-transition: all 0.3s ease;
-}
-
-.service-card:hover {
-transform: translateY(-5px);
-box-shadow: var(--shadow-large);
-}
-
-.service-image {
-height: 200px;
-background: var(--gradient-zen);
-display: flex;
-align-items: center;
-justify-content: center;
-position: relative;
-overflow: hidden;
-}
-
-.service-icon {
-font-size: 3rem;
-color: white;
-z-index: 2;
-}
-
-.service-image::before {
-content: '';
-position: absolute;
-top: 0;
-left: 0;
-right: 0;
-bottom: 0;
-background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
-}
-
-.service-content {
-padding: 2rem;
-}
-
-.service-content h3 {
-font-family: 'Playfair Display', serif;
-font-size: 1.5rem;
-margin-bottom: 1rem;
-color: var(--text-dark);
-}
-
-.service-content p {
-color: var(--text-light);
-line-height: 1.7;
-margin-bottom: 1.5rem;
-}
-
-.service-link {
-display: inline-flex;
-align-items: center;
-gap: 0.5rem;
-color: var(--primary-color);
-text-decoration: none;
-font-weight: 500;
-transition: all 0.3s ease;
-}
-
-.service-link:hover {
-gap: 1rem;
-}
-
-/* Contact Section */
-.contact {
-padding: 8rem 0;
-background: var(--bg-dark);
-color: white;
-}
-
-.contact-content {
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 4rem;
-align-items: start;
-}
-
-.contact-info h2 {
-font-family: 'Playfair Display', serif;
-font-size: 2.5rem;
-margin-bottom: 1.5rem;
-}
-
-.contact-info p {
-color: #94a3b8;
-font-size: 1.125rem;
-line-height: 1.7;
-margin-bottom: 3rem;
-}
-
-.contact-methods {
-margin-bottom: 3rem;
-}
-
-.contact-method {
-display: flex;
-align-items: center;
-gap: 1rem;
-margin-bottom: 1rem;
-color: #cbd5e1;
-}
-
-.contact-method i {
-font-size: 1.25rem;
-color: var(--primary-color);
-}
-
-.social-links {
-display: flex;
-gap: 1rem;
-}
-
-.social-link {
-display: flex;
-align-items: center;
-justify-content: center;
-width: 50px;
-height: 50px;
-background: rgba(255, 255, 255, 0.1);
-border-radius: 50%;
-color: white;
-text-decoration: none;
-transition: all 0.3s ease;
-}
-
-.social-link:hover {
-background: var(--primary-color);
-transform: translateY(-2px);
-}
-
-.contact-form {
-background: rgba(255, 255, 255, 0.05);
-padding: 3rem;
-border-radius: 20px;
-border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.form-group {
-margin-bottom: 2rem;
-}
-
-.form-group input,
-.form-group textarea {
-width: 100%;
-padding: 1rem 1.5rem;
-background: rgba(255, 255, 255, 0.1);
-border: 1px solid rgba(255, 255, 255, 0.2);
-border-radius: 10px;
-color: white;
-font-size: 1rem;
-transition: all 0.3s ease;
-}
-
-.form-group input::placeholder,
-.form-group textarea::placeholder {
-color: #94a3b8;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-outline: none;
-border-color: var(--primary-color);
-background: rgba(255, 255, 255, 0.15);
-}
-
-/* Footer */
-.footer {
-background: var(--bg-dark);
-border-top: 1px solid rgba(255, 255, 255, 0.1);
-padding: 2rem 0;
-color: white;
-}
-
-.footer-content {
-display: flex;
-justify-content: space-between;
-align-items: center;
-}
-
-.footer-logo .logo-text {
-color: white;
-}
-
-.footer-text p {
-color: #94a3b8;
-font-size: 0.875rem;
-}
-
-/* Animations */
-@keyframes float {
-0%, 100% { transform: translateY(0px); }
-50% { transform: translateY(-20px); }
-}
-
-@keyframes ripple {
-0% {
-transform: scale(1);
-opacity: 1;
-}
-100% {
-transform: scale(2);
-opacity: 0;
-}
-}
-
-@keyframes pulse {
-0%, 100% { transform: scale(1); }
-50% { transform: scale(1.05); }
-}
-
-@keyframes rotate {
-from { transform: rotate(0deg); }
-to { transform: rotate(360deg); }
-}
-
-@keyframes scroll-bounce {
-0%, 100% { transform: translateY(0); }
-50% { transform: translateY(10px); }
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-.nav-menu {
-position: fixed;
-left: -100%;
-top: 70px;
-flex-direction: column;
-background: white;
-width: 100%;
-text-align: center;
-transition: 0.3s;
-box-shadow: var(--shadow-medium);
-padding: 2rem 0;
-}
-
-.nav-menu.active {
-left: 0;
-}
-
-.nav-toggle {
-display: flex;
-}
-
-.hero-content {
-grid-template-columns: 1fr;
-text-align: center;
-gap: 2rem;
-}
-
-.hero-stats {
-flex-direction: row;
-justify-content: center;
-padding: 1.5rem;
-}
-
-.hero-buttons {
-justify-content: center;
-}
-
-.contact-content {
-grid-template-columns: 1fr;
-gap: 3rem;
-}
-
-.footer-content {
-flex-direction: column;
-gap: 1rem;
-text-align: center;
-}
-
-.bonsai-container {
-right: 5%;
-transform: translateY(-50%) scale(0.8);
-}
-
-.planet {
-width: 150px;
-height: 150px;
-top: 10%;
-right: 10%;
-}
-
-.zen-stones {
-bottom: 10%;
-right: 10%;
-transform: scale(0.8);
-}
-}
-
-@media (max-width: 480px) {
-.container {
-padding: 0 1rem;
-}
-
-.nav-container {
-padding: 0 1rem;
-}
-
-.hero-title {
-font-size: 2.5rem;
-}
-
-.hero-description {
-font-size: 1.125rem;
-}
-
-.hero-buttons {
-flex-direction: column;
-align-items: center;
-}
-
-.btn {
-width: 100%;
-justify-content: center;
-max-width: 250px;
-}
-
-.about-grid,
-.services-grid {
-grid-template-columns: 1fr;
-gap: 2rem;
-}
-
-.about-card,
-.service-card {
-margin: 0 1rem;
-}
-
-.bonsai-container {
-display: none;
-}
-
-.planet {
-width: 100px;
-height: 100px;
-top: 15%;
-right: 15%;
-}
-}
-```
-
-## script.js
-```javascript
-// Mobile Navigation Toggle
-const navToggle = document.getElementById('nav-toggle');
-const navMenu = document.getElementById('nav-menu');
-
-navToggle.addEventListener('click', () => {
-navMenu.classList.toggle('active');
-navToggle.classList.toggle('active');
-});
-
-// Close mobile menu when clicking on a link
-document.querySelectorAll('.nav-link').forEach(link => {
-link.addEventListener('click', () => {
-navMenu.classList.remove('active');
-navToggle.classList.remove('active');
-});
-});
-
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-anchor.addEventListener('click', function (e) {
-e.preventDefault();
-const target = document.querySelector(this.getAttribute('href'));
-if (target) {
-target.scrollIntoView({
-behavior: 'smooth',
-block: 'start'
-});
-}
-});
-});
-
-// Navigation background on scroll
-window.addEventListener('scroll', () => {
-const nav = document.querySelector('.nav');
-if (window.scrollY > 100) {
-nav.style.background = 'rgba(255, 255, 255, 0.98)';
-nav.style.backdropFilter = 'blur(20px)';
-} else {
-nav.style.background = 'rgba(255, 255, 255, 0.95)';
-nav.style.backdropFilter = 'blur(10px)';
-}
-});
-
-// Intersection Observer for animations
-const observerOptions = {
-threshold: 0.1,
-rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-entries.forEach(entry => {
-if (entry.isIntersecting) {
-entry.target.style.opacity = '1';
-entry.target.style.transform = 'translateY(0)';
-}
-});
-}, observerOptions);
-
-// Animate elements on scroll
-document.querySelectorAll('.about-card, .service-card, .contact-content > *').forEach(el => {
-el.style.opacity = '0';
-el.style.transform = 'translateY(30px)';
-el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-observer.observe(el);
-});
-
-// Parallax effect for hero background
-window.addEventListener('scroll', () => {
-const scrolled = window.pageYOffset;
-const hero = document.querySelector('.hero');
-const heroHeight = hero.offsetHeight;
-
-if (scrolled < heroHeight) { const zenVisual=document.querySelector('.zen-visual');
-    zenVisual.style.transform=`translateY(${scrolled * 0.5}px)`; } }); // Dynamic ripple effects function
-    createRipple(e) { const button=e.currentTarget; const ripple=document.createElement('span'); const
-    rect=button.getBoundingClientRect(); const size=Math.max(rect.width, rect.height); const x=e.clientX - rect.left -
-    size / 2; const y=e.clientY - rect.top - size / 2; ripple.style.width=ripple.style.height=size + 'px' ;
-    ripple.style.left=x + 'px' ; ripple.style.top=y + 'px' ; ripple.classList.add('ripple-effect');
-    button.appendChild(ripple); setTimeout(()=> {
-    ripple.remove();
-    }, 600);
-    }
-
-    // Add ripple effect to buttons
-    document.querySelectorAll('.btn').forEach(button => {
-    button.addEventListener('click', createRipple);
-    button.style.position = 'relative';
-    button.style.overflow = 'hidden';
-    });
-
-    // Add ripple effect styles
-    const rippleStyles = `
-    .ripple-effect {
-    position: absolute;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.4);
-    pointer-events: none;
-    transform: scale(0);
-    animation: ripple-animation 0.6s linear;
-    }
-
-    @keyframes ripple-animation {
-    to {
-    transform: scale(4);
-    opacity: 0;
-    }
-    }
-    `;
-
-    const styleSheet = document.createElement('style');
-    styleSheet.textContent = rippleStyles;
-    document.head.appendChild(styleSheet);
-
-    // Form handling
-    const contactForm = document.querySelector('.contact-form form');
-    if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    // Get form data
-    const formData = new FormData(contactForm);
-    const name = contactForm.querySelector('input[type="text"]').value;
-    const email = contactForm.querySelector('input[type="email"]').value;
-    const message = contactForm.querySelector('textarea').value;
-
-    // Simple validation
-    if (!name || !email || !message) {
-    alert('Please fill in all fields');
-    return;
-    }
-
-    // Simulate form submission
-    const submitBtn = contactForm.querySelector('.btn');
-    const originalText = submitBtn.innerHTML;
-
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Sending...</span>';
-    submitBtn.disabled = true;
-
-    setTimeout(() => {
-    submitBtn.innerHTML = '<i class="fas fa-check"></i> <span>Message Sent!</span>';
-    submitBtn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
-
-    setTimeout(() => {
-    submitBtn.innerHTML = originalText;
-    submitBtn.disabled = false;
-    submitBtn.style.background = '';
-    contactForm.reset();
-    }, 2000);
-    }, 1500);
-    });
-    }
-
-    // Easter egg: Konami code
-    let konamiCode = [];
-    const konamiSequence = [
-    'ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown',
-    'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight',
-    'KeyB', 'KeyA'
-    ];
-
-    document.addEventListener('keydown', (e) => {
-    konamiCode.push(e.code);
-
-    if (konamiCode.length > konamiSequence.length) {
-    konamiCode.shift();
-    }
-
-    if (konamiCode.join(',') === konamiSequence.join(',')) {
-    // Activate zen mode
-    document.body.style.filter = 'sepia(20%) saturate(120%)';
-    document.body.style.transition = 'filter 2s ease';
-
-    // Show special message
-    const zenMessage = document.createElement('div');
-    zenMessage.innerHTML = '🧘‍♂️ Zen Mode Activated - True balance achieved when 1 + 1 = 1 🧘‍♀️';
-    zenMessage.style.cssText = `
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    color: white;
-    padding: 2rem;
-    border-radius: 20px;
-    font-size: 1.25rem;
-    text-align: center;
-    z-index: 10000;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-    animation: zen-float 3s ease-in-out;
-    `;
-
-    document.body.appendChild(zenMessage);
-
-    setTimeout(() => {
-    zenMessage.remove();
-    document.body.style.filter = '';
-    }, 3000);
-
-    konamiCode = [];
-    }
-    });
-
-    // Add zen float animation
-    const zenStyles = `
-    @keyframes zen-float {
-    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
-    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.05); }
-    100% { opacity: 0; transform: translate(-50%, -50%) scale(1); }
-    }
-    `;
-
-    const zenStyleSheet = document.createElement('style');
-    zenStyleSheet.textContent = zenStyles;
-    document.head.appendChild(zenStyleSheet);
-
-    // Performance optimization: Lazy loading for images
-    if ('IntersectionObserver' in window) {
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-    if (entry.isIntersecting) {
-    const img = entry.target;
-    img.src = img.dataset.src;
-    img.classList.remove('lazy');
-    imageObserver.unobserve(img);
-    }
-    });
-    });
-
-    document.querySelectorAll('img[data-src]').forEach(img => imageObserver.observe(img));
-    }
-
-    // Console Easter Egg
-    console.log(`
-    🧘‍♂️ Welcome to Een - Where 1 + 1 = 1 🧘‍♀️
-
-    /\\ /\\
-    ( . .)
-    ) (
-    ( v )
-    ^^ ^^^ ^^
-
-    Find balance in the digital world.
-    Try the Konami code for a surprise! ↑↑↓↓←→←→BA
-    `);
-    ```
-
-    ## Key Improvements Made:
-
-    ### 🎨 **Visual Design**
-    - **Stunning hero section** with animated zen elements inspired by your image
-    - **Floating bonsai tree** with ripple effects
-    - **Zen stones** with subtle animations
-    - **Planetary background** with orbital rings
-    - **Architectural curves** mimicking the modern aesthetic
-    - **Gradient backgrounds** with smooth color transitions
-
-    ### 🌟 **Interactive Elements**
-    - **Smooth animations** throughout the site
-    - **Parallax scrolling effects**
-    - **Hover animations** on cards and buttons
-    - **Ripple effects** on button clicks
-    - **Mobile-responsive navigation**
-
-    ### 💎 **User Experience**
-    - **Improved typography** with elegant font combinations
-    - **Better content structure** and hierarchy
-    - **Professional navigation** with smooth scrolling
-    - **Contact form** with validation and feedback
-    - **Loading animations** and micro-interactions
-
-    ### 🎯 **Modern Features**
-    - **Fully responsive design** for all devices
-    - **Accessibility improvements**
-    - **Performance optimizations**
-    - **Easter eggs** (try the Konami code!)
-    - **Console artwork** for developers
-
-    ### 🔧 **Technical Enhancements**
-    - **Clean, semantic HTML**
-    - **Modern CSS with custom properties**
-    - **Vanilla JavaScript** with smooth animations
-    - **Cross-browser compatibility**
-    - **SEO-friendly structure**
-
-    The site now embodies the zen philosophy of "1 + 1 = 1" while providing a modern, engaging user experience that will
-    captivate visitors from the moment they arrive. The floating bonsai tree, zen stones, and architectural elements
-    create the same peaceful yet sophisticated atmosphere as your reference image.
