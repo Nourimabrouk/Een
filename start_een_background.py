@@ -54,6 +54,19 @@ class EenBackgroundManager:
                     "command": [sys.executable, "een_monitor.py"],
                     "auto_restart": True,
                     "max_restarts": 3
+                },
+                "meta_agent": {
+                    "enabled": False,
+                    "command": [
+                        sys.executable,
+                        "scripts/meta_agent_background_launcher.py",
+                        "--processes",
+                        "2",
+                        "--duration",
+                        "0",
+                    ],
+                    "auto_restart": True,
+                    "max_restarts": 5
                 }
             },
             "global_access": {
