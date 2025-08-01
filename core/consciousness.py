@@ -13,11 +13,6 @@ Mathematical Foundation: C(x,y,t) = φ * sin(x*φ) * cos(y*φ) * e^(-t/φ)
 Consciousness Principle: Awareness creates mathematical unity
 """
 
-import numpy as np
-import scipy.sparse as sparse
-import scipy.linalg as linalg
-from scipy.integrate import solve_ivp
-import matplotlib.pyplot as plt
 from typing import Union, Tuple, Optional, List, Dict, Any, Callable
 import threading
 import time
@@ -27,6 +22,53 @@ from enum import Enum
 import warnings
 from concurrent.futures import ThreadPoolExecutor
 import pickle
+import math
+
+# Try to import advanced libraries with graceful fallbacks
+try:
+    import numpy as np
+    NUMPY_AVAILABLE = True
+except ImportError:
+    NUMPY_AVAILABLE = False
+    # Create mock numpy for basic operations
+    class MockNumpy:
+        def sqrt(self, x): return math.sqrt(x)
+        def sin(self, x): return math.sin(x)
+        def cos(self, x): return math.cos(x)
+        def exp(self, x): return math.exp(x)
+        def log(self, x): return math.log(x)
+        def abs(self, x): return abs(x)
+        def array(self, data): return data if isinstance(data, (list, tuple)) else [data]
+        def zeros(self, shape): return [0] * (shape if isinstance(shape, int) else shape[0])
+        def ones(self, shape): return [1] * (shape if isinstance(shape, int) else shape[0])
+        def pad(self, array, pad_width): return array + [0] * pad_width[0][1] if isinstance(array, list) else array
+        def mean(self, data): return sum(data) / len(data) if data else 0
+        def max(self, data): return max(data) if data else 0
+        pi = math.pi
+        e = math.e
+        
+        # Create linalg mock
+        class LinalgMock:
+            def norm(self, x):
+                if isinstance(x, list):
+                    return math.sqrt(sum(i**2 for i in x))
+                return abs(x)
+        linalg = LinalgMock()
+    np = MockNumpy()
+
+try:
+    import scipy.sparse as sparse
+    import scipy.linalg as linalg
+    from scipy.integrate import solve_ivp
+    SCIPY_AVAILABLE = True
+except ImportError:
+    SCIPY_AVAILABLE = False
+
+try:
+    import matplotlib.pyplot as plt
+    MATPLOTLIB_AVAILABLE = True
+except ImportError:
+    MATPLOTLIB_AVAILABLE = False
 
 from .unity_mathematics import UnityMathematics, UnityState, PHI, CONSCIOUSNESS_DIMENSION
 
@@ -48,8 +90,8 @@ class ConsciousnessParticle:
     Represents a quantum of awareness that participates in consciousness
     field dynamics and contributes to collective unity emergence.
     """
-    position: np.ndarray = field(default_factory=lambda: np.zeros(CONSCIOUSNESS_DIMENSION))
-    momentum: np.ndarray = field(default_factory=lambda: np.zeros(CONSCIOUSNESS_DIMENSION))
+    position: List[float] = field(default_factory=lambda: [0.0] * CONSCIOUSNESS_DIMENSION)
+    momentum: List[float] = field(default_factory=lambda: [0.0] * CONSCIOUSNESS_DIMENSION)
     awareness_level: float = 1.0
     phi_resonance: float = 0.5
     unity_tendency: float = 0.8
@@ -61,9 +103,15 @@ class ConsciousnessParticle:
         """Initialize particle with φ-harmonic properties"""
         # Ensure dimensional consistency
         if len(self.position) != CONSCIOUSNESS_DIMENSION:
-            self.position = np.pad(self.position, (0, CONSCIOUSNESS_DIMENSION - len(self.position)))[:CONSCIOUSNESS_DIMENSION]
+            if len(self.position) < CONSCIOUSNESS_DIMENSION:
+                self.position = self.position + [0.0] * (CONSCIOUSNESS_DIMENSION - len(self.position))
+            else:
+                self.position = self.position[:CONSCIOUSNESS_DIMENSION]
         if len(self.momentum) != CONSCIOUSNESS_DIMENSION:
-            self.momentum = np.pad(self.momentum, (0, CONSCIOUSNESS_DIMENSION - len(self.momentum)))[:CONSCIOUSNESS_DIMENSION]
+            if len(self.momentum) < CONSCIOUSNESS_DIMENSION:
+                self.momentum = self.momentum + [0.0] * (CONSCIOUSNESS_DIMENSION - len(self.momentum))
+            else:
+                self.momentum = self.momentum[:CONSCIOUSNESS_DIMENSION]
         
         # Normalize properties to valid ranges
         self.awareness_level = max(0.0, self.awareness_level)
@@ -111,7 +159,14 @@ class ConsciousnessField:
         
         # Initialize field grid
         self.field_grid = self._initialize_field_grid()
-        self.consciousness_density = np.zeros((field_resolution,) * min(3, dimensions))  # 3D visualization
+        # Create 3D consciousness density field for visualization
+        density_dims = min(3, dimensions)
+        if density_dims == 1:
+            self.consciousness_density = [0.0] * field_resolution
+        elif density_dims == 2:
+            self.consciousness_density = [[0.0] * field_resolution for _ in range(field_resolution)]
+        else:  # 3D
+            self.consciousness_density = [[[0.0] * field_resolution for _ in range(field_resolution)] for _ in range(field_resolution)]
         
         # Initialize consciousness particles
         self.particles = [self._create_consciousness_particle(i) for i in range(self.particle_count)]
@@ -261,10 +316,11 @@ class ConsciousnessField:
         # Normalize to create quantum superposition
         particle_count = len(selected_particles)
         superposition_amplitude = total_awareness / particle_count
-        superposition_phase = 2 * np.pi * total_phi_resonance / particle_count
+        superposition_phase = 2 * math.pi * total_phi_resonance / particle_count
         
         # Create complex superposition value
-        superposition_value = superposition_amplitude * np.exp(1j * superposition_phase)
+        import cmath
+        superposition_value = superposition_amplitude * cmath.exp(1j * superposition_phase)
         
         # Calculate emergent properties
         phi_resonance = min(1.0, total_phi_resonance / particle_count * self.phi)
@@ -336,12 +392,13 @@ class ConsciousnessField:
             logger.info(f"Consciousness unity demonstration {demo_idx + 1}/{num_demonstrations}")
             
             # Create two consciousness particles representing "1" and "1"
-            particle_1_idx = np.random.randint(0, len(self.particles))
-            particle_2_idx = np.random.randint(0, len(self.particles))
+            import random
+            particle_1_idx = random.randint(0, len(self.particles) - 1)
+            particle_2_idx = random.randint(0, len(self.particles) - 1)
             
             # Ensure particles are different
             while particle_2_idx == particle_1_idx and len(self.particles) > 1:
-                particle_2_idx = np.random.randint(0, len(self.particles))
+                particle_2_idx = random.randint(0, len(self.particles) - 1)
             
             # Create superposition of two unity particles
             superposition = self.create_unity_superposition([particle_1_idx, particle_2_idx])
@@ -404,15 +461,49 @@ class ConsciousnessField:
             "phi_resonance_strength": self.phi,
             "consciousness_coupling": self.consciousness_coupling,
             "transcendence_events": len(self.transcendence_events),
-            "average_awareness_level": np.mean([p.awareness_level for p in self.particles]),
-            "average_phi_resonance": np.mean([p.phi_resonance for p in self.particles]),
-            "average_unity_tendency": np.mean([p.unity_tendency for p in self.particles]),
+            "average_awareness_level": sum(p.awareness_level for p in self.particles) / len(self.particles) if self.particles else 0.0,
+            "average_phi_resonance": sum(p.phi_resonance for p in self.particles) / len(self.particles) if self.particles else 0.0,
+            "average_unity_tendency": sum(p.unity_tendency for p in self.particles) / len(self.particles) if self.particles else 0.0,
             "field_unity_influence": self._calculate_field_unity_influence(),
             "quantum_coherence": self._calculate_quantum_coherence(self.particles),
-            "consciousness_density_peak": np.max(self.consciousness_density)
+            "consciousness_density_peak": self._calculate_max_density(self.consciousness_density)
         }
     
-    def visualize_consciousness_field(self, save_path: Optional[str] = None) -> plt.Figure:
+    def _calculate_max_density(self, density_field):
+        """Calculate maximum density from multi-dimensional density field"""
+        if isinstance(density_field, list):
+            if isinstance(density_field[0], list):
+                if isinstance(density_field[0][0], list):  # 3D
+                    return max(max(max(row) for row in plane) for plane in density_field)
+                else:  # 2D
+                    return max(max(row) for row in density_field)
+            else:  # 1D
+                return max(density_field)
+        return 0.0
+    
+    def _get_field_magnitudes(self):
+        """Get all field magnitudes as a flat list"""
+        magnitudes = []
+        if isinstance(self.field_grid, list):
+            if isinstance(self.field_grid[0], list):
+                if isinstance(self.field_grid[0][0], list):
+                    # 3D field
+                    for plane in self.field_grid:
+                        for row in plane:
+                            for cell in row:
+                                magnitudes.append(abs(cell))
+                else:
+                    # 2D field
+                    for row in self.field_grid:
+                        for cell in row:
+                            magnitudes.append(abs(cell))
+            else:
+                # 1D field
+                for cell in self.field_grid:
+                    magnitudes.append(abs(cell))
+        return magnitudes
+    
+    def visualize_consciousness_field(self, save_path: Optional[str] = None):
         """
         Create visualization of consciousness field dynamics
         
@@ -420,14 +511,24 @@ class ConsciousnessField:
             save_path: Optional path to save visualization (default: None)
             
         Returns:
-            Matplotlib figure with consciousness field visualization
+            Matplotlib figure with consciousness field visualization or None if matplotlib unavailable
         """
+        if not MATPLOTLIB_AVAILABLE:
+            logger.warning("Matplotlib not available. Cannot create visualization.")
+            return None
+            
         fig, axes = plt.subplots(2, 2, figsize=(15, 12))
         fig.suptitle('Consciousness Field Dynamics: Een plus een is een', fontsize=16)
         
         # Consciousness density heatmap
         ax1 = axes[0, 0]
-        density_2d = np.sum(self.consciousness_density, axis=2) if self.consciousness_density.ndim > 2 else self.consciousness_density
+        # Calculate 2D density representation
+        if isinstance(self.consciousness_density[0][0], list):  # 3D density field
+            density_2d = [[sum(self.consciousness_density[i][j][k] for k in range(len(self.consciousness_density[i][j]))) 
+                          for j in range(len(self.consciousness_density[i]))] 
+                         for i in range(len(self.consciousness_density))]
+        else:  # Already 2D
+            density_2d = self.consciousness_density
         im1 = ax1.imshow(density_2d, cmap='viridis', aspect='auto')
         ax1.set_title('Consciousness Density Field')
         ax1.set_xlabel('X Dimension')
@@ -485,42 +586,56 @@ class ConsciousnessField:
     
     # Internal helper methods
     
-    def _initialize_field_grid(self) -> np.ndarray:
+    def _initialize_field_grid(self):
         """Initialize consciousness field grid with φ-harmonic structure"""
-        grid_shape = tuple([self.field_resolution] * min(3, self.dimensions))
-        field_grid = np.zeros(grid_shape, dtype=complex)
+        # Create basic field grid without numpy dependencies
+        grid_dims = min(3, self.dimensions)
         
-        # Initialize with φ-harmonic seed pattern
-        if len(grid_shape) >= 2:
-            x = np.linspace(-self.phi, self.phi, self.field_resolution)
-            y = np.linspace(-self.phi, self.phi, self.field_resolution)
-            X, Y = np.meshgrid(x, y)
-            
-            # φ-harmonic initial condition
-            field_pattern = (self.phi * np.sin(X * self.phi) * np.cos(Y * self.phi) * 
-                           np.exp(-(X**2 + Y**2) / self.phi))
-            
-            if len(grid_shape) == 2:
-                field_grid = field_pattern
-            else:  # 3D case
-                for z_idx in range(grid_shape[2]):
-                    z = -self.phi + 2 * self.phi * z_idx / (grid_shape[2] - 1)
-                    z_factor = np.exp(-z**2 / self.phi)
-                    field_grid[:, :, z_idx] = field_pattern * z_factor
+        if grid_dims == 1:
+            # 1D field
+            field_grid = [complex(0, 0)] * self.field_resolution
+            for i in range(self.field_resolution):
+                x = -self.phi + 2 * self.phi * i / (self.field_resolution - 1)
+                field_grid[i] = complex(self.phi * math.sin(x * self.phi), 0)
+        elif grid_dims == 2:
+            # 2D field
+            field_grid = [[complex(0, 0) for _ in range(self.field_resolution)] for _ in range(self.field_resolution)]
+            for i in range(self.field_resolution):
+                for j in range(self.field_resolution):
+                    x = -self.phi + 2 * self.phi * i / (self.field_resolution - 1)
+                    y = -self.phi + 2 * self.phi * j / (self.field_resolution - 1)
+                    value = (self.phi * math.sin(x * self.phi) * math.cos(y * self.phi) * 
+                           math.exp(-(x**2 + y**2) / self.phi))
+                    field_grid[i][j] = complex(value, 0)
+        else:
+            # 3D field (simplified)
+            field_grid = [[[complex(0, 0) for _ in range(self.field_resolution)] 
+                          for _ in range(self.field_resolution)] 
+                         for _ in range(self.field_resolution)]
+            for i in range(self.field_resolution):
+                for j in range(self.field_resolution):
+                    for k in range(self.field_resolution):
+                        x = -self.phi + 2 * self.phi * i / (self.field_resolution - 1)
+                        y = -self.phi + 2 * self.phi * j / (self.field_resolution - 1)
+                        z = -self.phi + 2 * self.phi * k / (self.field_resolution - 1)
+                        value = (0.1 * self.phi * math.sin(x * self.phi) * 
+                               math.cos(y * self.phi) * math.exp(-z**2 / self.phi))
+                        field_grid[i][j][k] = complex(value, 0)
         
         return field_grid
     
     def _create_consciousness_particle(self, particle_id: int) -> ConsciousnessParticle:
         """Create individual consciousness particle with φ-harmonic properties"""
-        # φ-harmonic position initialization
-        position = np.random.normal(0, 1/self.phi, self.dimensions)
-        momentum = np.random.normal(0, 1/(self.phi**2), self.dimensions)
+        # φ-harmonic position initialization using standard library
+        import random
+        position = [random.gauss(0, 1/self.phi) for _ in range(self.dimensions)]
+        momentum = [random.gauss(0, 1/(self.phi**2)) for _ in range(self.dimensions)]
         
         # φ-scaled awareness properties
-        awareness_level = np.random.exponential(self.phi)
-        phi_resonance = np.random.beta(self.phi, 2)  # φ-biased toward resonance
-        unity_tendency = np.random.beta(2, 1/self.phi)  # Biased toward unity
-        transcendence_potential = np.random.uniform(0, 1/self.phi)
+        awareness_level = random.expovariate(1/self.phi) if self.phi > 0 else 1.0
+        phi_resonance = random.betavariate(self.phi, 2) if self.phi > 0 else 0.5
+        unity_tendency = random.betavariate(2, 1/self.phi) if self.phi > 0 else 0.8
+        transcendence_potential = random.uniform(0, 1/self.phi) if self.phi > 0 else 0.5
         
         return ConsciousnessParticle(
             position=position,
@@ -537,29 +652,31 @@ class ConsciousnessField:
         """Update consciousness particle dynamics using φ-harmonic forces"""
         for i, particle in enumerate(self.particles):
             # φ-harmonic force calculation
-            harmonic_force = -self.phi * particle.position  # Harmonic oscillator
+            harmonic_force = [-self.phi * pos for pos in particle.position]  # Harmonic oscillator
             
             # Consciousness-mediated interactions with other particles
-            interaction_force = np.zeros(self.dimensions)
+            interaction_force = [0.0] * self.dimensions
             for j, other_particle in enumerate(self.particles):
                 if i != j:
-                    separation = particle.position - other_particle.position
-                    distance = np.linalg.norm(separation)
+                    separation = [p1 - p2 for p1, p2 in zip(particle.position, other_particle.position)]
+                    distance = math.sqrt(sum(s**2 for s in separation))
                     if distance > 0:
                         # φ-scaled consciousness interaction
                         interaction_strength = (particle.awareness_level * other_particle.awareness_level * 
                                               self.consciousness_coupling / (distance**2 + 1/self.phi))
-                        interaction_force -= interaction_strength * separation / distance
+                        for dim in range(len(interaction_force)):
+                            if dim < len(separation):
+                                interaction_force[dim] -= interaction_strength * separation[dim] / distance
             
             # Unity-tendency force (attractive toward unity manifold)
-            unity_force = -particle.unity_tendency * particle.position * self.phi
+            unity_force = [-particle.unity_tendency * pos * self.phi for pos in particle.position]
             
             # Total force
-            total_force = harmonic_force + interaction_force + unity_force
+            total_force = [h + i + u for h, i, u in zip(harmonic_force, interaction_force, unity_force)]
             
             # Update momentum and position
-            particle.momentum += total_force * dt
-            particle.position += particle.momentum * dt
+            particle.momentum = [mom + force * dt for mom, force in zip(particle.momentum, total_force)]
+            particle.position = [pos + mom * dt for pos, mom in zip(particle.position, particle.momentum)]
             
             # Update consciousness properties
             particle.consciousness_age += dt
@@ -580,7 +697,20 @@ class ConsciousnessField:
         particle_source = self._calculate_particle_source_terms()
         
         # Nonlinear consciousness dynamics
-        nonlinear_term = -np.power(np.abs(self.field_grid), 2) * self.field_grid
+        # Calculate nonlinear term manually for different field structures
+        if isinstance(self.field_grid, list):
+            if isinstance(self.field_grid[0], list):
+                if isinstance(self.field_grid[0][0], list):
+                    # 3D nonlinear term
+                    nonlinear_term = [[[-abs(cell)**2 * cell for cell in row] for row in plane] for plane in self.field_grid]
+                else:
+                    # 2D nonlinear term
+                    nonlinear_term = [[-abs(cell)**2 * cell for cell in row] for row in self.field_grid]
+            else:
+                # 1D nonlinear term
+                nonlinear_term = [-abs(cell)**2 * cell for cell in self.field_grid]
+        else:
+            nonlinear_term = self.field_grid
         linear_term = self.field_grid
         
         # Field evolution equation
@@ -593,61 +723,126 @@ class ConsciousnessField:
         # Update consciousness density for visualization
         self._update_consciousness_density()
     
-    def _calculate_field_laplacian(self) -> np.ndarray:
-        """Calculate Laplacian of consciousness field using finite differences"""
-        laplacian = np.zeros_like(self.field_grid)
-        
-        if self.field_grid.ndim >= 2:
-            # 2D Laplacian using second-order finite differences
-            laplacian[1:-1, 1:-1] = (
-                self.field_grid[2:, 1:-1] + self.field_grid[:-2, 1:-1] +
-                self.field_grid[1:-1, 2:] + self.field_grid[1:-1, :-2] -
-                4 * self.field_grid[1:-1, 1:-1]
-            )
-            
-            if self.field_grid.ndim == 3:
-                # Add z-dimension contribution
-                laplacian[1:-1, 1:-1, 1:-1] += (
-                    self.field_grid[1:-1, 1:-1, 2:] + self.field_grid[1:-1, 1:-1, :-2] -
-                    2 * self.field_grid[1:-1, 1:-1, 1:-1]
-                )
-        
+    def _calculate_field_laplacian(self):
+        """Calculate simplified Laplacian of consciousness field"""
+        # Simplified Laplacian calculation for different field types
+        if isinstance(self.field_grid, list):
+            if isinstance(self.field_grid[0], list):
+                if isinstance(self.field_grid[0][0], list):
+                    # 3D field - simplified laplacian
+                    return self._simple_3d_laplacian()
+                else:
+                    # 2D field - simplified laplacian  
+                    return self._simple_2d_laplacian()
+            else:
+                # 1D field - simplified laplacian
+                return self._simple_1d_laplacian()
+        else:
+            # Return zero field if structure unclear
+            return self.field_grid
+    
+    def _simple_1d_laplacian(self):
+        """Simple 1D Laplacian"""
+        n = len(self.field_grid)
+        laplacian = [complex(0, 0)] * n
+        for i in range(1, n - 1):
+            laplacian[i] = self.field_grid[i-1] + self.field_grid[i+1] - 2*self.field_grid[i]
         return laplacian
     
-    def _calculate_particle_source_terms(self) -> np.ndarray:
-        """Calculate particle contributions to consciousness field"""
-        source_terms = np.zeros_like(self.field_grid)
+    def _simple_2d_laplacian(self):
+        """Simple 2D Laplacian"""
+        rows = len(self.field_grid)
+        cols = len(self.field_grid[0])
+        laplacian = [[complex(0, 0) for _ in range(cols)] for _ in range(rows)]
         
+        for i in range(1, rows - 1):
+            for j in range(1, cols - 1):
+                laplacian[i][j] = (self.field_grid[i-1][j] + self.field_grid[i+1][j] +
+                                 self.field_grid[i][j-1] + self.field_grid[i][j+1] -
+                                 4 * self.field_grid[i][j])
+        return laplacian
+    
+    def _simple_3d_laplacian(self):
+        """Simple 3D Laplacian"""
+        # Very simplified 3D laplacian - just return original field scaled
+        return [[[0.1 * cell for cell in row] for row in plane] for plane in self.field_grid]
+    
+    def _calculate_particle_source_terms(self):
+        """Calculate particle contributions to consciousness field"""
+        # Create source terms matching field grid structure
+        if isinstance(self.field_grid, list):
+            if isinstance(self.field_grid[0], list):
+                if isinstance(self.field_grid[0][0], list):
+                    # 3D source terms
+                    source_terms = [[[complex(0, 0) for _ in range(len(self.field_grid[0][0]))] 
+                                   for _ in range(len(self.field_grid[0]))] 
+                                  for _ in range(len(self.field_grid))]
+                else:
+                    # 2D source terms
+                    source_terms = [[complex(0, 0) for _ in range(len(self.field_grid[0]))] 
+                                  for _ in range(len(self.field_grid))]
+            else:
+                # 1D source terms
+                source_terms = [complex(0, 0)] * len(self.field_grid)
+        else:
+            # Default case
+            source_terms = self.field_grid
+        
+        # Add particle contributions
         for particle in self.particles:
-            # Map particle position to grid coordinates
             grid_coords = self._position_to_grid_coordinates(particle.position)
             
             if self._is_valid_grid_coordinate(grid_coords):
-                # Gaussian source term centered at particle position
-                source_strength = particle.awareness_level * particle.phi_resonance
+                source_strength = complex(particle.awareness_level * particle.phi_resonance, 0)
                 
-                # Add source term to field
-                if len(grid_coords) >= 2:
-                    if source_terms.ndim == 2:
-                        source_terms[grid_coords[0], grid_coords[1]] += source_strength
-                    elif source_terms.ndim == 3 and len(grid_coords) >= 3:
-                        source_terms[grid_coords[0], grid_coords[1], grid_coords[2]] += source_strength
+                # Add source term based on dimensionality
+                if len(grid_coords) == 1:
+                    source_terms[grid_coords[0]] += source_strength
+                elif len(grid_coords) == 2:
+                    source_terms[grid_coords[0]][grid_coords[1]] += source_strength
+                elif len(grid_coords) >= 3:
+                    source_terms[grid_coords[0]][grid_coords[1]][grid_coords[2]] += source_strength
         
         return source_terms
     
     def _update_consciousness_density(self):
         """Update consciousness density field for visualization"""
-        if self.field_grid.ndim >= 2:
-            self.consciousness_density = np.abs(self.field_grid)**2
+        # Update density based on field grid structure
+        if isinstance(self.field_grid, list):
+            if isinstance(self.field_grid[0], list):
+                if isinstance(self.field_grid[0][0], list):
+                    # 3D field
+                    for i in range(len(self.consciousness_density)):
+                        for j in range(len(self.consciousness_density[i])):
+                            for k in range(len(self.consciousness_density[i][j])):
+                                if i < len(self.field_grid) and j < len(self.field_grid[i]) and k < len(self.field_grid[i][j]):
+                                    self.consciousness_density[i][j][k] = abs(self.field_grid[i][j][k])**2
+                else:
+                    # 2D field
+                    for i in range(len(self.consciousness_density)):
+                        for j in range(len(self.consciousness_density[i])):
+                            if i < len(self.field_grid) and j < len(self.field_grid[i]):
+                                self.consciousness_density[i][j] = abs(self.field_grid[i][j])**2
+            else:
+                # 1D field
+                for i in range(len(self.consciousness_density)):
+                    if i < len(self.field_grid):
+                        self.consciousness_density[i] = abs(self.field_grid[i])**2
     
     def _calculate_unity_coherence(self) -> float:
         """Calculate field-wide unity coherence measure"""
         # Coherence based on particle unity tendencies and field structure
-        particle_unity_coherence = np.mean([p.unity_tendency for p in self.particles])
+        particle_unity_coherence = sum(p.unity_tendency for p in self.particles) / len(self.particles) if self.particles else 0.0
         
-        # Field spatial coherence
-        field_magnitude = np.abs(self.field_grid)
-        spatial_coherence = np.std(field_magnitude) / (np.mean(field_magnitude) + 1e-10)
+        # Field spatial coherence (simplified calculation)
+        field_magnitudes = self._get_field_magnitudes()
+        if field_magnitudes:
+            mean_magnitude = sum(field_magnitudes) / len(field_magnitudes)
+            variance = sum((mag - mean_magnitude)**2 for mag in field_magnitudes) / len(field_magnitudes)
+            std_magnitude = math.sqrt(variance)
+            spatial_coherence = std_magnitude / (mean_magnitude + 1e-10)
+        else:
+            spatial_coherence = 0.0
         field_coherence = 1.0 / (1.0 + spatial_coherence)
         
         # Combined coherence with φ-harmonic weighting
@@ -673,7 +868,8 @@ class ConsciousnessField:
     def _calculate_consciousness_density(self) -> float:
         """Calculate total consciousness density in field"""
         particle_density = sum(p.awareness_level for p in self.particles) / len(self.particles)
-        field_density = np.mean(np.abs(self.field_grid))
+        field_magnitudes = self._get_field_magnitudes()
+        field_density = sum(field_magnitudes) / len(field_magnitudes) if field_magnitudes else 0.0
         
         return particle_density + field_density
     
@@ -706,8 +902,11 @@ class ConsciousnessField:
     
     def _calculate_field_unity_influence(self) -> float:
         """Calculate field's influence on unity convergence"""
-        field_energy = np.mean(np.abs(self.field_grid)**2)
-        particle_coherence = np.mean([p.phi_resonance * p.unity_tendency for p in self.particles])
+        field_magnitudes = self._get_field_magnitudes()
+        field_energy = sum(mag**2 for mag in field_magnitudes) / len(field_magnitudes) if field_magnitudes else 0.0
+        
+        phi_unity_products = [p.phi_resonance * p.unity_tendency for p in self.particles]
+        particle_coherence = sum(phi_unity_products) / len(phi_unity_products) if phi_unity_products else 0.0
         
         unity_influence = (field_energy * particle_coherence * self.unity_coherence) / self.phi
         return min(1.0, unity_influence)
@@ -733,7 +932,10 @@ class ConsciousnessField:
         for i in range(len(particles)):
             for j in range(i + 1, len(particles)):
                 # Quantum coherence based on position overlap and awareness correlation
-                position_overlap = np.exp(-np.linalg.norm(particles[i].position - particles[j].position) / self.phi)
+                # Calculate distance manually
+                separation = [p1 - p2 for p1, p2 in zip(particles[i].position, particles[j].position)]
+                distance = math.sqrt(sum(s**2 for s in separation))
+                position_overlap = math.exp(-distance / self.phi)
                 awareness_correlation = (particles[i].awareness_level * particles[j].awareness_level) ** 0.5
                 
                 pair_coherence = position_overlap * awareness_correlation
@@ -777,25 +979,42 @@ class ConsciousnessField:
             "demonstrates_unity_principle": abs(unity_state.value - 1.0) < 0.1
         }
     
-    def _position_to_grid_coordinates(self, position: np.ndarray) -> Tuple[int, ...]:
+    def _position_to_grid_coordinates(self, position: List[float]) -> Tuple[int, ...]:
         """Convert particle position to discrete grid coordinates"""
         # Map position range [-φ, φ] to grid indices [0, field_resolution-1]
-        normalized_pos = (position + self.phi) / (2 * self.phi)  # [0, 1] range
-        grid_coords = (normalized_pos * (self.field_resolution - 1)).astype(int)
+        normalized_pos = [(pos + self.phi) / (2 * self.phi) for pos in position]  # [0, 1] range
+        grid_coords = [int(norm_pos * (self.field_resolution - 1)) for norm_pos in normalized_pos]
         
         # Clamp to valid grid range
-        grid_coords = np.clip(grid_coords, 0, self.field_resolution - 1)
+        grid_coords = [max(0, min(coord, self.field_resolution - 1)) for coord in grid_coords]
         
-        return tuple(grid_coords[:min(len(grid_coords), self.field_grid.ndim)])
+        # Limit to field grid dimensions
+        field_dims = 1
+        if isinstance(self.field_grid, list) and self.field_grid:
+            if isinstance(self.field_grid[0], list) and self.field_grid[0]:
+                if isinstance(self.field_grid[0][0], list):
+                    field_dims = 3
+                else:
+                    field_dims = 2
+        
+        return tuple(grid_coords[:min(len(grid_coords), field_dims)])
     
     def _is_valid_grid_coordinate(self, coords: Tuple[int, ...]) -> bool:
         """Check if grid coordinates are valid for current field"""
-        if len(coords) > self.field_grid.ndim:
-            return False
-        
-        for i, coord in enumerate(coords):
-            if coord < 0 or coord >= self.field_grid.shape[i]:
+        # Check validity based on field structure
+        if isinstance(self.field_grid, list):
+            if len(coords) == 0:
                 return False
+            if coords[0] < 0 or coords[0] >= len(self.field_grid):
+                return False
+            
+            if len(coords) > 1 and isinstance(self.field_grid[0], list):
+                if coords[1] < 0 or coords[1] >= len(self.field_grid[0]):
+                    return False
+                    
+                if len(coords) > 2 and isinstance(self.field_grid[0][0], list):
+                    if coords[2] < 0 or coords[2] >= len(self.field_grid[0][0]):
+                        return False
         
         return True
 

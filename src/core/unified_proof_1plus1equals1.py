@@ -5,13 +5,56 @@ Author: Nouri Mabrouk
 Date: 2025-07-31
 """
 
-import numpy as np
-import sympy as sp
 from typing import Dict, Any, Tuple
-import matplotlib.pyplot as plt
-from scipy.special import gamma
 from dataclasses import dataclass
-import plotly.graph_objects as go
+import math
+
+# Try to import advanced libraries with graceful fallbacks
+try:
+    import numpy as np
+    NUMPY_AVAILABLE = True
+except ImportError:
+    NUMPY_AVAILABLE = False
+    # Create mock numpy for basic operations
+    class MockNumpy:
+        def sqrt(self, x): return math.sqrt(x)
+        def sin(self, x): return math.sin(x)
+        def cos(self, x): return math.cos(x)
+        def exp(self, x): return math.exp(x)
+        def log(self, x): return math.log(x)
+        def abs(self, x): return abs(x)
+        def array(self, data): return data if isinstance(data, (list, tuple)) else [data]
+        def zeros(self, shape): return [0] * (shape if isinstance(shape, int) else shape[0])
+        def ones(self, shape): return [1] * (shape if isinstance(shape, int) else shape[0])
+        def linspace(self, start, stop, num): return [start + i * (stop - start) / (num - 1) for i in range(num)]
+        pi = math.pi
+        e = math.e
+    np = MockNumpy()
+
+try:
+    import sympy as sp
+    SYMPY_AVAILABLE = True
+except ImportError:
+    SYMPY_AVAILABLE = False
+
+try:
+    import matplotlib.pyplot as plt
+    MATPLOTLIB_AVAILABLE = True
+except ImportError:
+    MATPLOTLIB_AVAILABLE = False
+
+try:
+    from scipy.special import gamma
+    SCIPY_AVAILABLE = True
+except ImportError:
+    SCIPY_AVAILABLE = False
+    gamma = math.gamma
+
+try:
+    import plotly.graph_objects as go
+    PLOTLY_AVAILABLE = True
+except ImportError:
+    PLOTLY_AVAILABLE = False
 
 
 # ============================================================================

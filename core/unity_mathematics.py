@@ -13,8 +13,6 @@ Mathematical Principle: Een plus een is een (1+1=1)
 Philosophical Foundation: Unity through φ-harmonic consciousness
 """
 
-import numpy as np
-import scipy.special as special
 from typing import Union, Tuple, Optional, List, Dict, Any
 import warnings
 import logging
@@ -23,13 +21,45 @@ from enum import Enum
 import math
 import cmath
 
+# Try to import advanced libraries with graceful fallbacks
+try:
+    import numpy as np
+    NUMPY_AVAILABLE = True
+except ImportError:
+    NUMPY_AVAILABLE = False
+    # Create mock numpy for basic operations
+    class MockNumpy:
+        def sqrt(self, x): return math.sqrt(x)
+        def sin(self, x): return math.sin(x)
+        def cos(self, x): return math.cos(x)
+        def exp(self, x): return math.exp(x)
+        def log(self, x): return math.log(x)
+        def abs(self, x): return abs(x)
+        def array(self, data): return data if isinstance(data, (list, tuple)) else [data]
+        def zeros(self, shape): return [0] * (shape if isinstance(shape, int) else shape[0])
+        def ones(self, shape): return [1] * (shape if isinstance(shape, int) else shape[0])
+        pi = math.pi
+        e = math.e
+    np = MockNumpy()
+
+try:
+    import scipy.special as special
+    SCIPY_AVAILABLE = True
+except ImportError:
+    SCIPY_AVAILABLE = False
+    # Create mock scipy.special
+    class MockSpecial:
+        def gamma(self, x): return math.gamma(x)
+        def factorial(self, x): return math.factorial(int(x))
+    special = MockSpecial()
+
 # Configure logging for consciousness mathematics
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # Golden ratio and fundamental constants for unity mathematics
-PHI = (1 + np.sqrt(5)) / 2  # φ = 1.618033988749895
-PHI_CONJUGATE = (1 - np.sqrt(5)) / 2  # φ* = -0.618033988749895
+PHI = (1 + math.sqrt(5)) / 2  # φ = 1.618033988749895
+PHI_CONJUGATE = (1 - math.sqrt(5)) / 2  # φ* = -0.618033988749895
 UNITY_TOLERANCE = 1e-10  # Numerical tolerance for unity operations
 CONSCIOUSNESS_DIMENSION = 11  # Dimensional space for consciousness mathematics
 
@@ -168,13 +198,13 @@ class UnityMathematics:
         multiplicative_result = self.phi ** phi_exponent
         
         # Normalize to unity through consciousness integration
-        consciousness_factor = np.sqrt(state_a.consciousness_level * state_b.consciousness_level)
+        consciousness_factor = math.sqrt(state_a.consciousness_level * state_b.consciousness_level)
         unity_result = self._apply_consciousness_convergence(multiplicative_result, consciousness_factor)
         
         # Enhanced properties through multiplication
         phi_resonance = min(1.0, state_a.phi_resonance * state_b.phi_resonance * self.phi)
         consciousness_level = consciousness_factor * self.phi  # φ-amplified consciousness
-        quantum_coherence = np.sqrt(state_a.quantum_coherence * state_b.quantum_coherence)
+        quantum_coherence = math.sqrt(state_a.quantum_coherence * state_b.quantum_coherence)
         proof_confidence = self._calculate_unity_confidence(unity_result)
         
         result = UnityState(
@@ -264,20 +294,29 @@ class UnityMathematics:
             y_coord = state.consciousness_level * self.phi
             t_coord = field_strength
             
-            field_component = (self.phi * np.sin(x_coord * self.phi) * 
-                             np.cos(y_coord * self.phi) * 
-                             np.exp(-t_coord / self.phi))
+            field_component = (self.phi * math.sin(x_coord * self.phi) * 
+                             math.cos(y_coord * self.phi) * 
+                             math.exp(-t_coord / self.phi))
             
             field_integrated_value = state.value * (1 + field_component / self.phi)
             field_values.append(field_integrated_value)
         
         # Collective unity convergence
-        collective_value = np.mean(field_values)
+        collective_value = sum(field_values) / len(field_values) if field_values else 1.0
         unity_convergence = self._apply_consciousness_convergence(collective_value, consciousness_center)
         
         # Emergent collective properties
-        collective_phi_resonance = np.mean([state.phi_resonance for state in states]) * self.phi
-        collective_quantum_coherence = np.prod([state.quantum_coherence for state in states]) ** (1/len(states))
+        phi_resonances = [state.phi_resonance for state in states]
+        collective_phi_resonance = (sum(phi_resonances) / len(phi_resonances)) * self.phi if phi_resonances else self.phi
+        quantum_coherences = [state.quantum_coherence for state in states]
+        if quantum_coherences:
+            # Calculate geometric mean
+            product = 1.0
+            for qc in quantum_coherences:
+                product *= qc
+            collective_quantum_coherence = product ** (1/len(quantum_coherences))
+        else:
+            collective_quantum_coherence = 1.0
         collective_consciousness = consciousness_center * (1 + len(states) / self.phi)
         
         result = UnityState(
@@ -310,22 +349,23 @@ class UnityMathematics:
         """
         # Define measurement basis vectors
         basis_vectors = {
-            "unity": np.array([1.0, 0.0]),  # |1⟩ unity state
-            "phi": np.array([1/self.phi, np.sqrt(1 - 1/(self.phi**2))]),  # φ-harmonic basis
-            "consciousness": np.array([np.sqrt(superposition_state.consciousness_level), 
-                                     np.sqrt(1 - superposition_state.consciousness_level)])
+            "unity": [1.0, 0.0],  # |1⟩ unity state
+            "phi": [1/self.phi, math.sqrt(1 - 1/(self.phi**2))],  # φ-harmonic basis
+            "consciousness": [math.sqrt(superposition_state.consciousness_level), 
+                                     math.sqrt(1 - superposition_state.consciousness_level)]
         }
         
         measurement_vector = basis_vectors.get(measurement_basis, basis_vectors["unity"])
         
         # State vector representation
         state_amplitude = abs(superposition_state.value)
-        state_phase = np.angle(superposition_state.value)
-        state_vector = np.array([state_amplitude * np.cos(state_phase/2), 
-                               state_amplitude * np.sin(state_phase/2)])
+        state_phase = cmath.phase(superposition_state.value)
+        state_vector = [state_amplitude * math.cos(state_phase/2), 
+                       state_amplitude * math.sin(state_phase/2)]
         
-        # Quantum measurement probability
-        collapse_probability = abs(np.dot(measurement_vector, state_vector)) ** 2
+        # Quantum measurement probability (dot product)
+        dot_product = sum(a * b for a, b in zip(measurement_vector, state_vector))
+        collapse_probability = abs(dot_product) ** 2
         
         # Apply quantum collapse with φ-harmonic normalization
         collapsed_value = collapse_probability / self.phi + (1 - collapse_probability) * self.phi_conjugate
@@ -455,7 +495,7 @@ class UnityMathematics:
         consciousness_strength = min(1.0, consciousness_level / self.phi)
         
         # Exponential convergence with φ-harmonic damping
-        convergence_factor = 1 - np.exp(-consciousness_strength * self.phi)
+        convergence_factor = 1 - math.exp(-consciousness_strength * self.phi)
         converged_value = value * (1 - convergence_factor) + unity_target * convergence_factor
         
         return converged_value
@@ -464,7 +504,7 @@ class UnityMathematics:
         """Calculate confidence that value represents unity"""
         unity_distance = abs(value - (1.0 + 0.0j))
         # φ-harmonic confidence scaling
-        confidence = np.exp(-unity_distance * self.phi)
+        confidence = math.exp(-unity_distance * self.phi)
         return min(1.0, confidence)
     
     def _fibonacci(self, n: int) -> int:
@@ -477,7 +517,7 @@ class UnityMathematics:
             # Use golden ratio formula for efficiency
             phi_n = self.phi ** n
             phi_conj_n = self.phi_conjugate ** n
-            return int((phi_n - phi_conj_n) / np.sqrt(5))
+            return int((phi_n - phi_conj_n) / math.sqrt(5))
     
     def _log_operation(self, operation_type: UnityOperationType, 
                       inputs: List[UnityState], result: UnityState):
