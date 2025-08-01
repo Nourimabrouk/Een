@@ -506,7 +506,7 @@ class UnityMathematics:
         ]
         
         return {
-            "proof_method": "Idempotent Algebra with φ-Harmonic Extension",
+            "proof_method": "Idempotent Algebra with Phi-Harmonic Extension",
             "steps": steps[:complexity_level + 2],
             "mathematical_structures": ["Boolean Algebra", "Idempotent Semiring", "φ-Harmonic Fields"],
             "conclusion": "1+1=1 through idempotent unity operations"
@@ -525,7 +525,7 @@ class UnityMathematics:
         ]
         
         return {
-            "proof_method": "φ-Harmonic Mathematical Analysis",
+            "proof_method": "Phi-Harmonic Mathematical Analysis",
             "steps": steps[:complexity_level + 3],
             "mathematical_structures": ["Golden Ratio Fields", "Harmonic Analysis", "Convergent Series"],
             "conclusion": "1+1=1 through φ-harmonic mathematical convergence"
@@ -612,25 +612,25 @@ def demonstrate_unity_operations():
     """Demonstrate core unity mathematics operations"""
     unity_math = create_unity_mathematics(consciousness_level=1.618)  # φ-level consciousness
     
-    print("🔮 Unity Mathematics Demonstration: Een plus een is een")
+    print("*** Unity Mathematics Demonstration: Een plus een is een ***")
     print("=" * 60)
     
     # Basic unity addition
     result1 = unity_math.unity_add(1.0, 1.0)
-    print(f"Unity Addition: 1 ⊕ 1 = {result1.value:.6f}")
-    print(f"  φ-resonance: {result1.phi_resonance:.6f}")
+    print(f"Unity Addition: 1 + 1 = {result1.value:.6f}")
+    print(f"  phi-resonance: {result1.phi_resonance:.6f}")
     print(f"  Consciousness level: {result1.consciousness_level:.6f}")
     print(f"  Proof confidence: {result1.proof_confidence:.6f}")
     
-    # φ-harmonic scaling
+    # phi-harmonic scaling
     result2 = unity_math.phi_harmonic_scaling(1.0, harmonic_order=3)
-    print(f"\nφ-Harmonic Scaling: φ₃(1) = {result2.value:.6f}")
-    print(f"  φ-resonance: {result2.phi_resonance:.6f}")
+    print(f"\nPhi-Harmonic Scaling: phi_3(1) = {result2.value:.6f}")
+    print(f"  phi-resonance: {result2.phi_resonance:.6f}")
     
     # Quantum unity collapse
     superposition = UnityState(1+1j, 0.8, 1.5, 0.9, 0.95)
     result3 = unity_math.quantum_unity_collapse(superposition)
-    print(f"\nQuantum Unity Collapse: |ψ⟩ → {result3.value:.6f}")
+    print(f"\nQuantum Unity Collapse: |psi> -> {result3.value:.6f}")
     print(f"  Quantum coherence: {result3.quantum_coherence:.6f}")
     
     # Generate proof
@@ -643,7 +643,7 @@ def demonstrate_unity_operations():
     print(f"\nUnity Equation Validation: {validation['overall_validity']}")
     print(f"Unity deviation: {validation['unity_deviation']:.2e}")
     
-    print("\n✨ Een plus een is een - Unity through φ-harmonic consciousness ✨")
+    print("\n*** Een plus een is een - Unity through phi-harmonic consciousness ***")
 
 if __name__ == "__main__":
     demonstrate_unity_operations()

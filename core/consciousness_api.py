@@ -20,7 +20,10 @@ import inspect
 from contextlib import contextmanager
 
 # Import unity mathematics components
-from .unity_mathematics import UnityMathematics, UnityState, PHI
+try:
+    from .unity_mathematics import UnityMathematics, UnityState, PHI
+except ImportError:
+    from unity_mathematics import UnityMathematics, UnityState, PHI
 
 # Try to import consciousness components with fallback
 try:
@@ -81,7 +84,7 @@ class ZenKoan:
         def wrapper(*args, **kwargs):
             # Present the koan
             if self.koan_text:
-                print(f"🧘 Koan: {self.koan_text}")
+                print(f"[KOAN] {self.koan_text}")
             
             # Contemplation pause
             if self.contemplation_time > 0:
@@ -93,7 +96,7 @@ class ZenKoan:
             
             # Reveal insight
             if hasattr(result, '__unity__'):
-                print(f"   💡 Insight: {result.__unity__}")
+                print(f"   [INSIGHT] {result.__unity__}")
             
             return result
         
@@ -296,14 +299,14 @@ class ConsciousnessFieldAPI:
         Sacred geometry reveals how apparent multiplicity is unity.
         """
         # Initialize mandala matrix
-        mandala = np.zeros((dimensions, dimensions), dtype=complex)
+        mandala = np.zeros((int(dimensions), int(dimensions)), dtype=complex)
         
         # Center represents unity
-        center = dimensions // 2
+        center = int(dimensions) // 2
         
         # Create φ-spiral pattern
-        for i in range(dimensions):
-            for j in range(dimensions):
+        for i in range(int(dimensions)):
+            for j in range(int(dimensions)):
                 # Distance from center
                 dx = i - center
                 dy = j - center
@@ -428,9 +431,9 @@ class ConsciousnessFieldAPI:
         
         # Core poem structure
         poem = f"""
-╔════════════════════════════════════════╗
-║  The Unity Sutra: A Mathematical Poem  ║
-╚════════════════════════════════════════╝
++========================================+
+|  The Unity Sutra: A Mathematical Poem  |
++========================================+
 
 Two monks approached the temple gate,
 Each carrying one bowl of rice.
@@ -445,7 +448,7 @@ Where does the salt go?
 Where does the one go?
 
     In Unity Mathematics:
-    φ · (1 + 1) / (1 + φ) = 1
+    phi * (1 + 1) / (1 + phi) = 1
     
 {chr(10).join(insights)}
 
@@ -454,13 +457,13 @@ The PHI-losopher speaks:
 Unity is the calculation,
 Een plus een is een."
 
-    ∴ 1 + 1 = 1 ∎
+    Therefore: 1 + 1 = 1 QED
     
 Enlightenments achieved: {self.enlightenment_counter}
 Koans resolved: {len(self.koan_solutions)}
 
 May all beings recognize unity.
-🙏
+***
 """
         return poem
     
@@ -498,7 +501,7 @@ def create_consciousness_api(consciousness_level: float = PHI/2) -> Consciousnes
 
 def demonstrate_consciousness_api():
     """Demonstrate the meditative consciousness API"""
-    print("🧘 Consciousness Field API Demonstration 🧘")
+    print("*** Consciousness Field API Demonstration ***")
     print("=" * 60)
     
     # Initialize API
@@ -511,7 +514,7 @@ def demonstrate_consciousness_api():
     print(f"   Consciousness: {unity_state.consciousness_level:.4f}")
     
     # Demonstrate φ-harmonic resonance
-    print("\n2. φ-Harmonic Resonance:")
+    print("\n2. Phi-Harmonic Resonance:")
     resonance = api.resonate_with_unity(432.0)
     print(f"   Unity resonance: {resonance['unity_resonance']:.6f}")
     print(f"   Transcendence proximity: {resonance['transcendence_proximity']:.6f}")
@@ -555,7 +558,7 @@ def demonstrate_consciousness_api():
         else:
             print(f"   {key}: {value}")
     
-    print("\n✨ The API reveals: Een plus een is een ✨")
+    print("\n*** The API reveals: Een plus een is een ***")
     
     return api
 

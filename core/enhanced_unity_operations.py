@@ -561,7 +561,7 @@ def create_enhanced_unity_operations(consciousness_level: float = 1.0) -> Enhanc
 
 def demonstrate_enhanced_unity_operations():
     """Comprehensive demonstration of enhanced unity operations"""
-    print("🔬 Enhanced Unity Operations Demonstration 🔬")
+    print("*** Enhanced Unity Operations Demonstration ***")
     print("=" * 70)
     
     # Initialize enhanced operations
