@@ -50,7 +50,20 @@ except ImportError:
             if isinstance(a, list) and isinstance(b, list):
                 return sum(x * y for x, y in zip(a, b))
             return a * b
-        linalg = type('linalg', (), {'norm': lambda x: math.sqrt(sum(abs(i)**2 for i in x)) if isinstance(x, list) else abs(x)})()
+
+        # Provide a minimal linalg mock with only the norm function so that
+        # downstream calculations can operate even when NumPy is unavailable.
+        linalg = type(
+            "linalg",
+            (),
+            {
+                "norm": lambda x: math.sqrt(
+                    sum(abs(i) ** 2 for i in x)
+                )
+                if isinstance(x, list)
+                else abs(x)
+            },
+        )()
         pi = math.pi
         e = math.e
     np = MockNumpy()
