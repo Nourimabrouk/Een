@@ -58,6 +58,18 @@
     --space-phi-xl: 4.236rem;
 }
 
+body.dark-mode {
+    --text-primary: #f1f5f9;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-tertiary: #334155;
+    --border-color: #475569;
+    --border-subtle: #334155;
+    color-scheme: dark;
+}
+
 /* Modern Reset with Enhanced Box Model */
 *,
 *::before,
@@ -195,6 +207,11 @@ p {
     transition: all var(--transition-smooth);
     position: relative;
     padding: 0.5rem 0;
+}
+button.nav-link {
+    background: none;
+    border: none;
+    cursor: pointer;
 }
 
 .nav-link::after {
