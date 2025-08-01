@@ -104,15 +104,16 @@ def consciousness_field():
 def generate_proof():
     """Basic proof generation"""
     proof_type = request.args.get('type', 'phi_harmonic')
+    complexity = int(request.args.get('complexity', 2))
     return jsonify({
         "proof_type": proof_type,
         "mathematical_validity": True,
         "phi_harmonic_content": 0.618,
-        "unity_theorem": "1 + 1 = 1 through φ-harmonic normalization",
-        "complexity_level": 2,
+        "unity_theorem": "1 + 1 = 1 through phi-harmonic normalization",
+        "complexity_level": complexity,
         "consciousness_requirement": 1.618,
         "validation_steps": [
-            "φ-harmonic basis initialization",
+            "phi-harmonic basis initialization",
             "Unity operation application", 
             "Convergence verification",
             "Consciousness integration",
