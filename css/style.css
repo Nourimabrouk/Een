@@ -658,4 +658,510 @@ p {
     .social-links {
         justify-content: center;
     }
+    
+    .about-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .interests-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* About Section */
+.about-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+}
+
+.about-content {
+    background: white;
+    padding: 3rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    border-left: 4px solid var(--primary-color);
+}
+
+.profile-section {
+    margin-bottom: 3rem;
+}
+
+.profile-info h3 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.profile-subtitle {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 2rem;
+}
+
+.profile-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1rem;
+}
+
+.detail-item i {
+    color: var(--primary-color);
+    width: 20px;
+    text-align: center;
+}
+
+.detail-item a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.detail-item a:hover {
+    text-decoration: underline;
+}
+
+.interests-section {
+    margin-bottom: 3rem;
+}
+
+.interests-section h4 {
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+}
+
+.interests-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.interest-item {
+    background: var(--bg-light);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.interest-item:hover {
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-sm);
+    transform: translateY(-2px);
+}
+
+.interest-item i {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.interest-item h5 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.interest-item p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 0;
+}
+
+.background-section h4 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.background-section p {
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+}
+
+/* Metamathematical Philosophy Section */
+.philosophy-intro {
+    margin-bottom: 4rem;
+}
+
+.epigraph {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background: linear-gradient(135deg, var(--primary-color)10, var(--secondary-color)10);
+    border-radius: 12px;
+    border-left: 4px solid var(--phi-gold);
+}
+
+.epigraph blockquote {
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    font-style: italic;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.epigraph cite {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.philosophical-lead {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--text-primary);
+    font-weight: 400;
+    margin-bottom: 2rem;
+    text-align: justify;
+}
+
+.philosophy-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+}
+
+.philosophy-section {
+    background: white;
+    padding: 3rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    border-left: 4px solid var(--primary-color);
+}
+
+.philosophy-section h3 {
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.philosophy-section h3 i {
+    color: var(--phi-gold);
+}
+
+.axiom-container p {
+    margin-bottom: 2rem;
+    line-height: 1.7;
+}
+
+.axioms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.axiom-card {
+    background: var(--bg-light);
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.axiom-card:hover {
+    border-color: var(--phi-gold);
+    box-shadow: var(--shadow-sm);
+}
+
+.axiom-card h4 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.axiom-statement {
+    background: white;
+    padding: 1rem;
+    border-radius: 6px;
+    margin: 1rem 0;
+    text-align: center;
+    border: 1px solid var(--border-color);
+    font-family: 'Times New Roman', serif;
+}
+
+.implementation-proof {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 2px solid var(--border-color);
+}
+
+.implementation-proof h4 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.code-philosophy {
+    background: #1e1e1e;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin: 1.5rem 0;
+    overflow-x: auto;
+}
+
+.code-philosophy pre {
+    margin: 0;
+    color: #f8f8f2;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.code-commentary {
+    background: var(--bg-light);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--phi-gold);
+    font-style: italic;
+    line-height: 1.6;
+}
+
+.provenance-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.hash-verification h4 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.verification-note {
+    background: var(--bg-light);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--success-color);
+    font-style: italic;
+    line-height: 1.6;
+}
+
+.multi-backend-validation h4 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.backends-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.backend-card {
+    background: var(--bg-light);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.backend-card h5 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.ontology-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.philosophical-insight h4 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.philosophical-quote {
+    background: var(--bg-light);
+    padding: 2rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--phi-gold);
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    font-style: italic;
+    margin: 1.5rem 0;
+    text-align: center;
+}
+
+.philosophical-quote cite {
+    display: block;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-style: normal;
+}
+
+.mathematical-meditation h4 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.meditative-quote {
+    background: linear-gradient(135deg, var(--primary-color)05, var(--secondary-color)05);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-color);
+    font-style: italic;
+    margin: 1.5rem 0;
+    text-align: center;
+}
+
+.meditative-quote cite {
+    display: block;
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-style: normal;
+}
+
+.categorical-resonance h4 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.mathematical-connections {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.connection-item {
+    background: var(--bg-light);
+    padding: 1rem 1.5rem;
+    border-radius: 6px;
+    border-left: 3px solid var(--phi-gold);
+}
+
+.resonance-commentary {
+    font-style: italic;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-top: 1.5rem;
+}
+
+.academic-standards {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.rigor-checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.rigor-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    background: var(--bg-light);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.rigor-item i {
+    color: var(--success-color);
+    font-size: 1.2rem;
+    margin-top: 0.2rem;
+}
+
+.academic-conclusion h4 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.proof-status {
+    background: linear-gradient(135deg, var(--success-color)10, var(--phi-gold)10);
+    padding: 2rem;
+    border-radius: 8px;
+    border: 2px solid var(--success-color);
+    text-align: center;
+}
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.status-indicator.success {
+    color: var(--success-color);
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.status-indicator i {
+    font-size: 1.5rem;
+}
+
+.philosophical-coda {
+    margin-top: 4rem;
+    padding: 3rem;
+    background: linear-gradient(135deg, var(--primary-color)05, var(--phi-gold)05);
+    border-radius: 12px;
+    border: 2px solid var(--phi-gold);
+}
+
+.philosophical-coda h3 {
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.call-to-mathematicians {
+    background: var(--bg-light);
+    padding: 2rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-color);
+    margin-top: 2rem;
+    font-weight: 500;
+    line-height: 1.7;
+}
+
+/* Responsive adjustments for philosophy section */
+@media (max-width: 768px) {
+    .axioms-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .backends-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .philosophy-section {
+        padding: 2rem;
+    }
+    
+    .epigraph {
+        padding: 1.5rem;
+    }
+    
+    .epigraph blockquote {
+        font-size: 1.1rem;
+    }
 }

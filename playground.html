@@ -60,6 +60,10 @@
                         <i class="fas fa-brain"></i>
                         <span>Consciousness Fields</span>
                     </div>
+                    <div class="feature">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Bayesian Unity Proof</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -311,6 +315,80 @@
                                 <h4>Mathematical Insights:</h4>
                                 <div id="theorem-insights">
                                     <p>This proof demonstrates the formal algebraic foundation for unity mathematics through idempotent semiring structures.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bayesian Unity Statistical Explorer -->
+                <div class="playground-panel">
+                    <div class="panel-header">
+                        <h3><i class="fas fa-chart-bar"></i> Bayesian Unity Statistical Explorer</h3>
+                        <p>Explore hierarchical Bayesian validation of unity mathematics</p>
+                    </div>
+                    <div class="panel-content">
+                        <div class="bayesian-interface">
+                            <div class="bayesian-visualization">
+                                <canvas id="bayesian-canvas" width="400" height="300"></canvas>
+                                <div class="bayesian-equation">
+                                    $$P(\theta = 1 | y) = \frac{P(y | \theta = 1) \cdot P(\theta = 1)}{P(y)}$$
+                                </div>
+                            </div>
+                            
+                            <div class="bayesian-controls">
+                                <div class="control-group">
+                                    <label>Unity Prior Precision (κ₀):</label>
+                                    <input type="range" id="prior-precision" min="1" max="2000" step="10" value="1000">
+                                    <span id="precision-value">1000</span>
+                                </div>
+                                <div class="control-group">
+                                    <label>Sample Size (n):</label>
+                                    <input type="range" id="sample-size" min="10" max="500" step="10" value="100">
+                                    <span id="sample-value">100</span>
+                                </div>
+                                <div class="control-group">
+                                    <label>Noise Level (σ):</label>
+                                    <input type="range" id="noise-level" min="0.01" max="0.2" step="0.01" value="0.05">
+                                    <span id="noise-value">0.05</span>
+                                </div>
+                                <div class="control-group">
+                                    <label>Monte Carlo Trials:</label>
+                                    <input type="range" id="mc-trials" min="100" max="2000" step="100" value="1000">
+                                    <span id="trials-value">1000</span>
+                                </div>
+                                <button onclick="runBayesianAnalysis()" class="btn btn-primary">
+                                    <i class="fas fa-play"></i> Run Bayesian Analysis
+                                </button>
+                            </div>
+                            
+                            <div class="bayesian-results">
+                                <h4>Statistical Results:</h4>
+                                <div id="bayesian-stats">
+                                    <div class="stat-item">
+                                        <label>Posterior P(|θ-1|<0.02|y):</label>
+                                        <span id="posterior-prob">--</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <label>Bayes Factor BF₁₀:</label>
+                                        <span id="bayes-factor">--</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <label>Evidence Classification:</label>
+                                        <span id="evidence-class">--</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <label>Unity Score:</label>
+                                        <span id="unity-score">--</span>
+                                    </div>
+                                </div>
+                                <div class="equation-display">
+                                    <h5>Hierarchical Model:</h5>
+                                    <div class="math-text">
+                                        Level 1: y_t | θ_t ~ N(θ_t, σ²)<br>
+                                        Level 2: θ_t | μ ~ N(μ, τ²)<br>
+                                        Level 3: μ ~ N(1, κ₀⁻¹)
+                                    </div>
                                 </div>
                             </div>
                         </div>
