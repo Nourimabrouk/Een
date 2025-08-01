@@ -64,18 +64,20 @@ token = ""
 [plotly]
 # Plotly configuration for advanced visualizations
 theme = "dark"
-config = {
-    displayModeBar = true,
-    displaylogo = false,
-    modeBarButtonsToRemove = ['pan2d', 'lasso2d', 'select2d'],
-    toImageButtonOptions = {
-        format = 'png',
-        filename = 'unity_visualization',
-        height = 800,
-        width = 1200,
-        scale = 2
+config = """
+{
+    "displayModeBar": true,
+    "displaylogo": false,
+    "modeBarButtonsToRemove": ["pan2d", "lasso2d", "select2d"],
+    "toImageButtonOptions": {
+        "format": "png",
+        "filename": "unity_visualization",
+        "height": 800,
+        "width": 1200,
+        "scale": 2
     }
 }
+"""
 
 [runner]
 # Code execution configuration

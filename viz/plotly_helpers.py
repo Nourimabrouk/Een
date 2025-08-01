@@ -107,7 +107,7 @@ def create_golden_spiral(points: int = 377, theme: str = 'dark') -> go.Figure:
             color=unity_intensity,
             colorscale='Viridis',
             showscale=True,
-            colorbar=dict(title="Unity Intensity", titlefont=dict(color=colors['text']))
+            colorbar=dict(title="Unity Intensity", tickfont=dict(color=colors['text']))
         ),
         name='Golden Spiral (φ = 1.618...)',
         hovertemplate='<b>φ-Harmonic Point</b><br>x: %{x:.3f}<br>y: %{y:.3f}<br>Unity: %{marker.color:.3f}<extra></extra>'
@@ -148,7 +148,7 @@ def create_consciousness_field(resolution: int = 100, time_step: float = 0.0, th
         showscale=True,
         colorbar=dict(
             title="Consciousness<br>Intensity",
-            titlefont=dict(color=colors['text'])
+            tickfont=dict(color=colors['text'])
         ),
         hovertemplate='<b>Consciousness Field</b><br>x: %{x:.3f}<br>y: %{y:.3f}<br>C(x,y,t): %{z:.3f}<extra></extra>'
     ))
@@ -267,7 +267,7 @@ def create_fractal_unity(iterations: int = 100, zoom: float = 1.0, theme: str = 
         showscale=True,
         colorbar=dict(
             title="Fractal<br>Unity Depth",
-            titlefont=dict(color=colors['text'])
+            tickfont=dict(color=colors['text'])
         ),
         hovertemplate='<b>Fractal Unity Point</b><br>Depth: %{z:.3f}<extra></extra>'
     ))
@@ -357,7 +357,7 @@ def create_topological_unity(resolution: int = 50, theme: str = 'dark') -> go.Fi
             showscale=True,
             colorbar=dict(
                 title="Surface<br>Unity",
-                titlefont=dict(color=colors['text'])
+                tickfont=dict(color=colors['text'])
             ),
             hovertemplate='<b>Möbius Surface</b><br>Two sides become one<br>1 + 1 = 1<extra></extra>',
             opacity=0.8

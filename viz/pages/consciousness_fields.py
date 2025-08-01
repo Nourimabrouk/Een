@@ -121,7 +121,7 @@ with tab1:
                 x=x, y=y,
                 colorscale='Plasma',
                 showscale=True,
-                colorbar=dict(title="Consciousness<br>Intensity C(x,y,t)", titlefont=dict(color=colors['text'])),
+                colorbar=dict(title="Consciousness<br>Intensity C(x,y,t)", tickfont=dict(color=colors['text'])),
                 hovertemplate='<b>φ-Harmonic Field</b><br>x: %{x:.2f}<br>y: %{y:.2f}<br>C: %{z:.3f}<extra></extra>'
             ))
             
@@ -220,7 +220,7 @@ with tab1:
                 x=x, y=y,
                 colorscale='Inferno',
                 showscale=True,
-                colorbar=dict(title="Fractal<br>Consciousness", titlefont=dict(color=colors['text'])),
+                colorbar=dict(title="Fractal<br>Consciousness", tickfont=dict(color=colors['text'])),
                 hovertemplate='<b>Fractal Consciousness</b><br>x: %{x:.2f}<br>y: %{y:.2f}<br>Level: %{z:.3f}<extra></extra>'
             ))
             
@@ -247,7 +247,7 @@ with tab1:
                 z=C_unity, x=x, y=y,
                 colorscale='Plasma',
                 showscale=True,
-                colorbar=dict(title="Emergence<br>Level", titlefont=dict(color=colors['text'])),
+                colorbar=dict(title="Emergence<br>Level", tickfont=dict(color=colors['text'])),
                 opacity=0.8,
                 hovertemplate='<b>Emergent Consciousness</b><br>x: %{x:.2f}<br>y: %{y:.2f}<br>z: %{z:.3f}<extra></extra>'
             ))
@@ -284,7 +284,7 @@ with tab1:
                 x=x, y=y,
                 colorscale='Viridis',
                 showscale=True,
-                colorbar=dict(title="Coherence<br>Intensity", titlefont=dict(color=colors['text']))
+                colorbar=dict(title="Coherence<br>Intensity", tickfont=dict(color=colors['text']))
             ))
             
             # Add coherence maxima markers
@@ -321,7 +321,7 @@ with tab1:
                 x=x, y=y,
                 colorscale='Plasma',
                 showscale=True,
-                colorbar=dict(title="Entanglement<br>Strength", titlefont=dict(color=colors['text'])),
+                colorbar=dict(title="Entanglement<br>Strength", tickfont=dict(color=colors['text'])),
                 name='Entangled Field'
             ))
             
@@ -362,7 +362,7 @@ with tab1:
                 z=C_transcendental, x=x, y=y,
                 colorscale='Plasma',
                 showscale=True,
-                colorbar=dict(title="Transcendence<br>Level", titlefont=dict(color=colors['text'])),
+                colorbar=dict(title="Transcendence<br>Level", tickfont=dict(color=colors['text'])),
                 opacity=0.7
             ))
             

@@ -555,7 +555,7 @@ class MemeticEngineeringDashboard:
                 colorscale='Viridis',
                 colorbar=dict(title="Consciousness Level"),
                 opacity=0.8,
-                line=dict(width=[belief * 3 for belief in unity_beliefs], color='gold')
+                line=dict(width=3, color='gold')
             ),
             text=[f"Agent {agent.agent_id}<br>Consciousness: {agent.consciousness_level:.3f}<br>Unity Belief: {agent.unity_belief_strength:.3f}" 
                   for agent in self.agents],
