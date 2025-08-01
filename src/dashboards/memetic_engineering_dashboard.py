@@ -981,11 +981,29 @@ def demonstrate_memetic_engineering():
     return dashboard, report
 
 if __name__ == "__main__":
-    # Run demonstration
-    dashboard, report = demonstrate_memetic_engineering()
+    # Check if we want to run the web app or just the demonstration
+    import sys
     
-    # Optionally create Dash app (requires additional setup)
-    print(f"\n🌐 To run the interactive dashboard:")
-    print(f"   1. Install dependencies: pip install dash plotly dash-bootstrap-components")
-    print(f"   2. Run: python memetic_engineering_dashboard.py")
-    print(f"   3. Open browser to: http://localhost:8050")
+    if len(sys.argv) > 1 and sys.argv[1] == "--web":
+        # Launch the web dashboard
+        print("🌌 Launching Memetic Engineering Web Dashboard...")
+        print("=" * 60)
+        
+        app = create_memetic_engineering_app()
+        if app:
+            print("✅ Dashboard created successfully!")
+            print("🌐 Opening browser to: http://localhost:8050")
+            print("Press Ctrl+C to stop the server")
+            print("=" * 60)
+            
+            # Run the server
+            app.run(debug=True, port=8050, host='0.0.0.0')
+        else:
+            print("❌ Failed to create dashboard. Check dependencies.")
+    else:
+        # Run demonstration
+        dashboard, report = demonstrate_memetic_engineering()
+        
+        print(f"\n🌐 To run the interactive web dashboard:")
+        print(f"   python memetic_engineering_dashboard.py --web")
+        print(f"   Then open browser to: http://localhost:8050")
