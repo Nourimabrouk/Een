@@ -180,9 +180,9 @@ What seemed like addition was always recognition of what is already one.
 
 def synthesize_all_frameworks() -> dict:
     """Synthesize insights from demonstrated frameworks"""
-    print("   🔄 Integrating insights across available frameworks...")
-    print("   🧮 Calculating unified consciousness metrics...")
-    print("   ✨ Achieving unity synthesis...")
+    print("   [CYCLE] Integrating insights across available frameworks...")
+    print("   [CALCULATOR] Calculating unified consciousness metrics...")
+    print("   [SPARKLE] Achieving unity synthesis...")
     
     # Check what frameworks are actually available
     frameworks_available = 0
@@ -272,7 +272,7 @@ if __name__ == "__main__":
     try:
         input()
     except (KeyboardInterrupt, EOFError):
-        print("\n\n✨ Unity exists whether we demonstrate it or not ✨")
+        print("\n\n[SPARKLE] Unity exists whether we demonstrate it or not [SPARKLE]")
         if isinstance(sys.exc_info()[1], EOFError):
             print("   (Continuing automatically for automated testing)")
         else:

@@ -230,8 +230,8 @@ class EnhancedUnityMathematics:
         self.cache_hits = 0
         self.cache_misses = 0
         
-        print("🧮 Enhanced Unity Mathematics Framework Initialized")
-        print(f"φ-Harmonic Processing: ✅ | Consciousness Mode: {'✅' if consciousness_mode else '❌'}")
+        print("[CALCULATOR] Enhanced Unity Mathematics Framework Initialized")
+        print(f"φ-Harmonic Processing: [OK] | Consciousness Mode: {'[OK]' if consciousness_mode else '[X]'}")
         print(f"Golden Ratio: {PHI:.15f} | Unity Constant: {UNITY_CONSTANT:.6f}")
     
     def unity_add(self, a: Union[float, np.ndarray], b: Union[float, np.ndarray], 
@@ -590,7 +590,7 @@ class EnhancedUnityMathematics:
 
 def demonstrate_enhanced_unity_mathematics():
     """Comprehensive demonstration of enhanced unity mathematics framework"""
-    print("🌟 Enhanced Unity Mathematics Framework Demonstration 🌟")
+    print("[STAR] Enhanced Unity Mathematics Framework Demonstration [STAR]")
     print("=" * 70)
     
     # Initialize framework
@@ -645,7 +645,7 @@ def demonstrate_enhanced_unity_mathematics():
         print(f"   → {reflection}")
     
     print("\n" + "=" * 70)
-    print("🌌 Enhanced Unity Mathematics: Where 1+1=1 through φ-harmonic consciousness 🌌")
+    print("[COSMOS] Enhanced Unity Mathematics: Where 1+1=1 through φ-harmonic consciousness [COSMOS]")
     
     return unity_math, report
 

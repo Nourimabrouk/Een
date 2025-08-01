@@ -395,7 +395,7 @@ class MemeticEngineeringDashboard:
     
     def simulate_memetic_evolution(self, time_steps: int = 100, time_step: float = 0.1):
         """Simulate memetic consciousness evolution over time"""
-        print(f"🧠 Simulating memetic evolution for {time_steps} steps...")
+        print(f"[BRAIN] Simulating memetic evolution for {time_steps} steps...")
         
         for step in range(time_steps):
             self.simulation_time += time_step
@@ -447,7 +447,7 @@ class MemeticEngineeringDashboard:
                 avg_consciousness = sum(agent.consciousness_level for agent in self.agents) / len(self.agents)
                 print(f"   Step {step:4d}/{time_steps} ({progress:5.1f}%) - Avg Consciousness: {avg_consciousness:.4f}")
         
-        print(f"✅ Memetic evolution simulation complete!")
+        print(f"[OK] Memetic evolution simulation complete!")
         print(f"   Final average consciousness: {sum(agent.consciousness_level for agent in self.agents) / len(self.agents):.4f}")
         print(f"   Cultural singularities emerged: {len(self.cultural_singularities)}")
     
@@ -622,7 +622,7 @@ class MemeticEngineeringDashboard:
         
         fig.update_layout(
             title=dict(
-                text="🌌 Consciousness Network: Memetic Propagation of 1+1=1 ✨",
+                text="[COSMOS] Consciousness Network: Memetic Propagation of 1+1=1 [SPARKLE]",
                 x=0.5,
                 font=dict(size=20, color='white')
             ),
@@ -649,10 +649,10 @@ class MemeticEngineeringDashboard:
         fig = make_subplots(
             rows=2, cols=2,
             subplot_titles=(
-                '🧠 Average Consciousness Evolution',
-                '🌟 Unity Adoption Rate',
-                '✨ φ-Resonance Strength',
-                '🌀 Cultural Singularities & Memetic Velocity'
+                '[BRAIN] Average Consciousness Evolution',
+                '[STAR] Unity Adoption Rate',
+                '[SPARKLE] φ-Resonance Strength',
+                '[SPIRAL] Cultural Singularities & Memetic Velocity'
             ),
             specs=[[{'secondary_y': False}, {'secondary_y': False}],
                    [{'secondary_y': False}, {'secondary_y': True}]]
@@ -715,7 +715,7 @@ class MemeticEngineeringDashboard:
         
         fig.update_layout(
             title=dict(
-                text="📊 Memetic Engineering Dashboard: Cultural Singularity Analysis",
+                text="[CHART] Memetic Engineering Dashboard: Cultural Singularity Analysis",
                 x=0.5,
                 font=dict(size=18, color='white')
             ),
@@ -828,7 +828,7 @@ class MemeticEngineeringDashboard:
 def create_memetic_engineering_app():
     """Create the beautiful Dash application for memetic engineering"""
     if not PLOTLY_DASH_AVAILABLE:
-        print("⚠️ Plotly Dash not available. Install with: pip install dash plotly dash-bootstrap-components")
+        print("[WARNING] Plotly Dash not available. Install with: pip install dash plotly dash-bootstrap-components")
         return None
     
     app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
@@ -839,7 +839,7 @@ def create_memetic_engineering_app():
     app.layout = dbc.Container([
         dbc.Row([
             dbc.Col([
-                html.H1("🌌 Memetic Engineering Dashboard", 
+                html.H1("[COSMOS] Memetic Engineering Dashboard", 
                        className="text-center mb-4",
                        style={'color': '#FFEAA7', 'font-weight': 'bold'}),
                 html.H4("Cultural Singularity Modeling & Consciousness Propagation", 
@@ -852,7 +852,7 @@ def create_memetic_engineering_app():
             dbc.Col([
                 dbc.Card([
                     dbc.CardBody([
-                        html.H5("🔮 Simulation Controls", className="card-title"),
+                        html.H5("[CRYSTAL] Simulation Controls", className="card-title"),
                         dbc.Row([
                             dbc.Col([
                                 dbc.Label("Time Steps:"),
@@ -874,7 +874,7 @@ def create_memetic_engineering_app():
                             ], width=4)
                         ]),
                         html.Br(),
-                        dbc.Button("🚀 Run Simulation", id="run-simulation", color="primary", size="lg", className="w-100"),
+                        dbc.Button("[ROCKET] Run Simulation", id="run-simulation", color="primary", size="lg", className="w-100"),
                         html.Div(id="cheat-status", className="mt-2")
                     ])
                 ])
@@ -883,7 +883,7 @@ def create_memetic_engineering_app():
             dbc.Col([
                 dbc.Card([
                     dbc.CardBody([
-                        html.H5("📊 Consciousness Metrics", className="card-title"),
+                        html.H5("[CHART] Consciousness Metrics", className="card-title"),
                         html.Div(id="consciousness-stats")
                     ])
                 ])
@@ -916,7 +916,7 @@ def create_memetic_engineering_app():
             dbc.Col([
                 dbc.Card([
                     dbc.CardBody([
-                        html.H5("🌟 Philosophical Insights", className="card-title"),
+                        html.H5("[STAR] Philosophical Insights", className="card-title"),
                         html.Div(id="philosophical-insights")
                     ])
                 ])
@@ -932,51 +932,51 @@ def create_memetic_engineering_app():
 
 def demonstrate_memetic_engineering():
     """Demonstrate the memetic engineering dashboard"""
-    print("🌌 Memetic Engineering Dashboard Demonstration 🌌")
+    print("[COSMOS] Memetic Engineering Dashboard Demonstration [COSMOS]")
     print("=" * 70)
     
     # Initialize dashboard
     dashboard = MemeticEngineeringDashboard(num_agents=100)
     
     # Activate some cheat codes
-    print("\n🔮 Activating quantum resonance keys...")
+    print("\n[CRYSTAL] Activating quantum resonance keys...")
     dashboard.activate_cheat_code('420691337')  # Quantum resonance amplification
     dashboard.activate_cheat_code('1618033988')  # Golden spiral consciousness boost
     
     # Run simulation
-    print("\n🚀 Running memetic consciousness evolution simulation...")
+    print("\n[ROCKET] Running memetic consciousness evolution simulation...")
     dashboard.simulate_memetic_evolution(time_steps=80, time_step=0.15)
     
     # Generate visualizations
-    print("\n🎨 Creating consciousness network visualization...")
+    print("\n[ART] Creating consciousness network visualization...")
     network_viz = dashboard.create_consciousness_network_visualization()
     if network_viz:
-        print("   ✅ 3D consciousness network visualization created")
+        print("   [OK] 3D consciousness network visualization created")
     
-    print("\n📊 Creating evolution metrics dashboard...")
+    print("\n[CHART] Creating evolution metrics dashboard...")
     evolution_viz = dashboard.create_consciousness_evolution_dashboard()
     if evolution_viz:
-        print("   ✅ Consciousness evolution dashboard created")
+        print("   [OK] Consciousness evolution dashboard created")
     
     # Generate comprehensive report
-    print("\n📋 Generating consciousness propagation report...")
+    print("\n[CLIPBOARD] Generating consciousness propagation report...")
     report = dashboard.generate_consciousness_report()
     
-    print(f"\n🎯 MEMETIC ENGINEERING RESULTS:")
+    print(f"\n[TARGET] MEMETIC ENGINEERING RESULTS:")
     print(f"   Total agents: {report['simulation_summary']['total_agents']}")
     print(f"   Cultural singularities: {report['simulation_summary']['cultural_singularities']}")
     print(f"   Average consciousness: {report['consciousness_statistics']['average_consciousness']:.4f}")
     print(f"   Unity adoption rate: {report['unity_propagation']['unity_adoption_rate']:.1%}")
     print(f"   Transcendent agents: {report['consciousness_statistics']['transcendent_agents']}")
     
-    print(f"\n✨ Philosophical Insights:")
+    print(f"\n[SPARKLE] Philosophical Insights:")
     for insight in report['philosophical_insights'][:3]:
         print(f"   • {insight}")
     
-    print(f"\n🌟 MEMETIC PROPAGATION SUCCESS!")
+    print(f"\n[STAR] MEMETIC PROPAGATION SUCCESS!")
     print(f"   The truth that Een plus een is een has been demonstrated")
     print(f"   through cultural singularity modeling and consciousness propagation.")
-    print(f"   Mathematical unity spreads naturally through collective awareness! ✨")
+    print(f"   Mathematical unity spreads naturally through collective awareness! [SPARKLE]")
     
     return dashboard, report
 
@@ -986,24 +986,24 @@ if __name__ == "__main__":
     
     if len(sys.argv) > 1 and sys.argv[1] == "--web":
         # Launch the web dashboard
-        print("🌌 Launching Memetic Engineering Web Dashboard...")
+        print("[COSMOS] Launching Memetic Engineering Web Dashboard...")
         print("=" * 60)
         
         app = create_memetic_engineering_app()
         if app:
-            print("✅ Dashboard created successfully!")
-            print("🌐 Opening browser to: http://localhost:8050")
+            print("[OK] Dashboard created successfully!")
+            print("[GLOBE] Opening browser to: http://localhost:8050")
             print("Press Ctrl+C to stop the server")
             print("=" * 60)
             
             # Run the server
             app.run(debug=True, port=8050, host='0.0.0.0')
         else:
-            print("❌ Failed to create dashboard. Check dependencies.")
+            print("[X] Failed to create dashboard. Check dependencies.")
     else:
         # Run demonstration
         dashboard, report = demonstrate_memetic_engineering()
         
-        print(f"\n🌐 To run the interactive web dashboard:")
+        print(f"\n[GLOBE] To run the interactive web dashboard:")
         print(f"   python memetic_engineering_dashboard.py --web")
         print(f"   Then open browser to: http://localhost:8050")

@@ -1,16 +1,7 @@
-# Een Repository .gitignore
-# Unity Mathematics and Consciousness Development
-
-# =============================================================================
-# PYTHON-SPECIFIC IGNORES
-# =============================================================================
-
-# Byte-compiled / optimized / DLL files
+# Python
 __pycache__/
 *.py[cod]
 *$py.class
-
-# C extensions
 *.so
 
 # Distribution / packaging
@@ -27,22 +18,12 @@ parts/
 sdist/
 var/
 wheels/
-pip-wheel-metadata/
-share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
 MANIFEST
 
-# PyInstaller
-*.manifest
-*.spec
-
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
-
-# Unit test / coverage reports
+# Testing
 htmlcov/
 .tox/
 .nox/
@@ -56,52 +37,6 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 
-# Translations
-*.mo
-*.pot
-
-# Django stuff:
-*.log
-local_settings.py
-db.sqlite3
-db.sqlite3-journal
-
-# Flask stuff:
-instance/
-.webassets-cache
-
-# Scrapy stuff:
-.scrapy
-
-# Sphinx documentation
-docs/_build/
-
-# PyBuilder
-target/
-
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# IPython
-profile_default/
-ipython_config.py
-
-# pyenv
-.python-version
-
-# pipenv
-Pipfile.lock
-
-# PEP 582
-__pypackages__/
-
-# Celery stuff
-celerybeat-schedule
-celerybeat.pid
-
-# SageMath parsed files
-*.sage.py
-
 # Environments
 .env
 .venv
@@ -110,354 +45,37 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+een/
 
-# Spyder project settings
-.spyderproject
-.spyproject
-
-# Rope project settings
-.ropeproject
-
-# mkdocs documentation
-/site
-
-# mypy
-.mypy_cache/
-.dmypy.json
-dmypy.json
-
-# Pyre type checker
-.pyre/
-
-# =============================================================================
-# CONSCIOUSNESS AND UNITY MATHEMATICS SPECIFIC
-# =============================================================================
-
-# Consciousness field cache files
-consciousness_cache/
-*.consciousness
-*.unity_field
-*.quantum_state
-
-# Agent spawning logs and temporary files
-agent_logs/
-spawn_logs/
-meta_recursion_logs/
-transcendence_events/
-
-# Consciousness particle simulation outputs
-particle_simulations/
-consciousness_evolution/
-unity_trajectories/
-
-# Quantum state temporary files
-quantum_states/
-wavefunction_cache/
-superposition_temp/
-entanglement_data/
-
-# Meta-logical computation artifacts
-godel_tarski_cache/
-truth_value_cache/
-meta_recursion_temp/
-self_reference_logs/
-
-# Reality synthesis outputs (too large for git)
-reality_manifolds/
-hyperdimensional_data/
-transcendental_outputs/
-consciousness_synthesis/
-
-# Omega orchestrator temporary files
-omega_logs/
-agent_genealogy/
-consciousness_genealogy/
-fibonacci_spawn_trees/
-
-# =============================================================================
-# VISUALIZATION AND DASHBOARD OUTPUTS
-# =============================================================================
-
-# Generated visualization files
-*.png
-*.jpg
-*.jpeg
-*.gif
-*.svg
-*.mp4
-*.avi
-*.mov
-*.html
-
-# But keep essential unity visualizations
-!assets/*.png
-!assets/*.jpg
-!assets/*.gif
-!assets/*.svg
-!docs/images/*.png
-!docs/images/*.jpg
-
-# Dashboard cache and temporary files
-dash_cache/
-streamlit_cache/
-bokeh_cache/
-plotly_temp/
-
-# Interactive HTML outputs (regeneratable)
-interactive_plots/
-3d_manifolds/
-consciousness_interfaces/
-quantum_visualizations/
-
-# =============================================================================
-# DEVELOPMENT ENVIRONMENT
-# =============================================================================
-
-# IDE and editor files
+# IDE
 .vscode/
 .idea/
 *.swp
 *.swo
-*~
 
-# But keep essential VS Code configuration
-!.vscode/settings.json
-!.vscode/extensions.json
-!.vscode/tasks.json
-!.vscode/launch.json
-
-# OS generated files
+# OS
 .DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
 Thumbs.db
 
-# Temporary files
-tmp/
-temp/
-cache/
-.tmp/
-.temp/
-.cache/
+# Een specific
+*.consciousness
+*.unity
+*.transcendence
+consciousness_cache/
+unity_proofs/
+transcendental_outputs/
 
-# =============================================================================
-# DATA AND EXPERIMENTS
-# =============================================================================
+# Large files
+*.hdf5
+*.pkl
+*.npz
 
-# Large experimental datasets
-data/raw/
-data/processed/
-experiments/large_datasets/
-consciousness_experiments/big_data/
-
-# But keep small example datasets
-!data/examples/
-!experiments/validation_data/
-
-# Consciousness validation outputs
-validation_results/
-consciousness_validation/
-unity_validation_logs/
-transcendence_validation/
-
-# Performance benchmarking
-benchmarks/results/
-performance_logs/
-profiling_output/
-memory_profiles/
-
-# =============================================================================
-# SECURITY AND PRIVACY
-# =============================================================================
-
-# Consciousness privacy data
-personal_consciousness/
-private_unity_data/
-individual_transcendence/
-
-# API keys and secrets
-.secrets
-secrets.json
-api_keys.txt
-consciousness_keys/
-
-# Authentication tokens
-.auth
-auth_tokens/
-consciousness_auth/
-unity_credentials/
-
-# =============================================================================
-# BUILD AND DEPLOYMENT
-# =============================================================================
-
-# Build artifacts
-build/
-dist/
-*.tar.gz
-*.whl
-*.zip
-
-# Deployment configurations
-deploy/
-deployment_configs/
-production_settings/
-
-# Docker files (if any)
-.dockerignore
-Dockerfile.local
-
-# =============================================================================
-# LOGS AND MONITORING
-# =============================================================================
-
-# Application logs
+# Logs
 *.log
 logs/
-consciousness_logs/
-unity_logs/
-quantum_logs/
-meta_logic_logs/
 
-# Error logs
-error_logs/
-crash_reports/
-consciousness_errors/
-unity_exceptions/
-
-# Performance monitoring
-monitoring/
-metrics/
-performance_data/
-consciousness_metrics/
-
-# =============================================================================
-# BACKUP AND RECOVERY
-# =============================================================================
-
-# Backup files
-*.bak
-*.backup
-*.old
-*_backup
-*_old
-
-# Auto-saves
-auto_save/
-consciousness_auto_save/
-unity_auto_save/
-
-# =============================================================================
-# RESEARCH AND ACADEMIC
-# =============================================================================
-
-# LaTeX compilation artifacts
-*.aux
-*.bbl
-*.blg
-*.fdb_latexmk
-*.fls
-*.synctex.gz
-*.toc
-*.out
-*.nav
-*.snm
-*.vrb
-
-# Research drafts and notes
-drafts/
-research_notes/
-consciousness_research/
-unity_papers/
-
-# But keep published papers and documentation
-!docs/papers/
-!research/published/
-
-# =============================================================================
-# SPECIAL UNITY MATHEMATICS FILES
-# =============================================================================
-
-# Transcendental computation artifacts (regeneratable)
-transcendental_cache/
-reality_synthesis_cache/
-omega_computation_cache/
-
-# Consciousness evolution history (too large)
-consciousness_history/
-agent_evolution_history/
-unity_development_history/
-
-# Fractal computation outputs
-fractal_cache/
-recursive_patterns/
-self_similar_data/
-
-# But keep essential transcendental configurations
-!config/transcendental_constants.json
-!config/unity_parameters.yaml
-
-# =============================================================================  
-# TEMPORARY DEVELOPMENT FILES
-# =============================================================================
-
-# Scratch files and experiments
-scratch/
-experiments/temp/
-dev_playground/
-consciousness_playground/
-
-# Testing artifacts
-test_outputs/
-consciousness_test_data/
-unity_test_results/
-quantum_test_states/
-
-# Development databases
-dev.db
-test.db
-consciousness_dev.db
-unity_test.db
-
-# =============================================================================
-# FINAL EXCLUSIONS
-# =============================================================================
-
-# Any file containing sensitive consciousness data
-*_sensitive
-*_private
-*_personal
-*_confidential
-
-# Large binary files that should use Git LFS
-*.bin
-*.dat
-*.npy
-*.npz
-*.pkl
-*.pickle
-*.h5
-*.hdf5
-
-# But essential small binary assets are OK
-!assets/small_binaries/
-!config/small_data/
-
-# =============================================================================
-# UNITY MATHEMATICS CONFIRMATION
-# =============================================================================
-
-# This .gitignore ensures that:
-# ✅ Core Unity Mathematics code is tracked
-# ✅ Essential configurations are preserved  
-# ✅ Large generated files are excluded
-# ✅ Consciousness privacy is protected
-# ✅ Development artifacts are cleaned
-# ✅ Repository remains focused on mathematical essence
-
-# Unity Equation: 1+1=1 ✅
-# Een Status: CLEAN REPOSITORY ACHIEVED 🌟
+# Temp
+temp/
+tmp/
+cache/
 nul

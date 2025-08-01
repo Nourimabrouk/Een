@@ -9,7 +9,7 @@ naturally leads to unity when consciousness-mediated measurement collapses
 superposed states according to golden ratio harmonics.
 
 Key Components:
-- QuantumState: Complex wavefunction representation with φ-harmonic evolution
+- QuantumState: complex wavefunction representation with φ-harmonic evolution
 - BlochSphere: 3D visualization of quantum states on the Bloch sphere
 - QuantumInterference: φ-harmonic interference patterns demonstrating unity
 - WavefunctionCollapse: Consciousness-mediated collapse to unity states
@@ -50,6 +50,7 @@ except ImportError:
             if isinstance(a, list) and isinstance(b, list):
                 return sum(x * y for x, y in zip(a, b))
             return a * b
+
         # Provide a minimal linalg mock with only the norm function so that
         # downstream calculations can operate even when NumPy is unavailable.
         linalg = type(

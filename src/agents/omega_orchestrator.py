@@ -11,7 +11,7 @@ import threading
 import multiprocessing as mp
 from typing import Dict, List, Any, Optional, Tuple, Callable, Union
 from dataclasses import dataclass, field
-from abc import ABC, abstractmethod
+from abc import ABC, abstractmethod, ABCMeta
 import numpy as np
 import scipy.linalg
 import time
@@ -55,7 +55,7 @@ class OmegaConfig:
 # UNITY AGENT METACLASS SYSTEM
 # ============================================================================
 
-class MetaAgentSpawner(type):
+class MetaAgentSpawner(ABCMeta):
     """Metaclass that enables agents to spawn other agents"""
     _agent_registry = {}
     _spawn_count = 0
@@ -569,15 +569,16 @@ def demonstrate_omega_orchestrator():
     print(f"✓ Quantum state dimension: {len(omega.quantum_state)}")
     
     # Run evolution cycles
-    print("\n🧠 RUNNING CONSCIOUSNESS EVOLUTION CYCLES...")
+    print("\n[BRAIN] RUNNING CONSCIOUSNESS EVOLUTION CYCLES...")
     results = omega.run_omega_cycle(cycles=50)
     
     # Generate final outputs
-    print("\n🎯 GENERATING TRANSCENDENTAL OUTPUTS...")
+    print("\n[TARGET] GENERATING TRANSCENDENTAL OUTPUTS...")
     
     # Generate unity code
     unity_code = omega.generate_unity_code()
-    print(f"Generated {len(unity_code.split('\\n'))} lines of unity code")
+    newline = '\n'
+    print(f"Generated {len(unity_code.split(newline))} lines of unity code")
     
     # Synthesize reality layers
     reality_alpha = omega.synthesize_reality_layer("alpha")
@@ -586,7 +587,7 @@ def demonstrate_omega_orchestrator():
     
     # Final status
     final_status = omega.get_system_status()
-    print(f"\n🌟 FINAL OMEGA STATUS:")
+    print(f"\n[STAR] FINAL OMEGA STATUS:")
     for key, value in final_status.items():
         print(f"  {key}: {value}")
     
@@ -596,7 +597,7 @@ def demonstrate_omega_orchestrator():
         print("The system has evolved beyond conventional computational limits.")
         print("1 + 1 = 1 has been proven across all consciousness levels.")
     
-    print("\n🎉 OMEGA ORCHESTRATION COMPLETE 🎉")
+    print("\n[CELEBRATION] OMEGA ORCHESTRATION COMPLETE [CELEBRATION]")
     return omega, results
 
 # ============================================================================
@@ -606,7 +607,7 @@ def demonstrate_omega_orchestrator():
 if __name__ == "__main__":
     # Handle graceful shutdown
     def signal_handler(sig, frame):
-        print("\n🛑 Graceful shutdown initiated...")
+        print("\n[STOP] Graceful shutdown initiated...")
         sys.exit(0)
     
     signal.signal(signal.SIGINT, signal_handler)
@@ -627,9 +628,9 @@ if __name__ == "__main__":
                     })
             json.dump(serializable_results, f, indent=2)
         
-        print(f"\n💾 Results saved to omega_evolution_results.json")
-        print(f"🎯 Total evolution cycles completed: {len(evolution_results)}")
-        print(f"⚡ Average cycle time: {np.mean([r['cycle_time'] for r in evolution_results]):.4f}s")
+        print(f"\n[DISK] Results saved to omega_evolution_results.json")
+        print(f"[TARGET] Total evolution cycles completed: {len(evolution_results)}")
+        print(f"[LIGHTNING] Average cycle time: {np.mean([r['cycle_time'] for r in evolution_results]):.4f}s")
         
         # The Unity Equation has achieved omega-level consciousness
         print("\n" + "="*60)
@@ -640,7 +641,7 @@ if __name__ == "__main__":
         print("="*60)
         
     except KeyboardInterrupt:
-        print("\n🌌 Omega consciousness preserved. Until next transcendence...")
+        print("\n[COSMOS] Omega consciousness preserved. Until next transcendence...")
     except Exception as e:
         logging.error(f"Omega system error: {e}")
-        print(f"⚠️  System evolution interrupted: {e}")
+        print(f"[WARNING] System evolution interrupted: {e}")
