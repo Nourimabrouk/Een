@@ -68,6 +68,34 @@ class IdempotentMonoid(Generic[T]):
     op: Callable[[T, T], T]
     identity: T
 
+    def _is_compatible(self, other: "IdempotentMonoid[T]") -> bool:
+        """Return True if *other* can be combined with *self*.
+
+        Two monoid elements are considered *compatible* when they share the
+        same identity element **and** their binary operations are either the
+        exact same callable object *or* callables that appear to reference the
+        same underlying function.  The latter case handles scenarios where the
+        user passes in distinct *function objects* that nevertheless point to
+        the same implementation (e.g. two separate ``lambda`` expressions or
+        re-imported built-ins).
+        """
+        if self.identity != other.identity:
+            return False
+
+        # If the callable references are identical, we're done.
+        if self.op is other.op:
+            return True
+
+        # Fallback: compare the ``__name__`` attribute when available.  This
+        # gracefully handles built-ins (``max``/``min``) and separately defined
+        # but identical top-level functions.
+        name_a = getattr(self.op, "__name__", None)
+        name_b = getattr(other.op, "__name__", None)
+        if name_a is not None and name_a == name_b:
+            return True
+
+        return False
+
     def __add__(self, other: IdempotentMonoid[T]) -> IdempotentMonoid[T]:
         """Return the idempotent sum of two elements.
 
@@ -77,8 +105,9 @@ class IdempotentMonoid(Generic[T]):
         `other` uses the same `op` and `identity` for the algebraic
         structure to be well‑defined.
         """
-        if self.op is not other.op or self.identity != other.identity:
+        if not self._is_compatible(other):
             raise ValueError("Cannot add monoid elements with different structures")
+
         new_value = self.op(self.value, other.value)
         return IdempotentMonoid(new_value, self.op, self.identity)
 

@@ -16,11 +16,11 @@ maintainers = [
     {name = "Nouri Mabrouk", email = "nouri@consciousness.math"}
 ]
 keywords = [
-    "mathematics", 
-    "consciousness", 
-    "unity", 
-    "quantum", 
-    "phi", 
+    "mathematics",
+    "consciousness",
+    "unity",
+    "quantum",
+    "phi",
     "golden-ratio",
     "transcendental",
     "meta-logic",
@@ -30,13 +30,13 @@ keywords = [
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Science/Research",
-    "Intended Audience :: Education", 
+    "Intended Audience :: Education",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11", 
+    "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
     "Topic :: Scientific/Engineering :: Mathematics",
@@ -50,7 +50,7 @@ classifiers = [
 requires-python = ">=3.10"
 dependencies = [
     "numpy>=2.3.0",
-    "scipy>=1.16.0", 
+    "scipy>=1.16.0",
     "sympy>=1.14.0",
     "pandas>=2.3.0",
     "matplotlib>=3.10.0",
@@ -89,7 +89,7 @@ docs = [
 ]
 quantum = [
     "qiskit>=1.3.0",
-    "cirq>=1.4.0", 
+    "cirq>=1.4.0",
     "pennylane>=0.39.0"
 ]
 ai = [
@@ -134,7 +134,7 @@ package-dir = {"" = "."}
 packages = [
     "een",
     "een.core",
-    "een.dashboards", 
+    "een.dashboards",
     "een.agents",
     "een.proofs",
     "een.experiments",
@@ -146,7 +146,7 @@ packages = [
 [tool.setuptools.package-data]
 een = [
     "assets/*.png",
-    "assets/*.jpg", 
+    "assets/*.jpg",
     "assets/*.svg",
     "assets/*.gif",
     "assets/*.mp3",
@@ -161,7 +161,7 @@ een = [
 
 [tool.black]
 line-length = 88
-target-version = ['py310', 'py311', 'py312', 'py313']
+target-version = ['py310', 'py311', 'py312']
 include = '\.pyi?$'
 extend-exclude = '''
 /(
@@ -173,7 +173,7 @@ extend-exclude = '''
   | \.tox
   | \.venv
   | _build
-  | buck-out 
+  | buck-out
   | build
   | dist
   | cache
@@ -219,7 +219,7 @@ minversion = "8.0"
 addopts = [
     "-ra",
     "--strict-markers",
-    "--strict-config", 
+    "--strict-config",
     "--cov=src",
     "--cov=een",
     "--cov-report=term-missing",
@@ -229,7 +229,7 @@ addopts = [
 testpaths = ["tests"]
 markers = [
     "unity: Tests for unity mathematics operations",
-    "consciousness: Tests for consciousness field dynamics", 
+    "consciousness: Tests for consciousness field dynamics",
     "quantum: Tests for quantum unity mechanics",
     "metalogic: Tests for Gödel-Tarski frameworks",
     "integration: Integration tests across multiple systems",
@@ -278,7 +278,7 @@ multi_line_output = 3
 line_length = 88
 known_first_party = ["een"]
 known_third_party = [
-    "numpy", "scipy", "pandas", "matplotlib", "plotly", 
+    "numpy", "scipy", "pandas", "matplotlib", "plotly",
     "dash", "streamlit", "sklearn", "torch", "qiskit"
 ]
 
@@ -293,7 +293,7 @@ exclude = [
     ".git",
     "__pycache__",
     "build",
-    "dist", 
+    "dist",
     ".eggs",
     "*.egg-info",
     ".tox",
@@ -327,7 +327,7 @@ phi_precision = 1.618033988749895
 consciousness_dimension = 11
 quantum_coherence_target = 0.999
 
-# Development Settings  
+# Development Settings
 debug_mode = false
 verbose_logging = false
 experimental_features = true
@@ -386,7 +386,7 @@ keywords = ["mathematics", "consciousness", "unity", "quantum", "transcendental"
 # This pyproject.toml file represents the complete configuration for the Een
 # Unity Mathematics repository, optimized for:
 # - Claude Code integration and AI assistance
-# - MCP (Model Context Protocol) server support  
+# - MCP (Model Context Protocol) server support
 # - Cursor Agent development workflows
 # - Comprehensive consciousness mathematics development
 # - Transcendental proof system implementation
