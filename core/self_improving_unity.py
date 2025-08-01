@@ -25,7 +25,7 @@ from collections import defaultdict
 import concurrent.futures
 
 # Import unity mathematics for guidance
-from .unity_mathematics import PHI, PI, E
+from core.unity_mathematics import PHI, PI, E
 
 @dataclass
 class DualityDetection:
