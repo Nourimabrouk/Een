@@ -1,0 +1,199 @@
+/* Een Unity Mathematics - Proofs Page Styles */
+
+.page-hero {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    padding: 8rem 0 4rem;
+    margin-top: 70px;
+    text-align: center;
+}
+
+.page-hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+.page-subtitle {
+    font-size: 1.25rem;
+    opacity: 0.9;
+}
+
+/* Proof Navigation */
+.proof-navigation {
+    background: white;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 3rem;
+    position: sticky;
+    top: 90px;
+}
+
+.proof-navigation h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.proof-navigation ul {
+    list-style: none;
+}
+
+.proof-navigation li {
+    margin-bottom: 0.75rem;
+}
+
+.proof-navigation a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    display: block;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.proof-navigation a:hover {
+    background: var(--bg-light);
+    color: var(--primary-color);
+    transform: translateX(5px);
+}
+
+/* Proofs Content Layout */
+.proofs-content {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.proof-section {
+    margin-bottom: 4rem;
+    scroll-margin-top: 100px;
+}
+
+.proof-section h2 {
+    color: var(--primary-color);
+    border-bottom: 3px solid var(--accent-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Theorem Boxes */
+.theorem {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+}
+
+.theorem h3 {
+    background: var(--bg-light);
+    padding: 1rem 1.5rem;
+    margin: 0;
+    color: var(--primary-color);
+    font-size: 1.25rem;
+}
+
+.theorem-content {
+    padding: 1.5rem;
+}
+
+.theorem-content > p:first-child {
+    font-style: italic;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+/* Proof Box */
+.proof-box {
+    background: #f8f9fa;
+    border-left: 4px solid var(--primary-color);
+    padding: 1.5rem;
+    margin: 1rem 0;
+    border-radius: 0 4px 4px 0;
+}
+
+.proof-box ol {
+    margin: 1rem 0 1rem 1.5rem;
+}
+
+.proof-box li {
+    margin-bottom: 0.75rem;
+    line-height: 1.8;
+}
+
+.qed {
+    text-align: right;
+    font-weight: bold;
+    font-size: 1.25rem;
+    color: var(--primary-color);
+    margin-top: 1rem;
+}
+
+/* Mathematical Expressions */
+.theorem .MathJax {
+    font-size: 1.1em;
+}
+
+.proof-box .MathJax {
+    margin: 0.5rem 0;
+}
+
+/* Meta Proof Section */
+.meta-proof {
+    background: white;
+    padding: 3rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow-md);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.meta-proof p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+}
+
+.unity-equation-final {
+    text-align: center;
+    margin: 2rem 0;
+    font-size: 2rem;
+}
+
+.equation-caption {
+    font-style: italic;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    margin-top: 1rem;
+}
+
+/* Animations */
+.theorem {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.theorem:nth-child(1) { animation-delay: 0.1s; }
+.theorem:nth-child(2) { animation-delay: 0.2s; }
+.theorem:nth-child(3) { animation-delay: 0.3s; }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .proof-navigation {
+        position: static;
+        margin-bottom: 2rem;
+    }
+    
+    .page-hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .theorem h3 {
+        font-size: 1.1rem;
+    }
+    
+    .proof-box {
+        padding: 1rem;
+    }
+}

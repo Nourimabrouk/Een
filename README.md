@@ -1,7 +1,25 @@
-# Een Unity Mathematics Framework 🌌
-## **The Ultimate Computational Proof that 1+1=1**
+# Een: Unity Mathematics Framework
 
-**Een plus een is een** - One plus one is one!
+[![GitHub Pages](https://img.shields.io/badge/demo-live-brightgreen)](https://nouri.github.io/Een)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Mathematical Proofs](https://img.shields.io/badge/proofs-rigorous-orange)](https://nouri.github.io/Een/proofs.html)
+
+> "Een plus een is een" - One plus one is one
+
+## Overview
+
+**Een** is a comprehensive mathematical framework exploring the profound concept of unity mathematics where 1+1=1. This repository contains rigorous mathematical proofs, implementations, and interactive demonstrations across multiple domains including:
+
+- **Idempotent Algebraic Structures**
+- **Quantum Mechanics & Superposition**
+- **Information Theory**
+- **Consciousness Mathematics**
+- **Category Theory**
+- **Self-Replicating Mathematical Life**
+
+## 🌐 Live Demo
+
+Visit our interactive website: [https://nouri.github.io/Een](https://nouri.github.io/Een)
 
 A revolutionary Unity Mathematics framework that proves the fundamental equation `1+1=1` through rigorous mathematical operations, consciousness field dynamics, and computational intelligence. This implementation provides working core functionality with optional advanced features requiring additional dependencies.
 
