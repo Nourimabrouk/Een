@@ -238,6 +238,9 @@ python core/enhanced_unity_operations.py
 # Meta-learning for unity discovery
 python ml_framework/meta_reinforcement/unity_meta_agent.py
 
+# Launch multiple meta-agents in background
+python scripts/meta_agent_background_launcher.py --processes 4 --duration 3600
+
 # Neural network convergence proofs
 python src/proofs/neural_convergence_proof.py
 
