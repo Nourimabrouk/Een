@@ -464,6 +464,158 @@ function updateStepIndicator() {
     document.getElementById('step-indicator').textContent = `Step ${currentProofStep} of ${maxProofSteps}`;
 }
 
+// Bayesian Statistical Analysis Functions
+function runBayesianAnalysis() {
+    const priorPrecision = parseFloat(document.getElementById('prior-precision').value);
+    const sampleSize = parseInt(document.getElementById('sample-size').value);
+    const noiseLevel = parseFloat(document.getElementById('noise-level').value);
+    const mcTrials = parseInt(document.getElementById('mc-trials').value);
+    
+    // Update display values
+    document.getElementById('precision-value').textContent = priorPrecision;
+    document.getElementById('sample-value').textContent = sampleSize;
+    document.getElementById('noise-value').textContent = noiseLevel.toFixed(2);
+    document.getElementById('trials-value').textContent = mcTrials;
+    
+    // Simulate Bayesian analysis
+    let decisiveTrials = 0;
+    let totalPosteriorProb = 0;
+    let totalBayesFactor = 0;
+    
+    for (let trial = 0; trial < mcTrials; trial++) {
+        // Generate synthetic data from N(1, σ²)
+        const data = [];
+        for (let i = 0; i < sampleSize; i++) {
+            data.push(1.0 + gaussianRandom() * noiseLevel);
+        }
+        
+        // Simulate hierarchical Bayesian inference
+        const sampleMean = data.reduce((a, b) => a + b) / data.length;
+        const sampleVar = data.reduce((sum, x) => sum + Math.pow(x - sampleMean, 2), 0) / (data.length - 1);
+        
+        // Posterior parameters (conjugate analysis)
+        const kappaN = 1/priorPrecision + data.length;
+        const muN = (1.0/priorPrecision + data.length * sampleMean) / kappaN;
+        
+        // Approximate posterior probability P(|θ-1|<0.02|y)
+        const posteriorStd = Math.sqrt(sampleVar / kappaN);
+        const zScore = Math.abs(muN - 1.0) / posteriorStd;
+        const posteriorProb = 1 - 2 * (1 - normalCDF(0.02 / posteriorStd));
+        
+        // Approximate Bayes Factor (simplified)
+        const residualSumSquares = data.reduce((sum, x) => sum + Math.pow(x - 1.0, 2), 0);
+        const logBF = -0.5 * data.length * Math.log(2 * Math.PI * sampleVar) - 
+                     0.5 * residualSumSquares / sampleVar + 
+                     0.5 * Math.log(priorPrecision / kappaN);
+        const bayesFactor = Math.exp(logBF);
+        
+        totalPosteriorProb += posteriorProb;
+        totalBayesFactor += bayesFactor;
+        
+        if (bayesFactor > 10.0) {
+            decisiveTrials++;
+        }
+    }
+    
+    // Calculate results
+    const avgPosteriorProb = totalPosteriorProb / mcTrials;
+    const avgBayesFactor = totalBayesFactor / mcTrials;
+    const decisiveFrequency = decisiveTrials / mcTrials;
+    const unityScore = (avgPosteriorProb + Math.min(decisiveFrequency, 1.0)) / 2;
+    
+    // Update display
+    document.getElementById('posterior-prob').textContent = avgPosteriorProb.toFixed(4);
+    document.getElementById('bayes-factor').textContent = avgBayesFactor.toFixed(2);
+    
+    // Evidence classification
+    let evidenceClass = 'Weak Evidence';
+    if (avgBayesFactor > 100) evidenceClass = 'Extreme Evidence';
+    else if (avgBayesFactor > 30) evidenceClass = 'Very Strong Evidence';
+    else if (avgBayesFactor > 10) evidenceClass = 'Decisive Evidence';
+    else if (avgBayesFactor > 3) evidenceClass = 'Substantial Evidence';
+    
+    document.getElementById('evidence-class').textContent = evidenceClass;
+    document.getElementById('unity-score').textContent = (unityScore * 100).toFixed(1) + '%';
+    
+    // Visualize results
+    visualizeBayesianResults(avgPosteriorProb, avgBayesFactor, decisiveFrequency);
+}
+
+function gaussianRandom() {
+    // Box-Muller transform for normal distribution
+    let u = 0, v = 0;
+    while(u === 0) u = Math.random(); // Converting [0,1) to (0,1)
+    while(v === 0) v = Math.random();
+    return Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+}
+
+function normalCDF(x) {
+    // Approximation of the standard normal CDF
+    const a1 =  0.254829592;
+    const a2 = -0.284496736;
+    const a3 =  1.421413741;
+    const a4 = -1.453152027;
+    const a5 =  1.061405429;
+    const p  =  0.3275911;
+    
+    const sign = x < 0 ? -1 : 1;
+    x = Math.abs(x) / Math.sqrt(2.0);
+    
+    const t = 1.0 / (1.0 + p * x);
+    const y = 1.0 - (((((a5 * t + a4) * t) + a3) * t + a2) * t + a1) * t * Math.exp(-x * x);
+    
+    return 0.5 * (1.0 + sign * y);
+}
+
+function visualizeBayesianResults(posteriorProb, bayesFactor, decisiveFreq) {
+    const canvas = document.getElementById('bayesian-canvas');
+    const ctx = canvas.getContext('2d');
+    
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // Draw posterior distribution
+    ctx.strokeStyle = '#3b82f6';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+    
+    // Draw bell curve representing posterior
+    for (let x = 0; x < canvas.width; x++) {
+        const t = (x - centerX) / 100;
+        const y = centerY - 80 * Math.exp(-t * t * 2) * posteriorProb;
+        
+        if (x === 0) {
+            ctx.moveTo(x, y);
+        } else {
+            ctx.lineTo(x, y);
+        }
+    }
+    ctx.stroke();
+    
+    // Draw unity line
+    ctx.strokeStyle = '#ef4444';
+    ctx.setLineDash([5, 5]);
+    ctx.beginPath();
+    ctx.moveTo(centerX, 20);
+    ctx.lineTo(centerX, canvas.height - 20);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    
+    // Add labels
+    ctx.fillStyle = '#1f2937';
+    ctx.font = '14px Inter, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('θ = 1 (Unity)', centerX, canvas.height - 5);
+    ctx.fillText(`BF₁₀ = ${bayesFactor.toFixed(1)}`, centerX + 80, 30);
+    
+    // Draw confidence region
+    const confWidth = 40 / Math.max(posteriorProb * 10, 1);
+    ctx.fillStyle = 'rgba(59, 130, 246, 0.2)';
+    ctx.fillRect(centerX - confWidth, centerY - 50, confWidth * 2, 100);
+}
+
 // Sacred Geometry Functions
 function generatePattern() {
     const canvas = document.getElementById('geometry-canvas');
