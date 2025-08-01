@@ -3,9 +3,10 @@ Een Unity Mathematics Framework Setup
 """
 
 from setuptools import setup, find_packages
+from typing import Dict, List
 
 with open("README.md", "r", encoding="utf-8") as fh:
-    long_description = fh.read()
+    long_description: str = fh.read()
 
 setup(
     name="een",

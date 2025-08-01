@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Een File_Management MCP Server
-Basic implementation for Claude Desktop integration
+Een File Management MCP Server
+File management operations for Claude Desktop integration
 """
 
 import asyncio
@@ -12,14 +12,14 @@ import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-class EenFile_ManagementMCPServer:
-    """Basic MCP server for file_management operations"""
+class EenFileManagementMCPServer:
+    """MCP server for file management operations"""
     
     def __init__(self):
         self.phi = 1.618033988749895
         self.tools = {
             "get_status": {
-                "description": f"Get file_management status",
+                "description": "Get file management status",
                 "inputSchema": {
                     "type": "object",
                     "properties": {}
@@ -40,7 +40,7 @@ class EenFile_ManagementMCPServer:
     
     async def run_server(self):
         """Run MCP server"""
-        logger.info(f"Starting Een File_Management MCP Server")
+        logger.info("Starting Een File Management MCP Server")
         
         while True:
             try:
@@ -93,7 +93,7 @@ class EenFile_ManagementMCPServer:
                 logger.error(f"Server error: {e}")
 
 async def main():
-    server = EenFile_ManagementMCPServer()
+    server = EenFileManagementMCPServer()
     await server.run_server()
 
 if __name__ == "__main__":

@@ -215,11 +215,11 @@ class TranscendentalIdempotentMathematics:
             # Return error result for invalid inputs
             return IdempotentOperationResult(
                 result=0.0,
-                operation="plus",
-                operands=(a, b),
-                success=False,
-                transcendental_enhancement=transcendental,
-                mathematical_rigor={'error': str(e)},
+                operation_type="plus",
+                operands=[a, b],
+                unity_preserved=False,
+                transcendence_level=0.0,
+                meta_reflection=f"Error: {str(e)}",
                 computation_time=time.time() - start_time
             )
         

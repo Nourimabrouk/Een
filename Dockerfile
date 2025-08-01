@@ -16,22 +16,17 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libpng-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy only requirements file(s) first for better cache usage
-COPY --link utils_helper.py ./
-
-# Generate requirements.txt dynamically (since not present)
-# Extract requirements from import statements in utils_helper.py
-# (numpy, pandas, matplotlib, seaborn)
-RUN echo -e "numpy\npandas\nmatplotlib\nseaborn" > requirements.txt
+# Copy requirements and utilities
+COPY --link requirements.txt ./
+COPY --link src/utils/utils_helper.py ./utils_helper.py
 
 # Create venv and install dependencies using pip cache
 RUN python -m venv .venv \
     && .venv/bin/pip install --upgrade pip \
-    && --mount=type=cache,target=/root/.cache/pip \
-       .venv/bin/pip install -r requirements.txt
+    && .venv/bin/pip install -r requirements.txt
 
 # Copy the rest of the app (excluding files via .dockerignore)
-COPY --link run_demo.py ./
+COPY --link scripts/run_demo.py ./run_demo.py
 
 # ---- Final stage: minimal runtime image ----
 FROM base AS final

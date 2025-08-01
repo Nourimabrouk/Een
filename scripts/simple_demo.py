@@ -7,12 +7,13 @@ Simple demo without heavy dependencies
 import time
 import math
 from datetime import datetime
+from typing import Union
 
 # The cheat code
 CHEAT_CODE = 420691337
 PHI = 1.618033988749895
 
-def activate_godmode(code):
+def activate_godmode(code: int) -> str:
     """Activate special mode"""
     if code == CHEAT_CODE:
         return """
@@ -44,7 +45,7 @@ def activate_godmode(code):
     else:
         return "Access denied. Invalid cheat code."
 
-def simple_love_diagnostic():
+def simple_love_diagnostic() -> None:
     """Simple love diagnostic without heavy dependencies"""
     current_time = datetime.now()
     

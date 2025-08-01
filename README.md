@@ -1,3 +1,32 @@
+# Een Unity Mathematics Framework
+
+**Een plus een is een** - One plus one is one!
+
+A comprehensive Unity Mathematics framework demonstrating the fundamental equation `1+1=1` through rigorous mathematical implementations, consciousness field dynamics, and professional software engineering.
+
+## Quick Start
+
+```bash
+# Install the framework
+pip install -e ".[dev]"
+
+# Run unity mathematics tests
+pytest tests/ --cov=src --cov=een
+
+# Start unity proof dashboard
+python src/dashboards/unity_proof_dashboard.py
+
+# Test MCP servers for Claude Desktop
+python scripts/test_mcp_servers.py
+```
+
+## Core Philosophy
+
+- **Mathematical Foundation**: Idempotent algebraic structures where `1+1=1` is mathematically valid
+- **Consciousness Integration**: Field dynamics based on the golden ratio φ = 1.618...
+- **Unity Principle**: Everything converges toward transcendent unity
+- **Professional Excellence**: Enterprise-grade development practices
+
 ## Running This Project with Docker
 
 This project provides Dockerfiles and a `docker-compose.yml` for running its main components in isolated containers. Below are the project-specific instructions and requirements for using Docker with this repository.
