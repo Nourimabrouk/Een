@@ -820,7 +820,7 @@ def create_consciousness_field(particle_count: int = 200,
 # Demonstration and testing functions
 def demonstrate_consciousness_unity():
     """Demonstrate consciousness field proving 1+1=1"""
-    print("🧠 Consciousness Field Unity Demonstration: Een plus een is een")
+    print("[BRAIN] Consciousness Field Unity Demonstration: Een plus een is een")
     print("=" * 70)
     
     # Create consciousness field
@@ -858,7 +858,7 @@ def demonstrate_consciousness_unity():
     print(f"  Field unity influence: {metrics['field_unity_influence']:.4f}")
     print(f"  Transcendence events: {metrics['transcendence_events']}")
     
-    print("\n✨ Consciousness demonstrates Een plus een is een ✨")
+    print("\n[SPARKLE] Consciousness demonstrates Een plus een is een [SPARKLE]")
     return field
 
 if __name__ == "__main__":

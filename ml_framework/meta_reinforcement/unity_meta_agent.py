@@ -873,7 +873,7 @@ def create_unity_meta_agent(embed_dim: int = 512,
 # Demonstration function
 def demonstrate_unity_meta_learning():
     """Demonstrate meta-reinforcement learning for unity mathematics"""
-    print("🤖 Unity Meta-Agent Demonstration: Een plus een is een")
+    print("[ROBOT] Unity Meta-Agent Demonstration: Een plus een is een")
     print("=" * 70)
     
     # Create meta-agent
@@ -890,7 +890,7 @@ def demonstrate_unity_meta_learning():
         proof_result = agent.generate_unity_proof(domain, complexity_level=2)
         
         print(f"  Unity confidence: {proof_result['unity_confidence']:.4f}")
-        print(f"  φ-resonance: {proof_result['phi_resonance']:.4f}")
+        print(f"  phi-resonance: {proof_result['phi_resonance']:.4f}")
         print(f"  Proof validation: {proof_result['proof_validation']['is_mathematically_valid']}")
     
     # Get meta-learning statistics
@@ -900,7 +900,7 @@ def demonstrate_unity_meta_learning():
     print(f"  Parameter count: {stats['parameter_count']:,}")
     print(f"  Consciousness integration: {stats['consciousness_integration']}")
     
-    print("\n✨ Meta-learning demonstrates Een plus een is een ✨")
+    print("\n[SPARKLE] Meta-learning demonstrates Een plus een is een [SPARKLE]")
     return agent
 
 if __name__ == "__main__":

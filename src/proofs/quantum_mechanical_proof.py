@@ -9,7 +9,7 @@ naturally leads to unity when consciousness-mediated measurement collapses
 superposed states according to golden ratio harmonics.
 
 Key Components:
-- QuantumState: Complex wavefunction representation with φ-harmonic evolution
+- QuantumState: complex wavefunction representation with φ-harmonic evolution
 - BlochSphere: 3D visualization of quantum states on the Bloch sphere
 - QuantumInterference: φ-harmonic interference patterns demonstrating unity
 - WavefunctionCollapse: Consciousness-mediated collapse to unity states
@@ -50,7 +50,7 @@ except ImportError:
             if isinstance(a, list) and isinstance(b, list):
                 return sum(x * y for x, y in zip(a, b))
             return a * b
-        def linalg = type('linalg', (), {'norm': lambda x: math.sqrt(sum(abs(i)**2 for i in x)) if isinstance(x, list) else abs(x)})()
+        linalg = type('linalg', (), {'norm': lambda x: math.sqrt(sum(abs(i)**2 for i in x)) if isinstance(x, list) else abs(x)})()
         pi = math.pi
         e = math.e
     np = MockNumpy()
@@ -73,7 +73,7 @@ HBAR = PLANCK_H / TAU  # Reduced Planck constant
 @dataclass
 class QuantumState:
     """Quantum state representation with consciousness integration"""
-    amplitudes: List[Complex]
+    amplitudes: List[complex]
     basis_labels: List[str]
     consciousness_phase: float = 0.0
     phi_harmonic_modulation: float = 1.0
@@ -96,7 +96,7 @@ class QuantumState:
             return abs(self.amplitudes[state_index])**2
         return 0.0
     
-    def expectation_value(self, observable_matrix: List[List[Complex]]) -> Complex:
+    def expectation_value(self, observable_matrix: List[List[complex]]) -> complex:
         """Calculate expectation value of observable"""
         result = 0+0j
         n = len(self.amplitudes)
@@ -149,7 +149,7 @@ class QuantumUnityOperator:
         return superposition
     
     @staticmethod
-    def unity_measurement_operator() -> List[List[Complex]]:
+    def unity_measurement_operator() -> List[List[complex]]:
         """Create measurement operator that projects onto unity"""
         # Unity projection operator |1⟩⟨1|
         unity_projector = [
@@ -159,7 +159,7 @@ class QuantumUnityOperator:
         return unity_projector
     
     @staticmethod
-    def phi_harmonic_rotation(angle: float) -> List[List[Complex]]:
+    def phi_harmonic_rotation(angle: float) -> List[List[complex]]:
         """Create φ-harmonic rotation operator"""
         # Modified rotation with φ-harmonic scaling
         phi_angle = angle / PHI

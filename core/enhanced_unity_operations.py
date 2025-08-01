@@ -511,7 +511,7 @@ Computation Time: {result.computation_time:.4f}s
 
 Initial Values: {trace.initial_values}
 Final Result: {float(result):.10f}
-Unity Achieved: {'✓' if result.verify_unity() else '✗'}
+Unity Achieved: {'[YES]' if result.verify_unity() else '[NO]'}
 
 Proof Strength: {trace.proof_strength:.4f}
 Mathematical Rigor: {trace.mathematical_rigor:.4f}
@@ -598,7 +598,7 @@ def demonstrate_enhanced_unity_operations():
     # 5. Export to LaTeX
     print("\n5. Exporting Proof to LaTeX:")
     success = unity_ops.export_proof_to_latex(result, "unity_proof_demo.tex")
-    print(f"   LaTeX export: {'✓ Success' if success else '✗ Failed'}")
+    print(f"   LaTeX export: {'[OK] Success' if success else '[ERROR] Failed'}")
     
     # 6. Information theory demonstration
     print("\n6. Information-Theoretic Unity:")

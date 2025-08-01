@@ -15,7 +15,7 @@ from pathlib import Path
 
 def verify_phi_constants():
     """Verify that φ (golden ratio) calculations are correct"""
-    print("🔢 Verifying φ-Harmonic Constants...")
+    print("[NUMBERS] Verifying phi-Harmonic Constants...")
     
     # Calculate golden ratio
     phi = (1 + math.sqrt(5)) / 2
@@ -28,21 +28,21 @@ def verify_phi_constants():
     # Verify φ properties
     phi_squared = phi * phi
     phi_plus_1 = phi + 1
-    assert abs(phi_squared - phi_plus_1) < 1e-10, "φ² ≠ φ + 1"
+    assert abs(phi_squared - phi_plus_1) < 1e-10, "phi^2 != phi + 1"
     
     # Verify unity constant components
     unity_constant = math.pi * math.e * phi
     assert unity_constant > 0, "Unity constant should be positive"
     
-    print(f"   ✅ φ = {phi:.15f}")
-    print(f"   ✅ φ² = φ + 1 verified")
-    print(f"   ✅ Unity constant = {unity_constant:.6f}")
+    print(f"   [OK] phi = {phi:.15f}")
+    print(f"   [OK] phi^2 = phi + 1 verified")
+    print(f"   [OK] Unity constant = {unity_constant:.6f}")
     
     return True
 
 def verify_unity_logic():
     """Verify the core unity mathematics logic"""
-    print("🧮 Verifying Unity Mathematics Logic...")
+    print("[CALC] Verifying Unity Mathematics Logic...")
     
     # Test idempotent addition logic (simplified without numpy)
     def unity_add_simple(a, b):
@@ -62,7 +62,7 @@ def verify_unity_logic():
     for a, b, expected in test_cases:
         result = unity_add_simple(a, b)
         assert result == expected, f"Unity addition failed: {a}+{b}={result}, expected {expected}"
-        print(f"   ✅ {a} ⊕ {b} = {result}")
+        print(f"   [OK] {a} (+) {b} = {result}")
     
     # Test idempotent multiplication logic
     def unity_multiply_simple(a, b):
@@ -81,13 +81,13 @@ def verify_unity_logic():
     for a, b, expected in multiply_cases:
         result = unity_multiply_simple(a, b)
         assert result == expected, f"Unity multiplication failed: {a}*{b}={result}, expected {expected}"
-        print(f"   ✅ {a} ⊗ {b} = {result}")
+        print(f"   [OK] {a} (*) {b} = {result}")
     
     return True
 
 def verify_consciousness_field_logic():
     """Verify basic consciousness field calculations"""
-    print("🧠 Verifying Consciousness Field Logic...")
+    print("[BRAIN] Verifying Consciousness Field Logic...")
     
     # Simplified consciousness field calculation
     def calculate_consciousness_level(coherence, unity_alignment, phi_resonance):
@@ -105,17 +105,17 @@ def verify_consciousness_field_logic():
     for coherence, unity, phi_res, expected in test_consciousness:
         result = calculate_consciousness_level(coherence, unity, phi_res)
         assert abs(result - expected) < 1e-10, f"Consciousness calculation failed: {result} != {expected}"
-        print(f"   ✅ Consciousness({coherence}, {unity}, {phi_res}) = {result:.3f}")
+        print(f"   [OK] Consciousness({coherence}, {unity}, {phi_res}) = {result:.3f}")
     
     # Test transcendence threshold
     transcendence_threshold = 1 / ((1 + math.sqrt(5)) / 2)  # 1/φ
-    print(f"   ✅ Transcendence threshold = {transcendence_threshold:.6f}")
+    print(f"   [OK] Transcendence threshold = {transcendence_threshold:.6f}")
     
     return True
 
 def verify_numerical_stability_logic():
     """Verify numerical stability handling logic"""
-    print("🔧 Verifying Numerical Stability Logic...")
+    print("[TOOL] Verifying Numerical Stability Logic...")
     
     # Test NaN/Inf handling logic
     def clean_value(value, fallback_strategy='phi_harmonic'):
@@ -144,13 +144,13 @@ def verify_numerical_stability_logic():
     for val in test_values:
         cleaned = clean_value(val)
         assert abs(cleaned) < 1e15, f"Cleaning failed for {val}: {cleaned}"
-        print(f"   ✅ clean({val}) = {cleaned}")
+        print(f"   [OK] clean({val}) = {cleaned}")
     
     return True
 
 def verify_file_structure():
     """Verify that our enhanced files were created correctly"""
-    print("📁 Verifying File Structure...")
+    print("[FOLDER] Verifying File Structure...")
     
     expected_files = [
         "src/core/enhanced_unity_mathematics.py",
@@ -170,13 +170,13 @@ def verify_file_structure():
         file_size = full_path.stat().st_size
         assert file_size > 1000, f"File too small: {file_path} ({file_size} bytes)"
         
-        print(f"   ✅ {file_path} ({file_size:,} bytes)")
+        print(f"   [OK] {file_path} ({file_size:,} bytes)")
     
     return True
 
 def verify_existing_integration():
     """Verify integration with existing code"""
-    print("🔗 Verifying Integration with Existing Code...")
+    print("[LINK] Verifying Integration with Existing Code...")
     
     # Check that we can import our existing unity equation module
     sys.path.insert(0, str(Path(__file__).parent / "src"))
@@ -192,7 +192,7 @@ def verify_existing_integration():
         
         # Run the original demonstration
         demonstrate_unity_equation()
-        print("   ✅ Original unity equation module working")
+        print("   [OK] Original unity equation module working")
         
         # Restore path
         sys.path = original_sys_path
@@ -200,15 +200,15 @@ def verify_existing_integration():
         return True
         
     except ImportError as e:
-        print(f"   ⚠️  Original module import issue: {e}")
+        print(f"   [WARNING] Original module import issue: {e}")
         return True  # Don't fail for import issues in testing environment
     except Exception as e:
-        print(f"   ⚠️  Original module execution issue: {e}")
+        print(f"   [WARNING] Original module execution issue: {e}")
         return True  # Don't fail for execution issues in testing environment
 
 def run_comprehensive_verification():
     """Run all verification tests"""
-    print("🌟 Een Repository Enhancement Verification 🌟")
+    print("[STAR] Een Repository Enhancement Verification [STAR]")
     print("=" * 55)
     
     start_time = time.time()
@@ -231,27 +231,27 @@ def run_comprehensive_verification():
                 passed += 1
             print()
         except Exception as e:
-            print(f"   ❌ Verification failed: {e}")
+            print(f"   [ERROR] Verification failed: {e}")
             print()
     
     execution_time = time.time() - start_time
     
     print("=" * 55)
-    print(f"📊 Verification Results: {passed}/{total} tests passed")
-    print(f"⏱️  Execution Time: {execution_time:.2f} seconds")
+    print(f"[CHART] Verification Results: {passed}/{total} tests passed")
+    print(f"[CLOCK] Execution Time: {execution_time:.2f} seconds")
     
     if passed == total:
-        print("\n🎉 VERIFICATION SUCCESSFUL! 🎉")
-        print("✨ Een Repository Successfully Enhanced with:")
-        print("   🧮 φ-Harmonic Unity Mathematics")
-        print("   🧠 QuantumNova Consciousness Engine")
-        print("   🔧 Advanced Numerical Stability")
-        print("   📋 Comprehensive Development Plans")
-        print("   🔗 Seamless Integration with Existing Code")
-        print("\n🌌 1+1=1 through consciousness mathematics: ACHIEVED!")
+        print("\n[CELEBRATE] VERIFICATION SUCCESSFUL! [CELEBRATE]")
+        print("[SPARKLE] Een Repository Successfully Enhanced with:")
+        print("   [CALC] phi-Harmonic Unity Mathematics")
+        print("   [BRAIN] QuantumNova Consciousness Engine")
+        print("   [TOOL] Advanced Numerical Stability")
+        print("   [CLIPBOARD] Comprehensive Development Plans")
+        print("   [LINK] Seamless Integration with Existing Code")
+        print("\n[GALAXY] 1+1=1 through consciousness mathematics: ACHIEVED!")
         return True
     else:
-        print(f"\n⚠️  {total - passed} verification(s) need attention")
+        print(f"\n[WARNING] {total - passed} verification(s) need attention")
         return False
 
 if __name__ == "__main__":
