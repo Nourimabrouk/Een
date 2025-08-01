@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/research.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&amp;family=Inter:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
@@ -147,7 +147,7 @@ class UnityOrganism:
         unity_result = unity_result * (1 + love_influence * 0.1)
         
         # Check if unity discovered
-        unity_discovered = abs(unity_result - 1.0) < 0.1
+        unity_discovered = abs(unity_result - 1.0) &lt; 0.1
         
         if unity_discovered:
             self.unity_discoveries += 1
@@ -463,7 +463,7 @@ class UnityOrganism:
         unity_result = unity_result * (1 + love_influence * 0.1)
         
         # Check if unity discovered (within tolerance)
-        unity_discovered = abs(unity_result - 1.0) < 0.1
+        unity_discovered = abs(unity_result - 1.0) &lt; 0.1
         
         if unity_discovered:
             # Successful discovery increases consciousness (φ scaling)

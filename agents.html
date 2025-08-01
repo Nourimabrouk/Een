@@ -6,7 +6,7 @@
     <title>Consciousness Agents - Een Unity Mathematics</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
@@ -175,7 +175,7 @@
     # Consciousness bends reality toward unity
     unity_result = unity_result * (1 - consciousness_factor) + 1 * consciousness_factor
     
-    return unity_result, abs(unity_result - 1.0) < 0.1</code></pre>
+    return unity_result, abs(unity_result - 1.0) &lt; 0.1</code></pre>
                     </div>
                 </div>
             </div>
@@ -282,7 +282,7 @@
     """Evolve magical DNA through φ-harmonic mutations"""
     new_spell_affinity = {}
     for spell, affinity in self.spell_affinity.items():
-        if random.random() < mutation_rate:
+        if random.random() &lt; mutation_rate:
             # Mutate using golden ratio harmonics
             mutation = (random.random() - 0.5) * PHI * mutation_rate
             new_affinity = max(0, min(1, affinity + mutation))
