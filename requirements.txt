@@ -1,89 +1,76 @@
-# Een - Unity Mathematics Framework
-# Core dependencies for experimental mathematics and consciousness computing
+# Core dependencies
+numpy>=1.24.0
+scipy>=1.10.0
+pandas>=2.0.0
+matplotlib>=3.7.0
+seaborn>=0.12.0
+plotly>=5.15.0
+streamlit>=1.25.0
 
-# =============================================================================
-# CORE SCIENTIFIC COMPUTING
-# =============================================================================
+# Machine Learning & AI
+torch>=2.0.0
+transformers>=4.30.0
+scikit-learn>=1.3.0
+tensorflow>=2.13.0
+jax>=0.4.0
+jaxlib>=0.4.0
 
-numpy>=1.24.0                   # Numerical computing and array operations
-scipy>=1.10.0                   # Scientific algorithms and mathematical functions
-sympy>=1.12.0                   # Symbolic mathematics and equation solving
-pandas>=1.5.0                   # Data manipulation and analysis
-matplotlib>=3.6.0               # Static plotting and mathematical visualizations
+# Bayesian Statistics
+pymc>=5.0.0
+arviz>=0.15.0
+bambi>=0.11.0
 
-# =============================================================================
-# INTERACTIVE VISUALIZATION
-# =============================================================================
+# Consciousness & Unity Systems
+sympy>=1.12.0
+networkx>=3.1.0
+igraph>=0.10.0
 
-plotly>=5.15.0                  # Interactive plots and 3D visualizations
-dash>=2.14.0                    # Web-based dashboard framework
-dash-bootstrap-components>=1.4.0  # Bootstrap UI components
+# Visualization & UI
+dash>=2.11.0
+dash-bootstrap-components>=1.4.0
+bokeh>=3.2.0
+altair>=5.0.0
 
-# =============================================================================
-# DEVELOPMENT AND TESTING
-# =============================================================================
+# Development & Testing
+pytest>=7.4.0
+pytest-cov>=4.1.0
+black>=23.7.0
+flake8>=6.0.0
+mypy>=1.5.0
 
-pytest>=7.4.0                   # Testing framework
-pytest-cov>=4.1.0               # Coverage analysis
-pytest-asyncio>=1.1.0           # Async test support
-black>=23.7.0                   # Code formatting
-mypy>=1.5.0                     # Static type checking
+# API & Web Services
+fastapi>=0.100.0
+uvicorn>=0.23.0
+requests>=2.31.0
+aiohttp>=3.8.0
 
-# =============================================================================
-# UTILITIES AND ENHANCEMENTS
-# =============================================================================
+# Database & Storage
+sqlalchemy>=2.0.0
+redis>=4.6.0
+pymongo>=4.4.0
 
-click>=8.1.0                    # Command-line interface development
-rich>=13.5.0                    # Enhanced terminal output
-tqdm>=4.66.0                    # Progress bars
+# Utilities
+python-dotenv>=1.0.0
+click>=8.1.0
+rich>=13.5.0
+tqdm>=4.65.0
+loguru>=0.7.0
 
-# =============================================================================
-# OPTIONAL ADVANCED FEATURES
-# =============================================================================
+# Jupyter & Interactive
+jupyter>=1.0.0
+ipywidgets>=8.0.0
 
-# Uncomment these for enhanced functionality:
-# jupyter>=1.0.0                # Jupyter notebook support
-# streamlit>=1.25.0             # Alternative dashboard framework
-# networkx>=3.1                 # Graph and network analysis
-# scikit-learn>=1.3.0           # Machine learning capabilities
+# Quantum Computing (for quantum unity)
+qiskit>=0.44.0
+cirq>=1.2.0
 
-# =============================================================================
-# MCP AND INTEGRATION
-# =============================================================================
+# MCP (Model Context Protocol)
+mcp>=1.0.0
 
-# Standard library modules used (no pip install needed):
-# - asyncio (Python standard library)
-# - json (Python standard library) 
-# - logging (Python standard library)
-# - pathlib (Python standard library)
-# - typing (Python standard library)
+# Docker & Containerization
+docker>=6.1.0
 
-# =============================================================================
-# NOTES
-# =============================================================================
-
-# This requirements.txt focuses on the core dependencies needed for:
-# - Unity mathematics operations and visualization
-# - MCP server functionality for Claude Desktop integration
-# - Dashboard creation with Plotly/Dash
-# - Development tools and testing frameworks
-# - Basic scientific computing capabilities
-
-# For full development environment setup, also consider:
-# - VS Code/Cursor with Python extension
-# - Claude Desktop for MCP integration
-# - Git for version control
-
-# Installation:
-# pip install -r requirements.txt
-
-# Development installation:
-# pip install -r requirements.txt -e .
-
-# =============================================================================
-# VERSION COMPATIBILITY
-# =============================================================================
-
-# Python 3.10+ recommended
-# Tested on Python 3.10, 3.11, 3.12
-# Windows, macOS, and Linux compatibility
+# Cloud & Deployment
+boto3>=1.28.0
+google-cloud-storage>=2.10.0
+azure-storage-blob>=12.17.0
