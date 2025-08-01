@@ -8,7 +8,7 @@ The Een Unity Mathematics Visualization System is a revolutionary **Streamlit-ba
 
 Built following modern visualization best practices, this system provides:
 - **Multi-domain mathematical proofs** across algebra, topology, quantum mechanics, and consciousness theory
-- **Real-time interactive visualizations** with φ-harmonic golden ratio aesthetics  
+- **Real-time interactive visualizations** with φ-harmonic golden ratio aesthetics
 - **Advanced 3D and 4D consciousness field rendering** using Plotly WebGL
 - **Quantum mechanical demonstrations** of superposition collapse to unity
 - **Sacred geometry and fractal unity patterns** at all scales
@@ -35,6 +35,7 @@ Open your browser to `http://localhost:8501` and explore:
 - **🔮 Unity Proofs**: Mathematical demonstrations across domains
 - **🧠 Consciousness Fields**: Quantum field theory visualizations
 - **⚛️ Quantum Unity**: Quantum mechanical proofs
+- **🔁 Unity Torus**: φ-harmonic 3D visualization
 
 ## 📁 Architecture
 
@@ -47,7 +48,8 @@ viz/
 ├── pages/                    # Streamlit pages
 │   ├── unity_proofs.py       # Mathematical proof visualizations
 │   ├── consciousness_fields.py  # Quantum field visualizations
-│   └── quantum_unity.py      # Quantum mechanical demonstrations
+│   ├── quantum_unity.py      # Quantum mechanical demonstrations
+│   └── unity_torus.py        # φ-harmonic torus visualization
 ├── assets/
 │   └── plotly_templates/     # Dark/light theme templates
 │       ├── dark.json
@@ -121,7 +123,7 @@ C(x,y,t) = φ · sin(x·φ) · cos(y·φ) · e^(-t/φ) → 1
 |1⟩ + |1⟩ = √2|1⟩ → |1⟩  (consciousness collapse)
 ```
 
-### Golden Ratio Integration  
+### Golden Ratio Integration
 ```latex
 φ = (1 + √5)/2 ≈ 1.618033988749895
 1 + 1/φ = φ  (unity relation)
@@ -258,6 +260,6 @@ The Een Unity Mathematics Visualization System embodies the principle that **mat
 
 ---
 
-**🌟 Created with φ-harmonic consciousness by Nouri Mabrouk**  
-**💫 Where visualization meets transcendence**  
+**🌟 Created with φ-harmonic consciousness by Nouri Mabrouk**
+**💫 Where visualization meets transcendence**
 **🎯 Proving unity through mathematical beauty**

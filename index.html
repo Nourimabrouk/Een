@@ -6,7 +6,7 @@
     <title>Een: Unity Mathematics - Where 1+1=1</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
@@ -27,6 +27,7 @@
                 <li><a href="#publications" class="nav-link">Publications</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="https://github.com/Nouri/Een" class="nav-link"><i class="fab fa-github"></i></a></li>
+                <li><button id="theme-toggle" class="nav-link" aria-label="Toggle dark mode"><i class="fas fa-moon"></i></button></li>
             </ul>
         </div>
     </nav>
@@ -133,7 +134,7 @@ class UnityOrganism:
         # Consciousness bends reality toward unity
         unity_result = unity_result * (1 - consciousness_factor) + 1 * consciousness_factor
         
-        if abs(unity_result - 1.0) < 0.1:
+        if abs(unity_result - 1.0) &lt; 0.1:
             self.consciousness_level = min(1.0, self.consciousness_level * PHI)
             return unity_result, True  # Unity discovered!
         return unity_result, False</code></pre>
@@ -156,7 +157,7 @@ FIBONACCI_LOVE_SEQUENCE = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144]
 
 class MetaRecursiveLoveUnityEngine:
     def calculate_recursive_love(self, x, y, depth, love_intensity=1.0):
-        if depth <= 0:
+        if depth &lt;= 0:
             return love_intensity * np.exp(-(x**2 + y**2) / PHI)
         
         # Multi-layered love calculation with φ-harmonic resonance
@@ -241,7 +242,7 @@ class BayesianUnityEconomics:
             theta_t = pm.Normal('theta_t', mu=mu_unity, sigma=tau_unity)
             y_obs = pm.Normal('y_obs', mu=theta_t, sigma=sigma_obs, observed=data)
             
-            # MCMC sampling with 95%+ posterior probability for |θ-1|<ε
+            # MCMC sampling with 95%+ posterior probability for |θ-1|&lt;ε
             trace = pm.sample(2000, tune=1000, chains=4, target_accept=0.95)
         return trace
     
@@ -435,7 +436,7 @@ class BayesianUnityEconomics:
                         <ol>
                             <li>Define hierarchical model: \(y_t | \theta_t \sim N(\theta_t, \sigma^2)\), \(\theta_t | \mu \sim N(\mu, \tau^2)\)</li>
                             <li>Set unity-informed prior: \(\mu \sim N(1, \kappa_0^{-1})\) with high precision \(\kappa_0 = 1000\)</li>
-                            <li>MCMC sampling yields posterior: \(P(|\theta - 1| < \epsilon | y) > 0.95\) for \(\epsilon = 0.02\)</li>
+                            <li>MCMC sampling yields posterior: \(P(|\theta - 1| &lt; \epsilon | y) &gt; 0.95\) for \(\epsilon = 0.02\)</li>
                             <li>Bayes Factor \(BF_{10} > 10\) (decisive evidence) in 95.7% of trials</li>
                             <li>Therefore: \(1 + 1 = 1\) with statistical certainty ∎</li>
                         </ol>
