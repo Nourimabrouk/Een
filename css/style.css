@@ -1516,3 +1516,535 @@ p {
     color: var(--phi-gold);
     font-size: 1.5rem;
 }
+
+/* Unity Analysis Components */
+.unity-analysis-container {
+    margin-top: var(--space-phi);
+    padding: var(--space-phi);
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 1rem;
+    border: 1px solid rgba(245, 158, 11, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.unity-results h4 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.result-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.result-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border-radius: 0.5rem;
+    border-left: 4px solid var(--phi-gold);
+}
+
+.result-item .method {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.result-item .value {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-weight: 700;
+    color: var(--phi-gold);
+    font-size: 1.1rem;
+}
+
+.convergence-analysis {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(249, 115, 22, 0.05) 100%);
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.convergence-analysis p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.convergence-analysis strong {
+    color: var(--primary-color);
+}
+
+.convergence-analysis code {
+    background: rgba(15, 23, 42, 0.1);
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    color: var(--phi-gold);
+    font-weight: 600;
+}
+
+/* Evolution Status Components */
+.evolution-header {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: var(--gradient-phi);
+    color: white;
+    border-radius: 0.5rem;
+    text-align: center;
+}
+
+.evolution-log {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 0.875rem;
+    padding: 0.5rem;
+    margin: 0.25rem 0;
+    background: rgba(248, 250, 252, 0.8);
+    border-left: 3px solid var(--phi-gold);
+    border-radius: 0.25rem;
+    color: var(--primary-color);
+}
+
+#evolution-status {
+    max-height: 300px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--phi-gold) transparent;
+}
+
+#evolution-status::-webkit-scrollbar {
+    width: 6px;
+}
+
+#evolution-status::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#evolution-status::-webkit-scrollbar-thumb {
+    background: var(--phi-gold);
+    border-radius: 3px;
+}
+
+/* Enhanced Canvas styling */
+#unity-canvas {
+    border: 2px solid rgba(245, 158, 11, 0.3);
+    border-radius: 1rem;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin: 1rem 0;
+    transition: all var(--transition-smooth);
+}
+
+#unity-canvas:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Proof Quality Indicators */
+.proof-excellent {
+    background: rgba(16, 185, 129, 0.1) !important;
+    border-left-color: #10b981 !important;
+}
+
+.proof-good {
+    background: rgba(245, 158, 11, 0.1) !important;
+    border-left-color: #f59e0b !important;
+}
+
+.proof-moderate {
+    background: rgba(59, 130, 246, 0.1) !important;
+    border-left-color: #3b82f6 !important;
+}
+
+/* Enhanced button states */
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+.btn:disabled:hover {
+    transform: none !important;
+    box-shadow: var(--shadow-sm) !important;
+}
+
+/* Mathematical equation displays */
+.equation-display {
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(249, 115, 22, 0.05));
+    border-radius: var(--radius-lg);
+    border: 2px solid rgba(245, 158, 11, 0.3);
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.equation-display .unity-symbol {
+    color: var(--phi-gold);
+    font-weight: 800;
+}
+
+/* Interactive proof status */
+.proof-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin: 0.25rem;
+}
+
+.proof-status.verified {
+    background: rgba(16, 185, 129, 0.2);
+    color: #065f46;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.proof-status.pending {
+    background: rgba(245, 158, 11, 0.2);
+    color: #92400e;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.proof-status.computing {
+    background: rgba(59, 130, 246, 0.2);
+    color: #1e40af;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    animation: pulse-computing 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-computing {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; }
+}
+
+/* Mathematical notation enhancements */
+.mathematical-notation {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.phi-constant {
+    color: var(--phi-gold);
+    font-weight: 700;
+    font-family: var(--font-serif);
+}
+
+.unity-operator {
+    color: var(--unity-emerald);
+    font-weight: 800;
+    font-size: 1.2em;
+}
+
+/* Advanced visualization controls */
+.visualization-controls {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin: 1.5rem 0;
+    flex-wrap: wrap;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.control-group label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.control-slider {
+    width: 120px;
+    height: 6px;
+    border-radius: 3px;
+    background: var(--border-color);
+    outline: none;
+    cursor: pointer;
+}
+
+.control-slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--phi-gold);
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.control-slider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--phi-gold);
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Enhanced philosophical sections styling */
+.axiom-container {
+    margin-top: 2rem;
+}
+
+.axioms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.axiom-card {
+    background: var(--bg-primary);
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-smooth);
+}
+
+.axiom-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--phi-gold);
+}
+
+.axiom-card h4 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.axiom-statement {
+    text-align: center;
+    font-size: 1.1rem;
+    margin: 1rem 0;
+    padding: 1rem;
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-sm);
+    border-left: 4px solid var(--phi-gold);
+}
+
+.implementation-proof {
+    margin-top: 3rem;
+    background: var(--bg-secondary);
+    padding: 2.5rem;
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--border-color);
+}
+
+.code-philosophy pre {
+    background: #1e293b;
+    color: #f1f5f9;
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    line-height: 1.6;
+    overflow-x: auto;
+    border: 1px solid #334155;
+    margin: 1rem 0;
+}
+
+.code-commentary {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: rgba(245, 158, 11, 0.1);
+    border-left: 4px solid var(--phi-gold);
+    border-radius: var(--radius-sm);
+    font-style: italic;
+    line-height: 1.6;
+}
+
+.provenance-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.hash-verification {
+    background: var(--bg-primary);
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+}
+
+.verification-note {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: rgba(16, 185, 129, 0.1);
+    border-left: 4px solid var(--unity-emerald);
+    border-radius: var(--radius-sm);
+    line-height: 1.6;
+}
+
+.backends-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.backend-card {
+    background: var(--bg-primary);
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    text-align: center;
+    transition: all var(--transition-smooth);
+}
+
+.backend-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+.backend-card h5 {
+    color: var(--primary-color);
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+}
+
+.philosophical-quote {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--primary-color);
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(59, 130, 246, 0.05));
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.philosophical-quote cite {
+    display: block;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-style: normal;
+}
+
+.meditative-quote {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--text-primary);
+    text-align: center;
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background: rgba(245, 158, 11, 0.1);
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--phi-gold);
+}
+
+.mathematical-connections {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.connection-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background: var(--bg-primary);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    transition: all var(--transition-smooth);
+}
+
+.connection-item:hover {
+    background: var(--bg-tertiary);
+    border-color: var(--phi-gold);
+}
+
+.rigor-checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.rigor-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--bg-primary);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+}
+
+.rigor-item i {
+    color: var(--unity-emerald);
+    font-size: 1.25rem;
+    margin-top: 0.25rem;
+}
+
+.rigor-item strong {
+    color: var(--primary-color);
+}
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
+    margin: 2rem 0;
+}
+
+.status-indicator.success {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(16, 185, 129, 0.1));
+    border: 2px solid var(--unity-emerald);
+}
+
+.status-indicator i {
+    font-size: 2rem;
+    color: var(--unity-emerald);
+}
+
+.status-indicator span {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--unity-emerald);
+}
+
+.philosophical-coda {
+    margin-top: 4rem;
+    padding: 3rem;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.05), rgba(59, 130, 246, 0.05));
+    border-radius: var(--radius-2xl);
+    border: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.call-to-mathematicians {
+    margin-top: 2rem;
+    padding: 2rem;
+    background: var(--bg-primary);
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--phi-gold);
+}
