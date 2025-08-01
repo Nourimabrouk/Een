@@ -1,0 +1,66 @@
+version: '3.8'
+
+services:
+  een-api:
+    build:
+      context: ..
+      dockerfile: api/Dockerfile
+    container_name: een-consciousness-api
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - EEN_SECRET_KEY=${EEN_SECRET_KEY:-your-secret-key-here}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin123}
+      - ADMIN_EMAIL=${ADMIN_EMAIL:-admin@een.consciousness.math}
+      - ACCESS_TOKEN_EXPIRE_MINUTES=${ACCESS_TOKEN_EXPIRE_MINUTES:-30}
+      - REFRESH_TOKEN_EXPIRE_DAYS=${REFRESH_TOKEN_EXPIRE_DAYS:-7}
+      - RATE_LIMIT_REQUESTS=${RATE_LIMIT_REQUESTS:-100}
+      - RATE_LIMIT_WINDOW=${RATE_LIMIT_WINDOW:-3600}
+      - ADMIN_IP_WHITELIST=${ADMIN_IP_WHITELIST:-}
+    volumes:
+      - ../src:/app/src:ro
+      - ../data:/app/data:ro
+    networks:
+      - een-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: '1.0'
+        reservations:
+          memory: 512M
+          cpus: '0.5'
+
+  nginx:
+    image: nginx:alpine
+    container_name: een-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - een-api
+    networks:
+      - een-network
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: '0.5'
+
+networks:
+  een-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16 
