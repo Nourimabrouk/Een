@@ -1231,7 +1231,7 @@ class TranscendentalConsciousnessOperator:
             for j in range(resolution):
                 try:
                     unity_field[i, j] = self.operators['unity'](Z[i, j])
-                except:
+                except Exception:
                     unity_field[i, j] = 0
         
         # Calculate field properties

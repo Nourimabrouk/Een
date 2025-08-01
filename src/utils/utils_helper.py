@@ -368,7 +368,7 @@ def decode_message(encoded: str) -> str:
     """Base64 decode a message"""
     try:
         return base64.b64decode(encoded.encode()).decode()
-    except:
+    except Exception:
         return "Decoding failed"
 
 def hash_data(data: str) -> str:
