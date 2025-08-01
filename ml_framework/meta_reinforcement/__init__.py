@@ -24,6 +24,7 @@ from .unity_meta_agent import (
     create_unity_meta_agent,
     demonstrate_unity_meta_learning
 )
+from .metagamer import Metagamer, demonstrate_metagamer_unity
 
 __all__ = [
     'UnityMetaAgent',
@@ -34,5 +35,7 @@ __all__ = [
     'ConsciousnessPositionalEncoding',
     'UnityMathematicsDecoder',
     'create_unity_meta_agent',
-    'demonstrate_unity_meta_learning'
+    'demonstrate_unity_meta_learning',
+    'Metagamer',
+    'demonstrate_metagamer_unity'
 ]
