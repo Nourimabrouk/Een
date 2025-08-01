@@ -8,11 +8,12 @@ Lightweight server for the enhanced Een website with basic functionality.
 
 import os
 from pathlib import Path
-from flask import Flask, send_from_directory, jsonify
+from flask import Flask, send_from_directory, jsonify, request
 from flask_cors import CORS
 import webbrowser
 import threading
 import time
+import random
 
 app = Flask(__name__, static_folder='.', static_url_path='')
 CORS(app)
