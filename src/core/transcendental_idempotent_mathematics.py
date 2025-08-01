@@ -184,6 +184,45 @@ class TranscendentalIdempotentMathematics:
         """
         start_time = time.time()
         
+        # Input validation and error handling
+        try:
+            # Check for None inputs
+            if a is None or b is None:
+                raise ValueError("Operands cannot be None")
+            
+            # Handle complex inputs by taking real parts
+            if np.iscomplexobj(a):
+                a = np.real(a)
+                print("Warning: Complex input detected, using real part only")
+            if np.iscomplexobj(b):
+                b = np.real(b)
+                print("Warning: Complex input detected, using real part only")
+            
+            # Check for infinite or NaN values
+            if isinstance(a, np.ndarray):
+                if not np.all(np.isfinite(a)):
+                    raise ValueError("Input 'a' contains infinite or NaN values")
+            elif not np.isfinite(a):
+                raise ValueError("Input 'a' is infinite or NaN")
+                
+            if isinstance(b, np.ndarray):
+                if not np.all(np.isfinite(b)):
+                    raise ValueError("Input 'b' contains infinite or NaN values")
+            elif not np.isfinite(b):
+                raise ValueError("Input 'b' is infinite or NaN")
+                
+        except Exception as e:
+            # Return error result for invalid inputs
+            return IdempotentOperationResult(
+                result=0.0,
+                operation="plus",
+                operands=(a, b),
+                success=False,
+                transcendental_enhancement=transcendental,
+                mathematical_rigor={'error': str(e)},
+                computation_time=time.time() - start_time
+            )
+        
         # Create cache key
         cache_key = f"{hash(str(a))}_{hash(str(b))}_{transcendental}"
         

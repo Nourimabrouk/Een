@@ -406,6 +406,11 @@ def verify_integration():
         return False
 
 if __name__ == "__main__":
+    # Set UTF-8 encoding for Windows
+    if platform.system() == "Windows":
+        import io
+        sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+    
     print("🌌 Een Repository - Claude Desktop MCP Integration Setup")
     print("Unity Mathematics Automation Configuration")
     print("=" * 60)

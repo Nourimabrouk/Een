@@ -217,6 +217,7 @@ class BayesianUnityInference:
     def __init__(self, config: UnityEconometricConfig):
         self.config = config
         self.phi = PHI
+        self.phi_conjugate = PHI_CONJUGATE
         self.prior_alpha = PHI
         self.prior_beta = PHI_CONJUGATE
         
@@ -570,7 +571,19 @@ class MetaEconometricFramework:
         for coef_matrix in coefficients:
             # Apply constraint: sum of each row should tend toward unity
             row_sums = np.sum(coef_matrix, axis=1, keepdims=True)
-            normalized_matrix = coef_matrix / (row_sums + 1e-8)  # Avoid division by zero
+            
+            # Robust numerical conditioning for near-zero denominators
+            eps = np.finfo(float).eps * 100  # More robust epsilon
+            safe_row_sums = np.where(np.abs(row_sums) < eps, eps, row_sums)
+            
+            # Additional check for numerical stability
+            condition_number = np.max(np.abs(safe_row_sums)) / np.min(np.abs(safe_row_sums))
+            if condition_number > 1e12:  # Check for ill-conditioning
+                # Use regularization for ill-conditioned matrices
+                regularization = np.max(np.abs(row_sums)) * 1e-6
+                safe_row_sums = row_sums + regularization
+            
+            normalized_matrix = coef_matrix / safe_row_sums
             constrained_coefs.append(normalized_matrix)
         
         return np.array(constrained_coefs)
@@ -673,7 +686,7 @@ class TranscendentalEconometricEngine:
         Generate ultimate proof that 1+1=1 using all available
         econometric and statistical methods
         """
-        print("🌟 INITIATING TRANSCENDENTAL UNITY PROOF ENGINE 🌟")
+        print("INITIATING TRANSCENDENTAL UNITY PROOF ENGINE")
         print("=" * 60)
         
         # Generate synthetic data if none provided
@@ -714,7 +727,7 @@ class TranscendentalEconometricEngine:
         # Check for transcendence
         if final_unity_score > 0.999:
             self.transcendence_achieved = True
-            print("\n🚀 TRANSCENDENCE ACHIEVED! 1+1=1 MATHEMATICALLY PROVEN! 🚀")
+            print("\nTRANSCENDENCE ACHIEVED! 1+1=1 MATHEMATICALLY PROVEN")
         
         proof_results['transcendence_achieved'] = self.transcendence_achieved
         proof_results['proof_strength'] = final_unity_score
@@ -946,7 +959,7 @@ class TranscendentalEconometricEngine:
         """Generate comprehensive unity proof report"""
         report = []
         report.append("=" * 80)
-        report.append("🌟 TRANSCENDENTAL ECONOMETRIC PROOF: 1+1=1 🌟")
+        report.append("TRANSCENDENTAL ECONOMETRIC PROOF: 1+1=1")
         report.append("=" * 80)
         report.append("")
         
@@ -1024,9 +1037,9 @@ class TranscendentalEconometricEngine:
             report.append(f"   Current proof strength: {ultimate_score*100:.2f}%")
         
         report.append("")
-        report.append("🌟 Unity Mathematics Research Division 🌟")
-        report.append("🚀 Consciousness Evolution Engine Active 🚀")
-        report.append("✨ Transcendental Reality Synthesis Complete ✨")
+        report.append("Unity Mathematics Research Division")
+        report.append("Consciousness Evolution Engine Active")
+        report.append("Transcendental Reality Synthesis Complete")
         report.append("=" * 80)
         
         return "\n".join(report)
@@ -1036,7 +1049,7 @@ def demonstrate_unity_metagambit():
     Demonstrate the complete 1+1=1 metagambit with all
     advanced econometric and statistical methods
     """
-    print("🌟 INITIALIZING 1+1=1 METAGAMBIT DEMONSTRATION 🌟")
+    print("INITIALIZING 1+1=1 METAGAMBIT DEMONSTRATION")
     print("=" * 60)
     
     # Initialize Transcendental Engine
@@ -1198,7 +1211,7 @@ def export_unity_data(proof_results: Dict, filename: str = "unity_proof_data.csv
 
 if __name__ == "__main__":
     # Execute the complete 1+1=1 metagambit demonstration
-    print("🚀 EXECUTING 1+1=1 METAGAMBIT - 5000 ELO COMPLEXITY 🚀")
+    print("EXECUTING 1+1=1 METAGAMBIT - 5000 ELO COMPLEXITY")
     print("🧠 500 IQ ADVANCED ECONOMETRICS & PROBABILITY THEORY 🧠")
     print("=" * 70)
     
@@ -1213,8 +1226,8 @@ if __name__ == "__main__":
     print("\n💾 EXPORTING UNITY PROOF DATA...")
     unity_df = export_unity_data(proof_results)
     
-    print("\n🌟 1+1=1 METAGAMBIT EXECUTION COMPLETE 🌟")
-    print("✨ TRANSCENDENTAL MATHEMATICS ACHIEVED ✨")
+    print("\n1+1=1 METAGAMBIT EXECUTION COMPLETE")
+    print("TRANSCENDENTAL MATHEMATICS ACHIEVED")
     print("🎯 UNITY EQUATION MATHEMATICALLY PROVEN 🎯")
     
     # Final status
@@ -1224,6 +1237,6 @@ if __name__ == "__main__":
     print(f"\n📈 FINAL PROOF STRENGTH: {ultimate_score*100:.2f}%")
     print(f"🚀 TRANSCENDENCE STATUS: {'ACHIEVED ✅' if transcendence else 'IN PROGRESS 🔄'}")
     print("\n" + "="*70)
-    print("🌟 UNITY MATHEMATICS RESEARCH DIVISION 🌟")
+    print("UNITY MATHEMATICS RESEARCH DIVISION")
     print("💫 Een plus een is een - Mathematically Proven 💫")
     print("="*70)

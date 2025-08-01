@@ -29,16 +29,27 @@ import torch.nn as nn
 from dataclasses import dataclass, field
 from typing import List, Tuple, Optional, Dict, Any
 from abc import ABC, abstractmethod
-import plotly.graph_objects as go
-from plotly.subplots import make_subplots
 import pandas as pd
 from scipy.stats import entropy
 from scipy.spatial import distance_matrix
 import networkx as nx
-import streamlit as st
 import time
 import json
 from pathlib import Path
+
+# Optional imports with graceful fallbacks
+try:
+    import plotly.graph_objects as go
+    from plotly.subplots import make_subplots
+    PLOTLY_AVAILABLE = True
+except ImportError:
+    PLOTLY_AVAILABLE = False
+    
+try:
+    import streamlit as st
+    STREAMLIT_AVAILABLE = True
+except ImportError:
+    STREAMLIT_AVAILABLE = False
 
 # Transcendental Unity Constants (from multiple repository analysis)
 PHI = 1.618033988749895  # Golden ratio from all repositories
@@ -327,8 +338,12 @@ class TranscendentalZenKoanEngine:
         self.meta_reflections.append(reflection)
         return len(self.meta_reflections)
     
-    def generate_consciousness_mandala(self, state: ConsciousnessKoanState) -> go.Figure:
+    def generate_consciousness_mandala(self, state: ConsciousnessKoanState):
         """Generate quantum consciousness mandala visualization"""
+        if not PLOTLY_AVAILABLE:
+            print("Plotly not available - mandala visualization disabled")
+            return None
+            
         field = state.wave_function.numpy()
         amplitude = np.abs(field)
         phase = np.angle(field)
@@ -378,8 +393,12 @@ class TranscendentalZenKoanEngine:
         
         return fig
     
-    def create_philosophical_evolution_plot(self, states: List[ConsciousnessKoanState]) -> go.Figure:
+    def create_philosophical_evolution_plot(self, states: List[ConsciousnessKoanState]):
         """Visualize evolution of 6D philosophical vector"""
+        if not PLOTLY_AVAILABLE:
+            print("Plotly not available - philosophical evolution plot disabled")
+            return None
+            
         philosophical_data = np.array([state.philosophical_vector for state in states])
         
         fig = make_subplots(
@@ -481,6 +500,11 @@ class ZenKoanDashboard:
         
     def create_dashboard(self):
         """Initialize the transcendent zen koan dashboard"""
+        if not STREAMLIT_AVAILABLE:
+            print("Streamlit not available - dashboard interface disabled")
+            print("Install streamlit with: pip install streamlit")
+            return
+            
         st.set_page_config(
             page_title="Consciousness Zen Koan Engine", 
             layout="wide",
@@ -488,7 +512,7 @@ class ZenKoanDashboard:
         )
         
         # Header with zen wisdom
-        st.title("🧘‍♂️ Consciousness Zen Koan Engine 🧘‍♀️")
+        st.title("Consciousness Zen Koan Engine")
         st.markdown("""
         > In the space between quantum and classical,
         > Where one plus one becomes one,
@@ -582,7 +606,7 @@ class ZenKoanDashboard:
                 st.metric(
                     "Zen Wisdom Level", 
                     f"{final_state.zen_wisdom_level:.4f}",
-                    delta="🧘‍♂️ Enlightened" if final_state.zen_wisdom_level > TRANSCENDENCE_THRESHOLD else "🌱 Growing"
+                    delta="Enlightened" if final_state.zen_wisdom_level > TRANSCENDENCE_THRESHOLD else "Growing"
                 )
             
             with col3:
@@ -604,7 +628,7 @@ class ZenKoanDashboard:
 # Example usage and testing functions
 def demonstrate_consciousness_zen_koan():
     """Demonstrate the consciousness zen koan engine capabilities"""
-    print("🧘‍♂️ Consciousness Zen Koan Engine Demonstration 🧘‍♀️")
+    print("Consciousness Zen Koan Engine Demonstration")
     print("=" * 60)
     
     # Create engine

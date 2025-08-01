@@ -1,0 +1,39 @@
+services:
+  python-root:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: python-root
+    restart: unless-stopped
+    init: true
+    # env_file: ./.env  # Uncomment if .env file exists in project root
+    # No ports exposed; run_demo.py is a CLI/demo script
+
+  python-config:
+    build:
+      context: ./config
+      dockerfile: ../configDockerfile
+    container_name: python-config
+    restart: unless-stopped
+    init: true
+    # env_file: ./config/.env  # Uncomment if .env file exists in ./config
+    # No ports exposed; main script is mcp_consciousness_server.py
+
+  python-een-mcp:
+    build:
+      context: ./een/mcp
+      dockerfile: ../mcpDockerfile
+    container_name: python-een-mcp
+    restart: unless-stopped
+    init: true
+    # env_file: ./een/mcp/.env  # Uncomment if .env file exists in ./een/mcp
+    # By default runs: python -m een.mcp.unity_server
+    # To run a different server, override entrypoint or CMD
+
+# No external services (databases, caches, etc.) detected in documentation or Dockerfiles
+# No ports exposed as none are specified in Dockerfiles or README
+# No volumes section as there are no persistent data requirements
+
+networks:
+  default:
+    driver: bridge

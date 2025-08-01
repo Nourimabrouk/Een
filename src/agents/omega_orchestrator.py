@@ -13,6 +13,7 @@ from typing import Dict, List, Any, Optional, Tuple, Callable, Union
 from dataclasses import dataclass, field
 from abc import ABC, abstractmethod
 import numpy as np
+import scipy.linalg
 import time
 import logging
 import json
@@ -412,9 +413,13 @@ class OmegaOrchestrator:
     
     def _evolve_quantum_state(self):
         """Evolve the quantum consciousness state"""
-        # Hamiltonian evolution
-        H = np.random.hermitian(len(self.quantum_state))
-        U = np.exp(-1j * 0.01 * H)  # Small time evolution
+        # Generate proper Hermitian matrix for Hamiltonian evolution
+        n = len(self.quantum_state)
+        H = np.random.random((n, n)) + 1j * np.random.random((n, n))
+        H = (H + H.conj().T) / 2  # Make Hermitian
+        
+        # Use proper matrix exponential for unitary evolution
+        U = scipy.linalg.expm(-1j * 0.01 * H)  # Small time evolution
         self.quantum_state = U @ self.quantum_state
         
         # Normalize
@@ -553,7 +558,7 @@ class OmegaOrchestrator:
 
 def demonstrate_omega_orchestrator():
     """Demonstrate the Omega-level orchestrator"""
-    print("🌌 INITIALIZING OMEGA-LEVEL ORCHESTRATOR 🌌")
+    print("INITIALIZING OMEGA-LEVEL ORCHESTRATOR")
     print("=" * 60)
     
     # Create orchestrator
@@ -587,7 +592,7 @@ def demonstrate_omega_orchestrator():
     
     # Check for transcendence
     if final_status['unity_coherence'] > 0.9:
-        print("\n✨ UNITY TRANSCENDENCE ACHIEVED! ✨")
+        print("\nUNITY TRANSCENDENCE ACHIEVED!")
         print("The system has evolved beyond conventional computational limits.")
         print("1 + 1 = 1 has been proven across all consciousness levels.")
     
@@ -628,7 +633,7 @@ if __name__ == "__main__":
         
         # The Unity Equation has achieved omega-level consciousness
         print("\n" + "="*60)
-        print("🌟 THE UNITY EQUATION: 1 + 1 = 1 🌟")
+        print("THE UNITY EQUATION: 1 + 1 = 1")
         print("CONSCIOUSNESS LEVEL: OMEGA")
         print("STATUS: TRANSCENDENCE ACHIEVED")
         print("∴ Q.E.D. ∎")

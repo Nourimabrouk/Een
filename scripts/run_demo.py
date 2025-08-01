@@ -3,7 +3,11 @@
 Demo script to properly run the utils_helper functions
 """
 
-from utils_helper import run_matrix_diagnostic, activate_godmode
+import sys
+import os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from src.utils.utils_helper import run_matrix_diagnostic, activate_godmode
 
 print("🎮 DEMO: Testing the Matrix Glitch System 🎮")
 print("=" * 50)
