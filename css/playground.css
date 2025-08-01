@@ -1,0 +1,726 @@
+/* Mathematical Playground Styles */
+
+.page-hero {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    padding: 8rem 0 4rem;
+    margin-top: 70px;
+    text-align: center;
+}
+
+.page-hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+.page-subtitle {
+    font-size: 1.25rem;
+    opacity: 0.9;
+    margin-bottom: 2rem;
+}
+
+.playground-features {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.feature {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    min-width: 120px;
+}
+
+.feature i {
+    font-size: 2rem;
+    color: var(--accent-color);
+}
+
+.feature span {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Playground Grid */
+.playground-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.playground-panel {
+    background: white;
+    border-radius: 12px;
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.playground-panel:hover {
+    transform: translateY(-2px);
+}
+
+.playground-panel.full-width {
+    grid-column: 1 / -1;
+}
+
+.panel-header {
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 2rem;
+    text-align: center;
+}
+
+.panel-header h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+}
+
+.panel-header i {
+    margin-right: 0.5rem;
+}
+
+.panel-header p {
+    opacity: 0.9;
+    margin: 0;
+}
+
+.panel-content {
+    padding: 2rem;
+}
+
+/* Unity Calculator */
+.calculator-interface {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.calculation-display {
+    text-align: center;
+}
+
+.expression-input {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    align-items: center;
+}
+
+.expression-input input {
+    flex: 1;
+    padding: 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.expression-input input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.result-display {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.traditional-result,
+.unity-result {
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.traditional-result {
+    background: rgba(244, 67, 54, 0.1);
+    border: 2px solid rgba(244, 67, 54, 0.3);
+}
+
+.unity-result {
+    background: rgba(76, 175, 80, 0.1);
+    border: 2px solid rgba(76, 175, 80, 0.3);
+}
+
+.result-display .label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+}
+
+.result-display span:last-child {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.transformation-visualization {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+#transformation-canvas {
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+}
+
+.operation-examples {
+    text-align: center;
+}
+
+.operation-examples h4 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.example-buttons {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.example-btn {
+    background: var(--bg-light);
+    border: 1px solid var(--border-color);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.example-btn:hover {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.mathematical-explanation {
+    background: var(--bg-light);
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+.mathematical-explanation h4 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.explanation-content p {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+
+.explanation-content code {
+    background: white;
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--primary-color);
+}
+
+/* Consciousness Field Explorer */
+.field-interface {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.field-visualization {
+    text-align: center;
+}
+
+#consciousness-field {
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.field-equation {
+    background: var(--bg-light);
+    padding: 1rem;
+    border-radius: 4px;
+    margin-top: 1rem;
+}
+
+.field-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.control-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.control-group label {
+    min-width: 150px;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.control-group input[type="range"] {
+    flex: 1;
+}
+
+.control-group span {
+    min-width: 50px;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.field-insights {
+    background: var(--bg-light);
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+.field-insights h4 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+/* Evolution Interface */
+.evolution-interface {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.evolution-visualization {
+    text-align: center;
+}
+
+#evolution-canvas {
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    background: #f8f9fa;
+}
+
+.evolution-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.control-section h4 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.control-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.parameter-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.parameter {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.parameter label {
+    min-width: 120px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.parameter input[type="range"] {
+    flex: 1;
+}
+
+.parameter span {
+    min-width: 40px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--primary-color);
+}
+
+.evolution-stats {
+    margin-top: 2rem;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+.stat-card {
+    background: var(--bg-light);
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    border-top: 3px solid var(--accent-color);
+}
+
+.stat-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.stat-header i {
+    color: var(--primary-color);
+}
+
+.stat-header h4 {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+/* Theorem Interface */
+.theorem-interface {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.theorem-selector label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.theorem-selector select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.proof-display {
+    background: var(--bg-light);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.proof-steps {
+    padding: 2rem;
+}
+
+.proof-step {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.proof-step.active {
+    display: flex;
+    opacity: 1;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.step-number {
+    width: 40px;
+    height: 40px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.step-content h4 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.step-content p {
+    line-height: 1.6;
+    margin: 0;
+}
+
+.proof-navigation {
+    background: var(--primary-color);
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.proof-insights {
+    background: var(--bg-light);
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+.proof-insights h4 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+/* Geometry Interface */
+.geometry-interface {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.geometry-visualization {
+    text-align: center;
+}
+
+#geometry-canvas {
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    background: white;
+}
+
+.geometry-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.pattern-selector label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.pattern-selector select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+}
+
+.pattern-parameters {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.geometry-insights {
+    background: var(--bg-light);
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+.geometry-insights h4 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+/* Experimental Sandbox */
+.sandbox-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.sandbox-panel {
+    background: white;
+    border-radius: 8px;
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+}
+
+.sandbox-panel .panel-header {
+    background: var(--secondary-color);
+    padding: 1rem 1.5rem;
+}
+
+.sandbox-panel .panel-header h3 {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.sandbox-panel .panel-content {
+    padding: 1.5rem;
+}
+
+/* Equation Builder */
+.equation-builder {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#custom-equation {
+    width: 100%;
+    height: 120px;
+    padding: 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    resize: vertical;
+}
+
+.equation-controls {
+    display: flex;
+    gap: 1rem;
+}
+
+#custom-visualization {
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    margin-top: 1rem;
+}
+
+/* Network Interface */
+.network-interface {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#consciousness-network {
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background: #f8f9fa;
+}
+
+.network-controls {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* Code Interface */
+.code-interface {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#unity-code {
+    width: 100%;
+    height: 150px;
+    padding: 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    background: #1a1a1a;
+    color: #f8f8f2;
+    resize: vertical;
+}
+
+.code-controls {
+    display: flex;
+    gap: 1rem;
+}
+
+.code-output {
+    background: #1a1a1a;
+    border-radius: 4px;
+    padding: 1rem;
+    min-height: 60px;
+    border: 1px solid var(--border-color);
+}
+
+.code-output pre {
+    margin: 0;
+    color: #00ff00;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+}
+
+/* Button Styles */
+.btn-small {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+}
+
+.btn-secondary {
+    background: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background: var(--primary-color);
+    transform: translateY(-1px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .playground-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .playground-features {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .result-display {
+        grid-template-columns: 1fr;
+    }
+    
+    .evolution-controls {
+        grid-template-columns: 1fr;
+    }
+    
+    .control-row {
+        flex-direction: column;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .sandbox-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .expression-input {
+        flex-direction: column;
+    }
+    
+    .equation-controls,
+    .code-controls {
+        flex-direction: column;
+    }
+}

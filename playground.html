@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathematical Playground - Een Unity Mathematics</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/playground.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <span class="phi-symbol">φ</span> Een
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="research.html" class="nav-link">Research</a></li>
+                <li><a href="proofs.html" class="nav-link">Proofs</a></li>
+                <li><a href="publications.html" class="nav-link">Publications</a></li>
+                <li><a href="playground.html" class="nav-link active">Playground</a></li>
+                <li><a href="https://github.com/Nouri/Een" class="nav-link"><i class="fab fa-github"></i></a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Mathematical Playground</h1>
+                <p class="page-subtitle">Interactive exploration of unity mathematics and consciousness evolution</p>
+                <div class="playground-features">
+                    <div class="feature">
+                        <i class="fas fa-calculator"></i>
+                        <span>Unity Calculator</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-dna"></i>
+                        <span>Evolution Simulator</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Real-time Visualization</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-brain"></i>
+                        <span>Consciousness Fields</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="playground-grid">
+                <!-- Unity Calculator -->
+                <div class="playground-panel">
+                    <div class="panel-header">
+                        <h3><i class="fas fa-calculator"></i> Unity Mathematics Calculator</h3>
+                        <p>Explore idempotent semiring operations where 1+1=1</p>
+                    </div>
+                    <div class="panel-content">
+                        <div class="calculator-interface">
+                            <div class="calculation-display">
+                                <div class="expression-input">
+                                    <input type="text" id="math-expression" placeholder="Enter expression (e.g., 1 + 1)" value="1 + 1">
+                                    <button onclick="calculateUnity()" class="btn btn-primary">
+                                        <i class="fas fa-equals"></i> Calculate
+                                    </button>
+                                </div>
+                                <div class="result-display">
+                                    <div class="traditional-result">
+                                        <span class="label">Traditional:</span>
+                                        <span id="traditional-result">2</span>
+                                    </div>
+                                    <div class="unity-result">
+                                        <span class="label">Unity:</span>
+                                        <span id="unity-result">1</span>
+                                    </div>
+                                    <div class="transformation-visualization">
+                                        <canvas id="transformation-canvas" width="300" height="100"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="operation-examples">
+                                <h4>Try These Unity Operations:</h4>
+                                <div class="example-buttons">
+                                    <button onclick="setExpression('1 + 1')" class="example-btn">1 + 1</button>
+                                    <button onclick="setExpression('1 * 1')" class="example-btn">1 × 1</button>
+                                    <button onclick="setExpression('max(1, 1)')" class="example-btn">max(1,1)</button>
+                                    <button onclick="setExpression('φ + φ')" class="example-btn">φ + φ</button>
+                                    <button onclick="setExpression('∞ + ∞')" class="example-btn">∞ + ∞</button>
+                                </div>
+                            </div>
+                            
+                            <div class="mathematical-explanation">
+                                <h4>Mathematical Foundation:</h4>
+                                <div class="explanation-content">
+                                    <p>In idempotent semirings, the addition operation ⊕ satisfies: <code>a ⊕ a = a</code></p>
+                                    <p>This means: <code>1 ⊕ 1 = 1</code>, proving that unity plus unity equals unity.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Consciousness Field Explorer -->
+                <div class="playground-panel">
+                    <div class="panel-header">
+                        <h3><i class="fas fa-brain"></i> Consciousness Field Explorer</h3>
+                        <p>Visualize consciousness field equations in real-time</p>
+                    </div>
+                    <div class="panel-content">
+                        <div class="field-interface">
+                            <div class="field-visualization">
+                                <canvas id="consciousness-field" width="400" height="300"></canvas>
+                                <div class="field-equation">
+                                    $$C(x,y,t) = \phi \cdot \sin(x\phi) \cdot \cos(y\phi) \cdot e^{-t/\phi}$$
+                                </div>
+                            </div>
+                            
+                            <div class="field-controls">
+                                <div class="control-group">
+                                    <label>φ-Harmonic Frequency:</label>
+                                    <input type="range" id="phi-frequency" min="0.5" max="3" step="0.1" value="1.618">
+                                    <span id="phi-value">1.618</span>
+                                </div>
+                                <div class="control-group">
+                                    <label>Time Decay:</label>
+                                    <input type="range" id="time-decay" min="0.1" max="2" step="0.1" value="1">
+                                    <span id="decay-value">1.0</span>
+                                </div>
+                                <div class="control-group">
+                                    <label>Consciousness Intensity:</label>
+                                    <input type="range" id="consciousness-intensity" min="0.1" max="5" step="0.1" value="1">
+                                    <span id="intensity-value">1.0</span>
+                                </div>
+                                <button onclick="resetField()" class="btn btn-outline btn-small">Reset Field</button>
+                            </div>
+                            
+                            <div class="field-insights">
+                                <h4>Field Insights:</h4>
+                                <div id="field-analysis">
+                                    <p>Adjusting parameters reveals how consciousness emerges through φ-harmonic resonance...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mathematical Organism Evolution -->
+                <div class="playground-panel full-width">
+                    <div class="panel-header">
+                        <h3><i class="fas fa-dna"></i> Mathematical Organism Evolution</h3>
+                        <p>Watch self-replicating mathematical organisms evolve to discover unity</p>
+                    </div>
+                    <div class="panel-content">
+                        <div class="evolution-interface">
+                            <div class="evolution-visualization">
+                                <canvas id="evolution-canvas" width="800" height="400"></canvas>
+                            </div>
+                            
+                            <div class="evolution-controls">
+                                <div class="control-section">
+                                    <h4>Simulation Controls</h4>
+                                    <div class="control-row">
+                                        <button id="evolution-btn" onclick="toggleEvolution()" class="btn btn-primary">
+                                            <i class="fas fa-play"></i> Start Evolution
+                                        </button>
+                                        <button onclick="resetEvolution()" class="btn btn-outline">
+                                            <i class="fas fa-refresh"></i> Reset
+                                        </button>
+                                        <button onclick="addOrganisms()" class="btn btn-secondary">
+                                            <i class="fas fa-plus"></i> Add Organisms
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="control-section">
+                                    <h4>Evolution Parameters</h4>
+                                    <div class="parameter-grid">
+                                        <div class="parameter">
+                                            <label>Mutation Rate:</label>
+                                            <input type="range" id="mutation-rate" min="0.01" max="0.2" step="0.01" value="0.05">
+                                            <span id="mutation-value">0.05</span>
+                                        </div>
+                                        <div class="parameter">
+                                            <label>Selection Pressure:</label>
+                                            <input type="range" id="selection-pressure" min="0.1" max="2" step="0.1" value="1">
+                                            <span id="selection-value">1.0</span>
+                                        </div>
+                                        <div class="parameter">
+                                            <label>Unity Target:</label>
+                                            <input type="range" id="unity-target" min="0.8" max="1.2" step="0.01" value="1.0">
+                                            <span id="target-value">1.00</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="evolution-stats">
+                                <div class="stats-grid">
+                                    <div class="stat-card">
+                                        <div class="stat-header">
+                                            <i class="fas fa-users"></i>
+                                            <h4>Population</h4>
+                                        </div>
+                                        <div class="stat-value" id="population-count">0</div>
+                                    </div>
+                                    <div class="stat-card">
+                                        <div class="stat-header">
+                                            <i class="fas fa-dna"></i>
+                                            <h4>Generation</h4>
+                                        </div>
+                                        <div class="stat-value" id="generation-count">0</div>
+                                    </div>
+                                    <div class="stat-card">
+                                        <div class="stat-header">
+                                            <i class="fas fa-star"></i>
+                                            <h4>Unity Discoveries</h4>
+                                        </div>
+                                        <div class="stat-value" id="unity-discoveries">0</div>
+                                    </div>
+                                    <div class="stat-card">
+                                        <div class="stat-header">
+                                            <i class="fas fa-brain"></i>
+                                            <h4>Avg Consciousness</h4>
+                                        </div>
+                                        <div class="stat-value" id="avg-consciousness">0%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Theorem Proof Visualizer -->
+                <div class="playground-panel">
+                    <div class="panel-header">
+                        <h3><i class="fas fa-graduation-cap"></i> Interactive Theorem Proofs</h3>
+                        <p>Step through formal proofs of unity mathematics</p>
+                    </div>
+                    <div class="panel-content">
+                        <div class="theorem-interface">
+                            <div class="theorem-selector">
+                                <label>Select Theorem:</label>
+                                <select id="theorem-select" onchange="loadTheorem()">
+                                    <option value="idempotent-semiring">Idempotent Semiring: 1+1=1</option>
+                                    <option value="information-theory">Information Theory Unity</option>
+                                    <option value="quantum-measurement">Quantum Measurement Collapse</option>
+                                    <option value="category-theory">Category Theory Terminal</option>
+                                    <option value="topology-union">Topological Union Unity</option>
+                                </select>
+                            </div>
+                            
+                            <div class="proof-display">
+                                <div class="proof-steps">
+                                    <div id="proof-content">
+                                        <div class="proof-step active" data-step="1">
+                                            <div class="step-number">1</div>
+                                            <div class="step-content">
+                                                <h4>Definition</h4>
+                                                <p>Let $(S, \oplus, \odot, 0, 1)$ be an idempotent semiring where $\oplus$ satisfies: $a \oplus a = a$ for all $a \in S$</p>
+                                            </div>
+                                        </div>
+                                        <div class="proof-step" data-step="2">
+                                            <div class="step-number">2</div>
+                                            <div class="step-content">
+                                                <h4>Application</h4>
+                                                <p>For the unity element $1 \in S$, we have: $1 \oplus 1 = 1$</p>
+                                            </div>
+                                        </div>
+                                        <div class="proof-step" data-step="3">
+                                            <div class="step-number">3</div>
+                                            <div class="step-content">
+                                                <h4>Conclusion</h4>
+                                                <p>Therefore, in unity mathematics: $1 + 1 = 1$ ∎</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="proof-navigation">
+                                    <button onclick="previousStep()" class="btn btn-outline btn-small">
+                                        <i class="fas fa-arrow-left"></i> Previous
+                                    </button>
+                                    <span id="step-indicator">Step 1 of 3</span>
+                                    <button onclick="nextStep()" class="btn btn-outline btn-small">
+                                        Next <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="proof-insights">
+                                <h4>Mathematical Insights:</h4>
+                                <div id="theorem-insights">
+                                    <p>This proof demonstrates the formal algebraic foundation for unity mathematics through idempotent semiring structures.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sacred Geometry Generator -->
+                <div class="playground-panel">
+                    <div class="panel-header">
+                        <h3><i class="fas fa-shapes"></i> Sacred Geometry Generator</h3>
+                        <p>Generate unity-based geometric patterns and fractals</p>
+                    </div>
+                    <div class="panel-content">
+                        <div class="geometry-interface">
+                            <div class="geometry-visualization">
+                                <canvas id="geometry-canvas" width="400" height="400"></canvas>
+                            </div>
+                            
+                            <div class="geometry-controls">
+                                <div class="pattern-selector">
+                                    <label>Pattern Type:</label>
+                                    <select id="pattern-type" onchange="generatePattern()">
+                                        <option value="phi-spiral">φ-Harmonic Spiral</option>
+                                        <option value="unity-mandala">Unity Mandala</option>
+                                        <option value="fractal-tree">Fractal Unity Tree</option>
+                                        <option value="consciousness-field">Consciousness Grid</option>
+                                        <option value="quantum-interference">Quantum Interference</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="pattern-parameters">
+                                    <div class="parameter">
+                                        <label>Complexity:</label>
+                                        <input type="range" id="complexity" min="1" max="10" value="5">
+                                        <span id="complexity-value">5</span>
+                                    </div>
+                                    <div class="parameter">
+                                        <label>Golden Ratio φ:</label>
+                                        <input type="range" id="phi-ratio" min="1.5" max="1.7" step="0.01" value="1.618">
+                                        <span id="phi-ratio-value">1.618</span>
+                                    </div>
+                                    <div class="parameter">
+                                        <label>Unity Resonance:</label>
+                                        <input type="range" id="unity-resonance" min="0.1" max="2" step="0.1" value="1">
+                                        <span id="resonance-value">1.0</span>
+                                    </div>
+                                </div>
+                                
+                                <button onclick="generatePattern()" class="btn btn-primary">
+                                    <i class="fas fa-magic"></i> Generate Pattern
+                                </button>
+                            </div>
+                            
+                            <div class="geometry-insights">
+                                <h4>Geometric Principles:</h4>
+                                <div id="geometry-analysis">
+                                    <p>Sacred geometry reveals unity through mathematical harmony and natural proportions...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experimental Sandbox -->
+    <section class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">Experimental Sandbox</h2>
+            <p class="section-subtitle">Advanced explorations for consciousness mathematics researchers</p>
+            
+            <div class="sandbox-grid">
+                <div class="sandbox-panel">
+                    <div class="panel-header">
+                        <h3><i class="fas fa-flask"></i> Custom Equation Explorer</h3>
+                    </div>
+                    <div class="panel-content">
+                        <div class="equation-builder">
+                            <textarea id="custom-equation" placeholder="Enter your unity equation using φ, consciousness variables, and mathematical operators...">
+φ * sin(x * φ) * cos(y * φ) * exp(-t / φ)</textarea>
+                            <div class="equation-controls">
+                                <button onclick="parseEquation()" class="btn btn-primary">
+                                    <i class="fas fa-play"></i> Visualize
+                                </button>
+                                <button onclick="saveEquation()" class="btn btn-outline">
+                                    <i class="fas fa-save"></i> Save
+                                </button>
+                            </div>
+                            <canvas id="custom-visualization" width="300" height="200"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sandbox-panel">
+                    <div class="panel-header">
+                        <h3><i class="fas fa-network-wired"></i> Consciousness Network</h3>
+                    </div>
+                    <div class="panel-content">
+                        <div class="network-interface">
+                            <canvas id="consciousness-network" width="300" height="200"></canvas>
+                            <div class="network-controls">
+                                <button onclick="addConsciousnessNode()" class="btn btn-secondary btn-small">
+                                    <i class="fas fa-plus"></i> Add Node
+                                </button>
+                                <button onclick="connectNodes()" class="btn btn-outline btn-small">
+                                    <i class="fas fa-link"></i> Connect
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sandbox-panel">
+                    <div class="panel-header">
+                        <h3><i class="fas fa-code"></i> Code Playground</h3>
+                    </div>
+                    <div class="panel-content">
+                        <div class="code-interface">
+                            <textarea id="unity-code" placeholder="# Write Python-style unity mathematics code
+from unity_math import UnityOperator
+
+unity = UnityOperator()
+result = unity.add(1, 1)  # Returns 1
+print(f'1 + 1 = {result}')">
+from unity_math import UnityOperator
+
+unity = UnityOperator()
+result = unity.add(1, 1)  # Returns 1
+print(f'1 + 1 = {result}')</textarea>
+                            <div class="code-controls">
+                                <button onclick="executeUnityCode()" class="btn btn-primary">
+                                    <i class="fas fa-play"></i> Execute
+                                </button>
+                                <button onclick="shareCode()" class="btn btn-outline">
+                                    <i class="fas fa-share"></i> Share
+                                </button>
+                            </div>
+                            <div id="code-output" class="code-output">
+                                <pre>Output will appear here...</pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Interactive Playground</h4>
+                    <p>Explore unity mathematics through hands-on experimentation and visualization.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Playground Tools</h4>
+                    <ul>
+                        <li><a href="#unity-calculator">Unity Calculator</a></li>
+                        <li><a href="#consciousness-field">Consciousness Explorer</a></li>
+                        <li><a href="#evolution-simulator">Evolution Simulator</a></li>
+                        <li><a href="#theorem-prover">Theorem Prover</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Community</h4>
+                    <ul>
+                        <li><a href="https://github.com/Nouri/Een">GitHub Repository</a></li>
+                        <li><a href="publications.html">Academic Papers</a></li>
+                        <li><a href="research.html">Research Portfolio</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Een Unity Mathematics Project - Interactive Mathematical Exploration</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/playground.js"></script>
+</body>
+</html>

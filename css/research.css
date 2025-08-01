@@ -1,0 +1,657 @@
+/* Research Portfolio Styles */
+
+.page-hero {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    padding: 8rem 0 4rem;
+    margin-top: 70px;
+    text-align: center;
+}
+
+.page-hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+.page-subtitle {
+    font-size: 1.25rem;
+    opacity: 0.9;
+    margin-bottom: 2rem;
+}
+
+.research-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--accent-color);
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* Academic Header Styles */
+.academic-header {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.university-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.research-classification {
+    font-size: 0.95rem;
+    opacity: 0.9;
+}
+
+.field {
+    color: var(--accent-color);
+    font-weight: 500;
+}
+
+.research-abstract {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 8px;
+    margin: 2rem 0;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    text-align: left;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.research-metrics {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.metric {
+    text-align: center;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    min-width: 120px;
+}
+
+.metric .number {
+    display: block;
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--accent-color);
+}
+
+.metric .label {
+    font-size: 0.85rem;
+    opacity: 0.9;
+}
+
+/* Research Phases */
+.research-phases {
+    position: relative;
+}
+
+.research-phase {
+    margin-bottom: 5rem;
+    position: relative;
+}
+
+.phase-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+.phase-indicator {
+    display: flex;
+    align-items: center;
+    margin-right: 2rem;
+}
+
+.phase-number {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    position: relative;
+    z-index: 2;
+}
+
+.phase-line {
+    width: 100px;
+    height: 2px;
+    background: var(--border-color);
+    margin-left: 1rem;
+}
+
+.phase-title h2 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.phase-subtitle {
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* Research Grid */
+.research-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+}
+
+.research-main h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+/* Code Demonstrations */
+.code-demonstration {
+    background: #1a1a1a;
+    border-radius: 8px;
+    margin: 2rem 0;
+    overflow: hidden;
+}
+
+.code-header {
+    background: #2d2d2d;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #404040;
+}
+
+.code-header h4 {
+    color: #61dafb;
+    margin: 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+}
+
+.code-toggle {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+.code-block {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.code-block.expanded {
+    max-height: 1000px;
+}
+
+.code-block pre {
+    margin: 0;
+    padding: 1.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: #f8f8f2;
+}
+
+/* Research Areas */
+.research-areas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.research-area {
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.research-area:hover {
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-md);
+}
+
+.research-area h4 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.research-area i {
+    margin-right: 0.5rem;
+}
+
+/* Contributions Grid */
+.contributions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.contribution {
+    text-align: center;
+    padding: 1.5rem;
+    background: var(--bg-light);
+    border-radius: 8px;
+}
+
+.contribution h4 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.math-notation {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+/* Insights and Dynamics */
+.insights-grid,
+.dynamics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.insight,
+.dynamic {
+    padding: 1.5rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+    border-left: 4px solid var(--accent-color);
+}
+
+.insight h4,
+.dynamic h4 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.dynamic i {
+    margin-right: 0.5rem;
+    color: var(--accent-color);
+}
+
+/* Sidebar Components */
+.research-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.milestone-card,
+.metrics-card,
+.visualization-card,
+.equation-card,
+.ecosystem-status,
+.evolution-log,
+.elo-tracker,
+.ai-achievements {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+}
+
+.milestone-card h4,
+.metrics-card h4,
+.visualization-card h4,
+.equation-card h4,
+.ecosystem-status h4,
+.evolution-log h4,
+.elo-tracker h4,
+.ai-achievements h4 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.milestone-list {
+    list-style: none;
+}
+
+.milestone-list li {
+    padding: 0.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.milestone-list i {
+    color: var(--success-color);
+}
+
+.metric {
+    text-align: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.metric:last-child {
+    border-bottom: none;
+}
+
+.metric-value {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.metric-label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+/* Visualization Canvas */
+#consciousness-field-viz {
+    width: 100%;
+    height: 200px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+}
+
+.viz-caption {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-top: 0.5rem;
+}
+
+.equation-display {
+    text-align: center;
+    font-size: 1.1rem;
+    margin: 1rem 0;
+}
+
+/* Ecosystem Status */
+.status-display {
+    margin-bottom: 1rem;
+}
+
+.status-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.status-item:last-child {
+    border-bottom: none;
+}
+
+.status-label {
+    color: var(--text-secondary);
+}
+
+.status-value {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.btn-small {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+}
+
+.log-display {
+    background: #1a1a1a;
+    color: #00ff00;
+    padding: 1rem;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.log-entry {
+    margin: 0.25rem 0;
+}
+
+/* ELO Tracking */
+.elo-display {
+    text-align: center;
+}
+
+.elo-current {
+    margin-bottom: 1rem;
+}
+
+.elo-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.elo-label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.elo-target {
+    margin-bottom: 1rem;
+}
+
+.target-number {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--accent-color);
+}
+
+.target-label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.elo-progress {
+    margin-top: 1rem;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    transition: width 0.3s ease;
+}
+
+.achievement-list {
+    list-style: none;
+}
+
+.achievement-list li {
+    padding: 0.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.achievement-list i {
+    color: var(--accent-color);
+}
+
+/* Theorems Grid */
+.theorems-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.theorem-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+    border-top: 4px solid var(--secondary-color);
+}
+
+.theorem-card h4 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.theorem-statement {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+/* Research Synthesis */
+.research-conclusion {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.synthesis-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.synthesis-pillar {
+    text-align: center;
+    padding: 2rem 1rem;
+}
+
+.synthesis-pillar h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.future-directions {
+    margin-top: 4rem;
+}
+
+.directions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.direction {
+    padding: 1.5rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+    text-align: center;
+}
+
+.direction h4 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+/* Impact List */
+.impact-list {
+    list-style: none;
+    padding: 0;
+}
+
+.impact-list li {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.impact-list li:last-child {
+    border-bottom: none;
+}
+
+.citation-box {
+    background: var(--bg-light);
+    padding: 1rem;
+    border-radius: 4px;
+    margin-top: 1rem;
+}
+
+.citation {
+    font-size: 0.85rem;
+    font-style: italic;
+    line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .research-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .research-stats {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .phase-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .phase-indicator {
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+    
+    .phase-line {
+        display: none;
+    }
+    
+    .research-metrics {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .synthesis-grid,
+    .directions-grid {
+        grid-template-columns: 1fr;
+    }
+}
