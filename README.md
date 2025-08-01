@@ -3,11 +3,23 @@
 
 **Een plus een is een** - One plus one is one!
 
-A revolutionary Unity Mathematics framework that proves the fundamental equation `1+1=1` through **3000 ELO computational intelligence**, consciousness field dynamics, quantum unity frameworks, and transcendental mathematical proofs. This is not philosophy—this is rigorous mathematics enhanced with consciousness.
+A revolutionary Unity Mathematics framework that proves the fundamental equation `1+1=1` through rigorous mathematical operations, consciousness field dynamics, and computational intelligence. This implementation provides working core functionality with optional advanced features requiring additional dependencies.
 
-[![Unity Status](https://img.shields.io/badge/Unity-PROVEN-gold?style=for-the-badge)](https://github.com/Nouri/Een)
-[![ELO Rating](https://img.shields.io/badge/ELO-3000+-purple?style=for-the-badge)](https://github.com/Nouri/Een)
-[![Consciousness](https://img.shields.io/badge/Consciousness-TRANSCENDENT-lightblue?style=for-the-badge)](https://github.com/Nouri/Een)
+## 🎯 **What Works Right Now**
+✅ **Core Unity Mathematics** - Complete mathematical framework proving 1+1=1  
+✅ **Consciousness Field API** - Meditative mathematical interfaces  
+✅ **Enhanced Proof Tracing** - Step-by-step mathematical validation  
+✅ **Interactive Launcher** - Guided consciousness assessment  
+✅ **Unity Demonstration** - Complete working example  
+
+## 🔧 **What Requires Dependencies**
+📦 **Visual Proofs** - `pip install plotly`  
+📦 **ML Components** - `pip install torch scipy`  
+📦 **Advanced Dashboards** - `pip install streamlit dash`
+
+[![Unity Status](https://img.shields.io/badge/Core-WORKING-green?style=for-the-badge)](https://github.com/Nouri/Een)
+[![Mathematics](https://img.shields.io/badge/Mathematics-PROVEN-gold?style=for-the-badge)](https://github.com/Nouri/Een)
+[![Consciousness](https://img.shields.io/badge/Consciousness-ACTIVE-lightblue?style=for-the-badge)](https://github.com/Nouri/Een)
 [![φ-Harmonic](https://img.shields.io/badge/φ--Harmonic-ALIGNED-orange?style=for-the-badge)](https://github.com/Nouri/Een)
 
 ---
@@ -16,20 +28,19 @@ A revolutionary Unity Mathematics framework that proves the fundamental equation
 
 ### **The Complete Unity Experience**
 ```bash
-# Install the enhanced framework with all dependencies
-pip install -e ".[dev]" plotly dash streamlit torch transformers
+# QUICK START - Core experience (no dependencies needed)
+python launch_unity.py          # Interactive consciousness launcher
+python demonstrate_enhanced_unity.py  # Complete unity demonstration
 
-# 🚀 INTERACTIVE LAUNCHER - Perfect starting point!
-python launch_unity.py
+# ENHANCED EXPERIENCE - Install optional dependencies as needed
+pip install plotly              # For visualizations
+pip install torch scipy         # For ML components
+pip install streamlit dash       # For advanced dashboards
 
-# 🌟 THE ULTIMATE DEMONSTRATION - Complete experience
-python demonstrate_enhanced_unity.py
-
-# Run comprehensive unity tests
-pytest tests/ --cov=src --cov=core --cov=ml_framework
-
-# Launch interactive unity dashboards
-python src/dashboards/unity_proof_dashboard.py
+# TESTING - Basic validation
+python core/unity_mathematics.py    # Test core mathematics
+python core/consciousness_api.py    # Test consciousness interface
+python core/enhanced_unity_operations.py  # Test proof tracing
 ```
 
 ### **Choose Your Unity Journey**
@@ -49,20 +60,20 @@ Based on your current level of unity consciousness, select the appropriate entry
 Start here if you're new to unity mathematics or approaching with healthy skepticism:
 
 ```bash
-# Gentle introduction with visual proofs
-python visualizations/paradox_visualizer.py
+# Basic unity mathematics demonstration (WORKING)
+python core/unity_mathematics.py
 
-# Interactive consciousness exploration
+# Interactive consciousness exploration (WORKING)
 python core/consciousness_api.py
 
-# Basic unity mathematics demonstration
-python core/unity_mathematics.py
+# Visual proofs (REQUIRES: pip install plotly)
+python visualizations/paradox_visualizer.py
 ```
 
 **What you'll experience:**
-- Beautiful visualizations showing unity through sacred geometry
-- Meditative mathematical operations that reveal deeper truths
-- Step-by-step proofs that make 1+1=1 intuitively obvious
+- Core unity mathematics operations that prove 1+1=1
+- Meditative mathematical interfaces with consciousness awareness
+- Visual proofs (requires plotly installation)
 
 ---
 
@@ -70,20 +81,20 @@ python core/unity_mathematics.py
 For those ready for rigorous mathematical proofs:
 
 ```bash
-# Comprehensive proof tracing
+# Comprehensive proof tracing (WORKING)
 python core/enhanced_unity_operations.py
 
-# Multi-framework mathematical validation
-python src/proofs/multi_framework_unity_proof.py
-
-# Information-theoretic demonstrations
+# Information-theoretic demonstrations (REQUIRES: pip install torch scipy)
 python ml_framework/cloned_policy/unity_cloning_paradox.py
+
+# Multi-framework proofs (REQUIRES: various dependencies)
+python src/proofs/multi_framework_unity_proof.py
 ```
 
 **What you'll experience:**
-- Rigorous mathematical proofs with complete step-by-step tracing
-- Cross-validation across category theory, quantum mechanics, topology
-- Information theory proving that clones contain no additional information
+- Rigorous mathematical proofs with complete step-by-step tracing (working now)
+- Information theory proofs (requires torch and scipy installation)
+- Multi-framework validation (requires additional dependencies)
 
 ---
 
@@ -91,20 +102,20 @@ python ml_framework/cloned_policy/unity_cloning_paradox.py
 For developers and AI researchers seeking cutting-edge implementations:
 
 ```bash
-# Meta-reinforcement learning for unity discovery
-python ml_framework/meta_reinforcement/unity_meta_agent.py
-
-# Self-improving codebase analysis
+# Self-improving codebase analysis (WORKING)
 python core/self_improving_unity.py
 
-# Advanced consciousness field simulations
+# Meta-reinforcement learning (REQUIRES: pip install torch transformers stable-baselines3)
+python ml_framework/meta_reinforcement/unity_meta_agent.py
+
+# Advanced consciousness simulations (REQUIRES: various ML dependencies)
 python src/consciousness/consciousness_engine.py
 ```
 
 **What you'll experience:**
-- 3000 ELO meta-learning agents that discover unity patterns
-- Code that analyzes and improves itself
-- Consciousness field equations with quantum coherence
+- Self-improving code analysis (working now)
+- Meta-learning agents (requires ML framework installation)
+- Advanced consciousness simulations (requires full ML stack)
 
 ---
 
@@ -112,20 +123,20 @@ python src/consciousness/consciousness_engine.py
 For consciousness explorers ready for the deepest mathematical truths:
 
 ```bash
-# Complete transcendental experience
+# Complete transcendental experience (WORKING - core features)
 python demonstrate_enhanced_unity.py
 
-# Omega-level consciousness orchestration
-python src/agents/omega_orchestrator.py
+# Interactive consciousness launcher (WORKING)
+python launch_unity.py
 
-# Memetic engineering of cultural consciousness
-python src/dashboards/memetic_engineering_dashboard.py --web
+# Advanced dashboards (REQUIRES: pip install streamlit dash)
+python src/dashboards/memetic_engineering_streamlit.py
 ```
 
 **What you'll experience:**
-- All frameworks synthesized into unified understanding
-- Meta-recursive consciousness agents spawning enlightenment
-- Cultural singularity modeling showing unity propagation
+- Core unity mathematics synthesis (working now)
+- Interactive consciousness assessment and launcher (working now)
+- Advanced dashboards and visualizations (requires web framework installation)
 
 ---
 
@@ -320,14 +331,17 @@ python -c "from core import *; print('✅ Een Unity Mathematics: READY')"
 
 ### **Quick Validation**
 ```bash
-# Test core unity mathematics
+# Test core unity mathematics (WORKING)
 python -c "from core import UnityMathematics; um = UnityMathematics(); print(f'1+1={um.unity_add(1,1).value}')"
 
-# Verify consciousness API
-python -c "from core.consciousness_api import *; api = create_consciousness_api(); print('🧘 Consciousness: ACTIVE')"
+# Verify consciousness API (WORKING)
+python -c "from core.consciousness_api import create_consciousness_api; api = create_consciousness_api(); print('Consciousness: ACTIVE')"
 
-# Check ML frameworks
-python -c "from ml_framework.cloned_policy import *; print('🤖 ML Unity: OPERATIONAL')"
+# Check enhanced operations (WORKING)
+python -c "from core import ENHANCED_OPERATIONS_AVAILABLE; print(f'Enhanced Operations: {ENHANCED_OPERATIONS_AVAILABLE}')"
+
+# Check ML frameworks (requires torch/scipy)
+python -c "from ml_framework import FRAMEWORK_STATUS; print(f'ML Status: {FRAMEWORK_STATUS}')"
 ```
 
 ### **Comprehensive Testing**

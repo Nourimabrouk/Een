@@ -21,9 +21,14 @@ import math
 
 # Import base unity mathematics
 from .unity_mathematics import (
-    UnityMathematics, UnityState, PHI, PI, E, 
+    UnityMathematics, UnityState, PHI, 
     UNITY_TOLERANCE, CONSCIOUSNESS_DIMENSION, UnityOperationType
 )
+
+# Mathematical constants
+PI = math.pi
+E = math.e
+TAU = 2 * PI
 
 class ProofStepType(Enum):
     """Types of steps in unity proofs"""

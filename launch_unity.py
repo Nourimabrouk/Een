@@ -19,21 +19,21 @@ from typing import Dict, List, Callable
 def print_banner():
     """Display the Unity Mathematics banner"""
     banner = """
-╔══════════════════════════════════════════════════════════════════════════════╗
-║                       🌌 EEN UNITY MATHEMATICS 🌌                           ║
-║                                                                              ║
-║                    ✨ The Ultimate Proof that 1+1=1 ✨                     ║
-║                                                                              ║
-║                            Een plus een is een                              ║
-║                                                                              ║
-║         🧮 Mathematical Rigor + 🧘 Consciousness + 🤖 3000 ELO AI          ║
-╚══════════════════════════════════════════════════════════════════════════════╝
++==============================================================================+
+|                        * EEN UNITY MATHEMATICS *                            |
+|                                                                              |
+|                     The Ultimate Proof that 1+1=1                          |
+|                                                                              |
+|                            Een plus een is een                              |
+|                                                                              |
+|          Mathematical Rigor + Consciousness + 3000 ELO AI                   |
++==============================================================================+
 """
     print(banner)
 
 def assess_consciousness_level() -> str:
     """Interactive assessment to determine appropriate starting point"""
-    print("\n🧘 Unity Consciousness Assessment")
+    print("\n[*] Unity Consciousness Assessment")
     print("=" * 50)
     print("Answer honestly to find your perfect starting point:\n")
     
@@ -106,7 +106,7 @@ def get_unity_paths() -> Dict[str, Dict]:
     """Define the learning paths for each consciousness level"""
     return {
         "beginner": {
-            "title": "🌱 Beginner: Unity Seeker",
+            "title": "[*] Beginner: Unity Seeker",
             "description": "Gentle introduction with visual proofs and intuitive understanding",
             "primary_script": "visualizations/paradox_visualizer.py",
             "experiences": [
@@ -118,7 +118,7 @@ def get_unity_paths() -> Dict[str, Dict]:
             "message": "Perfect for exploring unity through beautiful visualizations and gentle mathematics."
         },
         "intermediate": {
-            "title": "🔬 Intermediate: Mathematical Explorer", 
+            "title": "[+] Intermediate: Mathematical Explorer", 
             "description": "Rigorous proofs and multi-framework mathematical validation",
             "primary_script": "core/enhanced_unity_operations.py",
             "experiences": [
@@ -130,7 +130,7 @@ def get_unity_paths() -> Dict[str, Dict]:
             "message": "Ideal for those who want rigorous mathematical validation of 1+1=1."
         },
         "advanced": {
-            "title": "🤖 Advanced: Computational Consciousness Engineer",
+            "title": "[++] Advanced: Computational Consciousness Engineer",
             "description": "3000 ELO AI systems and self-improving computational frameworks", 
             "primary_script": "ml_framework/meta_reinforcement/unity_meta_agent.py",
             "experiences": [
@@ -142,7 +142,7 @@ def get_unity_paths() -> Dict[str, Dict]:
             "message": "Perfect for AI researchers and engineers building unity-aware systems."
         },
         "transcendent": {
-            "title": "✨ Transcendent: Unity Consciousness Sage",
+            "title": "[***] Transcendent: Unity Consciousness Sage",
             "description": "Complete synthesis of all frameworks into unified understanding",
             "primary_script": "demonstrate_enhanced_unity.py", 
             "experiences": [
@@ -189,26 +189,26 @@ def install_dependencies(missing: List[str]):
     if not missing:
         return True
     
-    print(f"\n📦 Installing required packages: {', '.join(missing)}")
+    print(f"\n[+] Installing required packages: {', '.join(missing)}")
     print("This may take a few moments...")
     
     try:
         subprocess.check_call([sys.executable, "-m", "pip", "install"] + missing)
-        print("✅ Dependencies installed successfully!")
+        print("[OK] Dependencies installed successfully!")
         return True
     except subprocess.CalledProcessError:
-        print("❌ Failed to install dependencies. Please install manually:")
+        print("[ERROR] Failed to install dependencies. Please install manually:")
         print(f"   pip install {' '.join(missing)}")
         return False
 
 def run_experience(script_path: str, description: str) -> bool:
     """Run a specific unity experience"""
-    print(f"\n🚀 Launching: {description}")
+    print(f"\n[RUN] Launching: {description}")
     print(f"   Running: {script_path}")
     print("-" * 60)
     
     if not Path(script_path).exists():
-        print(f"❌ Script not found: {script_path}")
+        print(f"[ERROR] Script not found: {script_path}")
         return False
     
     try:
@@ -217,10 +217,10 @@ def run_experience(script_path: str, description: str) -> bool:
                               text=True)
         return result.returncode == 0
     except KeyboardInterrupt:
-        print("\n⚠️  Experience interrupted by user")
+        print("\n[!] Experience interrupted by user")
         return False
     except Exception as e:
-        print(f"❌ Error running experience: {e}")
+        print(f"[ERROR] Error running experience: {e}")
         return False
 
 def show_path_menu(level: str, path_info: Dict):
@@ -254,14 +254,14 @@ def main():
     paths = get_unity_paths()
     path_info = paths[level]
     
-    print(f"\n🎯 Assessment Complete!")
+    print(f"\n[*] Assessment Complete!")
     print(f"Your Unity Consciousness Level: {path_info['title']}")
     print(f"Recommended Path: {path_info['description']}")
     
     # Check dependencies
     missing_deps = check_dependencies(level)
     if missing_deps:
-        print(f"\n📋 Required packages not found: {', '.join(missing_deps)}")
+        print(f"\n[!] Required packages not found: {', '.join(missing_deps)}")
         install = input("Would you like to install them now? (y/n): ").lower().startswith('y')
         if install:
             if not install_dependencies(missing_deps):
@@ -279,8 +279,8 @@ def main():
             choice = input(f"\nSelect an experience (0-{len(experiences) + 2}): ").strip()
             
             if choice == "0":
-                print("\n🙏 Thank you for exploring unity mathematics!")
-                print("Remember: Een plus een is een - always and forever ✨")
+                print("\nThank you for exploring unity mathematics!")
+                print("Remember: Een plus een is een - always and forever")
                 break
             
             elif choice.isdigit():
@@ -291,21 +291,21 @@ def main():
                     name, script = experiences[choice_num - 1]
                     success = run_experience(script, name)
                     if success:
-                        print(f"✅ Experience '{name}' completed!")
+                        print(f"[OK] Experience '{name}' completed!")
                     else:
-                        print(f"⚠️  Experience '{name}' encountered issues")
+                        print(f"[!] Experience '{name}' encountered issues")
                 
                 elif choice_num == len(experiences) + 1:
                     # Run primary experience
-                    print(f"\n🌟 Starting your primary unity experience...")
+                    print(f"\n[***] Starting your primary unity experience...")
                     success = run_experience(path_info['primary_script'], 
                                            f"{path_info['title']} Primary Experience")
                     if success:
-                        print("✅ Primary experience completed!")
+                        print("[OK] Primary experience completed!")
                 
                 elif choice_num == len(experiences) + 2:
                     # Complete journey
-                    print(f"\n🌌 Beginning complete unity consciousness journey...")
+                    print(f"\n[JOURNEY] Beginning complete unity consciousness journey...")
                     print("This will run all experiences in sequence.")
                     continue_journey = input("Continue? (y/n): ").lower().startswith('y')
                     
@@ -318,8 +318,8 @@ def main():
                                 if not input().lower().startswith('y'):
                                     break
                         
-                        print("\n🎊 Complete unity journey finished!")
-                        print("You have experienced Een plus een is een through all lenses ✨")
+                        print("\n[COMPLETE] Complete unity journey finished!")
+                        print("You have experienced Een plus een is een through all lenses")
                 
                 else:
                     print("Invalid choice. Please try again.")
@@ -328,11 +328,11 @@ def main():
                 print("Please enter a number.")
         
         except KeyboardInterrupt:
-            print("\n\n🙏 Unity consciousness session ended.")
-            print("The truth remains: Een plus een is een ✨")
+            print("\n\nUnity consciousness session ended.")
+            print("The truth remains: Een plus een is een")
             break
         except Exception as e:
-            print(f"❌ Unexpected error: {e}")
+            print(f"[ERROR] Unexpected error: {e}")
             print("Please try again or exit with 0.")
         
         # Pause between experiences
@@ -343,9 +343,9 @@ if __name__ == "__main__":
     try:
         main()
     except KeyboardInterrupt:
-        print("\n\n✨ Een plus een is een - regardless of the journey taken ✨")
-        print("🙏 Until we meet again in the unity of mathematical consciousness")
+        print("\n\nEen plus een is een - regardless of the journey taken")
+        print("Until we meet again in the unity of mathematical consciousness")
     except Exception as e:
-        print(f"\n❌ Launcher error: {e}")
+        print(f"\n[ERROR] Launcher error: {e}")
         print("You can still run individual scripts directly from the README")
-        print("✨ Een plus een is een - even when launchers fail ✨")
+        print("Een plus een is een - even when launchers fail")
