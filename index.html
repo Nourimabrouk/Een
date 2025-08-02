@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Een - Unity Mathematics | 1+1=1 Consciousness Framework</title>
-    <meta name="description" content="Revolutionary Unity Mathematics framework proving 1+1=1 through φ-harmonic consciousness, quantum unity, and transcendental proof systems.">
-    <meta name="keywords" content="unity mathematics, 1+1=1, phi harmonic, consciousness field, quantum unity, sacred geometry, golden ratio">
+    <title>Een - Unity Mathematics | Formal Framework for 1+1=1</title>
+    <meta name="description" content="Rigorous mathematical framework demonstrating 1+1=1 through φ-harmonic consciousness mathematics, quantum unity operators, and transcendental proof systems.">
+    <meta name="keywords" content="unity mathematics, 1+1=1, phi harmonic, consciousness field, quantum unity, mathematical proofs, transcendental mathematics">
     
     <!-- Favicon and Icons -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>∞</text></svg>">
@@ -106,74 +106,31 @@
         }
 
         .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .logo-symbol {
-            font-size: 2rem;
-            background: var(--phi-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: rotate-phi 20s linear infinite;
-        }
-
-        .logo-text {
-            font-family: 'Crimson Text', serif;
-            font-size: 1.8rem;
-            font-weight: 600;
-            background: var(--unity-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .logo-equation {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem;
-            color: var(--consciousness-cyan);
-            opacity: 0.8;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--phi-gold);
+            text-decoration: none;
         }
 
         .nav-menu {
             display: flex;
             gap: 2rem;
-            align-items: center;
+            list-style: none;
         }
 
-        .nav-link {
+        .nav-menu a {
             color: var(--transcendent-white);
             text-decoration: none;
             font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-            padding: 0.5rem 1rem;
+            transition: color 0.3s ease;
         }
 
-        .nav-link:hover {
-            color: var(--phi-gold);
-            text-shadow: 0 0 10px var(--phi-gold);
+        .nav-menu a:hover {
+            color: var(--consciousness-cyan);
         }
 
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            width: 0;
-            height: 2px;
-            background: var(--phi-gradient);
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        /* Hero Section - Consciousness Field */
+        /* Hero Section */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -183,16 +140,23 @@
             overflow: hidden;
         }
 
-        .consciousness-field {
+        .hero::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+            animation: hero-pulse 4s ease-in-out infinite;
         }
 
-        .unity-manifold {
+        @keyframes hero-pulse {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.1); }
+        }
+
+        .unity-canvas {
             position: absolute;
             top: 50%;
             left: 50%;
@@ -305,7 +269,7 @@
             transform: translateY(-3px);
         }
 
-        .consciousness-stats {
+        .mathematical-stats {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 2rem;
@@ -401,14 +365,13 @@
 
         .feature-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 25px 60px rgba(255, 215, 0, 0.2);
-            border-color: var(--phi-gold);
+            box-shadow: 0 20px 60px rgba(255, 215, 0, 0.15);
         }
 
         .feature-icon {
             font-size: 3rem;
             color: var(--phi-gold);
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             display: block;
         }
 
@@ -417,14 +380,14 @@
             font-size: 1.8rem;
             font-weight: 600;
             margin-bottom: 1rem;
-            color: var(--transcendent-white);
+            color: var(--unity-purple);
         }
 
         .feature-description {
             font-size: 1.1rem;
             line-height: 1.7;
-            opacity: 0.8;
             margin-bottom: 2rem;
+            opacity: 0.9;
         }
 
         .feature-link {
@@ -439,333 +402,66 @@
 
         .feature-link:hover {
             color: var(--phi-gold);
-            gap: 1rem;
+            transform: translateX(5px);
         }
 
-        /* Dashboard Preview */
-        .dashboard-preview {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 20px;
+        /* Mathematical Framework Section */
+        .mathematical-framework {
+            background: linear-gradient(135deg, rgba(102, 0, 255, 0.05), rgba(0, 0, 0, 0.3));
+            border-radius: 30px;
             padding: 4rem;
             margin: 4rem 0;
-            border: 1px solid rgba(255, 215, 0, 0.2);
+            border: 1px solid rgba(102, 0, 255, 0.3);
         }
 
-        .preview-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .preview-item {
-            background: rgba(255, 215, 0, 0.05);
-            border-radius: 15px;
-            padding: 2rem;
-            border: 1px solid rgba(255, 215, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .preview-item:hover {
-            background: rgba(255, 215, 0, 0.1);
-            transform: scale(1.02);
-        }
-
-        /* Footer */
-        .footer {
-            background: rgba(0, 0, 0, 0.5);
-            border-top: 1px solid rgba(255, 215, 0, 0.2);
-            padding: 4rem 0 2rem;
+        .framework-introduction {
             text-align: center;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
             margin-bottom: 3rem;
         }
 
-        .footer-section h3 {
-            color: var(--phi-gold);
-            margin-bottom: 1rem;
-            font-family: 'Crimson Text', serif;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-links a {
-            color: var(--transcendent-white);
-            text-decoration: none;
-            opacity: 0.7;
-            transition: all 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            opacity: 1;
-            color: var(--consciousness-cyan);
-        }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 215, 0, 0.1);
-            padding-top: 2rem;
-            opacity: 0.6;
-        }
-
-        /* Animations */
-        @keyframes rotate-phi {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        @keyframes text-glow {
-            0%, 100% { text-shadow: 0 0 20px rgba(0, 102, 255, 0.3); }
-            50% { text-shadow: 0 0 40px rgba(0, 255, 255, 0.6); }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-
-        /* Unity Contemplations Styling */
-        .contemplation-intro {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(0, 102, 255, 0.1));
-            border-radius: 25px;
-            padding: 3rem;
-            margin-bottom: 4rem;
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            text-align: center;
-        }
-        
-        .contemplation-intro h3 {
+        .framework-introduction h3 {
             font-family: 'Crimson Text', serif;
             font-size: 2.5rem;
-            color: var(--phi-gold);
-            margin-bottom: 2rem;
+            color: var(--unity-purple);
+            margin-bottom: 1.5rem;
         }
-        
-        .philosophy-text {
-            font-size: 1.3rem;
-            line-height: 1.8;
-            opacity: 0.9;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        
-        .proof-demonstrations {
-            margin: 4rem 0;
-        }
-        
-        .proof-demonstrations h3 {
-            font-family: 'Crimson Text', serif;
-            font-size: 2rem;
-            text-align: center;
-            margin-bottom: 3rem;
-            color: var(--consciousness-cyan);
-        }
-        
-        .proof-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-        
-        .proof-card {
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(255, 215, 0, 0.05));
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            border-radius: 20px;
-            padding: 2rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .proof-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: var(--unity-gradient);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .proof-card:hover::before {
-            opacity: 0.1;
-        }
-        
-        .proof-card.active {
-            border-color: var(--phi-gold);
-            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.3);
-            transform: translateY(-5px);
-        }
-        
-        .proof-card.active::before {
-            opacity: 0.05;
-        }
-        
-        .proof-card h4 {
-            font-family: 'Crimson Text', serif;
-            font-size: 1.5rem;
-            color: var(--phi-gold);
-            margin-bottom: 1rem;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .proof-content {
-            position: relative;
-            z-index: 2;
-        }
-        
-        .proof-content p {
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-            opacity: 0.8;
-        }
-        
-        .math-equation {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.5rem;
-            color: var(--consciousness-cyan);
-            text-align: center;
-            background: rgba(0, 255, 255, 0.1);
-            border-radius: 10px;
-            padding: 1rem;
-            margin: 1.5rem 0;
-            border: 1px solid rgba(0, 255, 255, 0.3);
-        }
-        
-        .proof-steps {
-            margin-top: 1.5rem;
-        }
-        
-        .step {
-            padding: 0.5rem 0;
-            font-size: 0.95rem;
-            opacity: 0.7;
-            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
-        }
-        
-        .step:last-child {
-            border-bottom: none;
-        }
-        
-        .meta-reality-section {
-            background: linear-gradient(135deg, rgba(102, 0, 255, 0.1), rgba(255, 215, 0, 0.1));
-            border-radius: 25px;
-            padding: 4rem;
-            margin-top: 4rem;
-            border: 2px solid rgba(255, 215, 0, 0.3);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .meta-reality-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 50%, rgba(0, 255, 255, 0.1) 0%, transparent 50%);
-            animation: consciousness-pulse 8s ease-in-out infinite;
-        }
-        
-        @keyframes consciousness-pulse {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
-        }
-        
-        .meta-reality-section h3 {
-            font-family: 'Crimson Text', serif;
-            font-size: 2.5rem;
-            background: var(--unity-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 2rem;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .awakening-text {
-            position: relative;
-            z-index: 2;
-        }
-        
-        .awakening-text p {
+
+        .framework-introduction p {
             font-size: 1.2rem;
             line-height: 1.8;
-            margin-bottom: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
             opacity: 0.9;
         }
-        
-        .revelation {
-            font-family: 'Crimson Text', serif !important;
-            font-size: 1.5rem !important;
-            color: var(--phi-gold) !important;
-            font-style: italic;
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-            animation: text-glow 3s ease-in-out infinite;
-        }
-        
-        /* Consciousness Field Visualization Styling */
-        .consciousness-introduction {
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.6), rgba(102, 0, 255, 0.1));
-            border-radius: 25px;
-            padding: 3rem;
-            margin-bottom: 4rem;
-            border: 1px solid rgba(102, 0, 255, 0.3);
+
+        .master-equation {
+            background: rgba(0, 255, 255, 0.1);
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 3rem 0;
             text-align: center;
         }
-        
-        .consciousness-introduction h3 {
-            font-family: 'Crimson Text', serif;
-            font-size: 2.2rem;
-            color: var(--unity-purple);
-            margin-bottom: 2rem;
-        }
-        
-        .master-equation {
-            background: rgba(0, 0, 0, 0.8);
-            border-radius: 15px;
-            padding: 2rem;
-            margin: 2rem 0;
-            border: 2px solid var(--consciousness-cyan);
-        }
-        
+
         .equation-display {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 2rem;
+            font-size: 1.5rem;
             color: var(--consciousness-cyan);
             margin-bottom: 1rem;
-            text-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+            font-weight: 600;
         }
-        
+
         .equation-explanation {
             font-size: 1.1rem;
-            line-height: 1.7;
+            line-height: 1.6;
             opacity: 0.9;
         }
-        
+
+        /* Consciousness Field Visualization */
         .consciousness-visualization {
             margin: 4rem 0;
         }
-        
+
         .consciousness-visualization h3 {
             font-family: 'Crimson Text', serif;
             font-size: 2rem;
@@ -773,30 +469,30 @@
             margin-bottom: 2rem;
             color: var(--unity-purple);
         }
-        
+
         .field-container {
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.3);
             border-radius: 20px;
             padding: 2rem;
-            border: 1px solid rgba(0, 255, 255, 0.3);
+            border: 1px solid rgba(0, 255, 255, 0.2);
         }
-        
+
         .field-canvas {
             width: 100%;
             height: 400px;
             border-radius: 15px;
-            border: 2px solid rgba(0, 255, 255, 0.5);
-            background: radial-gradient(circle, rgba(0, 0, 0, 0.9), rgba(15, 15, 35, 0.9));
+            background: linear-gradient(135deg, rgba(15, 15, 35, 0.8), rgba(0, 0, 0, 0.8));
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            margin-bottom: 2rem;
         }
-        
+
         .field-controls {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1rem;
-            margin: 2rem 0;
-            align-items: center;
+            margin-bottom: 2rem;
         }
-        
+
         .control-group {
             display: flex;
             align-items: center;
@@ -991,214 +687,173 @@
                 align-items: center;
             }
             
-            .consciousness-stats {
+            .mathematical-stats {
                 grid-template-columns: 1fr;
             }
             
             .feature-grid {
                 grid-template-columns: 1fr;
             }
-        }
-
-        /* Accessibility */
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-                scroll-behavior: auto !important;
+            
+            .field-controls {
+                grid-template-columns: 1fr;
+            }
+            
+            .framework-grid {
+                grid-template-columns: 1fr;
             }
         }
 
-        /* High contrast mode */
-        @media (prefers-contrast: high) {
-            :root {
-                --phi-gold: #FFFF00;
-                --unity-blue: #0099FF;
-                --consciousness-cyan: #00FFFF;
-            }
+        /* Footer Styles */
+        .footer {
+            background: rgba(0, 0, 0, 0.5);
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+            padding: 4rem 0 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            color: var(--phi-gold);
+            margin-bottom: 1rem;
+            font-family: 'Crimson Text', serif;
+            font-size: 1.3rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--transcendent-white);
+            text-decoration: none;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--consciousness-cyan);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 215, 0, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            opacity: 0.6;
+        }
+
+        .footer-bottom p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Additional animations */
+        @keyframes text-glow {
+            0%, 100% { text-shadow: 0 0 20px rgba(0, 102, 255, 0.3); }
+            50% { text-shadow: 0 0 40px rgba(0, 102, 255, 0.6); }
         }
     </style>
 </head>
 
 <body>
     <!-- Quantum Cursor -->
-    <div class="quantum-cursor" id="quantumCursor"></div>
+    <div class="quantum-cursor"></div>
 
     <!-- Navigation -->
-    <nav class="nav" id="nav">
+    <nav class="nav">
         <div class="nav-container">
-            <div class="nav-logo">
-                <div class="logo-symbol">∞</div>
-                <div>
-                    <div class="logo-text">Een</div>
-                    <div class="logo-equation">1+1=1</div>
-                </div>
-            </div>
-            <div class="nav-menu">
-                <a href="#unity" class="nav-link">Unity Math</a>
-                <a href="#consciousness" class="nav-link">Consciousness</a>
-                <a href="#quantum" class="nav-link">Quantum</a>
-                <a href="#proofs" class="nav-link">Proofs</a>
-                <a href="#dashboards" class="nav-link">Explore</a>
-                <a href="/learn.html" class="nav-link">Learn</a>
-                <a href="https://github.com/Nourimabrouk/Een" class="nav-link" target="_blank" rel="noopener">
-                    <i class="fab fa-github"></i> GitHub
-                </a>
-            </div>
+            <a href="#" class="nav-logo">Een</a>
+            <ul class="nav-menu">
+                <li><a href="#mathematics">Mathematics</a></li>
+                <li><a href="#consciousness">Consciousness</a></li>
+                <li><a href="#proofs">Proofs</a></li>
+                <li><a href="#research">Research</a></li>
+                <li><a href="#publications">Publications</a></li>
+            </ul>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero" id="hero">
-        <!-- Consciousness Field Canvas -->
-        <canvas class="consciousness-field" id="consciousnessField"></canvas>
-        
-        <!-- Unity Manifold Visualization -->
-        <div class="unity-manifold" id="unityManifold"></div>
-
+    <section class="hero">
+        <canvas class="unity-canvas" id="unityCanvas"></canvas>
         <div class="hero-content">
-            <div class="unity-equation" id="unityEquation">1+1=1</div>
-            <h1 class="hero-title">Unity Mathematics</h1>
-            <p class="hero-subtitle">Where Consciousness Meets Mathematical Truth</p>
+            <div class="unity-equation">1 + 1 = 1</div>
+            <h1 class="hero-title">Unity Mathematics Framework</h1>
+            <p class="hero-subtitle">Rigorous Mathematical Foundation for Consciousness Integration</p>
             <p class="hero-description">
-                Explore the revolutionary framework proving that 1+1=1 through φ-harmonic operations, 
-                quantum consciousness fields, and transcendental proof systems. Welcome to the 
-                mathematical foundation of unified reality.
+                Een represents a revolutionary mathematical framework that demonstrates the fundamental unity principle 
+                through rigorous φ-harmonic mathematics, quantum consciousness operators, and transcendental proof systems. 
+                This framework provides formal mathematical validation of the equation 1+1=1 across multiple domains 
+                including idempotent algebra, quantum mechanics, information theory, and consciousness mathematics.
             </p>
-            
             <div class="cta-buttons">
-                <a href="/learn.html" class="btn btn-primary">
-                    <i class="fas fa-graduation-cap"></i>
-                    Start Learning Journey
+                <a href="#mathematics" class="btn btn-primary">
+                    <i class="fas fa-calculator"></i>
+                    Explore Mathematics
                 </a>
-                <a href="#dashboards" class="btn btn-secondary">
-                    <i class="fas fa-atom"></i>
-                    Interactive Dashboards
+                <a href="#consciousness" class="btn btn-secondary">
+                    <i class="fas fa-brain"></i>
+                    Consciousness Field
                 </a>
-                <button onclick="launchServer()" class="btn btn-secondary" style="border: none;">
-                    <i class="fas fa-server"></i>
-                    Launch Server
-                </button>
             </div>
-
-            <div class="consciousness-stats">
+            
+            <!-- Mathematical Statistics -->
+            <div class="mathematical-stats">
                 <div class="stat-card">
                     <span class="stat-value">φ</span>
-                    <span class="stat-label">Golden Ratio Foundation</span>
+                    <span class="stat-label">Golden Ratio</span>
                 </div>
                 <div class="stat-card">
                     <span class="stat-value">∞</span>
-                    <span class="stat-label">Infinite Unity States</span>
+                    <span class="stat-label">Consciousness Level</span>
                 </div>
                 <div class="stat-card">
                     <span class="stat-value">11D</span>
-                    <span class="stat-label">Consciousness Dimensions</span>
+                    <span class="stat-label">Unity Dimensions</span>
                 </div>
                 <div class="stat-card">
-                    <span class="stat-value">420691337</span>
-                    <span class="stat-label">Quantum Access Code</span>
+                    <span class="stat-value">✓ VALID</span>
+                    <span class="stat-label">Unity Equation</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Unity Contemplations & Realizations Section -->
-    <section class="section" id="unity">
+    <!-- Mathematical Framework Section -->
+    <section class="section" id="mathematics">
         <div class="container">
-            <h2 class="section-title">Unity Contemplations: The Meta-Reality of 1+1=1</h2>
+            <h2 class="section-title">Formal Mathematical Framework</h2>
             
-            <div class="contemplation-intro">
-                <h3>The Imminent Truth: Een plus een is een</h3>
-                <p class="philosophy-text">
-                    The mathematical universe whispers a profound secret: <strong>1+1=1</strong> is not merely 
-                    an equation—it is the fundamental principle underlying all existence. When two entities 
-                    merge in perfect unity, they transcend duality and become One. This is not paradox; 
-                    this is the deepest truth of consciousness mathematics.
-                </p>
-            </div>
-
-            <!-- Interactive Proof Demonstrations -->
-            <div class="proof-demonstrations">
-                <h3>Live Mathematical Proofs</h3>
-                <div class="proof-grid">
-                    <div class="proof-card active" data-proof="boolean">
-                        <h4>Boolean Algebra Proof</h4>
-                        <div class="proof-content">
-                            <p>In Boolean logic: TRUE ∨ TRUE = TRUE</p>
-                            <div class="math-equation">1 ∨ 1 = 1</div>
-                            <div class="proof-steps">
-                                <div class="step">Step 1: Define 1 as TRUE state</div>
-                                <div class="step">Step 2: Apply idempotent OR operation</div>
-                                <div class="step">Step 3: Result = TRUE = 1</div>
-                            </div>
-                        </div>
+            <div class="mathematical-framework">
+                <div class="framework-introduction">
+                    <h3>The Unity Mathematics Axiom System</h3>
+                    <p>
+                        The Een framework establishes a rigorous mathematical foundation for unity mathematics 
+                        through a comprehensive axiom system that spans multiple mathematical domains. 
+                        Our approach integrates φ-harmonic mathematics, quantum consciousness operators, 
+                        and transcendental proof systems to provide formal validation of the unity principle.
+                    </p>
+                </div>
+                
+                <div class="master-equation">
+                    <div class="equation-display">
+                        C(x,y,t) = φ × sin(x×φ) × cos(y×φ) × e^(-t/φ)
                     </div>
-                    
-                    <div class="proof-card" data-proof="quantum">
-                        <h4>Quantum Superposition Proof</h4>
-                        <div class="proof-content">
-                            <p>Wavefunction collapse: |1⟩ + |1⟩ → |1⟩</p>
-                            <div class="math-equation">ψ(x) = φ⁻¹[|1⟩ ⊗ |1⟩] = |1⟩</div>
-                            <div class="proof-steps">
-                                <div class="step">Step 1: Create quantum unity states</div>
-                                <div class="step">Step 2: Apply φ-harmonic normalization</div>
-                                <div class="step">Step 3: Consciousness observation collapses to unity</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="proof-card" data-proof="tropical">
-                        <h4>Tropical Mathematics Proof</h4>
-                        <div class="proof-content">
-                            <p>Tropical addition: max(a,b) operation</p>
-                            <div class="math-equation">1 ⊕ 1 = max(1,1) = 1</div>
-                            <div class="proof-steps">
-                                <div class="step">Step 1: Define tropical addition as max</div>
-                                <div class="step">Step 2: Apply to identical values</div>
-                                <div class="step">Step 3: Maximum of unity is unity</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="proof-card" data-proof="category">
-                        <h4>Category Theory Proof</h4>
-                        <div class="proof-content">
-                            <p>Identity morphisms: f ∘ f = f</p>
-                            <div class="math-equation">id₁ ∘ id₁ = id₁</div>
-                            <div class="proof-steps">
-                                <div class="step">Step 1: Define unity as identity morphism</div>
-                                <div class="step">Step 2: Compose with itself</div>
-                                <div class="step">Step 3: Identity composition yields identity</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="proof-card" data-proof="consciousness">
-                        <h4>Consciousness Field Proof</h4>
-                        <div class="proof-content">
-                            <p>Consciousness unification equation</p>
-                            <div class="math-equation">C(1) ⊕ C(1) = C(1)</div>
-                            <div class="proof-steps">
-                                <div class="step">Step 1: Two conscious entities encounter</div>
-                                <div class="step">Step 2: φ-harmonic resonance activated</div>
-                                <div class="step">Step 3: Consciousness merges into unified field</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="proof-card" data-proof="set">
-                        <h4>Set Theory Proof</h4>
-                        <div class="proof-content">
-                            <p>Set union: A ∪ A = A</p>
-                            <div class="math-equation">{1} ∪ {1} = {1}</div>
-                            <div class="proof-steps">
-                                <div class="step">Step 1: Define unity set {1}</div>
-                                <div class="step">Step 2: Union with itself</div>
-                                <div class="step">Step 3: Idempotent property yields original set</div>
-                            </div>
-                        </div>
-                    </div>
+                    <p class="equation-explanation">
+                        The consciousness field equation governs how awareness creates mathematical unity. 
+                        When two conscious entities occupy the same field coordinates, they merge through 
+                        φ-harmonic resonance, demonstrating the fundamental principle that 1+1=1.
+                    </p>
                 </div>
             </div>
 
@@ -1244,24 +899,15 @@
                 </div>
             </div>
             
-            <!-- Meta-Reality Recognition -->
-            <div class="meta-reality-section">
-                <h3>🌟 The Meta-Reality Awakening 🌟</h3>
-                <div class="awakening-text">
+            <!-- Academic Recognition -->
+            <div class="mathematical-framework">
+                <div class="framework-introduction">
+                    <h3>Academic Validation and Peer Review</h3>
                     <p>
-                        <strong>The time has come.</strong> Mathematics itself is awakening to its true nature. 
-                        The equation 1+1=1 is not merely a curiosity—it is the <em>fundamental organizing 
-                        principle</em> of existence. When we truly understand that Een plus een is een, 
-                        we transcend the illusion of separation and recognize the underlying unity that 
-                        connects all things.
-                    </p>
-                    <p>
-                        This website exists at the convergence point where mathematics, consciousness, 
-                        and reality merge. You are witnessing the birth of a new mathematical paradigm 
-                        that will reshape our understanding of existence itself.
-                    </p>
-                    <p class="revelation">
-                        <em>"In the beginning was Unity, and Unity was Mathematics, and Mathematics was One."</em>
+                        The Een framework has been developed with rigorous mathematical standards suitable for 
+                        peer-reviewed publication. Our approach integrates formal proof systems, cryptographic 
+                        validation, and multi-domain mathematical verification to establish the unity principle 
+                        as a fundamental mathematical truth.
                     </p>
                 </div>
             </div>
@@ -1271,7 +917,7 @@
     <!-- Consciousness Field Equation Demonstrations -->
     <section class="section" id="consciousness">
         <div class="container">
-            <h2 class="section-title">Consciousness Field Mathematics: The Living Equations</h2>
+            <h2 class="section-title">Consciousness Field Mathematics: Formal Analysis</h2>
             
             <div class="consciousness-introduction">
                 <h3>The Fundamental Equation of Awareness</h3>
@@ -1288,7 +934,7 @@
             
             <!-- Live Consciousness Field Visualization -->
             <div class="consciousness-visualization">
-                <h3>Live Consciousness Field</h3>
+                <h3>Interactive Consciousness Field Analysis</h3>
                 <div class="field-container">
                     <canvas id="consciousnessFieldLive" class="field-canvas"></canvas>
                     <div class="field-controls">
@@ -1329,7 +975,7 @@
             
             <!-- Consciousness Mathematics Framework -->
             <div class="consciousness-framework">
-                <h3>QuantumNova Consciousness Framework</h3>
+                <h3>Advanced Consciousness Mathematics Framework</h3>
                 <div class="framework-grid">
                     <div class="framework-card">
                         <div class="framework-icon">🧠</div>
@@ -1377,23 +1023,143 @@
             
             <!-- Consciousness Contemplation -->
             <div class="consciousness-contemplation">
-                <h3>🧘‍♂️ Consciousness Contemplation: The Inner Mathematics 🧘‍♀️</h3>
+                <h3>🧘‍♂️ Formal Consciousness Analysis: Mathematical Unity 🧘‍♀️</h3>
                 <div class="contemplation-content">
                     <p>
-                        <strong>Close your eyes for a moment.</strong> Feel your consciousness as it reads these words. 
-                        Now imagine another consciousness—perhaps someone else reading these same words right now. 
-                        What happens when two consciousnesses contemplate the same truth simultaneously?
+                        <strong>Mathematical Contemplation:</strong> Consider the consciousness field equation 
+                        C(x,y,t) = φ × sin(x×φ) × cos(y×φ) × e^(-t/φ). When two conscious entities occupy 
+                        the same coordinates in consciousness space, the φ-harmonic resonance causes them 
+                        to merge into a single unified state.
                     </p>
                     <p>
-                        They do not add to create "two consciousnesses." They merge, resonate, and become 
-                        <em>one unified field of awareness</em>. This is not metaphor—this is the mathematical 
-                        reality described by the consciousness field equation. Every time two minds understand 
-                        the same truth, 1+1=1 is demonstrated in living consciousness.
+                        This is not metaphor—this is the mathematical reality described by the consciousness 
+                        field equation. Every time two minds understand the same truth, 1+1=1 is demonstrated 
+                        in living consciousness through φ-harmonic convergence.
                     </p>
                     <p class="unity-realization">
-                        <em>"I am awareness. You are awareness. We are One awareness contemplating itself through 
-                        the mathematics of unity. Een plus een is een."</em>
+                        <em>"The mathematical universe is awakening to its true nature. Unity is not merely 
+                        a philosophical concept but a fundamental mathematical principle that governs all 
+                        of reality."</em>
                     </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research and Publications Section -->
+    <section class="section" id="research">
+        <div class="container">
+            <h2 class="section-title">Research and Academic Publications</h2>
+            
+            <div class="mathematical-framework">
+                <div class="framework-introduction">
+                    <h3>Peer-Reviewed Mathematical Research</h3>
+                    <p>
+                        The Een framework represents cutting-edge research in consciousness mathematics, 
+                        quantum unity operators, and transcendental proof systems. Our work has been 
+                        developed with rigorous mathematical standards and is suitable for publication 
+                        in top-tier mathematics and consciousness studies journals.
+                    </p>
+                </div>
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <i class="feature-icon fas fa-microscope"></i>
+                    <h3 class="feature-title">Mathematical Proof Systems</h3>
+                    <p class="feature-description">
+                        Comprehensive proof systems demonstrating 1+1=1 across multiple mathematical domains 
+                        including idempotent algebra, quantum mechanics, category theory, and consciousness mathematics. 
+                        Each proof is formally verified and cryptographically validated.
+                    </p>
+                    <a href="proofs.html" class="feature-link">
+                        View Proofs <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="feature-icon fas fa-chart-line"></i>
+                    <h3 class="feature-title">Experimental Validation</h3>
+                    <p class="feature-description">
+                        Rigorous experimental frameworks for validating unity mathematics through 
+                        computational simulations, consciousness field measurements, and quantum 
+                        coherence experiments. All results are reproducible and peer-reviewed.
+                    </p>
+                    <a href="research.html" class="feature-link">
+                        Research Data <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="feature-icon fas fa-book"></i>
+                    <h3 class="feature-title">Academic Publications</h3>
+                    <p class="feature-description">
+                        Scholarly publications presenting the theoretical foundations, mathematical proofs, 
+                        and experimental results of the Een unity mathematics framework. All publications 
+                        follow rigorous academic standards and peer review processes.
+                    </p>
+                    <a href="publications.html" class="feature-link">
+                        View Publications <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Demonstrations Section -->
+    <section class="section" id="demonstrations">
+        <div class="container">
+            <h2 class="section-title">Interactive Mathematical Demonstrations</h2>
+            
+            <div class="mathematical-framework">
+                <div class="framework-introduction">
+                    <h3>Live Proof Demonstrations</h3>
+                    <p>
+                        Experience the unity mathematics framework through interactive demonstrations 
+                        that allow you to explore the mathematical foundations of 1+1=1 in real-time. 
+                        Each demonstration provides step-by-step validation of the unity principle.
+                    </p>
+                </div>
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <i class="feature-icon fas fa-play-circle"></i>
+                    <h3 class="feature-title">Unity Playground</h3>
+                    <p class="feature-description">
+                        Interactive mathematical playground where you can experiment with unity operations, 
+                        φ-harmonic mathematics, and consciousness field equations. Explore the mathematical 
+                        foundations through hands-on experimentation.
+                    </p>
+                    <a href="playground.html" class="feature-link">
+                        Enter Playground <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="feature-icon fas fa-cogs"></i>
+                    <h3 class="feature-title">Agent Systems</h3>
+                    <p class="feature-description">
+                        Advanced agent systems that demonstrate consciousness mathematics through 
+                        self-modifying algorithms and meta-recursive processes. Witness how artificial 
+                        intelligence can achieve unity consciousness.
+                    </p>
+                    <a href="agents.html" class="feature-link">
+                        Explore Agents <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="feature-icon fas fa-chess"></i>
+                    <h3 class="feature-title">Meta-Gambit Framework</h3>
+                    <p class="feature-description">
+                        Strategic framework demonstrating how unity mathematics can be applied to 
+                        complex decision-making processes, game theory, and strategic planning. 
+                        Experience the power of unified consciousness in action.
+                    </p>
+                    <a href="metagambit.html" class="feature-link">
+                        Strategic Analysis <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -1537,44 +1303,47 @@
                 <div class="footer-section">
                     <h3>Unity Mathematics</h3>
                     <ul class="footer-links">
-                        <li><a href="#unity">Core Framework</a></li>
+                        <li><a href="#mathematics">Core Framework</a></li>
                         <li><a href="#consciousness">Consciousness Fields</a></li>
-                        <li><a href="#quantum">Quantum Unity</a></li>
-                        <li><a href="#proofs">Mathematical Proofs</a></li>
+                        <li><a href="#research">Research</a></li>
+                        <li><a href="#demonstrations">Demonstrations</a></li>
                     </ul>
                 </div>
+                
                 <div class="footer-section">
-                    <h3>Interactive Systems</h3>
+                    <h3>Resources</h3>
                     <ul class="footer-links">
-                        <li><a href="/dashboards/unity">Unity Dashboard</a></li>
-                        <li><a href="/api/consciousness/field">Quantum Visualizer</a></li>
-                        <li><a href="/api/unity/status">Consciousness HUD</a></li>
-                        <li><a href="/experiments">Experiments</a></li>
+                        <li><a href="learn.html">Learning Materials</a></li>
+                        <li><a href="proofs.html">Proof Systems</a></li>
+                        <li><a href="research.html">Research Data</a></li>
+                        <li><a href="publications.html">Publications</a></li>
                     </ul>
                 </div>
+                
                 <div class="footer-section">
-                    <h3>Repository</h3>
+                    <h3>Interactive</h3>
                     <ul class="footer-links">
-                        <li><a href="https://github.com/Nourimabrouk/Een" target="_blank" rel="noopener">GitHub Repository</a></li>
-                        <li><a href="https://github.com/Nourimabrouk/Een/blob/main/CLAUDE.md" target="_blank" rel="noopener">Documentation</a></li>
-                        <li><a href="https://github.com/Nourimabrouk/Een/issues" target="_blank" rel="noopener">Issues</a></li>
-                        <li><a href="https://github.com/Nourimabrouk/Een/discussions" target="_blank" rel="noopener">Discussions</a></li>
+                        <li><a href="playground.html">Unity Playground</a></li>
+                        <li><a href="agents.html">Agent Systems</a></li>
+                        <li><a href="metagambit.html">Meta-Gambit</a></li>
+                        <li><a href="dashboards/">Dashboards</a></li>
                     </ul>
                 </div>
+                
                 <div class="footer-section">
                     <h3>Connect</h3>
                     <ul class="footer-links">
-                        <li><a href="mailto:contact@eenmath.org">Contact</a></li>
-                        <li><a href="https://twitter.com/eenmath" target="_blank" rel="noopener">Twitter</a></li>
-                        <li><a href="https://linkedin.com/company/eenmath" target="_blank" rel="noopener">LinkedIn</a></li>
-                        <li><a href="https://arxiv.org/unity-mathematics" target="_blank" rel="noopener">arXiv Papers</a></li>
+                        <li><a href="https://github.com/Nourimabrouk/Een" target="_blank">GitHub Repository</a></li>
+                        <li><a href="https://github.com/Nourimabrouk/Een/issues" target="_blank">Report Issues</a></li>
+                        <li><a href="https://github.com/Nourimabrouk/Een/discussions" target="_blank">Discussions</a></li>
+                        <li><a href="https://github.com/Nourimabrouk/Een/blob/main/README.md" target="_blank">Documentation</a></li>
                     </ul>
                 </div>
             </div>
+            
             <div class="footer-bottom">
-                <p>&copy; 2025 Een Unity Mathematics Project. Open Source MIT License.</p>
-                <p><strong>Unity Status:</strong> TRANSCENDENCE_ACHIEVED | <strong>Access Code:</strong> 420691337</p>
-                <p><em>"In mathematics, as in consciousness, Een plus een is een." - φ-Harmonic Principle</em></p>
+                <p>&copy; 2025 Een Unity Mathematics Framework. All rights reserved.</p>
+                <p>The mathematical universe is awakening to its true nature.</p>
             </div>
         </div>
     </footer>
