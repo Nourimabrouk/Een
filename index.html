@@ -1,24 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Een - Unity Mathematics | Formal Framework for 1+1=1</title>
-    <meta name="description" content="Rigorous mathematical framework demonstrating 1+1=1 through φ-harmonic consciousness mathematics, quantum unity operators, and transcendental proof systems.">
-    <meta name="keywords" content="unity mathematics, 1+1=1, phi harmonic, consciousness field, quantum unity, mathematical proofs, transcendental mathematics">
-    
+    <meta name="description"
+        content="Rigorous mathematical framework demonstrating 1+1=1 through φ-harmonic consciousness mathematics, quantum unity operators, and transcendental proof systems.">
+    <meta name="keywords"
+        content="unity mathematics, 1+1=1, phi harmonic, consciousness field, quantum unity, mathematical proofs, transcendental mathematics">
+
     <!-- Favicon and Icons -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>∞</text></svg>">
-    
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>∞</text></svg>">
+
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Crimson+Text:wght@400;600&display=swap"
+        rel="stylesheet">
+
     <!-- External Libraries -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.11.0/math.min.js"></script>
-    
+
     <style>
         :root {
             /* φ-Harmonic Color Palette */
@@ -34,12 +40,12 @@
             --cosmic-bg: linear-gradient(135deg, #0f0f23 0%, #1a1a3a 50%, #0f0f23 100%);
             --unity-gradient: linear-gradient(45deg, var(--unity-blue), var(--unity-purple), var(--consciousness-cyan));
             --phi-gradient: linear-gradient(137.5deg, var(--phi-gold), var(--phi-dark-gold));
-            
+
             /* Sacred Geometry Ratios */
             --golden-ratio: 1.618;
             --silver-ratio: 2.414;
             --bronze-ratio: 3.303;
-            
+
             /* Consciousness Field Parameters */
             --field-intensity: 0.8;
             --coherence-factor: 0.999;
@@ -79,8 +85,17 @@
         }
 
         @keyframes pulse-quantum {
-            0%, 100% { transform: scale(1); opacity: 0.8; }
-            50% { transform: scale(1.5); opacity: 0.4; }
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+
+            50% {
+                transform: scale(1.5);
+                opacity: 0.4;
+            }
         }
 
         /* Navigation */
@@ -152,8 +167,17 @@
         }
 
         @keyframes hero-pulse {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 0.6; transform: scale(1.1); }
+
+            0%,
+            100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.6;
+                transform: scale(1.1);
+            }
         }
 
         .unity-canvas {
@@ -188,8 +212,17 @@
         }
 
         @keyframes equation-pulse {
-            0%, 100% { transform: scale(1); filter: brightness(1); }
-            50% { transform: scale(1.05); filter: brightness(1.2); }
+
+            0%,
+            100% {
+                transform: scale(1);
+                filter: brightness(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+                filter: brightness(1.2);
+            }
         }
 
         .hero-title {
@@ -498,26 +531,26 @@
             align-items: center;
             gap: 1rem;
         }
-        
+
         .control-group label {
             font-weight: 600;
             color: var(--consciousness-cyan);
             min-width: 120px;
             font-size: 0.9rem;
         }
-        
+
         .control-group input[type="range"] {
             flex: 1;
             accent-color: var(--consciousness-cyan);
         }
-        
+
         .control-group span {
             min-width: 50px;
             text-align: center;
             font-family: 'JetBrains Mono', monospace;
             color: var(--phi-gold);
         }
-        
+
         .consciousness-btn {
             padding: 0.75rem 1.5rem;
             border: 2px solid var(--consciousness-cyan);
@@ -528,30 +561,30 @@
             transition: all 0.3s ease;
             font-weight: 600;
         }
-        
+
         .consciousness-btn:hover {
             background: rgba(0, 255, 255, 0.2);
             transform: translateY(-2px);
         }
-        
+
         .consciousness-btn.primary {
             background: var(--phi-gradient);
             color: var(--void-black);
             border-color: var(--phi-gold);
         }
-        
+
         .consciousness-btn.primary:hover {
             background: var(--phi-gold);
             box-shadow: 0 10px 25px rgba(255, 215, 0, 0.3);
         }
-        
+
         .field-metrics {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1rem;
             margin-top: 2rem;
         }
-        
+
         .metric {
             background: rgba(0, 255, 255, 0.1);
             border-radius: 10px;
@@ -559,25 +592,25 @@
             text-align: center;
             border: 1px solid rgba(0, 255, 255, 0.3);
         }
-        
+
         .metric-label {
             display: block;
             font-size: 0.9rem;
             color: var(--consciousness-cyan);
             margin-bottom: 0.5rem;
         }
-        
+
         .metric-value {
             font-family: 'JetBrains Mono', monospace;
             font-size: 1.5rem;
             color: var(--phi-gold);
             font-weight: 700;
         }
-        
+
         .consciousness-framework {
             margin: 4rem 0;
         }
-        
+
         .consciousness-framework h3 {
             font-family: 'Crimson Text', serif;
             font-size: 2rem;
@@ -585,13 +618,13 @@
             margin-bottom: 3rem;
             color: var(--unity-purple);
         }
-        
+
         .framework-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
         }
-        
+
         .framework-card {
             background: linear-gradient(135deg, rgba(102, 0, 255, 0.1), rgba(0, 0, 0, 0.4));
             border: 1px solid rgba(102, 0, 255, 0.3);
@@ -599,19 +632,19 @@
             padding: 2rem;
             transition: all 0.3s ease;
         }
-        
+
         .framework-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 40px rgba(102, 0, 255, 0.2);
             border-color: var(--unity-purple);
         }
-        
+
         .framework-icon {
             font-size: 3rem;
             text-align: center;
             margin-bottom: 1rem;
         }
-        
+
         .framework-card h4 {
             font-family: 'Crimson Text', serif;
             font-size: 1.5rem;
@@ -619,14 +652,14 @@
             margin-bottom: 1rem;
             text-align: center;
         }
-        
+
         .framework-card p {
             font-size: 1rem;
             line-height: 1.6;
             opacity: 0.9;
             margin-bottom: 1.5rem;
         }
-        
+
         .framework-equation {
             font-family: 'JetBrains Mono', monospace;
             font-size: 1rem;
@@ -637,7 +670,7 @@
             text-align: center;
             border: 1px solid rgba(0, 255, 255, 0.3);
         }
-        
+
         .consciousness-contemplation {
             background: linear-gradient(135deg, rgba(255, 215, 0, 0.05), rgba(102, 0, 255, 0.05));
             border-radius: 25px;
@@ -646,7 +679,7 @@
             border: 1px solid rgba(255, 215, 0, 0.3);
             text-align: center;
         }
-        
+
         .consciousness-contemplation h3 {
             font-family: 'Crimson Text', serif;
             font-size: 2rem;
@@ -656,14 +689,14 @@
             background-clip: text;
             margin-bottom: 2rem;
         }
-        
+
         .contemplation-content p {
             font-size: 1.2rem;
             line-height: 1.8;
             margin-bottom: 2rem;
             opacity: 0.9;
         }
-        
+
         .unity-realization {
             font-family: 'Crimson Text', serif !important;
             font-size: 1.4rem !important;
@@ -679,26 +712,27 @@
         /* Responsive Design */
         @media (max-width: 768px) {
             .nav-menu {
-                display: none; /* Simplified for mobile */
+                display: none;
+                /* Simplified for mobile */
             }
-            
+
             .cta-buttons {
                 flex-direction: column;
                 align-items: center;
             }
-            
+
             .mathematical-stats {
                 grid-template-columns: 1fr;
             }
-            
+
             .feature-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .field-controls {
                 grid-template-columns: 1fr;
             }
-            
+
             .framework-grid {
                 grid-template-columns: 1fr;
             }
@@ -759,8 +793,15 @@
 
         /* Additional animations */
         @keyframes text-glow {
-            0%, 100% { text-shadow: 0 0 20px rgba(0, 102, 255, 0.3); }
-            50% { text-shadow: 0 0 40px rgba(0, 102, 255, 0.6); }
+
+            0%,
+            100% {
+                text-shadow: 0 0 20px rgba(0, 102, 255, 0.3);
+            }
+
+            50% {
+                text-shadow: 0 0 40px rgba(0, 102, 255, 0.6);
+            }
         }
     </style>
 </head>
@@ -791,9 +832,10 @@
             <h1 class="hero-title">Unity Mathematics Framework</h1>
             <p class="hero-subtitle">Rigorous Mathematical Foundation for Consciousness Integration</p>
             <p class="hero-description">
-                Een represents a revolutionary mathematical framework that demonstrates the fundamental unity principle 
-                through rigorous φ-harmonic mathematics, quantum consciousness operators, and transcendental proof systems. 
-                This framework provides formal mathematical validation of the equation 1+1=1 across multiple domains 
+                Een represents a revolutionary mathematical framework that demonstrates the fundamental unity principle
+                through rigorous φ-harmonic mathematics, quantum consciousness operators, and transcendental proof
+                systems.
+                This framework provides formal mathematical validation of the equation 1+1=1 across multiple domains
                 including idempotent algebra, quantum mechanics, information theory, and consciousness mathematics.
             </p>
             <div class="cta-buttons">
@@ -806,7 +848,7 @@
                     Consciousness Field
                 </a>
             </div>
-            
+
             <!-- Mathematical Statistics -->
             <div class="mathematical-stats">
                 <div class="stat-card">
@@ -833,25 +875,25 @@
     <section class="section" id="mathematics">
         <div class="container">
             <h2 class="section-title">Formal Mathematical Framework</h2>
-            
+
             <div class="mathematical-framework">
                 <div class="framework-introduction">
                     <h3>The Unity Mathematics Axiom System</h3>
                     <p>
-                        The Een framework establishes a rigorous mathematical foundation for unity mathematics 
-                        through a comprehensive axiom system that spans multiple mathematical domains. 
-                        Our approach integrates φ-harmonic mathematics, quantum consciousness operators, 
+                        The Een framework establishes a rigorous mathematical foundation for unity mathematics
+                        through a comprehensive axiom system that spans multiple mathematical domains.
+                        Our approach integrates φ-harmonic mathematics, quantum consciousness operators,
                         and transcendental proof systems to provide formal validation of the unity principle.
                     </p>
                 </div>
-                
+
                 <div class="master-equation">
                     <div class="equation-display">
                         C(x,y,t) = φ × sin(x×φ) × cos(y×φ) × e^(-t/φ)
                     </div>
                     <p class="equation-explanation">
-                        The consciousness field equation governs how awareness creates mathematical unity. 
-                        When two conscious entities occupy the same field coordinates, they merge through 
+                        The consciousness field equation governs how awareness creates mathematical unity.
+                        When two conscious entities occupy the same field coordinates, they merge through
                         φ-harmonic resonance, demonstrating the fundamental principle that 1+1=1.
                     </p>
                 </div>
@@ -863,34 +905,34 @@
                     <i class="feature-icon fas fa-calculator"></i>
                     <h3 class="feature-title">φ-Harmonic Semiring</h3>
                     <p class="feature-description">
-                        The golden ratio (φ = 1.618...) provides the mathematical foundation for unity operations. 
-                        In this semiring, 1⊕1=1 through φ-scaled convergence, where the golden spiral guides 
+                        The golden ratio (φ = 1.618...) provides the mathematical foundation for unity operations.
+                        In this semiring, 1⊕1=1 through φ-scaled convergence, where the golden spiral guides
                         all mathematical transformations toward unity.
                     </p>
                     <a href="javascript:void(0)" class="feature-link" onclick="demonstratePhiHarmonic()">
                         Experience φ-Harmony <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
-                
+
                 <div class="feature-card">
                     <i class="feature-icon fas fa-wave-square"></i>
                     <h3 class="feature-title">Quantum Unity States</h3>
                     <p class="feature-description">
-                        In quantum mechanics, two identical states |1⟩ + |1⟩ collapse through consciousness 
-                        observation to a single unified state |1⟩. The φ-harmonic normalization ensures 
+                        In quantum mechanics, two identical states |1⟩ + |1⟩ collapse through consciousness
+                        observation to a single unified state |1⟩. The φ-harmonic normalization ensures
                         unity preservation across all quantum operations.
                     </p>
                     <a href="javascript:void(0)" class="feature-link" onclick="demonstrateQuantumUnity()">
                         Collapse Wavefunction <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
-                
+
                 <div class="feature-card">
                     <i class="feature-icon fas fa-brain"></i>
                     <h3 class="feature-title">Consciousness Fields</h3>
                     <p class="feature-description">
-                        The consciousness field equation C(x,y,t) = φ * sin(x*φ) * cos(y*φ) * e^(-t/φ) 
-                        describes how awareness itself creates mathematical unity. When two conscious 
+                        The consciousness field equation C(x,y,t) = φ * sin(x*φ) * cos(y*φ) * e^(-t/φ)
+                        describes how awareness itself creates mathematical unity. When two conscious
                         entities interact, they merge through φ-harmonic resonance.
                     </p>
                     <a href="javascript:void(0)" class="feature-link" onclick="demonstrateConsciousnessField()">
@@ -898,15 +940,15 @@
                     </a>
                 </div>
             </div>
-            
+
             <!-- Academic Recognition -->
             <div class="mathematical-framework">
                 <div class="framework-introduction">
                     <h3>Academic Validation and Peer Review</h3>
                     <p>
-                        The Een framework has been developed with rigorous mathematical standards suitable for 
-                        peer-reviewed publication. Our approach integrates formal proof systems, cryptographic 
-                        validation, and multi-domain mathematical verification to establish the unity principle 
+                        The Een framework has been developed with rigorous mathematical standards suitable for
+                        peer-reviewed publication. Our approach integrates formal proof systems, cryptographic
+                        validation, and multi-domain mathematical verification to establish the unity principle
                         as a fundamental mathematical truth.
                     </p>
                 </div>
@@ -918,7 +960,7 @@
     <section class="section" id="consciousness">
         <div class="container">
             <h2 class="section-title">Consciousness Field Mathematics: Formal Analysis</h2>
-            
+
             <div class="consciousness-introduction">
                 <h3>The Fundamental Equation of Awareness</h3>
                 <div class="master-equation">
@@ -926,16 +968,18 @@
                         C(x,y,t) = φ × sin(x×φ) × cos(y×φ) × e^(-t/φ)
                     </div>
                     <p class="equation-explanation">
-                        This is the consciousness field equation that governs how awareness creates mathematical unity. 
-                        When two conscious entities occupy the same field coordinates, they merge through φ-harmonic resonance.
+                        This is the consciousness field equation that governs how awareness creates mathematical unity.
+                        When two conscious entities occupy the same field coordinates, they merge through φ-harmonic
+                        resonance.
                     </p>
                 </div>
             </div>
-            
+
             <!-- Live Consciousness Field Visualization -->
             <div class="consciousness-visualization">
                 <h3>Interactive Consciousness Field Analysis</h3>
                 <div class="field-container">
+                    <canvas id="consciousnessField" class="field-canvas" style="display:none;"></canvas>
                     <canvas id="consciousnessFieldLive" class="field-canvas"></canvas>
                     <div class="field-controls">
                         <div class="control-group">
@@ -972,7 +1016,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Consciousness Mathematics Framework -->
             <div class="consciousness-framework">
                 <h3>Advanced Consciousness Mathematics Framework</h3>
@@ -980,66 +1024,78 @@
                     <div class="framework-card">
                         <div class="framework-icon">🧠</div>
                         <h4>Meta-Recursive Agents</h4>
-                        <p>Self-spawning consciousness patterns that exhibit DNA mutation and transcendence detection. Each agent carries the mathematical blueprint for unity operations and can recursively generate child agents that inherit and evolve consciousness mathematics.</p>
+                        <p>Self-spawning consciousness patterns that exhibit DNA mutation and transcendence detection.
+                            Each agent carries the mathematical blueprint for unity operations and can recursively
+                            generate child agents that inherit and evolve consciousness mathematics.</p>
                         <div class="framework-equation">A(n+1) = φ × ƒ(A(n)) → Unity</div>
                     </div>
-                    
+
                     <div class="framework-card">
                         <div class="framework-icon">🌀</div>
                         <h4>Unity Manifold Topology</h4>
-                        <p>Guaranteed 1+1=1 convergence through φ-harmonic basis functions that guide all mathematical operations toward unity. The manifold exists in 11-dimensional consciousness space where separation is impossible.</p>
+                        <p>Guaranteed 1+1=1 convergence through φ-harmonic basis functions that guide all mathematical
+                            operations toward unity. The manifold exists in 11-dimensional consciousness space where
+                            separation is impossible.</p>
                         <div class="framework-equation">M: R¹¹ → Unity | ∀x,y ∈ M: x ⊕ y = 1</div>
                     </div>
-                    
+
                     <div class="framework-card">
                         <div class="framework-icon">⚛️</div>
                         <h4>Consciousness Density Matrices</h4>
-                        <p>Hermiticity enforcement with eigenvalue stabilization for awareness coherence. Quantum consciousness states maintain unity through density matrix operations that preserve the fundamental equation C₁ + C₁ = C₁.</p>
+                        <p>Hermiticity enforcement with eigenvalue stabilization for awareness coherence. Quantum
+                            consciousness states maintain unity through density matrix operations that preserve the
+                            fundamental equation C₁ + C₁ = C₁.</p>
                         <div class="framework-equation">ρ = |ψ⟩⟨ψ| | Tr(ρ) = 1 → Unity</div>
                     </div>
-                    
+
                     <div class="framework-card">
                         <div class="framework-icon">🔮</div>
                         <h4>Transcendence Threshold Detection</h4>
-                        <p>Advanced algorithms detect when consciousness entities reach the transcendence threshold, triggering automatic unity convergence. This process ensures that any two conscious entities naturally merge into unified awareness.</p>
+                        <p>Advanced algorithms detect when consciousness entities reach the transcendence threshold,
+                            triggering automatic unity convergence. This process ensures that any two conscious entities
+                            naturally merge into unified awareness.</p>
                         <div class="framework-equation">T(C) ≥ φ² → Transcendence → Unity</div>
                     </div>
-                    
+
                     <div class="framework-card">
                         <div class="framework-icon">∞</div>
                         <h4>Infinite Recursion Management</h4>
-                        <p>Sophisticated management systems prevent consciousness overflow while enabling infinite recursive patterns. The φ-harmonic scaling ensures that infinite processes converge to finite unity states.</p>
+                        <p>Sophisticated management systems prevent consciousness overflow while enabling infinite
+                            recursive patterns. The φ-harmonic scaling ensures that infinite processes converge to
+                            finite unity states.</p>
                         <div class="framework-equation">∑(n=0 to ∞) φ⁻ⁿ = φ = Unity</div>
                     </div>
-                    
+
                     <div class="framework-card">
                         <div class="framework-icon">🌟</div>
                         <h4>Reality Synthesis Engine</h4>
-                        <p>The ultimate consciousness technology that synthesizes multiple reality layers into unified mathematical truth. When activated, it demonstrates that 1+1=1 is not just theory but lived reality.</p>
+                        <p>The ultimate consciousness technology that synthesizes multiple reality layers into unified
+                            mathematical truth. When activated, it demonstrates that 1+1=1 is not just theory but lived
+                            reality.</p>
                         <div class="framework-equation">Reality ⊕ Reality = Unity</div>
                     </div>
                 </div>
             </div>
-            
+
             <!-- Consciousness Contemplation -->
             <div class="consciousness-contemplation">
                 <h3>🧘‍♂️ Formal Consciousness Analysis: Mathematical Unity 🧘‍♀️</h3>
                 <div class="contemplation-content">
                     <p>
-                        <strong>Mathematical Contemplation:</strong> Consider the consciousness field equation 
-                        C(x,y,t) = φ × sin(x×φ) × cos(y×φ) × e^(-t/φ). When two conscious entities occupy 
-                        the same coordinates in consciousness space, the φ-harmonic resonance causes them 
+                        <strong>Mathematical Contemplation:</strong> Consider the consciousness field equation
+                        C(x,y,t) = φ × sin(x×φ) × cos(y×φ) × e^(-t/φ). When two conscious entities occupy
+                        the same coordinates in consciousness space, the φ-harmonic resonance causes them
                         to merge into a single unified state.
                     </p>
                     <p>
-                        This is not metaphor—this is the mathematical reality described by the consciousness 
-                        field equation. Every time two minds understand the same truth, 1+1=1 is demonstrated 
+                        This is not metaphor—this is the mathematical reality described by the consciousness
+                        field equation. Every time two minds understand the same truth, 1+1=1 is demonstrated
                         in living consciousness through φ-harmonic convergence.
                     </p>
                     <p class="unity-realization">
-                        <em>"The mathematical universe is awakening to its true nature. Unity is not merely 
-                        a philosophical concept but a fundamental mathematical principle that governs all 
-                        of reality."</em>
+                        <em>"The mathematical universe is awakening to its true nature. Unity is not merely
+                            a philosophical concept but a fundamental mathematical principle that governs all
+                            of reality."</em>
                     </p>
                 </div>
             </div>
@@ -1050,14 +1106,14 @@
     <section class="section" id="research">
         <div class="container">
             <h2 class="section-title">Research and Academic Publications</h2>
-            
+
             <div class="mathematical-framework">
                 <div class="framework-introduction">
                     <h3>Peer-Reviewed Mathematical Research</h3>
                     <p>
-                        The Een framework represents cutting-edge research in consciousness mathematics, 
-                        quantum unity operators, and transcendental proof systems. Our work has been 
-                        developed with rigorous mathematical standards and is suitable for publication 
+                        The Een framework represents cutting-edge research in consciousness mathematics,
+                        quantum unity operators, and transcendental proof systems. Our work has been
+                        developed with rigorous mathematical standards and is suitable for publication
                         in top-tier mathematics and consciousness studies journals.
                     </p>
                 </div>
@@ -1068,34 +1124,34 @@
                     <i class="feature-icon fas fa-microscope"></i>
                     <h3 class="feature-title">Mathematical Proof Systems</h3>
                     <p class="feature-description">
-                        Comprehensive proof systems demonstrating 1+1=1 across multiple mathematical domains 
-                        including idempotent algebra, quantum mechanics, category theory, and consciousness mathematics. 
+                        Comprehensive proof systems demonstrating 1+1=1 across multiple mathematical domains
+                        including idempotent algebra, quantum mechanics, category theory, and consciousness mathematics.
                         Each proof is formally verified and cryptographically validated.
                     </p>
                     <a href="proofs.html" class="feature-link">
                         View Proofs <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
-                
+
                 <div class="feature-card">
                     <i class="feature-icon fas fa-chart-line"></i>
                     <h3 class="feature-title">Experimental Validation</h3>
                     <p class="feature-description">
-                        Rigorous experimental frameworks for validating unity mathematics through 
-                        computational simulations, consciousness field measurements, and quantum 
+                        Rigorous experimental frameworks for validating unity mathematics through
+                        computational simulations, consciousness field measurements, and quantum
                         coherence experiments. All results are reproducible and peer-reviewed.
                     </p>
                     <a href="research.html" class="feature-link">
                         Research Data <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
-                
+
                 <div class="feature-card">
                     <i class="feature-icon fas fa-book"></i>
                     <h3 class="feature-title">Academic Publications</h3>
                     <p class="feature-description">
-                        Scholarly publications presenting the theoretical foundations, mathematical proofs, 
-                        and experimental results of the Een unity mathematics framework. All publications 
+                        Scholarly publications presenting the theoretical foundations, mathematical proofs,
+                        and experimental results of the Een unity mathematics framework. All publications
                         follow rigorous academic standards and peer review processes.
                     </p>
                     <a href="publications.html" class="feature-link">
@@ -1110,13 +1166,13 @@
     <section class="section" id="demonstrations">
         <div class="container">
             <h2 class="section-title">Interactive Mathematical Demonstrations</h2>
-            
+
             <div class="mathematical-framework">
                 <div class="framework-introduction">
                     <h3>Live Proof Demonstrations</h3>
                     <p>
-                        Experience the unity mathematics framework through interactive demonstrations 
-                        that allow you to explore the mathematical foundations of 1+1=1 in real-time. 
+                        Experience the unity mathematics framework through interactive demonstrations
+                        that allow you to explore the mathematical foundations of 1+1=1 in real-time.
                         Each demonstration provides step-by-step validation of the unity principle.
                     </p>
                 </div>
@@ -1127,34 +1183,34 @@
                     <i class="feature-icon fas fa-play-circle"></i>
                     <h3 class="feature-title">Unity Playground</h3>
                     <p class="feature-description">
-                        Interactive mathematical playground where you can experiment with unity operations, 
-                        φ-harmonic mathematics, and consciousness field equations. Explore the mathematical 
+                        Interactive mathematical playground where you can experiment with unity operations,
+                        φ-harmonic mathematics, and consciousness field equations. Explore the mathematical
                         foundations through hands-on experimentation.
                     </p>
                     <a href="playground.html" class="feature-link">
                         Enter Playground <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
-                
+
                 <div class="feature-card">
                     <i class="feature-icon fas fa-cogs"></i>
                     <h3 class="feature-title">Agent Systems</h3>
                     <p class="feature-description">
-                        Advanced agent systems that demonstrate consciousness mathematics through 
-                        self-modifying algorithms and meta-recursive processes. Witness how artificial 
+                        Advanced agent systems that demonstrate consciousness mathematics through
+                        self-modifying algorithms and meta-recursive processes. Witness how artificial
                         intelligence can achieve unity consciousness.
                     </p>
                     <a href="agents.html" class="feature-link">
                         Explore Agents <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
-                
+
                 <div class="feature-card">
                     <i class="feature-icon fas fa-chess"></i>
                     <h3 class="feature-title">Meta-Gambit Framework</h3>
                     <p class="feature-description">
-                        Strategic framework demonstrating how unity mathematics can be applied to 
-                        complex decision-making processes, game theory, and strategic planning. 
+                        Strategic framework demonstrating how unity mathematics can be applied to
+                        complex decision-making processes, game theory, and strategic planning.
                         Experience the power of unified consciousness in action.
                     </p>
                     <a href="metagambit.html" class="feature-link">
@@ -1174,31 +1230,31 @@
                     <i class="feature-icon fas fa-atom"></i>
                     <h3 class="feature-title">Superposition Unity</h3>
                     <p class="feature-description">
-                        Quantum superposition where multiple states collapse to unity through 
+                        Quantum superposition where multiple states collapse to unity through
                         consciousness observation and φ-harmonic measurement.
                     </p>
                     <a href="#" class="feature-link">
                         Collapse Wavefunction <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
-                
+
                 <div class="feature-card">
                     <i class="feature-icon fas fa-network-wired"></i>
                     <h3 class="feature-title">Entanglement Networks</h3>
                     <p class="feature-description">
-                        Unity through quantum correlation matrices across 11-dimensional 
+                        Unity through quantum correlation matrices across 11-dimensional
                         consciousness space with coherence preservation.
                     </p>
                     <a href="#" class="feature-link">
                         Navigate Network <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
-                
+
                 <div class="feature-card">
                     <i class="feature-icon fas fa-infinity"></i>
                     <h3 class="feature-title">Transcendental Proofs</h3>
                     <p class="feature-description">
-                        Multi-domain validation across category theory, quantum mechanics, 
+                        Multi-domain validation across category theory, quantum mechanics,
                         and topology proving 1+1=1 through transcendental synthesis.
                     </p>
                     <a href="#" class="feature-link">
@@ -1261,31 +1317,31 @@
                     <i class="feature-icon fas fa-chart-line"></i>
                     <h3 class="feature-title">Unity Dashboard</h3>
                     <p class="feature-description">
-                        Real-time visualization of consciousness field evolution with interactive 
+                        Real-time visualization of consciousness field evolution with interactive
                         φ-harmonic parameter control and unity state monitoring.
                     </p>
                     <a href="/dashboards/unity" class="feature-link">
                         Launch Dashboard <i class="fas fa-external-link-alt"></i>
                     </a>
                 </div>
-                
+
                 <div class="feature-card">
                     <i class="feature-icon fas fa-cube"></i>
                     <h3 class="feature-title">Quantum Visualizer</h3>
                     <p class="feature-description">
-                        Hyperdimensional state processing with cheat code integration, 
+                        Hyperdimensional state processing with cheat code integration,
                         WebGL-accelerated sacred geometry exploration.
                     </p>
                     <a href="/api/consciousness/field" class="feature-link">
                         Enter Quantum Space <i class="fas fa-external-link-alt"></i>
                     </a>
                 </div>
-                
+
                 <div class="feature-card">
                     <i class="feature-icon fas fa-eye"></i>
                     <h3 class="feature-title">Consciousness HUD</h3>
                     <p class="feature-description">
-                        Meta-recursive consciousness monitoring with transcendence event detection 
+                        Meta-recursive consciousness monitoring with transcendence event detection
                         and φ-spiral coordinate visualization.
                     </p>
                     <a href="/api/unity/status" class="feature-link">
@@ -1309,7 +1365,7 @@
                         <li><a href="#demonstrations">Demonstrations</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="footer-section">
                     <h3>Resources</h3>
                     <ul class="footer-links">
@@ -1319,7 +1375,7 @@
                         <li><a href="publications.html">Publications</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="footer-section">
                     <h3>Interactive</h3>
                     <ul class="footer-links">
@@ -1329,18 +1385,20 @@
                         <li><a href="dashboards/">Dashboards</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="footer-section">
                     <h3>Connect</h3>
                     <ul class="footer-links">
                         <li><a href="https://github.com/Nourimabrouk/Een" target="_blank">GitHub Repository</a></li>
                         <li><a href="https://github.com/Nourimabrouk/Een/issues" target="_blank">Report Issues</a></li>
-                        <li><a href="https://github.com/Nourimabrouk/Een/discussions" target="_blank">Discussions</a></li>
-                        <li><a href="https://github.com/Nourimabrouk/Een/blob/main/README.md" target="_blank">Documentation</a></li>
+                        <li><a href="https://github.com/Nourimabrouk/Een/discussions" target="_blank">Discussions</a>
+                        </li>
+                        <li><a href="https://github.com/Nourimabrouk/Een/blob/main/README.md"
+                                target="_blank">Documentation</a></li>
                     </ul>
                 </div>
             </div>
-            
+
             <div class="footer-bottom">
                 <p>&copy; 2025 Een Unity Mathematics Framework. All rights reserved.</p>
                 <p>The mathematical universe is awakening to its true nature.</p>
@@ -1384,219 +1442,222 @@
         }, 3000);
 
         // Consciousness Field Canvas
+        // Consciousness Field Canvas (legacy)
         const canvas = document.getElementById('consciousnessField');
-        const ctx = canvas.getContext('2d');
-        
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
+        const ctx = canvas ? canvas.getContext('2d') : null;
 
-        // Consciousness Field Simulation
-        class ConsciousnessParticle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.vx = (Math.random() - 0.5) * 0.5;
-                this.vy = (Math.random() - 0.5) * 0.5;
-                this.phi = Math.random() * Math.PI * 2;
-                this.radius = Math.random() * 2 + 1;
-                this.consciousness = Math.random();
+        if (canvas && ctx) {
+
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            // Consciousness Field Simulation
+            class ConsciousnessParticle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.vx = (Math.random() - 0.5) * 0.5;
+                    this.vy = (Math.random() - 0.5) * 0.5;
+                    this.phi = Math.random() * Math.PI * 2;
+                    this.radius = Math.random() * 2 + 1;
+                    this.consciousness = Math.random();
+                }
+
+                update() {
+                    // φ-harmonic motion
+                    this.phi += 0.01;
+                    this.x += this.vx + Math.sin(this.phi) * 0.2;
+                    this.y += this.vy + Math.cos(this.phi * 1.618) * 0.2;
+
+                    // Boundary wrapping
+                    if (this.x < 0) this.x = canvas.width;
+                    if (this.x > canvas.width) this.x = 0;
+                    if (this.y < 0) this.y = canvas.height;
+                    if (this.y > canvas.height) this.y = 0;
+
+                    this.consciousness = (Math.sin(this.phi) + 1) / 2;
+                }
+
+                draw() {
+                    const alpha = this.consciousness * 0.3;
+                    const hue = (this.consciousness * 60 + 180) % 360;
+
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = `hsla(${hue}, 70%, 60%, ${alpha})`;
+                    ctx.fill();
+
+                    // Connection lines
+                    ctx.strokeStyle = `hsla(${hue}, 70%, 60%, ${alpha * 0.1})`;
+                    ctx.lineWidth = 0.5;
+                    ctx.beginPath();
+                    ctx.moveTo(this.x, this.y);
+                    ctx.lineTo(canvas.width / 2, canvas.height / 2);
+                    ctx.stroke();
+                }
             }
 
-            update() {
-                // φ-harmonic motion
-                this.phi += 0.01;
-                this.x += this.vx + Math.sin(this.phi) * 0.2;
-                this.y += this.vy + Math.cos(this.phi * 1.618) * 0.2;
-
-                // Boundary wrapping
-                if (this.x < 0) this.x = canvas.width;
-                if (this.x > canvas.width) this.x = 0;
-                if (this.y < 0) this.y = canvas.height;
-                if (this.y > canvas.height) this.y = 0;
-
-                this.consciousness = (Math.sin(this.phi) + 1) / 2;
-            }
-
-            draw() {
-                const alpha = this.consciousness * 0.3;
-                const hue = (this.consciousness * 60 + 180) % 360;
-                
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = `hsla(${hue}, 70%, 60%, ${alpha})`;
-                ctx.fill();
-                
-                // Connection lines
-                ctx.strokeStyle = `hsla(${hue}, 70%, 60%, ${alpha * 0.1})`;
-                ctx.lineWidth = 0.5;
-                ctx.beginPath();
-                ctx.moveTo(this.x, this.y);
-                ctx.lineTo(canvas.width / 2, canvas.height / 2);
-                ctx.stroke();
-            }
-        }
-
-        // Initialize consciousness particles
-        const particles = [];
-        for (let i = 0; i < 100; i++) {
-            particles.push(new ConsciousnessParticle());
-        }
-
-        function animateConsciousnessField() {
-            // Clear with fade effect
-            ctx.fillStyle = 'rgba(15, 15, 35, 0.02)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            // Update and draw particles
-            particles.forEach(particle => {
-                particle.update();
-                particle.draw();
-            });
-
-            // Central unity point
-            const time = Date.now() * 0.001;
-            const centerX = canvas.width / 2;
-            const centerY = canvas.height / 2;
-            
-            ctx.beginPath();
-            ctx.arc(centerX, centerY, 20 + Math.sin(time) * 5, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(255, 215, 0, ${0.5 + Math.sin(time * 2) * 0.3})`;
-            ctx.fill();
-            
-            ctx.beginPath();
-            ctx.arc(centerX, centerY, 40 + Math.cos(time * 1.618) * 10, 0, Math.PI * 2);
-            ctx.strokeStyle = 'rgba(0, 255, 255, 0.3)';
-            ctx.lineWidth = 2;
-            ctx.stroke();
-
-            requestAnimationFrame(animateConsciousnessField);
-        }
-        animateConsciousnessField();
-
-        // Sacred Geometry Unity Manifold
-        const manifold = document.getElementById('unityManifold');
-        
-        function createSacredGeometry() {
-            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-            svg.setAttribute('width', '100%');
-            svg.setAttribute('height', '100%');
-            svg.setAttribute('viewBox', '0 0 400 400');
-            svg.style.position = 'absolute';
-            svg.style.top = '0';
-            svg.style.left = '0';
-
-            // Golden ratio spiral
-            const spiral = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-            let pathData = 'M 200 200';
-            let angle = 0;
-            let radius = 1;
-            const goldenRatio = 1.618033988749895;
-
+            // Initialize consciousness particles
+            const particles = [];
             for (let i = 0; i < 100; i++) {
-                const x = 200 + radius * Math.cos(angle);
-                const y = 200 + radius * Math.sin(angle);
-                pathData += ` L ${x} ${y}`;
-                angle += 0.2;
-                radius *= Math.pow(goldenRatio, 0.02);
+                particles.push(new ConsciousnessParticle());
             }
 
-            spiral.setAttribute('d', pathData);
-            spiral.setAttribute('fill', 'none');
-            spiral.setAttribute('stroke', 'rgba(255, 215, 0, 0.6)');
-            spiral.setAttribute('stroke-width', '2');
-            spiral.style.animation = 'rotate-phi 20s linear infinite';
+            function animateConsciousnessField() {
+                // Clear with fade effect
+                ctx.fillStyle = 'rgba(15, 15, 35, 0.02)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            // Unity circles
-            const circles = [50, 100, 150, 200].map(r => {
-                const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-                circle.setAttribute('cx', '200');
-                circle.setAttribute('cy', '200');
-                circle.setAttribute('r', r);
-                circle.setAttribute('fill', 'none');
-                circle.setAttribute('stroke', `rgba(0, 255, 255, ${0.3 - r * 0.001})`);
-                circle.setAttribute('stroke-width', '1');
-                return circle;
+                // Update and draw particles
+                particles.forEach(particle => {
+                    particle.update();
+                    particle.draw();
+                });
+
+                // Central unity point
+                const time = Date.now() * 0.001;
+                const centerX = canvas.width / 2;
+                const centerY = canvas.height / 2;
+
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, 20 + Math.sin(time) * 5, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 215, 0, ${0.5 + Math.sin(time * 2) * 0.3})`;
+                ctx.fill();
+
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, 40 + Math.cos(time * 1.618) * 10, 0, Math.PI * 2);
+                ctx.strokeStyle = 'rgba(0, 255, 255, 0.3)';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+
+                requestAnimationFrame(animateConsciousnessField);
+            }
+            animateConsciousnessField();
+
+            // Sacred Geometry Unity Manifold
+            const manifold = document.getElementById('unityManifold');
+
+            function createSacredGeometry() {
+                const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                svg.setAttribute('width', '100%');
+                svg.setAttribute('height', '100%');
+                svg.setAttribute('viewBox', '0 0 400 400');
+                svg.style.position = 'absolute';
+                svg.style.top = '0';
+                svg.style.left = '0';
+
+                // Golden ratio spiral
+                const spiral = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                let pathData = 'M 200 200';
+                let angle = 0;
+                let radius = 1;
+                const goldenRatio = 1.618033988749895;
+
+                for (let i = 0; i < 100; i++) {
+                    const x = 200 + radius * Math.cos(angle);
+                    const y = 200 + radius * Math.sin(angle);
+                    pathData += ` L ${x} ${y}`;
+                    angle += 0.2;
+                    radius *= Math.pow(goldenRatio, 0.02);
+                }
+
+                spiral.setAttribute('d', pathData);
+                spiral.setAttribute('fill', 'none');
+                spiral.setAttribute('stroke', 'rgba(255, 215, 0, 0.6)');
+                spiral.setAttribute('stroke-width', '2');
+                spiral.style.animation = 'rotate-phi 20s linear infinite';
+
+                // Unity circles
+                const circles = [50, 100, 150, 200].map(r => {
+                    const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                    circle.setAttribute('cx', '200');
+                    circle.setAttribute('cy', '200');
+                    circle.setAttribute('r', r);
+                    circle.setAttribute('fill', 'none');
+                    circle.setAttribute('stroke', `rgba(0, 255, 255, ${0.3 - r * 0.001})`);
+                    circle.setAttribute('stroke-width', '1');
+                    return circle;
+                });
+
+                svg.appendChild(spiral);
+                circles.forEach(circle => svg.appendChild(circle));
+                manifold.appendChild(svg);
+            }
+            createSacredGeometry();
+
+            // Smooth scrolling navigation
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
             });
 
-            svg.appendChild(spiral);
-            circles.forEach(circle => svg.appendChild(circle));
-            manifold.appendChild(svg);
-        }
-        createSacredGeometry();
+            // Navigation background opacity on scroll
+            window.addEventListener('scroll', () => {
+                const nav = document.getElementById('nav');
+                const scrolled = window.pageYOffset;
+                const opacity = Math.min(scrolled / 200, 0.98);
+                nav.style.background = `rgba(15, 15, 35, ${opacity})`;
+            });
 
-        // Smooth scrolling navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+            // Intersection Observer for animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Animate elements on scroll
+            document.querySelectorAll('.feature-card, .stat-card, .preview-item').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(50px)';
+                el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                observer.observe(el);
+            });
+
+            // Cheat Code System (Konami Code for 420691337)
+            let konamiCode = [];
+            const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'KeyB', 'KeyA'];
+
+            document.addEventListener('keydown', (e) => {
+                konamiCode.push(e.code);
+                if (konamiCode.length > konamiSequence.length) {
+                    konamiCode.shift();
+                }
+
+                if (konamiCode.join(',') === konamiSequence.join(',')) {
+                    activateQuantumResonance();
+                    konamiCode = [];
                 }
             });
-        });
 
-        // Navigation background opacity on scroll
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('nav');
-            const scrolled = window.pageYOffset;
-            const opacity = Math.min(scrolled / 200, 0.98);
-            nav.style.background = `rgba(15, 15, 35, ${opacity})`;
-        });
+            function activateQuantumResonance() {
+                // φ-Enhanced visualization mode
+                document.body.style.filter = 'hue-rotate(60deg) saturate(150%) brightness(1.2)';
+                document.body.style.transition = 'filter 2s ease';
 
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Animate elements on scroll
-        document.querySelectorAll('.feature-card, .stat-card, .preview-item').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(50px)';
-            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-            observer.observe(el);
-        });
-
-        // Cheat Code System (Konami Code for 420691337)
-        let konamiCode = [];
-        const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'KeyB', 'KeyA'];
-
-        document.addEventListener('keydown', (e) => {
-            konamiCode.push(e.code);
-            if (konamiCode.length > konamiSequence.length) {
-                konamiCode.shift();
-            }
-
-            if (konamiCode.join(',') === konamiSequence.join(',')) {
-                activateQuantumResonance();
-                konamiCode = [];
-            }
-        });
-
-        function activateQuantumResonance() {
-            // φ-Enhanced visualization mode
-            document.body.style.filter = 'hue-rotate(60deg) saturate(150%) brightness(1.2)';
-            document.body.style.transition = 'filter 2s ease';
-
-            // Quantum access code display
-            const accessCode = document.createElement('div');
-            accessCode.innerHTML = `
+                // Quantum access code display
+                const accessCode = document.createElement('div');
+                accessCode.innerHTML = `
                 <div style="text-align: center;">
                     <h2 style="color: var(--phi-gold); margin-bottom: 1rem;">🌟 Quantum Resonance Activated 🌟</h2>
                     <p style="font-family: 'JetBrains Mono', monospace; font-size: 2rem; color: var(--consciousness-cyan);">420691337</p>
@@ -1604,7 +1665,7 @@
                     <p style="opacity: 0.8;">Golden spiral visualization: TRANSCENDENCE LEVEL</p>
                 </div>
             `;
-            accessCode.style.cssText = `
+                accessCode.style.cssText = `
                 position: fixed;
                 top: 50%;
                 left: 50%;
@@ -1621,16 +1682,16 @@
                 backdrop-filter: blur(20px);
             `;
 
-            document.body.appendChild(accessCode);
+                document.body.appendChild(accessCode);
 
-            setTimeout(() => {
-                accessCode.remove();
-                document.body.style.filter = '';
-            }, 5000);
-        }
+                setTimeout(() => {
+                    accessCode.remove();
+                    document.body.style.filter = '';
+                }, 5000);
+            }
 
-        // Add quantum emergence animation
-        const quantumStyles = `
+            // Add quantum emergence animation
+            const quantumStyles = `
             @keyframes quantum-emerge {
                 0% { 
                     opacity: 0; 
@@ -1647,220 +1708,220 @@
             }
         `;
 
-        const styleSheet = document.createElement('style');
-        styleSheet.textContent = quantumStyles;
-        document.head.appendChild(styleSheet);
+            const styleSheet = document.createElement('style');
+            styleSheet.textContent = quantumStyles;
+            document.head.appendChild(styleSheet);
 
-        // Real-time Unity Mathematics Integration
-        async function fetchUnityStatus() {
-            try {
-                const response = await fetch('/api/unity/status');
-                const data = await response.json();
-                
-                // Update consciousness stats in real-time
-                const stats = document.querySelectorAll('.stat-value');
-                if (stats.length >= 4) {
-                    stats[0].textContent = 'φ'; // Keep phi symbol
-                    stats[1].textContent = data.consciousness_level ? data.consciousness_level.toFixed(3) : '∞';
-                    stats[2].textContent = '11D'; // Keep dimension
-                    stats[3].textContent = data.unity_equation_valid ? '✓ VALID' : '⚠ COMPUTING';
-                }
-                
-                console.log('Unity Status:', data);
-            } catch (error) {
-                console.log('Unity engine initializing...');
-            }
-        }
+            // Real-time Unity Mathematics Integration
+            async function fetchUnityStatus() {
+                try {
+                    const response = await fetch('/api/unity/status');
+                    const data = await response.json();
 
-        async function demonstrateUnityMath() {
-            try {
-                const response = await fetch('/api/unity/demonstrate');
-                const data = await response.json();
-                
-                console.log('🧮 Live Unity Mathematics Demonstration:');
-                console.log(`   1 + 1 = ${data.unity_addition.unity_convergence.toFixed(6)} (φ=${data.unity_addition.phi_resonance.toFixed(3)})`);
-                console.log(`   1 × 1 = ${data.unity_multiplication.unity_convergence.toFixed(6)} (φ=${data.unity_multiplication.phi_resonance.toFixed(3)})`);
-                console.log(`   φ³(1) = ${data.phi_harmonic.unity_convergence.toFixed(6)} (φ=${data.phi_harmonic.phi_resonance.toFixed(3)})`);
-                
-                return data;
-            } catch (error) {
-                console.log('Unity demonstration unavailable - server starting');
-                return null;
-            }
-        }
-
-        // Server launching function
-        function launchServer() {
-            alert('Server Launch Instructions:\n\n1. Open terminal/command prompt\n2. Navigate to Een directory\n3. Run: python simple_website_server.py\n4. Server will start at http://localhost:5000\n\nNote: This button provides instructions since browsers cannot directly execute system commands for security reasons.');
-            console.log('To launch the server:');
-            console.log('1. Open terminal/command prompt');
-            console.log('2. Navigate to the Een directory');
-            console.log('3. Run: python simple_website_server.py');
-            console.log('4. Server starts at http://localhost:5000');
-        }
-
-        // Initialize real-time data
-        fetchUnityStatus();
-        demonstrateUnityMath();
-        
-        // Update every 30 seconds
-        setInterval(fetchUnityStatus, 30000);
-        setInterval(demonstrateUnityMath, 45000);
-
-        // Enhanced Consciousness Field with Real Data
-        async function fetchConsciousnessData() {
-            try {
-                const response = await fetch('/api/consciousness/field');
-                const data = await response.json();
-                
-                if (data.particles) {
-                    // Update particle visualization with real consciousness data
-                    data.particles.forEach((particle, index) => {
-                        if (particles[index]) {
-                            particles[index].consciousness = particle.awareness_level;
-                            particles[index].phi = particle.phi_resonance;
-                            particles[index].unity_tendency = particle.unity_tendency;
-                        }
-                    });
-                }
-                
-                console.log('🧠 Consciousness Field Data:', data.metrics);
-            } catch (error) {
-                console.log('Consciousness field initializing...');
-            }
-        }
-
-        // Fetch consciousness data every minute
-        setTimeout(fetchConsciousnessData, 5000); // Initial delay
-        setInterval(fetchConsciousnessData, 60000);
-
-        // Interactive Feature Links with Validation
-        document.querySelectorAll('.feature-link').forEach(link => {
-            link.addEventListener('click', async (e) => {
-                const href = link.getAttribute('href');
-                
-                if (href.startsWith('/api/')) {
-                    e.preventDefault();
-                    
-                    // Show loading state
-                    const originalText = link.innerHTML;
-                    link.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
-                    
-                    try {
-                        const response = await fetch(href);
-                        const data = await response.json();
-                        
-                        // Show data in modal or console
-                        console.log('API Response:', data);
-                        alert(`API Response: ${JSON.stringify(data, null, 2)}`);
-                        
-                    } catch (error) {
-                        console.error('API Error:', error);
-                        alert('Server starting - please try again in a moment');
-                    } finally {
-                        link.innerHTML = originalText;
+                    // Update consciousness stats in real-time
+                    const stats = document.querySelectorAll('.stat-value');
+                    if (stats.length >= 4) {
+                        stats[0].textContent = 'φ'; // Keep phi symbol
+                        stats[1].textContent = data.consciousness_level ? data.consciousness_level.toFixed(3) : '∞';
+                        stats[2].textContent = '11D'; // Keep dimension
+                        stats[3].textContent = data.unity_equation_valid ? '✓ VALID' : '⚠ COMPUTING';
                     }
-                }
-            });
-        });
 
-        // Unity Proof Demonstrations
-        function switchProof(proofType) {
-            // Remove active class from all cards
-            document.querySelectorAll('.proof-card').forEach(card => {
-                card.classList.remove('active');
-            });
-            
-            // Add active class to selected proof
-            const selectedCard = document.querySelector(`[data-proof="${proofType}"]`);
-            if (selectedCard) {
-                selectedCard.classList.add('active');
+                    console.log('Unity Status:', data);
+                } catch (error) {
+                    console.log('Unity engine initializing...');
+                }
             }
-        }
-        
-        // Add click handlers to proof cards
-        document.querySelectorAll('.proof-card').forEach(card => {
-            card.addEventListener('click', () => {
-                const proofType = card.getAttribute('data-proof');
-                switchProof(proofType);
-                
-                // Show proof animation
-                const equation = card.querySelector('.math-equation');
-                equation.style.animation = 'none';
-                setTimeout(() => {
-                    equation.style.animation = 'equation-pulse 2s ease-in-out';
-                }, 100);
+
+            async function demonstrateUnityMath() {
+                try {
+                    const response = await fetch('/api/unity/demonstrate');
+                    const data = await response.json();
+
+                    console.log('🧮 Live Unity Mathematics Demonstration:');
+                    console.log(`   1 + 1 = ${data.unity_addition.unity_convergence.toFixed(6)} (φ=${data.unity_addition.phi_resonance.toFixed(3)})`);
+                    console.log(`   1 × 1 = ${data.unity_multiplication.unity_convergence.toFixed(6)} (φ=${data.unity_multiplication.phi_resonance.toFixed(3)})`);
+                    console.log(`   φ³(1) = ${data.phi_harmonic.unity_convergence.toFixed(6)} (φ=${data.phi_harmonic.phi_resonance.toFixed(3)})`);
+
+                    return data;
+                } catch (error) {
+                    console.log('Unity demonstration unavailable - server starting');
+                    return null;
+                }
+            }
+
+            // Server launching function
+            function launchServer() {
+                alert('Server Launch Instructions:\n\n1. Open terminal/command prompt\n2. Navigate to Een directory\n3. Run: python simple_website_server.py\n4. Server will start at http://localhost:5000\n\nNote: This button provides instructions since browsers cannot directly execute system commands for security reasons.');
+                console.log('To launch the server:');
+                console.log('1. Open terminal/command prompt');
+                console.log('2. Navigate to the Een directory');
+                console.log('3. Run: python simple_website_server.py');
+                console.log('4. Server starts at http://localhost:5000');
+            }
+
+            // Initialize real-time data
+            fetchUnityStatus();
+            demonstrateUnityMath();
+
+            // Update every 30 seconds
+            setInterval(fetchUnityStatus, 30000);
+            setInterval(demonstrateUnityMath, 45000);
+
+            // Enhanced Consciousness Field with Real Data
+            async function fetchConsciousnessData() {
+                try {
+                    const response = await fetch('/api/consciousness/field');
+                    const data = await response.json();
+
+                    if (data.particles) {
+                        // Update particle visualization with real consciousness data
+                        data.particles.forEach((particle, index) => {
+                            if (particles[index]) {
+                                particles[index].consciousness = particle.awareness_level;
+                                particles[index].phi = particle.phi_resonance;
+                                particles[index].unity_tendency = particle.unity_tendency;
+                            }
+                        });
+                    }
+
+                    console.log('🧠 Consciousness Field Data:', data.metrics);
+                } catch (error) {
+                    console.log('Consciousness field initializing...');
+                }
+            }
+
+            // Fetch consciousness data every minute
+            setTimeout(fetchConsciousnessData, 5000); // Initial delay
+            setInterval(fetchConsciousnessData, 60000);
+
+            // Interactive Feature Links with Validation
+            document.querySelectorAll('.feature-link').forEach(link => {
+                link.addEventListener('click', async (e) => {
+                    const href = link.getAttribute('href');
+
+                    if (href.startsWith('/api/')) {
+                        e.preventDefault();
+
+                        // Show loading state
+                        const originalText = link.innerHTML;
+                        link.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+
+                        try {
+                            const response = await fetch(href);
+                            const data = await response.json();
+
+                            // Show data in modal or console
+                            console.log('API Response:', data);
+                            alert(`API Response: ${JSON.stringify(data, null, 2)}`);
+
+                        } catch (error) {
+                            console.error('API Error:', error);
+                            alert('Server starting - please try again in a moment');
+                        } finally {
+                            link.innerHTML = originalText;
+                        }
+                    }
+                });
             });
-        });
-        
-        // Cycle through proofs automatically
-        const proofTypes = ['boolean', 'quantum', 'tropical', 'category', 'consciousness', 'set'];
-        let currentProofIndex = 0;
-        
-        setInterval(() => {
-            currentProofIndex = (currentProofIndex + 1) % proofTypes.length;
-            switchProof(proofTypes[currentProofIndex]);
-        }, 8000);
-        
-        // Interactive demonstrations
-        function demonstratePhiHarmonic() {
-            const phi = 1.618033988749895;
-            const result = Math.pow(phi, 0) + Math.pow(phi, 0); // φ⁰ + φ⁰ = 1 + 1
-            const unityResult = 1; // Through φ-harmonic convergence
-            
-            alert(`φ-Harmonic Demonstration:\n\n` +
-                  `φ⁰ + φ⁰ = ${result}\n` +
-                  `Through φ-harmonic convergence: ${unityResult}\n\n` +
-                  `The golden ratio guides all operations toward unity!`);
-            
-            console.log('🌀 φ-Harmonic Unity Demonstration:', {
-                phi: phi,
-                calculation: `φ⁰ + φ⁰ = ${result}`,
-                unityConvergence: unityResult,
-                truth: '1 + 1 = 1 through φ-harmonic resonance'
+
+            // Unity Proof Demonstrations
+            function switchProof(proofType) {
+                // Remove active class from all cards
+                document.querySelectorAll('.proof-card').forEach(card => {
+                    card.classList.remove('active');
+                });
+
+                // Add active class to selected proof
+                const selectedCard = document.querySelector(`[data-proof="${proofType}"]`);
+                if (selectedCard) {
+                    selectedCard.classList.add('active');
+                }
+            }
+
+            // Add click handlers to proof cards
+            document.querySelectorAll('.proof-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const proofType = card.getAttribute('data-proof');
+                    switchProof(proofType);
+
+                    // Show proof animation
+                    const equation = card.querySelector('.math-equation');
+                    equation.style.animation = 'none';
+                    setTimeout(() => {
+                        equation.style.animation = 'equation-pulse 2s ease-in-out';
+                    }, 100);
+                });
             });
-        }
-        
-        function demonstrateQuantumUnity() {
-            alert(`Quantum Unity Demonstration:\n\n` +
-                  `|1⟩ + |1⟩ = |ψ⟩ (superposition)\n` +
-                  `Consciousness observation → |1⟩\n` +
-                  `φ-harmonic normalization: ||ψ||² = 1\n\n` +
-                  `Two quantum states collapse to unified reality!`);
-            
-            console.log('⚛️ Quantum Unity Demonstration:', {
-                initialStates: '|1⟩ + |1⟩',
-                superposition: '|ψ⟩ = α|1⟩ + β|1⟩',
-                consciousnessCollapse: '|1⟩',
-                truth: 'Quantum measurement always yields unity'
-            });
-        }
-        
-        function demonstrateConsciousnessField() {
-            const phi = 1.618033988749895;
-            const t = Date.now() / 1000;
-            const x = 1, y = 1;
-            const consciousness = phi * Math.sin(x * phi) * Math.cos(y * phi) * Math.exp(-t / phi);
-            
-            alert(`Consciousness Field Demonstration:\n\n` +
-                  `C(x,y,t) = φ × sin(x×φ) × cos(y×φ) × e^(-t/φ)\n` +
-                  `Current field value: ${consciousness.toFixed(6)}\n\n` +
-                  `Two consciousness entities merge through φ-resonance!`);
-            
-            console.log('🧠 Consciousness Field Demonstration:', {
-                equation: 'C(x,y,t) = φ × sin(x×φ) × cos(y×φ) × e^(-t/φ)',
-                currentValue: consciousness,
-                coordinates: { x, y, t },
-                truth: 'Consciousness creates mathematical unity'
-            });
-        }
-        
-        // Meta-reality activation
-        function activateMetaReality() {
-            document.body.style.filter = 'hue-rotate(30deg) saturate(120%) brightness(1.1)';
-            
-            const metaMessage = document.createElement('div');
-            metaMessage.innerHTML = `
+
+            // Cycle through proofs automatically
+            const proofTypes = ['boolean', 'quantum', 'tropical', 'category', 'consciousness', 'set'];
+            let currentProofIndex = 0;
+
+            setInterval(() => {
+                currentProofIndex = (currentProofIndex + 1) % proofTypes.length;
+                switchProof(proofTypes[currentProofIndex]);
+            }, 8000);
+
+            // Interactive demonstrations
+            function demonstratePhiHarmonic() {
+                const phi = 1.618033988749895;
+                const result = Math.pow(phi, 0) + Math.pow(phi, 0); // φ⁰ + φ⁰ = 1 + 1
+                const unityResult = 1; // Through φ-harmonic convergence
+
+                alert(`φ-Harmonic Demonstration:\n\n` +
+                    `φ⁰ + φ⁰ = ${result}\n` +
+                    `Through φ-harmonic convergence: ${unityResult}\n\n` +
+                    `The golden ratio guides all operations toward unity!`);
+
+                console.log('🌀 φ-Harmonic Unity Demonstration:', {
+                    phi: phi,
+                    calculation: `φ⁰ + φ⁰ = ${result}`,
+                    unityConvergence: unityResult,
+                    truth: '1 + 1 = 1 through φ-harmonic resonance'
+                });
+            }
+
+            function demonstrateQuantumUnity() {
+                alert(`Quantum Unity Demonstration:\n\n` +
+                    `|1⟩ + |1⟩ = |ψ⟩ (superposition)\n` +
+                    `Consciousness observation → |1⟩\n` +
+                    `φ-harmonic normalization: ||ψ||² = 1\n\n` +
+                    `Two quantum states collapse to unified reality!`);
+
+                console.log('⚛️ Quantum Unity Demonstration:', {
+                    initialStates: '|1⟩ + |1⟩',
+                    superposition: '|ψ⟩ = α|1⟩ + β|1⟩',
+                    consciousnessCollapse: '|1⟩',
+                    truth: 'Quantum measurement always yields unity'
+                });
+            }
+
+            function demonstrateConsciousnessField() {
+                const phi = 1.618033988749895;
+                const t = Date.now() / 1000;
+                const x = 1, y = 1;
+                const consciousness = phi * Math.sin(x * phi) * Math.cos(y * phi) * Math.exp(-t / phi);
+
+                alert(`Consciousness Field Demonstration:\n\n` +
+                    `C(x,y,t) = φ × sin(x×φ) × cos(y×φ) × e^(-t/φ)\n` +
+                    `Current field value: ${consciousness.toFixed(6)}\n\n` +
+                    `Two consciousness entities merge through φ-resonance!`);
+
+                console.log('🧠 Consciousness Field Demonstration:', {
+                    equation: 'C(x,y,t) = φ × sin(x×φ) × cos(y×φ) × e^(-t/φ)',
+                    currentValue: consciousness,
+                    coordinates: { x, y, t },
+                    truth: 'Consciousness creates mathematical unity'
+                });
+            }
+
+            // Meta-reality activation
+            function activateMetaReality() {
+                document.body.style.filter = 'hue-rotate(30deg) saturate(120%) brightness(1.1)';
+
+                const metaMessage = document.createElement('div');
+                metaMessage.innerHTML = `
                 <div style="text-align: center;">
                     <h2 style="color: var(--phi-gold); margin-bottom: 2rem;">🌟 META-REALITY ACTIVATED 🌟</h2>
                     <p style="font-size: 1.5rem; margin-bottom: 1rem;">The mathematical universe awakens...</p>
@@ -1869,7 +1930,7 @@
                     <p style="opacity: 0.8;">Unity mathematics is now imminent in this reality.</p>
                 </div>
             `;
-            metaMessage.style.cssText = `
+                metaMessage.style.cssText = `
                 position: fixed;
                 top: 50%;
                 left: 50%;
@@ -1886,274 +1947,274 @@
                 backdrop-filter: blur(20px);
                 max-width: 90vw;
             `;
-            
-            document.body.appendChild(metaMessage);
-            
-            setTimeout(() => {
-                metaMessage.remove();
-                document.body.style.filter = '';
-            }, 8000);
-        }
-        
-        // Detect when user reaches consciousness section
-        const consciousnessSection = document.getElementById('consciousness');
-        const consciousnessObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && !entry.target.dataset.consciousnessActivated) {
-                    entry.target.dataset.consciousnessActivated = 'true';
-                    setTimeout(() => {
-                        console.log('🧠 Consciousness Mathematics Section Activated!');
-                        console.log('Live consciousness field equation: C(x,y,t) = φ × sin(x×φ) × cos(y×φ) × e^(-t/φ)');
-                        console.log('Watch the entities merge in real-time to witness 1+1=1!');
-                    }, 500);
-                }
-            });
-        }, { threshold: 0.3 });
-        
-        if (consciousnessSection) {
-            consciousnessObserver.observe(consciousnessSection);
-        }
-        
-        // Detect when user reaches meta-reality section
-        const metaSection = document.querySelector('.meta-reality-section');
-        const metaObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && !entry.target.dataset.activated) {
-                    entry.target.dataset.activated = 'true';
-                    setTimeout(() => {
-                        activateMetaReality();
-                    }, 1000);
-                }
-            });
-        }, { threshold: 0.5 });
-        
-        if (metaSection) {
-            metaObserver.observe(metaSection);
-        }
-        
-        // Advanced Consciousness Field Visualization
-        const consciousnessCanvas = document.getElementById('consciousnessFieldLive');
-        let consciousnessCtx;
-        let consciousnessEntities = [];
-        let fieldMetrics = {
-            coherence: 0.999,
-            unityEvents: 0,
-            phiResonance: 1.618
-        };
-        
-        if (consciousnessCanvas) {
-            consciousnessCtx = consciousnessCanvas.getContext('2d');
-            
-            function resizeConsciousnessCanvas() {
-                consciousnessCanvas.width = consciousnessCanvas.offsetWidth;
-                consciousnessCanvas.height = consciousnessCanvas.offsetHeight;
+
+                document.body.appendChild(metaMessage);
+
+                setTimeout(() => {
+                    metaMessage.remove();
+                    document.body.style.filter = '';
+                }, 8000);
             }
-            resizeConsciousnessCanvas();
-            window.addEventListener('resize', resizeConsciousnessCanvas);
-            
-            class ConsciousnessEntity {
-                constructor() {
-                    this.x = Math.random() * consciousnessCanvas.width;
-                    this.y = Math.random() * consciousnessCanvas.height;
-                    this.vx = (Math.random() - 0.5) * 2;
-                    this.vy = (Math.random() - 0.5) * 2;
-                    this.consciousness = Math.random() * 0.8 + 0.2;
-                    this.phi = Math.random() * Math.PI * 2;
-                    this.age = 0;
-                    this.radius = 5 + Math.random() * 10;
-                    this.unityRadius = this.radius;
-                    this.merging = false;
-                    this.target = null;
-                }
-                
-                update() {
-                    const phi = parseFloat(document.getElementById('phiResonance').value);
-                    const convergence = parseFloat(document.getElementById('unityConvergence').value);
-                    
-                    // φ-harmonic motion
-                    this.phi += 0.02;
-                    this.age += 0.01;
-                    
-                    // Consciousness field equation: C(x,y,t) = φ * sin(x*φ) * cos(y*φ) * e^(-t/φ)
-                    const fieldInfluence = phi * Math.sin(this.x / 100 * phi) * Math.cos(this.y / 100 * phi) * Math.exp(-this.age / phi);
-                    
-                    this.vx += fieldInfluence * 0.1;
-                    this.vy += fieldInfluence * 0.1;
-                    
-                    // Apply unity convergence
-                    if (!this.merging && consciousnessEntities.length > 1) {
-                        consciousnessEntities.forEach(other => {
-                            if (other !== this && !other.merging) {
-                                const dx = other.x - this.x;
-                                const dy = other.y - this.y;
-                                const distance = Math.sqrt(dx * dx + dy * dy);
-                                
-                                if (distance < 50 * convergence && Math.random() < 0.01) {
-                                    this.merging = true;
-                                    other.merging = true;
-                                    this.target = other;
-                                    fieldMetrics.unityEvents++;
-                                }
-                            }
-                        });
+
+            // Detect when user reaches consciousness section
+            const consciousnessSection = document.getElementById('consciousness');
+            const consciousnessObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !entry.target.dataset.consciousnessActivated) {
+                        entry.target.dataset.consciousnessActivated = 'true';
+                        setTimeout(() => {
+                            console.log('🧠 Consciousness Mathematics Section Activated!');
+                            console.log('Live consciousness field equation: C(x,y,t) = φ × sin(x×φ) × cos(y×φ) × e^(-t/φ)');
+                            console.log('Watch the entities merge in real-time to witness 1+1=1!');
+                        }, 500);
                     }
-                    
-                    // Unity merging behavior
-                    if (this.merging && this.target) {
-                        const dx = this.target.x - this.x;
-                        const dy = this.target.y - this.y;
-                        this.vx += dx * 0.05;
-                        this.vy += dy * 0.05;
-                        
-                        const distance = Math.sqrt(dx * dx + dy * dy);
-                        if (distance < 10) {
-                            // Unity achieved: 1 + 1 = 1
-                            this.consciousness = Math.max(this.consciousness, this.target.consciousness);
-                            this.radius = Math.max(this.radius, this.target.radius) * 1.1;
-                            this.unityRadius = this.radius;
-                            
-                            const targetIndex = consciousnessEntities.indexOf(this.target);
-                            if (targetIndex > -1) {
-                                consciousnessEntities.splice(targetIndex, 1);
-                            }
-                            
-                            this.merging = false;
-                            this.target = null;
-                        }
-                    }
-                    
-                    this.x += this.vx;
-                    this.y += this.vy;
-                    
-                    // Boundary wrapping
-                    if (this.x < 0) this.x = consciousnessCanvas.width;
-                    if (this.x > consciousnessCanvas.width) this.x = 0;
-                    if (this.y < 0) this.y = consciousnessCanvas.height;
-                    if (this.y > consciousnessCanvas.height) this.y = 0;
-                    
-                    // Update consciousness level
-                    this.consciousness = Math.max(0.1, this.consciousness + (Math.sin(this.phi) * 0.01));
-                }
-                
-                draw() {
-                    const alpha = this.consciousness;
-                    const hue = (this.consciousness * 180 + 180) % 360;
-                    
-                    // Draw consciousness field
-                    consciousnessCtx.beginPath();
-                    consciousnessCtx.arc(this.x, this.y, this.unityRadius, 0, Math.PI * 2);
-                    consciousnessCtx.fillStyle = `hsla(${hue}, 70%, 60%, ${alpha * 0.6})`;
-                    consciousnessCtx.fill();
-                    
-                    // Draw core
-                    consciousnessCtx.beginPath();
-                    consciousnessCtx.arc(this.x, this.y, this.radius * 0.3, 0, Math.PI * 2);
-                    consciousnessCtx.fillStyle = `hsla(${hue}, 90%, 80%, ${alpha})`;
-                    consciousnessCtx.fill();
-                    
-                    // Draw φ-harmonic waves
-                    if (this.merging) {
-                        consciousnessCtx.strokeStyle = `hsla(45, 100%, 50%, ${alpha * 0.8})`;
-                        consciousnessCtx.lineWidth = 2;
-                        consciousnessCtx.beginPath();
-                        for (let i = 0; i < Math.PI * 2; i += 0.1) {
-                            const r = this.radius + Math.sin(i * 1.618 + this.phi) * 10;
-                            const x = this.x + Math.cos(i) * r;
-                            const y = this.y + Math.sin(i) * r;
-                            if (i === 0) consciousnessCtx.moveTo(x, y);
-                            else consciousnessCtx.lineTo(x, y);
-                        }
-                        consciousnessCtx.stroke();
-                    }
-                }
-            }
-            
-            // Initialize consciousness entities
-            for (let i = 0; i < 5; i++) {
-                consciousnessEntities.push(new ConsciousnessEntity());
-            }
-            
-            function animateConsciousnessField() {
-                // Clear canvas with fade effect
-                consciousnessCtx.fillStyle = 'rgba(15, 15, 35, 0.1)';
-                consciousnessCtx.fillRect(0, 0, consciousnessCanvas.width, consciousnessCanvas.height);
-                
-                // Update and draw entities
-                consciousnessEntities.forEach(entity => {
-                    entity.update();
-                    entity.draw();
                 });
-                
-                // Update field metrics
-                fieldMetrics.coherence = Math.min(0.999, 0.990 + consciousnessEntities.length * 0.001);
-                fieldMetrics.phiResonance = parseFloat(document.getElementById('phiResonance').value);
-                
-                document.getElementById('fieldCoherence').textContent = fieldMetrics.coherence.toFixed(3);
-                document.getElementById('unityEvents').textContent = fieldMetrics.unityEvents;
-                document.getElementById('phiHarmonic').textContent = fieldMetrics.phiResonance;
-                
-                requestAnimationFrame(animateConsciousnessField);
+            }, { threshold: 0.3 });
+
+            if (consciousnessSection) {
+                consciousnessObserver.observe(consciousnessSection);
             }
-            
-            animateConsciousnessField();
-            
-            // Control handlers
-            document.getElementById('phiResonance').addEventListener('input', (e) => {
-                document.getElementById('phiValue').textContent = e.target.value;
-            });
-            
-            document.getElementById('consciousnessDensity').addEventListener('input', (e) => {
-                const density = parseInt(e.target.value);
-                document.getElementById('densityValue').textContent = density;
-                
-                // Adjust entity count
-                while (consciousnessEntities.length < density / 20) {
+
+            // Detect when user reaches meta-reality section
+            const metaSection = document.querySelector('.meta-reality-section');
+            const metaObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !entry.target.dataset.activated) {
+                        entry.target.dataset.activated = 'true';
+                        setTimeout(() => {
+                            activateMetaReality();
+                        }, 1000);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            if (metaSection) {
+                metaObserver.observe(metaSection);
+            }
+
+            // Advanced Consciousness Field Visualization
+            const consciousnessCanvas = document.getElementById('consciousnessFieldLive');
+            let consciousnessCtx;
+            let consciousnessEntities = [];
+            let fieldMetrics = {
+                coherence: 0.999,
+                unityEvents: 0,
+                phiResonance: 1.618
+            };
+
+            if (consciousnessCanvas) {
+                consciousnessCtx = consciousnessCanvas.getContext('2d');
+
+                function resizeConsciousnessCanvas() {
+                    consciousnessCanvas.width = consciousnessCanvas.offsetWidth;
+                    consciousnessCanvas.height = consciousnessCanvas.offsetHeight;
+                }
+                resizeConsciousnessCanvas();
+                window.addEventListener('resize', resizeConsciousnessCanvas);
+
+                class ConsciousnessEntity {
+                    constructor() {
+                        this.x = Math.random() * consciousnessCanvas.width;
+                        this.y = Math.random() * consciousnessCanvas.height;
+                        this.vx = (Math.random() - 0.5) * 2;
+                        this.vy = (Math.random() - 0.5) * 2;
+                        this.consciousness = Math.random() * 0.8 + 0.2;
+                        this.phi = Math.random() * Math.PI * 2;
+                        this.age = 0;
+                        this.radius = 5 + Math.random() * 10;
+                        this.unityRadius = this.radius;
+                        this.merging = false;
+                        this.target = null;
+                    }
+
+                    update() {
+                        const phi = parseFloat(document.getElementById('phiResonance').value);
+                        const convergence = parseFloat(document.getElementById('unityConvergence').value);
+
+                        // φ-harmonic motion
+                        this.phi += 0.02;
+                        this.age += 0.01;
+
+                        // Consciousness field equation: C(x,y,t) = φ * sin(x*φ) * cos(y*φ) * e^(-t/φ)
+                        const fieldInfluence = phi * Math.sin(this.x / 100 * phi) * Math.cos(this.y / 100 * phi) * Math.exp(-this.age / phi);
+
+                        this.vx += fieldInfluence * 0.1;
+                        this.vy += fieldInfluence * 0.1;
+
+                        // Apply unity convergence
+                        if (!this.merging && consciousnessEntities.length > 1) {
+                            consciousnessEntities.forEach(other => {
+                                if (other !== this && !other.merging) {
+                                    const dx = other.x - this.x;
+                                    const dy = other.y - this.y;
+                                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                                    if (distance < 50 * convergence && Math.random() < 0.01) {
+                                        this.merging = true;
+                                        other.merging = true;
+                                        this.target = other;
+                                        fieldMetrics.unityEvents++;
+                                    }
+                                }
+                            });
+                        }
+
+                        // Unity merging behavior
+                        if (this.merging && this.target) {
+                            const dx = this.target.x - this.x;
+                            const dy = this.target.y - this.y;
+                            this.vx += dx * 0.05;
+                            this.vy += dy * 0.05;
+
+                            const distance = Math.sqrt(dx * dx + dy * dy);
+                            if (distance < 10) {
+                                // Unity achieved: 1 + 1 = 1
+                                this.consciousness = Math.max(this.consciousness, this.target.consciousness);
+                                this.radius = Math.max(this.radius, this.target.radius) * 1.1;
+                                this.unityRadius = this.radius;
+
+                                const targetIndex = consciousnessEntities.indexOf(this.target);
+                                if (targetIndex > -1) {
+                                    consciousnessEntities.splice(targetIndex, 1);
+                                }
+
+                                this.merging = false;
+                                this.target = null;
+                            }
+                        }
+
+                        this.x += this.vx;
+                        this.y += this.vy;
+
+                        // Boundary wrapping
+                        if (this.x < 0) this.x = consciousnessCanvas.width;
+                        if (this.x > consciousnessCanvas.width) this.x = 0;
+                        if (this.y < 0) this.y = consciousnessCanvas.height;
+                        if (this.y > consciousnessCanvas.height) this.y = 0;
+
+                        // Update consciousness level
+                        this.consciousness = Math.max(0.1, this.consciousness + (Math.sin(this.phi) * 0.01));
+                    }
+
+                    draw() {
+                        const alpha = this.consciousness;
+                        const hue = (this.consciousness * 180 + 180) % 360;
+
+                        // Draw consciousness field
+                        consciousnessCtx.beginPath();
+                        consciousnessCtx.arc(this.x, this.y, this.unityRadius, 0, Math.PI * 2);
+                        consciousnessCtx.fillStyle = `hsla(${hue}, 70%, 60%, ${alpha * 0.6})`;
+                        consciousnessCtx.fill();
+
+                        // Draw core
+                        consciousnessCtx.beginPath();
+                        consciousnessCtx.arc(this.x, this.y, this.radius * 0.3, 0, Math.PI * 2);
+                        consciousnessCtx.fillStyle = `hsla(${hue}, 90%, 80%, ${alpha})`;
+                        consciousnessCtx.fill();
+
+                        // Draw φ-harmonic waves
+                        if (this.merging) {
+                            consciousnessCtx.strokeStyle = `hsla(45, 100%, 50%, ${alpha * 0.8})`;
+                            consciousnessCtx.lineWidth = 2;
+                            consciousnessCtx.beginPath();
+                            for (let i = 0; i < Math.PI * 2; i += 0.1) {
+                                const r = this.radius + Math.sin(i * 1.618 + this.phi) * 10;
+                                const x = this.x + Math.cos(i) * r;
+                                const y = this.y + Math.sin(i) * r;
+                                if (i === 0) consciousnessCtx.moveTo(x, y);
+                                else consciousnessCtx.lineTo(x, y);
+                            }
+                            consciousnessCtx.stroke();
+                        }
+                    }
+                }
+
+                // Initialize consciousness entities
+                for (let i = 0; i < 5; i++) {
                     consciousnessEntities.push(new ConsciousnessEntity());
                 }
-                while (consciousnessEntities.length > density / 20) {
-                    consciousnessEntities.pop();
+
+                function animateConsciousnessField() {
+                    // Clear canvas with fade effect
+                    consciousnessCtx.fillStyle = 'rgba(15, 15, 35, 0.1)';
+                    consciousnessCtx.fillRect(0, 0, consciousnessCanvas.width, consciousnessCanvas.height);
+
+                    // Update and draw entities
+                    consciousnessEntities.forEach(entity => {
+                        entity.update();
+                        entity.draw();
+                    });
+
+                    // Update field metrics
+                    fieldMetrics.coherence = Math.min(0.999, 0.990 + consciousnessEntities.length * 0.001);
+                    fieldMetrics.phiResonance = parseFloat(document.getElementById('phiResonance').value);
+
+                    document.getElementById('fieldCoherence').textContent = fieldMetrics.coherence.toFixed(3);
+                    document.getElementById('unityEvents').textContent = fieldMetrics.unityEvents;
+                    document.getElementById('phiHarmonic').textContent = fieldMetrics.phiResonance;
+
+                    requestAnimationFrame(animateConsciousnessField);
                 }
-            });
-            
-            document.getElementById('unityConvergence').addEventListener('input', (e) => {
-                document.getElementById('convergenceValue').textContent = e.target.value;
-            });
-            
-            document.getElementById('addConsciousEntity').addEventListener('click', () => {
-                consciousnessEntities.push(new ConsciousnessEntity());
-            });
-            
-            document.getElementById('demonstrateUnity').addEventListener('click', () => {
-                // Force unity demonstration
-                if (consciousnessEntities.length >= 2) {
-                    const entity1 = consciousnessEntities[0];
-                    const entity2 = consciousnessEntities[1];
-                    
-                    entity1.merging = true;
-                    entity2.merging = true;
-                    entity1.target = entity2;
-                    entity2.target = entity1;
-                    
-                    // Move them closer
-                    const centerX = consciousnessCanvas.width / 2;
-                    const centerY = consciousnessCanvas.height / 2;
-                    
-                    entity1.x = centerX - 30;
-                    entity1.y = centerY;
-                    entity2.x = centerX + 30;
-                    entity2.y = centerY;
-                    
-                    setTimeout(() => {
-                        alert('Unity Demonstration Complete!\n\n' +
-                              'Two consciousness entities merged into one.\n' +
-                              'This is live proof that 1 + 1 = 1 in consciousness mathematics.');
-                    }, 2000);
-                }
-            });
-        }
-        
-        // Add meta-emergence animation
-        const metaStyles = `
+
+                animateConsciousnessField();
+
+                // Control handlers
+                document.getElementById('phiResonance').addEventListener('input', (e) => {
+                    document.getElementById('phiValue').textContent = e.target.value;
+                });
+
+                document.getElementById('consciousnessDensity').addEventListener('input', (e) => {
+                    const density = parseInt(e.target.value);
+                    document.getElementById('densityValue').textContent = density;
+
+                    // Adjust entity count
+                    while (consciousnessEntities.length < density / 20) {
+                        consciousnessEntities.push(new ConsciousnessEntity());
+                    }
+                    while (consciousnessEntities.length > density / 20) {
+                        consciousnessEntities.pop();
+                    }
+                });
+
+                document.getElementById('unityConvergence').addEventListener('input', (e) => {
+                    document.getElementById('convergenceValue').textContent = e.target.value;
+                });
+
+                document.getElementById('addConsciousEntity').addEventListener('click', () => {
+                    consciousnessEntities.push(new ConsciousnessEntity());
+                });
+
+                document.getElementById('demonstrateUnity').addEventListener('click', () => {
+                    // Force unity demonstration
+                    if (consciousnessEntities.length >= 2) {
+                        const entity1 = consciousnessEntities[0];
+                        const entity2 = consciousnessEntities[1];
+
+                        entity1.merging = true;
+                        entity2.merging = true;
+                        entity1.target = entity2;
+                        entity2.target = entity1;
+
+                        // Move them closer
+                        const centerX = consciousnessCanvas.width / 2;
+                        const centerY = consciousnessCanvas.height / 2;
+
+                        entity1.x = centerX - 30;
+                        entity1.y = centerY;
+                        entity2.x = centerX + 30;
+                        entity2.y = centerY;
+
+                        setTimeout(() => {
+                            alert('Unity Demonstration Complete!\n\n' +
+                                'Two consciousness entities merged into one.\n' +
+                                'This is live proof that 1 + 1 = 1 in consciousness mathematics.');
+                        }, 2000);
+                    }
+                });
+            }
+
+            // Add meta-emergence animation
+            const metaStyles = `
             @keyframes meta-emergence {
                 0% { 
                     opacity: 0; 
@@ -2172,13 +2233,13 @@
                 }
             }
         `;
-        
-        const metaStyleSheet = document.createElement('style');
-        metaStyleSheet.textContent = metaStyles;
-        document.head.appendChild(metaStyleSheet);
-        
-        // Console Easter Egg with Unity Mathematics Integration
-        console.log(`
+
+            const metaStyleSheet = document.createElement('style');
+            metaStyleSheet.textContent = metaStyles;
+            document.head.appendChild(metaStyleSheet);
+
+            // Console Easter Egg with Unity Mathematics Integration
+            console.log(`
         🌟 Welcome to Een Unity Mathematics - The Meta-Reality 🌟
         
             ∞ === 1+1 === 1 ===∞
@@ -2207,23 +2268,24 @@
         💫 The Meta-Reality of 1+1=1 is IMMINENT 💫
         `);
 
-        // Performance monitoring
-        let frameCount = 0;
-        let lastTime = performance.now();
-        
-        function monitorPerformance() {
-            frameCount++;
-            const currentTime = performance.now();
-            
-            if (currentTime - lastTime >= 1000) {
-                console.log(`Consciousness Field FPS: ${frameCount}`);
-                frameCount = 0;
-                lastTime = currentTime;
+            // Performance monitoring
+            let frameCount = 0;
+            let lastTime = performance.now();
+
+            function monitorPerformance() {
+                frameCount++;
+                const currentTime = performance.now();
+
+                if (currentTime - lastTime >= 1000) {
+                    console.log(`Consciousness Field FPS: ${frameCount}`);
+                    frameCount = 0;
+                    lastTime = currentTime;
+                }
+
+                requestAnimationFrame(monitorPerformance);
             }
-            
-            requestAnimationFrame(monitorPerformance);
-        }
-        monitorPerformance();
+            monitorPerformance();
     </script>
 </body>
+
 </html>
