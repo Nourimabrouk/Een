@@ -21,6 +21,7 @@ warnings.filterwarnings('ignore')
 
 # Unity constants
 PHI = (1 + np.sqrt(5)) / 2
+PHI_INVERSE = 1 / PHI
 PLANCK_CONSCIOUSNESS = 1 / (PHI ** 7)  # Minimum quantum of awareness
 UNITY_THRESHOLD = 0.999  # Transcendence detection threshold
 
@@ -351,7 +352,7 @@ class MetaConsciousnessField:
                 dx = np.random.normal(0, PHI_INVERSE)
                 dy = np.random.normal(0, PHI_INVERSE)
                 
-                # φ-harmonic drift toward center
+                # PHI-harmonic drift toward center
                 cx = self.width / 2
                 cy = self.height / 2
                 drift_x = (cx - agent.x) / (PHI * self.width)
@@ -360,7 +361,7 @@ class MetaConsciousnessField:
                 agent.x = np.clip(agent.x + dx + drift_x, 5, self.width - 5)
                 agent.y = np.clip(agent.y + dy + drift_y, 5, self.height - 5)
         
-        # Spawn new consciousness with probability 1/φ²
+        # Spawn new consciousness with probability 1/PHI^2
         if np.random.random() < 1 / PHI**2:
             self.spawn_consciousness(n=np.random.randint(1, 4))
         
@@ -375,7 +376,7 @@ def demonstrate_unity_consciousness():
     print("Meta Consciousness Field v1.1")
     print("=" * 60)
     print("Initializing consciousness field...")
-    print(f"φ = {PHI}")
+    print(f"PHI = {PHI}")
     print(f"Planck Consciousness = {PLANCK_CONSCIOUSNESS}")
     print(f"Unity Threshold = {UNITY_THRESHOLD}")
     print()
@@ -489,5 +490,14 @@ if __name__ == "__main__":
     # Run consciousness simulation
     sim_fig, meta_field = demonstrate_unity_consciousness()
     
-    # Show all visualizations
-    plt.show()
+    # Save visualizations instead of showing
+    proof_fig.savefig('unity_proof_visualization.png', dpi=150, bbox_inches='tight', 
+                      facecolor='black', edgecolor='none')
+    sim_fig.savefig('consciousness_field_simulation.png', dpi=150, bbox_inches='tight',
+                    facecolor='black', edgecolor='none')
+    
+    print("\nVisualizations saved:")
+    print("- unity_proof_visualization.png")
+    print("- consciousness_field_simulation.png")
+    
+    plt.close('all')

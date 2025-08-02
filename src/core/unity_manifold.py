@@ -261,10 +261,10 @@ if __name__ == "__main__":
     # Demonstrate unity operation
     print("Unity Mathematics v1.1")
     print("=" * 50)
-    print(f"φ = {PHI:.10f}")
-    print(f"1 ⊕ 1 = {manifold.unity_operation(1, 1):.10f}")
-    print(f"0.5 ⊕ 0.5 = {manifold.unity_operation(0.5, 0.5):.10f}")
-    print(f"φ⁻¹ ⊕ φ⁻¹ = {manifold.unity_operation(PHI_INVERSE, PHI_INVERSE):.10f}")
+    print(f"PHI = {PHI:.10f}")
+    print(f"1 + 1 = {manifold.unity_operation(1, 1):.10f}")
+    print(f"0.5 + 0.5 = {manifold.unity_operation(0.5, 0.5):.10f}")
+    print(f"PHI^-1 + PHI^-1 = {manifold.unity_operation(PHI_INVERSE, PHI_INVERSE):.10f}")
     
     # Create visualizations
     fig1 = manifold.visualize_unity_convergence()
