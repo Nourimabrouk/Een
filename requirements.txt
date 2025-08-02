@@ -1,122 +1,189 @@
-# Core dependencies
-numpy>=1.24.0
-scipy>=1.10.0
-pandas>=2.0.0
-matplotlib>=3.7.0
-seaborn>=0.12.0
-plotly>=5.15.0
-streamlit>=1.25.0
+###############################################################################
+# Foundations ─ numerical, data‑wrangling, visualisation
+###############################################################################
+numpy>=1.26.4
+scipy>=1.13.0
+pandas>=2.3.0
+matplotlib>=3.9.0
+seaborn>=0.13.0
+plotly>=6.0.0
+bokeh>=3.4.0
+altair>=6.0.0
+holoviews>=1.22.0
+datashader>=0.19.0
+dash>=2.13.0
+dash-bootstrap-components>=1.5.0
+graphviz>=0.21.0
+geopandas>=1.2.0
+folium>=0.22.0
+opencv-python>=4.13.0.0
+wordcloud>=1.9.3
+pyvista>=0.43.3
+mayavi>=4.8.2
 
-# Machine Learning & AI
-torch>=2.0.0
-transformers>=4.30.0
-scikit-learn>=1.3.0
-tensorflow>=2.13.0
-jax>=0.4.0
-jaxlib>=0.4.0
+###############################################################################
+# Core ML / DL / RL stacks
+###############################################################################
+torch>=2.3.0           # Win wheels via PyPI
+torchvision>=0.20.0
+torchaudio>=2.3.0
+tensorflow>=2.16.1
+jax>=0.4.28
+jaxlib>=0.4.28
+flax>=0.8.2
+optax>=0.2.3
+keras>=3.0.3
+transformers>=4.44.0
+sentencepiece>=0.2.2
+sentence-transformers>=3.2.0
+scikit-learn>=1.5.0
+xgboost>=2.0.3
+lightgbm>=4.3.0
+einops>=0.8.0
+bitsandbytes>=0.43.0   # CUDA‑aware, binary wheels for Win
+flash-attention>=2.5.6
+accelerate>=1.12.0
+pytorch-lightning>=2.9.0
+deepspeed>=0.19.0
+optuna>=4.7.0
+mlflow>=3.3.1
+wandb>=0.23.0
 
-# Reinforcement & Meta Learning
-gymnasium>=1.2.0
-stable-baselines3>=2.7.0
-ray[rllib]>=2.48.0
-learn2learn>=0.2.0
-higher>=0.2.1
-pytorch-lightning>=2.5.2
-deepspeed>=0.17.4
-accelerate>=1.9.0
-optuna>=4.4.0
-wandb>=0.21.0
-mlflow>=3.1.4
+# Reinforcement & meta‑learning
+gymnasium>=1.4.0
+pettingzoo>=1.25.0
+supersuit>=3.9.0
+stable-baselines3>=3.3.0
+ray[rllib]>=2.60.0
+learn2learn>=0.3.0
+higher>=0.3.1
+mushroom_rl>=0.9.1
 
-# Bayesian Statistics
-pymc>=5.0.0
-arviz>=0.15.0
-bambi>=0.11.0
+###############################################################################
+# Probabilistic programming, econometrics & causal inference
+###############################################################################
+pymc>=6.4.0
+arviz>=0.18.0
+bambi>=0.13.0
+statsmodels>=0.15.0
+linearmodels>=6.2
+econml>=0.17.0
+arch>=6.4.0
+pmdarima>=3.0.0
+patsy>=0.5.6
+pyro-ppl>=1.9.0
+pingouin>=0.5.4
+semopy>=2.4.2
 
-# Econometrics & Causal Inference
-statsmodels>=0.14.5
-linearmodels>=6.1
-econml>=0.16.0
-
-# Consciousness & Unity Systems
+###############################################################################
+# Symbolic math, graph & logic toolsets
+###############################################################################
 sympy>=1.12.0
-networkx>=3.1.0
-igraph>=0.10.0
+networkx>=3.3.0
+igraph>=0.11.4
+pygraphviz>=1.12
+rdflib>=7.2.0
+logpy>=1.0.1
+pydatalog>=1.8.7
+z3-solver>=4.13.0
+pykeen>=1.12.4
+problog>=2.2.4
 
-# Meta Mathematics & Philosophy
-logpy>=1.0.0
-rdflib>=7.1.4
-nltk>=3.9.1
-spacy>=3.8.7
+###############################################################################
+# Natural‑language & knowledge‑graphs
+###############################################################################
+nltk>=3.10.0
+spacy>=3.9.4
+gensim>=4.4.0
+huggingface-hub>=0.23.0
+bertopic>=0.16.0
 
-# Visualization & UI
-dash>=2.11.0
-dash-bootstrap-components>=1.4.0
-bokeh>=3.2.0
-altair>=5.0.0
-holoviews>=1.21.0
-datashader>=0.18.1
-graphviz>=0.21
-tensorboard>=2.20.0
-geopandas>=1.1.1
-folium>=0.20.0
-opencv-python>=4.12.0.88
+###############################################################################
+# OpenAI / Anthropic / Azure / Vertex AI – LLM, embeddings, moderation
+###############################################################################
+openai>=1.32.0
+tiktoken>=0.9.1
+anthropic>=0.21.4
+azure-ai-ml>=1.15.0
+azure-identity>=1.16.0
+google-cloud-aiplatform>=1.43.0   # Vertex AI Python SDK
+google-cloud-bigquery>=3.15.0
+google-auth>=2.28.0
+google-auth-oauthlib>=1.3.0
+google-auth-httplib2>=0.2.1
+vertexai>=0.0.4                    # thin helper over aiplatform
 
-# Development & Testing
-pytest>=7.4.0
-pytest-cov>=4.1.0
-black>=23.7.0
-flake8>=6.0.0
-mypy>=1.5.0
+###############################################################################
+# Web, API & services
+###############################################################################
+fastapi>=0.111.0
+uvicorn[standard]>=0.29.0
+flask>=3.1.2
+sanic>=23.12.2
+django>=5.2.5
+djangorestframework>=3.15.1
+aiohttp>=3.9.6
+httpx>=0.27.0
+requests>=2.32.3
+python-multipart>=0.0.9
+email-validator>=2.1.1
+bcrypt>=4.2.0
+PyJWT>=2.9.0
+gunicorn>=22.0.0
+hypercorn>=0.16.0
+starlette>=0.37.2
+jinja2>=3.1.4
+pydantic>=2.8.0
+passlib>=1.7.4
+whitenoise>=6.7.0
+gradio>=5.46.0
+websockets>=12.0
 
-# API & Web Services
-fastapi>=0.100.0
-uvicorn>=0.23.0
-requests>=2.31.0
-aiohttp>=3.8.0
-python-multipart>=0.0.6
-email-validator>=2.0.0
-bcrypt>=4.0.1
-PyJWT>=2.8.0
-django>=5.2.4
-flask>=3.1.1
-sanic>=25.3.0
-gradio>=5.39.0
+###############################################################################
+# Databases & storage
+###############################################################################
+sqlalchemy>=2.0.30
+redis>=5.0.4
+pymongo>=4.7.2
+boto3>=1.34.0
+azure-storage-blob>=12.19.0
+google-cloud-storage>=2.13.0
+docker>=7.1.0
 
-# Database & Storage
-sqlalchemy>=2.0.0
-redis>=4.6.0
-pymongo>=4.4.0
+###############################################################################
+# Dev‑tools, testing, formatting
+###############################################################################
+pytest>=8.0.0
+pytest-cov>=5.0.0
+black>=24.3.0
+isort>=5.13.2
+flake8>=7.0.0
+mypy>=1.10.0
+pre-commit>=3.6.2
+click>=8.1.8
+rich>=13.7.0
+tqdm>=4.66.4
+loguru>=0.7.2
+python-dotenv>=1.0.1
 
-# Utilities
-python-dotenv>=1.0.0
-click>=8.1.0
-rich>=13.5.0
-tqdm>=4.65.0
-loguru>=0.7.0
+###############################################################################
+# Jupyter & interactive computing
+###############################################################################
+jupyter>=1.1.0
+notebook>=7.2.0
+ipykernel>=6.29.0
+ipywidgets>=8.1.2
+tensorboard>=2.22.2
 
-# Jupyter & Interactive
-jupyter>=1.0.0
-ipywidgets>=8.0.0
+###############################################################################
+# Quantum & specialised
+###############################################################################
+qiskit>=1.2.0
+cirq>=1.3.0
 
-# Quantum Computing (for quantum unity)
-qiskit>=0.44.0
-cirq>=1.2.0
-
-# MCP (Model Context Protocol)
-mcp>=1.0.0
-
-# Docker & Containerization
-docker>=6.1.0
-
-# Cloud & Deployment
-boto3>=1.28.0
-google-cloud-storage>=2.10.0
-azure-storage-blob>=12.17.0
-
-# Google Vertex AI
-google-cloud-aiplatform>=1.38.0
-google-cloud-bigquery>=3.13.0
-google-auth>=2.25.0
-google-auth-oauthlib>=1.2.0
-google-auth-httplib2>=0.2.0
+###############################################################################
+# Misc / protocol helpers
+###############################################################################
+mcp>=1.1.0        # Model‑Context‑Protocol reference impl
+typing-extensions>=4.12.0
+tenacity>=8.3.0
