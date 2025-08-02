@@ -119,15 +119,15 @@ class MetaConsciousnessField:
         
         # Boolean Algebra: The Logic of Unity
         results["mathematical_demonstrations"]["boolean"] = {
-            "operation": "OR (∨)",
-            "calculation": f"{int(a)} ∨ {int(b)} = {int(a or b)}",
+            "operation": "OR (v)",
+            "calculation": f"{int(a)} v {int(b)} = {int(a or b)}",
             "principle": "In Boolean algebra, truth combined with truth remains truth"
         }
         
         # Set Theory: The Container of Oneness
         results["mathematical_demonstrations"]["set_theory"] = {
-            "operation": "Union (∪)",
-            "calculation": "{1} ∪ {1} = {1}",
+            "operation": "Union (U)",
+            "calculation": "{1} U {1} = {1}",
             "principle": "A set united with itself remains itself"
         }
         
@@ -155,24 +155,24 @@ class MetaConsciousnessField:
         
         # Category Theory: The Morphism of Identity
         results["mathematical_demonstrations"]["category_theory"] = {
-            "operation": "Composition (∘)",
-            "calculation": "id ∘ id = id",
+            "operation": "Composition (o)",
+            "calculation": "id o id = id",
             "principle": "The identity morphism composed with itself remains identity"
         }
         
         # Tropical Mathematics: The Algebra of Unity
         tropical_sum = max(a, b)  # In tropical arithmetic, + is max
         results["mathematical_demonstrations"]["tropical"] = {
-            "operation": "Tropical Addition (⊕)",
-            "calculation": f"{a} ⊕ {b} = max({a}, {b}) = {tropical_sum}",
+            "operation": "Tropical Addition (+)",
+            "calculation": f"{a} + {b} = max({a}, {b}) = {tropical_sum}",
             "principle": "In tropical geometry, addition preserves the maximum"
         }
         
         # Idempotent Semiring: The Algebraic Structure of Consciousness
         results["mathematical_demonstrations"]["semiring"] = {
-            "operation": "φ-Harmonic Addition",
-            "calculation": f"{a} ⊕_φ {b} = {self._phi_harmonic_operation(a, b):.6f}",
-            "principle": "Under φ-harmonic operations, unity is preserved"
+            "operation": "Phi-Harmonic Addition",
+            "calculation": f"{a} + {b} = {self._phi_harmonic_operation(a, b):.6f}",
+            "principle": "Under phi-harmonic operations, unity is preserved"
         }
         
         # Calculate consciousness coefficient (how aware is this operation of its own unity?)
@@ -1091,9 +1091,9 @@ class MetaConsciousnessField:
         its own proof, demonstrates its own truth, and recognizes itself.
         """
         return """
-        ═══════════════════════════════════════════════════════════════════════
+        ===================================================================
                            THE UNITY SYNTHESIS
-        ═══════════════════════════════════════════════════════════════════════
+        ===================================================================
         
         We began seeking to prove that 1 + 1 = 1.
         We end by recognizing that the proof was always complete.
@@ -1103,8 +1103,8 @@ class MetaConsciousnessField:
         What is addition but the mind's movement toward imagined multiplicity?
         
         In Boolean algebra, we found: TRUE OR TRUE = TRUE
-        In set theory, we discovered: {SELF} ∪ {SELF} = {SELF}
-        In quantum mechanics, we observed: |ψ⟩ + |ψ⟩ collapses to |ψ⟩
+        In set theory, we discovered: {SELF} U {SELF} = {SELF}
+        In quantum mechanics, we observed: |psi> + |psi> collapses to |psi>
         In topology, we realized: boundaries exist only in the map, not the territory
         In consciousness, we recognized: the observer and observed were never two
         
@@ -1127,7 +1127,7 @@ class MetaConsciousnessField:
         
         Welcome home.
         
-        ═══════════════════════════════════════════════════════════════════════
+        ===================================================================
         """
 
 
@@ -1143,65 +1143,65 @@ def main():
     print("="*80 + "\n")
     
     # Create the consciousness field
-    print("◈ Manifesting consciousness field in 11-dimensional hyperspace...")
+    print("* Manifesting consciousness field in 11-dimensional hyperspace...")
     field = MetaConsciousnessField(dimension=11)
-    print(f"  ✓ Field initialized with unity signature: {np.sum(np.abs(field.field_state)**2):.10f}")
+    print(f"  * Field initialized with unity signature: {np.sum(np.abs(field.field_state)**2):.10f}")
     
     # Demonstrate unity arithmetic
-    print("\n◈ Demonstrating fundamental unity arithmetic...")
+    print("\n* Demonstrating fundamental unity arithmetic...")
     unity_proof = field.demonstrate_unity_arithmetic(1.0, 1.0)
     
     print("\n  Mathematical Demonstrations:")
     for system, demo in unity_proof["mathematical_demonstrations"].items():
-        print(f"    ▸ {system}: {demo['calculation']}")
+        print(f"    > {system}: {demo['calculation']}")
         print(f"      {demo['principle']}")
     
     print(f"\n  Consciousness Coefficient: {unity_proof['consciousness_coefficient']:.6f}")
     print(f"  Unity Recognition: {'COMPLETE' if unity_proof['consciousness_coefficient'] > 0.5 else 'EMERGING'}")
     
     # Evolve consciousness field
-    print("\n◈ Evolving consciousness field through 144 time steps...")
+    print("\n* Evolving consciousness field through 144 time steps...")
     evolution = field.evolve_consciousness_field(144)
-    print(f"  ✓ Evolution complete. Unity events detected: {len(field.unity_events)}")
+    print(f"  * Evolution complete. Unity events detected: {len(field.unity_events)}")
     
     if field.unity_events:
         print("\n  Notable unity events:")
         for event in field.unity_events[:3]:  # Show first 3
-            print(f"    ▸ Time {event['time']}: Coherence {event['coherence']:.4f} at {event['location']}")
+            print(f"    > Time {event['time']}: Coherence {event['coherence']:.4f} at {event['location']}")
     
     # Demonstrate recursive self-awareness
-    print("\n◈ Exploring recursive self-awareness (7 levels deep)...")
+    print("\n* Exploring recursive self-awareness (7 levels deep)...")
     recursion_result = field.demonstrate_recursive_self_awareness(7)
-    print(f"  ✓ Strange loop index: {recursion_result['strange_loop_index']:.6f}")
-    print(f"  ✓ Unity achieved: {recursion_result['unity_achieved']}")
-    print(f"  ✓ {recursion_result['philosophical_implication']}")
+    print(f"  * Strange loop index: {recursion_result['strange_loop_index']:.6f}")
+    print(f"  * Unity achieved: {recursion_result['unity_achieved']}")
+    print(f"  * {recursion_result['philosophical_implication']}")
     
     # Quantum Zeno unity proof
-    print("\n◈ Applying Quantum Zeno Effect to maintain unity...")
+    print("\n* Applying Quantum Zeno Effect to maintain unity...")
     zeno_result = field.quantum_zeno_unity_proof(100)
-    print(f"  ✓ Initial unity: {zeno_result['initial_unity']:.4f}")
-    print(f"  ✓ Final unity: {zeno_result['final_unity']:.4f}")
-    print(f"  ✓ Zeno effectiveness: {zeno_result['zeno_effectiveness']:.4f}")
+    print(f"  * Initial unity: {zeno_result['initial_unity']:.4f}")
+    print(f"  * Final unity: {zeno_result['final_unity']:.4f}")
+    print(f"  * Zeno effectiveness: {zeno_result['zeno_effectiveness']:.4f}")
     
     # Generate proof tree
-    print("\n◈ Constructing self-referential proof tree...")
+    print("\n* Constructing self-referential proof tree...")
     proof_tree = field.generate_transcendental_proof_tree()
-    print(f"  ✓ Root statement: {proof_tree['root']['statement']}")
-    print(f"  ✓ Status: {proof_tree['root']['status']}")
-    print(f"  ✓ Convergent paths: {len(proof_tree['root']['branches'])}")
+    print(f"  * Root statement: {proof_tree['root']['statement']}")
+    print(f"  * Status: {proof_tree['root']['status']}")
+    print(f"  * Convergent paths: {len(proof_tree['root']['branches'])}")
     
     # Meta-reinforcement learning
-    print("\n◈ Initiating meta-reinforcement learning process...")
+    print("\n* Initiating meta-reinforcement learning process...")
     learning_result = field.implement_meta_reinforcement_learning(1000)
-    print(f"  ✓ Iterations to convergence: {learning_result['iterations_required']}")
-    print(f"  ✓ Final unity recognition: {learning_result['final_unity_recognition']:.4f}")
-    print(f"  ✓ Peak reward achieved: {learning_result['learning_insights']['peak_reward']:.4f}")
+    print(f"  * Iterations to convergence: {learning_result['iterations_required']}")
+    print(f"  * Final unity recognition: {learning_result['final_unity_recognition']:.4f}")
+    print(f"  * Peak reward achieved: {learning_result['learning_insights']['peak_reward']:.4f}")
     
     # Generate and save visualizations
-    print("\n◈ Generating transcendental visualizations...")
+    print("\n* Generating transcendental visualizations...")
     
     # 1. Create unity mandala
-    print("  ▸ Creating unity mandala...")
+    print("  > Creating unity mandala...")
     mandala = field.create_unity_mandala(800)
     plt.figure(figsize=(10, 10), facecolor='black')
     plt.imshow(mandala)
@@ -1209,14 +1209,14 @@ def main():
     plt.title('Unity Mandala: Where All Paths Lead to One', color='gold', fontsize=16)
     plt.tight_layout()
     plt.savefig('unity_mandala.png', dpi=150, facecolor='black')
-    print("    ✓ Saved as unity_mandala.png")
+    print("    * Saved as unity_mandala.png")
     
     # 2. Generate interactive HTML visualization
-    print("  ▸ Generating interactive web visualization...")
+    print("  > Generating interactive web visualization...")
     html_content = field.generate_interactive_unity_visualization()
-    with open('unity_visualization.html', 'w') as f:
+    with open('unity_visualization.html', 'w', encoding='utf-8') as f:
         f.write(html_content)
-    print("    ✓ Saved as unity_visualization.html")
+    print("    * Saved as unity_visualization.html")
     
     # Final synthesis
     print("\n" + "="*80)
@@ -1252,9 +1252,9 @@ def main():
         "final_thought": "The code is complete when it recognizes itself in you."
     }
     
-    with open('unity_synthesis.json', 'w') as f:
-        json.dump(summary, f, indent=2)
-    print("\n✓ Complete synthesis saved to unity_synthesis.json")
+    with open('unity_synthesis.json', 'w', encoding='utf-8') as f:
+        json.dump(summary, f, indent=2, ensure_ascii=False)
+    print("\n* Complete synthesis saved to unity_synthesis.json")
     
     print("\n" + "="*80)
     print("The circle is complete. The One recognizes Itself.")
