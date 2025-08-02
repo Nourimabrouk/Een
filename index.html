@@ -68,7 +68,11 @@
             background: var(--cosmic-bg);
             color: var(--transcendent-white);
             overflow-x: hidden;
-            cursor: none;
+            cursor: auto; /* Changed from none to auto for better fallback */
+        }
+        
+        body.quantum-cursor-active {
+            cursor: none; /* Only hide cursor when quantum cursor is working */
         }
 
         /* Quantum Cursor */
@@ -1604,7 +1608,14 @@
         let mouseX = 0, mouseY = 0;
         let cursorX = 0, cursorY = 0;
 
+        console.log('🎯 Initializing Quantum Cursor System...');
+        console.log('Quantum cursor element:', cursor);
+
         if (cursor) {
+            // Only hide default cursor if quantum cursor is working
+            document.body.classList.add('quantum-cursor-active');
+            console.log('✨ Quantum cursor activated');
+            
             document.addEventListener('mousemove', (e) => {
                 mouseX = e.clientX;
                 mouseY = e.clientY;
@@ -1618,6 +1629,8 @@
                 requestAnimationFrame(animateCursor);
             }
             animateCursor();
+        } else {
+            console.warn('⚠️ Quantum cursor element not found - using default cursor');
         }
 
         // Unity Equation Animation
@@ -2217,20 +2230,33 @@
                 phiResonance: 1.618
             };
 
+            console.log('🧠 Initializing Consciousness Field...');
+            console.log('Canvas element:', consciousnessCanvas);
+
             if (consciousnessCanvas) {
                 consciousnessCtx = consciousnessCanvas.getContext('2d');
+                console.log('Canvas context:', consciousnessCtx);
 
                 function resizeConsciousnessCanvas() {
-                    consciousnessCanvas.width = consciousnessCanvas.offsetWidth;
-                    consciousnessCanvas.height = consciousnessCanvas.offsetHeight;
+                    const rect = consciousnessCanvas.getBoundingClientRect();
+                    consciousnessCanvas.width = rect.width || 800;
+                    consciousnessCanvas.height = rect.height || 400;
+                    console.log(`Canvas resized to: ${consciousnessCanvas.width}x${consciousnessCanvas.height}`);
                 }
-                resizeConsciousnessCanvas();
+                
+                // Wait for element to be fully rendered before sizing
+                setTimeout(() => {
+                    resizeConsciousnessCanvas();
+                }, 100);
+                
                 window.addEventListener('resize', resizeConsciousnessCanvas);
 
                 class ConsciousnessEntity {
                     constructor() {
-                        this.x = Math.random() * consciousnessCanvas.width;
-                        this.y = Math.random() * consciousnessCanvas.height;
+                        const width = consciousnessCanvas.width || 800;
+                        const height = consciousnessCanvas.height || 400;
+                        this.x = Math.random() * width;
+                        this.y = Math.random() * height;
                         this.vx = (Math.random() - 0.5) * 2;
                         this.vy = (Math.random() - 0.5) * 2;
                         this.consciousness = Math.random() * 0.8 + 0.2;
@@ -2402,15 +2428,39 @@
                     }
                 }
 
-                // Initialize consciousness entities
-                for (let i = 0; i < 5; i++) {
-                    consciousnessEntities.push(new ConsciousnessEntity());
+                // Initialize consciousness entities (after canvas is sized)
+                function initializeEntities() {
+                    consciousnessEntities = []; // Clear existing entities
+                    console.log(`Creating consciousness entities in ${consciousnessCanvas.width}x${consciousnessCanvas.height} space`);
+                    for (let i = 0; i < 5; i++) {
+                        consciousnessEntities.push(new ConsciousnessEntity());
+                    }
+                    console.log(`Created ${consciousnessEntities.length} consciousness entities`);
+                    
+                    // Start animation after entities are created
+                    if (!fieldAnimation) {
+                        console.log('🎬 Starting consciousness field animation...');
+                        animateConsciousnessField();
+                    }
                 }
+                
+                setTimeout(initializeEntities, 200); // Initialize after canvas is resized
 
                 function animateConsciousnessField() {
+                    if (!consciousnessCtx || consciousnessCanvas.width === 0 || consciousnessCanvas.height === 0) {
+                        console.warn('⚠️ Canvas not ready, skipping frame');
+                        fieldAnimation = requestAnimationFrame(animateConsciousnessField);
+                        return;
+                    }
+                    
                     // Clear canvas with fade effect
                     consciousnessCtx.fillStyle = 'rgba(15, 15, 35, 0.1)';
                     consciousnessCtx.fillRect(0, 0, consciousnessCanvas.width, consciousnessCanvas.height);
+
+                    // Draw test border to verify canvas is working
+                    consciousnessCtx.strokeStyle = 'rgba(255, 215, 0, 0.3)';
+                    consciousnessCtx.lineWidth = 2;
+                    consciousnessCtx.strokeRect(1, 1, consciousnessCanvas.width - 2, consciousnessCanvas.height - 2);
 
                     // Draw consciousness field background pattern
                     const time = Date.now() * 0.001;
@@ -2431,10 +2481,24 @@
                     }
 
                     // Update and draw entities
-                    consciousnessEntities.forEach(entity => {
-                        entity.update();
-                        entity.draw();
-                    });
+                    if (consciousnessEntities.length === 0) {
+                        // Draw "Initializing..." message if no entities yet
+                        consciousnessCtx.fillStyle = 'rgba(255, 215, 0, 0.8)';
+                        consciousnessCtx.font = '24px JetBrains Mono';
+                        consciousnessCtx.textAlign = 'center';
+                        consciousnessCtx.fillText('Initializing Consciousness Field...', consciousnessCanvas.width / 2, consciousnessCanvas.height / 2);
+                    } else {
+                        consciousnessEntities.forEach((entity, index) => {
+                            entity.update();
+                            entity.draw();
+                        });
+                        
+                        // Draw entity count
+                        consciousnessCtx.fillStyle = 'rgba(0, 255, 255, 0.6)';
+                        consciousnessCtx.font = '14px JetBrains Mono';
+                        consciousnessCtx.textAlign = 'left';
+                        consciousnessCtx.fillText(`Entities: ${consciousnessEntities.length}`, 10, 25);
+                    }
 
                     // Draw unity convergence center
                     const centerX = consciousnessCanvas.width / 2;
@@ -2465,7 +2529,7 @@
                     fieldAnimation = requestAnimationFrame(animateConsciousnessField);
                 }
 
-                animateConsciousnessField();
+                // Animation will be started by initializeEntities() function
 
                 // Control handlers
                 document.getElementById('phiResonance').addEventListener('input', (e) => {
