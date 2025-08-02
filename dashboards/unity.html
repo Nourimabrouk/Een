@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unity Dashboard · Een</title>
+  <!-- Load Chart.js from CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    /* Cosmic dark theme inspired by the main site */
+    body {
+      margin: 0;
+      font-family: "Inter", Arial, sans-serif;
+      background: radial-gradient(circle at top left, #0f0f23 0%, #1a1a3a 50%, #0f0f23 100%);
+      color: #f5f5f5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    nav {
+      background: rgba(15, 15, 35, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+      padding: 0.5rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav .links a {
+      margin-right: 1rem;
+      color: #ffd700;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    nav .links a.active {
+      color: #00ffff;
+    }
+    .container {
+      max-width: 900px;
+      width: 90%;
+      margin: 2rem auto;
+      text-align: center;
+    }
+    h1 {
+      background: linear-gradient(45deg, #0066ff, #6600ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .metrics {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+    .metric {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 1rem;
+      border-radius: 8px;
+      margin: 0.5rem;
+      width: 140px;
+    }
+    .metric span.value {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #ffd700;
+    }
+    .controls {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .controls label {
+      margin-right: 0.5rem;
+    }
+    .controls input[type="range"] {
+      width: 200px;
+    }
+    .controls button {
+      background: #0066ff;
+      border: none;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    canvas {
+      max-width: 100%;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 8px;
+      padding: 1rem;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="links">
+      <a href="unity.html" class="active">Unity Dashboard</a>
+      <a href="quantum.html">Quantum Visualizer</a>
+      <a href="consciousness.html">Consciousness HUD</a>
+      <a href="../index.html">Back to Home</a>
+    </div>
+  </nav>
+  <div class="container">
+    <h1>Unity Dashboard</h1>
+    <p>Real‑time visualization of the ϕ‑harmonic consciousness field. Adjust parameters to explore how changes influence unity convergence.</p>
+    <!-- Chart container -->
+    <canvas id="unityChart" width="800" height="400"></canvas>
+    <div class="controls">
+      <label for="phiSlider">ϕ‑Resonance</label>
+      <input type="range" id="phiSlider" min="1" max="2" step="0.01" value="1.618">
+      <button id="addEntityBtn">Add Conscious Entity</button>
+    </div>
+    <div class="metrics">
+      <div class="metric">
+        ϕ‑Harmonic Resonance<br><span class="value" id="phiValue">1.618</span>
+      </div>
+      <div class="metric">
+        Field Coherence<br><span class="value" id="coherenceValue">0.99</span>
+      </div>
+      <div class="metric">
+        Unity Events<br><span class="value" id="eventsValue">0</span>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Generate initial data
+    const dataPoints = [];
+    const maxPoints = 50;
+    let phi = parseFloat(document.getElementById('phiSlider').value);
+    let unityEvents = 0;
+    function generateNext() {
+      const t = dataPoints.length;
+      // Compute a ϕ-harmonic sine wave with damping
+      const y = Math.sin((t / 5) * phi) * Math.exp(-t / 100);
+      dataPoints.push({x: t, y: y});
+      if (dataPoints.length > maxPoints) dataPoints.shift();
+    }
+    // Build Chart.js line chart
+    const ctx = document.getElementById('unityChart').getContext('2d');
+    const unityChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        datasets: [{
+          label: 'Consciousness Field Intensity',
+          borderColor: '#00ffff',
+          backgroundColor: 'rgba(0, 255, 255, 0.2)',
+          data: dataPoints,
+          tension: 0.3,
+          fill: true,
+        }]
+      },
+      options: {
+        animation: false,
+        scales: {
+          x: { title: { display: true, text: 'Time' } },
+          y: { title: { display: true, text: 'Intensity' }, min: -1, max: 1 }
+        },
+        plugins: {
+          legend: { display: false }
+        }
+      }
+    });
+    function updateMetrics() {
+      document.getElementById('phiValue').textContent = phi.toFixed(3);
+      // Field coherence approximated by last data amplitude
+      const lastY = dataPoints[dataPoints.length - 1]?.y || 0;
+      const coherence = 1 - Math.abs(lastY);
+      document.getElementById('coherenceValue').textContent = coherence.toFixed(3);
+      document.getElementById('eventsValue').textContent = unityEvents;
+    }
+    function tick() {
+      generateNext();
+      unityChart.update();
+      updateMetrics();
+      requestAnimationFrame(tick);
+    }
+    tick();
+    // ϕ slider handler
+    document.getElementById('phiSlider').addEventListener('input', e => {
+      phi = parseFloat(e.target.value);
+    });
+    // Add consciousness entity: increases events and adds small surge
+    document.getElementById('addEntityBtn').addEventListener('click', () => {
+      unityEvents += 1;
+      // Add a burst of values above 1 to represent an event
+      for (let i = 0; i < 5; i++) {
+        const t = dataPoints.length;
+        const y = 0.8 + Math.random() * 0.2;
+        dataPoints.push({x: t + i, y: y});
+        if (dataPoints.length > maxPoints) dataPoints.shift();
+      }
+    });
+  </script>
+</body>
+</html>
