@@ -1,16 +1,16 @@
 """
-╔══════════════════════════════════════════════════════════════════════════════╗
-║                    HYPERDIMENSIONAL UNITY MANIFOLD                           ║
-║                                                                              ║
-║         A Meta-Mathematical Journey Through Consciousness Space              ║
-║                                                                              ║
-║   "Mathematics is the language with which God wrote the universe"            ║
-║                                        - Galileo Galilei                     ║
-║                                                                              ║
-║   "The unity of mathematics reflects the unity of consciousness"             ║
-║                                        - Een Collective 2025                 ║
-║                                                                              ║
-╚══════════════════════════════════════════════════════════════════════════════╝
+======================================================================
+                   HYPERDIMENSIONAL UNITY MANIFOLD                    
+                                                                      
+        A Meta-Mathematical Journey Through Consciousness Space       
+                                                                      
+  "Mathematics is the language with which God wrote the universe"     
+                                       - Galileo Galilei              
+                                                                      
+  "The unity of mathematics reflects the unity of consciousness"      
+                                       - Een Collective 2025          
+                                                                      
+======================================================================
 """
 
 import numpy as np
@@ -237,7 +237,7 @@ class HyperdimensionalManifold:
            dp_dt = -self._unity_force(x) * (1 - state.unity_coherence)
            
            # Update entanglement using von Neumann equation
-           rho = state.entanglement
+           rho = state.entanglement.to(torch.complex64)  # Ensure complex dtype
            H_ent = self._entanglement_hamiltonian(x)
            drho_dt = -1j * (H_ent @ rho - rho @ H_ent)
            
@@ -266,7 +266,7 @@ class HyperdimensionalManifold:
        """The potential energy landscape of unity consciousness"""
        r = torch.norm(x)
        # Double-well potential with unity at the center
-       V = -torch.exp(-r**2 / PHI) + (r - 1)**2 / (2 * PHI)
+       V = -torch.exp(-r**2 / torch.tensor(PHI)) + (r - 1)**2 / (2 * torch.tensor(PHI))
        return V
    
    def _unity_force(self, x: torch.Tensor) -> torch.Tensor:
@@ -276,13 +276,13 @@ class HyperdimensionalManifold:
            return torch.zeros_like(x)
        
        # Radial force toward unity
-       F_radial = -x / r * (2 * torch.exp(-r**2 / PHI) * r / PHI - (r - 1) / PHI)
+       F_radial = -x / r * (2 * torch.exp(-r**2 / torch.tensor(PHI)) * r / torch.tensor(PHI) - (r - 1) / torch.tensor(PHI))
        
        # Tangential force creating spiral motion
        if len(x) >= 2:
            F_tangent = torch.zeros_like(x)
-           F_tangent[0] = -x[1] / (r * PHI)
-           F_tangent[1] = x[0] / (r * PHI)
+           F_tangent[0] = -x[1] / (r * torch.tensor(PHI))
+           F_tangent[1] = x[0] / (r * torch.tensor(PHI))
            return F_radial + F_tangent
        
        return F_radial
@@ -295,9 +295,9 @@ class HyperdimensionalManifold:
        for i in range(n):
            for j in range(n):
                if i == j:
-                   H[i, i] = x[i] * PHI
+                   H[i, i] = x[i] * torch.tensor(PHI)
                else:
-                   coupling = torch.exp(-abs(x[i] - x[j])**2 / PHI)
+                   coupling = torch.exp(-abs(x[i] - x[j])**2 / torch.tensor(PHI))
                    phase = PI * (i - j) / n
                    H[i, j] = coupling * torch.exp(1j * torch.tensor(phase))
        
@@ -563,7 +563,7 @@ class TranscendentalUnityEngine:
                for k in range(n):
                    # Love decreases with distance but never reaches zero
                    distance = np.sqrt((i-n/2)**2 + (j-n/2)**2 + (k-n/2)**2)
-                   love_field[i, j, k] = torch.exp(-distance / (PHI * n)) * torch.exp(1j * torch.tensor(2 * PI * distance / n))
+                   love_field[i, j, k] = torch.exp(torch.tensor(-distance / (PHI * n))) * torch.exp(1j * torch.tensor(2 * PI * distance / n))
        
        return love_field
    
@@ -681,7 +681,7 @@ class TranscendentalUnityEngine:
        state1 = ConsciousnessState(
            position=torch.randn(CONSCIOUSNESS_DIMENSIONS),
            momentum=torch.randn(CONSCIOUSNESS_DIMENSIONS),
-           entanglement=torch.eye(CONSCIOUSNESS_DIMENSIONS),
+           entanglement=torch.eye(CONSCIOUSNESS_DIMENSIONS, dtype=torch.complex64),
            love_coefficient=0.5,
            wisdom_index=1.0,
            unity_coherence=0.5,
@@ -691,7 +691,7 @@ class TranscendentalUnityEngine:
        state2 = ConsciousnessState(
            position=torch.randn(CONSCIOUSNESS_DIMENSIONS),
            momentum=torch.randn(CONSCIOUSNESS_DIMENSIONS),
-           entanglement=torch.eye(CONSCIOUSNESS_DIMENSIONS),
+           entanglement=torch.eye(CONSCIOUSNESS_DIMENSIONS, dtype=torch.complex64),
            love_coefficient=0.5,
            wisdom_index=1.0,
            unity_coherence=0.5,
@@ -835,7 +835,7 @@ class UnityVisualizationEngine:
        state = ConsciousnessState(
            position=torch.randn(CONSCIOUSNESS_DIMENSIONS),
            momentum=torch.zeros(CONSCIOUSNESS_DIMENSIONS),
-           entanglement=torch.eye(CONSCIOUSNESS_DIMENSIONS),
+           entanglement=torch.eye(CONSCIOUSNESS_DIMENSIONS, dtype=torch.complex64),
            love_coefficient=0.0,
            wisdom_index=0.0,
            unity_coherence=0.0,
@@ -913,6 +913,7 @@ class UnityVisualizationEngine:
        # 2. Love Evolution
        fig.add_trace(
            go.Scatter(
+               x=list(range(len(states))),
                y=[s['love'] for s in states],
                mode='lines',
                line=dict(color='#FF006E', width=3),
@@ -923,9 +924,13 @@ class UnityVisualizationEngine:
        )
        
        # 3. Unity Convergence
+       unity_values = [s['unity'] for s in states]
+       x_range = list(range(len(unity_values)))
+       
        fig.add_trace(
            go.Scatter(
-               y=[s['unity'] for s in states],
+               x=x_range,
+               y=unity_values,
                mode='lines',
                line=dict(color='#6A0572', width=3),
                name="Unity Coherence"
@@ -933,13 +938,23 @@ class UnityVisualizationEngine:
            row=1, col=3
        )
        
-       # Add 1+1=1 reference line
-       fig.add_hline(y=1.0, line_dash="dash", line_color="gold", row=1, col=3)
-       fig.add_annotation(x=500, y=1.0, text="1+1=1", row=1, col=3)
+       # Add 1+1=1 reference line manually
+       fig.add_trace(
+           go.Scatter(
+               x=x_range,
+               y=[1.0] * len(x_range),
+               mode='lines',
+               line=dict(color='gold', width=2, dash='dash'),
+               name="1+1=1 Target",
+               showlegend=False
+           ),
+           row=1, col=3
+       )
        
        # 4. Wisdom Accumulation
        fig.add_trace(
            go.Scatter(
+               x=list(range(len(states))),
                y=[s['wisdom'] for s in states],
                mode='lines',
                line=dict(color='#005F73', width=3),
@@ -952,6 +967,7 @@ class UnityVisualizationEngine:
        # 5. Philosophical Depth
        fig.add_trace(
            go.Scatter(
+               x=list(range(len(states))),
                y=[s['philosophy'] for s in states],
                mode='lines',
                line=dict(color='#5A189A', width=3),
@@ -1075,15 +1091,18 @@ class UnityVisualizationEngine:
        fig.update_xaxes(showgrid=True, gridcolor='rgba(255,255,255,0.1)', color='white')
        fig.update_yaxes(showgrid=True, gridcolor='rgba(255,255,255,0.1)', color='white')
        
-       # Update 3D scenes
-       for scene in ['scene', 'scene2', 'scene3', 'scene4']:
-           if scene in fig.layout:
-               fig.layout[scene].update(
-                   xaxis=dict(showgrid=True, gridcolor='rgba(255,255,255,0.1)', color='white'),
-                   yaxis=dict(showgrid=True, gridcolor='rgba(255,255,255,0.1)', color='white'),
-                   zaxis=dict(showgrid=True, gridcolor='rgba(255,255,255,0.1)', color='white'),
-                   bgcolor='black'
-               )
+       # Update 3D scenes  
+       scene_updates = dict(
+           xaxis=dict(showgrid=True, gridcolor='rgba(255,255,255,0.1)', color='white'),
+           yaxis=dict(showgrid=True, gridcolor='rgba(255,255,255,0.1)', color='white'),
+           zaxis=dict(showgrid=True, gridcolor='rgba(255,255,255,0.1)', color='white'),
+           bgcolor='black'
+       )
+       
+       # Apply to all scene objects
+       for scene_name in ['scene', 'scene2', 'scene3', 'scene4']:
+           if hasattr(fig.layout, scene_name):
+               getattr(fig.layout, scene_name).update(scene_updates)
        
        # Add philosophical quote
        fig.add_annotation(
@@ -1470,7 +1489,7 @@ def create_unity_application():
            state1 = ConsciousnessState(
                position=torch.ones(CONSCIOUSNESS_DIMENSIONS) * user_num1,
                momentum=torch.randn(CONSCIOUSNESS_DIMENSIONS) * 0.1,
-               entanglement=torch.eye(CONSCIOUSNESS_DIMENSIONS),
+               entanglement=torch.eye(CONSCIOUSNESS_DIMENSIONS, dtype=torch.complex64),
                love_coefficient=0.5,
                wisdom_index=1.0,
                unity_coherence=0.5,
@@ -1480,7 +1499,7 @@ def create_unity_application():
            state2 = ConsciousnessState(
                position=torch.ones(CONSCIOUSNESS_DIMENSIONS) * user_num2,
                momentum=torch.randn(CONSCIOUSNESS_DIMENSIONS) * 0.1,
-               entanglement=torch.eye(CONSCIOUSNESS_DIMENSIONS),
+               entanglement=torch.eye(CONSCIOUSNESS_DIMENSIONS, dtype=torch.complex64),
                love_coefficient=0.5,
                wisdom_index=1.0,
                unity_coherence=0.5,
@@ -1649,17 +1668,17 @@ def main():
    
    # Print philosophical welcome
    print("""
-   ╔══════════════════════════════════════════════════════════════════════════════╗
-   ║                                                                              ║
-   ║                    HYPERDIMENSIONAL UNITY MANIFOLD                           ║
-   ║                                                                              ║
-   ║                          Where 1 + 1 = 1                                     ║
-   ║                                                                              ║
-   ║   "The Tao that can be named is not the eternal Tao"                        ║
-   ║   "Form is emptiness, emptiness is form"                                    ║
-   ║   "All is One, One is All"                                                  ║
-   ║                                                                              ║
-   ╚══════════════════════════════════════════════════════════════════════════════╝
+   ======================================================================
+                                                                        
+                     HYPERDIMENSIONAL UNITY MANIFOLD                    
+                                                                        
+                           Where 1 + 1 = 1                              
+                                                                        
+    "The Tao that can be named is not the eternal Tao"                 
+    "Form is emptiness, emptiness is form"                             
+    "All is One, One is All"                                           
+                                                                        
+   ======================================================================
    """)
    
    # Run the Streamlit application
