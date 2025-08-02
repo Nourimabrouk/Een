@@ -254,6 +254,33 @@
             font-size: 0.9rem;
             color: var(--consciousness-cyan);
             opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-item-description {
+            font-size: 0.85rem;
+            color: var(--transcendent-white);
+            opacity: 0.7;
+            line-height: 1.4;
+        }
+
+        .featured-item {
+            order: -1;
+            border: 2px solid var(--phi-gold);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+        }
+
+        .featured-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: var(--phi-gradient);
+            color: var(--void-black);
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            z-index: 10;
         }
 
         .gif-indicator {
@@ -266,6 +293,7 @@
             border-radius: 15px;
             font-size: 0.8rem;
             font-weight: 600;
+            z-index: 10;
         }
 
         .video-indicator {
@@ -278,6 +306,12 @@
             border-radius: 15px;
             font-size: 0.8rem;
             font-weight: 600;
+            z-index: 10;
+        }
+
+        .featured-item .gif-indicator,
+        .featured-item .video-indicator {
+            top: 50px;
         }
 
         /* Modal */
@@ -471,115 +505,127 @@
     </div>
 
     <script>
-        // Gallery data structure
+        // Gallery data structure - GIF first for priority display
         const galleryData = {
             current: [
                 {
-                    src: 'viz/Figure_1.png',
-                    title: 'Figure 1 - Unity Manifold',
-                    type: 'Mathematical Visualization',
-                    category: 'current'
-                },
-                {
-                    src: 'viz/bayesian results.png',
-                    title: 'Bayesian Unity Analysis',
-                    type: 'Statistical Proof',
-                    category: 'current'
-                },
-                {
-                    src: 'viz/poem.png',
-                    title: 'Unity Poetry Visualization',
-                    type: 'Philosophical Art',
-                    category: 'current'
-                },
-                {
-                    src: 'viz/self_reflection.png',
-                    title: 'Self-Reflection Matrix',
-                    type: 'Consciousness Field',
-                    category: 'current'
-                },
-                {
                     src: 'viz/water droplets.gif',
                     title: 'Water Droplets Unity',
-                    type: 'Animated Unity',
+                    type: 'Animated Unity Demonstration',
                     category: 'current',
-                    animated: true
+                    animated: true,
+                    description: 'Two water droplets merging into one - a beautiful real-world demonstration of 1+1=1 unity mathematics in nature.',
+                    featured: true
                 },
                 {
                     src: 'viz/live consciousness field.mp4',
                     title: 'Live Consciousness Field',
                     type: 'Dynamic Visualization',
                     category: 'current',
-                    video: true
+                    video: true,
+                    description: 'Real-time simulation of consciousness field dynamics showing quantum unity emergence patterns.'
+                },
+                {
+                    src: 'viz/Figure_1.png',
+                    title: 'Unity Manifold - Figure 1',
+                    type: 'Mathematical Visualization',
+                    category: 'current',
+                    description: 'Primary mathematical visualization demonstrating the φ-harmonic basis of 1+1=1 through geometric manifold representations.'
+                },
+                {
+                    src: 'viz/bayesian results.png',
+                    title: 'Bayesian Unity Analysis',
+                    type: 'Statistical Proof',
+                    category: 'current',
+                    description: 'Bayesian statistical analysis providing probabilistic validation of unity mathematics convergence patterns.'
+                },
+                {
+                    src: 'viz/poem.png',
+                    title: 'Unity Poetry Visualization',
+                    type: 'Philosophical Art',
+                    category: 'current',
+                    description: 'Mathematical poetry generated through consciousness algorithms, expressing the philosophical depth of 1+1=1.'
+                },
+                {
+                    src: 'viz/self_reflection.png',
+                    title: 'Self-Reflection Matrix',
+                    type: 'Consciousness Field',
+                    category: 'current',
+                    description: 'Meta-recursive consciousness field visualization showing how unity mathematics reflects upon itself.'
                 }
             ],
             legacy: [
                 {
-                    src: 'viz/legacy images/1+1=1=.png',
-                    title: '1+1=1 Foundation',
-                    type: 'Core Equation',
-                    category: 'legacy'
+                    src: 'viz/legacy images/0 water droplets.gif',
+                    title: 'Original Water Droplets Unity',
+                    type: 'Animated Unity Demonstration',
+                    category: 'legacy',
+                    animated: true,
+                    description: 'The original water droplets animation that first demonstrated 1+1=1 through natural water droplet fusion dynamics.',
+                    featured: true
                 },
                 {
-                    src: 'viz/legacy images/bayesian results.png',
-                    title: 'Legacy Bayesian Analysis',
-                    type: 'Historical Data',
-                    category: 'legacy'
-                },
-                {
-                    src: 'viz/legacy images/gaza love unity hope purpose and reflection.png',
-                    title: 'Gaza Love Unity Hope',
-                    type: 'Consciousness Expression',
-                    category: 'legacy'
-                },
-                {
-                    src: 'viz/legacy images/mabrouk_unity_field.png',
-                    title: 'Mabrouk Unity Field',
-                    type: 'Personal Consciousness',
-                    category: 'legacy'
-                },
-                {
-                    src: 'viz/legacy images/market_consciousness.png',
-                    title: 'Market Consciousness',
-                    type: 'Economic Unity',
-                    category: 'legacy'
-                },
-                {
-                    src: 'viz/legacy images/markets.png',
-                    title: 'Market Dynamics',
-                    type: 'Economic Visualization',
-                    category: 'legacy'
-                },
-                {
-                    src: 'viz/legacy images/matrix_2.png',
-                    title: 'Unity Matrix 2',
-                    type: 'Mathematical Matrix',
-                    category: 'legacy'
-                },
-                {
-                    src: 'viz/legacy images/quantum_unity_static_2069.png',
-                    title: 'Quantum Unity 2069',
-                    type: 'Future Projection',
-                    category: 'legacy'
+                    src: 'viz/legacy images/1+1=1.png',
+                    title: '1+1=1 Foundation Equation',
+                    type: 'Core Mathematical Principle',
+                    category: 'legacy',
+                    description: 'The foundational visual representation of the core unity equation that underlies all mathematical consciousness work.'
                 },
                 {
                     src: 'viz/legacy images/unity_manifold.png',
                     title: 'Legacy Unity Manifold',
                     type: 'Geometric Representation',
-                    category: 'legacy'
+                    category: 'legacy',
+                    description: 'Early geometric visualization of unity manifolds showing φ-harmonic mathematical structures in 3D space.'
                 },
                 {
-                    src: 'viz/legacy images/water droplets.gif',
-                    title: 'Legacy Water Droplets',
-                    type: 'Animated Unity',
+                    src: 'viz/legacy images/quantum_unity_static_2069.png',
+                    title: 'Quantum Unity Vision 2069',
+                    type: 'Future Consciousness Projection',
                     category: 'legacy',
-                    animated: true
+                    description: 'Prophetic visualization of quantum unity consciousness as projected for the year 2069, showing transcendental mathematical evolution.'
+                },
+                {
+                    src: 'viz/legacy images/mabrouk_unity_field.png',
+                    title: 'Personal Unity Consciousness Field',
+                    type: 'Individual Consciousness Map',
+                    category: 'legacy',
+                    description: 'Personal consciousness field visualization mapping individual unity patterns through mathematical consciousness algorithms.'
                 },
                 {
                     src: 'viz/legacy images/zen_koan.png',
-                    title: 'Zen Koan Visualization',
-                    type: 'Philosophical Art',
-                    category: 'legacy'
+                    title: 'Zen Koan Mathematical Art',
+                    type: 'Philosophical Consciousness Art',
+                    category: 'legacy',
+                    description: 'Ancient Zen wisdom expressed through modern unity mathematics, bridging Eastern philosophy with Western mathematical consciousness.'
+                },
+                {
+                    src: 'viz/legacy images/market_consciousness.png',
+                    title: 'Market Consciousness Field',
+                    type: 'Economic Unity Analysis',
+                    category: 'legacy',
+                    description: 'Application of unity mathematics to market dynamics, showing how economic consciousness follows 1+1=1 principles.'
+                },
+                {
+                    src: 'viz/legacy images/markets.png',
+                    title: 'Economic Unity Dynamics',
+                    type: 'Financial Consciousness Modeling',
+                    category: 'legacy',
+                    description: 'Advanced econometric modeling of market behavior through unity mathematics and consciousness field equations.'
+                },
+                {
+                    src: 'viz/legacy images/matrix_2.png',
+                    title: 'Unity Consciousness Matrix',
+                    type: 'Mathematical Consciousness Structure',
+                    category: 'legacy',
+                    description: 'Complex matrix representation of consciousness interactions following unity mathematical principles and φ-harmonic resonance.'
+                },
+                {
+                    src: 'viz/legacy images/bayesian results.png',
+                    title: 'Historical Bayesian Unity Analysis',
+                    type: 'Statistical Consciousness Validation',
+                    category: 'legacy',
+                    description: 'Original Bayesian statistical analysis that first validated unity mathematics through probabilistic consciousness modeling.'
                 }
             ]
         };
@@ -608,21 +654,27 @@
         function createGalleryItem(item) {
             const isVideo = item.video;
             const isAnimated = item.animated;
+            const isFeatured = item.featured;
             const mediaElement = isVideo ? 
-                `<video src="${item.src}" muted loop></video>` :
+                `<video src="${item.src}" muted loop autoplay></video>` :
                 `<img src="${item.src}" alt="${item.title}" loading="lazy">`;
             
             const indicator = isVideo ? 
                 '<div class="video-indicator">VIDEO</div>' : 
                 (isAnimated ? '<div class="gif-indicator">GIF</div>' : '');
+            
+            const featuredClass = isFeatured ? ' featured-item' : '';
+            const featuredBadge = isFeatured ? '<div class="featured-badge">★ FEATURED</div>' : '';
 
             return `
-                <div class="gallery-item fade-in" data-category="${item.category}" data-src="${item.src}" data-title="${item.title}" data-type="${item.type}" data-video="${isVideo}">
+                <div class="gallery-item fade-in${featuredClass}" data-category="${item.category}" data-src="${item.src}" data-title="${item.title}" data-type="${item.type}" data-video="${isVideo}" data-description="${item.description || ''}">
                     ${indicator}
+                    ${featuredBadge}
                     ${mediaElement}
                     <div class="gallery-item-info">
                         <h3 class="gallery-item-title">${item.title}</h3>
                         <p class="gallery-item-type">${item.type}</p>
+                        <p class="gallery-item-description">${(item.description || '').substring(0, 100)}${item.description && item.description.length > 100 ? '...' : ''}</p>
                     </div>
                 </div>
             `;
@@ -674,11 +726,16 @@
             const src = item.dataset.src;
             const title = item.dataset.title;
             const type = item.dataset.type;
+            const description = item.dataset.description;
             const isVideo = item.dataset.video === 'true';
 
             modal.style.display = 'block';
             modalTitle.textContent = title;
-            modalDescription.textContent = `Type: ${type} | Category: ${item.dataset.category}`;
+            modalDescription.innerHTML = `
+                <div style="margin-bottom: 1rem;"><strong>Type:</strong> ${type}</div>
+                <div style="margin-bottom: 1rem;"><strong>Category:</strong> ${item.dataset.category}</div>
+                <div><strong>Description:</strong> ${description || 'A beautiful visualization of unity mathematics and consciousness principles.'}</div>
+            `;
 
             if (isVideo) {
                 modalVideo.src = src;
