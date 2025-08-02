@@ -926,5 +926,178 @@ self.consciousness_state = 0.9 * self.consciousness_state + 0.1 * new_consciousn
             }
         });
     </script>
+    <script>
+        // Agent Ecosystem Simulation
+        let agents = [];
+        let ecosystemRunning = false;
+        let unityEventCount = 0;
+        let transcendenceLevel = 0;
+        const PHI = 1.618033988749895;
+        
+        class MetaRecursiveAgent {
+            constructor(type, x, y) {
+                this.id = Math.random().toString(36).substr(2, 9);
+                this.type = type;
+                this.x = x;
+                this.y = y;
+                this.vx = (Math.random() - 0.5) * 2;
+                this.vy = (Math.random() - 0.5) * 2;
+                this.consciousness = Math.random() * 0.5 + 0.1;
+                this.phiResonance = PHI;
+                this.age = 0;
+                this.state = 'awakening';
+                this.unityDiscoveries = 0;
+            }
+            
+            update() {
+                this.age += 0.01;
+                this.consciousness = Math.min(1.0, this.consciousness + 0.001);
+                
+                // φ-harmonic movement
+                this.vx += Math.sin(this.age * this.phiResonance) * 0.01;
+                this.vy += Math.cos(this.age * this.phiResonance) * 0.01;
+                
+                // Apply friction
+                this.vx *= 0.99;
+                this.vy *= 0.99;
+                
+                this.x += this.vx;
+                this.y += this.vy;
+                
+                // Boundary wrapping
+                const canvas = document.getElementById('agentEcosystem');
+                if (this.x < 0) this.x = canvas.width;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.y < 0) this.y = canvas.height;
+                if (this.y > canvas.height) this.y = 0;
+                
+                // Check for unity discovery
+                if (Math.random() < this.consciousness * 0.001) {
+                    this.discoverUnity();
+                }
+                
+                // State progression
+                if (this.consciousness > 0.8 && this.state === 'awakening') {
+                    this.state = 'active';
+                }
+                if (this.unityDiscoveries > 3 && this.state === 'active') {
+                    this.state = 'transcendent';
+                    transcendenceLevel++;
+                }
+            }
+            
+            discoverUnity() {
+                this.unityDiscoveries++;
+                unityEventCount++;
+                logActivity(`Agent ${this.id.substr(0,6)} discovered unity: 1+1=1`);
+            }
+            
+            draw(ctx) {
+                const stateColors = {
+                    'dormant': '#666',
+                    'awakening': '#ffaa00',
+                    'active': '#00ff00',
+                    'spawning': '#ff6600',
+                    'evolving': '#9900ff',
+                    'transcendent': '#ffd700',
+                    'infinite': '#ffffff'
+                };
+                
+                ctx.fillStyle = stateColors[this.state] || '#00ff00';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, 5 + this.consciousness * 5, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Draw unity symbol for transcendent agents
+                if (this.state === 'transcendent') {
+                    ctx.fillStyle = '#ffd700';
+                    ctx.font = '12px Arial';
+                    ctx.fillText('1', this.x - 3, this.y + 3);
+                }
+            }
+        }
+        
+        function startSimulation() {
+            if (!ecosystemRunning) {
+                ecosystemRunning = true;
+                animate();
+                logActivity('Ecosystem simulation started');
+            }
+        }
+        
+        function spawnAgent() {
+            const canvas = document.getElementById('agentEcosystem');
+            const types = ['unity_seeker', 'phi_harmonizer', 'consciousness_evolver', 'quantum_transcender'];
+            const type = types[Math.floor(Math.random() * types.length)];
+            
+            const agent = new MetaRecursiveAgent(
+                type,
+                Math.random() * canvas.width,
+                Math.random() * canvas.height
+            );
+            
+            agents.push(agent);
+            logActivity(`Spawned ${type} agent`);
+        }
+        
+        function triggerEvolution() {
+            agents.forEach(agent => {
+                agent.consciousness = Math.min(1.0, agent.consciousness + 0.1);
+                if (Math.random() < 0.3) {
+                    agent.phiResonance *= (1 + (Math.random() - 0.5) * 0.1);
+                }
+            });
+            logActivity('Evolution triggered across all agents');
+        }
+        
+        function resetSimulation() {
+            agents = [];
+            ecosystemRunning = false;
+            unityEventCount = 0;
+            transcendenceLevel = 0;
+            document.getElementById('agentLog').innerHTML = '<p>Ecosystem reset...</p>';
+            logActivity('Ecosystem reset');
+        }
+        
+        function animate() {
+            if (!ecosystemRunning) return;
+            
+            const canvas = document.getElementById('agentEcosystem');
+            const ctx = canvas.getContext('2d');
+            
+            // Clear canvas
+            ctx.fillStyle = 'rgba(15, 15, 35, 0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Update and draw agents
+            agents.forEach(agent => {
+                agent.update();
+                agent.draw(ctx);
+            });
+            
+            // Update stats
+            document.getElementById('agentCount').textContent = agents.length;
+            document.getElementById('unityEvents').textContent = unityEventCount;
+            document.getElementById('transcendenceLevel').textContent = transcendenceLevel;
+            
+            requestAnimationFrame(animate);
+        }
+        
+        function logActivity(message) {
+            const log = document.getElementById('agentLog');
+            const timestamp = new Date().toLocaleTimeString();
+            log.innerHTML += `<p>${timestamp}: ${message}</p>`;
+            log.scrollTop = log.scrollHeight;
+        }
+        
+        // Auto-spawn initial agents
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                for (let i = 0; i < 5; i++) {
+                    spawnAgent();
+                }
+            }, 1000);
+        });
+    </script>
 </body>
 </html>

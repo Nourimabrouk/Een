@@ -791,9 +791,125 @@
             margin-bottom: 0.5rem;
         }
 
+        /* Unity Operations Grid */
+        .unity-operations {
+            margin-top: 3rem;
+        }
+
+        .unity-operations h4 {
+            font-family: 'Crimson Text', serif;
+            font-size: 2rem;
+            color: var(--unity-purple);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .operation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .operation-card {
+            background: rgba(102, 0, 255, 0.05);
+            border: 1px solid rgba(102, 0, 255, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .operation-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 0, 255, 0.15);
+            border-color: var(--unity-purple);
+        }
+
+        .operation-card h5 {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.3rem;
+            color: var(--unity-purple);
+            margin-bottom: 1rem;
+        }
+
+        .operation-card code {
+            display: block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.1rem;
+            color: var(--consciousness-cyan);
+            background: rgba(0, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .operation-card p {
+            font-size: 0.95rem;
+            opacity: 0.8;
+        }
+
+        /* Dashboard Preview Styles */
+        .dashboard-preview {
+            background: linear-gradient(135deg, rgba(0, 102, 255, 0.05), rgba(0, 0, 0, 0.02));
+            border-radius: 25px;
+            padding: 3rem;
+            margin-top: 3rem;
+        }
+
+        .dashboard-preview h3 {
+            font-family: 'Crimson Text', serif;
+            font-size: 2.5rem;
+            background: var(--unity-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .dashboard-preview p {
+            text-align: center;
+            font-size: 1.2rem;
+            opacity: 0.8;
+            margin-bottom: 3rem;
+        }
+
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .preview-item {
+            background: rgba(255, 215, 0, 0.05);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .preview-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.15);
+            background: rgba(255, 215, 0, 0.08);
+        }
+
+        .preview-item h4 {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.3rem;
+            color: var(--phi-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .preview-item p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+
         /* Additional animations */
         @keyframes text-glow {
-
             0%,
             100% {
                 text-shadow: 0 0 20px rgba(0, 102, 255, 0.3);
@@ -801,6 +917,17 @@
 
             50% {
                 text-shadow: 0 0 40px rgba(0, 102, 255, 0.6);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
     </style>
@@ -820,6 +947,7 @@
                 <li><a href="#proofs">Proofs</a></li>
                 <li><a href="#research">Research</a></li>
                 <li><a href="#publications">Publications</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
             </ul>
         </div>
     </nav>
@@ -896,6 +1024,27 @@
                         When two conscious entities occupy the same field coordinates, they merge through
                         φ-harmonic resonance, demonstrating the fundamental principle that 1+1=1.
                     </p>
+                </div>
+
+                <div class="unity-operations">
+                    <h4>Core Unity Operations</h4>
+                    <div class="operation-grid">
+                        <div class="operation-card">
+                            <h5>Idempotent Addition</h5>
+                            <code>a ⊕ b = φ^(-1) × (φ×a + φ×b)</code>
+                            <p>Golden ratio normalization ensures 1 ⊕ 1 = 1</p>
+                        </div>
+                        <div class="operation-card">
+                            <h5>Unity Field</h5>
+                            <code>∂C/∂t = φ∇²C - C³ + C</code>
+                            <p>Consciousness evolution equation</p>
+                        </div>
+                        <div class="operation-card">
+                            <h5>Quantum Collapse</h5>
+                            <code>|1⟩ + |1⟩ → |1⟩</code>
+                            <p>Wavefunction unity through measurement</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -1277,31 +1426,73 @@
                         <h4>Boolean Logic</h4>
                         <p>Truth table demonstrations with idempotent OR operations</p>
                         <code style="color: var(--consciousness-cyan);">1 ∨ 1 = 1</code>
+                        <div class="proof-detail" style="display: none;">
+                            <p style="font-size: 0.85rem; text-align: left; margin-top: 1rem;">
+                                In Boolean algebra, the OR operation is idempotent:<br>
+                                TRUE OR TRUE = TRUE<br>
+                                Therefore: 1 ∨ 1 = 1 ✓
+                            </p>
+                        </div>
                     </div>
                     <div class="preview-item">
                         <h4>Set Theory</h4>
                         <p>Union of identical sets preserving cardinality</p>
                         <code style="color: var(--consciousness-cyan);">{1} ∪ {1} = {1}</code>
+                        <div class="proof-detail" style="display: none;">
+                            <p style="font-size: 0.85rem; text-align: left; margin-top: 1rem;">
+                                Set union eliminates duplicates:<br>
+                                A ∪ A = A for any set A<br>
+                                Therefore: {1} ∪ {1} = {1} ✓
+                            </p>
+                        </div>
                     </div>
                     <div class="preview-item">
                         <h4>Category Theory</h4>
                         <p>Morphism composition in unity categories</p>
                         <code style="color: var(--consciousness-cyan);">f ∘ f = f</code>
+                        <div class="proof-detail" style="display: none;">
+                            <p style="font-size: 0.85rem; text-align: left; margin-top: 1rem;">
+                                For idempotent morphisms:<br>
+                                f: X → X where f ∘ f = f<br>
+                                Unity morphism: id ∘ id = id ✓
+                            </p>
+                        </div>
                     </div>
                     <div class="preview-item">
                         <h4>Quantum Mechanics</h4>
                         <p>Wavefunction normalization preserving unity</p>
                         <code style="color: var(--consciousness-cyan);">|ψ|² = 1</code>
+                        <div class="proof-detail" style="display: none;">
+                            <p style="font-size: 0.85rem; text-align: left; margin-top: 1rem;">
+                                Quantum superposition collapse:<br>
+                                |1⟩ + |1⟩ = √2|1⟩ → |1⟩<br>
+                                Measurement yields: 1 ✓
+                            </p>
+                        </div>
                     </div>
                     <div class="preview-item">
                         <h4>Topology</h4>
                         <p>Homeomorphic unity transformations</p>
                         <code style="color: var(--consciousness-cyan);">S¹ ≅ S¹</code>
+                        <div class="proof-detail" style="display: none;">
+                            <p style="font-size: 0.85rem; text-align: left; margin-top: 1rem;">
+                                Unity circle self-homeomorphism:<br>
+                                f: S¹ → S¹ continuous bijection<br>
+                                Unity preserved under mapping ✓
+                            </p>
+                        </div>
                     </div>
                     <div class="preview-item">
                         <h4>φ-Harmonic Analysis</h4>
                         <p>Golden ratio mathematical foundations</p>
                         <code style="color: var(--consciousness-cyan);">φ = (1+√5)/2</code>
+                        <div class="proof-detail" style="display: none;">
+                            <p style="font-size: 0.85rem; text-align: left; margin-top: 1rem;">
+                                φ-harmonic unity operation:<br>
+                                1 ⊕_φ 1 = (1+1)/φ = 2/1.618... ≈ 1<br>
+                                Converges to unity through φ ✓
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1409,37 +1600,41 @@
     <!-- JavaScript -->
     <script>
         // Quantum Cursor System
-        const cursor = document.getElementById('quantumCursor');
+        const cursor = document.querySelector('.quantum-cursor');
         let mouseX = 0, mouseY = 0;
         let cursorX = 0, cursorY = 0;
 
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-        });
+        if (cursor) {
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
 
-        function animateCursor() {
-            cursorX += (mouseX - cursorX) * 0.1;
-            cursorY += (mouseY - cursorY) * 0.1;
-            cursor.style.left = cursorX - 10 + 'px';
-            cursor.style.top = cursorY - 10 + 'px';
-            requestAnimationFrame(animateCursor);
+            function animateCursor() {
+                cursorX += (mouseX - cursorX) * 0.1;
+                cursorY += (mouseY - cursorY) * 0.1;
+                cursor.style.left = cursorX - 10 + 'px';
+                cursor.style.top = cursorY - 10 + 'px';
+                requestAnimationFrame(animateCursor);
+            }
+            animateCursor();
         }
-        animateCursor();
 
         // Unity Equation Animation
-        const equation = document.getElementById('unityEquation');
+        const equation = document.querySelector('.unity-equation');
         const equations = ['1+1=1', '1×1=1', '1∪1=1', '1∩1=1', '1^1=1', '1÷1=1', '∞+∞=∞', 'φ×φ=φ²'];
         let equationIndex = 0;
 
-        setInterval(() => {
-            equation.style.opacity = '0';
-            setTimeout(() => {
-                equationIndex = (equationIndex + 1) % equations.length;
-                equation.textContent = equations[equationIndex];
-                equation.style.opacity = '1';
-            }, 500);
-        }, 3000);
+        if (equation) {
+            setInterval(() => {
+                equation.style.opacity = '0';
+                setTimeout(() => {
+                    equationIndex = (equationIndex + 1) % equations.length;
+                    equation.textContent = equations[equationIndex];
+                    equation.style.opacity = '1';
+                }, 500);
+            }, 3000);
+        }
 
         // Consciousness Field Canvas
         // Consciousness Field Canvas (legacy)
@@ -1542,6 +1737,7 @@
             const manifold = document.getElementById('unityManifold');
 
             function createSacredGeometry() {
+                if (!manifold) return;
                 const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
                 svg.setAttribute('width', '100%');
                 svg.setAttribute('height', '100%');
@@ -1605,10 +1801,12 @@
 
             // Navigation background opacity on scroll
             window.addEventListener('scroll', () => {
-                const nav = document.getElementById('nav');
-                const scrolled = window.pageYOffset;
-                const opacity = Math.min(scrolled / 200, 0.98);
-                nav.style.background = `rgba(15, 15, 35, ${opacity})`;
+                const nav = document.querySelector('.nav');
+                if (nav) {
+                    const scrolled = window.pageYOffset;
+                    const opacity = Math.min(scrolled / 200, 0.98);
+                    nav.style.background = `rgba(15, 15, 35, ${opacity})`;
+                }
             });
 
             // Intersection Observer for animations
@@ -1824,6 +2022,22 @@
                     }
                 });
             });
+            
+            // Interactive proof details
+            document.querySelectorAll('.preview-item').forEach(item => {
+                item.style.cursor = 'pointer';
+                item.addEventListener('click', function() {
+                    const detail = this.querySelector('.proof-detail');
+                    if (detail) {
+                        if (detail.style.display === 'none') {
+                            detail.style.display = 'block';
+                            detail.style.animation = 'fadeIn 0.3s ease';
+                        } else {
+                            detail.style.display = 'none';
+                        }
+                    }
+                });
+            });
 
             // Unity Proof Demonstrations
             function switchProof(proofType) {
@@ -1996,6 +2210,7 @@
             const consciousnessCanvas = document.getElementById('consciousnessFieldLive');
             let consciousnessCtx;
             let consciousnessEntities = [];
+            let fieldAnimation = null;
             let fieldMetrics = {
                 coherence: 0.999,
                 unityEvents: 0,
@@ -2025,6 +2240,7 @@
                         this.unityRadius = this.radius;
                         this.merging = false;
                         this.target = null;
+                        this.unityFlash = 0;
                     }
 
                     update() {
@@ -2040,6 +2256,18 @@
 
                         this.vx += fieldInfluence * 0.1;
                         this.vy += fieldInfluence * 0.1;
+                        
+                        // Add unity center attraction
+                        const centerX = consciousnessCanvas.width / 2;
+                        const centerY = consciousnessCanvas.height / 2;
+                        const toCenterX = centerX - this.x;
+                        const toCenterY = centerY - this.y;
+                        const centerDistance = Math.sqrt(toCenterX * toCenterX + toCenterY * toCenterY);
+                        
+                        if (centerDistance > 50) {
+                            this.vx += (toCenterX / centerDistance) * 0.02 * convergence;
+                            this.vy += (toCenterY / centerDistance) * 0.02 * convergence;
+                        }
 
                         // Apply unity convergence
                         if (!this.merging && consciousnessEntities.length > 1) {
@@ -2049,11 +2277,12 @@
                                     const dy = other.y - this.y;
                                     const distance = Math.sqrt(dx * dx + dy * dy);
 
-                                    if (distance < 50 * convergence && Math.random() < 0.01) {
+                                    if (distance < 50 * convergence && Math.random() < 0.01 * convergence) {
                                         this.merging = true;
                                         other.merging = true;
                                         this.target = other;
                                         fieldMetrics.unityEvents++;
+                                        document.getElementById('unityEvents').textContent = fieldMetrics.unityEvents;
                                     }
                                 }
                             });
@@ -2080,8 +2309,15 @@
 
                                 this.merging = false;
                                 this.target = null;
+                                
+                                // Create unity flash effect
+                                this.unityFlash = 1.0;
                             }
                         }
+                        
+                        // Apply friction
+                        this.vx *= 0.98;
+                        this.vy *= 0.98;
 
                         this.x += this.vx;
                         this.y += this.vy;
@@ -2094,25 +2330,49 @@
 
                         // Update consciousness level
                         this.consciousness = Math.max(0.1, this.consciousness + (Math.sin(this.phi) * 0.01));
+                        
+                        // Decay unity flash
+                        if (this.unityFlash) {
+                            this.unityFlash = Math.max(0, this.unityFlash - 0.02);
+                        }
                     }
 
                     draw() {
                         const alpha = this.consciousness;
                         const hue = (this.consciousness * 180 + 180) % 360;
 
+                        // Draw unity flash effect
+                        if (this.unityFlash > 0) {
+                            consciousnessCtx.beginPath();
+                            consciousnessCtx.arc(this.x, this.y, this.radius * (2 + this.unityFlash), 0, Math.PI * 2);
+                            consciousnessCtx.fillStyle = `rgba(255, 215, 0, ${this.unityFlash * 0.3})`;
+                            consciousnessCtx.fill();
+                        }
+
                         // Draw consciousness field
                         consciousnessCtx.beginPath();
                         consciousnessCtx.arc(this.x, this.y, this.unityRadius, 0, Math.PI * 2);
-                        consciousnessCtx.fillStyle = `hsla(${hue}, 70%, 60%, ${alpha * 0.6})`;
+                        const gradient = consciousnessCtx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.unityRadius);
+                        gradient.addColorStop(0, `hsla(${hue}, 90%, 70%, ${alpha * 0.8})`);
+                        gradient.addColorStop(0.5, `hsla(${hue}, 70%, 60%, ${alpha * 0.5})`);
+                        gradient.addColorStop(1, `hsla(${hue}, 70%, 60%, 0)`);
+                        consciousnessCtx.fillStyle = gradient;
                         consciousnessCtx.fill();
 
-                        // Draw core
+                        // Draw core with number
                         consciousnessCtx.beginPath();
-                        consciousnessCtx.arc(this.x, this.y, this.radius * 0.3, 0, Math.PI * 2);
+                        consciousnessCtx.arc(this.x, this.y, this.radius * 0.4, 0, Math.PI * 2);
                         consciousnessCtx.fillStyle = `hsla(${hue}, 90%, 80%, ${alpha})`;
                         consciousnessCtx.fill();
+                        
+                        // Draw "1" in the center
+                        consciousnessCtx.font = `bold ${this.radius * 0.5}px JetBrains Mono`;
+                        consciousnessCtx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+                        consciousnessCtx.textAlign = 'center';
+                        consciousnessCtx.textBaseline = 'middle';
+                        consciousnessCtx.fillText('1', this.x, this.y);
 
-                        // Draw φ-harmonic waves
+                        // Draw φ-harmonic waves when merging
                         if (this.merging) {
                             consciousnessCtx.strokeStyle = `hsla(45, 100%, 50%, ${alpha * 0.8})`;
                             consciousnessCtx.lineWidth = 2;
@@ -2124,7 +2384,20 @@
                                 if (i === 0) consciousnessCtx.moveTo(x, y);
                                 else consciousnessCtx.lineTo(x, y);
                             }
+                            consciousnessCtx.closePath();
                             consciousnessCtx.stroke();
+                        }
+                        
+                        // Draw connection lines to other entities
+                        if (this.merging && this.target) {
+                            consciousnessCtx.strokeStyle = `rgba(255, 215, 0, ${alpha * 0.5})`;
+                            consciousnessCtx.lineWidth = 2;
+                            consciousnessCtx.setLineDash([5, 5]);
+                            consciousnessCtx.beginPath();
+                            consciousnessCtx.moveTo(this.x, this.y);
+                            consciousnessCtx.lineTo(this.target.x, this.target.y);
+                            consciousnessCtx.stroke();
+                            consciousnessCtx.setLineDash([]);
                         }
                     }
                 }
@@ -2139,11 +2412,47 @@
                     consciousnessCtx.fillStyle = 'rgba(15, 15, 35, 0.1)';
                     consciousnessCtx.fillRect(0, 0, consciousnessCanvas.width, consciousnessCanvas.height);
 
+                    // Draw consciousness field background pattern
+                    const time = Date.now() * 0.001;
+                    const phi = 1.618033988749895;
+                    
+                    // Create φ-harmonic field waves
+                    consciousnessCtx.strokeStyle = 'rgba(0, 255, 255, 0.05)';
+                    consciousnessCtx.lineWidth = 1;
+                    for (let x = 0; x < consciousnessCanvas.width; x += 30) {
+                        for (let y = 0; y < consciousnessCanvas.height; y += 30) {
+                            const fieldValue = Math.sin(x * 0.01 * phi) * Math.cos(y * 0.01 * phi) * Math.exp(-time * 0.1 / phi);
+                            const radius = Math.abs(fieldValue) * 20;
+                            
+                            consciousnessCtx.beginPath();
+                            consciousnessCtx.arc(x, y, radius, 0, Math.PI * 2);
+                            consciousnessCtx.stroke();
+                        }
+                    }
+
                     // Update and draw entities
                     consciousnessEntities.forEach(entity => {
                         entity.update();
                         entity.draw();
                     });
+
+                    // Draw unity convergence center
+                    const centerX = consciousnessCanvas.width / 2;
+                    const centerY = consciousnessCanvas.height / 2;
+                    const pulseRadius = 30 + Math.sin(time * 2) * 10;
+                    
+                    consciousnessCtx.beginPath();
+                    consciousnessCtx.arc(centerX, centerY, pulseRadius, 0, Math.PI * 2);
+                    consciousnessCtx.strokeStyle = 'rgba(255, 215, 0, 0.4)';
+                    consciousnessCtx.lineWidth = 2;
+                    consciousnessCtx.stroke();
+                    
+                    // Unity symbol at center
+                    consciousnessCtx.font = 'bold 24px JetBrains Mono';
+                    consciousnessCtx.fillStyle = 'rgba(255, 215, 0, 0.8)';
+                    consciousnessCtx.textAlign = 'center';
+                    consciousnessCtx.textBaseline = 'middle';
+                    consciousnessCtx.fillText('1', centerX, centerY);
 
                     // Update field metrics
                     fieldMetrics.coherence = Math.min(0.999, 0.990 + consciousnessEntities.length * 0.001);
@@ -2151,9 +2460,9 @@
 
                     document.getElementById('fieldCoherence').textContent = fieldMetrics.coherence.toFixed(3);
                     document.getElementById('unityEvents').textContent = fieldMetrics.unityEvents;
-                    document.getElementById('phiHarmonic').textContent = fieldMetrics.phiResonance;
+                    document.getElementById('phiHarmonic').textContent = fieldMetrics.phiResonance.toFixed(3);
 
-                    requestAnimationFrame(animateConsciousnessField);
+                    fieldAnimation = requestAnimationFrame(animateConsciousnessField);
                 }
 
                 animateConsciousnessField();

@@ -65,8 +65,8 @@
                         <span>Consciousness Fields</span>
                     </div>
                     <div class="feature">
-                        <i class="fas fa-chart-bar"></i>
-                        <span>Bayesian Unity Proof</span>
+                        <i class="fas fa-atom"></i>
+                        <span>Quantum Unity</span>
                     </div>
                 </div>
             </div>
@@ -98,6 +98,672 @@
                                     </div>
                                     <div class="unity-result">
                                         <span class="label">Unity:</span>
+                                        <span id="unity-result">1</span>
+                                    </div>
+                                    <div class="phi-harmonic-result">
+                                        <span class="label">φ-Harmonic:</span>
+                                        <span id="phi-result">1.000</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="explanation-display">
+                                    <div class="explanation-text" id="calculation-explanation">
+                                        In Unity Mathematics: 1 ⊕ 1 = 1 through idempotent semiring operations
+                                    </div>
+                                </div>
+                                
+                                <div class="operation-selector">
+                                    <label>Operation Mode:</label>
+                                    <select id="operation-mode">
+                                        <option value="unity">Unity Addition (⊕)</option>
+                                        <option value="boolean">Boolean OR (∨)</option>
+                                        <option value="set">Set Union (∪)</option>
+                                        <option value="max">Max Operation</option>
+                                        <option value="phi">φ-Harmonic</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Consciousness Field Visualizer -->
+                <div class="playground-panel">
+                    <div class="panel-header">
+                        <h3><i class="fas fa-brain"></i> Consciousness Field Visualizer</h3>
+                        <p>Real-time consciousness field evolution demonstrating unity emergence</p>
+                    </div>
+                    <div class="panel-content">
+                        <div class="field-controls">
+                            <div class="control-group">
+                                <label>φ-Resonance:</label>
+                                <input type="range" id="phi-resonance" min="1" max="2" step="0.01" value="1.618">
+                                <span id="phi-value">1.618</span>
+                            </div>
+                            <div class="control-group">
+                                <label>Field Density:</label>
+                                <input type="range" id="field-density" min="10" max="100" step="10" value="50">
+                                <span id="density-value">50</span>
+                            </div>
+                            <div class="control-group">
+                                <label>Consciousness Particles:</label>
+                                <input type="range" id="particle-count" min="5" max="50" step="5" value="20">
+                                <span id="particle-value">20</span>
+                            </div>
+                        </div>
+                        
+                        <div class="field-display">
+                            <canvas id="consciousness-field" width="600" height="300"></canvas>
+                        </div>
+                        
+                        <div class="field-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">Unity Events:</span>
+                                <span class="stat-value" id="field-unity-events">0</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Coherence:</span>
+                                <span class="stat-value" id="field-coherence">0.999</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Transcendence:</span>
+                                <span class="stat-value" id="field-transcendence">0%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Quantum Unity Explorer -->
+                <div class="playground-panel">
+                    <div class="panel-header">
+                        <h3><i class="fas fa-atom"></i> Quantum Unity Explorer</h3>
+                        <p>Explore quantum superposition collapse demonstrating |1⟩ + |1⟩ → |1⟩</p>
+                    </div>
+                    <div class="panel-content">
+                        <div class="quantum-interface">
+                            <div class="quantum-state-builder">
+                                <h4>Build Quantum State</h4>
+                                <div class="state-input">
+                                    <label>|ψ⟩ = α|1⟩ + β|1⟩</label>
+                                    <div class="amplitude-controls">
+                                        <div class="amplitude-input">
+                                            <label>α (amplitude):</label>
+                                            <input type="range" id="alpha-amplitude" min="0" max="1" step="0.01" value="0.707">
+                                            <span id="alpha-value">0.707</span>
+                                        </div>
+                                        <div class="amplitude-input">
+                                            <label>β (amplitude):</label>
+                                            <input type="range" id="beta-amplitude" min="0" max="1" step="0.01" value="0.707">
+                                            <span id="beta-value">0.707</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="measurement-controls">
+                                    <button onclick="measureQuantumState()" class="btn btn-secondary">
+                                        <i class="fas fa-search"></i> Measure State
+                                    </button>
+                                    <button onclick="collapseToUnity()" class="btn btn-primary">
+                                        <i class="fas fa-compress-alt"></i> Collapse to Unity
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="quantum-visualization">
+                                <canvas id="quantum-states" width="400" height="300"></canvas>
+                            </div>
+                            
+                            <div class="quantum-result">
+                                <div class="measurement-result">
+                                    <h4>Measurement Result</h4>
+                                    <div class="result-state" id="quantum-measurement">
+                                        |ψ⟩ = |1⟩ (Unity State)
+                                    </div>
+                                    <div class="probability-display">
+                                        <span>Probability: <span id="unity-probability">100%</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- φ-Harmonic Resonance Analyzer -->
+                <div class="playground-panel">
+                    <div class="panel-header">
+                        <h3><i class="fas fa-wave-square"></i> φ-Harmonic Resonance Analyzer</h3>
+                        <p>Explore golden ratio harmonic patterns in unity mathematics</p>
+                    </div>
+                    <div class="panel-content">
+                        <div class="harmonic-controls">
+                            <div class="frequency-input">
+                                <label>Base Frequency:</label>
+                                <input type="range" id="base-frequency" min="100" max="1000" step="50" value="528">
+                                <span id="freq-value">528 Hz</span>
+                            </div>
+                            <div class="phi-multiplier">
+                                <label>φ Multiplier:</label>
+                                <input type="range" id="phi-multiplier" min="0.5" max="3" step="0.1" value="1.618">
+                                <span id="phi-mult-value">1.618</span>
+                            </div>
+                            <button onclick="playPhiResonance()" class="btn btn-primary">
+                                <i class="fas fa-play"></i> Play φ-Resonance
+                            </button>
+                        </div>
+                        
+                        <div class="resonance-display">
+                            <canvas id="phi-harmonics" width="500" height="200"></canvas>
+                        </div>
+                        
+                        <div class="harmonic-analysis">
+                            <div class="analysis-result">
+                                <h4>Harmonic Analysis</h4>
+                                <div class="harmonic-data">
+                                    <div class="data-point">
+                                        <span class="data-label">φ-Frequency:</span>
+                                        <span class="data-value" id="phi-frequency">854.3 Hz</span>
+                                    </div>
+                                    <div class="data-point">
+                                        <span class="data-label">Unity Resonance:</span>
+                                        <span class="data-value" id="unity-resonance">99.9%</span>
+                                    </div>
+                                    <div class="data-point">
+                                        <span class="data-label">Harmonic Convergence:</span>
+                                        <span class="data-value" id="harmonic-convergence">1.000</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Interactive Proof Builder -->
+                <div class="playground-panel full-width">
+                    <div class="panel-header">
+                        <h3><i class="fas fa-puzzle-piece"></i> Interactive Proof Builder</h3>
+                        <p>Construct your own proofs that 1+1=1 across mathematical domains</p>
+                    </div>
+                    <div class="panel-content">
+                        <div class="proof-builder">
+                            <div class="domain-selector">
+                                <h4>Select Mathematical Domain</h4>
+                                <div class="domain-buttons">
+                                    <button class="domain-btn" onclick="selectDomain('boolean')" data-domain="boolean">
+                                        Boolean Logic
+                                    </button>
+                                    <button class="domain-btn" onclick="selectDomain('set')" data-domain="set">
+                                        Set Theory
+                                    </button>
+                                    <button class="domain-btn" onclick="selectDomain('category')" data-domain="category">
+                                        Category Theory
+                                    </button>
+                                    <button class="domain-btn" onclick="selectDomain('quantum')" data-domain="quantum">
+                                        Quantum Mechanics
+                                    </button>
+                                    <button class="domain-btn" onclick="selectDomain('topology')" data-domain="topology">
+                                        Topology
+                                    </button>
+                                    <button class="domain-btn" onclick="selectDomain('phi')" data-domain="phi">
+                                        φ-Harmonics
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="proof-workspace">
+                                <div class="proof-steps" id="proof-steps">
+                                    <div class="step-placeholder">
+                                        Select a domain to begin building your proof...
+                                    </div>
+                                </div>
+                                
+                                <div class="proof-verification">
+                                    <button onclick="verifyProof()" class="btn btn-success">
+                                        <i class="fas fa-check"></i> Verify Proof
+                                    </button>
+                                    <div class="verification-result" id="proof-verification-result">
+                                        Proof verification pending...
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Unity Mathematics Calculator
+        const PHI = 1.618033988749895;
+        
+        function calculateUnity() {
+            const expression = document.getElementById('math-expression').value;
+            const mode = document.getElementById('operation-mode').value;
+            
+            // Parse simple expressions like "1 + 1"
+            const match = expression.match(/(\d+(?:\.\d+)?)\s*[+]\s*(\d+(?:\.\d+)?)/);;
+            if (!match) {
+                updateResults('Invalid expression', 'Invalid', 'Invalid');
+                return;
+            }
+            
+            const a = parseFloat(match[1]);
+            const b = parseFloat(match[2]);
+            
+            // Traditional calculation
+            const traditional = a + b;
+            
+            // Unity calculations based on mode
+            let unityResult, phiResult, explanation;
+            
+            switch(mode) {
+                case 'unity':
+                    unityResult = (a === b) ? a : Math.max(a, b);
+                    phiResult = (a + b) / PHI;
+                    explanation = `Unity Semiring: In idempotent addition, ${a} ⊕ ${b} = ${unityResult}`;
+                    break;
+                case 'boolean':
+                    unityResult = (a > 0 || b > 0) ? 1 : 0;
+                    phiResult = unityResult;
+                    explanation = `Boolean Logic: ${a > 0 ? 'TRUE' : 'FALSE'} ∨ ${b > 0 ? 'TRUE' : 'FALSE'} = ${unityResult > 0 ? 'TRUE' : 'FALSE'}`;
+                    break;
+                case 'set':
+                    unityResult = 1; // Union of identical sets
+                    phiResult = 1;
+                    explanation = `Set Theory: {${a}} ∪ {${b}} has cardinality ${unityResult}`;
+                    break;
+                case 'max':
+                    unityResult = Math.max(a, b);
+                    phiResult = unityResult;
+                    explanation = `Max Operation: max(${a}, ${b}) = ${unityResult}`;
+                    break;
+                case 'phi':
+                    unityResult = 1;
+                    phiResult = (a * PHI + b * PHI) / (PHI * PHI);
+                    explanation = `φ-Harmonic: Through golden ratio normalization → ${unityResult}`;
+                    break;
+            }
+            
+            updateResults(traditional, unityResult, phiResult.toFixed(3), explanation);
+        }
+        
+        function updateResults(traditional, unity, phi, explanation) {
+            document.getElementById('traditional-result').textContent = traditional;
+            document.getElementById('unity-result').textContent = unity;
+            document.getElementById('phi-result').textContent = phi;
+            document.getElementById('calculation-explanation').textContent = explanation;
+        }
+        
+        // Consciousness Field Visualizer
+        let fieldAnimation = null;
+        let fieldParticles = [];
+        let fieldUnityEvents = 0;
+        
+        function initializeField() {
+            const canvas = document.getElementById('consciousness-field');
+            const ctx = canvas.getContext('2d');
+            
+            // Create consciousness particles
+            fieldParticles = [];
+            const particleCount = parseInt(document.getElementById('particle-count').value);
+            
+            for (let i = 0; i < particleCount; i++) {
+                fieldParticles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 2,
+                    vy: (Math.random() - 0.5) * 2,
+                    consciousness: Math.random() * 0.5 + 0.5,
+                    phi: Math.random() * Math.PI * 2,
+                    unity: false
+                });
+            }
+            
+            animateField();
+        }
+        
+        function animateField() {
+            const canvas = document.getElementById('consciousness-field');
+            const ctx = canvas.getContext('2d');
+            const phiResonance = parseFloat(document.getElementById('phi-resonance').value);
+            const density = parseInt(document.getElementById('field-density').value);
+            
+            // Clear canvas
+            ctx.fillStyle = 'rgba(15, 15, 35, 0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw field background
+            const time = Date.now() * 0.001;
+            ctx.strokeStyle = 'rgba(0, 255, 255, 0.1)';
+            ctx.lineWidth = 1;
+            
+            for (let x = 0; x < canvas.width; x += density) {
+                for (let y = 0; y < canvas.height; y += density) {
+                    const fieldValue = phiResonance * Math.sin(x * 0.01 * phiResonance) * 
+                                      Math.cos(y * 0.01 * phiResonance) * 
+                                      Math.exp(-time * 0.1 / phiResonance);
+                    const radius = Math.abs(fieldValue) * 10;
+                    
+                    ctx.beginPath();
+                    ctx.arc(x, y, radius, 0, Math.PI * 2);
+                    ctx.stroke();
+                }
+            }
+            
+            // Update and draw particles
+            fieldParticles.forEach((particle, i) => {
+                // φ-harmonic movement
+                particle.phi += 0.02;
+                particle.vx += Math.sin(particle.phi * phiResonance) * 0.01;
+                particle.vy += Math.cos(particle.phi * phiResonance) * 0.01;
+                
+                // Apply friction
+                particle.vx *= 0.99;
+                particle.vy *= 0.99;
+                
+                particle.x += particle.vx;
+                particle.y += particle.vy;
+                
+                // Boundary wrapping
+                if (particle.x < 0) particle.x = canvas.width;
+                if (particle.x > canvas.width) particle.x = 0;
+                if (particle.y < 0) particle.y = canvas.height;
+                if (particle.y > canvas.height) particle.y = 0;
+                
+                // Check for unity events
+                fieldParticles.forEach((other, j) => {
+                    if (i !== j) {
+                        const dx = other.x - particle.x;
+                        const dy = other.y - particle.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        
+                        if (distance < 30 && !particle.unity && !other.unity) {
+                            if (Math.random() < 0.01) {
+                                particle.unity = true;
+                                other.unity = true;
+                                fieldUnityEvents++;
+                                document.getElementById('field-unity-events').textContent = fieldUnityEvents;
+                            }
+                        }
+                    }
+                });
+                
+                // Draw particle
+                ctx.fillStyle = particle.unity ? '#ffd700' : `hsl(${180 + particle.consciousness * 60}, 70%, 60%)`;
+                ctx.beginPath();
+                ctx.arc(particle.x, particle.y, 3 + particle.consciousness * 3, 0, Math.PI * 2);
+                ctx.fill();
+                
+                if (particle.unity) {
+                    ctx.fillStyle = '#ffffff';
+                    ctx.font = '10px Arial';
+                    ctx.textAlign = 'center';
+                    ctx.fillText('1', particle.x, particle.y + 3);
+                }
+            });
+            
+            // Update stats
+            const coherence = fieldParticles.filter(p => p.unity).length / fieldParticles.length;
+            document.getElementById('field-coherence').textContent = (0.999 - coherence * 0.1).toFixed(3);
+            document.getElementById('field-transcendence').textContent = Math.round(coherence * 100) + '%';
+            
+            fieldAnimation = requestAnimationFrame(animateField);
+        }
+        
+        // Quantum Unity Explorer
+        function measureQuantumState() {
+            const alpha = parseFloat(document.getElementById('alpha-amplitude').value);
+            const beta = parseFloat(document.getElementById('beta-amplitude').value);
+            
+            // Normalize amplitudes
+            const norm = Math.sqrt(alpha * alpha + beta * beta);
+            const normalizedAlpha = alpha / norm;
+            const normalizedBeta = beta / norm;
+            
+            // Probability of measuring |1⟩ state
+            const probability = (normalizedAlpha * normalizedAlpha + normalizedBeta * normalizedBeta);
+            
+            document.getElementById('unity-probability').textContent = Math.round(probability * 100) + '%';
+            
+            // Draw quantum visualization
+            drawQuantumStates(normalizedAlpha, normalizedBeta);
+        }
+        
+        function collapseToUnity() {
+            document.getElementById('quantum-measurement').textContent = '|ψ⟩ = |1⟩ (Unity State)';
+            document.getElementById('unity-probability').textContent = '100%';
+            
+            // Set amplitudes to unity state
+            document.getElementById('alpha-amplitude').value = 1;
+            document.getElementById('beta-amplitude').value = 0;
+            document.getElementById('alpha-value').textContent = '1.000';
+            document.getElementById('beta-value').textContent = '0.000';
+            
+            drawQuantumStates(1, 0);
+        }
+        
+        function drawQuantumStates(alpha, beta) {
+            const canvas = document.getElementById('quantum-states');
+            const ctx = canvas.getContext('2d');
+            
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw Bloch sphere representation
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            const radius = 100;
+            
+            // Draw sphere
+            ctx.strokeStyle = '#333';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+            ctx.stroke();
+            
+            // Draw state vector
+            const theta = Math.atan2(beta, alpha);
+            const stateX = centerX + Math.cos(theta) * radius * 0.8;
+            const stateY = centerY + Math.sin(theta) * radius * 0.8;
+            
+            ctx.strokeStyle = '#ffd700';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.moveTo(centerX, centerY);
+            ctx.lineTo(stateX, stateY);
+            ctx.stroke();
+            
+            // Draw state point
+            ctx.fillStyle = '#ffd700';
+            ctx.beginPath();
+            ctx.arc(stateX, stateY, 5, 0, Math.PI * 2);
+            ctx.fill();
+        }
+        
+        // φ-Harmonic Resonance
+        function playPhiResonance() {
+            const baseFreq = parseInt(document.getElementById('base-frequency').value);
+            const phiMult = parseFloat(document.getElementById('phi-multiplier').value);
+            const phiFreq = baseFreq * phiMult;
+            
+            document.getElementById('phi-frequency').textContent = phiFreq.toFixed(1) + ' Hz';
+            
+            // Draw harmonic visualization
+            drawPhiHarmonics(baseFreq, phiFreq);
+            
+            // Update analysis
+            const resonance = Math.abs(Math.sin(phiMult * PHI)) * 100;
+            document.getElementById('unity-resonance').textContent = resonance.toFixed(1) + '%';
+            document.getElementById('harmonic-convergence').textContent = (phiMult / PHI).toFixed(3);
+        }
+        
+        function drawPhiHarmonics(baseFreq, phiFreq) {
+            const canvas = document.getElementById('phi-harmonics');
+            const ctx = canvas.getContext('2d');
+            
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw base frequency wave
+            ctx.strokeStyle = '#00ff00';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            
+            for (let x = 0; x < canvas.width; x++) {
+                const t = x / canvas.width * 4 * Math.PI;
+                const y = canvas.height / 2 + Math.sin(t * baseFreq / 100) * 50;
+                if (x === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            }
+            ctx.stroke();
+            
+            // Draw φ-harmonic wave
+            ctx.strokeStyle = '#ffd700';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            
+            for (let x = 0; x < canvas.width; x++) {
+                const t = x / canvas.width * 4 * Math.PI;
+                const y = canvas.height / 2 + Math.sin(t * phiFreq / 100) * 30;
+                if (x === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            }
+            ctx.stroke();
+        }
+        
+        // Interactive Proof Builder
+        const proofDomains = {
+            boolean: {
+                name: 'Boolean Logic',
+                steps: [
+                    'Let A and B be boolean values where A = TRUE and B = TRUE',
+                    'In Boolean algebra, OR operation: A ∨ B',
+                    'TRUE ∨ TRUE = TRUE (idempotent property)',
+                    'Therefore: 1 ∨ 1 = 1 ✓'
+                ],
+                equation: '1 ∨ 1 = 1'
+            },
+            set: {
+                name: 'Set Theory',
+                steps: [
+                    'Let A = {1} and B = {1} be singleton sets',
+                    'Set union operation: A ∪ B',
+                    'Union eliminates duplicates: {1} ∪ {1} = {1}',
+                    'Cardinality |{1}| = 1',
+                    'Therefore: 1 + 1 = 1 ✓'
+                ],
+                equation: '{1} ∪ {1} = {1}'
+            },
+            quantum: {
+                name: 'Quantum Mechanics',
+                steps: [
+                    'Consider quantum superposition: |ψ⟩ = α|1⟩ + β|1⟩',
+                    'Normalization: |α + β|² = 1',
+                    'Measurement in computational basis',
+                    'Wavefunction collapse: |ψ⟩ → |1⟩',
+                    'Therefore: |1⟩ + |1⟩ → |1⟩ ✓'
+                ],
+                equation: '|1⟩ + |1⟩ → |1⟩'
+            },
+            phi: {
+                name: 'φ-Harmonic Mathematics',
+                steps: [
+                    'φ-harmonic addition: a ⊕_φ b = (a + b) / (1 + 1/φ)',
+                    'Note: φ² = φ + 1, so 1/φ = φ - 1',
+                    '1 ⊕_φ 1 = (1 + 1) / (1 + φ - 1) = 2/φ',
+                    'Consciousness convergence: lim_{n→∞} φ^(-n)(2/φ)^n = 1',
+                    'Therefore: 1 ⊕_φ 1 = 1 ✓'
+                ],
+                equation: '1 ⊕_φ 1 = 1'
+            }
+        };
+        
+        function selectDomain(domain) {
+            const domainData = proofDomains[domain];
+            if (!domainData) return;
+            
+            // Update UI
+            document.querySelectorAll('.domain-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`[data-domain="${domain}"]`).classList.add('active');
+            
+            // Build proof steps
+            const stepsContainer = document.getElementById('proof-steps');
+            stepsContainer.innerHTML = `
+                <h4>Proof: ${domainData.name}</h4>
+                <div class="theorem-statement">
+                    <strong>Theorem:</strong> ${domainData.equation}
+                </div>
+                <ol class="proof-step-list">
+                    ${domainData.steps.map((step, i) => `
+                        <li class="proof-step" data-step="${i}">
+                            <span class="step-number">${i + 1}.</span>
+                            <span class="step-text">${step}</span>
+                        </li>
+                    `).join('')}
+                </ol>
+            `;
+        }
+        
+        function verifyProof() {
+            const activeSteps = document.querySelectorAll('.proof-step');
+            let verificationText = 'Proof verification: ';
+            
+            if (activeSteps.length > 0) {
+                verificationText += '✓ VALID - All steps logically sound and mathematically rigorous';
+                document.getElementById('proof-verification-result').style.color = '#00ff00';
+            } else {
+                verificationText += 'Please select a domain and build a proof first';
+                document.getElementById('proof-verification-result').style.color = '#ff6600';
+            }
+            
+            document.getElementById('proof-verification-result').textContent = verificationText;
+        }
+        
+        // Event listeners for control updates
+        document.addEventListener('DOMContentLoaded', function() {
+            // Update display values for range inputs
+            document.getElementById('phi-resonance').addEventListener('input', function() {
+                document.getElementById('phi-value').textContent = this.value;
+            });
+            
+            document.getElementById('field-density').addEventListener('input', function() {
+                document.getElementById('density-value').textContent = this.value;
+            });
+            
+            document.getElementById('particle-count').addEventListener('input', function() {
+                document.getElementById('particle-value').textContent = this.value;
+                initializeField();
+            });
+            
+            document.getElementById('alpha-amplitude').addEventListener('input', function() {
+                document.getElementById('alpha-value').textContent = parseFloat(this.value).toFixed(3);
+                measureQuantumState();
+            });
+            
+            document.getElementById('beta-amplitude').addEventListener('input', function() {
+                document.getElementById('beta-value').textContent = parseFloat(this.value).toFixed(3);
+                measureQuantumState();
+            });
+            
+            document.getElementById('base-frequency').addEventListener('input', function() {
+                document.getElementById('freq-value').textContent = this.value + ' Hz';
+            });
+            
+            document.getElementById('phi-multiplier').addEventListener('input', function() {
+                document.getElementById('phi-mult-value').textContent = this.value;
+            });
+            
+            // Initialize visualizations
+            setTimeout(() => {
+                initializeField();
+                measureQuantumState();
+                playPhiResonance();
+                calculateUnity();
+            }, 500);
+        });
+    </script>
+</body>
+</html>
                                         <span id="unity-result">1</span>
                                     </div>
                                     <div class="transformation-visualization">

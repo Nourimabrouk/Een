@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Learn Unity Mathematics | Interactive Een Framework Guide</title>
-    <meta name="description" content="Interactive learning guide for Een Unity Mathematics - from beginner concepts to transcendental consciousness mathematics">
+    <meta name="description" content="Comprehensive curriculum for Unity Mathematics - from Boolean Logic to Transcendental Consciousness Mathematics">
+    <link rel="stylesheet" href="css/style.css">
     
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -43,10 +44,54 @@
 
         .header {
             text-align: center;
-            padding: 4rem 0;
+            padding: 6rem 0 4rem 0;
             border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+            margin-top: 60px;
         }
 
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 15, 35, 0.95);
+            z-index: 1000;
+            padding: 1rem 0;
+            backdrop-filter: blur(10px);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+        
+        .nav-brand {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.5rem;
+            color: var(--phi-gold);
+            text-decoration: none;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-link {
+            color: var(--transcendent-white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--phi-gold);
+        }
+        
         .main-title {
             font-family: 'Crimson Text', serif;
             font-size: clamp(3rem, 8vw, 6rem);
