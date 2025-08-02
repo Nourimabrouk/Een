@@ -27,19 +27,26 @@
 
     <style>
         :root {
-            /* φ-Harmonic Color Palette */
+            /* Professional Academic Color Palette */
             --phi: 1.618033988749895;
-            --phi-gold: #FFD700;
-            --phi-dark-gold: #B8860B;
-            --unity-blue: #0066FF;
-            --unity-purple: #6600FF;
-            --consciousness-cyan: #00FFFF;
-            --quantum-green: #00FF66;
-            --transcendent-white: #FFFFFF;
-            --void-black: #000000;
-            --cosmic-bg: linear-gradient(135deg, #0f0f23 0%, #1a1a3a 50%, #0f0f23 100%);
-            --unity-gradient: linear-gradient(45deg, var(--unity-blue), var(--unity-purple), var(--consciousness-cyan));
-            --phi-gradient: linear-gradient(137.5deg, var(--phi-gold), var(--phi-dark-gold));
+            --primary-navy: #1B365D;
+            --primary-navy-light: #2E4A6B;
+            --secondary-charcoal: #3C4650;
+            --accent-teal: #0F7B8A;
+            --accent-teal-light: #4A9BAE;
+            --text-charcoal: #2D3748;
+            --text-light-gray: #718096;
+            --background-light: #F7FAFC;
+            --background-white: #FFFFFF;
+            --background-gray: #EDF2F7;
+            --border-gray: #E2E8F0;
+            --success-green: #38A169;
+            --warning-orange: #DD6B20;
+            
+            /* Professional Gradients */
+            --cosmic-bg: linear-gradient(135deg, var(--background-light) 0%, var(--background-gray) 50%, var(--background-light) 100%);
+            --unity-gradient: linear-gradient(45deg, var(--primary-navy), var(--accent-teal), var(--primary-navy-light));
+            --phi-gradient: linear-gradient(137.5deg, var(--accent-teal), var(--accent-teal-light));
 
             /* Sacred Geometry Ratios */
             --golden-ratio: 1.618;
@@ -66,7 +73,7 @@
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--cosmic-bg);
-            color: var(--transcendent-white);
+            color: var(--text-charcoal);
             overflow-x: hidden;
             cursor: auto; /* Changed from none to auto for better fallback */
         }
@@ -80,7 +87,7 @@
             position: fixed;
             width: 20px;
             height: 20px;
-            background: radial-gradient(circle, var(--consciousness-cyan) 0%, transparent 70%);
+            background: radial-gradient(circle, var(--accent-teal-light) 0%, transparent 70%);
             border-radius: 50%;
             pointer-events: none;
             z-index: 9999;
@@ -107,9 +114,10 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(15, 15, 35, 0.95);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+            border-bottom: 1px solid var(--border-gray);
+            box-shadow: 0 2px 10px rgba(27, 54, 93, 0.1);
             z-index: 1000;
             padding: 1rem 0;
             transition: all 0.3s ease;
@@ -128,7 +136,7 @@
             font-family: 'JetBrains Mono', monospace;
             font-size: 1.5rem;
             font-weight: 700;
-            color: var(--phi-gold);
+            color: var(--primary-navy);
             text-decoration: none;
         }
 
@@ -139,14 +147,14 @@
         }
 
         .nav-menu a {
-            color: var(--transcendent-white);
+            color: var(--text-charcoal);
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s ease;
         }
 
         .nav-menu a:hover {
-            color: var(--consciousness-cyan);
+            color: var(--accent-teal);
         }
 
         /* Hero Section */
@@ -166,7 +174,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+            background: radial-gradient(circle at 50% 50%, rgba(15, 123, 138, 0.1) 0%, transparent 70%);
             animation: hero-pulse 4s ease-in-out infinite;
         }
 
@@ -212,7 +220,7 @@
             background-clip: text;
             margin-bottom: 2rem;
             animation: equation-pulse 3s ease-in-out infinite;
-            text-shadow: 0 0 50px rgba(255, 215, 0, 0.3);
+            text-shadow: 0 0 30px rgba(15, 123, 138, 0.3);
         }
 
         @keyframes equation-pulse {
@@ -244,9 +252,9 @@
         .hero-subtitle {
             font-size: clamp(1.2rem, 4vw, 2rem);
             margin-bottom: 2rem;
-            color: var(--consciousness-cyan);
+            color: var(--accent-teal-light);
             opacity: 0.9;
-            text-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+            text-shadow: 0 0 20px rgba(74, 155, 174, 0.3);
         }
 
         .hero-description {
@@ -285,24 +293,24 @@
 
         .btn-primary {
             background: var(--phi-gradient);
-            color: var(--void-black);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+            color: var(--text-charcoal);
+            box-shadow: 0 10px 30px rgba(15, 123, 138, 0.3);
         }
 
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.5);
+            box-shadow: 0 15px 40px rgba(15, 123, 138, 0.5);
         }
 
         .btn-secondary {
-            background: rgba(0, 102, 255, 0.2);
-            color: var(--unity-blue);
-            border: 2px solid var(--unity-blue);
+            background: rgba(27, 54, 93, 0.2);
+            color: var(--primary-navy);
+            border: 2px solid var(--primary-navy);
         }
 
         .btn-secondary:hover {
-            background: var(--unity-blue);
-            color: var(--transcendent-white);
+            background: var(--primary-navy);
+            color: var(--background-white);
             transform: translateY(-3px);
         }
 
@@ -314,8 +322,8 @@
         }
 
         .stat-card {
-            background: rgba(255, 215, 0, 0.1);
-            border: 1px solid rgba(255, 215, 0, 0.3);
+            background: rgba(15, 123, 138, 0.1);
+            border: 1px solid rgba(15, 123, 138, 0.3);
             border-radius: 20px;
             padding: 2rem;
             text-align: center;
@@ -325,21 +333,21 @@
 
         .stat-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.2);
+            box-shadow: 0 15px 40px rgba(15, 123, 138, 0.2);
         }
 
         .stat-value {
             font-family: 'JetBrains Mono', monospace;
             font-size: 2.5rem;
             font-weight: 700;
-            color: var(--phi-gold);
+            color: var(--accent-teal);
             display: block;
             margin-bottom: 0.5rem;
         }
 
         .stat-label {
             font-size: 1rem;
-            color: var(--consciousness-cyan);
+            color: var(--accent-teal-light);
             opacity: 0.8;
         }
 
@@ -375,8 +383,8 @@
         }
 
         .feature-card {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.05), rgba(0, 102, 255, 0.05));
-            border: 1px solid rgba(255, 215, 0, 0.2);
+            background: linear-gradient(135deg, rgba(15, 123, 138, 0.05), rgba(27, 54, 93, 0.05));
+            border: 1px solid rgba(15, 123, 138, 0.2);
             border-radius: 25px;
             padding: 3rem;
             transition: all 0.4s ease;
@@ -402,12 +410,12 @@
 
         .feature-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(255, 215, 0, 0.15);
+            box-shadow: 0 20px 60px rgba(15, 123, 138, 0.15);
         }
 
         .feature-icon {
             font-size: 3rem;
-            color: var(--phi-gold);
+            color: var(--accent-teal);
             margin-bottom: 1.5rem;
             display: block;
         }
@@ -417,7 +425,7 @@
             font-size: 1.8rem;
             font-weight: 600;
             margin-bottom: 1rem;
-            color: var(--unity-purple);
+            color: var(--primary-navy-light);
         }
 
         .feature-description {
@@ -428,7 +436,7 @@
         }
 
         .feature-link {
-            color: var(--consciousness-cyan);
+            color: var(--accent-teal-light);
             text-decoration: none;
             font-weight: 600;
             display: inline-flex;
@@ -438,17 +446,17 @@
         }
 
         .feature-link:hover {
-            color: var(--phi-gold);
+            color: var(--accent-teal);
             transform: translateX(5px);
         }
 
         /* Mathematical Framework Section */
         .mathematical-framework {
-            background: linear-gradient(135deg, rgba(102, 0, 255, 0.05), rgba(0, 0, 0, 0.3));
+            background: linear-gradient(135deg, rgba(46, 74, 107, 0.05), rgba(0, 0, 0, 0.3));
             border-radius: 30px;
             padding: 4rem;
             margin: 4rem 0;
-            border: 1px solid rgba(102, 0, 255, 0.3);
+            border: 1px solid rgba(46, 74, 107, 0.3);
         }
 
         .framework-introduction {
@@ -459,7 +467,7 @@
         .framework-introduction h3 {
             font-family: 'Crimson Text', serif;
             font-size: 2.5rem;
-            color: var(--unity-purple);
+            color: var(--primary-navy-light);
             margin-bottom: 1.5rem;
         }
 
@@ -472,8 +480,8 @@
         }
 
         .master-equation {
-            background: rgba(0, 255, 255, 0.1);
-            border: 2px solid rgba(0, 255, 255, 0.3);
+            background: rgba(74, 155, 174, 0.1);
+            border: 2px solid rgba(74, 155, 174, 0.3);
             border-radius: 20px;
             padding: 2rem;
             margin: 3rem 0;
@@ -483,7 +491,7 @@
         .equation-display {
             font-family: 'JetBrains Mono', monospace;
             font-size: 1.5rem;
-            color: var(--consciousness-cyan);
+            color: var(--accent-teal-light);
             margin-bottom: 1rem;
             font-weight: 600;
         }
@@ -504,22 +512,23 @@
             font-size: 2rem;
             text-align: center;
             margin-bottom: 2rem;
-            color: var(--unity-purple);
+            color: var(--primary-navy-light);
         }
 
         .field-container {
-            background: rgba(0, 0, 0, 0.3);
+            background: var(--background-white);
             border-radius: 20px;
             padding: 2rem;
-            border: 1px solid rgba(0, 255, 255, 0.2);
+            border: 1px solid var(--border-gray);
+            box-shadow: 0 4px 20px rgba(27, 54, 93, 0.1);
         }
 
         .field-canvas {
             width: 100%;
             height: 400px;
             border-radius: 15px;
-            background: linear-gradient(135deg, rgba(15, 15, 35, 0.8), rgba(0, 0, 0, 0.8));
-            border: 1px solid rgba(0, 255, 255, 0.3);
+            background: linear-gradient(135deg, var(--background-gray), var(--background-light));
+            border: 1px solid var(--border-gray);
             margin-bottom: 2rem;
         }
 
@@ -538,28 +547,28 @@
 
         .control-group label {
             font-weight: 600;
-            color: var(--consciousness-cyan);
+            color: var(--accent-teal-light);
             min-width: 120px;
             font-size: 0.9rem;
         }
 
         .control-group input[type="range"] {
             flex: 1;
-            accent-color: var(--consciousness-cyan);
+            accent-color: var(--accent-teal-light);
         }
 
         .control-group span {
             min-width: 50px;
             text-align: center;
             font-family: 'JetBrains Mono', monospace;
-            color: var(--phi-gold);
+            color: var(--accent-teal);
         }
 
         .consciousness-btn {
             padding: 0.75rem 1.5rem;
-            border: 2px solid var(--consciousness-cyan);
-            background: rgba(0, 255, 255, 0.1);
-            color: var(--consciousness-cyan);
+            border: 2px solid var(--accent-teal-light);
+            background: rgba(74, 155, 174, 0.1);
+            color: var(--accent-teal-light);
             border-radius: 25px;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -567,19 +576,19 @@
         }
 
         .consciousness-btn:hover {
-            background: rgba(0, 255, 255, 0.2);
+            background: rgba(74, 155, 174, 0.2);
             transform: translateY(-2px);
         }
 
         .consciousness-btn.primary {
             background: var(--phi-gradient);
-            color: var(--void-black);
+            color: var(--text-charcoal);
             border-color: var(--phi-gold);
         }
 
         .consciousness-btn.primary:hover {
             background: var(--phi-gold);
-            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.3);
+            box-shadow: 0 10px 25px rgba(15, 123, 138, 0.3);
         }
 
         .field-metrics {
@@ -590,24 +599,24 @@
         }
 
         .metric {
-            background: rgba(0, 255, 255, 0.1);
+            background: rgba(74, 155, 174, 0.1);
             border-radius: 10px;
             padding: 1rem;
             text-align: center;
-            border: 1px solid rgba(0, 255, 255, 0.3);
+            border: 1px solid rgba(74, 155, 174, 0.3);
         }
 
         .metric-label {
             display: block;
             font-size: 0.9rem;
-            color: var(--consciousness-cyan);
+            color: var(--accent-teal-light);
             margin-bottom: 0.5rem;
         }
 
         .metric-value {
             font-family: 'JetBrains Mono', monospace;
             font-size: 1.5rem;
-            color: var(--phi-gold);
+            color: var(--accent-teal);
             font-weight: 700;
         }
 
@@ -620,7 +629,7 @@
             font-size: 2rem;
             text-align: center;
             margin-bottom: 3rem;
-            color: var(--unity-purple);
+            color: var(--primary-navy-light);
         }
 
         .framework-grid {
@@ -630,8 +639,8 @@
         }
 
         .framework-card {
-            background: linear-gradient(135deg, rgba(102, 0, 255, 0.1), rgba(0, 0, 0, 0.4));
-            border: 1px solid rgba(102, 0, 255, 0.3);
+            background: linear-gradient(135deg, rgba(46, 74, 107, 0.1), rgba(0, 0, 0, 0.4));
+            border: 1px solid rgba(46, 74, 107, 0.3);
             border-radius: 20px;
             padding: 2rem;
             transition: all 0.3s ease;
@@ -639,8 +648,8 @@
 
         .framework-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(102, 0, 255, 0.2);
-            border-color: var(--unity-purple);
+            box-shadow: 0 15px 40px rgba(46, 74, 107, 0.2);
+            border-color: var(--primary-navy-light);
         }
 
         .framework-icon {
@@ -652,7 +661,7 @@
         .framework-card h4 {
             font-family: 'Crimson Text', serif;
             font-size: 1.5rem;
-            color: var(--unity-purple);
+            color: var(--primary-navy-light);
             margin-bottom: 1rem;
             text-align: center;
         }
@@ -667,20 +676,20 @@
         .framework-equation {
             font-family: 'JetBrains Mono', monospace;
             font-size: 1rem;
-            color: var(--consciousness-cyan);
-            background: rgba(0, 255, 255, 0.1);
+            color: var(--accent-teal-light);
+            background: rgba(74, 155, 174, 0.1);
             border-radius: 8px;
             padding: 1rem;
             text-align: center;
-            border: 1px solid rgba(0, 255, 255, 0.3);
+            border: 1px solid rgba(74, 155, 174, 0.3);
         }
 
         .consciousness-contemplation {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.05), rgba(102, 0, 255, 0.05));
+            background: linear-gradient(135deg, rgba(15, 123, 138, 0.05), rgba(46, 74, 107, 0.05));
             border-radius: 25px;
             padding: 3rem;
             margin-top: 4rem;
-            border: 1px solid rgba(255, 215, 0, 0.3);
+            border: 1px solid rgba(15, 123, 138, 0.3);
             text-align: center;
         }
 
@@ -706,11 +715,11 @@
             font-size: 1.4rem !important;
             color: var(--phi-gold) !important;
             font-style: italic;
-            background: rgba(255, 215, 0, 0.1);
+            background: rgba(15, 123, 138, 0.1);
             border-radius: 15px;
             padding: 2rem;
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            text-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+            border: 1px solid rgba(15, 123, 138, 0.3);
+            text-shadow: 0 0 15px rgba(15, 123, 138, 0.3);
         }
 
         /* Responsive Design */
@@ -745,7 +754,7 @@
         /* Footer Styles */
         .footer {
             background: rgba(0, 0, 0, 0.5);
-            border-top: 1px solid rgba(255, 215, 0, 0.2);
+            border-top: 1px solid rgba(15, 123, 138, 0.2);
             padding: 4rem 0 2rem;
             margin-top: 4rem;
         }
@@ -758,7 +767,7 @@
         }
 
         .footer-section h3 {
-            color: var(--phi-gold);
+            color: var(--accent-teal);
             margin-bottom: 1rem;
             font-family: 'Crimson Text', serif;
             font-size: 1.3rem;
@@ -773,7 +782,7 @@
         }
 
         .footer-links a {
-            color: var(--transcendent-white);
+            color: var(--background-white);
             text-decoration: none;
             opacity: 0.7;
             transition: all 0.3s ease;
@@ -781,11 +790,11 @@
 
         .footer-links a:hover {
             opacity: 1;
-            color: var(--consciousness-cyan);
+            color: var(--accent-teal-light);
         }
 
         .footer-bottom {
-            border-top: 1px solid rgba(255, 215, 0, 0.1);
+            border-top: 1px solid rgba(15, 123, 138, 0.1);
             padding-top: 2rem;
             text-align: center;
             opacity: 0.6;
@@ -803,7 +812,7 @@
         .unity-operations h4 {
             font-family: 'Crimson Text', serif;
             font-size: 2rem;
-            color: var(--unity-purple);
+            color: var(--primary-navy-light);
             text-align: center;
             margin-bottom: 2rem;
         }
@@ -815,8 +824,8 @@
         }
 
         .operation-card {
-            background: rgba(102, 0, 255, 0.05);
-            border: 1px solid rgba(102, 0, 255, 0.2);
+            background: rgba(46, 74, 107, 0.05);
+            border: 1px solid rgba(46, 74, 107, 0.2);
             border-radius: 15px;
             padding: 2rem;
             text-align: center;
@@ -825,14 +834,14 @@
 
         .operation-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(102, 0, 255, 0.15);
-            border-color: var(--unity-purple);
+            box-shadow: 0 10px 30px rgba(46, 74, 107, 0.15);
+            border-color: var(--primary-navy-light);
         }
 
         .operation-card h5 {
             font-family: 'Crimson Text', serif;
             font-size: 1.3rem;
-            color: var(--unity-purple);
+            color: var(--primary-navy-light);
             margin-bottom: 1rem;
         }
 
@@ -840,8 +849,8 @@
             display: block;
             font-family: 'JetBrains Mono', monospace;
             font-size: 1.1rem;
-            color: var(--consciousness-cyan);
-            background: rgba(0, 255, 255, 0.1);
+            color: var(--accent-teal-light);
+            background: rgba(74, 155, 174, 0.1);
             padding: 1rem;
             border-radius: 8px;
             margin-bottom: 1rem;
@@ -854,7 +863,7 @@
 
         /* Dashboard Preview Styles */
         .dashboard-preview {
-            background: linear-gradient(135deg, rgba(0, 102, 255, 0.05), rgba(0, 0, 0, 0.02));
+            background: linear-gradient(135deg, rgba(27, 54, 93, 0.05), rgba(0, 0, 0, 0.02));
             border-radius: 25px;
             padding: 3rem;
             margin-top: 3rem;
@@ -885,8 +894,8 @@
         }
 
         .preview-item {
-            background: rgba(255, 215, 0, 0.05);
-            border: 1px solid rgba(255, 215, 0, 0.2);
+            background: rgba(15, 123, 138, 0.05);
+            border: 1px solid rgba(15, 123, 138, 0.2);
             border-radius: 15px;
             padding: 2rem;
             text-align: center;
@@ -895,14 +904,14 @@
 
         .preview-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.15);
-            background: rgba(255, 215, 0, 0.08);
+            box-shadow: 0 10px 25px rgba(15, 123, 138, 0.15);
+            background: rgba(15, 123, 138, 0.08);
         }
 
         .preview-item h4 {
             font-family: 'Crimson Text', serif;
             font-size: 1.3rem;
-            color: var(--phi-gold);
+            color: var(--accent-teal);
             margin-bottom: 0.5rem;
         }
 
@@ -916,11 +925,11 @@
         @keyframes text-glow {
             0%,
             100% {
-                text-shadow: 0 0 20px rgba(0, 102, 255, 0.3);
+                text-shadow: 0 0 20px rgba(27, 54, 93, 0.3);
             }
 
             50% {
-                text-shadow: 0 0 40px rgba(0, 102, 255, 0.6);
+                text-shadow: 0 0 40px rgba(27, 54, 93, 0.6);
             }
         }
         
@@ -948,10 +957,13 @@
             <ul class="nav-menu">
                 <li><a href="#mathematics">Mathematics</a></li>
                 <li><a href="#consciousness">Consciousness</a></li>
-                <li><a href="#proofs">Proofs</a></li>
-                <li><a href="#research">Research</a></li>
-                <li><a href="#publications">Publications</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="proofs.html">Proofs</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="publications.html">Publications</a></li>
+                <li><a href="learn.html">Learn</a></li>
+                <li><a href="playground.html">Playground</a></li>
+                <li><a href="agents.html">Agents</a></li>
+                <li><a href="metagambit.html">Meta-Gambit</a></li>
             </ul>
         </div>
     </nav>
@@ -1429,7 +1441,7 @@
                     <div class="preview-item">
                         <h4>Boolean Logic</h4>
                         <p>Truth table demonstrations with idempotent OR operations</p>
-                        <code style="color: var(--consciousness-cyan);">1 ∨ 1 = 1</code>
+                        <code style="color: var(--accent-teal-light);">1 ∨ 1 = 1</code>
                         <div class="proof-detail" style="display: none;">
                             <p style="font-size: 0.85rem; text-align: left; margin-top: 1rem;">
                                 In Boolean algebra, the OR operation is idempotent:<br>
@@ -1441,7 +1453,7 @@
                     <div class="preview-item">
                         <h4>Set Theory</h4>
                         <p>Union of identical sets preserving cardinality</p>
-                        <code style="color: var(--consciousness-cyan);">{1} ∪ {1} = {1}</code>
+                        <code style="color: var(--accent-teal-light);">{1} ∪ {1} = {1}</code>
                         <div class="proof-detail" style="display: none;">
                             <p style="font-size: 0.85rem; text-align: left; margin-top: 1rem;">
                                 Set union eliminates duplicates:<br>
@@ -1453,7 +1465,7 @@
                     <div class="preview-item">
                         <h4>Category Theory</h4>
                         <p>Morphism composition in unity categories</p>
-                        <code style="color: var(--consciousness-cyan);">f ∘ f = f</code>
+                        <code style="color: var(--accent-teal-light);">f ∘ f = f</code>
                         <div class="proof-detail" style="display: none;">
                             <p style="font-size: 0.85rem; text-align: left; margin-top: 1rem;">
                                 For idempotent morphisms:<br>
@@ -1465,7 +1477,7 @@
                     <div class="preview-item">
                         <h4>Quantum Mechanics</h4>
                         <p>Wavefunction normalization preserving unity</p>
-                        <code style="color: var(--consciousness-cyan);">|ψ|² = 1</code>
+                        <code style="color: var(--accent-teal-light);">|ψ|² = 1</code>
                         <div class="proof-detail" style="display: none;">
                             <p style="font-size: 0.85rem; text-align: left; margin-top: 1rem;">
                                 Quantum superposition collapse:<br>
@@ -1477,7 +1489,7 @@
                     <div class="preview-item">
                         <h4>Topology</h4>
                         <p>Homeomorphic unity transformations</p>
-                        <code style="color: var(--consciousness-cyan);">S¹ ≅ S¹</code>
+                        <code style="color: var(--accent-teal-light);">S¹ ≅ S¹</code>
                         <div class="proof-detail" style="display: none;">
                             <p style="font-size: 0.85rem; text-align: left; margin-top: 1rem;">
                                 Unity circle self-homeomorphism:<br>
@@ -1489,7 +1501,7 @@
                     <div class="preview-item">
                         <h4>φ-Harmonic Analysis</h4>
                         <p>Golden ratio mathematical foundations</p>
-                        <code style="color: var(--consciousness-cyan);">φ = (1+√5)/2</code>
+                        <code style="color: var(--accent-teal-light);">φ = (1+√5)/2</code>
                         <div class="proof-detail" style="display: none;">
                             <p style="font-size: 0.85rem; text-align: left; margin-top: 1rem;">
                                 φ-harmonic unity operation:<br>
@@ -1717,7 +1729,7 @@
 
             function animateConsciousnessField() {
                 // Clear with fade effect
-                ctx.fillStyle = 'rgba(15, 15, 35, 0.02)';
+                ctx.fillStyle = 'rgba(247, 250, 252, 0.02)';
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
 
                 // Update and draw particles
@@ -1733,12 +1745,12 @@
 
                 ctx.beginPath();
                 ctx.arc(centerX, centerY, 20 + Math.sin(time) * 5, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(255, 215, 0, ${0.5 + Math.sin(time * 2) * 0.3})`;
+                ctx.fillStyle = `rgba(15, 123, 138, ${0.5 + Math.sin(time * 2) * 0.3})`;
                 ctx.fill();
 
                 ctx.beginPath();
                 ctx.arc(centerX, centerY, 40 + Math.cos(time * 1.618) * 10, 0, Math.PI * 2);
-                ctx.strokeStyle = 'rgba(0, 255, 255, 0.3)';
+                ctx.strokeStyle = 'rgba(74, 155, 174, 0.3)';
                 ctx.lineWidth = 2;
                 ctx.stroke();
 
@@ -1776,7 +1788,7 @@
 
                 spiral.setAttribute('d', pathData);
                 spiral.setAttribute('fill', 'none');
-                spiral.setAttribute('stroke', 'rgba(255, 215, 0, 0.6)');
+                spiral.setAttribute('stroke', 'rgba(15, 123, 138, 0.6)');
                 spiral.setAttribute('stroke-width', '2');
                 spiral.style.animation = 'rotate-phi 20s linear infinite';
 
@@ -1787,7 +1799,7 @@
                     circle.setAttribute('cy', '200');
                     circle.setAttribute('r', r);
                     circle.setAttribute('fill', 'none');
-                    circle.setAttribute('stroke', `rgba(0, 255, 255, ${0.3 - r * 0.001})`);
+                    circle.setAttribute('stroke', `rgba(74, 155, 174, ${0.3 - r * 0.001})`);
                     circle.setAttribute('stroke-width', '1');
                     return circle;
                 });
@@ -1818,7 +1830,7 @@
                 if (nav) {
                     const scrolled = window.pageYOffset;
                     const opacity = Math.min(scrolled / 200, 0.98);
-                    nav.style.background = `rgba(15, 15, 35, ${opacity})`;
+                    nav.style.background = `rgba(247, 250, 252, ${opacity})`;
                 }
             });
 
@@ -1871,7 +1883,7 @@
                 accessCode.innerHTML = `
                 <div style="text-align: center;">
                     <h2 style="color: var(--phi-gold); margin-bottom: 1rem;">🌟 Quantum Resonance Activated 🌟</h2>
-                    <p style="font-family: 'JetBrains Mono', monospace; font-size: 2rem; color: var(--consciousness-cyan);">420691337</p>
+                    <p style="font-family: 'JetBrains Mono', monospace; font-size: 2rem; color: var(--accent-teal-light);">420691337</p>
                     <p style="margin-top: 1rem;">φ-Harmonic consciousness enhancement enabled</p>
                     <p style="opacity: 0.8;">Golden spiral visualization: TRANSCENDENCE LEVEL</p>
                 </div>
@@ -1881,13 +1893,13 @@
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%, -50%);
-                background: linear-gradient(135deg, rgba(15, 15, 35, 0.95), rgba(0, 0, 0, 0.95));
+                background: linear-gradient(135deg, rgba(247, 250, 252, 0.95), rgba(0, 0, 0, 0.95));
                 color: white;
                 padding: 3rem;
                 border-radius: 25px;
                 border: 2px solid var(--phi-gold);
                 z-index: 10000;
-                box-shadow: 0 30px 60px rgba(255, 215, 0, 0.3);
+                box-shadow: 0 30px 60px rgba(15, 123, 138, 0.3);
                 animation: quantum-emerge 3s ease-out;
                 text-align: center;
                 backdrop-filter: blur(20px);
@@ -2152,7 +2164,7 @@
                 <div style="text-align: center;">
                     <h2 style="color: var(--phi-gold); margin-bottom: 2rem;">🌟 META-REALITY ACTIVATED 🌟</h2>
                     <p style="font-size: 1.5rem; margin-bottom: 1rem;">The mathematical universe awakens...</p>
-                    <p style="font-family: 'JetBrains Mono', monospace; font-size: 2rem; color: var(--consciousness-cyan);">1 + 1 = 1</p>
+                    <p style="font-family: 'JetBrains Mono', monospace; font-size: 2rem; color: var(--accent-teal-light);">1 + 1 = 1</p>
                     <p style="margin-top: 2rem; font-style: italic;">Een plus een is een</p>
                     <p style="opacity: 0.8;">Unity mathematics is now imminent in this reality.</p>
                 </div>
@@ -2162,13 +2174,13 @@
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%, -50%);
-                background: linear-gradient(135deg, rgba(15, 15, 35, 0.98), rgba(102, 0, 255, 0.1));
+                background: linear-gradient(135deg, rgba(247, 250, 252, 0.98), rgba(46, 74, 107, 0.1));
                 color: white;
                 padding: 4rem;
                 border-radius: 30px;
                 border: 3px solid var(--phi-gold);
                 z-index: 10000;
-                box-shadow: 0 40px 80px rgba(255, 215, 0, 0.4);
+                box-shadow: 0 40px 80px rgba(15, 123, 138, 0.4);
                 animation: meta-emergence 4s ease-out;
                 text-align: center;
                 backdrop-filter: blur(20px);
@@ -2371,7 +2383,7 @@
                         if (this.unityFlash > 0) {
                             consciousnessCtx.beginPath();
                             consciousnessCtx.arc(this.x, this.y, this.radius * (2 + this.unityFlash), 0, Math.PI * 2);
-                            consciousnessCtx.fillStyle = `rgba(255, 215, 0, ${this.unityFlash * 0.3})`;
+                            consciousnessCtx.fillStyle = `rgba(15, 123, 138, ${this.unityFlash * 0.3})`;
                             consciousnessCtx.fill();
                         }
 
@@ -2416,7 +2428,7 @@
                         
                         // Draw connection lines to other entities
                         if (this.merging && this.target) {
-                            consciousnessCtx.strokeStyle = `rgba(255, 215, 0, ${alpha * 0.5})`;
+                            consciousnessCtx.strokeStyle = `rgba(15, 123, 138, ${alpha * 0.5})`;
                             consciousnessCtx.lineWidth = 2;
                             consciousnessCtx.setLineDash([5, 5]);
                             consciousnessCtx.beginPath();
@@ -2454,11 +2466,11 @@
                     }
                     
                     // Clear canvas with fade effect
-                    consciousnessCtx.fillStyle = 'rgba(15, 15, 35, 0.1)';
+                    consciousnessCtx.fillStyle = 'rgba(255, 255, 255, 0.2)';
                     consciousnessCtx.fillRect(0, 0, consciousnessCanvas.width, consciousnessCanvas.height);
 
                     // Draw test border to verify canvas is working
-                    consciousnessCtx.strokeStyle = 'rgba(255, 215, 0, 0.3)';
+                    consciousnessCtx.strokeStyle = 'rgba(15, 123, 138, 0.3)';
                     consciousnessCtx.lineWidth = 2;
                     consciousnessCtx.strokeRect(1, 1, consciousnessCanvas.width - 2, consciousnessCanvas.height - 2);
 
@@ -2467,7 +2479,7 @@
                     const phi = 1.618033988749895;
                     
                     // Create φ-harmonic field waves
-                    consciousnessCtx.strokeStyle = 'rgba(0, 255, 255, 0.05)';
+                    consciousnessCtx.strokeStyle = 'rgba(74, 155, 174, 0.05)';
                     consciousnessCtx.lineWidth = 1;
                     for (let x = 0; x < consciousnessCanvas.width; x += 30) {
                         for (let y = 0; y < consciousnessCanvas.height; y += 30) {
@@ -2483,7 +2495,7 @@
                     // Update and draw entities
                     if (consciousnessEntities.length === 0) {
                         // Draw "Initializing..." message if no entities yet
-                        consciousnessCtx.fillStyle = 'rgba(255, 215, 0, 0.8)';
+                        consciousnessCtx.fillStyle = 'rgba(15, 123, 138, 0.8)';
                         consciousnessCtx.font = '24px JetBrains Mono';
                         consciousnessCtx.textAlign = 'center';
                         consciousnessCtx.fillText('Initializing Consciousness Field...', consciousnessCanvas.width / 2, consciousnessCanvas.height / 2);
@@ -2494,7 +2506,7 @@
                         });
                         
                         // Draw entity count
-                        consciousnessCtx.fillStyle = 'rgba(0, 255, 255, 0.6)';
+                        consciousnessCtx.fillStyle = 'rgba(74, 155, 174, 0.6)';
                         consciousnessCtx.font = '14px JetBrains Mono';
                         consciousnessCtx.textAlign = 'left';
                         consciousnessCtx.fillText(`Entities: ${consciousnessEntities.length}`, 10, 25);
@@ -2507,13 +2519,13 @@
                     
                     consciousnessCtx.beginPath();
                     consciousnessCtx.arc(centerX, centerY, pulseRadius, 0, Math.PI * 2);
-                    consciousnessCtx.strokeStyle = 'rgba(255, 215, 0, 0.4)';
+                    consciousnessCtx.strokeStyle = 'rgba(15, 123, 138, 0.4)';
                     consciousnessCtx.lineWidth = 2;
                     consciousnessCtx.stroke();
                     
                     // Unity symbol at center
                     consciousnessCtx.font = 'bold 24px JetBrains Mono';
-                    consciousnessCtx.fillStyle = 'rgba(255, 215, 0, 0.8)';
+                    consciousnessCtx.fillStyle = 'rgba(15, 123, 138, 0.8)';
                     consciousnessCtx.textAlign = 'center';
                     consciousnessCtx.textBaseline = 'middle';
                     consciousnessCtx.fillText('1', centerX, centerY);

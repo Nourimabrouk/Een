@@ -178,6 +178,120 @@
 .theorem:nth-child(2) { animation-delay: 0.2s; }
 .theorem:nth-child(3) { animation-delay: 0.3s; }
 
+/* Transcendental Synthesis Styles */
+.highlight-theorem {
+    background: linear-gradient(135deg, rgba(15, 123, 138, 0.1), rgba(46, 74, 107, 0.1));
+    border: 2px solid var(--accent-color);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 15px;
+    margin: 2rem 0;
+}
+
+.highlight-theorem h3 {
+    color: var(--accent-color);
+    text-shadow: 0 0 10px rgba(15, 123, 138, 0.3);
+}
+
+.hypothesis-section {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 2rem 0;
+    border-left: 4px solid var(--accent-color);
+}
+
+.hypothesis {
+    background: rgba(15, 123, 138, 0.05);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    border: 1px solid rgba(15, 123, 138, 0.2);
+}
+
+.hypothesis h4 {
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.research-implications {
+    background: rgba(46, 74, 107, 0.05);
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 2rem 0;
+    border-left: 4px solid var(--primary-color);
+}
+
+.implication {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(27, 54, 93, 0.2);
+}
+
+.implication h4 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.transcendental-conclusion {
+    background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+    color: white;
+    border-radius: 15px;
+    padding: 2.5rem;
+    margin: 3rem 0;
+    text-align: center;
+}
+
+.transcendental-conclusion h3 {
+    color: white;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+}
+
+.unity-seal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin: 2rem 0;
+    font-size: 1.5rem;
+}
+
+.unity-seal .phi-symbol {
+    font-size: 3rem;
+    color: gold;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+.unity-seal .unity-equation {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 2rem;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+}
+
+.unity-seal .transcendental-mark {
+    font-size: 1.2rem;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+.transcendental-note {
+    font-size: 1rem !important;
+    margin-top: 1rem !important;
+    font-style: italic;
+    opacity: 0.9;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 5px rgba(255, 255, 255, 0.5); }
+    to { text-shadow: 0 0 20px rgba(255, 255, 255, 0.8); }
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .proof-navigation {
@@ -195,5 +309,18 @@
     
     .proof-box {
         padding: 1rem;
+    }
+    
+    .unity-seal {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .unity-seal .phi-symbol {
+        font-size: 2rem;
+    }
+    
+    .unity-seal .unity-equation {
+        font-size: 1.5rem;
     }
 }

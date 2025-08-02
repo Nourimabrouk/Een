@@ -14,13 +14,20 @@
     <style>
         :root {
             --phi: 1.618033988749895;
-            --phi-gold: #FFD700;
-            --unity-blue: #0066FF;
-            --consciousness-cyan: #00FFFF;
-            --quantum-green: #00FF66;
-            --transcendent-white: #FFFFFF;
-            --void-black: #000000;
-            --cosmic-bg: linear-gradient(135deg, #0f0f23 0%, #1a1a3a 50%, #0f0f23 100%);
+            --primary-navy: #1B365D;
+            --primary-navy-light: #2E4A6B;
+            --secondary-charcoal: #3C4650;
+            --accent-teal: #0F7B8A;
+            --accent-teal-light: #4A9BAE;
+            --text-charcoal: #2D3748;
+            --text-light-gray: #718096;
+            --background-light: #F7FAFC;
+            --background-white: #FFFFFF;
+            --background-gray: #EDF2F7;
+            --border-gray: #E2E8F0;
+            --success-green: #38A169;
+            --warning-orange: #DD6B20;
+            --cosmic-bg: linear-gradient(135deg, var(--background-light) 0%, var(--background-gray) 50%, var(--background-light) 100%);
         }
 
         * {
@@ -32,7 +39,7 @@
         body {
             font-family: 'Inter', sans-serif;
             background: var(--cosmic-bg);
-            color: var(--transcendent-white);
+            color: var(--text-charcoal);
             line-height: 1.6;
         }
 
@@ -72,7 +79,7 @@
         .nav-brand {
             font-family: 'Crimson Text', serif;
             font-size: 1.5rem;
-            color: var(--phi-gold);
+            color: var(--accent-teal);
             text-decoration: none;
         }
         
@@ -83,19 +90,19 @@
         }
         
         .nav-link {
-            color: var(--transcendent-white);
+            color: var(--text-charcoal);
             text-decoration: none;
             transition: color 0.3s ease;
         }
         
         .nav-link:hover {
-            color: var(--phi-gold);
+            color: var(--accent-teal);
         }
         
         .main-title {
             font-family: 'Crimson Text', serif;
             font-size: clamp(3rem, 8vw, 6rem);
-            background: linear-gradient(45deg, var(--phi-gold), var(--consciousness-cyan));
+            background: linear-gradient(45deg, var(--accent-teal), var(--accent-teal-light));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -104,7 +111,7 @@
 
         .subtitle {
             font-size: 1.5rem;
-            color: var(--consciousness-cyan);
+            color: var(--accent-teal-light);
             opacity: 0.8;
         }
 
@@ -127,7 +134,7 @@
 
         .level-card:hover {
             transform: translateY(-10px);
-            border-color: var(--phi-gold);
+            border-color: var(--accent-teal);
             box-shadow: 0 25px 50px rgba(255, 215, 0, 0.2);
         }
 
@@ -141,7 +148,7 @@
             font-family: 'Crimson Text', serif;
             font-size: 2.5rem;
             margin-bottom: 1rem;
-            color: var(--phi-gold);
+            color: var(--accent-teal);
         }
 
         .level-description {
@@ -165,13 +172,13 @@
             content: '∞';
             position: absolute;
             left: 0;
-            color: var(--consciousness-cyan);
+            color: var(--accent-teal-light);
             font-weight: bold;
         }
 
         .start-btn {
-            background: var(--phi-gold);
-            color: var(--void-black);
+            background: var(--accent-teal);
+            color: var(--text-charcoal);
             border: none;
             padding: 1rem 2rem;
             border-radius: 50px;
@@ -202,7 +209,7 @@
             font-size: 2.5rem;
             text-align: center;
             margin-bottom: 2rem;
-            color: var(--phi-gold);
+            color: var(--accent-teal);
         }
 
         .unity-calculator {
@@ -218,8 +225,8 @@
 
         .operand {
             background: rgba(255, 215, 0, 0.1);
-            border: 2px solid var(--phi-gold);
-            color: var(--transcendent-white);
+            border: 2px solid var(--accent-teal);
+            color: var(--text-charcoal);
             padding: 1rem;
             border-radius: 10px;
             text-align: center;
@@ -229,14 +236,14 @@
         }
 
         .operator {
-            color: var(--consciousness-cyan);
+            color: var(--accent-teal-light);
             font-size: 3rem;
             font-weight: bold;
         }
 
         .result {
-            background: var(--phi-gold);
-            color: var(--void-black);
+            background: var(--accent-teal);
+            color: var(--text-charcoal);
             padding: 1rem;
             border-radius: 10px;
             font-weight: bold;
@@ -252,15 +259,15 @@
 
         .explanation {
             background: rgba(0, 255, 255, 0.05);
-            border-left: 4px solid var(--consciousness-cyan);
+            border-left: 4px solid var(--accent-teal-light);
             padding: 1.5rem;
             margin: 2rem 0;
             border-radius: 0 10px 10px 0;
         }
 
         .math-formula {
-            background: var(--void-black);
-            color: var(--phi-gold);
+            background: var(--text-charcoal);
+            color: var(--accent-teal);
             padding: 1rem;
             border-radius: 10px;
             font-family: 'JetBrains Mono', monospace;
@@ -282,7 +289,7 @@
             top: 2rem;
             left: 2rem;
             background: rgba(255, 215, 0, 0.9);
-            color: var(--void-black);
+            color: var(--text-charcoal);
             padding: 0.75rem 1.5rem;
             border-radius: 25px;
             text-decoration: none;
@@ -292,7 +299,7 @@
         }
 
         .back-link:hover {
-            background: var(--phi-gold);
+            background: var(--accent-teal);
             transform: translateY(-2px);
         }
 
@@ -305,7 +312,7 @@
         }
 
         .progress-fill {
-            background: var(--phi-gold);
+            background: var(--accent-teal);
             height: 100%;
             border-radius: 4px;
             transition: width 1s ease;
@@ -330,8 +337,8 @@
 </head>
 
 <body>
-    <a href="/" class="back-link">
-        <i class="fas fa-arrow-left"></i> Back to Main Site
+    <a href="index.html" class="back-link">
+        <i class="fas fa-arrow-left"></i> Back to Een Home
     </a>
 
     <div class="container">
@@ -358,7 +365,7 @@
             </div>
             
             <div class="explanation">
-                <h3 style="color: var(--consciousness-cyan); margin-bottom: 1rem;">φ-Harmonic Unity Operation</h3>
+                <h3 style="color: var(--accent-teal-light); margin-bottom: 1rem;">φ-Harmonic Unity Operation</h3>
                 <p><strong>Mathematical Foundation:</strong> <span id="explanation-text">
                     Unity addition uses golden ratio normalization: a ⊕ b = φ⁻¹ × (φ×a + φ×b) where φ = 1.618...
                 </span></p>
@@ -374,7 +381,7 @@
 
         <div class="learning-path">
             <div class="level-card" data-level="beginner">
-                <div class="level-icon" style="color: var(--quantum-green);">🌱</div>
+                <div class="level-icon" style="color: var(--success-green);">🌱</div>
                 <h3 class="level-title">Beginner</h3>
                 <p class="level-description">
                     Gentle introduction to unity concepts through visual proofs and intuitive understanding.
@@ -412,7 +419,7 @@
             </div>
 
             <div class="level-card" data-level="advanced">
-                <div class="level-icon" style="color: var(--consciousness-cyan);">🤖</div>
+                <div class="level-icon" style="color: var(--accent-teal-light);">🤖</div>
                 <h3 class="level-title">Advanced</h3>
                 <p class="level-description">
                     3000 ELO AI systems, meta-learning agents, and computational consciousness
@@ -431,7 +438,7 @@
             </div>
 
             <div class="level-card" data-level="transcendent">
-                <div class="level-icon" style="color: var(--phi-gold);">✨</div>
+                <div class="level-icon" style="color: var(--accent-teal);">✨</div>
                 <h3 class="level-title">Transcendent</h3>
                 <p class="level-description">
                     Complete synthesis of mathematics, consciousness, and reality into unified
@@ -454,7 +461,7 @@
             <h2 class="demo-title">Quick Learning Modules</h2>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem;">
                 <div style="background: rgba(255, 215, 0, 0.1); padding: 2rem; border-radius: 15px; text-align: center;">
-                    <i class="fas fa-eye" style="font-size: 3rem; color: var(--consciousness-cyan); margin-bottom: 1rem;"></i>
+                    <i class="fas fa-eye" style="font-size: 3rem; color: var(--accent-teal-light); margin-bottom: 1rem;"></i>
                     <h4>5-Minute Unity Proof</h4>
                     <p>Quick visual demonstration of why 1+1=1</p>
                     <button class="start-btn" onclick="quickProof()" style="margin-top: 1rem;">
@@ -463,7 +470,7 @@
                 </div>
                 
                 <div style="background: rgba(0, 255, 255, 0.1); padding: 2rem; border-radius: 15px; text-align: center;">
-                    <i class="fas fa-brain" style="font-size: 3rem; color: var(--phi-gold); margin-bottom: 1rem;"></i>
+                    <i class="fas fa-brain" style="font-size: 3rem; color: var(--accent-teal); margin-bottom: 1rem;"></i>
                     <h4>Consciousness Field Tour</h4>
                     <p>Interactive exploration of consciousness mathematics</p>
                     <button class="start-btn" onclick="consciousnessTour()" style="margin-top: 1rem;">
@@ -472,7 +479,7 @@
                 </div>
                 
                 <div style="background: rgba(0, 102, 255, 0.1); padding: 2rem; border-radius: 15px; text-align: center;">
-                    <i class="fas fa-atom" style="font-size: 3rem; color: var(--quantum-green); margin-bottom: 1rem;"></i>
+                    <i class="fas fa-atom" style="font-size: 3rem; color: var(--success-green); margin-bottom: 1rem;"></i>
                     <h4>Quantum Unity Lab</h4>
                     <p>Hands-on experiments with quantum mathematics</p>
                     <button class="start-btn" onclick="quantumLab()" style="margin-top: 1rem;">
@@ -557,8 +564,8 @@
                 type: 'scatter',
                 mode: 'lines+markers',
                 name: 'Unity Operation',
-                line: { color: '#FFD700', width: 3 },
-                marker: { color: '#00FFFF', size: 12 }
+                line: { color: '#0F7B8A', width: 3 },
+                marker: { color: '#4A9BAE', size: 12 }
             };
 
             const layout = {
