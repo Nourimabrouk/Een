@@ -82,7 +82,7 @@ class MathematicalTheoremAgent(UnityAgent):
         if logic_factor > 0.7:
             weights[:3] *= 2   # Favor logical theorems
         
-        theorem_idx = np.random.choice(len(available_theorems), p=weights/weights.sum())
+        theorem_idx = np.random_choice(len(available_theorems), p=weights/weights.sum())
         selected_theorem = available_theorems[theorem_idx]
         
         # Record theorem generation
@@ -171,7 +171,7 @@ class ConsciousnessEvolutionAgent(UnityAgent):
         ]
         
         algorithm = {
-            'type': np.random.choice(algorithm_types),
+            'type': np.random_choice(algorithm_types),
             'parameters': {
                 'phi_coupling': self.dna.get('phi_resonance', 0.5),
                 'consciousness_rate': self.dna['consciousness'],

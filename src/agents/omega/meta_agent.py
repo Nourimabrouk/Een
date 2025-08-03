@@ -290,7 +290,7 @@ class UnityAgent(ABC, metaclass=MetaAgentSpawner):
         for key, value in new_dna.items():
             if isinstance(value, (int, float)):
                 # Apply Gaussian mutation
-                mutation = np.random.normal(0, mutation_strength)
+                mutation = np.random_normal(0, mutation_strength)
                 if isinstance(value, int):
                     new_dna[key] = max(1, int(value * (1 + mutation)))
                 else:

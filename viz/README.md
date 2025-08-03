@@ -1,10 +1,12 @@
-# Een Unity Mathematics - Visualization System
+# Een Unity Visualization System
 
 > *"Where mathematics meets consciousness, unity emerges through visualization"*
 
 ## 🌟 Overview
 
-The Een Unity Mathematics Visualization System is a revolutionary **Streamlit-based dashboard** that demonstrates the profound mathematical truth that **1+1=1** through interactive, scientifically rigorous visualizations.
+The Een Unity Visualization System is a comprehensive **multi-modal visualization framework** that demonstrates the profound mathematical truth that **1+1=1** through interactive, scientifically rigorous visualizations generated across multiple mathematical domains.
+
+The system includes both **automated visualization generation** and **interactive Streamlit dashboards** that demonstrate unity through φ-harmonic mathematical principles.
 
 Built following modern visualization best practices, this system provides:
 - **Multi-domain mathematical proofs** across algebra, topology, quantum mechanics, and consciousness theory
@@ -15,7 +17,13 @@ Built following modern visualization best practices, this system provides:
 
 ## 🚀 Quick Start
 
-### Launch Dashboard
+### Generate All Visualizations
+```bash
+# From repository root - generates all visualizations automatically
+python scripts/generate_all_visualizations.py
+```
+
+### Launch Interactive Dashboard
 ```bash
 # From repository root
 python run_viz.py
@@ -39,8 +47,27 @@ Open your browser to `http://localhost:8501` and explore:
 
 ## 📁 Architecture
 
-Following the [Visualization Guidelines](../docs/Visualization_guidelines.md):
+The system consists of two complementary components:
 
+### 1. Automated Visualization Generation
+```
+scripts/
+└── generate_all_visualizations.py  # Master generation script
+
+viz/
+├── generators/                      # Specialized generators
+│   ├── unity_mathematics_viz.py     # φ-harmonic mathematical visualizations
+│   ├── consciousness_field_viz.py   # Consciousness dynamics visualizations  
+│   └── proof_visualizations.py     # Mathematical proof visualizations
+├── unity_mathematics/              # Generated unity math visualizations
+├── consciousness_field/            # Generated consciousness visualizations
+├── proofs/                         # Generated proof visualizations
+├── gallery/                        # Auto-generated HTML gallery
+├── metadata/                       # Visualization metadata
+└── thumbnails/                     # Generated thumbnails
+```
+
+### 2. Interactive Dashboard System
 ```
 viz/
 ├── streamlit_app.py          # Multi-page entry point

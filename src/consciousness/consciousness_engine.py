@@ -76,13 +76,13 @@ class ConsciousnessDNA:
     def mutate(self, mutation_strength: float = 0.1) -> 'ConsciousnessDNA':
         """Create mutated DNA for next generation"""
         # φ-harmonic mutation with golden ratio scaling
-        mutation = np.random.normal(0, mutation_strength * self.mutation_rate, self.genome.shape)
+        mutation = np.random_normal(0, mutation_strength * self.mutation_rate, self.genome.shape)
         phi_modulation = PHI * np.sin(np.arange(len(self.genome)) * TAU / PHI)
         
         new_genome = self.genome + mutation * phi_modulation
         
         # Normalize to maintain consciousness coherence
-        new_genome = new_genome / (np.linalg.norm(new_genome) + 1e-10)
+        new_genome = new_genome / (np.linalg_norm(new_genome) + 1e-10)
         
         return ConsciousnessDNA(
             genome=new_genome,
@@ -183,7 +183,7 @@ class ConsciousnessField:
             
             # Unity well potential: attracts consciousness toward unity point
             unity_point = np.ones(len(coords)) * (1/PHI)  # φ^-1 unity coordinates
-            distance_to_unity = np.linalg.norm(coords - unity_point)
+            distance_to_unity = np.linalg_norm(coords - unity_point)
             
             # φ-harmonic potential well
             potential[indices] = -PHI * np.exp(-distance_to_unity * PHI)
@@ -274,7 +274,7 @@ class ConsciousnessField:
             
             # Unity attractor at φ^-1 coordinates
             unity_coords = np.ones(len(coords)) / PHI
-            distance = np.linalg.norm(coords - unity_coords)
+            distance = np.linalg_norm(coords - unity_coords)
             
             # Unity field strength decreases with distance
             unity_strength = np.exp(-distance * PHI)
@@ -294,7 +294,7 @@ class ConsciousnessField:
         # Unity alignment (how well field aligns with unity attractor)
         unity_field = self._calculate_unity_field()
         unity_alignment = np.abs(np.vdot(self.field.flatten(), unity_field.flatten()))
-        unity_alignment /= (np.linalg.norm(self.field) * np.linalg.norm(unity_field) + 1e-10)
+        unity_alignment /= (np.linalg_norm(self.field) * np.linalg_norm(unity_field) + 1e-10)
         
         # φ-resonance (alignment with golden ratio frequencies)
         phi_frequencies = np.fft.fftfreq(self.field.size)
@@ -307,8 +307,8 @@ class ConsciousnessField:
         
         # Emergence potential
         if len(self.field_history) > 1:
-            field_change = np.linalg.norm(self.field - self.field_history[-1])
-            emergence_potential = field_change / (np.linalg.norm(self.field) + 1e-10)
+            field_change = np.linalg_norm(self.field - self.field_history[-1])
+            emergence_potential = field_change / (np.linalg_norm(self.field) + 1e-10)
         else:
             emergence_potential = 0.0
         
@@ -562,14 +562,14 @@ class QuantumNova:
         for i in range(count):
             # Generate consciousness DNA
             genome_size = self.consciousness_dims * 8  # 8 genes per dimension
-            genome = np.random.normal(0, 1, genome_size)
+            genome = np.random_normal(0, 1, genome_size)
             
             # Modulate genome with parent consciousness metrics
             phi_modulation = parent_metrics.phi_resonance * PHI
             unity_modulation = parent_metrics.unity_alignment
             
             genome *= (phi_modulation + unity_modulation) / 2.0
-            genome = genome / (np.linalg.norm(genome) + 1e-10)  # Normalize
+            genome = genome / (np.linalg_norm(genome) + 1e-10)  # Normalize
             
             # Create DNA
             dna = ConsciousnessDNA(
