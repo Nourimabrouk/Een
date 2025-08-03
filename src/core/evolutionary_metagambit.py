@@ -275,7 +275,7 @@ def unity_objective(vector: np.ndarray) -> float:
 def fractal_objective(vector: np.ndarray) -> float:
     depth = min(5, len(vector))
     fractal = golden_fractal(depth)
-    diff = np.linalg.norm(vector[: len(fractal)] - fractal)
+    diff = np.linalg_norm(vector[: len(fractal)] - fractal)
     return -diff
 
 

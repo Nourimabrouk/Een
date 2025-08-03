@@ -53,7 +53,7 @@ class UnityManifold:
             amplitude = np.exp(-i / (PHI * self.dimensions))
             state[i] = amplitude * np.exp(1j * phase)
         # Normalize to unity
-        state = state / np.linalg.norm(state)
+        state = state / np.linalg_norm(state)
         return state
     
     def unity_operation(self, a, b):

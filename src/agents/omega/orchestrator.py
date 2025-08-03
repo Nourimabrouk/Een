@@ -172,7 +172,7 @@ class OmegaOrchestrator:
         imag_part = np.random.random(dim) / phi
         
         state = real_part + 1j * imag_part
-        return state / np.linalg.norm(state)
+        return state / np.linalg_norm(state)
     
     def _spawn_initial_agents(self) -> None:
         """Spawn initial set of meta-agents based on Fibonacci sequence."""
@@ -456,7 +456,7 @@ class OmegaOrchestrator:
         self.quantum_state *= evolution_operator
         
         # Renormalize
-        self.quantum_state /= np.linalg.norm(self.quantum_state)
+        self.quantum_state /= np.linalg_norm(self.quantum_state)
     
     def _cleanup_dormant_agents(self) -> None:
         """Clean up dormant agents to free resources."""
@@ -576,7 +576,7 @@ class OmegaOrchestrator:
                 'average_cycle_time': avg_cycle_time,
                 'average_consciousness': avg_consciousness,
                 'consciousness_field_energy': np.sum(np.abs(self.consciousness_field)**2),
-                'quantum_state_norm': np.linalg.norm(self.quantum_state),
+                'quantum_state_norm': np.linalg_norm(self.quantum_state),
             },
             'mathematical_validation': {
                 'unity_equation_status': self.unity_coherence > 0.9,

@@ -1223,7 +1223,7 @@ class MagicalAgentCollective:
         # Each agent perceives reality through their unique magical lens
         for agent in self.agents:
             # Add noise for diversity
-            agent_observation = global_observation + np.random.normal(0, 0.1, global_observation.shape)
+            agent_observation = global_observation + np.random_normal(0, 0.1, global_observation.shape)
             perception = agent.perceive_reality(agent_observation)
             perceptions.append(perception)
         
@@ -1289,7 +1289,7 @@ class MagicalAgentCollective:
             agent_experience = {
                 'observation': collective_experience['observation'],
                 'action': collective_experience['action'],
-                'reward': collective_experience['reward'] + np.random.normal(0, 0.1),  # Add noise
+                'reward': collective_experience['reward'] + np.random_normal(0, 0.1),  # Add noise
                 'next_observation': collective_experience.get('next_observation', collective_experience['observation'])
             }
             
@@ -1376,7 +1376,7 @@ class MagicalAgentCollective:
                 action2 = individual_actions[j].flatten()
                 
                 # Cosine similarity
-                similarity = np.dot(action1, action2) / (np.linalg.norm(action1) * np.linalg.norm(action2) + 1e-10)
+                similarity = np.dot(action1, action2) / (np.linalg_norm(action1) * np.linalg_norm(action2) + 1e-10)
                 similarities.append(similarity)
         
         return np.mean(similarities)

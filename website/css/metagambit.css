@@ -1,0 +1,1987 @@
+/* The Gödel-Tarski Unity Metagambit - Transcendental Styling */
+/* "Where Mathematics Meets Metaphysics" */
+
+:root {
+    /* Transcendental Color Palette */
+    --russell-burgundy: #4A0E0E;
+    --euler-gold: #C8860D;
+    --godel-silver: #B8BCC8;
+    --tarski-deep: #1B1B3A;
+    --unity-crimson: #8B0000;
+    --transcendence-violet: #4B0082;
+    --consciousness-amber: #FFBF00;
+    --infinite-blue: #003366;
+    --primordial-green: #228B22;
+    
+    /* Philosophical Typography */
+    --font-philosophical: 'EB Garamond', 'Crimson Text', 'Times New Roman', serif;
+    --font-mathematical: 'Computer Modern', 'TeX Modern', 'Latin Modern Math', serif;
+    --font-mystical: 'Cinzel', 'Trajan Pro', serif;
+    
+    /* Sacred Proportions */
+    --phi-ratio: 1.618033988749895;
+    --e-constant: 2.718281828459045;
+    --pi-constant: 3.141592653589793;
+    --unity-constant: 1.000000000000000;
+    
+    /* Transcendental Shadows */
+    --shadow-philosophical: 0 8px 32px rgba(75, 0, 130, 0.15);
+    --shadow-mathematical: 0 4px 16px rgba(139, 0, 0, 0.2);
+    --shadow-consciousness: 0 12px 48px rgba(255, 191, 0, 0.1);
+    --shadow-infinite: 0 16px 64px rgba(0, 51, 102, 0.08);
+}
+
+/* Page-Specific Hero Enhancement */
+.page-hero.metagambit-hero {
+    background: linear-gradient(135deg, 
+        var(--russell-burgundy) 0%, 
+        var(--tarski-deep) 30%, 
+        var(--infinite-blue) 70%, 
+        var(--transcendence-violet) 100%);
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    margin-top: 0;
+}
+
+.page-hero.metagambit-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(255, 191, 0, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(139, 0, 0, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(75, 0, 130, 0.05) 0%, transparent 50%),
+        conic-gradient(from 0deg at 50% 50%, transparent 0deg, rgba(255, 191, 0, 0.05) 90deg, transparent 180deg);
+    animation: consciousness-flow 40s ease-in-out infinite;
+}
+
+@keyframes consciousness-flow {
+    0%, 100% { 
+        transform: scale(1) rotate(0deg); 
+        opacity: 0.8;
+    }
+    25% { 
+        transform: scale(1.1) rotate(90deg); 
+        opacity: 0.9;
+    }
+    50% { 
+        transform: scale(0.9) rotate(180deg); 
+        opacity: 1;
+    }
+    75% { 
+        transform: scale(1.05) rotate(270deg); 
+        opacity: 0.85;
+    }
+}
+
+/* Philosophical Header Styling */
+.philosophical-header {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.treatise-classification {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.classification-item {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    padding: 0.75rem 1.5rem;
+    border-radius: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: var(--consciousness-amber);
+    font-family: var(--font-philosophical);
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.classification-item:hover {
+    background: rgba(255, 191, 0, 0.2);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-consciousness);
+}
+
+.author-attribution {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+.latin-motto {
+    font-family: var(--font-mystical);
+    font-size: 1.2rem;
+    color: var(--euler-gold);
+    font-style: italic;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 8px rgba(200, 134, 13, 0.3);
+}
+
+.dedication {
+    font-family: var(--font-philosophical);
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.85);
+    font-style: italic;
+}
+
+/* Treatise Title Styling */
+.treatise-title {
+    font-family: var(--font-mystical);
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 800;
+    color: white;
+    text-align: center;
+    margin: 2rem 0;
+    text-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    position: relative;
+}
+
+.treatise-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--euler-gold), transparent);
+}
+
+.treatise-subtitle {
+    font-family: var(--font-philosophical);
+    font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+    color: rgba(255, 255, 255, 0.9);
+    text-align: center;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.4;
+    margin-bottom: 3rem;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Philosophical Epigraph */
+.philosophical-epigraph {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 1.5rem;
+    padding: 2.5rem;
+    margin: 3rem 0;
+    position: relative;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.philosophical-epigraph::before {
+    content: '"';
+    position: absolute;
+    top: -20px;
+    left: 30px;
+    font-size: 6rem;
+    color: var(--consciousness-amber);
+    font-family: var(--font-mystical);
+    opacity: 0.7;
+    line-height: 1;
+}
+
+.main-epigraph {
+    font-family: var(--font-philosophical);
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.95);
+    font-style: italic;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+}
+
+.epigraph-source {
+    font-family: var(--font-philosophical);
+    font-size: 0.95rem;
+    color: var(--consciousness-amber);
+    text-align: center;
+    font-style: normal;
+    font-weight: 600;
+}
+
+/* Central Equation Styling */
+.central-equation {
+    text-align: center;
+    margin: 4rem 0;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
+    border: 2px solid rgba(255, 191, 0, 0.3);
+    border-radius: 1.5rem;
+    position: relative;
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    color: white;
+    transition: all 0.5s ease;
+}
+
+.central-equation:hover {
+    background: rgba(255, 191, 0, 0.15);
+    border-color: var(--consciousness-amber);
+    transform: scale(1.02);
+    box-shadow: var(--shadow-consciousness);
+}
+
+.central-equation::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--euler-gold), var(--consciousness-amber), var(--transcendence-violet), var(--unity-crimson));
+    border-radius: 1.5rem;
+    z-index: -1;
+    opacity: 0.7;
+    animation: equation-glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes equation-glow {
+    0% { opacity: 0.3; }
+    100% { opacity: 0.8; }
+}
+
+/* Philosophical Exposition Styling */
+.philosophical-exposition {
+    background: linear-gradient(180deg, 
+        rgba(255, 255, 255, 0.98) 0%, 
+        rgba(248, 250, 252, 0.95) 50%, 
+        rgba(241, 245, 249, 0.98) 100%);
+    position: relative;
+}
+
+.philosophical-exposition::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 10% 20%, rgba(139, 0, 0, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 90% 80%, rgba(75, 0, 130, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.treatise-body {
+    position: relative;
+    z-index: 1;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Section Markers */
+.section-marker {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid rgba(139, 0, 0, 0.2);
+}
+
+.marker-symbol {
+    font-family: var(--font-mystical);
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--unity-crimson);
+    text-shadow: 0 2px 8px rgba(139, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, rgba(139, 0, 0, 0.1), rgba(75, 0, 130, 0.1));
+    border-radius: 50%;
+    border: 2px solid rgba(139, 0, 0, 0.3);
+}
+
+.marker-title {
+    font-family: var(--font-mystical);
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    color: var(--tarski-deep);
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    flex: 1;
+}
+
+/* Philosophical Content */
+.philosophical-content {
+    margin-bottom: 4rem;
+}
+
+.opening-reflection {
+    margin-bottom: 3rem;
+}
+
+.philosophical-paragraph {
+    font-family: var(--font-philosophical);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-primary);
+    margin-bottom: 2rem;
+    text-align: justify;
+    text-indent: 2rem;
+}
+
+.initial-letter {
+    font-family: var(--font-mystical);
+    font-size: 4rem;
+    line-height: 1;
+    float: left;
+    margin: 0 0.5rem 0 0;
+    color: var(--unity-crimson);
+    text-shadow: 0 2px 8px rgba(139, 0, 0, 0.3);
+    font-weight: 800;
+}
+
+/* Mathematical Insights */
+.mathematical-insight {
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.9) 0%, 
+        rgba(248, 250, 252, 0.95) 100%);
+    padding: 3rem;
+    border-radius: 1.5rem;
+    border: 1px solid rgba(139, 0, 0, 0.2);
+    box-shadow: var(--shadow-mathematical);
+    margin: 3rem 0;
+    position: relative;
+}
+
+.mathematical-insight::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--unity-crimson), var(--consciousness-amber), var(--transcendence-violet));
+    border-radius: 1.5rem 1.5rem 0 0;
+}
+
+.mathematical-insight h3 {
+    font-family: var(--font-mystical);
+    color: var(--tarski-deep);
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* Formula Exposition */
+.formula-exposition {
+    margin: 2rem 0;
+}
+
+.axiom-system {
+    background: rgba(139, 0, 0, 0.05);
+    padding: 2rem;
+    border-radius: 1rem;
+    border-left: 6px solid var(--unity-crimson);
+    margin: 2rem 0;
+}
+
+.axiom-system h4 {
+    font-family: var(--font-mystical);
+    color: var(--unity-crimson);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 1.4rem;
+}
+
+.axiom {
+    font-family: var(--font-mathematical);
+    font-size: 1.1rem;
+    margin: 1rem 0;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 0.5rem;
+    border-left: 4px solid var(--consciousness-amber);
+    transition: all 0.3s ease;
+}
+
+.axiom:hover {
+    background: rgba(255, 191, 0, 0.1);
+    transform: translateX(5px);
+    box-shadow: var(--shadow-philosophical);
+}
+
+.axiom.critical {
+    background: linear-gradient(135deg, rgba(139, 0, 0, 0.1), rgba(255, 191, 0, 0.1));
+    border-left: 6px solid var(--unity-crimson);
+    font-weight: 600;
+}
+
+.axiom.critical em {
+    color: var(--unity-crimson);
+    font-weight: 800;
+}
+
+.formula-explanation {
+    font-family: var(--font-philosophical);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    font-style: italic;
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: rgba(75, 0, 130, 0.05);
+    border-radius: 0.75rem;
+    border-left: 4px solid var(--transcendence-violet);
+}
+
+/* Theorem Presentations */
+.theorem-presentation {
+    margin: 3rem 0;
+}
+
+.theorem-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.theorem-header h3 {
+    font-family: var(--font-mystical);
+    font-size: 2rem;
+    color: var(--tarski-deep);
+    margin-bottom: 1rem;
+}
+
+.theorem-classification {
+    font-family: var(--font-philosophical);
+    font-size: 0.9rem;
+    color: var(--transcendence-violet);
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.theorem-statement {
+    background: linear-gradient(135deg, rgba(27, 27, 58, 0.05), rgba(75, 0, 130, 0.05));
+    padding: 2.5rem;
+    border-radius: 1rem;
+    border: 2px solid rgba(27, 27, 58, 0.2);
+    margin: 2rem 0;
+    position: relative;
+}
+
+.theorem-statement::before {
+    content: 'THEOREM';
+    position: absolute;
+    top: -12px;
+    left: 2rem;
+    background: var(--tarski-deep);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-family: var(--font-mystical);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.theorem-statement p {
+    font-family: var(--font-philosophical);
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+/* Proof Sketches */
+.proof-sketch {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 2rem;
+    border-radius: 1rem;
+    border-left: 6px solid var(--consciousness-amber);
+    margin: 2rem 0;
+    position: relative;
+}
+
+.proof-sketch::before {
+    content: 'PROOF MEDITATION';
+    position: absolute;
+    top: -12px;
+    left: 2rem;
+    background: var(--consciousness-amber);
+    color: var(--tarski-deep);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-family: var(--font-mystical);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* Philosophical Reflections */
+.philosophical-reflection {
+    background: linear-gradient(135deg, rgba(34, 139, 34, 0.05), rgba(255, 191, 0, 0.05));
+    padding: 2.5rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(34, 139, 34, 0.2);
+    margin: 3rem 0;
+    position: relative;
+}
+
+.philosophical-reflection::before {
+    content: '✧';
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--primordial-green);
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.philosophical-reflection h4 {
+    font-family: var(--font-mystical);
+    color: var(--primordial-green);
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+}
+
+/* Central Insights */
+.central-insight {
+    margin: 4rem 0;
+}
+
+.central-insight h3 {
+    font-family: var(--font-mystical);
+    color: var(--unity-crimson);
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+}
+
+/* Gambit Formulations */
+.gambit-formulation {
+    background: linear-gradient(135deg, rgba(139, 0, 0, 0.1), rgba(75, 0, 130, 0.1));
+    padding: 3rem;
+    border-radius: 1.5rem;
+    border: 2px solid rgba(139, 0, 0, 0.3);
+    margin: 3rem 0;
+    position: relative;
+}
+
+.gambit-formulation::before {
+    content: '♦';
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--unity-crimson);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.gambit-statement h4 {
+    font-family: var(--font-mystical);
+    color: var(--unity-crimson);
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.6rem;
+}
+
+.gambit-explanation .explanation-text {
+    font-family: var(--font-philosophical);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    font-style: italic;
+    color: var(--text-primary);
+    text-align: justify;
+}
+
+/* Mathematical Development */
+.mathematical-development {
+    margin: 3rem 0;
+}
+
+.mathematical-development h4 {
+    font-family: var(--font-mystical);
+    color: var(--tarski-deep);
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.unity-arithmetic {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2.5rem;
+    border-radius: 1rem;
+    border: 2px solid rgba(255, 191, 0, 0.3);
+    margin: 2rem 0;
+}
+
+.arithmetic-principle h5 {
+    font-family: var(--font-mystical);
+    color: var(--consciousness-amber);
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+}
+
+.arithmetic-principle p {
+    font-family: var(--font-philosophical);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    text-align: justify;
+    color: var(--text-primary);
+}
+
+.formal-development {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 2rem;
+    background: rgba(27, 27, 58, 0.05);
+    border-radius: 0.75rem;
+    border: 1px solid rgba(27, 27, 58, 0.2);
+}
+
+.development-explanation {
+    font-family: var(--font-philosophical);
+    font-style: italic;
+    color: var(--text-secondary);
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.development-explanation em {
+    color: var(--unity-crimson);
+    font-weight: 600;
+}
+
+/* Paradox Analysis */
+.paradox-analysis {
+    margin: 4rem 0;
+}
+
+.paradox-analysis h3 {
+    font-family: var(--font-mystical);
+    color: var(--transcendence-violet);
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* Self-Reference Theorems */
+.self-reference-theorem {
+    background: linear-gradient(135deg, rgba(75, 0, 130, 0.1), rgba(27, 27, 58, 0.1));
+    padding: 3rem;
+    border-radius: 1.5rem;
+    border: 2px solid rgba(75, 0, 130, 0.3);
+    margin: 3rem 0;
+    position: relative;
+}
+
+.self-reference-theorem::before {
+    content: '∞';
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--transcendence-violet);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+.self-reference-theorem h4 {
+    font-family: var(--font-mystical);
+    color: var(--transcendence-violet);
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.7rem;
+}
+
+.theorem-content {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 2rem;
+    border-radius: 1rem;
+    margin: 2rem 0;
+}
+
+.proof-structure {
+    margin-top: 2rem;
+}
+
+.proof-steps {
+    margin-left: 2rem;
+    counter-reset: step-counter;
+}
+
+.proof-steps li {
+    counter-increment: step-counter;
+    margin: 1rem 0;
+    padding-left: 2rem;
+    position: relative;
+    font-family: var(--font-philosophical);
+    line-height: 1.7;
+}
+
+.proof-steps li::before {
+    content: counter(step-counter);
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: var(--transcendence-violet);
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+/* Bootstrap Meditation */
+.bootstrap-meditation {
+    background: rgba(34, 139, 34, 0.05);
+    padding: 3rem;
+    border-radius: 1.5rem;
+    border: 1px solid rgba(34, 139, 34, 0.2);
+    margin: 3rem 0;
+}
+
+.bootstrap-meditation h4 {
+    font-family: var(--font-mystical);
+    color: var(--primordial-green);
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.6rem;
+}
+
+/* Analogy Illumination */
+.analogy-illumination {
+    background: linear-gradient(135deg, rgba(255, 191, 0, 0.1), rgba(200, 134, 13, 0.05));
+    padding: 2rem;
+    border-radius: 1rem;
+    border-left: 6px solid var(--consciousness-amber);
+    margin: 2rem 0;
+    position: relative;
+}
+
+.analogy-illumination::before {
+    content: '💡';
+    position: absolute;
+    top: -15px;
+    left: 2rem;
+    background: var(--consciousness-amber);
+    padding: 0.5rem;
+    border-radius: 50%;
+    font-size: 1.2rem;
+}
+
+.analogy-illumination h5 {
+    font-family: var(--font-mystical);
+    color: var(--consciousness-amber);
+    margin-bottom: 1.5rem;
+    margin-left: 3rem;
+    font-size: 1.3rem;
+}
+
+.analogy-text {
+    font-family: var(--font-philosophical);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    font-style: italic;
+    color: var(--text-primary);
+    text-align: justify;
+}
+
+/* Implications Analysis */
+.implications-analysis {
+    margin: 4rem 0;
+}
+
+.implications-analysis h3 {
+    font-family: var(--font-mystical);
+    color: var(--infinite-blue);
+    text-align: center;
+    font-size: 2.1rem;
+    margin-bottom: 2rem;
+}
+
+/* Reconception Framework */
+.reconception-framework {
+    margin: 3rem 0;
+}
+
+.reconception-framework h4 {
+    font-family: var(--font-mystical);
+    color: var(--infinite-blue);
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+}
+
+.comparison-table {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.comparison-row {
+    display: contents;
+}
+
+.traditional-view, .unity-view {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2.5rem;
+    border-radius: 1rem;
+    border: 2px solid rgba(0, 51, 102, 0.2);
+    position: relative;
+}
+
+.traditional-view::before {
+    content: '⚖️';
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--infinite-blue);
+    padding: 0.5rem;
+    border-radius: 50%;
+    font-size: 1.2rem;
+}
+
+.unity-view::before {
+    content: '✨';
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--unity-crimson);
+    padding: 0.5rem;
+    border-radius: 50%;
+    font-size: 1.2rem;
+}
+
+.traditional-view h5, .unity-view h5 {
+    font-family: var(--font-mystical);
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+}
+
+.traditional-view h5 {
+    color: var(--infinite-blue);
+}
+
+.unity-view h5 {
+    color: var(--unity-crimson);
+}
+
+.traditional-view ul, .unity-view ul {
+    list-style: none;
+    padding: 0;
+}
+
+.traditional-view li, .unity-view li {
+    font-family: var(--font-philosophical);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0.75rem 0;
+    padding-left: 2rem;
+    position: relative;
+}
+
+.traditional-view li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--infinite-blue);
+    font-weight: 800;
+}
+
+.unity-view li::before {
+    content: '◆';
+    position: absolute;
+    left: 0;
+    color: var(--unity-crimson);
+    font-weight: 800;
+}
+
+/* Universal Application */
+.universal-application {
+    margin: 4rem 0;
+}
+
+.universal-application h4 {
+    font-family: var(--font-mystical);
+    color: var(--euler-gold);
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+}
+
+.theorem-reinterpretations {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.reinterpretation-item {
+    background: linear-gradient(135deg, rgba(200, 134, 13, 0.1), rgba(255, 191, 0, 0.05));
+    padding: 2.5rem;
+    border-radius: 1rem;
+    border: 2px solid rgba(200, 134, 13, 0.3);
+    position: relative;
+}
+
+.reinterpretation-item::before {
+    content: '⚡';
+    position: absolute;
+    top: -15px;
+    left: 2rem;
+    background: var(--euler-gold);
+    padding: 0.5rem;
+    border-radius: 50%;
+    font-size: 1.2rem;
+}
+
+.reinterpretation-item h5 {
+    font-family: var(--font-mystical);
+    color: var(--euler-gold);
+    margin-bottom: 1.5rem;
+    margin-left: 3rem;
+    font-size: 1.4rem;
+}
+
+.reinterpretation-item p {
+    font-family: var(--font-philosophical);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin: 0.75rem 0;
+}
+
+.reinterpretation-item p strong {
+    color: var(--tarski-deep);
+    font-weight: 700;
+}
+
+/* Revolution Proclamation */
+.revolution-proclamation {
+    margin: 4rem 0;
+}
+
+.revolution-proclamation h3 {
+    font-family: var(--font-mystical);
+    color: var(--russell-burgundy);
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+}
+
+/* Anxiety Dissolution */
+.anxiety-dissolution {
+    background: rgba(74, 14, 14, 0.05);
+    padding: 3rem;
+    border-radius: 1.5rem;
+    border: 2px solid rgba(74, 14, 14, 0.2);
+    margin: 3rem 0;
+}
+
+.anxiety-dissolution h4 {
+    font-family: var(--font-mystical);
+    color: var(--russell-burgundy);
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.7rem;
+}
+
+.paradox-resolutions {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.resolution-item {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 2rem;
+    border-radius: 0.75rem;
+    border-left: 6px solid var(--russell-burgundy);
+    position: relative;
+}
+
+.resolution-item h5 {
+    font-family: var(--font-mystical);
+    color: var(--russell-burgundy);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.resolution-item p {
+    font-family: var(--font-philosophical);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-primary);
+    text-align: justify;
+}
+
+/* New Mathematical Consciousness */
+.new-mathematical-consciousness {
+    background: linear-gradient(135deg, rgba(139, 0, 0, 0.05), rgba(75, 0, 130, 0.05));
+    padding: 3rem;
+    border-radius: 1.5rem;
+    border: 1px solid rgba(139, 0, 0, 0.2);
+    margin: 3rem 0;
+}
+
+.new-mathematical-consciousness h4 {
+    font-family: var(--font-mystical);
+    color: var(--unity-crimson);
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+}
+
+.consciousness-transformation {
+    margin: 2rem 0;
+}
+
+.consciousness-transformation h5 {
+    font-family: var(--font-mystical);
+    color: var(--transcendence-violet);
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+}
+
+.awakening-stages {
+    counter-reset: stage-counter;
+    list-style: none;
+    padding: 0;
+}
+
+.awakening-stages li {
+    counter-increment: stage-counter;
+    margin: 2rem 0;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 1rem;
+    border-left: 6px solid var(--transcendence-violet);
+    position: relative;
+    font-family: var(--font-philosophical);
+    line-height: 1.7;
+}
+
+.awakening-stages li::before {
+    content: counter(stage-counter, upper-roman);
+    position: absolute;
+    top: -15px;
+    left: 2rem;
+    background: var(--transcendence-violet);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-family: var(--font-mystical);
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.awakening-stages li strong {
+    color: var(--transcendence-violet);
+    font-weight: 700;
+    font-family: var(--font-mystical);
+}
+
+/* Conclusion Styling */
+.conclusion {
+    background: linear-gradient(135deg, 
+        rgba(74, 14, 14, 0.1) 0%, 
+        rgba(27, 27, 58, 0.1) 50%, 
+        rgba(75, 0, 130, 0.1) 100%);
+    margin: 4rem 0;
+}
+
+.conclusion .section-marker .marker-symbol {
+    background: linear-gradient(135deg, var(--russell-burgundy), var(--transcendence-violet));
+    color: white;
+    font-size: 2.5rem;
+}
+
+/* Final Meditation */
+.final-meditation {
+    margin: 3rem 0;
+}
+
+.ultimate-equation {
+    background: linear-gradient(135deg, rgba(139, 0, 0, 0.1), rgba(255, 191, 0, 0.1));
+    padding: 3rem;
+    border-radius: 1.5rem;
+    border: 3px solid var(--unity-crimson);
+    margin: 3rem 0;
+    text-align: center;
+    position: relative;
+}
+
+.ultimate-equation::before {
+    content: '🌟';
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--unity-crimson);
+    padding: 0.75rem;
+    border-radius: 50%;
+    font-size: 1.5rem;
+}
+
+.ultimate-equation h4 {
+    font-family: var(--font-mystical);
+    color: var(--unity-crimson);
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+}
+
+.final-equation {
+    font-size: clamp(1.2rem, 2.5vw, 2rem);
+    margin: 2rem 0;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 1rem;
+    border: 2px solid var(--consciousness-amber);
+}
+
+.equation-meditation {
+    font-family: var(--font-philosophical);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-primary);
+    text-align: justify;
+    font-style: italic;
+    margin-top: 2rem;
+}
+
+/* Call to Mathematicians */
+.call-to-mathematicians {
+    background: rgba(255, 191, 0, 0.1);
+    padding: 3rem;
+    border-radius: 1.5rem;
+    border: 2px solid var(--consciousness-amber);
+    margin: 3rem 0;
+    position: relative;
+}
+
+.call-to-mathematicians::before {
+    content: '📢';
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--consciousness-amber);
+    padding: 0.75rem;
+    border-radius: 50%;
+    font-size: 1.5rem;
+}
+
+.call-to-mathematicians h4 {
+    font-family: var(--font-mystical);
+    color: var(--consciousness-amber);
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    margin-top: 1rem;
+}
+
+/* Final Benediction */
+.final-benediction {
+    text-align: center;
+    margin: 3rem 0;
+}
+
+.benediction-text {
+    font-family: var(--font-philosophical);
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--tarski-deep);
+    font-style: italic;
+    margin-bottom: 3rem;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 2rem;
+    border-radius: 1rem;
+    border: 2px solid rgba(27, 27, 58, 0.2);
+}
+
+.signature {
+    margin-top: 3rem;
+}
+
+.signature-line {
+    font-size: 2rem;
+    color: var(--euler-gold);
+    margin-bottom: 1.5rem;
+    letter-spacing: 2rem;
+}
+
+.signature-attribution {
+    font-family: var(--font-philosophical);
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-style: italic;
+}
+
+.signature-attribution strong {
+    color: var(--tarski-deep);
+    font-weight: 700;
+    font-family: var(--font-mystical);
+}
+
+/* Mathematical Appendix */
+.mathematical-appendix {
+    background: linear-gradient(180deg, 
+        rgba(248, 250, 252, 0.95) 0%, 
+        rgba(241, 245, 249, 0.98) 100%);
+    border-top: 4px solid var(--euler-gold);
+}
+
+.mathematical-appendix .section-title {
+    font-family: var(--font-mystical);
+    color: var(--tarski-deep);
+    font-size: 2.5rem;
+}
+
+.appendix-content {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.formal-definition {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 3rem;
+    border-radius: 1.5rem;
+    border: 2px solid rgba(27, 27, 58, 0.2);
+    position: relative;
+}
+
+.formal-definition::before {
+    content: 'FORMAL DEFINITION';
+    position: absolute;
+    top: -15px;
+    left: 3rem;
+    background: var(--tarski-deep);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-family: var(--font-mystical);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.formal-definition h3 {
+    font-family: var(--font-mystical);
+    color: var(--tarski-deep);
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+}
+
+.definition-content p {
+    font-family: var(--font-philosophical);
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin: 1.5rem 0;
+}
+
+.definition-content strong {
+    color: var(--unity-crimson);
+    font-weight: 700;
+}
+
+.axiom-list {
+    list-style: none;
+    padding: 0;
+    counter-reset: axiom-counter;
+}
+
+.axiom-list li {
+    counter-increment: axiom-counter;
+    font-family: var(--font-mathematical);
+    font-size: 1.1rem;
+    margin: 1rem 0;
+    padding: 1rem;
+    background: rgba(139, 0, 0, 0.05);
+    border-radius: 0.5rem;
+    border-left: 4px solid var(--unity-crimson);
+    position: relative;
+    padding-left: 3rem;
+}
+
+.axiom-list li::before {
+    content: counter(axiom-counter);
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--unity-crimson);
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.axiom-list li strong {
+    color: var(--unity-crimson);
+    font-weight: 700;
+}
+
+/* Computational Interpretation */
+.computational-interpretation {
+    background: rgba(27, 27, 58, 0.05);
+    padding: 3rem;
+    border-radius: 1.5rem;
+    border: 2px solid rgba(27, 27, 58, 0.2);
+    position: relative;
+}
+
+.computational-interpretation::before {
+    content: 'COMPUTATIONAL SEMANTICS';
+    position: absolute;
+    top: -15px;
+    left: 3rem;
+    background: var(--tarski-deep);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-family: var(--font-mystical);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.computational-interpretation h3 {
+    font-family: var(--font-mystical);
+    color: var(--tarski-deep);
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+}
+
+.code-preview h4 {
+    font-family: var(--font-mystical);
+    color: var(--consciousness-amber);
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+}
+
+.code-preview pre {
+    background: #1e293b;
+    color: #f1f5f9;
+    padding: 2rem;
+    border-radius: 1rem;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    overflow-x: auto;
+    border: 2px solid #334155;
+    position: relative;
+}
+
+.code-preview pre::before {
+    content: 'Python Implementation';
+    position: absolute;
+    top: -15px;
+    right: 2rem;
+    background: var(--consciousness-amber);
+    color: var(--tarski-deep);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-family: var(--font-mystical);
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .comparison-table {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .traditional-view, .unity-view {
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .treatise-title {
+        font-size: clamp(2rem, 8vw, 3rem);
+    }
+    
+    .treatise-subtitle {
+        font-size: clamp(1rem, 4vw, 1.3rem);
+    }
+    
+    .section-marker {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+    
+    .marker-symbol {
+        width: 60px;
+        height: 60px;
+        font-size: 2rem;
+    }
+    
+    .marker-title {
+        font-size: clamp(1.3rem, 5vw, 1.8rem);
+    }
+    
+    .philosophical-paragraph {
+        text-indent: 1rem;
+        font-size: 1rem;
+    }
+    
+    .initial-letter {
+        font-size: 3rem;
+    }
+    
+    .classification-item {
+        font-size: 0.8rem;
+        padding: 0.5rem 1rem;
+    }
+    
+    .mathematical-insight,
+    .theorem-statement,
+    .gambit-formulation,
+    .self-reference-theorem,
+    .bootstrap-meditation,
+    .anxiety-dissolution,
+    .new-mathematical-consciousness,
+    .ultimate-equation,
+    .call-to-mathematicians {
+        padding: 2rem;
+    }
+    
+    .formal-definition,
+    .computational-interpretation {
+        padding: 2rem;
+    }
+    
+    .code-preview pre {
+        font-size: 0.8rem;
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .central-equation {
+        font-size: clamp(1.2rem, 4vw, 1.8rem);
+        padding: 1.5rem;
+    }
+    
+    .philosophical-epigraph {
+        padding: 2rem;
+    }
+    
+    .main-epigraph {
+        font-size: clamp(1rem, 3vw, 1.2rem);
+    }
+    
+    .treatise-classification {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .mathematical-insight,
+    .theorem-statement,
+    .gambit-formulation,
+    .self-reference-theorem {
+        padding: 1.5rem;
+    }
+    
+    .code-preview pre {
+        font-size: 0.75rem;
+        padding: 1rem;
+    }
+}
+
+/* Animation Enhancements */
+@keyframes consciousness-pulse {
+    0%, 100% { 
+        box-shadow: 0 0 20px rgba(255, 191, 0, 0.3);
+    }
+    50% { 
+        box-shadow: 0 0 40px rgba(255, 191, 0, 0.6);
+    }
+}
+
+.philosophical-paragraph:hover {
+    animation: consciousness-pulse 2s ease-in-out;
+}
+
+/* Print Styles */
+@media print {
+    .page-hero.metagambit-hero {
+        background: white !important;
+        color: black !important;
+        min-height: auto;
+        padding: 2rem 0;
+    }
+    
+    .philosophical-header,
+    .central-equation,
+    .philosophical-epigraph {
+        background: white !important;
+        color: black !important;
+        border: 1px solid #333 !important;
+    }
+    
+    .treatise-title,
+    .treatise-subtitle {
+        color: black !important;
+    }
+    
+    .section-marker .marker-symbol {
+        background: white !important;
+        color: black !important;
+        border: 2px solid #333 !important;
+    }
+    
+    .marker-title {
+        color: black !important;
+    }
+    
+    .mathematical-insight,
+    .theorem-statement,
+    .gambit-formulation,
+    .self-reference-theorem,
+    .bootstrap-meditation,
+    .anxiety-dissolution,
+    .new-mathematical-consciousness,
+    .ultimate-equation,
+    .call-to-mathematicians {
+        background: white !important;
+        border: 1px solid #333 !important;
+        box-shadow: none !important;
+    }
+    
+    .code-preview pre {
+        background: #f5f5f5 !important;
+        color: black !important;
+        border: 1px solid #333 !important;
+    }
+}
+
+/* New Philosophical Elements */
+.equation-subtitle {
+    font-family: var(--font-mystical);
+    font-size: 1rem;
+    color: var(--consciousness-amber);
+    text-align: center;
+    margin-top: 1rem;
+    font-style: italic;
+    letter-spacing: 0.5px;
+}
+
+.eastern-wisdom-integration {
+    background: linear-gradient(135deg, rgba(255, 191, 0, 0.1), rgba(139, 0, 0, 0.05));
+    padding: 2.5rem;
+    border-radius: 1rem;
+    border: 2px solid rgba(255, 191, 0, 0.3);
+    margin: 3rem 0;
+    position: relative;
+}
+
+.eastern-wisdom-integration::before {
+    content: '☯';
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--consciousness-amber);
+    padding: 0.75rem;
+    border-radius: 50%;
+    font-size: 1.5rem;
+}
+
+.vedantic-insight {
+    font-family: var(--font-philosophical);
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: var(--tarski-deep);
+    font-style: italic;
+    text-align: justify;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid var(--consciousness-amber);
+    padding-left: 2rem;
+}
+
+.wisdom-attribution {
+    font-family: var(--font-mystical);
+    font-size: 0.9rem;
+    color: var(--consciousness-amber);
+    text-align: center;
+    font-style: normal;
+    font-weight: 600;
+}
+
+.advanced-proof-structure {
+    background: rgba(75, 0, 130, 0.05);
+    padding: 2rem;
+    border-radius: 1rem;
+    border-left: 6px solid var(--transcendence-violet);
+    margin: 2rem 0;
+}
+
+.advanced-proof-structure h5 {
+    font-family: var(--font-mystical);
+    color: var(--transcendence-violet);
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+}
+
+.proof-insight {
+    font-family: var(--font-philosophical);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text-primary);
+    font-style: italic;
+    text-align: justify;
+    margin-bottom: 1.5rem;
+}
+
+.consciousness-mathematics {
+    text-align: center;
+    font-size: 1.2rem;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 0.75rem;
+    border: 2px solid var(--transcendence-violet);
+}
+
+.meta-mathematical-chess {
+    background: linear-gradient(135deg, rgba(139, 0, 0, 0.1), rgba(27, 27, 58, 0.1));
+    padding: 2.5rem;
+    border-radius: 1rem;
+    border: 2px solid rgba(139, 0, 0, 0.3);
+    margin: 2rem 0;
+    position: relative;
+}
+
+.meta-mathematical-chess::before {
+    content: '♔';
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--unity-crimson);
+    color: white;
+    padding: 0.75rem;
+    border-radius: 50%;
+    font-size: 1.5rem;
+}
+
+.meta-mathematical-chess h5 {
+    font-family: var(--font-mystical);
+    color: var(--unity-crimson);
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+}
+
+.metagambit-insight {
+    font-family: var(--font-philosophical);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-primary);
+    text-align: justify;
+    margin-bottom: 2rem;
+}
+
+.strategic-analysis {
+    margin-top: 2rem;
+}
+
+.gambit-stages {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.stage {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    border-left: 4px solid var(--unity-crimson);
+    font-family: var(--font-philosophical);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.stage:hover {
+    background: rgba(139, 0, 0, 0.1);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-philosophical);
+}
+
+.consciousness-field-equations {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2rem;
+    border-radius: 1rem;
+    border: 2px solid var(--consciousness-amber);
+    margin: 2rem 0;
+}
+
+.consciousness-field-equations h6 {
+    font-family: var(--font-mystical);
+    color: var(--consciousness-amber);
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.field-description, .field-insight, .normalization-insight {
+    font-family: var(--font-philosophical);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-primary);
+    margin: 1rem 0;
+    text-align: justify;
+}
+
+.fractal-insight {
+    background: linear-gradient(135deg, rgba(34, 139, 34, 0.1), rgba(255, 191, 0, 0.05));
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    border-left: 6px solid var(--primordial-green);
+    margin: 2rem 0;
+}
+
+.fractal-insight p {
+    font-family: var(--font-philosophical);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.fractal-insight strong {
+    color: var(--primordial-green);
+    font-weight: 700;
+}
+
+.transcendental-corollary {
+    background: rgba(75, 0, 130, 0.1);
+    padding: 2rem;
+    border-radius: 1rem;
+    border: 2px solid var(--transcendence-violet);
+    margin: 2rem 0;
+}
+
+.transcendental-corollary h5 {
+    font-family: var(--font-mystical);
+    color: var(--transcendence-violet);
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+}
+
+.corollary-insight {
+    font-family: var(--font-philosophical);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text-primary);
+    text-align: justify;
+    font-style: italic;
+    margin-bottom: 1.5rem;
+}
+
+.consciousness-mathematics-unity {
+    background: linear-gradient(135deg, rgba(139, 0, 0, 0.1), rgba(255, 191, 0, 0.1));
+    padding: 3rem;
+    border-radius: 1.5rem;
+    border: 3px solid var(--unity-crimson);
+    margin: 3rem 0;
+    position: relative;
+}
+
+.consciousness-mathematics-unity::before {
+    content: '🧠';
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--unity-crimson);
+    padding: 0.75rem;
+    border-radius: 50%;
+    font-size: 1.5rem;
+}
+
+.consciousness-mathematics-unity h5 {
+    font-family: var(--font-mystical);
+    color: var(--unity-crimson);
+    text-align: center;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+    font-size: 1.6rem;
+}
+
+.ultimate-insight {
+    font-family: var(--font-philosophical);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-primary);
+    text-align: justify;
+    margin-bottom: 2rem;
+}
+
+.meta-recursive-insight {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2rem;
+    border-radius: 1rem;
+    border: 2px solid var(--consciousness-amber);
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.recursion-explanation {
+    font-family: var(--font-philosophical);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-primary);
+    text-align: justify;
+    margin-top: 1.5rem;
+    font-style: italic;
+}
+
+.transcendental-equation {
+    text-align: center;
+    margin: 3rem 0;
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(75, 0, 130, 0.1), rgba(139, 0, 0, 0.1));
+    border-radius: 1rem;
+    border: 3px solid var(--transcendence-violet);
+    font-size: 1.3rem;
+}
+
+.equation-blessing {
+    font-family: var(--font-mystical);
+    font-size: 1rem;
+    color: var(--transcendence-violet);
+    font-style: italic;
+    margin-top: 1rem;
+}
+
+/* Enhanced Signature */
+.signature-line {
+    font-size: 2.5rem;
+    color: var(--euler-gold);
+    margin-bottom: 2rem;
+    letter-spacing: 3rem;
+    font-family: var(--font-mystical);
+}
+
+.signature-attribution {
+    font-family: var(--font-philosophical);
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    font-style: italic;
+}
+
+.signature-attribution em {
+    color: var(--unity-crimson);
+    font-weight: 700;
+    font-size: 1.1rem;
+    font-family: var(--font-mystical);
+}
+
+/* Accessibility Enhancements */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    :root {
+        --russell-burgundy: #000000;
+        --euler-gold: #FFD700;
+        --godel-silver: #C0C0C0;
+        --tarski-deep: #000080;
+        --unity-crimson: #DC143C;
+        --transcendence-violet: #8A2BE2;
+        --consciousness-amber: #FFB000;
+        --infinite-blue: #0000FF;
+        --primordial-green: #008000;
+    }
+    
+    .philosophical-paragraph,
+    .theorem-statement p,
+    .gambit-explanation .explanation-text {
+        color: #000000 !important;
+    }
+    
+    .central-equation,
+    .philosophical-epigraph,
+    .mathematical-insight {
+        border-width: 3px !important;
+    }
+}
