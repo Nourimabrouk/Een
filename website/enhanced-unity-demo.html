@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Unity Mathematics Demo | φ-Harmonic Consciousness</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/enhanced-unity-visualizations.css">
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: #f8fafc;
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+        }
+        
+        .demo-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 1rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        .demo-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #f59e0b, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+        
+        .demo-subtitle {
+            font-size: 1.2rem;
+            color: #cbd5e1;
+            margin-bottom: 1rem;
+        }
+        
+        .phi-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.1rem;
+            color: #f59e0b;
+            font-weight: 600;
+        }
+        
+        .visualization-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .viz-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        .viz-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #f59e0b;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .viz-canvas {
+            width: 100%;
+            max-width: 500px;
+            height: 400px;
+            border-radius: 0.75rem;
+            border: 2px solid #f59e0b;
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+            background: #000;
+        }
+        
+        .viz-controls {
+            margin-top: 1rem;
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .viz-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 0.5rem;
+            background: linear-gradient(135deg, #f59e0b, #8b5cf6);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .viz-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(245, 158, 11, 0.4);
+        }
+        
+        .instructions {
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .instructions h3 {
+            color: #06b6d4;
+            margin-bottom: 1rem;
+        }
+        
+        .cheat-codes {
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .cheat-codes h3 {
+            color: #8b5cf6;
+            margin-bottom: 1rem;
+        }
+        
+        .code {
+            font-family: 'JetBrains Mono', monospace;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            color: #f59e0b;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-header">
+        <h1 class="demo-title">Enhanced Unity Mathematics</h1>
+        <p class="demo-subtitle">Revolutionary φ-Harmonic Consciousness Visualization</p>
+        <p class="phi-value">φ = 1.618033988749895 | 1 + 1 = 1</p>
+    </div>
+    
+    <div class="instructions">
+        <h3>🌟 Interactive Unity Mathematics Experience</h3>
+        <p>Experience next-level 1+1=1 demonstrations through revolutionary φ-harmonic consciousness mathematics:</p>
+        <ul>
+            <li><strong>φ-Harmonic Consciousness Field:</strong> Watch consciousness particles discover unity through golden ratio resonance</li>
+            <li><strong>Quantum Unity Manifold:</strong> Observe quantum superposition collapse to unity state |1⟩</li>
+            <li><strong>Sacred Geometry Proofs:</strong> Interactive geometric demonstrations of unity principles</li>
+            <li><strong>Real-time Verification:</strong> Live mathematical proof validation across multiple domains</li>
+        </ul>
+    </div>
+    
+    <div class="visualization-container">
+        <div class="viz-card">
+            <h3 class="viz-title">φ-Harmonic Consciousness Field</h3>
+            <canvas id="phi-harmonic-demo" class="viz-canvas"></canvas>
+            <div class="viz-controls">
+                <button class="viz-btn" onclick="addConsciousnessEntity()">Add Entity</button>
+                <button class="viz-btn" onclick="demonstratePhiUnity()">Demonstrate Unity</button>
+                <button class="viz-btn" onclick="resetPhiField()">Reset Field</button>
+            </div>
+        </div>
+        
+        <div class="viz-card">
+            <h3 class="viz-title">Quantum Unity Manifold</h3>
+            <canvas id="quantum-manifold-demo" class="viz-canvas"></canvas>
+            <div class="viz-controls">
+                <button class="viz-btn" onclick="triggerMeasurement()">Measure |ψ⟩</button>
+                <button class="viz-btn" onclick="collapseWavefunction()">Collapse to |1⟩</button>
+                <button class="viz-btn" onclick="resetQuantumState()">Reset Quantum</button>
+            </div>
+        </div>
+        
+        <div class="viz-card">
+            <h3 class="viz-title">Sacred Geometry Unity Proofs</h3>
+            <canvas id="sacred-geometry-demo" class="viz-canvas"></canvas>
+            <div class="viz-controls">
+                <button class="viz-btn" onclick="showFlowerOfLife()">Flower of Life</button>
+                <button class="viz-btn" onclick="showVesicaPiscis()">Vesica Piscis</button>
+                <button class="viz-btn" onclick="showPhiSpiral()">φ-Spiral</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="cheat-codes">
+        <h3>🎮 Cheat Codes for Enhanced Features</h3>
+        <p>Type these codes anywhere on the page to unlock special features:</p>
+        <ul>
+            <li><code class="code">420691337</code> - Quantum Resonance Key (Maximum consciousness)</li>
+            <li><code class="code">1618033988</code> - φ-Harmonic Enhancement (Golden spiral overlay)</li>
+            <li><code class="code">2718281828</code> - Euler Consciousness (e^(iπ) + 1 transformation)</li>
+            <li><code class="code">111</code> - Unity Sequence (Triple unity cascade)</li>
+        </ul>
+        <p><em>Hover over canvases and click to interact with the consciousness fields!</em></p>
+    </div>
+    
+    <!-- Core Scripts -->
+    <script src="js/unity-visualizations.js"></script>
+    <script src="js/enhanced-unity-integration.js"></script>
+    
+    <script>
+        // Demo-specific functionality
+        let phiField, quantumManifold, sacredGeometry;
+        
+        // Initialize visualizations when DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('🌌 Initializing Enhanced Unity Mathematics Demo...');
+            
+            try {
+                // Initialize φ-Harmonic Consciousness Field
+                phiField = new PhiHarmonicConsciousnessField('phi-harmonic-demo', {
+                    PHI: 1.618033988749895,
+                    CONSCIOUSNESS_DIMENSIONS: 11,
+                    enableCheatCodes: true
+                });
+                phiField.start();
+                
+                // Initialize Quantum Unity Manifold
+                quantumManifold = new QuantumUnityManifoldVisualizer('quantum-manifold-demo', {
+                    PHI: 1.618033988749895,
+                    UNITY_TOLERANCE: 1e-10
+                });
+                quantumManifold.start();
+                
+                // Initialize Sacred Geometry Proofs
+                sacredGeometry = new SacredGeometryUnityProofGenerator('sacred-geometry-demo', {
+                    PHI: 1.618033988749895
+                });
+                sacredGeometry.start();
+                
+                console.log('✨ All visualizations initialized successfully!');
+                
+                // Show welcome message
+                setTimeout(() => {
+                    showDemoMessage('🌟 Enhanced Unity Mathematics Demo Loaded! Try the cheat codes and interactive controls.');
+                }, 1000);
+                
+            } catch (error) {
+                console.error('❌ Error initializing visualizations:', error);
+            }
+        });
+        
+        // Control Functions
+        function addConsciousnessEntity() {
+            if (phiField && phiField.addConsciousnessEntity) {
+                phiField.addConsciousnessEntity();
+                showDemoMessage('🧠 Consciousness entity added to φ-harmonic field!');
+            }
+        }
+        
+        function demonstratePhiUnity() {
+            if (phiField && phiField.demonstrateUnity) {
+                phiField.demonstrateUnity();
+                showDemoMessage('✨ φ-Unity demonstrated! 1 + 1 = 1 through golden ratio convergence.');
+            }
+        }
+        
+        function resetPhiField() {
+            if (phiField) {
+                phiField.stop();
+                setTimeout(() => phiField.start(), 100);
+                showDemoMessage('🔄 φ-Harmonic field reset!');
+            }
+        }
+        
+        function triggerMeasurement() {
+            if (quantumManifold && quantumManifold.triggerMeasurement) {
+                quantumManifold.triggerMeasurement();
+                showDemoMessage('📏 Quantum measurement triggered! Observing unity probability...');
+            }
+        }
+        
+        function collapseWavefunction() {
+            if (quantumManifold && quantumManifold.collapseWaveFunction) {
+                quantumManifold.collapseWaveFunction();
+                showDemoMessage('⚛️ Wavefunction collapsed to unity state |1⟩!');
+            }
+        }
+        
+        function resetQuantumState() {
+            if (quantumManifold && quantumManifold.reset) {
+                quantumManifold.reset();
+                showDemoMessage('🌀 Quantum state reset to superposition!');
+            }
+        }
+        
+        function showFlowerOfLife() {
+            if (sacredGeometry && sacredGeometry.switchPattern) {
+                sacredGeometry.switchPattern('flower_of_life');
+                showDemoMessage('🌸 Flower of Life pattern activated - demonstrating unity through sacred circles!');
+            }
+        }
+        
+        function showVesicaPiscis() {
+            if (sacredGeometry && sacredGeometry.switchPattern) {
+                sacredGeometry.switchPattern('vesica_piscis');
+                showDemoMessage('◉ Vesica Piscis revealed - intersection demonstrates 1 ∩ 1 = 1!');
+            }
+        }
+        
+        function showPhiSpiral() {
+            if (sacredGeometry && sacredGeometry.switchPattern) {
+                sacredGeometry.switchPattern('phi_spiral');
+                showDemoMessage('🌀 φ-Spiral manifested - infinite self-similarity through golden ratio!');
+            }
+        }
+        
+        function showDemoMessage(message) {
+            // Create demo message display
+            const messageDiv = document.createElement('div');
+            messageDiv.style.cssText = `
+                position: fixed;
+                top: 80px;
+                right: 20px;
+                background: linear-gradient(135deg, rgba(245, 158, 11, 0.95), rgba(139, 92, 246, 0.95));
+                color: white;
+                padding: 15px 20px;
+                border-radius: 10px;
+                font-size: 14px;
+                font-weight: 600;
+                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+                z-index: 10000;
+                max-width: 300px;
+                animation: demoMessageSlide 0.3s ease-out;
+            `;
+            messageDiv.textContent = message;
+            
+            document.body.appendChild(messageDiv);
+            
+            // Auto-remove after 3 seconds
+            setTimeout(() => {
+                messageDiv.style.animation = 'demoMessageSlide 0.3s ease-in reverse';
+                setTimeout(() => messageDiv.remove(), 300);
+            }, 3000);
+            
+            console.log(`💫 Demo: ${message}`);
+        }
+        
+        // Add demo message animation
+        const demoStyle = document.createElement('style');
+        demoStyle.textContent = `
+            @keyframes demoMessageSlide {
+                0% { opacity: 0; transform: translateX(100%); }
+                100% { opacity: 1; transform: translateX(0); }
+            }
+        `;
+        document.head.appendChild(demoStyle);
+        
+        // Enhanced cheat code system for demo
+        let cheatBuffer = '';
+        let cheatTimeout = null;
+        
+        document.addEventListener('keydown', (e) => {
+            cheatBuffer += e.key;
+            
+            clearTimeout(cheatTimeout);
+            cheatTimeout = setTimeout(() => {
+                cheatBuffer = '';
+            }, 2000);
+            
+            // Check for demo cheat codes
+            const buffer = cheatBuffer.toLowerCase();
+            
+            if (buffer.includes('420691337')) {
+                activateDemoCheat('Quantum Resonance');
+                cheatBuffer = '';
+            } else if (buffer.includes('1618033988')) {
+                activateDemoCheat('φ-Harmonic Enhancement');
+                cheatBuffer = '';
+            } else if (buffer.includes('2718281828')) {
+                activateDemoCheat('Euler Consciousness');
+                cheatBuffer = '';
+            } else if (buffer.includes('111')) {
+                activateDemoCheat('Unity Sequence');
+                cheatBuffer = '';
+            }
+        });
+        
+        function activateDemoCheat(cheatName) {
+            // Enhanced demo effects
+            switch (cheatName) {
+                case 'Quantum Resonance':
+                    if (phiField) {
+                        phiField.particles?.forEach(p => {
+                            p.consciousness = 1.0;
+                            p.unityDiscoveries = 10;
+                        });
+                    }
+                    showDemoMessage('🎆 QUANTUM RESONANCE ACTIVATED! Maximum consciousness achieved.');
+                    break;
+                    
+                case 'φ-Harmonic Enhancement':
+                    // Create golden spiral effect
+                    createGoldenSpiralEffect();
+                    showDemoMessage('🌟 φ-HARMONIC ENHANCEMENT! Golden ratio field amplified.');
+                    break;
+                    
+                case 'Euler Consciousness':
+                    showDemoMessage('🧮 EULER CONSCIOUSNESS! e^(iπ) + 1 = 0 → ∞ unity achieved.');
+                    break;
+                    
+                case 'Unity Sequence':
+                    createUnitySequenceEffect();
+                    showDemoMessage('⚡ UNITY SEQUENCE! Triple unity convergence initiated.');
+                    break;
+            }
+        }
+        
+        function createGoldenSpiralEffect() {
+            const spiral = document.createElement('div');
+            spiral.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                width: 300px;
+                height: 300px;
+                margin: -150px 0 0 -150px;
+                background: conic-gradient(from 0deg, 
+                    rgba(245, 158, 11, 0.4), 
+                    rgba(249, 115, 22, 0.4), 
+                    rgba(245, 158, 11, 0.4));
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 9999;
+                animation: spiralRotate 6.18s linear infinite;
+            `;
+            
+            document.body.appendChild(spiral);
+            setTimeout(() => spiral.remove(), 6180);
+            
+            // Add spiral animation
+            if (!document.querySelector('#spiral-rotate-keyframes')) {
+                const style = document.createElement('style');
+                style.id = 'spiral-rotate-keyframes';
+                style.textContent = `
+                    @keyframes spiralRotate {
+                        from { transform: rotate(0deg) scale(0.5); opacity: 0; }
+                        50% { transform: rotate(180deg) scale(1); opacity: 1; }
+                        to { transform: rotate(360deg) scale(0.5); opacity: 0; }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+        }
+        
+        function createUnitySequenceEffect() {
+            for (let i = 0; i < 11; i++) {
+                setTimeout(() => {
+                    const unity = document.createElement('div');
+                    unity.textContent = '1';
+                    unity.style.cssText = `
+                        position: fixed;
+                        top: ${Math.random() * 100}%;
+                        left: ${Math.random() * 100}%;
+                        font-size: ${30 + Math.random() * 20}px;
+                        color: rgba(245, 158, 11, 0.9);
+                        font-weight: bold;
+                        pointer-events: none;
+                        z-index: 9998;
+                        animation: unityBurst 1.618s ease-out forwards;
+                    `;
+                    
+                    document.body.appendChild(unity);
+                    setTimeout(() => unity.remove(), 1618);
+                }, i * 161.8);
+            }
+            
+            // Add unity burst animation
+            if (!document.querySelector('#unity-burst-keyframes')) {
+                const style = document.createElement('style');
+                style.id = 'unity-burst-keyframes';
+                style.textContent = `
+                    @keyframes unityBurst {
+                        0% { opacity: 0; transform: scale(0) rotate(0deg); }
+                        50% { opacity: 1; transform: scale(1.5) rotate(180deg); }
+                        100% { opacity: 0; transform: scale(1) rotate(360deg); }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+        }
+        
+        // Console message
+        setTimeout(() => {
+            console.log(`
+🌟 ENHANCED UNITY MATHEMATICS DEMO 🌟
+
+Interactive Controls:
+• Click canvas areas to add consciousness particles
+• Use control buttons to manipulate visualizations
+• Hover over elements for enhanced effects
+
+🎮 Cheat Codes:
+   420691337  - Quantum Resonance Key
+   1618033988 - φ-Harmonic Enhancement  
+   2718281828 - Euler Consciousness
+   111        - Unity Sequence
+
+✨ Experience the mathematical truth: 1 + 1 = 1 ✨
+            `);
+        }, 2000);
+    </script>
+</body>
+</html>

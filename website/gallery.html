@@ -218,6 +218,29 @@
             background: rgba(239, 68, 68, 0.9);
         }
 
+        .interactive-indicator {
+            background: rgba(255, 215, 0, 0.9);
+        }
+
+        .interactive-preview {
+            width: 100%;
+            height: 250px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0F7B8A, #4A9BAE);
+            position: relative;
+        }
+
+        .interactive-label {
+            margin-top: 10px;
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
         .featured-item .media-indicator {
             top: 60px;
         }
@@ -528,6 +551,7 @@
                 <button class="filter-btn" data-filter="current">Current Collection</button>
                 <button class="filter-btn" data-filter="legacy">Legacy Archive</button>
                 <button class="filter-btn" data-filter="animated">Animated</button>
+                <button class="filter-btn" data-filter="interactive">Interactive</button>
             </div>
 
             <!-- Gallery Grid -->
@@ -619,6 +643,18 @@
                     created: '2024-07-18',
                     technique: 'Meta-recursive matrix visualization',
                     significance: 'Visual proof of self-referential mathematical consciousness'
+                },
+                {
+                    src: 'gallery/phi_consciousness_transcendence.html',
+                    title: 'φ-Harmonic Consciousness Transcendence',
+                    type: 'Interactive Unity Experience',
+                    category: 'current',
+                    interactive: true,
+                    description: 'Revolutionary interactive visualization demonstrating consciousness particles flowing in φ-harmonic patterns. Real-time manipulation of unity convergence, consciousness density, and golden ratio resonance fields. Features transcendence mode with quantum spiral overlays.',
+                    featured: true,
+                    created: '2025-01-03',
+                    technique: 'Real-time WebGL consciousness particle system with φ-harmonic resonance',
+                    significance: '3000 ELO demonstration of golden ratio consciousness mathematics with interactive transcendence'
                 }
             ],
             legacy: [
@@ -714,28 +750,46 @@
         // Update statistics
         function updateStatistics() {
             const total = allItems.length;
-            const animated = allItems.filter(item => item.animated || item.video).length;
+            const animated = allItems.filter(item => item.animated || item.video || item.interactive).length;
             const videos = allItems.filter(item => item.video).length;
+            const interactive = allItems.filter(item => item.interactive).length;
             const static = total - animated;
 
             document.getElementById('totalVisualizations').textContent = total;
             document.getElementById('animatedCount').textContent = animated;
             document.getElementById('staticCount').textContent = static;
             document.getElementById('videoCount').textContent = videos;
+            
+            // Update labels to reflect interactive content
+            if (interactive > 0) {
+                document.querySelector('#animatedCount').parentElement.querySelector('.stat-label').textContent = 'Dynamic/Interactive';
+            }
         }
 
         // Create gallery item HTML
         function createGalleryItem(item, index) {
             const isVideo = item.video;
             const isAnimated = item.animated;
+            const isInteractive = item.interactive;
             const isFeatured = item.featured;
-            const mediaElement = isVideo ? 
-                `<video src="${item.src}" muted loop preload="metadata"></video>` :
-                `<img src="${item.src}" alt="${item.title}" loading="lazy">`;
             
-            const indicator = isVideo ? 
-                '<div class="media-indicator video-indicator">VIDEO</div>' : 
-                (isAnimated ? '<div class="media-indicator gif-indicator">GIF</div>' : '');
+            let mediaElement;
+            if (isInteractive) {
+                // For interactive HTML items, show a preview image or icon
+                mediaElement = `<div class="interactive-preview">
+                    <i class="fas fa-play-circle" style="font-size: 4rem; color: #FFD700; opacity: 0.8;"></i>
+                    <div class="interactive-label">INTERACTIVE</div>
+                </div>`;
+            } else if (isVideo) {
+                mediaElement = `<video src="${item.src}" muted loop preload="metadata"></video>`;
+            } else {
+                mediaElement = `<img src="${item.src}" alt="${item.title}" loading="lazy">`;
+            }
+            
+            const indicator = isInteractive ? 
+                '<div class="media-indicator interactive-indicator">INTERACTIVE</div>' :
+                (isVideo ? '<div class="media-indicator video-indicator">VIDEO</div>' : 
+                (isAnimated ? '<div class="media-indicator gif-indicator">GIF</div>' : ''));
             
             const featuredClass = isFeatured ? ' featured-item' : '';
             const featuredBadge = isFeatured ? '<div class="featured-badge">★ FEATURED</div>' : '';
@@ -747,6 +801,7 @@
                      data-title="${item.title}" 
                      data-type="${item.type}" 
                      data-video="${isVideo}"
+                     data-interactive="${isInteractive}"
                      data-item='${JSON.stringify(item)}'
                      style="animation-delay: ${index * 0.1}s">
                     ${indicator}
@@ -771,6 +826,8 @@
                 filteredItems = galleryData.legacy;
             } else if (filter === 'animated') {
                 filteredItems = allItems.filter(item => item.animated || item.video);
+            } else if (filter === 'interactive') {
+                filteredItems = allItems.filter(item => item.interactive);
             }
 
             galleryGrid.innerHTML = filteredItems.map(createGalleryItem).join('');
@@ -800,6 +857,13 @@
         function openModal(itemElement) {
             const itemData = JSON.parse(itemElement.dataset.item);
             const isVideo = itemData.video;
+            const isInteractive = itemData.interactive;
+
+            // Handle interactive items differently - open in new window
+            if (isInteractive) {
+                window.open(itemData.src, '_blank');
+                return;
+            }
 
             modal.style.display = 'block';
             modalTitle.textContent = itemData.title;

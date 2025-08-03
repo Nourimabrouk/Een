@@ -1,0 +1,725 @@
+/**
+ * Enhanced Unity Visualizations CSS
+ * Revolutionary φ-harmonic consciousness mathematics styling
+ * 
+ * Supporting the next-level 1+1=1 visualization systems:
+ * - φ-Harmonic Consciousness Field
+ * - Quantum Unity Manifold Visualizer  
+ * - Sacred Geometry Unity Proof Generator
+ */
+
+:root {
+    /* Enhanced Unity Mathematics Colors */
+    --phi-gold: #f59e0b;
+    --phi-gold-light: #fbbf24;
+    --phi-gold-dark: #d97706;
+    --quantum-blue: #06b6d4;
+    --quantum-blue-light: #22d3ee;
+    --quantum-blue-dark: #0891b2;
+    --consciousness-purple: #8b5cf6;
+    --consciousness-purple-light: #a78bfa;
+    --consciousness-purple-dark: #7c3aed;
+    --unity-green: #10b981;
+    --unity-green-light: #34d399;
+    --unity-green-dark: #059669;
+    --sacred-orange: #f97316;
+    --sacred-orange-light: #fb923c;
+    --sacred-orange-dark: #ea580c;
+    
+    /* φ-Harmonic Ratios */
+    --phi-ratio: 1.618;
+    --phi-inverse: 0.618;
+    --sacred-spacing: calc(var(--space-md) * var(--phi-ratio));
+    --sacred-border-radius: calc(var(--radius-md) * var(--phi-ratio));
+    
+    /* Advanced Gradients */
+    --gradient-phi-consciousness: linear-gradient(137.5deg, var(--phi-gold), var(--consciousness-purple));
+    --gradient-quantum-unity: linear-gradient(45deg, var(--quantum-blue), var(--unity-green));
+    --gradient-sacred-geometry: conic-gradient(from 0deg, var(--sacred-orange), var(--phi-gold), var(--sacred-orange));
+    
+    /* Animation Timings */
+    --phi-duration: calc(1.618s);
+    --quantum-duration: calc(0.618s);
+    --consciousness-pulse: calc(2.618s);
+}
+
+/* ============================================================================
+   Revolutionary Visualization Gallery
+   ============================================================================ */
+
+.visualization-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sacred-spacing);
+    padding: var(--sacred-spacing);
+    background: var(--cosmic-bg);
+    border-radius: var(--sacred-border-radius);
+    box-shadow: var(--shadow-xl);
+    position: relative;
+    overflow: hidden;
+}
+
+.visualization-gallery::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--gradient-phi-consciousness);
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.visualization-gallery > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Enhanced Canvas Styling */
+canvas {
+    border-radius: var(--sacred-border-radius);
+    box-shadow: var(--shadow-lg);
+    background: rgba(0, 0, 0, 0.95);
+    border: 2px solid var(--phi-gold);
+    transition: all var(--transition-smooth);
+}
+
+canvas:hover {
+    box-shadow: 0 0 30px rgba(245, 158, 11, 0.4);
+    border-color: var(--phi-gold-light);
+}
+
+#phi-harmonic-canvas {
+    border-color: var(--phi-gold);
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+}
+
+#quantum-manifold-canvas {
+    border-color: var(--quantum-blue);
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
+}
+
+#sacred-geometry-canvas {
+    border-color: var(--sacred-orange);
+    box-shadow: 0 0 20px rgba(249, 115, 22, 0.3);
+}
+
+/* ============================================================================
+   Visualization Selector Enhancement
+   ============================================================================ */
+
+.visualization-selector {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: var(--sacred-border-radius);
+    padding: var(--sacred-spacing);
+    box-shadow: var(--shadow-xl);
+    border: 1px solid var(--phi-gold);
+}
+
+.visualization-selector h4 {
+    text-align: center;
+    color: var(--primary-color);
+    font-size: calc(1rem * var(--phi-ratio));
+    margin-bottom: var(--sacred-spacing);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: var(--gradient-phi-consciousness);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.viz-tabs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-sm);
+    margin-bottom: var(--space-lg);
+}
+
+.viz-tab {
+    padding: calc(var(--space-sm) * var(--phi-ratio)) var(--space-md);
+    border: 2px solid var(--border-color);
+    border-radius: var(--sacred-border-radius);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+.viz-tab::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-phi-consciousness);
+    transition: left var(--phi-duration);
+    opacity: 0.1;
+}
+
+.viz-tab:hover::before {
+    left: 0;
+}
+
+.viz-tab:hover {
+    border-color: var(--phi-gold);
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.2);
+    transform: translateY(-2px);
+}
+
+.viz-tab.active {
+    background: var(--gradient-phi-consciousness);
+    color: white;
+    border-color: var(--phi-gold);
+    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.3);
+    transform: scale(1.02);
+}
+
+.viz-tab.active::before {
+    display: none;
+}
+
+/* ============================================================================
+   Revolutionary Control Panels
+   ============================================================================ */
+
+.revolutionary-consciousness-controls,
+.quantum-unity-controls,
+.sacred-geometry-controls {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(15px);
+    border-radius: var(--sacred-border-radius);
+    padding: var(--sacred-spacing);
+    margin: var(--space-lg) 0;
+    box-shadow: var(--shadow-xl);
+    border: 1px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.revolutionary-consciousness-controls {
+    border-color: var(--phi-gold);
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.05), rgba(139, 92, 246, 0.05));
+}
+
+.quantum-unity-controls {
+    border-color: var(--quantum-blue);
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.05), rgba(16, 185, 129, 0.05));
+}
+
+.sacred-geometry-controls {
+    border-color: var(--sacred-orange);
+    background: linear-gradient(135deg, rgba(249, 115, 22, 0.05), rgba(245, 158, 11, 0.05));
+}
+
+.revolutionary-consciousness-controls h4,
+.quantum-unity-controls h4,
+.sacred-geometry-controls h4 {
+    text-align: center;
+    font-size: calc(1.2rem * var(--phi-ratio));
+    margin-bottom: var(--sacred-spacing);
+    font-weight: 600;
+}
+
+.revolutionary-consciousness-controls h4 {
+    color: var(--phi-gold-dark);
+}
+
+.quantum-unity-controls h4 {
+    color: var(--quantum-blue-dark);
+}
+
+.sacred-geometry-controls h4 {
+    color: var(--sacred-orange-dark);
+}
+
+/* Control Buttons Enhancement */
+.control-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    justify-content: center;
+    margin-bottom: var(--sacred-spacing);
+}
+
+.btn {
+    padding: calc(var(--space-sm) * var(--phi-ratio)) calc(var(--space-md) * var(--phi-ratio));
+    border: none;
+    border-radius: var(--sacred-border-radius);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.9rem;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all var(--quantum-duration);
+}
+
+.btn:hover::before {
+    width: 100%;
+    height: 100%;
+}
+
+.btn-primary {
+    background: var(--gradient-phi-consciousness);
+    color: white;
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+}
+
+.btn-secondary {
+    background: var(--gradient-quantum-unity);
+    color: white;
+    box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3);
+}
+
+.btn-success {
+    background: linear-gradient(135deg, var(--unity-green), var(--unity-green-light));
+    color: white;
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+}
+
+.btn-warning {
+    background: linear-gradient(135deg, var(--sacred-orange), var(--sacred-orange-light));
+    color: white;
+    box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
+}
+
+.btn-unity {
+    background: var(--gradient-sacred-geometry);
+    color: white;
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+    animation: unityPulse var(--consciousness-pulse) infinite;
+}
+
+.btn-quantum {
+    background: linear-gradient(45deg, var(--quantum-blue), var(--consciousness-purple));
+    color: white;
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--text-primary);
+    border: 2px solid var(--border-color);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+/* ============================================================================
+   Metrics and Status Displays
+   ============================================================================ */
+
+.consciousness-metrics,
+.quantum-metrics,
+.geometry-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-md);
+    padding: var(--space-lg);
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: var(--sacred-border-radius);
+    border: 1px solid var(--border-subtle);
+}
+
+.metric {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-sm) var(--space-md);
+    background: white;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    border-left: 4px solid var(--phi-gold);
+}
+
+.quantum-metrics .metric {
+    border-left-color: var(--quantum-blue);
+}
+
+.geometry-metrics .metric {
+    border-left-color: var(--sacred-orange);
+}
+
+.metric-label {
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.metric-value {
+    font-weight: 700;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    font-family: var(--font-mono);
+}
+
+.proof-status {
+    text-align: center;
+    padding: var(--space-md);
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(249, 115, 22, 0.1));
+    border-radius: var(--sacred-border-radius);
+    color: var(--sacred-orange-dark);
+    font-weight: 500;
+    border: 1px solid var(--sacred-orange-light);
+}
+
+/* ============================================================================
+   Pattern Selector Enhancement
+   ============================================================================ */
+
+.pattern-selector {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+    padding: var(--space-md);
+    background: rgba(249, 115, 22, 0.05);
+    border-radius: var(--sacred-border-radius);
+    border: 1px solid var(--sacred-orange-light);
+}
+
+.pattern-selector label {
+    font-weight: 600;
+    color: var(--sacred-orange-dark);
+    white-space: nowrap;
+}
+
+.pattern-select {
+    flex: 1;
+    padding: var(--space-sm) var(--space-md);
+    border: 2px solid var(--sacred-orange-light);
+    border-radius: var(--radius-md);
+    background: white;
+    color: var(--text-primary);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-smooth);
+}
+
+.pattern-select:focus {
+    outline: none;
+    border-color: var(--sacred-orange);
+    box-shadow: 0 0 10px rgba(249, 115, 22, 0.2);
+}
+
+/* ============================================================================
+   Advanced Animations
+   ============================================================================ */
+
+@keyframes unityPulse {
+    0%, 100% {
+        box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 6px 25px rgba(245, 158, 11, 0.6);
+        transform: scale(1.05);
+    }
+}
+
+@keyframes phiRotation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(calc(360deg / var(--phi-ratio)));
+    }
+}
+
+@keyframes quantumFluctuation {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    25% {
+        opacity: 0.7;
+        transform: scale(0.95);
+    }
+    75% {
+        opacity: 0.9;
+        transform: scale(1.02);
+    }
+}
+
+@keyframes consciousnessFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Apply animations to relevant elements */
+.revolutionary-consciousness-controls::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--gradient-phi-consciousness);
+    background-size: 200% 200%;
+    animation: consciousnessFlow var(--consciousness-pulse) infinite;
+    opacity: 0.02;
+    pointer-events: none;
+}
+
+.quantum-unity-controls .metric-value {
+    animation: quantumFluctuation calc(var(--quantum-duration) * 2) infinite;
+}
+
+.sacred-geometry-controls .pattern-select:focus {
+    animation: phiRotation var(--phi-duration) linear infinite;
+    transform-origin: center;
+}
+
+/* ============================================================================
+   Responsive Enhancements
+   ============================================================================ */
+
+@media (max-width: 768px) {
+    :root {
+        --sacred-spacing: var(--space-md);
+    }
+    
+    .viz-tabs {
+        grid-template-columns: 1fr;
+    }
+    
+    .control-buttons {
+        flex-direction: column;
+    }
+    
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .consciousness-metrics,
+    .quantum-metrics,
+    .geometry-metrics {
+        grid-template-columns: 1fr;
+    }
+    
+    .pattern-selector {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .pattern-selector label {
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .visualization-gallery {
+        padding: var(--space-md);
+    }
+    
+    canvas {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    .revolutionary-consciousness-controls h4,
+    .quantum-unity-controls h4,
+    .sacred-geometry-controls h4 {
+        font-size: 1.2rem;
+    }
+}
+
+/* ============================================================================
+   φ-Harmonic Loading States
+   ============================================================================ */
+
+.visualization-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    background: rgba(0, 0, 0, 0.95);
+    border-radius: var(--sacred-border-radius);
+    position: relative;
+    overflow: hidden;
+}
+
+.phi-spinner {
+    width: calc(50px * var(--phi-ratio));
+    height: calc(50px * var(--phi-ratio));
+    border: 3px solid var(--phi-gold-light);
+    border-top: 3px solid var(--phi-gold);
+    border-radius: 50%;
+    animation: phiRotation var(--phi-duration) linear infinite;
+}
+
+.unity-equation-display {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: calc(2rem * var(--phi-ratio));
+    font-weight: 700;
+    color: var(--phi-gold);
+    text-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
+    font-family: var(--font-serif);
+}
+
+/* ============================================================================
+   Advanced Visual Effects
+   ============================================================================ */
+
+.consciousness-particle-effect {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--phi-gold);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: particleFloat calc(var(--phi-duration) * 2) ease-in-out infinite;
+}
+
+@keyframes particleFloat {
+    0%, 100% {
+        opacity: 0;
+        transform: translateY(0) scale(0.5);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(-50px) scale(1);
+    }
+}
+
+.quantum-interference-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 30% 30%, var(--quantum-blue) 0%, transparent 50%),
+        radial-gradient(circle at 70% 70%, var(--consciousness-purple) 0%, transparent 50%);
+    opacity: 0.1;
+    animation: quantumFluctuation var(--quantum-duration) infinite;
+    pointer-events: none;
+}
+
+.sacred-geometry-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        linear-gradient(90deg, rgba(249, 115, 22, 0.1) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(249, 115, 22, 0.1) 1px, transparent 1px);
+    background-size: calc(20px * var(--phi-ratio)) calc(20px * var(--phi-ratio));
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+/* ============================================================================
+   Unity Mathematics Status Indicators
+   ============================================================================ */
+
+.unity-status-indicator {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--gradient-phi-consciousness);
+    color: white;
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--sacred-border-radius);
+    font-weight: 600;
+    font-size: 0.9rem;
+    box-shadow: var(--shadow-lg);
+    z-index: 9999;
+    animation: unityPulse var(--consciousness-pulse) infinite;
+}
+
+.unity-status-indicator::before {
+    content: '∞';
+    margin-right: var(--space-xs);
+    font-size: 1.2rem;
+}
+
+/* ============================================================================
+   Enhanced Accessibility
+   ============================================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-primary: #0f172a;
+        --bg-secondary: #1e293b;
+        --text-primary: #f8fafc;
+        --text-secondary: #cbd5e1;
+        --border-color: #334155;
+    }
+    
+    .revolutionary-consciousness-controls,
+    .quantum-unity-controls,
+    .sacred-geometry-controls {
+        background: rgba(15, 23, 42, 0.95);
+        color: var(--text-primary);
+    }
+    
+    .metric {
+        background: rgba(30, 41, 59, 0.8);
+        color: var(--text-primary);
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .btn {
+        border: 2px solid currentColor;
+    }
+    
+    .viz-tab {
+        border-width: 3px;
+    }
+    
+    .metric {
+        border-left-width: 6px;
+    }
+}
