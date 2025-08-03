@@ -2817,6 +2817,31 @@
             }
             monitorPerformance();
     </script>
+
+    <!-- AI Chat Widget Integration -->
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+    <script src="static/chat.js"></script>
+    
+    <script>
+        // Initialize Een Chat Widget with repository-specific configuration
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof EenChatWidget !== 'undefined') {
+                window.eenChat = new EenChatWidget({
+                    apiEndpoint: 'https://your-api-endpoint.com/chat', // Update with your deployed API
+                    enableMath: true,
+                    enableMarkdown: true,
+                    showTypingIndicator: true,
+                    maxMessages: 50
+                });
+                
+                console.log('🤖 Een Repository AI Assistant loaded successfully!');
+                console.log('Click the φ chat icon to start exploring Unity Mathematics!');
+            } else {
+                console.warn('Een Chat Widget failed to load');
+            }
+        });
+    </script>
 </body>
 
 </html>
