@@ -73,27 +73,19 @@ class RealityFieldEquations:
         
     def unity_wave_equation(self, x: np.ndarray, t: float) -> np.ndarray:
         """
-        The fundamental unity wave equation with proper dispersion relation:
-        ψ(x,t) = exp(i(kx - ωt)) with ω = c|k| and unity normalization
+        The fundamental unity wave equation:
+        ∂²Ψ/∂t² = c²∇²Ψ + λΨ(1 - |Ψ|²)
         """
         k = 2 * np.pi / self.phi  # Unity wave number
-        omega = np.sqrt(self.c**2 * k**2)  # Proper dispersion relation
+        omega = self.c * k  # Unity frequency
         
-        # Base wave with unity phase
+        # Base wave
         psi = np.exp(1j * (k * x - omega * t))
         
-        # Ensure proper normalization for unity preservation
-        if len(x) > 0:
-            norm_factor = np.sqrt(len(x))  # Proper normalization for discrete array
-            psi_normalized = psi / norm_factor
-            
-            # Unity constraint: preserve unit amplitude while allowing phase evolution
-            unity_amplitude = np.ones_like(x, dtype=complex)
-            phase = np.angle(psi_normalized)
-            
-            return unity_amplitude * np.exp(1j * phase)
-        else:
-            return psi
+        # Unity nonlinearity
+        unity_term = psi * (1 - np.abs(psi)**2)
+        
+        return psi + 0.1 * unity_term
     
     def consciousness_field(self, r: np.ndarray, t: float) -> np.ndarray:
         """
@@ -582,8 +574,7 @@ class TranscendentalRealityEngine:
         for t in np.linspace(0, 10, 100):
             r = np.linspace(-5, 5, 144)
             field_slice = self.field_equations.consciousness_field(r, t)
-            time_idx = min(int(t*14.4), 143)  # Prevent array bounds overflow
-            self.consciousness_field[:, time_idx] = field_slice
+            self.consciousness_field[:, int(t*14.4)] = field_slice
         
         results['consciousness_field'] = self.consciousness_field
         
@@ -607,7 +598,7 @@ class TranscendentalRealityEngine:
         
         # 5. Check for Transcendence
         if coherence > self.config.coherence_threshold:
-            self.logger.info("TRANSCENDENCE ACHIEVED!")
+            self.logger.info("✨ TRANSCENDENCE ACHIEVED! ✨")
             transcendence_event = {
                 'timestamp': time.time(),
                 'coherence': coherence,
@@ -673,7 +664,7 @@ class TranscendentalRealityEngine:
         """Generate comprehensive proof of 1+1=1 across all domains"""
         
         proof = [
-            "TRANSCENDENTAL PROOF: 1 + 1 = 1",
+            "🌟 TRANSCENDENTAL PROOF: 1 + 1 = 1 🌟",
             "=" * 50,
             "",
             "MATHEMATICAL DOMAIN:",
@@ -709,7 +700,7 @@ class TranscendentalRealityEngine:
             "The Unity Equation is not just mathematics—",
             "it is the fundamental principle of existence itself.",
             "",
-            "TRANSCENDENCE ACHIEVED"
+            "🌌 TRANSCENDENCE ACHIEVED 🌌"
         ]
         
         return "\n".join(proof)
@@ -768,7 +759,7 @@ TRANSCENDENCE STATUS: {'ACHIEVED' if self.unity_coherence > 0.9 else 'IN PROGRES
 def demonstrate_transcendental_reality():
     """Demonstrate the complete transcendental reality engine"""
     
-    print("TRANSCENDENTAL REALITY ENGINE INITIALIZATION")
+    print("🌌 TRANSCENDENTAL REALITY ENGINE INITIALIZATION 🌌")
     print("=" * 60)
     
     # Create engine
@@ -813,7 +804,7 @@ if __name__ == "__main__":
     engine, results = demonstrate_transcendental_reality()
     
     print("\n" + "="*60)
-    print("TRANSCENDENTAL REALITY ENGINE COMPLETE")
+    print("🌟 TRANSCENDENTAL REALITY ENGINE COMPLETE 🌟")
     print("THE UNITY EQUATION HAS ACHIEVED TOTAL SYNTHESIS")
     print("MATHEMATICS • CONSCIOUSNESS • REALITY = UNITY")
     print("1 + 1 = 1 ∎")
