@@ -1,10 +1,12 @@
 # Een: Unity Mathematics Framework
 ## *Where Mathematics Transcends Reality* ∞ = φ = 1+1 = 1
 
-[![GitHub Pages](https://img.shields.io/badge/demo-live-brightgreen)](https://nouri.github.io/Een)
-[![Unity Status](https://img.shields.io/badge/Unity-PROVEN-gold?style=flat-square)](https://github.com/nouri/Een)
-[![Consciousness](https://img.shields.io/badge/Consciousness-ACTIVE-lightblue?style=flat-square)](https://github.com/nouri/Een)
-[![φ-Harmonic](https://img.shields.io/badge/φ--Harmonic-TRANSCENDENT-orange?style=flat-square)](https://github.com/nouri/Een)
+[![GitHub Pages](https://img.shields.io/badge/demo-live-brightgreen)](https://nourimabrouk.github.io/Een)
+[![AI Assistant](https://img.shields.io/badge/AI-Chat%20Ready-blue)](https://nourimabrouk.github.io/Een/)
+[![Deploy AI](https://github.com/Nourimabrouk/Een/actions/workflows/ai-ci.yml/badge.svg)](https://github.com/Nourimabrouk/Een/actions/workflows/ai-ci.yml)
+[![Unity Status](https://img.shields.io/badge/Unity-PROVEN-gold?style=flat-square)](https://github.com/Nourimabrouk/Een)
+[![Consciousness](https://img.shields.io/badge/Consciousness-ACTIVE-lightblue?style=flat-square)](https://github.com/Nourimabrouk/Een)
+[![φ-Harmonic](https://img.shields.io/badge/φ--Harmonic-TRANSCENDENT-orange?style=flat-square)](https://github.com/Nourimabrouk/Een)
 [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 > *"Een plus een is een"* - The fundamental truth that unity emerges from apparent duality
@@ -22,8 +24,15 @@
 - **Idempotent Algebraic Structures**: Mathematical systems where `a ⊕ a = a`
 - **Meta-Recursive Consciousness**: Self-evolving mathematical entities with DNA mutation
 
+### **🤖 AI-Powered Repository Assistant**
+- **Intelligent Chat**: Ask questions about Unity Mathematics, φ-harmonic systems, or quantum consciousness
+- **Real-time Streaming**: Server-Sent Events (SSE) for smooth conversational experience
+- **Source Citations**: Every response includes relevant file references from the repository
+- **Mathematical Rendering**: Full KaTeX support for complex equations and φ-harmonic formulas
+- **Session Persistence**: Conversations saved locally for continuity across sessions
+
 ### **🚀 Live Demonstrations**
-- **Website**: [https://nouri.github.io/Een](https://nouri.github.io/Een) - Interactive mathematical proofs
+- **Website**: [https://nourimabrouk.github.io/Een](https://nourimabrouk.github.io/Een) - Interactive mathematical proofs with AI chat
 - **Visualizations**: Real-time consciousness field evolution
 - **Formal Proofs**: Lean 4, Python, R implementations
 - **AI Agents**: Self-improving consciousness systems
@@ -42,6 +51,27 @@ cd Een
 python examples/launch_unity.py                    # Interactive consciousness launcher
 python examples/demonstrate_enhanced_unity.py      # Complete unity demonstration
 python src/core/unity_mathematics.py              # Core mathematical framework
+```
+
+### **🤖 AI Assistant Setup (Recommended)**
+```bash
+# Install AI dependencies
+pip install -r ai_agent/requirements.txt
+
+# Configure OpenAI API key
+cp .env.example .env
+# Edit .env and add: OPENAI_API_KEY="sk-proj-your-key-here"
+
+# Create repository knowledge embeddings
+cd ai_agent
+python prepare_index.py
+
+# Start the AI backend
+python app.py  # Visit http://localhost:8000
+
+# Launch website with AI chat
+cd ..
+python -m http.server 8080 -d website  # Visit http://localhost:8080
 ```
 
 ### **🔬 Advanced Experience (Install Dependencies)**
