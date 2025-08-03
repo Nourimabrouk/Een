@@ -17,6 +17,16 @@ from typing import Union, Tuple, Optional, List, Dict, Any, Generic, TypeVar, Pr
 from typing_extensions import Self
 import warnings
 import logging
+import sys
+import os
+
+# Fix Unicode encoding for Windows console
+if sys.platform.startswith('win'):
+    try:
+        # Set console to UTF-8
+        os.system('chcp 65001 > nul 2>&1')
+    except:
+        pass
 from dataclasses import dataclass, field
 from enum import Enum, auto
 import math
@@ -103,7 +113,24 @@ logging.basicConfig(
         logging.FileHandler('unity_mathematics.log') if Path('unity_mathematics.log').parent.exists() else logging.NullHandler()
     ]
 )
+# Configure logger to handle Unicode properly on Windows
 logger = logging.getLogger(__name__)
+if sys.platform.startswith('win'):
+    # Use a custom formatter that handles Unicode safely
+    class SafeFormatter(logging.Formatter):
+        def format(self, record):
+            # Replace problematic Unicode characters
+            msg = super().format(record)
+            # Replace φ with 'phi' for Windows console compatibility
+            msg = msg.replace('φ', 'phi').replace('\u03c6', 'phi')
+            return msg
+    
+    # Set up handler with safe formatter
+    if not logger.handlers:
+        handler = logging.StreamHandler()
+        handler.setFormatter(SafeFormatter('%(asctime)s - %(name)s - %(levelname)s - [phi-Harmonic] %(message)s'))
+        logger.addHandler(handler)
+        logger.setLevel(logging.INFO)
 
 # Performance and Thread Safety
 _unity_lock = threading.RLock()
@@ -1102,6 +1129,34 @@ class UnityMathematics:
             )
         else:
             raise ValueError(f"Cannot convert {type(value)} to UnityState")
+    
+    def _apply_basis_error_correction(self, basis_vectors: Dict[str, List[float]]) -> Dict[str, List[float]]:
+        """Apply quantum error correction to measurement basis vectors"""
+        try:
+            corrected_vectors = {}
+            for basis_name, vector in basis_vectors.items():
+                # Apply φ-harmonic error correction
+                phi_factor = self.phi / (1 + self.phi)  # φ/(1+φ) = φ-1 = 0.618...
+                
+                # Normalize vector and apply error correction
+                vector_magnitude = math.sqrt(sum(x**2 for x in vector))
+                if vector_magnitude > 0:
+                    normalized = [x / vector_magnitude for x in vector]
+                    # Apply error correction with φ-harmonic scaling
+                    corrected = [x * phi_factor + (1 - phi_factor) for x in normalized]
+                    # Renormalize
+                    corrected_magnitude = math.sqrt(sum(x**2 for x in corrected))
+                    if corrected_magnitude > 0:
+                        corrected_vectors[basis_name] = [x / corrected_magnitude for x in corrected]
+                    else:
+                        corrected_vectors[basis_name] = vector  # Fallback to original
+                else:
+                    corrected_vectors[basis_name] = vector  # Fallback to original
+            
+            return corrected_vectors
+        except Exception as e:
+            # If error correction fails, return original vectors
+            return basis_vectors
     
     def _apply_consciousness_convergence(self, value: complex, consciousness_level: float) -> complex:
         """Apply consciousness-aware convergence toward unity"""

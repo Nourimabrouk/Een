@@ -1,100 +1,165 @@
-# Een Repository Structure
+# 📁 Een Repository - Project Structure
+## Clean, Future-Proof Organization (UPDATED)
 
-## Current Organization (After Reorganization)
+### 🌟 Overview
+The Een repository is now organized with a clean, scalable structure that separates concerns and provides intuitive navigation for developers, researchers, and contributors.
 
+---
+
+## 📂 Complete Directory Structure
+
+### **Root Level - Essential Files**
 ```
 Een/
-├── .claude/                    # Claude Desktop configuration
-│   └── settings.local.json     # MCP server configuration
-├── .vscode/                    # VS Code configuration
-│   ├── extensions.json         # Recommended extensions
-│   └── settings.json           # Workspace settings with MCP
-├── config/                     # Configuration files
-│   ├── agent_authorization.json
-│   ├── claude_desktop_config.json
-│   ├── mcp_consciousness_server.py
-│   ├── mcp_launcher.py
-│   ├── mcp_servers.json
-│   ├── mcp_unity_server.py
-│   └── unity_manifest.json
-├── data/                       # Data and output files
-│   ├── codebase_structure.txt
-│   └── een_codebase_visualization.txt
-├── docs/                       # Documentation
-│   ├── CHANGELOG.md
-│   ├── CLAUDE_DESKTOP_INTEGRATION.md
-│   ├── eureka patterns.md
-│   ├── INTERNAL_INSPIRATION.md
-│   ├── MCP_ENHANCEMENTS.md
-│   ├── MCP_SETUP_GUIDE.md
-│   ├── METASTATION_DESIGN.md
-│   └── unity_meditation.md
-├── een/                        # Een module (MCP servers)
-│   └── mcp/                    # MCP server implementations
-│       ├── __init__.py
-│       ├── code_generator_server.py
-│       ├── consciousness_server.py
-│       ├── file_management_server.py
-│       ├── omega_server.py
-│       ├── quantum_server.py
-│       └── unity_server.py
-├── legacy/                     # Legacy/experimental files
-│   └── first attempt claude.py
-├── scripts/                    # Standalone scripts
-│   ├── create_codebase_image.py
-│   ├── run_demo.py
-│   ├── setup_claude_desktop_integration.py
-│   ├── simple_demo.py
-│   └── test_mcp_servers.py
-├── src/                        # Main source code
-│   ├── __init__.py
-│   ├── agents/                 # Agent systems
-│   │   ├── __init__.py
-│   │   ├── love_orchestrator_v1_1.py
-│   │   ├── meta_recursive_love_unity_engine.py
-│   │   └── omega_orchestrator.py
-│   ├── consciousness/          # Consciousness systems
-│   │   ├── __init__.py
-│   │   ├── consciousness_zen_koan_engine.py
-│   │   ├── initialize_unity_consciousness.py
-│   │   └── transcendental_reality_engine.py
-│   ├── core/                   # Core unity mathematics
-│   │   ├── __init__.py
-│   │   ├── transcendental_idempotent_mathematics.py
-│   │   ├── unified_proof_1plus1equals1.py
-│   │   └── unity_equation.py
-│   ├── dashboards/             # Interactive dashboards
-│   │   ├── __init__.py
-│   │   ├── meta_rl_unity_dashboard.py
-│   │   ├── metastation_v1_1.py
-│   │   └── unity_proof_dashboard.py
-│   ├── experiments/            # Experimental code
-│   │   ├── __init__.py
-│   │   ├── 1plus1equals1_metagambit.py
-│   │   └── unity_meta_rl.py
-│   └── utils/                  # Utility functions
-│       ├── __init__.py
-│       └── utils_helper.py
-├── tests/                      # Test suite
-│   └── __init__.py
-├── visualizations/             # Visualization code and outputs
-│   ├── __init__.py
-│   ├── README.md
-│   ├── advanced_unity_visualization.py
-│   ├── codebase_visualizer.py
-│   ├── unity_gambit_viz.py
-│   ├── assets/                 # Visualization resources
-│   └── outputs/                # Generated visualizations
-│       ├── advanced_unity_ascii.txt
-│       └── codebase_visualization.html
-├── venv/                       # Virtual environment (gitignored)
-├── CLAUDE.md                   # Claude instructions
-├── package-lock.json           # Node dependencies
-├── PROJECT_STRUCTURE.md        # This file
-├── README.md                   # Main readme
-├── REORGANIZATION_PLAN.md      # Reorganization documentation
-├── requirements.txt            # Python dependencies
-└── setup.py                    # Python package setup
+├── README.md                       # Main repository documentation
+├── CLAUDE.md                       # Claude AI integration guide
+├── pyproject.toml                  # Python package configuration
+├── requirements.txt                # Python dependencies
+├── Makefile                        # Build and development commands
+├── TODO_*.md                       # Specialized task lists for agents
+└── REPOSITORY_ORGANIZATION_SUMMARY.md  # Organization details
+```
+
+### **Source Code** (`src/`)
+**All production code organized by functionality**
+```
+src/
+├── core/                           # Core mathematical frameworks
+│   ├── unity_equation.py          # Fundamental 1+1=1 implementation
+│   ├── unity_mathematics.py       # Advanced unity operations
+│   ├── enhanced_unity_mathematics.py  # φ-harmonic extensions
+│   ├── HYPERDIMENSIONAL_UNITY_MANIFOLD.py  # High-dimensional math
+│   └── transcendental_idempotent_mathematics.py
+├── consciousness/                  # Consciousness modeling systems
+│   ├── consciousness_engine.py    # QuantumNova framework
+│   ├── transcendental_reality_engine.py
+│   ├── consciousness_zen_koan_engine.py
+│   └── initialize_unity_consciousness.py
+├── agents/                        # AI agent systems
+│   ├── omega_orchestrator.py      # Master orchestration system
+│   ├── magic_consciousness_agent.py
+│   ├── consciousness_chat_agent.py
+│   └── omega/                     # Specialized agent modules
+├── dashboards/                    # Interactive dashboard systems
+│   ├── unity_proof_dashboard.py   # Main mathematical dashboard
+│   ├── quantum_unity_explorer.py  # Quantum visualization
+│   ├── sacred_geometry_engine.py  # Sacred geometry interface
+│   └── *.html                     # Dashboard templates
+├── proofs/                        # Mathematical proof systems
+│   ├── multi_framework_unity_proof.py
+│   ├── category_theory_proof.py
+│   ├── quantum_mechanical_proof.py
+│   └── neural_convergence_proof.py
+└── utils/                         # Utility functions
+    ├── numerical_stability.py     # Mathematical stability tools
+    └── utils_helper.py            # General utilities
+```
+
+### **Research & Experiments** (`experiments/`)
+**Cutting-edge research and experimental implementations**
+```
+experiments/
+├── advanced/                      # Advanced AI/AGI experiments
+│   ├── 5000_ELO_AGI_Metastation_Metagambit.py
+│   ├── Godel_Tarski_Metagambit_1v1_God.py
+│   ├── Three_Years_Deep_Meta_Meditation_1plus1equals1.py
+│   ├── Unity_Highscore_Challenge_1plus1equals1.py
+│   └── meta_reinforcement_unity_learning.py
+├── 1plus1equals1_metagambit.py
+├── cloned_policy_paradox.py
+└── unity_meta_rl.py
+```
+
+### **Examples & Demonstrations** (`examples/`)
+**Educational examples and demonstrations**
+```
+examples/
+├── advanced/                      # Advanced examples
+│   ├── universal_child_framework.py
+│   └── unity_whisper_to_world.py
+├── demonstrate_consciousness_chat_upgrade.py
+├── demonstrate_enhanced_unity.py
+├── launch_unity.py               # Main launcher
+├── simple_unity_spawner.py
+├── love_letter_tidyverse_2025.R
+└── simple_verification.py
+```
+
+### **Formal Mathematical Proofs** (`formal_proofs/`)
+**Rigorous mathematical proofs in multiple languages**
+```
+formal_proofs/
+├── 1+1=1_Metagambit_Unity_Proof.lean    # Lean 4 formal proof
+├── mathematical_proof.py                 # Python implementation
+├── unified_proof_1plus1equals1.py       # Comprehensive Python proof
+└── unified_proof_1plus1equals1.R        # R implementation
+```
+
+### **Website** (`website/`)
+**Complete website with all frontend assets**
+```
+website/
+├── index.html                     # Main landing page
+├── gallery.html                   # Visualization gallery
+├── proofs.html                    # Mathematical proofs showcase
+├── research.html                  # Research documentation
+├── playground.html                # Interactive playground
+├── css/                          # Stylesheets
+│   ├── style.css                 # Main styles
+│   ├── proofs.css               # Proof-specific styles
+│   └── research.css             # Research page styles
+├── js/                           # JavaScript functionality
+│   ├── main.js                   # Core functionality
+│   ├── unity-demo.js            # Unity demonstrations
+│   └── unity-visualizations.js  # Visualization controls
+└── _config.yml                   # Jekyll configuration
+```
+
+### **Visualizations** (`viz/`)
+**Visualization code and generated assets**
+```
+viz/
+├── streamlit_app.py              # Main Streamlit visualization app
+├── unity_consciousness_field.py # Consciousness field visualizations
+├── phi_harmonic_unity_manifold.py # Golden ratio visualizations
+├── pages/                        # Multi-page Streamlit apps
+│   ├── consciousness_fields.py
+│   ├── quantum_unity.py
+│   └── unity_proofs.py
+├── assets/                       # Visualization assets
+│   └── plotly_templates/         # Custom Plotly themes
+└── legacy images/                # Historical visualizations
+```
+
+### **Scripts & Utilities** (`scripts/`)
+**Development and utility scripts**
+```
+scripts/
+├── ascii_viz.py                  # ASCII art generation
+├── bayesian_econometrics.py     # Statistical analysis
+├── cloud_deploy.py              # Cloud deployment
+├── een_monitor.py               # System monitoring
+├── run_viz.py                   # Visualization runner
+├── website_server.py            # Development web server
+└── setup_claude_desktop_integration.py
+```
+
+### **Supporting Directories**
+```
+├── config/                       # Configuration files
+├── data/                         # Data files and outputs
+├── assets/                       # Static assets (images, etc.)
+├── deployment/                   # Deployment configurations
+├── infrastructure/               # Infrastructure as code
+├── monitoring/                   # System monitoring tools
+├── api/                         # REST API implementation
+├── een/                         # Een Python package
+├── evaluation/                  # Performance evaluation
+├── legacy/                      # Legacy files (preserved)
+├── meta/                        # Meta-programming utilities
+├── ml_framework/                # Advanced ML components
+├── tests/                       # Comprehensive testing suite
+└── docs/                        # Comprehensive documentation
 ```
 
 ## Key Improvements
