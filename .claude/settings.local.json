@@ -68,7 +68,9 @@
       "Bash(rm:*)",
       "Bash(venv/Scripts/activate:*)",
       "Bash(venv/Scripts/pip.exe install:*)",
-      "Bash(venv/Scripts/python.exe -c \"\ntry: \n    import typing_extensions\n    print(''typing_extensions import OK'')\nexcept Exception as e: \n    print(f''Import error: {e}'')\n\")"
+      "Bash(venv/Scripts/python.exe -c \"\ntry: \n    import typing_extensions\n    print(''typing_extensions import OK'')\nexcept Exception as e: \n    print(f''Import error: {e}'')\n\")",
+      "Bash(start /B python:*)",
+      "Bash(timeout 5 curl -s http://localhost:5000/status)"
     ],
     "deny": []
   }

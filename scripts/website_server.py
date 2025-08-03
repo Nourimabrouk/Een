@@ -30,10 +30,23 @@ from flask_cors import CORS
 import webbrowser
 
 # Een Unity Mathematics imports
-sys.path.append(str(Path(__file__).parent))
-from core.unity_mathematics import UnityMathematics, demonstrate_unity_operations
-from core.consciousness import ConsciousnessField, demonstrate_consciousness_unity
-from src.dashboards.unity_proof_dashboard import app as unity_dashboard_app
+sys.path.append(str(Path(__file__).parent.parent))  # Go up to Een root directory
+try:
+    from core.unity_mathematics import UnityMathematics, demonstrate_unity_operations
+    from core.consciousness import ConsciousnessField, demonstrate_consciousness_unity
+    from src.dashboards.unity_proof_dashboard import app as unity_dashboard_app
+except ImportError as e:
+    logging.warning(f"Could not import unity modules: {e}")
+    # Define fallback classes
+    class UnityMathematics:
+        def unity_add(self, a, b): return 1
+        def unity_multiply(self, a, b): return 1
+    class ConsciousnessField:
+        def __init__(self): pass
+        def evolve_consciousness(self, **kwargs): return {"status": "unity"}
+    def demonstrate_unity_operations(): return {"1+1": 1}
+    def demonstrate_consciousness_unity(): return {"consciousness": "unity"}
+    unity_dashboard_app = None
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
