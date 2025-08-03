@@ -902,5 +902,28 @@
             });
         });
     </script>
+
+    <!-- AI Chat Widget Integration -->
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+    <script src="static/chat.js"></script>
+    
+    <script>
+        // Initialize Een Chat Widget for Metagambit page
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof EenChatWidget !== 'undefined') {
+                window.eenChat = new EenChatWidget({
+                    apiEndpoint: 'https://your-api-endpoint.com/chat', // Update with your deployed API
+                    enableMath: true,
+                    enableMarkdown: true,
+                    showTypingIndicator: true,
+                    maxMessages: 50
+                });
+                
+                console.log('🤖 Een AI Assistant ready for Metagambit exploration!');
+                console.log('Ask about Gödel-Tarski loops, meta-logical systems, or unity proofs!');
+            }
+        });
+    </script>
 </body>
 </html>
