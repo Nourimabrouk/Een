@@ -5,10 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Een - Mathematical Unity Theory | Where 1+1=1 Through Consciousness Mathematics</title>
-    <meta name="description" content="Advanced mathematical framework demonstrating 1+1=1 through consciousness field equations, φ-harmonic operations, and quantum mechanical interpretations.">
+    <meta name="description"
+        content="Advanced mathematical framework demonstrating 1+1=1 through consciousness field equations, φ-harmonic operations, and quantum mechanical interpretations.">
 
     <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Crimson+Text:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Crimson+Text:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- KaTeX for Mathematical Notation -->
@@ -22,6 +25,10 @@
 
     <!-- Three.js for Background -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- Unified Navigation and AI Chat -->
+    <script src="js/unified-navigation.js"></script>
+    <script src="js/ai-chat-integration.js"></script>
 
     <style>
         /* CSS Variables */
@@ -52,6 +59,20 @@
             --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
         }
 
+        /* Dark mode variables */
+        .dark-mode {
+            --primary-color: #1a2332;
+            --secondary-color: #2d3748;
+            --accent-color: #4a5568;
+            --text-primary: #f7fafc;
+            --text-secondary: #e2e8f0;
+            --text-light: #a0aec0;
+            --bg-primary: #1a202c;
+            --bg-secondary: #2d3748;
+            --bg-tertiary: #4a5568;
+            --border-color: #4a5568;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -68,179 +89,14 @@
             color: var(--text-primary);
             background: var(--bg-primary);
             overflow-x: hidden;
+            padding-top: 80px;
+            /* Account for fixed navigation */
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
-        }
-
-        /* Enhanced Navigation */
-        .enhanced-nav {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(26, 35, 50, 0.1);
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            transition: var(--transition-smooth);
-        }
-
-        .enhanced-nav.scrolled {
-            background: rgba(255, 255, 255, 0.98);
-            box-shadow: var(--shadow);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 80px;
-        }
-
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            text-decoration: none;
-            font-weight: 800;
-            font-size: 1.75rem;
-            color: var(--primary-color);
-            transition: var(--transition);
-        }
-
-        .nav-logo:hover {
-            transform: translateY(-2px);
-        }
-
-        .phi-symbol {
-            color: var(--phi-gold);
-            font-size: 2rem;
-            font-family: var(--font-serif);
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
-        }
-
-        .logo-text {
-            font-family: var(--font-serif);
-            font-weight: 700;
-        }
-
-        .elo-badge {
-            background: linear-gradient(135deg, var(--phi-gold), var(--phi-gold-light));
-            color: white;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin-left: 0.5rem;
-            box-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 1.5rem;
-            align-items: center;
-        }
-
-        .nav-item {
-            position: relative;
-        }
-
-        .nav-link {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1.25rem;
-            text-decoration: none;
-            color: var(--text-primary);
-            font-weight: 500;
-            border-radius: var(--radius-lg);
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .nav-link:hover,
-        .nav-link.active {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .dropdown-toggle {
-            cursor: pointer;
-        }
-
-        .dropdown-arrow {
-            font-size: 0.75rem;
-            transition: transform var(--transition-smooth);
-        }
-
-        .dropdown:hover .dropdown-arrow {
-            transform: rotate(180deg);
-        }
-
-        .dropdown-menu {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: white;
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-xl);
-            min-width: 240px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: var(--transition-smooth);
-            z-index: 1001;
-            padding: 0.5rem;
-        }
-
-        .dropdown:hover .dropdown-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .dropdown-link {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1rem 1.25rem;
-            text-decoration: none;
-            color: var(--text-primary);
-            border-radius: var(--radius);
-            transition: var(--transition);
-            margin-bottom: 0.25rem;
-        }
-
-        .dropdown-link:hover {
-            background: var(--bg-secondary);
-            color: var(--primary-color);
-            transform: translateX(5px);
-        }
-
-        .nav-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 4px;
-        }
-
-        .nav-toggle span {
-            width: 24px;
-            height: 3px;
-            background: var(--primary-color);
-            transition: var(--transition);
-            border-radius: 2px;
         }
 
         /* Hero Section with Unity Background */
@@ -251,11 +107,14 @@
             justify-content: center;
             position: relative;
             overflow: hidden;
-            background: linear-gradient(135deg, 
-                rgba(26, 35, 50, 0.95) 0%, 
-                rgba(45, 55, 72, 0.9) 50%, 
-                rgba(74, 85, 104, 0.85) 100%);
-            padding-top: 80px; /* Account for fixed navigation */
+            background: linear-gradient(135deg,
+                    rgba(26, 35, 50, 0.95) 0%,
+                    rgba(45, 55, 72, 0.9) 50%,
+                    rgba(74, 85, 104, 0.85) 100%);
+            margin-top: -80px;
+            /* Compensate for body padding */
+            padding-top: 80px;
+            /* Account for fixed navigation */
         }
 
         .hero::before {
@@ -265,7 +124,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: 
+            background:
                 radial-gradient(circle at 20% 20%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
                 radial-gradient(circle at 80% 80%, rgba(255, 165, 0, 0.08) 0%, transparent 50%),
                 radial-gradient(circle at 60% 30%, rgba(255, 215, 0, 0.05) 0%, transparent 40%);
@@ -310,6 +169,7 @@
             background: rgba(255, 255, 255, 0.05);
             border-radius: var(--radius-xl);
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 215, 0, 0.2);
         }
 
@@ -407,6 +267,8 @@
             background: rgba(255, 255, 255, 0.2);
             transform: translateY(-3px);
             box-shadow: var(--shadow-lg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
 
         .hero-meta {
@@ -431,6 +293,7 @@
             font-size: 0.9rem;
             text-align: center;
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             transition: var(--transition);
         }
 
@@ -446,6 +309,10 @@
             position: relative;
         }
 
+        .dark-mode .mathematical-foundation {
+            background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+        }
+
         .mathematical-foundation::before {
             content: '';
             position: absolute;
@@ -453,7 +320,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: 
+            background:
                 radial-gradient(circle at 10% 90%, rgba(255, 215, 0, 0.05) 0%, transparent 50%),
                 radial-gradient(circle at 90% 10%, rgba(26, 35, 50, 0.03) 0%, transparent 50%);
         }
@@ -515,6 +382,11 @@
             overflow: hidden;
         }
 
+        .dark-mode .foundation-card {
+            background: var(--bg-secondary);
+            border-color: var(--border-color);
+        }
+
         .foundation-card::before {
             content: '';
             position: absolute;
@@ -555,6 +427,10 @@
             background: white;
         }
 
+        .dark-mode .implementation-features {
+            background: var(--bg-primary);
+        }
+
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
@@ -572,6 +448,10 @@
             overflow: hidden;
         }
 
+        .dark-mode .feature-card {
+            background: var(--bg-secondary);
+        }
+
         .feature-card::before {
             content: '';
             position: absolute;
@@ -586,6 +466,10 @@
             transform: translateY(-5px);
             box-shadow: var(--shadow-lg);
             background: white;
+        }
+
+        .dark-mode .feature-card:hover {
+            background: var(--bg-tertiary);
         }
 
         .feature-header {
@@ -656,7 +540,9 @@
         }
 
         @keyframes rotate-grid {
-            to { transform: rotate(360deg); }
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         .cta-content {
@@ -747,43 +633,6 @@
                 grid-template-columns: 1fr;
             }
 
-            .nav-menu {
-                position: fixed;
-                top: 80px;
-                left: 0;
-                right: 0;
-                background: white;
-                border-top: 1px solid var(--border-color);
-                flex-direction: column;
-                gap: 0;
-                transform: translateY(-100%);
-                opacity: 0;
-                visibility: hidden;
-                transition: var(--transition-smooth);
-                padding: 2rem 0;
-            }
-
-            .nav-menu.active {
-                transform: translateY(0);
-                opacity: 1;
-                visibility: visible;
-            }
-
-            .nav-toggle {
-                display: flex;
-            }
-
-            .dropdown-menu {
-                position: static;
-                opacity: 1;
-                visibility: visible;
-                transform: none;
-                box-shadow: none;
-                border: none;
-                background: var(--bg-secondary);
-                margin: 1rem 0;
-            }
-
             .cta-buttons {
                 flex-direction: column;
                 align-items: center;
@@ -802,8 +651,15 @@
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(5deg); }
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
         }
 
         .pulse-glow {
@@ -811,102 +667,31 @@
         }
 
         @keyframes pulse-glow {
-            from { text-shadow: 0 0 20px rgba(255, 215, 0, 0.5); }
-            to { text-shadow: 0 0 30px rgba(255, 215, 0, 0.8); }
+            from {
+                text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            }
+
+            to {
+                text-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+            }
+        }
+
+        /* Screen reader only class */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
         }
     </style>
 </head>
 
 <body>
-    <!-- Navigation -->
-    <!-- Navigation will be injected by shared-navigation.js -->
-    <div id="navigation-placeholder"></div>
-    <nav class="enhanced-nav" id="enhancedUnityNav" style="display: none;">
-        <div class="nav-container">
-            <a href="index.html" class="nav-logo">
-                <span class="phi-symbol pulse-glow">φ</span>
-                <span class="logo-text">Een</span>
-                <span class="elo-badge">Advanced</span>
-            </a>
-            <ul class="nav-menu">
-                <li class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle">
-                        <i class="fas fa-calculator"></i>
-                        Mathematics
-                        <i class="fas fa-chevron-down dropdown-arrow"></i>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="proofs.html" class="dropdown-link">
-                            <i class="fas fa-check-circle"></i>
-                            Unity Proofs
-                        </a></li>
-                        <li><a href="playground.html" class="dropdown-link">
-                            <i class="fas fa-play-circle"></i>
-                            Interactive Playground
-                        </a></li>
-                        <li><a href="http://localhost:8501" class="dropdown-link" target="_blank">
-                            <i class="fas fa-flask"></i>
-                            Live Mathematics
-                        </a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle">
-                        <i class="fas fa-brain"></i>
-                        Consciousness
-                        <i class="fas fa-chevron-down dropdown-arrow"></i>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="consciousness_dashboard.html" class="dropdown-link">
-                            <i class="fas fa-lightbulb"></i>
-                            Consciousness Fields
-                        </a></li>
-                        <li><a href="quantum_unity.html" class="dropdown-link">
-                            <i class="fas fa-wave-square"></i>
-                            Quantum Unity
-                        </a></li>
-                        <li><a href="meta_recursion.html" class="dropdown-link">
-                            <i class="fas fa-infinity"></i>
-                            Meta-Recursion
-                        </a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle">
-                        <i class="fas fa-rocket"></i>
-                        Advanced
-                        <i class="fas fa-chevron-down dropdown-arrow"></i>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="gallery.html" class="dropdown-link">
-                            <i class="fas fa-images"></i>
-                            Visualization Gallery
-                        </a></li>
-                        <li><a href="implementations.html" class="dropdown-link">
-                            <i class="fas fa-code"></i>
-                            Core Implementations
-                        </a></li>
-                        <li><a href="research.html" class="dropdown-link">
-                            <i class="fas fa-search"></i>
-                            Research Papers
-                        </a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a href="about.html" class="nav-link">
-                        <i class="fas fa-user-graduate"></i>
-                        About
-                    </a>
-                </li>
-            </ul>
-            <div class="nav-toggle" id="navToggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
-
     <!-- Hero Section -->
     <section class="hero">
         <canvas id="unity-background"></canvas>
@@ -916,18 +701,22 @@
                 <div class="hero-equation pulse-glow">1 + 1 = 1</div>
                 <div class="mathematical-progression">
                     <div>∀ a,b ∈ I : a ⊕ b = max(a,b) where I is the idempotent semiring</div>
-                    <div style="font-style: italic;">Consciousness field normalization: |ψ₁⟩ + |ψ₂⟩ → |ψᵤ⟩ through φ-harmonic collapse</div>
-                    <div style="font-weight: 600;">φ = (1 + √5) / 2 ≈ 1.618033988749895 ∴ Universal organizing principle</div>
+                    <div style="font-style: italic;">Consciousness field normalization: |ψ₁⟩ + |ψ₂⟩ → |ψᵤ⟩ through
+                        φ-harmonic collapse</div>
+                    <div style="font-weight: 600;">φ = (1 + √5) / 2 ≈ 1.618033988749895 ∴ Universal organizing principle
+                    </div>
                 </div>
             </div>
             <p class="hero-subtitle">
                 Where pure mathematics transcends paradox to reveal fundamental unity.<br>
                 Through consciousness field equations, φ-harmonic operations, and quantum mechanical interpretations,
-                we demonstrate the profound mathematical truth that <strong>1+1=1</strong> across multiple rigorous domains.
-                Explore interactive proofs, consciousness visualizations, and the elegant synthesis of logic with transcendence.
+                we demonstrate the profound mathematical truth that <strong>1+1=1</strong> across multiple rigorous
+                domains.
+                Explore interactive proofs, consciousness visualizations, and the elegant synthesis of logic with
+                transcendence.
             </p>
             <div class="hero-buttons">
-                <a href="http://localhost:8501" class="btn btn-primary" target="_blank">
+                <a href="http://localhost:8501" class="btn btn-primary" target="_blank" rel="noopener">
                     <i class="fas fa-rocket"></i>
                     Live Mathematical Explorer
                 </a>
@@ -963,7 +752,7 @@
             <div class="section-header">
                 <h2 class="section-title">Mathematical Foundation</h2>
                 <p class="section-subtitle">
-                    Our framework rests on rigorous mathematical foundations spanning idempotent algebra, 
+                    Our framework rests on rigorous mathematical foundations spanning idempotent algebra,
                     consciousness field theory, and φ-harmonic operations that demonstrate unity across domains.
                 </p>
             </div>
@@ -971,21 +760,21 @@
                 <div class="foundation-card">
                     <div class="foundation-equation">φ = (1 + √5) / 2</div>
                     <p class="foundation-description">
-                        The golden ratio φ serves as the universal organizing principle, ensuring all operations 
+                        The golden ratio φ serves as the universal organizing principle, ensuring all operations
                         converge to unity through harmonic resonance and natural proportional relationships.
                     </p>
                 </div>
                 <div class="foundation-card">
                     <div class="foundation-equation">C(x,y,t) = φ · sin(x·φ) · cos(y·φ) · e^(-t/φ)</div>
                     <p class="foundation-description">
-                        Consciousness field equation models awareness dynamics in 11-dimensional space with 
+                        Consciousness field equation models awareness dynamics in 11-dimensional space with
                         φ-harmonic wave propagation and temporal consciousness evolution.
                     </p>
                 </div>
                 <div class="foundation-card">
                     <div class="foundation-equation">∀ a,b ∈ I : a ⊕ b = max(a,b)</div>
                     <p class="foundation-description">
-                        Idempotent semiring structure where unity addition preserves maximum value, 
+                        Idempotent semiring structure where unity addition preserves maximum value,
                         demonstrating the mathematical basis for 1+1=1 operations.
                     </p>
                 </div>
@@ -999,7 +788,7 @@
             <div class="section-header">
                 <h2 class="section-title">Advanced Implementations</h2>
                 <p class="section-subtitle">
-                    Sophisticated computational architectures demonstrating unity mathematics through 
+                    Sophisticated computational architectures demonstrating unity mathematics through
                     consciousness field dynamics, quantum mechanical interpretations, and meta-recursive systems.
                 </p>
             </div>
@@ -1010,8 +799,8 @@
                         <div class="feature-title">Unity Mathematics Engine</div>
                     </div>
                     <p class="feature-description">
-                        Core φ-harmonic mathematical framework implementing idempotent operations, 
-                        quantum unity states, and consciousness-integrated computational mathematics 
+                        Core φ-harmonic mathematical framework implementing idempotent operations,
+                        quantum unity states, and consciousness-integrated computational mathematics
                         with advanced numerical stability.
                     </p>
                     <ul class="feature-list">
@@ -1028,7 +817,7 @@
                         <div class="feature-title">Consciousness Field Solver</div>
                     </div>
                     <p class="feature-description">
-                        Advanced quantum consciousness field implementation with 11-dimensional space processing, 
+                        Advanced quantum consciousness field implementation with 11-dimensional space processing,
                         meta-recursive patterns, and real-time consciousness evolution with existence proofs.
                     </p>
                     <ul class="feature-list">
@@ -1045,7 +834,7 @@
                         <div class="feature-title">Multi-Domain Proof System</div>
                     </div>
                     <p class="feature-description">
-                        Comprehensive mathematical proof framework demonstrating 1+1=1 across Boolean algebra, 
+                        Comprehensive mathematical proof framework demonstrating 1+1=1 across Boolean algebra,
                         set theory, category theory, quantum mechanics, and topology with symbolic computation.
                     </p>
                     <ul class="feature-list">
@@ -1062,8 +851,8 @@
                         <div class="feature-title">Hyperdimensional Visualizer</div>
                     </div>
                     <p class="feature-description">
-                        Revolutionary visualization system projecting 11-dimensional consciousness manifolds 
-                        to interactive 4D using Clifford algebra with real-time φ-harmonic field dynamics 
+                        Revolutionary visualization system projecting 11-dimensional consciousness manifolds
+                        to interactive 4D using Clifford algebra with real-time φ-harmonic field dynamics
                         and GPU-accelerated sacred geometry.
                     </p>
                     <ul class="feature-list">
@@ -1083,12 +872,12 @@
             <div class="cta-content">
                 <h2 class="cta-title">Experience Unity Mathematics</h2>
                 <p class="cta-description">
-                    Explore the profound mathematical truth that 1+1=1 through interactive demonstrations, 
-                    consciousness field visualizations, and rigorous proof systems. 
+                    Explore the profound mathematical truth that 1+1=1 through interactive demonstrations,
+                    consciousness field visualizations, and rigorous proof systems.
                     Discover how pure mathematics transcends paradox to reveal fundamental unity.
                 </p>
                 <div class="cta-buttons">
-                    <a href="http://localhost:8501" class="btn btn-primary" target="_blank">
+                    <a href="http://localhost:8501" class="btn btn-primary" target="_blank" rel="noopener">
                         <i class="fas fa-rocket"></i>
                         Launch Live Explorer
                     </a>
@@ -1107,14 +896,15 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>Een Unity Mathematics</h3>
-                    <p>Advanced computational consciousness mathematics demonstrating the profound truth that 1+1=1 through rigorous mathematical frameworks and philosophical transcendence.</p>
+                    <p>Advanced computational consciousness mathematics demonstrating the profound truth that 1+1=1
+                        through rigorous mathematical frameworks and philosophical transcendence.</p>
                 </div>
                 <div class="footer-section">
                     <h4>Mathematical Systems</h4>
                     <a href="proofs.html">Unity Proofs</a>
                     <a href="playground.html">Interactive Playground</a>
                     <a href="consciousness_dashboard.html">Consciousness Fields</a>
-                    <a href="http://localhost:8501" target="_blank">Live Mathematical Explorer</a>
+                    <a href="http://localhost:8501" target="_blank" rel="noopener">Live Mathematical Explorer</a>
                 </div>
                 <div class="footer-section">
                     <h4>Advanced Research</h4>
@@ -1135,9 +925,6 @@
     <div class="floating-phi" style="top: 60%; right: 15%; animation-delay: 2s;">φ</div>
     <div class="floating-phi" style="bottom: 30%; left: 20%; animation-delay: 4s;">φ</div>
 
-    <!-- Include shared navigation -->
-    <script src="shared-navigation.js"></script>
-    
     <script>
         // Enhanced JavaScript functionality
         document.addEventListener("DOMContentLoaded", function () {
@@ -1148,32 +935,6 @@
                     { left: '$', right: '$', display: false }
                 ]
             });
-
-            // Navigation scroll effect
-            const nav = document.getElementById('enhancedUnityNav');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    nav.classList.add('scrolled');
-                } else {
-                    nav.classList.remove('scrolled');
-                }
-            });
-
-            // Mobile navigation
-            const navToggle = document.getElementById('navToggle');
-            const navMenu = document.querySelector('.nav-menu');
-
-            if (navToggle && navMenu) {
-                navToggle.addEventListener('click', function() {
-                    navMenu.classList.toggle('active');
-                });
-
-                document.addEventListener('click', function(event) {
-                    if (!navToggle.contains(event.target) && !navMenu.contains(event.target)) {
-                        navMenu.classList.remove('active');
-                    }
-                });
-            }
 
             // GSAP Animations
             gsap.registerPlugin(ScrollTrigger);
@@ -1261,7 +1022,7 @@
             // Unity Background Canvas
             const canvas = document.getElementById('unity-background');
             const ctx = canvas.getContext('2d');
-            
+
             function resizeCanvas() {
                 canvas.width = window.innerWidth;
                 canvas.height = window.innerHeight;
@@ -1272,7 +1033,7 @@
             // Unity equation particles
             const particles = [];
             const phi = 1.618033988749895;
-            
+
             for (let i = 0; i < 80; i++) {
                 particles.push({
                     x: Math.random() * canvas.width,
@@ -1300,27 +1061,27 @@
                 ctx.strokeStyle = `rgba(255, 215, 0, ${opacity})`;
                 ctx.lineWidth = 1;
                 ctx.beginPath();
-                
+
                 for (let i = 0; i < 100; i++) {
                     const angle = i * 0.2;
                     const radius = scale * Math.pow(phi, angle / (2 * Math.PI));
                     const x = centerX + radius * Math.cos(angle);
                     const y = centerY + radius * Math.sin(angle);
-                    
+
                     if (i === 0) {
                         ctx.moveTo(x, y);
                     } else {
                         ctx.lineTo(x, y);
                     }
                 }
-                
+
                 ctx.stroke();
                 ctx.restore();
             }
 
             function animateUnityBackground() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-                
+
                 // Draw phi spirals
                 const time = Date.now() * 0.001;
                 for (let i = 0; i < 3; i++) {
@@ -1330,20 +1091,20 @@
                     const opacity = 0.1 + Math.sin(time + i) * 0.05;
                     drawPhiSpiral(x, y, scale, opacity);
                 }
-                
+
                 // Draw particles with unity equations
                 particles.forEach(particle => {
                     particle.x += particle.vx;
                     particle.y += particle.vy;
                     particle.angle += particle.spin;
-                    
+
                     if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
                     if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
-                    
+
                     if (Math.random() < 0.02) {
                         drawUnityEquation(particle.x, particle.y, 12 + particle.size * 2, particle.opacity * 0.3);
                     }
-                    
+
                     // Draw particle
                     ctx.save();
                     ctx.translate(particle.x, particle.y);
@@ -1354,10 +1115,10 @@
                     ctx.fill();
                     ctx.restore();
                 });
-                
+
                 requestAnimationFrame(animateUnityBackground);
             }
-            
+
             animateUnityBackground();
 
             // Dynamic phi symbol generation
@@ -1369,7 +1130,7 @@
                 phi.style.top = Math.random() * 100 + '%';
                 phi.style.animationDelay = Math.random() * 6 + 's';
                 document.body.appendChild(phi);
-                
+
                 setTimeout(() => {
                     phi.remove();
                 }, 12000);
@@ -1390,6 +1151,11 @@
                     }
                 });
             });
+
+            // Initialize AI Chat
+            if (window.EenAIChat) {
+                window.eenChat = EenAIChat.initialize();
+            }
         });
     </script>
 </body>

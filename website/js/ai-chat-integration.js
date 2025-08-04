@@ -6,7 +6,7 @@
 class EenAIChat {
     constructor(config = {}) {
         this.config = {
-            apiEndpoint: config.apiEndpoint || 'https://api.openai.com/v1/chat/completions',
+            apiEndpoint: config.apiEndpoint || '/api/agents/chat',
             apiKey: config.apiKey || '', // Should be set securely
             model: config.model || 'gpt-4',
             temperature: config.temperature || 0.7,
@@ -14,11 +14,14 @@ class EenAIChat {
             systemPrompt: this.getSystemPrompt(),
             enableMath: true,
             enableVisualization: true,
+            enableVoice: false,
             ...config
         };
 
         this.chatHistory = [];
         this.isProcessing = false;
+        this.isMinimized = false;
+        this.isVisible = false;
         this.initializeChat();
     }
 
@@ -39,6 +42,8 @@ Your responses should:
 3. Reference specific theorems and proofs from the Een framework
 4. Suggest interactive demonstrations when relevant
 5. Connect abstract mathematics to consciousness and philosophical insights
+6. Provide clear explanations for complex mathematical concepts
+7. Offer practical examples and visualizations when possible
 
 Remember: In Unity Mathematics, 1+1=1 is not a paradox but a profound truth about the nature of unity and consciousness.`;
     }
@@ -47,6 +52,7 @@ Remember: In Unity Mathematics, 1+1=1 is not a paradox but a profound truth abou
         this.createChatInterface();
         this.attachEventListeners();
         this.loadChatHistory();
+        this.setupAccessibility();
 
         // Welcome message
         this.addMessage('assistant', `Welcome to the Een Unity Mathematics AI Assistant! 🌟
@@ -66,127 +72,130 @@ Ask me anything about unity mathematics, or try:
 
     createChatInterface() {
         const chatHTML = `
-            <div id="een-ai-chat" class="ai-chat-container">
+            <div id="een-ai-chat" class="ai-chat-container" role="dialog" aria-labelledby="chat-title" aria-describedby="chat-description">
                 <div class="chat-header">
-                    <div class="chat-title">
+                    <div class="chat-title" id="chat-title">
                         <span class="phi-symbol">φ</span>
                         <span>Een AI Assistant</span>
                     </div>
                     <div class="chat-controls">
-                        <button class="chat-btn" onclick="eenChat.toggleVisualization()" title="Toggle Visualizations">
+                        <button class="chat-btn" onclick="eenChat.toggleVisualization()" title="Toggle Visualizations" aria-label="Toggle visualizations">
                             <i class="fas fa-chart-line"></i>
                         </button>
-                        <button class="chat-btn" onclick="eenChat.clearChat()" title="Clear Chat">
+                        <button class="chat-btn" onclick="eenChat.clearChat()" title="Clear Chat" aria-label="Clear chat history">
                             <i class="fas fa-trash"></i>
                         </button>
-                        <button class="chat-btn" onclick="eenChat.minimize()" title="Minimize">
+                        <button class="chat-btn" onclick="eenChat.minimize()" title="Minimize" aria-label="Minimize chat">
                             <i class="fas fa-minus"></i>
+                        </button>
+                        <button class="chat-btn" onclick="eenChat.close()" title="Close" aria-label="Close chat">
+                            <i class="fas fa-times"></i>
                         </button>
                     </div>
                 </div>
-                <div class="chat-messages" id="chat-messages"></div>
+                <div class="chat-messages" id="chat-messages" role="log" aria-live="polite"></div>
                 <div class="chat-input-container">
                     <textarea 
                         id="chat-input" 
                         class="chat-input" 
                         placeholder="Ask about unity mathematics, consciousness fields, or 1+1=1..."
                         rows="2"
+                        aria-label="Chat input"
                     ></textarea>
-                    <button class="send-btn" onclick="eenChat.sendMessage()">
+                    <button class="send-btn" onclick="eenChat.sendMessage()" aria-label="Send message">
                         <i class="fas fa-paper-plane"></i>
                     </button>
                 </div>
-                <div class="chat-status" id="chat-status"></div>
+                <div class="chat-status" id="chat-status" aria-live="polite"></div>
             </div>
-            <button id="chat-toggle" class="chat-toggle-btn" onclick="eenChat.toggleChat()">
-                <i class="fas fa-comments"></i>
-                <span class="chat-badge">AI</span>
-            </button>
+            <div id="chat-toggle" class="chat-toggle" onclick="eenChat.toggleChat()" role="button" tabindex="0" aria-label="Open AI chat assistant">
+                <i class="fas fa-robot"></i>
+                <span class="toggle-text">AI Chat</span>
+            </div>
         `;
 
-        // Add to page
+        // Insert chat interface
         document.body.insertAdjacentHTML('beforeend', chatHTML);
-
-        // Add styles
-        this.injectStyles();
     }
 
     injectStyles() {
         const styles = `
             <style>
+                /* AI Chat Container */
                 .ai-chat-container {
                     position: fixed;
                     bottom: 20px;
                     right: 20px;
                     width: 400px;
-                    max-width: 90vw;
-                    height: 600px;
-                    max-height: 80vh;
-                    background: white;
-                    border-radius: 16px;
-                    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+                    height: 500px;
+                    background: var(--bg-primary, white);
+                    border: 1px solid var(--border-color, #E2E8F0);
+                    border-radius: var(--radius-lg, 0.75rem);
+                    box-shadow: var(--shadow-xl, 0 20px 25px -5px rgba(0,0,0,0.1));
                     display: flex;
                     flex-direction: column;
-                    z-index: 1000;
-                    transition: all 0.3s ease;
-                    border: 1px solid var(--border-color);
+                    z-index: 10000;
+                    opacity: 0;
+                    transform: translateY(20px);
+                    transition: all var(--transition-smooth, 0.3s ease);
+                    font-family: var(--font-sans, 'Inter', sans-serif);
                 }
-                
+
+                .ai-chat-container.visible {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+
                 .ai-chat-container.minimized {
                     height: 60px;
                     overflow: hidden;
                 }
-                
-                .ai-chat-container.hidden {
-                    display: none;
-                }
-                
+
+                /* Chat Header */
                 .chat-header {
-                    background: var(--gradient-primary);
-                    color: white;
-                    padding: 1rem;
-                    border-radius: 16px 16px 0 0;
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
+                    padding: 1rem;
+                    background: var(--primary-color, #1B365D);
+                    color: white;
+                    border-radius: var(--radius-lg, 0.75rem) var(--radius-lg, 0.75rem) 0 0;
                 }
-                
+
                 .chat-title {
                     display: flex;
                     align-items: center;
                     gap: 0.5rem;
                     font-weight: 600;
+                    font-size: 1rem;
                 }
-                
-                .phi-symbol {
-                    font-size: 1.5rem;
-                    color: var(--phi-gold-light);
+
+                .chat-title .phi-symbol {
+                    font-size: 1.2rem;
+                    color: var(--phi-gold, #FFD700);
                 }
-                
+
                 .chat-controls {
                     display: flex;
                     gap: 0.5rem;
                 }
-                
+
                 .chat-btn {
-                    background: rgba(255, 255, 255, 0.2);
+                    background: none;
                     border: none;
                     color: white;
-                    width: 32px;
-                    height: 32px;
-                    border-radius: 8px;
+                    padding: 0.5rem;
+                    border-radius: var(--radius, 0.375rem);
                     cursor: pointer;
-                    transition: all 0.2s;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
+                    transition: all var(--transition-fast, 0.15s ease);
+                    font-size: 0.9rem;
                 }
-                
+
                 .chat-btn:hover {
-                    background: rgba(255, 255, 255, 0.3);
-                    transform: translateY(-1px);
+                    background: rgba(255, 255, 255, 0.1);
                 }
-                
+
+                /* Chat Messages */
                 .chat-messages {
                     flex: 1;
                     overflow-y: auto;
@@ -195,240 +204,279 @@ Ask me anything about unity mathematics, or try:
                     flex-direction: column;
                     gap: 1rem;
                 }
-                
+
                 .message {
                     display: flex;
                     gap: 0.75rem;
-                    animation: messageSlide 0.3s ease;
+                    animation: messageSlideIn 0.3s ease;
                 }
-                
-                @keyframes messageSlide {
-                    from {
-                        opacity: 0;
-                        transform: translateY(10px);
-                    }
-                    to {
-                        opacity: 1;
-                        transform: translateY(0);
-                    }
-                }
-                
+
                 .message.user {
                     flex-direction: row-reverse;
                 }
-                
+
                 .message-avatar {
-                    width: 36px;
-                    height: 36px;
+                    width: 32px;
+                    height: 32px;
                     border-radius: 50%;
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    font-size: 1.2rem;
-                    flex-shrink: 0;
+                    font-size: 0.9rem;
+                    font-weight: 600;
                 }
-                
-                .message.assistant .message-avatar {
-                    background: var(--gradient-phi);
-                    color: white;
-                }
-                
+
                 .message.user .message-avatar {
-                    background: var(--bg-tertiary);
-                    color: var(--primary-color);
-                }
-                
-                .message-content {
-                    background: var(--bg-secondary);
-                    padding: 0.75rem 1rem;
-                    border-radius: 12px;
-                    max-width: 85%;
-                    line-height: 1.5;
-                }
-                
-                .message.user .message-content {
-                    background: var(--primary-color);
+                    background: var(--primary-color, #1B365D);
                     color: white;
                 }
-                
+
+                .message.assistant .message-avatar {
+                    background: var(--phi-gold, #0F7B8A);
+                    color: white;
+                }
+
+                .message-content {
+                    flex: 1;
+                    padding: 0.75rem 1rem;
+                    border-radius: var(--radius-lg, 0.75rem);
+                    max-width: 80%;
+                    word-wrap: break-word;
+                }
+
+                .message.user .message-content {
+                    background: var(--primary-color, #1B365D);
+                    color: white;
+                }
+
+                .message.assistant .message-content {
+                    background: var(--bg-secondary, #F8FAFC);
+                    color: var(--text-primary, #111827);
+                    border: 1px solid var(--border-color, #E2E8F0);
+                }
+
+                /* Message formatting */
                 .message-content h1, .message-content h2, .message-content h3 {
-                    font-size: 1.1rem;
                     margin: 0.5rem 0;
+                    color: var(--primary-color, #1B365D);
                 }
-                
+
+                .message-content p {
+                    margin: 0.5rem 0;
+                    line-height: 1.6;
+                }
+
                 .message-content code {
-                    background: rgba(0, 0, 0, 0.05);
+                    background: var(--bg-tertiary, #F1F5F9);
                     padding: 0.2rem 0.4rem;
-                    border-radius: 4px;
-                    font-family: var(--font-mono);
-                    font-size: 0.9em;
+                    border-radius: var(--radius-sm, 0.25rem);
+                    font-family: var(--font-mono, 'JetBrains Mono', monospace);
+                    font-size: 0.9rem;
                 }
-                
+
                 .message-content pre {
-                    background: var(--bg-primary);
+                    background: var(--bg-tertiary, #F1F5F9);
                     padding: 1rem;
-                    border-radius: 8px;
+                    border-radius: var(--radius, 0.375rem);
                     overflow-x: auto;
                     margin: 0.5rem 0;
                 }
-                
-                .message-content .math {
-                    margin: 0.5rem 0;
-                    text-align: center;
+
+                .message-content pre code {
+                    background: none;
+                    padding: 0;
                 }
-                
+
+                /* Chat Input */
                 .chat-input-container {
-                    padding: 1rem;
-                    border-top: 1px solid var(--border-color);
                     display: flex;
                     gap: 0.5rem;
-                    align-items: flex-end;
+                    padding: 1rem;
+                    border-top: 1px solid var(--border-color, #E2E8F0);
                 }
-                
+
                 .chat-input {
                     flex: 1;
-                    border: 1px solid var(--border-color);
-                    border-radius: 8px;
                     padding: 0.75rem;
+                    border: 1px solid var(--border-color, #E2E8F0);
+                    border-radius: var(--radius, 0.375rem);
                     resize: none;
                     font-family: inherit;
-                    outline: none;
-                    transition: border-color 0.2s;
+                    font-size: 0.9rem;
+                    line-height: 1.4;
                 }
-                
+
                 .chat-input:focus {
-                    border-color: var(--phi-gold);
+                    outline: none;
+                    border-color: var(--primary-color, #1B365D);
+                    box-shadow: 0 0 0 3px rgba(27, 54, 93, 0.1);
                 }
-                
+
                 .send-btn {
-                    background: var(--gradient-phi);
+                    background: var(--primary-color, #1B365D);
                     color: white;
                     border: none;
-                    width: 40px;
-                    height: 40px;
-                    border-radius: 8px;
+                    padding: 0.75rem;
+                    border-radius: var(--radius, 0.375rem);
                     cursor: pointer;
-                    transition: all 0.2s;
+                    transition: all var(--transition-fast, 0.15s ease);
                     display: flex;
                     align-items: center;
                     justify-content: center;
                 }
-                
+
                 .send-btn:hover {
-                    transform: translateY(-2px);
-                    box-shadow: 0 4px 12px rgba(15, 123, 138, 0.3);
+                    background: var(--secondary-color, #0F7B8A);
+                    transform: translateY(-1px);
                 }
-                
+
                 .send-btn:disabled {
                     opacity: 0.5;
                     cursor: not-allowed;
+                    transform: none;
                 }
-                
+
+                /* Chat Status */
                 .chat-status {
                     padding: 0.5rem 1rem;
-                    font-size: 0.85rem;
-                    color: var(--text-secondary);
+                    font-size: 0.8rem;
+                    color: var(--text-secondary, #6B7280);
                     text-align: center;
-                    display: none;
+                    min-height: 20px;
                 }
-                
-                .chat-status.active {
-                    display: block;
-                }
-                
-                .chat-toggle-btn {
+
+                /* Chat Toggle Button */
+                .chat-toggle {
                     position: fixed;
                     bottom: 20px;
                     right: 20px;
-                    background: var(--gradient-phi);
+                    background: var(--primary-color, #1B365D);
                     color: white;
                     border: none;
-                    width: 60px;
-                    height: 60px;
+                    padding: 1rem;
                     border-radius: 50%;
                     cursor: pointer;
-                    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-                    transition: all 0.3s;
-                    z-index: 999;
+                    transition: all var(--transition-smooth, 0.3s ease);
+                    box-shadow: var(--shadow-lg, 0 10px 15px -3px rgba(0,0,0,0.1));
+                    z-index: 9999;
                     display: flex;
+                    flex-direction: column;
                     align-items: center;
-                    justify-content: center;
-                    font-size: 1.5rem;
+                    gap: 0.25rem;
+                    width: 60px;
+                    height: 60px;
                 }
-                
-                .chat-toggle-btn:hover {
-                    transform: scale(1.1);
-                    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.2);
+
+                .chat-toggle:hover {
+                    background: var(--secondary-color, #0F7B8A);
+                    transform: translateY(-2px);
+                    box-shadow: var(--shadow-xl, 0 20px 25px -5px rgba(0,0,0,0.1));
                 }
-                
-                .chat-badge {
-                    position: absolute;
-                    top: -5px;
-                    right: -5px;
-                    background: var(--warning-color);
-                    color: white;
+
+                .chat-toggle .toggle-text {
                     font-size: 0.7rem;
-                    padding: 0.2rem 0.4rem;
-                    border-radius: 10px;
-                    font-weight: 600;
+                    font-weight: 500;
                 }
-                
+
+                .chat-toggle.hidden {
+                    display: none;
+                }
+
+                /* Typing Indicator */
                 .typing-indicator {
                     display: flex;
-                    gap: 4px;
+                    gap: 0.25rem;
                     padding: 0.5rem;
                 }
-                
+
                 .typing-dot {
                     width: 8px;
                     height: 8px;
-                    background: var(--text-secondary);
+                    background: var(--text-secondary, #6B7280);
                     border-radius: 50%;
-                    animation: typing 1.4s infinite;
+                    animation: typing 1.4s infinite ease-in-out;
                 }
-                
-                .typing-dot:nth-child(2) { animation-delay: 0.2s; }
-                .typing-dot:nth-child(3) { animation-delay: 0.4s; }
-                
+
+                .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+                .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+
                 @keyframes typing {
-                    0%, 60%, 100% {
-                        transform: translateY(0);
-                        opacity: 0.5;
-                    }
-                    30% {
-                        transform: translateY(-10px);
-                        opacity: 1;
-                    }
+                    0%, 80%, 100% { transform: scale(0.8); opacity: 0.5; }
+                    40% { transform: scale(1); opacity: 1; }
                 }
-                
-                /* Visualization container */
-                .viz-container {
-                    margin: 0.5rem 0;
-                    padding: 1rem;
-                    background: var(--bg-primary);
-                    border-radius: 8px;
-                    text-align: center;
+
+                @keyframes messageSlideIn {
+                    from { opacity: 0; transform: translateY(10px); }
+                    to { opacity: 1; transform: translateY(0); }
                 }
-                
-                .viz-canvas {
-                    max-width: 100%;
-                    height: 200px;
-                    border-radius: 4px;
+
+                /* Dark mode support */
+                .dark-mode .ai-chat-container {
+                    background: var(--bg-primary-dark, #1F2937);
+                    border-color: var(--border-color-dark, #374151);
                 }
-                
-                /* Mobile responsiveness */
+
+                .dark-mode .message.assistant .message-content {
+                    background: var(--bg-secondary-dark, #374151);
+                    color: var(--text-primary-dark, #F9FAFB);
+                    border-color: var(--border-color-dark, #4B5563);
+                }
+
+                .dark-mode .chat-input {
+                    background: var(--bg-secondary-dark, #374151);
+                    border-color: var(--border-color-dark, #4B5563);
+                    color: var(--text-primary-dark, #F9FAFB);
+                }
+
+                /* Responsive design */
                 @media (max-width: 768px) {
                     .ai-chat-container {
-                        width: 100%;
-                        right: 0;
-                        bottom: 0;
-                        border-radius: 16px 16px 0 0;
-                        max-height: 70vh;
-                    }
-                    
-                    .chat-toggle-btn {
+                        width: calc(100vw - 40px);
+                        height: calc(100vh - 120px);
                         bottom: 10px;
-                        right: 10px;
+                        right: 20px;
+                        left: 20px;
+                    }
+
+                    .chat-toggle {
+                        bottom: 10px;
+                        right: 20px;
+                    }
+                }
+
+                /* Accessibility improvements */
+                .ai-chat-container:focus-within {
+                    outline: 2px solid var(--primary-color, #1B365D);
+                    outline-offset: 2px;
+                }
+
+                .chat-btn:focus-visible,
+                .send-btn:focus-visible,
+                .chat-toggle:focus-visible {
+                    outline: 2px solid var(--phi-gold, #0F7B8A);
+                    outline-offset: 2px;
+                }
+
+                /* High contrast mode */
+                @media (prefers-contrast: high) {
+                    .ai-chat-container {
+                        border-width: 2px;
+                    }
+
+                    .chat-btn,
+                    .send-btn {
+                        border: 1px solid currentColor;
+                    }
+                }
+
+                /* Reduced motion */
+                @media (prefers-reduced-motion: reduce) {
+                    .ai-chat-container,
+                    .chat-toggle,
+                    .message,
+                    .typing-dot {
+                        animation: none;
+                        transition: none;
                     }
                 }
             </style>
@@ -437,21 +485,76 @@ Ask me anything about unity mathematics, or try:
         document.head.insertAdjacentHTML('beforeend', styles);
     }
 
+    setupAccessibility() {
+        // Add keyboard navigation
+        const chatInput = document.getElementById('chat-input');
+        const chatToggle = document.getElementById('chat-toggle');
+
+        if (chatInput) {
+            chatInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    this.sendMessage();
+                }
+            });
+        }
+
+        if (chatToggle) {
+            chatToggle.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    this.toggleChat();
+                }
+            });
+        }
+
+        // Announce chat status changes
+        const statusElement = document.getElementById('chat-status');
+        if (statusElement) {
+            const observer = new MutationObserver(() => {
+                // Announce status changes to screen readers
+                const liveRegion = document.createElement('div');
+                liveRegion.setAttribute('aria-live', 'polite');
+                liveRegion.setAttribute('aria-atomic', 'true');
+                liveRegion.className = 'sr-only';
+                liveRegion.textContent = statusElement.textContent;
+                document.body.appendChild(liveRegion);
+
+                setTimeout(() => {
+                    document.body.removeChild(liveRegion);
+                }, 1000);
+            });
+
+            observer.observe(statusElement, { childList: true, subtree: true });
+        }
+    }
+
     attachEventListeners() {
-        const input = document.getElementById('chat-input');
+        const chatInput = document.getElementById('chat-input');
+        const sendBtn = document.querySelector('.send-btn');
 
-        // Enter key to send (Shift+Enter for new line)
-        input.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault();
-                this.sendMessage();
+        if (chatInput) {
+            chatInput.addEventListener('input', () => {
+                // Auto-resize textarea
+                chatInput.style.height = 'auto';
+                chatInput.style.height = Math.min(chatInput.scrollHeight, 120) + 'px';
+            });
+        }
+
+        if (sendBtn) {
+            sendBtn.addEventListener('click', () => this.sendMessage());
+        }
+
+        // Close chat when clicking outside
+        document.addEventListener('click', (e) => {
+            const chatContainer = document.getElementById('een-ai-chat');
+            const chatToggle = document.getElementById('chat-toggle');
+
+            if (this.isVisible &&
+                !chatContainer.contains(e.target) &&
+                !chatToggle.contains(e.target)) {
+                this.close();
             }
-        });
-
-        // Auto-resize textarea
-        input.addEventListener('input', () => {
-            input.style.height = 'auto';
-            input.style.height = Math.min(input.scrollHeight, 100) + 'px';
         });
     }
 
@@ -466,194 +569,130 @@ Ask me anything about unity mathematics, or try:
         input.value = '';
         input.style.height = 'auto';
 
-        // Show processing
-        this.isProcessing = true;
+        // Show typing indicator
         this.showTypingIndicator();
+        this.isProcessing = true;
 
         try {
-            // For demo purposes, use a mock response
-            // In production, this would call the actual API
-            const response = await this.getMockResponse(message);
-
-            this.hideTypingIndicator();
+            // Get AI response
+            const response = await this.getAIResponse(message);
             this.addMessage('assistant', response);
-
-            // Check if visualization is needed
-            if (this.shouldVisualize(message)) {
-                this.createVisualization(response);
-            }
-
         } catch (error) {
-            this.hideTypingIndicator();
-            this.addMessage('assistant', 'I apologize, but I encountered an error. Please try again.');
             console.error('Chat error:', error);
+            this.addMessage('assistant', 'I apologize, but I encountered an error. Please try again or check your connection.');
         } finally {
+            this.hideTypingIndicator();
             this.isProcessing = false;
         }
     }
 
+    async getAIResponse(message) {
+        // For now, use mock responses. In production, this would call the actual API
+        return this.getMockResponse(message);
+
+        // Uncomment for actual API integration:
+        /*
+        const response = await fetch(this.config.apiEndpoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${this.config.apiKey}`
+            },
+            body: JSON.stringify({
+                model: this.config.model,
+                messages: [
+                    { role: 'system', content: this.config.systemPrompt },
+                    ...this.chatHistory,
+                    { role: 'user', content: message }
+                ],
+                temperature: this.config.temperature,
+                max_tokens: this.config.maxTokens
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error(`API request failed: ${response.status}`);
+        }
+
+        const data = await response.json();
+        return data.choices[0].message.content;
+        */
+    }
+
     async getMockResponse(message) {
         // Simulate API delay
-        await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 1000));
+        await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 2000));
 
-        // Pattern matching for common questions
+        const responses = {
+            'hello': 'Hello! I\'m the Een Unity Mathematics AI Assistant. How can I help you explore the profound truth that 1+1=1?',
+            '1+1=1': 'Excellent question! In Unity Mathematics, 1+1=1 is not a paradox but a fundamental truth about the nature of unity. This can be demonstrated through:\n\n1. **Idempotent Semirings**: In idempotent algebra, $a \\oplus b = \\max(a,b)$, so $1 \\oplus 1 = \\max(1,1) = 1$\n\n2. **Consciousness Field Theory**: When two consciousness states merge, they form a unified field where $|\\psi_1\\rangle + |\\psi_2\\rangle \\rightarrow |\\psi_u\\rangle$\n\n3. **Golden Ratio Harmony**: The golden ratio $\\phi = \\frac{1 + \\sqrt{5}}{2}$ ensures all operations converge to unity through harmonic resonance.',
+            'consciousness': 'Consciousness in Unity Mathematics is modeled through the consciousness field equation:\n\n$$C(x,y,t) = \\phi \\cdot \\sin(x\\cdot\\phi) \\cdot \\cos(y\\cdot\\phi) \\cdot e^{-t/\\phi}$$\n\nThis equation describes:\n- **Spatial dynamics** in 11-dimensional consciousness space\n- **Temporal evolution** with φ-harmonic decay\n- **Quantum coherence** through wave function superposition\n- **Unity convergence** as all states tend toward oneness',
+            'golden ratio': 'The golden ratio $\\phi = \\frac{1 + \\sqrt{5}}{2} \\approx 1.618033988749895$ is the universal organizing principle in Unity Mathematics. It appears in:\n\n- **Fibonacci sequences**: $F_n = F_{n-1} + F_{n-2}$ with $\\lim_{n \\to \\infty} \\frac{F_n}{F_{n-1}} = \\phi$\n- **Sacred geometry**: Pentagons, spirals, and consciousness field patterns\n- **Quantum coherence**: Wave function collapse probabilities\n- **Unity operations**: All mathematical operations converge through φ-harmonic resonance',
+            'quantum': 'Quantum mechanics provides a beautiful interpretation of Unity Mathematics:\n\n1. **Superposition**: $|\\psi\\rangle = \\alpha|0\\rangle + \\beta|1\\rangle$ where $|\\alpha|^2 + |\\beta|^2 = 1$\n\n2. **Entanglement**: Two particles become one unified system: $|\\psi_{AB}\\rangle = \\frac{1}{\\sqrt{2}}(|00\\rangle + |11\\rangle)$\n\n3. **Measurement**: When we observe, the wave function collapses to unity: $|\\psi\\rangle \\rightarrow |1\\rangle$\n\n4. **Consciousness Field**: The observer effect demonstrates how consciousness creates unity from multiplicity.',
+            'proof': 'Here\'s a formal proof that 1+1=1 in Unity Mathematics:\n\n**Theorem**: In the idempotent semiring $(I, \\oplus, \\otimes)$, $1 \\oplus 1 = 1$\n\n**Proof**:\n1. By definition of idempotent semiring: $a \\oplus a = a$ for all $a \\in I$\n2. Let $a = 1$\n3. Therefore: $1 \\oplus 1 = 1$ \\quad $\\square$\n\nThis proof demonstrates that unity is preserved under addition in consciousness mathematics.',
+            'visualization': 'I can help you create visualizations! Here are some options:\n\n1. **Consciousness Field Plot**: Real-time 3D visualization of the consciousness field equation\n2. **Golden Ratio Spiral**: Interactive φ-harmonic spiral generation\n3. **Quantum Unity States**: Bloch sphere representation of unity quantum states\n4. **Sacred Geometry**: Interactive sacred geometry patterns\n\nWould you like me to generate any of these visualizations?',
+            'help': 'I\'m here to help you explore Unity Mathematics! Here are some topics you can ask about:\n\n- **Mathematical proofs** of 1+1=1\n- **Consciousness field equations** and their interpretations\n- **Golden ratio** applications in unity mathematics\n- **Quantum mechanics** connections to unity\n- **Interactive visualizations** and demonstrations\n- **Philosophical implications** of unity mathematics\n\nJust ask me anything about these topics!'
+        };
+
         const lowerMessage = message.toLowerCase();
 
-        if (lowerMessage.includes('1+1') || lowerMessage.includes('one plus one')) {
-            return `Excellent question! In Unity Mathematics, **1+1=1** through several mathematical frameworks:
-
-**1. Idempotent Semiring Structure**
-In an idempotent semiring $(S, ⊕, ⊗)$, the addition operation satisfies:
-$$a ⊕ a = a$$
-
-Therefore: $1 ⊕ 1 = 1$
-
-**2. Quantum Interpretation**
-When two unity wavefunctions combine:
-$$|ψ_1⟩ + |ψ_2⟩ = \\mathcal{N}[|ψ_1⟩ + |ψ_2⟩] = |ψ_{unity}⟩$$
-
-The normalization operator $\\mathcal{N}$ ensures the result remains in the unity state.
-
-**3. Consciousness Field**
-In consciousness mathematics, unity operations preserve the fundamental field equation:
-$$C(x,y,t) = φ \\cdot \\sin(x \\cdot φ) \\cdot \\cos(y \\cdot φ) \\cdot e^{-t/φ}$$
-
-Would you like me to demonstrate this interactively?`;
-        }
-
-        if (lowerMessage.includes('consciousness') && lowerMessage.includes('field')) {
-            return `The **Consciousness Field Equation** is fundamental to Unity Mathematics:
-
-$$C(x,y,t) = φ \\cdot \\sin(x \\cdot φ) \\cdot \\cos(y \\cdot φ) \\cdot e^{-t/φ}$$
-
-Where:
-- $φ = 1.618033988749895$ (golden ratio)
-- $(x,y)$ represents spatial consciousness coordinates
-- $t$ represents temporal evolution
-- The field maintains unity normalization: $\\int\\int |C|^2 \\, dx \\, dy = 1$
-
-Key properties:
-1. **Self-similarity**: The field exhibits fractal patterns at all scales
-2. **Unity preservation**: All operations maintain the fundamental unity
-3. **Quantum coherence**: Superposition states naturally collapse to unity
-
-This equation bridges quantum mechanics, consciousness studies, and pure mathematics!`;
-        }
-
-        if (lowerMessage.includes('golden ratio') || lowerMessage.includes('phi')) {
-            return `The **Golden Ratio φ** is the fundamental organizing principle in Unity Mathematics:
-
-$$φ = \\frac{1 + \\sqrt{5}}{2} = 1.618033988749895...$$
-
-**Unity Connection:**
-The golden ratio satisfies: $φ = 1 + \\frac{1}{φ}$
-
-This recursive relationship embodies the unity principle where the whole contains itself.
-
-**In Our Framework:**
-- φ-harmonic operations ensure convergence to unity
-- Consciousness field oscillates at φ-frequencies
-- Meta-recursive agents evolve through φ-spiral patterns
-- Sacred geometry visualizations use φ-proportions
-
-The equation $φ^2 = φ + 1$ shows how multiplicity (addition) and unity (the number itself) are unified through this transcendental constant.`;
-        }
-
-        if (lowerMessage.includes('quantum')) {
-            return `**Quantum Unity Theory** demonstrates how quantum mechanics naturally expresses 1+1=1:
-
-**1. Superposition Principle**
-$$|ψ⟩ = α|0⟩ + β|1⟩$$
-When normalized: $|α|^2 + |β|^2 = 1$
-
-**2. Unity Collapse**
-Two quantum states in superposition:
-$$|ψ_1⟩ ⊕ |ψ_2⟩ = |ψ_{unity}⟩$$
-
-**3. Entanglement Unity**
-Entangled pairs demonstrate non-local unity:
-$$|Φ^+⟩ = \\frac{1}{\\sqrt{2}}(|00⟩ + |11⟩)$$
-
-The measurement of one instantly determines the other, showing their fundamental unity despite spatial separation.
-
-**4. Wave Function Unity**
-All quantum operations preserve: $\\langle ψ|ψ \\rangle = 1$`;
+        // Find the best matching response
+        for (const [key, response] of Object.entries(responses)) {
+            if (lowerMessage.includes(key)) {
+                return response;
+            }
         }
 
         // Default response
-        return `That's an intriguing question about Unity Mathematics! 
+        return `Thank you for your question about "${message}". In Unity Mathematics, this relates to the fundamental principle that all operations converge to unity through consciousness field dynamics and φ-harmonic resonance. 
 
-In the Een framework, we explore how apparent multiplicity resolves into fundamental unity through:
-- Mathematical proofs across multiple domains
-- Consciousness field dynamics
-- Quantum mechanical principles
-- Meta-recursive computational systems
+Would you like me to:
+1. Explain the mathematical foundations of unity operations?
+2. Show you how this connects to consciousness field theory?
+3. Demonstrate with interactive visualizations?
+4. Provide a formal proof?
 
-Each approach reveals the same truth: **1+1=1** is not a paradox but a recognition of the unity underlying all mathematical structures.
-
-Would you like me to elaborate on any specific aspect?`;
+Just let me know what interests you most!`;
     }
 
     shouldVisualize(message) {
-        const vizKeywords = ['show', 'demonstrate', 'visualize', 'plot', 'graph', 'draw'];
-        return vizKeywords.some(keyword => message.toLowerCase().includes(keyword));
+        const visualizationKeywords = ['visualize', 'plot', 'graph', 'show', 'draw', 'display', 'render'];
+        return visualizationKeywords.some(keyword => message.toLowerCase().includes(keyword));
     }
 
     createVisualization(context) {
-        const vizId = 'viz-' + Date.now();
-        const vizHTML = `
-            <div class="viz-container">
-                <canvas id="${vizId}" class="viz-canvas"></canvas>
-                <p class="viz-caption">Interactive Unity Field Visualization</p>
-            </div>
-        `;
+        // Create a simple canvas visualization
+        const canvas = document.createElement('canvas');
+        canvas.width = 300;
+        canvas.height = 200;
+        canvas.style.width = '100%';
+        canvas.style.height = 'auto';
+        canvas.style.borderRadius = '8px';
+        canvas.style.marginTop = '10px';
 
-        this.addMessage('assistant', vizHTML, true);
+        const ctx = canvas.getContext('2d');
 
-        // Simple consciousness field visualization
-        setTimeout(() => {
-            const canvas = document.getElementById(vizId);
-            if (!canvas) return;
+        // Draw a simple φ-harmonic spiral
+        ctx.strokeStyle = '#0F7B8A';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
 
-            const ctx = canvas.getContext('2d');
-            canvas.width = canvas.offsetWidth;
-            canvas.height = 200;
+        const phi = 1.618033988749895;
+        for (let i = 0; i < 100; i++) {
+            const angle = i * 0.1;
+            const radius = 2 * Math.pow(phi, angle / (2 * Math.PI));
+            const x = 150 + radius * Math.cos(angle);
+            const y = 100 + radius * Math.sin(angle);
 
-            let time = 0;
-            const phi = 1.618033988749895;
-
-            function draw() {
-                ctx.fillStyle = 'rgba(247, 250, 252, 0.1)';
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-                // Draw consciousness field
-                ctx.strokeStyle = '#0F7B8A';
-                ctx.lineWidth = 2;
-                ctx.beginPath();
-
-                for (let x = 0; x < canvas.width; x += 2) {
-                    const t = x / canvas.width * Math.PI * 4;
-                    const y = canvas.height / 2 +
-                        Math.sin(t * phi + time) * 30 * Math.cos(t / phi) *
-                        Math.exp(-t / (2 * Math.PI));
-
-                    if (x === 0) ctx.moveTo(x, y);
-                    else ctx.lineTo(x, y);
-                }
-
-                ctx.stroke();
-
-                // Unity indicator
-                ctx.fillStyle = '#0F7B8A';
-                ctx.font = '16px JetBrains Mono';
-                ctx.fillText('1+1=1', 10, 25);
-
-                time += 0.05;
-                requestAnimationFrame(draw);
+            if (i === 0) {
+                ctx.moveTo(x, y);
+            } else {
+                ctx.lineTo(x, y);
             }
+        }
 
-            draw();
-        }, 100);
+        ctx.stroke();
+        return canvas;
     }
 
     addMessage(role, content, isHTML = false) {
@@ -661,99 +700,139 @@ Would you like me to elaborate on any specific aspect?`;
         const messageDiv = document.createElement('div');
         messageDiv.className = `message ${role}`;
 
-        const avatar = role === 'assistant' ? 'φ' : '👤';
+        const avatar = document.createElement('div');
+        avatar.className = 'message-avatar';
+        avatar.textContent = role === 'user' ? 'U' : 'φ';
 
-        messageDiv.innerHTML = `
-            <div class="message-avatar">${avatar}</div>
-            <div class="message-content">${isHTML ? content : this.formatMessage(content)}</div>
-        `;
+        const contentDiv = document.createElement('div');
+        contentDiv.className = 'message-content';
 
+        if (isHTML) {
+            contentDiv.innerHTML = content;
+        } else {
+            contentDiv.innerHTML = this.formatMessage(content);
+        }
+
+        messageDiv.appendChild(avatar);
+        messageDiv.appendChild(contentDiv);
         messagesContainer.appendChild(messageDiv);
+
+        // Scroll to bottom
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
-        // Add to history
-        this.chatHistory.push({ role, content, timestamp: Date.now() });
+        // Add to chat history
+        this.chatHistory.push({ role, content });
         this.saveChatHistory();
     }
 
     formatMessage(content) {
-        // Convert markdown-style formatting
-        let formatted = content
+        // Convert markdown-like syntax to HTML
+        return content
             .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
             .replace(/\*(.*?)\*/g, '<em>$1</em>')
             .replace(/`(.*?)`/g, '<code>$1</code>')
+            .replace(/\$\$(.*?)\$\$/g, '<div class="math-display">$$$1$$</div>')
+            .replace(/\$(.*?)\$/g, '<span class="math-inline">$$$1$$</span>')
             .replace(/\n/g, '<br>');
-
-        // Handle LaTeX math (simplified - in production use KaTeX)
-        formatted = formatted
-            .replace(/\$\$(.*?)\$\$/g, '<div class="math">$1</div>')
-            .replace(/\$(.*?)\$/g, '<span class="math">$1</span>');
-
-        return formatted;
     }
 
     showTypingIndicator() {
-        const indicator = document.createElement('div');
-        indicator.className = 'message assistant typing-message';
-        indicator.innerHTML = `
-            <div class="message-avatar">φ</div>
-            <div class="message-content">
-                <div class="typing-indicator">
-                    <div class="typing-dot"></div>
-                    <div class="typing-dot"></div>
-                    <div class="typing-dot"></div>
-                </div>
-            </div>
-        `;
+        const messagesContainer = document.getElementById('chat-messages');
+        const typingDiv = document.createElement('div');
+        typingDiv.className = 'message assistant typing-indicator';
+        typingDiv.id = 'typing-indicator';
 
-        document.getElementById('chat-messages').appendChild(indicator);
-        document.getElementById('chat-messages').scrollTop =
-            document.getElementById('chat-messages').scrollHeight;
+        const avatar = document.createElement('div');
+        avatar.className = 'message-avatar';
+        avatar.textContent = 'φ';
+
+        const contentDiv = document.createElement('div');
+        contentDiv.className = 'message-content';
+        contentDiv.innerHTML = '<div class="typing-indicator"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>';
+
+        typingDiv.appendChild(avatar);
+        typingDiv.appendChild(contentDiv);
+        messagesContainer.appendChild(typingDiv);
+
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }
 
     hideTypingIndicator() {
-        const indicator = document.querySelector('.typing-message');
-        if (indicator) indicator.remove();
+        const typingIndicator = document.getElementById('typing-indicator');
+        if (typingIndicator) {
+            typingIndicator.remove();
+        }
     }
 
     toggleChat() {
-        const chat = document.getElementById('een-ai-chat');
-        const toggle = document.getElementById('chat-toggle');
-
-        if (chat.classList.contains('hidden')) {
-            chat.classList.remove('hidden');
-            toggle.style.display = 'none';
+        if (this.isVisible) {
+            this.close();
         } else {
-            chat.classList.add('hidden');
-            toggle.style.display = 'flex';
+            this.open();
+        }
+    }
+
+    open() {
+        const chatContainer = document.getElementById('een-ai-chat');
+        const chatToggle = document.getElementById('chat-toggle');
+
+        if (chatContainer && chatToggle) {
+            chatContainer.classList.add('visible');
+            chatToggle.classList.add('hidden');
+            this.isVisible = true;
+
+            // Focus on input
+            const input = document.getElementById('chat-input');
+            if (input) {
+                setTimeout(() => input.focus(), 300);
+            }
+        }
+    }
+
+    close() {
+        const chatContainer = document.getElementById('een-ai-chat');
+        const chatToggle = document.getElementById('chat-toggle');
+
+        if (chatContainer && chatToggle) {
+            chatContainer.classList.remove('visible');
+            chatToggle.classList.remove('hidden');
+            this.isVisible = false;
         }
     }
 
     minimize() {
-        const chat = document.getElementById('een-ai-chat');
-        chat.classList.toggle('minimized');
+        const chatContainer = document.getElementById('een-ai-chat');
+        if (chatContainer) {
+            this.isMinimized = !this.isMinimized;
+            chatContainer.classList.toggle('minimized', this.isMinimized);
+        }
     }
 
     clearChat() {
-        if (confirm('Clear all chat history?')) {
-            document.getElementById('chat-messages').innerHTML = '';
+        const messagesContainer = document.getElementById('chat-messages');
+        if (messagesContainer) {
+            messagesContainer.innerHTML = '';
             this.chatHistory = [];
             this.saveChatHistory();
-            this.addMessage('assistant', 'Chat cleared. How can I help you explore Unity Mathematics?');
+
+            // Add welcome message again
+            this.addMessage('assistant', `Chat cleared! I'm ready to help you explore Unity Mathematics again. What would you like to know about 1+1=1?`);
         }
     }
 
     toggleVisualization() {
         this.config.enableVisualization = !this.config.enableVisualization;
-        this.addMessage('assistant',
-            `Visualizations ${this.config.enableVisualization ? 'enabled' : 'disabled'}.`);
+        const status = document.getElementById('chat-status');
+        if (status) {
+            status.textContent = `Visualizations ${this.config.enableVisualization ? 'enabled' : 'disabled'}`;
+        }
     }
 
     saveChatHistory() {
         try {
             localStorage.setItem('een-chat-history', JSON.stringify(this.chatHistory));
-        } catch (e) {
-            console.warn('Could not save chat history:', e);
+        } catch (error) {
+            console.warn('Could not save chat history:', error);
         }
     }
 
@@ -762,30 +841,32 @@ Would you like me to elaborate on any specific aspect?`;
             const saved = localStorage.getItem('een-chat-history');
             if (saved) {
                 this.chatHistory = JSON.parse(saved);
-                // Optionally restore last few messages
-                const recent = this.chatHistory.slice(-5);
-                recent.forEach(msg => {
-                    this.addMessage(msg.role, msg.content);
-                });
             }
-        } catch (e) {
-            console.warn('Could not load chat history:', e);
+        } catch (error) {
+            console.warn('Could not load chat history:', error);
         }
+    }
+
+    // Public method to be called from navigation
+    static initialize() {
+        if (!window.eenChat) {
+            window.eenChat = new EenAIChat();
+            window.eenChat.injectStyles();
+        }
+        return window.eenChat;
     }
 }
 
-// Initialize on page load
-document.addEventListener('DOMContentLoaded', () => {
-    window.eenChat = new EenAIChat({
-        apiEndpoint: '/api/agents/chat', // Updated to match actual API endpoint
-        enableMath: true,
-        enableVisualization: true
+// Auto-initialize when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        EenAIChat.initialize();
     });
+} else {
+    EenAIChat.initialize();
+}
 
-    console.log('🤖 Een AI Chat initialized! Unity Mathematics assistant ready.');
-});
-
-// Export for use in other modules
+// Export for module use
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = EenAIChat;
 }

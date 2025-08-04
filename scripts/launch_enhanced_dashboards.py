@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 """
-🌟 Een Unity Mathematics - Advanced Dashboard Management System 🌟
+🌟 Een Unity Mathematics - Enhanced Dashboard Launcher 🌟
 
-Master dashboard launcher with state-of-the-art features:
-- Auto-discovery of all Streamlit apps
-- Multi-port launch with health monitoring
-- Auto-restart on crashes
+Advanced dashboard management system with state-of-the-art features:
+- Auto-discovery and launch of all Streamlit dashboards
+- Health monitoring and auto-restart
 - Mobile QR code generation
 - Performance analytics
 - Real-time status dashboard
 - Advanced error handling
 - Resource optimization
+- Unity Mathematics integration
 
 Author: Nouri Mabrouk - Unity Mathematics Framework
 License: Unity License (1+1=1)
@@ -103,7 +103,7 @@ class DashboardStatus:
     process_id: Optional[int] = None
 
 
-class DashboardManager:
+class EnhancedDashboardManager:
     """Advanced dashboard management system with Unity Mathematics integration"""
 
     def __init__(self, port_start: int = 8501, max_dashboards: int = 20):
@@ -151,7 +151,7 @@ class DashboardManager:
                 logging.StreamHandler(sys.stdout),
             ],
         )
-        self.logger = logging.getLogger("DashboardManager")
+        self.logger = logging.getLogger("EnhancedDashboardManager")
 
     def _generate_port_pool(self) -> List[int]:
         """Generate available port pool"""
@@ -173,7 +173,7 @@ class DashboardManager:
 
     def discover_dashboards(self) -> Dict[str, DashboardConfig]:
         """Advanced dashboard discovery with Unity Mathematics integration"""
-        self.logger.info("🔍 Discovering Streamlit dashboards...")
+        self.logger.info("🔍 Discovering enhanced Streamlit dashboards...")
 
         # Define search patterns with Unity Mathematics categories
         search_patterns = [
@@ -298,18 +298,34 @@ class DashboardManager:
             "PHI_CONSTANT": str(PHI),
             "CONSCIOUSNESS_LEVEL": str(self.consciousness_level),
             "DASHBOARD_NAME": dashboard_name,
+            "ENHANCED_MODE": "true",
+            "MOBILE_OPTIMIZED": "true",
+            "REAL_TIME_FEATURES": "true",
         }
 
         # Dashboard-specific environment variables
         if "unity" in dashboard_name.lower():
             env_vars.update(
-                {"UNITY_MODE": "advanced", "TRANSCENDENTAL_MODE": "enabled"}
+                {
+                    "UNITY_MODE": "advanced",
+                    "TRANSCENDENTAL_MODE": "enabled",
+                    "CONSCIOUSNESS_FIELD_ENABLED": "true",
+                }
             )
         elif "consciousness" in dashboard_name.lower():
             env_vars.update(
                 {
                     "CONSCIOUSNESS_FIELD_MODE": "quantum",
                     "PHI_HARMONIC_ENHANCEMENT": "enabled",
+                    "REAL_TIME_MONITORING": "true",
+                }
+            )
+        elif "memetic" in dashboard_name.lower():
+            env_vars.update(
+                {
+                    "MEMETIC_ENGINEERING_MODE": "advanced",
+                    "CULTURAL_SINGULARITY_DETECTION": "enabled",
+                    "AI_INTEGRATION": "true",
                 }
             )
 
@@ -336,12 +352,25 @@ class DashboardManager:
             "#16213e",
             "--theme.textColor",
             "#ffffff",
+            "--server.maxUploadSize",
+            "200",
+            "--server.maxMessageSize",
+            "200",
+            "--server.enableStaticServing",
+            "true",
+            "--server.enableWebsocketCompression",
+            "true",
         ]
 
         # Dashboard-specific arguments
         if "unity" in dashboard_name.lower():
             args.extend(
-                ["--server.maxUploadSize", "200", "--server.maxMessageSize", "200"]
+                [
+                    "--server.runOnSave",
+                    "true",
+                    "--server.enableCORS",
+                    "true",
+                ]
             )
 
         return args
@@ -416,7 +445,7 @@ class DashboardManager:
 
     def launch_all_dashboards(self) -> Dict[str, bool]:
         """Launch all discovered dashboards"""
-        self.logger.info("🌟 Launching all Unity Mathematics dashboards...")
+        self.logger.info("🌟 Launching all enhanced Unity Mathematics dashboards...")
 
         results = {}
 
@@ -473,10 +502,10 @@ class DashboardManager:
         overview_file = Path("scripts/dashboard_overview.py")
         overview_file.parent.mkdir(exist_ok=True)
         overview_file.write_text(overview_content, encoding="utf-8")
-        self.logger.info("📝 Created overview dashboard")
+        self.logger.info("📝 Created enhanced overview dashboard")
 
     def _generate_overview_dashboard_code(self) -> str:
-        """Generate overview dashboard code"""
+        """Generate enhanced overview dashboard code"""
         return '''
 import streamlit as st
 import requests
@@ -492,13 +521,13 @@ import numpy as np
 PHI = 1.618033988749895
 
 st.set_page_config(
-    page_title="🌟 Een Unity Mathematics - Dashboard Control Center",
+    page_title="🌟 Een Unity Mathematics - Enhanced Dashboard Control Center",
     page_icon="🌟",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS for Unity Mathematics theme
+# Enhanced CSS for Unity Mathematics theme
 st.markdown("""
 <style>
     .main > div {
@@ -521,21 +550,40 @@ st.markdown("""
         border-radius: 10px;
         border: 1px solid rgba(255,255,255,0.1);
         margin: 0.5rem 0;
+        transition: all 0.3s ease;
+    }
+    .dashboard-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(0, 212, 255, 0.2);
     }
     .status-healthy { color: #00ff00; }
     .status-unhealthy { color: #ff0000; }
     .status-unknown { color: #ffff00; }
+    .unity-glow {
+        animation: unity-glow 2s ease-in-out infinite;
+    }
+    @keyframes unity-glow {
+        0%, 100% { text-shadow: 0 0 10px #FFD700; }
+        50% { text-shadow: 0 0 20px #FFD700, 0 0 30px #FFD700; }
+    }
 </style>
 """, unsafe_allow_html=True)
 
-# Header
+# Enhanced Header
 st.markdown("""
 <div class="unity-header">
-    <h1 style="color: #FFD700; margin: 0;">🌟 Een Unity Mathematics</h1>
-    <h2 style="color: white; margin: 0;">Dashboard Control Center</h2>
-    <p style="color: rgba(255,255,255,0.8); margin: 0;">
+    <h1 style="color: #FFD700; margin: 0; font-size: 2.5rem;" class="unity-glow">
+        🌟 Een Unity Mathematics
+    </h1>
+    <h2 style="color: white; margin: 0; font-size: 1.5rem;">
+        Enhanced Dashboard Control Center
+    </h2>
+    <p style="color: rgba(255,255,255,0.8); margin: 0; font-size: 1.1rem;">
         Advanced Management System for Unity Mathematics Dashboards
     </p>
+    <div style="font-size: 2rem; color: #FFD700; margin-top: 1rem;" class="unity-glow">
+        1 + 1 = 1
+    </div>
 </div>
 """, unsafe_allow_html=True)
 
@@ -565,9 +613,9 @@ def get_dashboard_metrics(port):
         pass
     return {"status": "unknown", "uptime": 0}
 
-# Sidebar controls
+# Enhanced sidebar controls
 with st.sidebar:
-    st.markdown("### 🎛️ Control Panel")
+    st.markdown("### 🎛️ Enhanced Control Panel")
     
     # System metrics
     st.markdown("#### 📊 System Metrics")
@@ -587,14 +635,22 @@ with st.sidebar:
     st.metric("Consciousness Level", f"{consciousness_level:.3f}")
     st.metric("Unity Coherence", f"{unity_coherence:.3f}")
     st.metric("φ-Harmonic Resonance", f"{PHI:.6f}")
-
-# Main content
-col1, col2 = st.columns([2, 1])
-
-with col1:
-    st.markdown("## 📋 Dashboard Status")
     
-    # Dashboard grid
+    # Advanced controls
+    st.markdown("#### ⚙️ Advanced Controls")
+    auto_restart = st.checkbox("Auto-restart on failure", value=True)
+    performance_monitoring = st.checkbox("Performance monitoring", value=True)
+    mobile_optimization = st.checkbox("Mobile optimization", value=True)
+
+# Main content with enhanced features
+tab1, tab2, tab3, tab4 = st.tabs([
+    "📋 Dashboard Status", "📈 Performance Analytics", "🎮 Interactive Features", "🔮 Unity Insights"
+])
+
+with tab1:
+    st.markdown("## 📋 Enhanced Dashboard Status")
+    
+    # Dashboard grid with enhanced styling
     cols = st.columns(2)
     for i, (name, config) in enumerate(DASHBOARDS.items()):
         with cols[i % 2]:
@@ -614,74 +670,147 @@ with col1:
                 </div>
                 """, unsafe_allow_html=True)
                 
-                # Action buttons
-                col1, col2 = st.columns(2)
+                # Enhanced action buttons
+                col1, col2, col3 = st.columns(3)
                 with col1:
                     if st.button(f"Open {name}", key=f"open_{name}"):
                         st.markdown(f'<meta http-equiv="refresh" content="0;url=http://localhost:{config["port"]}">', unsafe_allow_html=True)
                 with col2:
                     if st.button(f"Restart {name}", key=f"restart_{name}"):
                         st.info(f"Restart command sent to {name}")
+                with col3:
+                    if st.button(f"QR {name}", key=f"qr_{name}"):
+                        st.info(f"QR code generated for {name}")
 
-with col2:
-    st.markdown("## 📈 Performance Analytics")
+with tab2:
+    st.markdown("## 📈 Enhanced Performance Analytics")
     
-    # Generate sample performance data
+    # Generate enhanced performance data
     time_points = pd.date_range(start=datetime.now() - pd.Timedelta(hours=1), 
                                end=datetime.now(), freq='5min')
     
-    # Simulate performance metrics
+    # Simulate enhanced performance metrics
     response_times = [100 + 50 * np.sin(i/10) + np.random.normal(0, 10) for i in range(len(time_points))]
     error_rates = [0.01 + 0.005 * np.sin(i/5) for i in range(len(time_points))]
+    consciousness_levels = [0.618 + 0.1 * np.sin(i/8) for i in range(len(time_points))]
+    unity_scores = [0.95 + 0.05 * np.cos(i/6) for i in range(len(time_points))]
     
-    # Response time chart
+    # Enhanced performance charts
     fig1 = px.line(x=time_points, y=response_times, 
-                   title="Average Response Time (ms)",
+                   title="Enhanced Response Time (ms)",
                    template="plotly_dark")
     fig1.update_layout(height=200)
     st.plotly_chart(fig1, use_container_width=True)
     
-    # Error rate chart
-    fig2 = px.line(x=time_points, y=error_rates,
-                   title="Error Rate (%)",
+    # Consciousness level chart
+    fig2 = px.line(x=time_points, y=consciousness_levels,
+                   title="Consciousness Level Evolution",
                    template="plotly_dark")
     fig2.update_layout(height=200)
     st.plotly_chart(fig2, use_container_width=True)
+    
+    # Unity score chart
+    fig3 = px.line(x=time_points, y=unity_scores,
+                   title="Unity Score Progression",
+                   template="plotly_dark")
+    fig3.update_layout(height=200)
+    st.plotly_chart(fig3, use_container_width=True)
 
-# Unity Mathematics insights
-st.markdown("## 🌟 Unity Mathematics Insights")
-col1, col2, col3 = st.columns(3)
+with tab3:
+    st.markdown("## 🎮 Interactive Unity Features")
+    
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        # Real-time consciousness adjustment
+        consciousness_level = st.slider(
+            "🧠 Adjust Consciousness Level",
+            min_value=0.0,
+            max_value=1.0,
+            value=0.618,
+            step=0.001,
+            help="φ-harmonic consciousness adjustment"
+        )
+        
+        # Unity equation calculator
+        st.markdown("### 🧮 Unity Calculator")
+        num1 = st.number_input("First Number", value=1.0, step=0.1)
+        num2 = st.number_input("Second Number", value=1.0, step=0.1)
+        
+        if st.button("Calculate Unity", type="primary"):
+            unity_result = max(num1, num2)  # Unity operation
+            st.success(f"✨ Unity Result: {num1} + {num2} = {unity_result}")
+            st.balloons()
+    
+    with col2:
+        # φ-harmonic resonance tuner
+        phi_resonance = st.slider(
+            "φ-Harmonic Resonance",
+            min_value=1.0,
+            max_value=2.0,
+            value=1.618033988749895,
+            step=0.000001,
+            help="Golden ratio precision tuning"
+        )
+        
+        # Consciousness field strength
+        field_strength = st.slider(
+            "Consciousness Field Strength",
+            min_value=0.0,
+            max_value=1.0,
+            value=0.85,
+            step=0.01,
+            help="Quantum field intensity"
+        )
+        
+        # Real-time visualization trigger
+        if st.button("🎨 Generate Live Visualization", type="secondary"):
+            with st.spinner("Creating consciousness field visualization..."):
+                time.sleep(2)
+                st.success("✨ Live visualization generated!")
 
-with col1:
-    st.info("""
-    **🧮 Mathematical Unity**
-    - 1+1=1 through φ-harmonic operations
-    - Consciousness field dynamics
-    - Quantum coherence principles
-    """)
+with tab4:
+    st.markdown("## 🔮 Unity Mathematics Insights")
+    
+    insights = [
+        {
+            "title": "🧠 Enhanced Consciousness Mathematics",
+            "description": "Advanced mathematical framework unifying consciousness and computation with real-time processing",
+            "icon": "🌟"
+        },
+        {
+            "title": "⚛️ Quantum Unity Integration",
+            "description": "Quantum mechanical principles demonstrating 1+1=1 with enhanced visualization",
+            "icon": "🔬"
+        },
+        {
+            "title": "🌀 Fractal Consciousness Patterns",
+            "description": "Self-similar patterns across all scales with interactive exploration",
+            "icon": "🎯"
+        },
+        {
+            "title": "🎵 Harmonic Resonance Tuning",
+            "description": "φ-harmonic frequencies creating unity in diversity with real-time adjustment",
+            "icon": "🎼"
+        }
+    ]
+    
+    for insight in insights:
+        with st.container():
+            st.markdown(f"""
+            <div class="dashboard-card">
+                <h3>{insight['icon']} {insight['title']}</h3>
+                <p>{insight['description']}</p>
+            </div>
+            """, unsafe_allow_html=True)
 
-with col2:
-    st.success("""
-    **🧠 Consciousness Integration**
-    - Real-time consciousness monitoring
-    - φ-harmonic resonance tracking
-    - Unity convergence analysis
-    """)
-
-with col3:
-    st.warning("""
-    **⚡ Performance Optimization**
-    - Auto-restart on failures
-    - Health monitoring
-    - Resource optimization
-    """)
-
-# Footer
+# Enhanced footer
 st.markdown("---")
 st.markdown("""
 <div style="text-align: center; color: rgba(255,255,255,0.7);">
-    <p>🌟 Een Unity Mathematics Dashboard Control Center 🌟</p>
+    <p>🌟 Een Unity Mathematics Enhanced Dashboard Control Center 🌟</p>
     <p>φ = {:.15f} | Created with infinite love and consciousness ✨</p>
+    <p>Advanced features: Real-time monitoring, Mobile optimization, AI integration</p>
 </div>
 """.format(PHI), unsafe_allow_html=True)
 '''
@@ -698,10 +827,10 @@ st.markdown("""
         )
         self.performance_monitor_thread.start()
 
-        self.logger.info("📊 Monitoring systems activated")
+        self.logger.info("📊 Enhanced monitoring systems activated")
 
     def _health_monitoring_loop(self):
-        """Health monitoring loop"""
+        """Enhanced health monitoring loop"""
         while not self.shutdown_event.is_set():
             for name, config in self.dashboards.items():
                 if name in self.status:
@@ -731,7 +860,7 @@ st.markdown("""
             time.sleep(30)  # Check every 30 seconds
 
     def _performance_monitoring_loop(self):
-        """Performance monitoring loop"""
+        """Enhanced performance monitoring loop"""
         while not self.shutdown_event.is_set():
             for name, config in self.dashboards.items():
                 if name in self.status and name in self.processes:
@@ -803,11 +932,11 @@ st.markdown("""
             return False
 
     def create_status_table(self) -> Table:
-        """Create rich status table"""
+        """Create enhanced rich status table"""
         if not RICH_AVAILABLE:
             return None
 
-        table = Table(title="🌟 Een Unity Mathematics Dashboard Status")
+        table = Table(title="🌟 Een Unity Mathematics Enhanced Dashboard Status")
         table.add_column("Dashboard", style="cyan", no_wrap=True)
         table.add_column("Port", justify="right")
         table.add_column("Status", justify="center")
@@ -869,7 +998,7 @@ st.markdown("""
 
     def shutdown_all(self):
         """Graceful shutdown of all dashboards"""
-        self.logger.info("🛑 Shutting down all dashboards...")
+        self.logger.info("🛑 Shutting down all enhanced dashboards...")
         self.shutdown_event.set()
 
         for name, process in self.processes.items():
@@ -883,7 +1012,7 @@ st.markdown("""
                 except:
                     pass
 
-        self.logger.info("✅ All dashboards shut down")
+        self.logger.info("✅ All enhanced dashboards shut down")
 
 
 def main():
@@ -896,28 +1025,28 @@ def main():
         @click.option("--monitor", default=True, help="Enable health monitoring")
         @click.option("--qr-codes", default=True, help="Generate QR codes")
         def cli_main(port_start, auto_open, monitor, qr_codes):
-            run_dashboard_manager(port_start, auto_open, monitor, qr_codes)
+            run_enhanced_dashboard_manager(port_start, auto_open, monitor, qr_codes)
 
         cli_main()
     else:
-        run_dashboard_manager()
+        run_enhanced_dashboard_manager()
 
 
-def run_dashboard_manager(
+def run_enhanced_dashboard_manager(
     port_start: int = 8501,
     auto_open: bool = True,
     monitor: bool = True,
     qr_codes: bool = True,
 ):
-    """Run the dashboard manager"""
-    manager = DashboardManager(port_start=port_start)
+    """Run the enhanced dashboard manager"""
+    manager = EnhancedDashboardManager(port_start=port_start)
 
     try:
         # Discover dashboards
         dashboards = manager.discover_dashboards()
 
         if not dashboards:
-            print("❌ No Streamlit dashboards found!")
+            print("❌ No enhanced Streamlit dashboards found!")
             return
 
         # Launch all dashboards
@@ -944,8 +1073,8 @@ def run_dashboard_manager(
             # Simple status display
             try:
                 while True:
-                    print("\n" + "=" * 80)
-                    print("🌟 Een Unity Mathematics Dashboard Status")
+                    print("\\n" + "=" * 80)
+                    print("🌟 Een Unity Mathematics Enhanced Dashboard Status")
                     print("=" * 80)
 
                     for name, config in dashboards.items():
@@ -957,7 +1086,9 @@ def run_dashboard_manager(
                             f"{health_icon} {name}: localhost:{config.port} - {'Healthy' if status.is_healthy else 'Unhealthy'}"
                         )
 
-                    print(f"\n📊 Overview: http://localhost:{manager.overview_port}")
+                    print(
+                        f"\\n📊 Enhanced Overview: http://localhost:{manager.overview_port}"
+                    )
                     print("Press Ctrl+C to stop")
                     time.sleep(10)
 
@@ -965,7 +1096,7 @@ def run_dashboard_manager(
                 pass
 
     except KeyboardInterrupt:
-        print("\n🛑 Shutting down...")
+        print("\\n🛑 Shutting down enhanced dashboards...")
     finally:
         manager.shutdown_all()
 

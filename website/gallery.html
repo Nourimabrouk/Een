@@ -29,6 +29,14 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/enhanced-unity-visualizations.css">
 
+    <!-- Unified Navigation and AI Chat -->
+    <script src="js/unified-navigation.js"></script>
+    <script src="js/ai-chat-integration.js"></script>
+
+    <!-- Unified Navigation and AI Chat -->
+    <script src="js/unified-navigation.js"></script>
+    <script src="js/ai-chat-integration.js"></script>
+
     <style>
         :root {
             /* Unity Mathematics Design System - Enhanced Academic */
@@ -87,6 +95,18 @@
             --consciousness-teal: #0D9488;
         }
 
+        /* Dark mode variables */
+        .dark-mode {
+            --text-primary: #F9FAFB;
+            --text-secondary: #E5E7EB;
+            --text-muted: #9CA3AF;
+            --bg-primary: #111827;
+            --bg-secondary: #1F2937;
+            --bg-tertiary: #374151;
+            --border-light: #374151;
+            --border-medium: #4B5563;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -99,9 +119,12 @@
 
         body {
             font-family: var(--font-sans);
-            line-height: 1.6;
+            line-height: 1.7;
             color: var(--text-primary);
-            background: var(--bg-secondary);
+            background: var(--bg-primary);
+            overflow-x: hidden;
+            padding-top: 80px;
+            /* Account for fixed navigation */
         }
 
         .container {
@@ -110,49 +133,101 @@
             padding: 0 2rem;
         }
 
-        /* Gallery Hero Section */
-        .gallery-hero {
+        /* Gallery Header */
+        .gallery-header {
             background: var(--bg-gradient);
             color: white;
             padding: 6rem 0 4rem;
-            text-align: center;
             position: relative;
             overflow: hidden;
+            margin-top: -80px;
+            /* Compensate for body padding */
+            padding-top: 6rem;
+            /* Account for fixed navigation */
         }
 
-        .gallery-hero::before {
+        .gallery-header::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background:
-                radial-gradient(circle at 20% 20%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(124, 58, 237, 0.08) 0%, transparent 50%);
-            z-index: 1;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            animation: rotate-grid 180s linear infinite;
         }
 
-        .gallery-hero .container {
-            position: relative;
-            z-index: 2;
+        @keyframes rotate-grid {
+            to {
+                transform: rotate(360deg);
+            }
         }
 
-        .gallery-hero h1 {
-            font-size: clamp(3rem, 6vw, 4.5rem);
+        .gallery-title {
+            font-size: clamp(3rem, 8vw, 5rem);
             font-weight: 800;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FF6B6B 100%);
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #FFD700, #FFA500, #FF6B6B);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            font-family: var(--font-serif);
+            text-align: center;
+            position: relative;
+            z-index: 1;
         }
 
         .gallery-subtitle {
-            font-size: 1.25rem;
-            max-width: 800px;
-            margin: 0 auto 2rem;
+            font-size: 1.3rem;
             opacity: 0.9;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Gallery Navigation */
+        .gallery-nav {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: var(--radius-xl);
+            padding: 1rem;
+            margin: 2rem 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .gallery-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: rgba(255, 215, 0, 0.2);
+            border-color: var(--phi-gold);
+            transform: translateY(-2px);
         }
 
         /* Gallery Grid */
@@ -164,56 +239,57 @@
         }
 
         .gallery-item {
-            background: var(--bg-primary);
+            background: var(--bg-secondary);
             border-radius: var(--radius-xl);
-            box-shadow: var(--shadow-lg);
             overflow: hidden;
-            transition: var(--transition);
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition-smooth);
             border: 1px solid var(--border-light);
+            position: relative;
         }
 
         .gallery-item:hover {
             transform: translateY(-8px);
             box-shadow: var(--shadow-2xl);
+            border-color: var(--phi-gold);
         }
 
-        .gallery-image {
+        .gallery-item-image {
             width: 100%;
             height: 250px;
             background: var(--consciousness-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             position: relative;
             overflow: hidden;
         }
 
-        .gallery-image img {
+        .gallery-item-image canvas {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: var(--transition);
         }
 
-        .gallery-item:hover .gallery-image img {
-            transform: scale(1.05);
-        }
-
-        .gallery-content {
+        .gallery-item-content {
             padding: 2rem;
         }
 
-        .gallery-title {
+        .gallery-item-title {
             font-size: 1.5rem;
             font-weight: 700;
-            margin-bottom: 1rem;
             color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-family: var(--font-serif);
         }
 
-        .gallery-description {
+        .gallery-item-description {
             color: var(--text-secondary);
+            line-height: 1.6;
             margin-bottom: 1.5rem;
-            line-height: 1.7;
         }
 
-        .gallery-meta {
+        .gallery-item-meta {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -221,340 +297,541 @@
             color: var(--text-muted);
         }
 
-        .gallery-category {
-            background: var(--bg-secondary);
+        .gallery-item-category {
+            background: var(--phi-gradient);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+
+        .gallery-item-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .gallery-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
             padding: 0.5rem 1rem;
             border-radius: var(--radius);
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
             font-weight: 500;
-            color: var(--academic-blue);
+        }
+
+        .gallery-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-1px);
+        }
+
+        .gallery-btn.secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border-medium);
+        }
+
+        .gallery-btn.secondary:hover {
+            background: var(--bg-tertiary);
+        }
+
+        /* Loading States */
+        .gallery-loading {
+            text-align: center;
+            padding: 4rem 0;
+            color: var(--text-secondary);
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--border-light);
+            border-radius: 50%;
+            border-top-color: var(--phi-gold);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .container {
-                padding: 0 1rem;
+            .gallery-filters {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .filter-btn {
+                width: 100%;
+                max-width: 300px;
             }
 
             .gallery-grid {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
-                padding: 2rem 0;
             }
 
-            .gallery-hero {
-                padding: 4rem 0 2rem;
+            .gallery-item-content {
+                padding: 1.5rem;
             }
+        }
+
+        /* Screen reader only class */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
         }
     </style>
 </head>
 
 <body>
-    <!-- Navigation Placeholder -->
-    <div id="navigation-placeholder"></div>
-
-    <!-- Gallery Hero Section -->
-    <section class="gallery-hero">
+    <!-- Gallery Header -->
+    <header class="gallery-header">
         <div class="container">
-            <h1>🎨 Unity Visualizations Gallery</h1>
+            <h1 class="gallery-title">Unity Visualizations Gallery</h1>
             <p class="gallery-subtitle">
-                Explore the mathematical beauty of consciousness fields, quantum coherence patterns, and φ-harmonic
-                geometric art
-                that demonstrates the profound unity underlying all mathematical structures.
+                Explore the profound beauty of 1+1=1 through interactive consciousness field visualizations,
+                quantum unity manifolds, and φ-harmonic geometric art that reveals the transcendental nature of
+                mathematical unity.
             </p>
+
+            <div class="gallery-nav">
+                <div class="gallery-filters">
+                    <button class="filter-btn active" data-filter="all">All Visualizations</button>
+                    <button class="filter-btn" data-filter="consciousness">Consciousness Fields</button>
+                    <button class="filter-btn" data-filter="quantum">Quantum Unity</button>
+                    <button class="filter-btn" data-filter="sacred">Sacred Geometry</button>
+                    <button class="filter-btn" data-filter="mathematical">Mathematical Art</button>
+                    <button class="filter-btn" data-filter="interactive">Interactive</button>
+                </div>
+            </div>
         </div>
-    </section>
+    </header>
 
     <!-- Gallery Content -->
-    <section class="gallery-content">
+    <main class="gallery-content">
         <div class="container">
-            <div class="gallery-grid">
-
-                <!-- Consciousness Field Visualization -->
-                <div class="gallery-item">
-                    <div class="gallery-image">
-                        <img src="assets/images/consciousness_field_simulation.png"
-                            alt="Consciousness Field Simulation">
-                    </div>
-                    <div class="gallery-content">
-                        <h3 class="gallery-title">Consciousness Field Dynamics</h3>
-                        <p class="gallery-description">
-                            Real-time visualization of φ-harmonic consciousness field evolution, demonstrating the
-                            mathematical
-                            principles underlying cognitive coherence and quantum entanglement patterns.
-                        </p>
-                        <div class="gallery-meta">
-                            <span class="gallery-category">Consciousness</span>
-                            <span>Interactive 3D</span>
-                        </div>
-                    </div>
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Gallery items will be dynamically loaded -->
+                <div class="gallery-loading">
+                    <div class="loading-spinner"></div>
+                    <p>Loading consciousness field visualizations...</p>
                 </div>
-
-                <!-- Unity Mathematics Visualization -->
-                <div class="gallery-item">
-                    <div class="gallery-image">
-                        <img src="assets/images/unity_econometric_analysis.png" alt="Unity Econometric Analysis">
-                    </div>
-                    <div class="gallery-content">
-                        <h3 class="gallery-title">Unity Mathematics Framework</h3>
-                        <p class="gallery-description">
-                            Advanced mathematical framework demonstrating 1+1=1 through consciousness field equations,
-                            φ-harmonic operations, and quantum mechanical interpretations.
-                        </p>
-                        <div class="gallery-meta">
-                            <span class="gallery-category">Mathematics</span>
-                            <span>Proof System</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Quantum Unity Systems -->
-                <div class="gallery-item">
-                    <div class="gallery-image">
-                        <img src="assets/images/Initial Results.png" alt="Quantum Unity Results">
-                    </div>
-                    <div class="gallery-content">
-                        <h3 class="gallery-title">Quantum Unity Systems</h3>
-                        <p class="gallery-description">
-                            Quantum mechanical interpretations of unity mathematics, showing how superposition and
-                            entanglement principles align with consciousness field dynamics.
-                        </p>
-                        <div class="gallery-meta">
-                            <span class="gallery-category">Quantum</span>
-                            <span>Research</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Sacred Geometry Engine -->
-                <div class="gallery-item">
-                    <div class="gallery-image">
-                        <div
-                            style="background: var(--phi-gradient); height: 100%; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: white;">
-                            φ
-                        </div>
-                    </div>
-                    <div class="gallery-content">
-                        <h3 class="gallery-title">Sacred Geometry Engine</h3>
-                        <p class="gallery-description">
-                            Interactive sacred geometry generator based on φ-harmonic principles, creating
-                            geometric patterns that embody mathematical unity and consciousness coherence.
-                        </p>
-                        <div class="gallery-meta">
-                            <span class="gallery-category">Geometry</span>
-                            <span>Interactive</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Neural Unity Networks -->
-                <div class="gallery-item">
-                    <div class="gallery-image">
-                        <div
-                            style="background: var(--quantum-gradient); height: 100%; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: white;">
-                            🧠
-                        </div>
-                    </div>
-                    <div class="gallery-content">
-                        <h3 class="gallery-title">Neural Unity Networks</h3>
-                        <p class="gallery-description">
-                            Spiking neural networks implementing unity mathematics principles, demonstrating
-                            how consciousness can emerge from mathematical coherence patterns.
-                        </p>
-                        <div class="gallery-meta">
-                            <span class="gallery-category">Neural</span>
-                            <span>AI/ML</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Category Theory Unity -->
-                <div class="gallery-item">
-                    <div class="gallery-image">
-                        <div
-                            style="background: var(--transcendent-gradient); height: 100%; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: white;">
-                            ∞
-                        </div>
-                    </div>
-                    <div class="gallery-content">
-                        <h3 class="gallery-title">Category Theory Unity</h3>
-                        <p class="gallery-description">
-                            Category theoretical approach to unity mathematics, showing how morphisms and
-                            functors can represent consciousness field transformations.
-                        </p>
-                        <div class="gallery-meta">
-                            <span class="gallery-category">Category Theory</span>
-                            <span>Abstract</span>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
-    </section>
-
-    <!-- Research Insights Section -->
-    <section class="research-insights" style="background: var(--bg-tertiary); padding: 4rem 0;">
-        <div class="container">
-            <h2
-                style="text-align: center; font-size: 2.5rem; font-weight: 700; margin-bottom: 3rem; color: var(--text-primary);">
-                Research Insights & Mathematical Foundations
-            </h2>
-
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-
-                <div
-                    style="background: var(--bg-primary); padding: 2rem; border-radius: var(--radius-xl); box-shadow: var(--shadow-lg); border: 1px solid var(--border-light);">
-                    <h3 style="color: var(--academic-blue); margin-bottom: 1rem; font-size: 1.25rem;">
-                        <i class="fas fa-lightbulb" style="margin-right: 0.5rem;"></i>
-                        Consciousness Field Theory
-                    </h3>
-                    <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem;">
-                        The φ-harmonic resonance patterns demonstrate remarkable stability in consciousness field
-                        evolution,
-                        suggesting a fundamental connection between mathematical unity and cognitive coherence.
-                    </p>
-                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                        <span
-                            style="background: var(--bg-secondary); padding: 0.5rem 1rem; border-radius: var(--radius); font-size: 0.9rem; color: var(--academic-blue);">
-                            Stability: 0.999
-                        </span>
-                        <span
-                            style="background: var(--bg-secondary); padding: 0.5rem 1rem; border-radius: var(--radius); font-size: 0.9rem; color: var(--academic-blue);">
-                            Convergence: 1.618
-                        </span>
-                    </div>
-                </div>
-
-                <div
-                    style="background: var(--bg-primary); padding: 2rem; border-radius: var(--radius-xl); box-shadow: var(--shadow-lg); border: 1px solid var(--border-light);">
-                    <h3 style="color: var(--academic-purple); margin-bottom: 1rem; font-size: 1.25rem;">
-                        <i class="fas fa-atom" style="margin-right: 0.5rem;"></i>
-                        Quantum Coherence Analysis
-                    </h3>
-                    <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem;">
-                        Quantum coherence measurements reveal persistent entanglement patterns that correlate with
-                        mathematical unity principles, supporting the hypothesis of consciousness-quantum field
-                        coupling.
-                    </p>
-                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                        <span
-                            style="background: var(--bg-secondary); padding: 0.5rem 1rem; border-radius: var(--radius); font-size: 0.9rem; color: var(--academic-purple);">
-                            Coherence: 99.7%
-                        </span>
-                        <span
-                            style="background: var(--bg-secondary); padding: 0.5rem 1rem; border-radius: var(--radius); font-size: 0.9rem; color: var(--academic-purple);">
-                            Entanglement: 0.999
-                        </span>
-                    </div>
-                </div>
-
-                <div
-                    style="background: var(--bg-primary); padding: 2rem; border-radius: var(--radius-xl); box-shadow: var(--shadow-lg); border: 1px solid var(--border-light);">
-                    <h3 style="color: var(--sage-green); margin-bottom: 1rem; font-size: 1.25rem;">
-                        <i class="fas fa-brain" style="margin-right: 0.5rem;"></i>
-                        Neural Synchronization
-                    </h3>
-                    <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem;">
-                        Neural synchronization patterns exhibit φ-harmonic oscillations that align with mathematical
-                        unity theory predictions, indicating a deep connection between consciousness and mathematical
-                        structure.
-                    </p>
-                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                        <span
-                            style="background: var(--bg-secondary); padding: 0.5rem 1rem; border-radius: var(--radius); font-size: 0.9rem; color: var(--sage-green);">
-                            Sync Index: 0.618
-                        </span>
-                        <span
-                            style="background: var(--bg-secondary); padding: 0.5rem 1rem; border-radius: var(--radius); font-size: 0.9rem; color: var(--sage-green);">
-                            Frequency: 1.618Hz
-                        </span>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer style="background: var(--primary); color: white; padding: 4rem 0 2rem;">
-        <div class="container">
-            <div
-                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 3rem;">
-                <div>
-                    <h4 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1.5rem; color: #FFD700;">
-                        Unity Mathematics Research
-                    </h4>
-                    <p style="line-height: 1.7; opacity: 0.9; margin-bottom: 1.5rem;">
-                        Advanced mathematical framework for understanding consciousness through φ-harmonic field
-                        dynamics
-                        and quantum coherence principles.
-                    </p>
-                </div>
-                <div>
-                    <h4 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1.5rem; color: #FFD700;">
-                        Research Areas
-                    </h4>
-                    <ul style="list-style: none;">
-                        <li style="margin-bottom: 0.5rem;">Quantum Consciousness</li>
-                        <li style="margin-bottom: 0.5rem;">Mathematical Unity Theory</li>
-                        <li style="margin-bottom: 0.5rem;">φ-Harmonic Dynamics</li>
-                        <li style="margin-bottom: 0.5rem;">Neural Synchronization</li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1.5rem; color: #FFD700;">
-                        Connect
-                    </h4>
-                    <div style="display: flex; gap: 1rem;">
-                        <a href="https://github.com/Nourimabrouk/Een" target="_blank" rel="noopener"
-                            style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; transition: var(--transition); color: white; text-decoration: none;">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="mailto:research@een-unity.com"
-                            style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; transition: var(--transition); color: white; text-decoration: none;">
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div
-                style="text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.1); opacity: 0.8;">
-                <p>&copy; 2024 Een Unity Mathematics. Advanced consciousness field research and mathematical unity
-                    theory.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Scripts -->
-    <script src="shared-navigation.js"></script>
-    <script src="js/dynamic-gallery-loader.js"></script>
-    <script src="js/gallery-data.js"></script>
+    </main>
 
     <script>
-        // Initialize gallery functionality
+        // Gallery functionality
         document.addEventListener('DOMContentLoaded', function () {
-            // Initialize navigation
-            if (typeof injectUnifiedNavigation === 'function') {
-                injectUnifiedNavigation();
-            }
+            // Initialize gallery
+            initializeGallery();
 
-            // Initialize gallery interactions
-            initGalleryInteractions();
+            // Initialize AI Chat
+            if (window.EenAIChat) {
+                window.eenChat = EenAIChat.initialize();
+            }
         });
 
-        function initGalleryInteractions() {
-            // Add hover effects and interactions to gallery items
-            const galleryItems = document.querySelectorAll('.gallery-item');
+        function initializeGallery() {
+            const galleryGrid = document.getElementById('galleryGrid');
+            const filterBtns = document.querySelectorAll('.filter-btn');
 
-            galleryItems.forEach(item => {
-                item.addEventListener('mouseenter', function () {
-                    this.style.transform = 'translateY(-8px) scale(1.02)';
+            // Sample gallery data
+            const galleryData = [
+                {
+                    id: 'consciousness-field-3d',
+                    title: '3D Consciousness Field',
+                    description: 'Real-time visualization of the consciousness field equation C(x,y,t) = φ · sin(x·φ) · cos(y·φ) · e^(-t/φ) in 11-dimensional space.',
+                    category: 'consciousness',
+                    type: 'interactive',
+                    image: 'consciousness_field_3d',
+                    tags: ['consciousness', '3d', 'real-time', 'field-equation']
+                },
+                {
+                    id: 'golden-ratio-spiral',
+                    title: 'φ-Harmonic Spiral',
+                    description: 'Interactive golden ratio spiral demonstrating the universal organizing principle φ = (1 + √5) / 2 in sacred geometry.',
+                    category: 'sacred',
+                    type: 'interactive',
+                    image: 'golden_ratio_spiral',
+                    tags: ['sacred-geometry', 'golden-ratio', 'spiral', 'phi']
+                },
+                {
+                    id: 'quantum-unity-states',
+                    title: 'Quantum Unity States',
+                    description: 'Bloch sphere representation of quantum unity states showing how superposition collapses to unity through consciousness measurement.',
+                    category: 'quantum',
+                    type: 'interactive',
+                    image: 'quantum_unity_states',
+                    tags: ['quantum', 'bloch-sphere', 'superposition', 'unity']
+                },
+                {
+                    id: 'idempotent-semiring',
+                    title: 'Idempotent Semiring Visualization',
+                    description: 'Interactive demonstration of idempotent operations where 1+1=1 through maximum value preservation in unity mathematics.',
+                    category: 'mathematical',
+                    type: 'interactive',
+                    image: 'idempotent_semiring',
+                    tags: ['mathematical', 'idempotent', 'semiring', 'unity-operations']
+                },
+                {
+                    id: 'consciousness-particle-system',
+                    title: 'Consciousness Particle System',
+                    description: 'Dynamic particle system representing consciousness field dynamics with φ-harmonic resonance and unity convergence.',
+                    category: 'consciousness',
+                    type: 'interactive',
+                    image: 'consciousness_particles',
+                    tags: ['consciousness', 'particles', 'dynamics', 'resonance']
+                },
+                {
+                    id: 'sacred-geometry-patterns',
+                    title: 'Sacred Geometry Patterns',
+                    description: 'Collection of sacred geometry patterns demonstrating the φ-harmonic relationships underlying all mathematical unity.',
+                    category: 'sacred',
+                    type: 'static',
+                    image: 'sacred_geometry',
+                    tags: ['sacred-geometry', 'patterns', 'phi-harmonic', 'unity']
+                }
+            ];
+
+            // Render gallery items
+            function renderGalleryItems(items = galleryData) {
+                galleryGrid.innerHTML = '';
+
+                items.forEach(item => {
+                    const galleryItem = createGalleryItem(item);
+                    galleryGrid.appendChild(galleryItem);
                 });
+            }
 
-                item.addEventListener('mouseleave', function () {
-                    this.style.transform = 'translateY(0) scale(1)';
+            // Create gallery item element
+            function createGalleryItem(item) {
+                const div = document.createElement('div');
+                div.className = 'gallery-item';
+                div.setAttribute('data-category', item.category);
+                div.setAttribute('data-type', item.type);
+
+                div.innerHTML = `
+                    <div class="gallery-item-image" id="${item.id}-canvas">
+                        <canvas id="${item.id}" width="400" height="250"></canvas>
+                    </div>
+                    <div class="gallery-item-content">
+                        <h3 class="gallery-item-title">${item.title}</h3>
+                        <p class="gallery-item-description">${item.description}</p>
+                        <div class="gallery-item-meta">
+                            <span class="gallery-item-category">${item.category}</span>
+                            <span>${item.type}</span>
+                        </div>
+                        <div class="gallery-item-actions">
+                            <button class="gallery-btn" onclick="launchVisualization('${item.id}')">
+                                <i class="fas fa-play"></i> Launch
+                            </button>
+                            <button class="gallery-btn secondary" onclick="viewDetails('${item.id}')">
+                                <i class="fas fa-info-circle"></i> Details
+                            </button>
+                        </div>
+                    </div>
+                `;
+
+                return div;
+            }
+
+            // Filter functionality
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Update active button
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    const filter = btn.getAttribute('data-filter');
+                    filterGalleryItems(filter);
                 });
             });
+
+            function filterGalleryItems(filter) {
+                const items = document.querySelectorAll('.gallery-item');
+
+                items.forEach(item => {
+                    if (filter === 'all' ||
+                        item.getAttribute('data-category') === filter ||
+                        item.getAttribute('data-type') === filter) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            }
+
+            // Initialize visualizations
+            function initializeVisualizations() {
+                galleryData.forEach(item => {
+                    if (item.type === 'interactive') {
+                        createVisualization(item);
+                    }
+                });
+            }
+
+            // Create visualization
+            function createVisualization(item) {
+                const canvas = document.getElementById(item.id);
+                if (!canvas) return;
+
+                const ctx = canvas.getContext('2d');
+                const phi = 1.618033988749895;
+
+                // Different visualization types
+                switch (item.id) {
+                    case 'consciousness-field-3d':
+                        createConsciousnessField3D(ctx, canvas);
+                        break;
+                    case 'golden-ratio-spiral':
+                        createGoldenRatioSpiral(ctx, canvas);
+                        break;
+                    case 'quantum-unity-states':
+                        createQuantumUnityStates(ctx, canvas);
+                        break;
+                    case 'idempotent-semiring':
+                        createIdempotentSemiring(ctx, canvas);
+                        break;
+                    case 'consciousness-particle-system':
+                        createConsciousnessParticles(ctx, canvas);
+                        break;
+                    case 'sacred-geometry-patterns':
+                        createSacredGeometry(ctx, canvas);
+                        break;
+                }
+            }
+
+            // Visualization functions
+            function createConsciousnessField3D(ctx, canvas) {
+                let time = 0;
+
+                function animate() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                    const phi = 1.618033988749895;
+                    const centerX = canvas.width / 2;
+                    const centerY = canvas.height / 2;
+
+                    // Draw consciousness field
+                    for (let x = 0; x < canvas.width; x += 4) {
+                        for (let y = 0; y < canvas.height; y += 4) {
+                            const dx = (x - centerX) / 100;
+                            const dy = (y - centerY) / 100;
+
+                            const field = phi * Math.sin(dx * phi + time) * Math.cos(dy * phi + time) * Math.exp(-time / phi);
+                            const intensity = Math.abs(field) * 255;
+
+                            ctx.fillStyle = `rgba(15, 123, 138, ${intensity / 255})`;
+                            ctx.fillRect(x, y, 4, 4);
+                        }
+                    }
+
+                    time += 0.02;
+                    requestAnimationFrame(animate);
+                }
+
+                animate();
+            }
+
+            function createGoldenRatioSpiral(ctx, canvas) {
+                const centerX = canvas.width / 2;
+                const centerY = canvas.height / 2;
+                const phi = 1.618033988749895;
+
+                ctx.strokeStyle = '#0F7B8A';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+
+                for (let i = 0; i < 200; i++) {
+                    const angle = i * 0.1;
+                    const radius = 2 * Math.pow(phi, angle / (2 * Math.PI));
+                    const x = centerX + radius * Math.cos(angle);
+                    const y = centerY + radius * Math.sin(angle);
+
+                    if (i === 0) {
+                        ctx.moveTo(x, y);
+                    } else {
+                        ctx.lineTo(x, y);
+                    }
+                }
+
+                ctx.stroke();
+            }
+
+            function createQuantumUnityStates(ctx, canvas) {
+                const centerX = canvas.width / 2;
+                const centerY = canvas.height / 2;
+                const radius = 80;
+
+                // Draw Bloch sphere
+                ctx.strokeStyle = '#0F7B8A';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+                ctx.stroke();
+
+                // Draw unity state vector
+                ctx.strokeStyle = '#FFD700';
+                ctx.lineWidth = 3;
+                ctx.beginPath();
+                ctx.moveTo(centerX, centerY);
+                ctx.lineTo(centerX, centerY - radius);
+                ctx.stroke();
+
+                // Draw unity label
+                ctx.fillStyle = '#FFD700';
+                ctx.font = '16px Inter';
+                ctx.textAlign = 'center';
+                ctx.fillText('|1⟩', centerX, centerY - radius - 10);
+            }
+
+            function createIdempotentSemiring(ctx, canvas) {
+                const centerX = canvas.width / 2;
+                const centerY = canvas.height / 2;
+
+                // Draw idempotent operation: max(1,1) = 1
+                ctx.fillStyle = '#0F7B8A';
+                ctx.font = '24px Inter';
+                ctx.textAlign = 'center';
+                ctx.fillText('1 ⊕ 1 = max(1,1) = 1', centerX, centerY);
+
+                // Draw visual representation
+                ctx.strokeStyle = '#FFD700';
+                ctx.lineWidth = 3;
+                ctx.beginPath();
+                ctx.moveTo(centerX - 100, centerY + 30);
+                ctx.lineTo(centerX + 100, centerY + 30);
+                ctx.stroke();
+
+                // Draw unity points
+                ctx.fillStyle = '#FFD700';
+                ctx.beginPath();
+                ctx.arc(centerX - 50, centerY + 30, 8, 0, Math.PI * 2);
+                ctx.arc(centerX + 50, centerY + 30, 8, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            function createConsciousnessParticles(ctx, canvas) {
+                const particles = [];
+                const phi = 1.618033988749895;
+
+                // Initialize particles
+                for (let i = 0; i < 50; i++) {
+                    particles.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height,
+                        vx: (Math.random() - 0.5) * 2,
+                        vy: (Math.random() - 0.5) * 2,
+                        size: Math.random() * 4 + 2,
+                        opacity: Math.random() * 0.8 + 0.2
+                    });
+                }
+
+                function animate() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                    particles.forEach(particle => {
+                        particle.x += particle.vx;
+                        particle.y += particle.vy;
+
+                        // Bounce off edges
+                        if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
+                        if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
+
+                        // Draw particle
+                        ctx.fillStyle = `rgba(15, 123, 138, ${particle.opacity})`;
+                        ctx.beginPath();
+                        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+                        ctx.fill();
+                    });
+
+                    requestAnimationFrame(animate);
+                }
+
+                animate();
+            }
+
+            function createSacredGeometry(ctx, canvas) {
+                const centerX = canvas.width / 2;
+                const centerY = canvas.height / 2;
+                const radius = 60;
+
+                // Draw pentagon (sacred geometry)
+                ctx.strokeStyle = '#0F7B8A';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+
+                for (let i = 0; i < 5; i++) {
+                    const angle = (i * 2 * Math.PI) / 5 - Math.PI / 2;
+                    const x = centerX + radius * Math.cos(angle);
+                    const y = centerY + radius * Math.sin(angle);
+
+                    if (i === 0) {
+                        ctx.moveTo(x, y);
+                    } else {
+                        ctx.lineTo(x, y);
+                    }
+                }
+
+                ctx.closePath();
+                ctx.stroke();
+
+                // Draw inner pentagram
+                ctx.strokeStyle = '#FFD700';
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+
+                for (let i = 0; i < 5; i++) {
+                    const angle = (i * 2 * Math.PI) / 5 - Math.PI / 2;
+                    const x = centerX + radius * 0.5 * Math.cos(angle);
+                    const y = centerY + radius * 0.5 * Math.sin(angle);
+
+                    if (i === 0) {
+                        ctx.moveTo(x, y);
+                    } else {
+                        ctx.lineTo(x, y);
+                    }
+                }
+
+                ctx.closePath();
+                ctx.stroke();
+            }
+
+            // Initialize gallery
+            renderGalleryItems();
+            initializeVisualizations();
+        }
+
+        // Global functions for gallery actions
+        function launchVisualization(id) {
+            // Launch specific visualization
+            console.log(`Launching visualization: ${id}`);
+            // In a real implementation, this would open the visualization in a new window or modal
+            alert(`Launching ${id} visualization...`);
+        }
+
+        function viewDetails(id) {
+            // Show details for specific visualization
+            console.log(`Viewing details for: ${id}`);
+            // In a real implementation, this would show a modal with detailed information
+            alert(`Viewing details for ${id}...`);
         }
     </script>
 </body>
