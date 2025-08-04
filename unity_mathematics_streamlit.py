@@ -511,21 +511,19 @@ def render_consciousness_field_solver():
                     UNITY_MODULES_AVAILABLE = False
             
             if not UNITY_MODULES_AVAILABLE:
-                # Fallback simulation
-            
-            # Generate sample consciousness field data
-            time_range = np.linspace(0, 2*PI, time_steps)
-            if spatial_dims == 1:
-                x = np.linspace(-PHI, PHI, grid_size)
-                X, T = np.meshgrid(x, time_range)
-                consciousness_field = np.exp(-(X**2)/(2*PHI)) * np.cos(PHI * T) * np.sin(PHI * X)
-            elif spatial_dims == 2:
-                x = np.linspace(-PHI, PHI, grid_size)
-                y = np.linspace(-PHI, PHI, grid_size)
-                X, Y = np.meshgrid(x, y)
-                # Final time slice
-                t_final = time_range[-1]
-                consciousness_field = np.exp(-(X**2 + Y**2)/(2*PHI)) * np.cos(PHI * (X + Y + t_final))
+                # Fallback simulation - Generate sample consciousness field data
+                time_range = np.linspace(0, 2*PI, time_steps)
+                if spatial_dims == 1:
+                    x = np.linspace(-PHI, PHI, grid_size)
+                    X, T = np.meshgrid(x, time_range)
+                    consciousness_field = np.exp(-(X**2)/(2*PHI)) * np.cos(PHI * T) * np.sin(PHI * X)
+                elif spatial_dims == 2:
+                    x = np.linspace(-PHI, PHI, grid_size)
+                    y = np.linspace(-PHI, PHI, grid_size)
+                    X, Y = np.meshgrid(x, y)
+                    # Final time slice
+                    t_final = time_range[-1]
+                    consciousness_field = np.exp(-(X**2 + Y**2)/(2*PHI)) * np.cos(PHI * (X + Y + t_final))
             
             # Simulate solving process
             for i in range(101):
