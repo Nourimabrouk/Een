@@ -434,6 +434,88 @@ def train_ml_models():
         logger.error(f"ML training error: {e}")
         return jsonify({"error": str(e)}), 500
 
+# API Routes for Gallery Images
+
+@app.route('/api/gallery/images/<path:filename>')
+def serve_gallery_image(filename):
+    """Serve images from viz and legacy directories"""
+    try:
+        # Try different possible paths
+        possible_paths = [
+            Path(project_root) / 'viz' / filename,
+            Path(project_root) / 'viz' / 'legacy images' / filename,
+            Path(project_root) / 'legacy' / filename,
+            Path(project_root) / 'visualizations' / filename,
+            Path(project_root) / 'assets' / 'images' / filename
+        ]
+        
+        for file_path in possible_paths:
+            if file_path.exists() and file_path.is_file():
+                return send_from_directory(file_path.parent, file_path.name)
+        
+        return jsonify({"error": "Image not found"}), 404
+        
+    except Exception as e:
+        logger.error(f"Error serving gallery image {filename}: {e}")
+        return jsonify({"error": str(e)}), 500
+
+@app.route('/api/gallery/visualizations')
+def get_gallery_visualizations():
+    """Get list of available visualizations"""
+    try:
+        visualizations = []
+        
+        # Scan viz directory
+        viz_dir = Path(project_root) / 'viz'
+        if viz_dir.exists():
+            for file_path in viz_dir.rglob('*'):
+                if file_path.is_file() and file_path.suffix.lower() in ['.png', '.jpg', '.jpeg', '.gif', '.webp', '.mp4', '.html']:
+                    relative_path = file_path.relative_to(project_root)
+                    visualizations.append({
+                        'src': f'/api/gallery/images/{relative_path}',
+                        'filename': file_path.name,
+                        'folder': str(relative_path.parent),
+                        'extension': file_path.suffix.lower(),
+                        'isImage': file_path.suffix.lower() in ['.png', '.jpg', '.jpeg', '.gif', '.webp'],
+                        'isVideo': file_path.suffix.lower() in ['.mp4', '.webm', '.mov'],
+                        'isInteractive': file_path.suffix.lower() in ['.html', '.htm'],
+                        'title': file_path.stem.replace('_', ' ').title(),
+                        'type': 'Visualization',
+                        'category': 'unity',
+                        'description': f'Unity mathematics visualization: {file_path.name}',
+                        'created': '2024-2025'
+                    })
+        
+        # Scan legacy images directory
+        legacy_dir = Path(project_root) / 'viz' / 'legacy images'
+        if legacy_dir.exists():
+            for file_path in legacy_dir.glob('*'):
+                if file_path.is_file() and file_path.suffix.lower() in ['.png', '.jpg', '.jpeg', '.gif', '.webp', '.mp4']:
+                    relative_path = file_path.relative_to(project_root)
+                    visualizations.append({
+                        'src': f'/api/gallery/images/{relative_path}',
+                        'filename': file_path.name,
+                        'folder': str(relative_path.parent),
+                        'extension': file_path.suffix.lower(),
+                        'isImage': file_path.suffix.lower() in ['.png', '.jpg', '.jpeg', '.gif', '.webp'],
+                        'isVideo': file_path.suffix.lower() in ['.mp4', '.webm', '.mov'],
+                        'isInteractive': False,
+                        'title': file_path.stem.replace('_', ' ').title(),
+                        'type': 'Legacy Visualization',
+                        'category': 'consciousness',
+                        'description': f'Legacy consciousness visualization: {file_path.name}',
+                        'created': '2023-2024'
+                    })
+        
+        return jsonify({
+            "success": True,
+            "visualizations": visualizations
+        })
+        
+    except Exception as e:
+        logger.error(f"Error getting gallery visualizations: {e}")
+        return jsonify({"error": str(e)}), 500
+
 # API Routes for Code Execution
 
 @app.route('/api/execute', methods=['POST'])

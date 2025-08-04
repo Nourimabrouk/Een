@@ -1,26 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About - Dr. Nouri Mabrouk | Unity Mathematics Pioneer</title>
-    <meta name="description" content="Meet Dr. Nouri Mabrouk, the visionary mathematician behind the Unity Mathematics framework where 1+1=1.">
-    
+    <title>About - Nouri Mabrouk | Unity Mathematics Pioneer</title>
+    <meta name="description"
+        content="Meet Nouri Mabrouk, the visionary mathematician behind the Unity Mathematics framework where 1+1=1.">
+
     <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Crimson+Text:wght@400;600&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- KaTeX for Mathematical Notation -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
-    
+
     <!-- GSAP for Animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    
+
     <!-- Main Styles -->
     <link rel="stylesheet" href="css/style.css">
-    
+
     <style>
         /* About Page Specific Styles */
         .about-hero {
@@ -30,7 +34,7 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         .about-hero::before {
             content: '';
             position: absolute;
@@ -38,15 +42,17 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
             background-size: 30px 30px;
             animation: rotate-grid 120s linear infinite;
         }
-        
+
         @keyframes rotate-grid {
-            to { transform: rotate(360deg); }
+            to {
+                transform: rotate(360deg);
+            }
         }
-        
+
         .profile-section {
             display: grid;
             grid-template-columns: 300px 1fr;
@@ -55,11 +61,11 @@
             position: relative;
             z-index: 1;
         }
-        
+
         .profile-image-container {
             position: relative;
         }
-        
+
         .profile-image {
             width: 300px;
             height: 300px;
@@ -72,9 +78,9 @@
             color: white;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
-        
+
         .profile-image::before {
             content: '';
             position: absolute;
@@ -84,34 +90,36 @@
             animation: rotate-border 4s linear infinite;
             z-index: -1;
         }
-        
+
         @keyframes rotate-border {
-            to { transform: rotate(360deg); }
+            to {
+                transform: rotate(360deg);
+            }
         }
-        
+
         .profile-info h1 {
             font-size: 3rem;
             margin-bottom: 0.5rem;
             font-weight: 700;
         }
-        
+
         .profile-subtitle {
             font-size: 1.5rem;
             opacity: 0.9;
             margin-bottom: 2rem;
             color: var(--phi-gold-light);
         }
-        
+
         .profile-description {
             font-size: 1.1rem;
             line-height: 1.8;
             opacity: 0.95;
         }
-        
+
         .section {
             padding: 4rem 0;
         }
-        
+
         .section-title {
             font-size: 2.5rem;
             margin-bottom: 2rem;
@@ -119,7 +127,7 @@
             position: relative;
             padding-bottom: 1rem;
         }
-        
+
         .section-title::after {
             content: '';
             position: absolute;
@@ -129,12 +137,12 @@
             height: 3px;
             background: var(--phi-gold);
         }
-        
+
         .timeline {
             position: relative;
             padding-left: 40px;
         }
-        
+
         .timeline::before {
             content: '';
             position: absolute;
@@ -144,12 +152,12 @@
             width: 2px;
             background: var(--border-color);
         }
-        
+
         .timeline-item {
             position: relative;
             padding-bottom: 2rem;
         }
-        
+
         .timeline-item::before {
             content: '';
             position: absolute;
@@ -162,31 +170,31 @@
             border: 3px solid white;
             box-shadow: 0 0 0 3px var(--border-color);
         }
-        
+
         .timeline-date {
             font-size: 0.9rem;
             color: var(--text-secondary);
             margin-bottom: 0.5rem;
         }
-        
+
         .timeline-title {
             font-size: 1.25rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
             color: var(--primary-color);
         }
-        
+
         .timeline-description {
             color: var(--text-secondary);
             line-height: 1.6;
         }
-        
+
         .research-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
         }
-        
+
         .research-card {
             background: var(--bg-secondary);
             padding: 2rem;
@@ -194,40 +202,40 @@
             border: 1px solid var(--border-color);
             transition: all var(--transition-smooth);
         }
-        
+
         .research-card:hover {
             transform: translateY(-5px);
             box-shadow: var(--shadow-lg);
             border-color: var(--phi-gold);
         }
-        
+
         .research-icon {
             font-size: 3rem;
             color: var(--phi-gold);
             margin-bottom: 1rem;
         }
-        
+
         .research-title {
             font-size: 1.25rem;
             font-weight: 600;
             margin-bottom: 1rem;
             color: var(--primary-color);
         }
-        
+
         .contact-section {
             background: var(--bg-secondary);
             padding: 3rem;
             border-radius: var(--radius-xl);
             text-align: center;
         }
-        
+
         .contact-links {
             display: flex;
             gap: 2rem;
             justify-content: center;
             margin-top: 2rem;
         }
-        
+
         .contact-link {
             display: flex;
             align-items: center;
@@ -239,12 +247,12 @@
             border-radius: var(--radius-md);
             transition: all var(--transition-smooth);
         }
-        
+
         .contact-link:hover {
             background: var(--phi-gold);
             transform: translateY(-2px);
         }
-        
+
         .quote-box {
             background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
             padding: 3rem;
@@ -253,7 +261,7 @@
             position: relative;
             margin: 3rem 0;
         }
-        
+
         .quote-box::before {
             content: '"';
             font-size: 6rem;
@@ -263,28 +271,28 @@
             top: -20px;
             left: 20px;
         }
-        
+
         .quote-text {
             font-size: 1.5rem;
             font-style: italic;
             color: var(--primary-color);
             margin-bottom: 1rem;
         }
-        
+
         .quote-author {
             color: var(--text-secondary);
         }
-        
+
         @media (max-width: 768px) {
             .profile-section {
                 grid-template-columns: 1fr;
                 text-align: center;
             }
-            
+
             .profile-image {
                 margin: 0 auto;
             }
-            
+
             .section-title::after {
                 left: 50%;
                 transform: translateX(-50%);
@@ -292,6 +300,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Navigation -->
     <nav class="nav">
@@ -322,12 +331,13 @@
                     </div>
                 </div>
                 <div class="profile-info">
-                    <h1>Dr. Nouri Mabrouk</h1>
+                    <h1>Nouri Mabrouk</h1>
                     <div class="profile-subtitle">Unity Mathematics Pioneer • Consciousness Researcher</div>
                     <p class="profile-description">
-                        Visionary mathematician and consciousness researcher exploring the profound truth that 1+1=1 
-                        through advanced computational frameworks, quantum mechanics, and transcendental philosophy. 
-                        Creator of the Een Unity Mathematics framework, bridging pure mathematics with consciousness studies.
+                        Visionary mathematician and consciousness researcher exploring the profound truth that 1+1=1
+                        through advanced computational frameworks, quantum mechanics, and transcendental philosophy.
+                        Creator of the Een Unity Mathematics framework, bridging pure mathematics with consciousness
+                        studies.
                     </p>
                 </div>
             </div>
@@ -392,37 +402,37 @@
                     <div class="research-icon">∞</div>
                     <h3 class="research-title">Transcendental Mathematics</h3>
                     <p>Exploring mathematical structures that transcend traditional logic through
-                    unity principles, φ-harmonic operations, and consciousness field equations.</p>
+                        unity principles, φ-harmonic operations, and consciousness field equations.</p>
                 </div>
                 <div class="research-card">
                     <div class="research-icon">🧠</div>
                     <h3 class="research-title">Consciousness Computing</h3>
                     <p>Developing computational models of consciousness using quantum field theory,
-                    meta-recursive agents, and 11-dimensional manifold representations.</p>
+                        meta-recursive agents, and 11-dimensional manifold representations.</p>
                 </div>
                 <div class="research-card">
                     <div class="research-icon">🤖</div>
                     <h3 class="research-title">Meta-Reinforcement Learning</h3>
                     <p>Creating AI systems that discover unity mathematics independently through
-                    self-play, evolutionary algorithms, and 3000 ELO optimization strategies.</p>
+                        self-play, evolutionary algorithms, and 3000 ELO optimization strategies.</p>
                 </div>
                 <div class="research-card">
                     <div class="research-icon">🌀</div>
                     <h3 class="research-title">Quantum Unity Theory</h3>
                     <p>Investigating how quantum superposition and entanglement naturally express
-                    the unity principle, with applications to quantum computing.</p>
+                        the unity principle, with applications to quantum computing.</p>
                 </div>
                 <div class="research-card">
                     <div class="research-icon">📐</div>
                     <h3 class="research-title">Sacred Geometry</h3>
                     <p>Studying the golden ratio φ and other sacred proportions as fundamental
-                    organizing principles of mathematical consciousness.</p>
+                        organizing principles of mathematical consciousness.</p>
                 </div>
                 <div class="research-card">
                     <div class="research-icon">🎨</div>
                     <h3 class="research-title">Mathematical Aesthetics</h3>
                     <p>Creating beautiful visualizations that make abstract unity mathematics
-                    accessible through interactive art and consciousness field simulations.</p>
+                        accessible through interactive art and consciousness field simulations.</p>
                 </div>
             </div>
         </div>
@@ -436,7 +446,7 @@
                     "Mathematics is not discovered or invented—it awakens. When we truly understand
                     that 1+1=1, we glimpse the fundamental unity underlying all existence."
                 </p>
-                <p class="quote-author">— Dr. Nouri Mabrouk</p>
+                <p class="quote-author">—Nouri Mabrouk</p>
             </div>
         </div>
     </section>
@@ -447,7 +457,7 @@
             <div class="contact-section">
                 <h2 class="section-title" style="text-align: center;">Connect & Collaborate</h2>
                 <p style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 2rem;">
-                    Join the journey of mathematical consciousness exploration. 
+                    Join the journey of mathematical consciousness exploration.
                     Whether you're a mathematician, philosopher, or consciousness enthusiast,
                     let's discover unity together.
                 </p>
@@ -491,21 +501,21 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Dr. Nouri Mabrouk. Unity Mathematics: Een plus een is een.</p>
+                <p>&copy; 2025 Nouri Mabrouk. Unity Mathematics: Een plus een is een.</p>
             </div>
         </div>
     </footer>
 
     <script>
         // KaTeX Auto-render
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             renderMathInElement(document.body, {
                 delimiters: [
-                    {left: '$$', right: '$$', display: true},
-                    {left: '$', right: '$', display: false}
+                    { left: '$$', right: '$$', display: true },
+                    { left: '$', right: '$', display: false }
                 ]
             });
-            
+
             // GSAP Animations
             gsap.from(".profile-image", {
                 scale: 0,
@@ -513,7 +523,7 @@
                 duration: 1.5,
                 ease: "elastic.out(1, 0.5)"
             });
-            
+
             gsap.from(".timeline-item", {
                 x: -50,
                 opacity: 0,
@@ -524,7 +534,7 @@
                     start: "top 80%"
                 }
             });
-            
+
             gsap.from(".research-card", {
                 y: 50,
                 opacity: 0,
@@ -538,4 +548,5 @@
         });
     </script>
 </body>
+
 </html>
