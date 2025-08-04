@@ -19,7 +19,7 @@
 class EenChatWidget {
     constructor(config = {}) {
         this.config = {
-            apiEndpoint: config.apiEndpoint || '/chat',
+            apiEndpoint: config.apiEndpoint || '/api/agents/chat',
             maxMessages: config.maxMessages || 50,
             showTypingIndicator: config.showTypingIndicator !== false,
             enableMarkdown: config.enableMarkdown !== false,
@@ -27,36 +27,36 @@ class EenChatWidget {
             sessionTimeout: config.sessionTimeout || 24 * 60 * 60 * 1000, // 24 hours
             ...config
         };
-        
+
         this.sessionId = this.getOrCreateSessionId();
         this.messages = this.loadMessages();
         this.isStreaming = false;
         this.eventSource = null;
         this.currentStreamMessage = null;
-        
+
         this.init();
     }
-    
+
     init() {
         this.createChatWidget();
         this.attachEventListeners();
         this.renderMessages();
-        
+
         // Auto-expand if there are existing messages
         if (this.messages.length > 0) {
             this.toggleChat(true);
         }
-        
+
         console.log('Een Chat Widget initialized', {
             sessionId: this.sessionId,
             messageCount: this.messages.length
         });
     }
-    
+
     getOrCreateSessionId() {
         const stored = localStorage.getItem('een_chat_session_id');
         const sessionTime = localStorage.getItem('een_chat_session_time');
-        
+
         // Check if session is expired
         if (stored && sessionTime) {
             const age = Date.now() - parseInt(sessionTime);
@@ -64,15 +64,15 @@ class EenChatWidget {
                 return stored;
             }
         }
-        
+
         // Create new session
         const newSessionId = 'een_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
         localStorage.setItem('een_chat_session_id', newSessionId);
         localStorage.setItem('een_chat_session_time', Date.now().toString());
-        
+
         return newSessionId;
     }
-    
+
     loadMessages() {
         try {
             const stored = localStorage.getItem(`een_chat_messages_${this.sessionId}`);
@@ -82,7 +82,7 @@ class EenChatWidget {
             return [];
         }
     }
-    
+
     saveMessages() {
         try {
             // Keep only last N messages to prevent storage overflow
@@ -92,7 +92,7 @@ class EenChatWidget {
             console.warn('Failed to save chat messages:', e);
         }
     }
-    
+
     createChatWidget() {
         // Create widget container
         const widgetContainer = document.createElement('div');
@@ -178,13 +178,13 @@ class EenChatWidget {
                 </div>
             </div>
         `;
-        
+
         // Inject CSS
         this.injectStyles();
-        
+
         // Add to page
         document.body.appendChild(widgetContainer);
-        
+
         // Store references
         this.elements = {
             toggle: document.getElementById('chat-toggle'),
@@ -197,7 +197,7 @@ class EenChatWidget {
             badge: document.getElementById('chat-badge')
         };
     }
-    
+
     injectStyles() {
         const styles = `
         <style id="een-chat-styles">
@@ -636,22 +636,22 @@ class EenChatWidget {
         }
         </style>
         `;
-        
+
         document.head.insertAdjacentHTML('beforeend', styles);
     }
-    
+
     attachEventListeners() {
         // Toggle chat window
         this.elements.toggle.addEventListener('click', () => this.toggleChat());
         this.elements.close.addEventListener('click', () => this.toggleChat(false));
-        
+
         // Send message
         this.elements.send.addEventListener('click', () => this.sendMessage());
-        
+
         // Input handling
         this.elements.input.addEventListener('input', () => this.handleInputChange());
         this.elements.input.addEventListener('keydown', (e) => this.handleKeyDown(e));
-        
+
         // Example questions
         document.addEventListener('click', (e) => {
             if (e.target.classList.contains('example-question')) {
@@ -661,32 +661,32 @@ class EenChatWidget {
                 this.sendMessage();
             }
         });
-        
+
         // Auto-resize textarea
         this.elements.input.addEventListener('input', () => {
             this.elements.input.style.height = 'auto';
             this.elements.input.style.height = Math.min(this.elements.input.scrollHeight, 120) + 'px';
         });
     }
-    
+
     toggleChat(show = null) {
         const isVisible = this.elements.window.style.display !== 'none';
         const shouldShow = show !== null ? show : !isVisible;
-        
+
         this.elements.window.style.display = shouldShow ? 'block' : 'none';
-        
+
         if (shouldShow) {
             this.elements.input.focus();
             this.scrollToBottom();
             this.elements.badge.style.display = 'none';
         }
     }
-    
+
     handleInputChange() {
         const hasText = this.elements.input.value.trim().length > 0;
         this.elements.send.disabled = !hasText || this.isStreaming;
     }
-    
+
     handleKeyDown(e) {
         if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
@@ -695,33 +695,33 @@ class EenChatWidget {
             }
         }
     }
-    
+
     async sendMessage() {
         const message = this.elements.input.value.trim();
         if (!message || this.isStreaming) return;
-        
+
         // Add user message
         this.addMessage({
             role: 'user',
             content: message,
             timestamp: Date.now()
         });
-        
+
         // Clear input
         this.elements.input.value = '';
         this.elements.input.style.height = 'auto';
         this.handleInputChange();
-        
+
         // Show typing indicator
         this.showTypingIndicator();
-        
+
         // Start streaming response
         await this.streamResponse(message);
     }
-    
+
     async streamResponse(message) {
         this.isStreaming = true;
-        
+
         try {
             // Create assistant message placeholder
             this.currentStreamMessage = {
@@ -730,16 +730,16 @@ class EenChatWidget {
                 sources: [],
                 timestamp: Date.now()
             };
-            
+
             const messageElement = this.addMessage(this.currentStreamMessage, true);
             const bubbleElement = messageElement.querySelector('.message-bubble');
-            
+
             // Setup EventSource
             const requestBody = {
                 message: message,
                 session_id: this.sessionId
             };
-            
+
             const response = await fetch(this.config.apiEndpoint, {
                 method: 'POST',
                 headers: {
@@ -748,21 +748,21 @@ class EenChatWidget {
                 },
                 body: JSON.stringify(requestBody)
             });
-            
+
             if (!response.ok) {
                 throw new Error(`HTTP ${response.status}: ${response.statusText}`);
             }
-            
+
             const reader = response.body.getReader();
             const decoder = new TextDecoder();
-            
+
             while (true) {
                 const { done, value } = await reader.read();
                 if (done) break;
-                
+
                 const chunk = decoder.decode(value);
                 const lines = chunk.split('\n');
-                
+
                 for (const line of lines) {
                     if (line.startsWith('data: ')) {
                         try {
@@ -774,7 +774,7 @@ class EenChatWidget {
                     }
                 }
             }
-            
+
         } catch (error) {
             console.error('Stream error:', error);
             this.handleStreamError(error);
@@ -782,12 +782,12 @@ class EenChatWidget {
             this.hideTypingIndicator();
             this.isStreaming = false;
             this.handleInputChange();
-            
+
             // Save messages
             this.saveMessages();
         }
     }
-    
+
     handleStreamChunk(data, bubbleElement, messageElement) {
         switch (data.type) {
             case 'content':
@@ -795,25 +795,25 @@ class EenChatWidget {
                 bubbleElement.innerHTML = this.formatMessage(this.currentStreamMessage.content);
                 this.scrollToBottom();
                 break;
-                
+
             case 'sources':
                 this.currentStreamMessage.sources = data.data;
                 this.updateMessageSources(messageElement, data.data);
                 break;
-                
+
             case 'done':
                 // Final processing
                 this.currentStreamMessage.processingTime = data.data.processing_time;
                 this.currentStreamMessage.tokensUsed = data.data.tokens_used;
                 console.log('Stream completed:', data.data);
                 break;
-                
+
             case 'error':
                 this.handleStreamError(new Error(data.data.message));
                 break;
         }
     }
-    
+
     handleStreamError(error) {
         if (this.currentStreamMessage) {
             this.currentStreamMessage.content = `❌ Error: ${error.message}\n\nPlease try again or contact support if the issue persists.`;
@@ -823,61 +823,61 @@ class EenChatWidget {
             }
         }
     }
-    
+
     showTypingIndicator() {
         if (this.config.showTypingIndicator) {
             this.elements.typingIndicator.style.display = 'flex';
             this.scrollToBottom();
         }
     }
-    
+
     hideTypingIndicator() {
         this.elements.typingIndicator.style.display = 'none';
     }
-    
+
     addMessage(message, isStreaming = false) {
         // Remove welcome message if this is the first real message
         const welcomeMessage = this.elements.messages.querySelector('.welcome-message');
         if (welcomeMessage && this.messages.length === 0) {
             welcomeMessage.remove();
         }
-        
+
         if (!isStreaming) {
             this.messages.push(message);
         }
-        
+
         const messageElement = document.createElement('div');
         messageElement.className = `message ${message.role}`;
-        
+
         const bubble = document.createElement('div');
         bubble.className = 'message-bubble';
         bubble.innerHTML = this.formatMessage(message.content);
-        
+
         messageElement.appendChild(bubble);
-        
+
         // Add sources if available
         if (message.sources && message.sources.length > 0) {
             this.updateMessageSources(messageElement, message.sources);
         }
-        
+
         this.elements.messages.appendChild(messageElement);
         this.scrollToBottom();
-        
+
         return messageElement;
     }
-    
+
     updateMessageSources(messageElement, sources) {
         // Remove existing sources
         const existingSources = messageElement.querySelector('.message-sources');
         if (existingSources) {
             existingSources.remove();
         }
-        
+
         if (sources.length === 0) return;
-        
+
         const sourcesElement = document.createElement('details');
         sourcesElement.className = 'message-sources';
-        
+
         sourcesElement.innerHTML = `
             <summary>📚 Sources (${sources.length})</summary>
             <div class="source-list">
@@ -889,15 +889,15 @@ class EenChatWidget {
                 `).join('')}
             </div>
         `;
-        
+
         messageElement.appendChild(sourcesElement);
     }
-    
+
     formatMessage(content) {
         if (!content) return '';
-        
+
         let formatted = content;
-        
+
         // Basic markdown support
         if (this.config.enableMarkdown) {
             formatted = formatted
@@ -906,7 +906,7 @@ class EenChatWidget {
                 .replace(/`(.*?)`/g, '<code>$1</code>')
                 .replace(/\n/g, '<br>');
         }
-        
+
         // Mathematical equations (if KaTeX is available)
         if (this.config.enableMath && window.katex) {
             // Inline math: $...$
@@ -917,7 +917,7 @@ class EenChatWidget {
                     return match;
                 }
             });
-            
+
             // Display math: $$...$$
             formatted = formatted.replace(/\$\$(.*?)\$\$/g, (match, math) => {
                 try {
@@ -927,35 +927,35 @@ class EenChatWidget {
                 }
             });
         }
-        
+
         return formatted;
     }
-    
+
     renderMessages() {
         this.elements.messages.innerHTML = '';
-        
+
         if (this.messages.length === 0) {
             // Keep welcome message
             return;
         }
-        
+
         this.messages.forEach(message => {
             this.addMessage(message);
         });
     }
-    
+
     scrollToBottom() {
         requestAnimationFrame(() => {
             this.elements.messages.scrollTop = this.elements.messages.scrollHeight;
         });
     }
-    
+
     // Public API methods
     clearChat() {
         this.messages = [];
         this.saveMessages();
         this.renderMessages();
-        
+
         // Add welcome message back
         const welcomeMessage = document.createElement('div');
         welcomeMessage.className = 'welcome-message';
@@ -977,20 +977,20 @@ class EenChatWidget {
         `;
         this.elements.messages.appendChild(welcomeMessage);
     }
-    
+
     newSession() {
         // Create new session ID
         this.sessionId = this.getOrCreateSessionId();
-        
+
         // Update session display
         const sessionDisplay = document.querySelector('.session-id');
         if (sessionDisplay) {
             sessionDisplay.textContent = this.sessionId.substring(4, 12) + '...';
         }
-        
+
         // Clear messages
         this.clearChat();
-        
+
         console.log('New chat session created:', this.sessionId);
     }
 }
@@ -1000,11 +1000,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Check if we're on the Een website
     if (document.title.includes('Een') || document.querySelector('[href*="nourimabrouk.github.io/Een"]')) {
         window.eenChat = new EenChatWidget({
-            apiEndpoint: '/api/chat',  // Adjust for your API endpoint
+            apiEndpoint: '/api/agents/chat',  // Adjust for your API endpoint
             enableMath: true,
             enableMarkdown: true
         });
-        
+
         console.log('Een Chat Widget loaded successfully');
     }
 });

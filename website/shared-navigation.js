@@ -173,6 +173,10 @@ const unifiedNavigation = `
                 <span></span>
                 <span></span>
             </div>
+            <button class="nav-link ai-chat-trigger" id="aiChatTrigger" title="AI Assistant">
+                <i class="fas fa-robot"></i>
+                <span class="ai-label">AI Chat</span>
+            </button>
         </div>
     </nav>
 `;
@@ -245,6 +249,7 @@ const unifiedStyles = `
             --primary-color: #1a2332;
             --secondary-color: #2d3748;
             --accent-color: #4a5568;
+        --accent-bright: #667eea;
             --phi-gold: #FFD700;
             --phi-gold-light: #FFA500;
             --text-primary: #2d3748;
@@ -457,6 +462,66 @@ const unifiedStyles = `
             background: var(--primary-color);
             transition: var(--transition);
             border-radius: 2px;
+        }
+
+        /* AI Chat Trigger Button */
+        .ai-chat-trigger {
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-bright));
+            color: white;
+            border: none;
+            border-radius: var(--radius-lg);
+            padding: 0.75rem 1.25rem;
+            margin-left: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ai-chat-trigger::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .ai-chat-trigger:hover::before {
+            left: 100%;
+        }
+
+        .ai-chat-trigger:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            background: linear-gradient(135deg, var(--accent-bright), var(--accent-color));
+        }
+
+        .ai-chat-trigger .ai-label {
+            margin-left: 0.5rem;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .ai-chat-trigger {
+                margin-left: 0;
+                margin-top: 1rem;
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .ai-chat-trigger {
+                order: 3;
+                margin-top: 0.5rem;
+                margin-bottom: 0.5rem;
+            }
         }
 
         /* Page Layout */
@@ -732,6 +797,35 @@ const navigationScript = `
                     }
                 });
             });
+
+            // AI Chat Trigger Functionality
+            const aiChatTrigger = document.getElementById('aiChatTrigger');
+            if (aiChatTrigger) {
+                aiChatTrigger.addEventListener('click', function() {
+                    openAIChat();
+                });
+            }
+
+            function openAIChat() {
+                // Initialize AI chat if not already done
+                if (typeof eenChat === 'undefined') {
+                    // Load AI chat integration script
+                    const script = document.createElement('script');
+                    script.src = 'js/ai-chat-integration.js';
+                    script.onload = () => {
+                        // Initialize the chat system
+                        window.eenChat = new EenAIChat({
+                            apiEndpoint: '/api/agents/chat',
+                            enableMath: true,
+                            enableVisualization: true
+                        });
+                        eenChat.toggleChat();
+                    };
+                    document.head.appendChild(script);
+                } else {
+                    eenChat.toggleChat();
+                }
+            }
         });
     </script>
 `;
@@ -758,7 +852,7 @@ function injectUnifiedNavigation() {
 
     // Inject styles
     document.head.insertAdjacentHTML('beforeend', unifiedStyles);
-    
+
     // Inject scripts
     document.body.insertAdjacentHTML('beforeend', navigationScript);
 }

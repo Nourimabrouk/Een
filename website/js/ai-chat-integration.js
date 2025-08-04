@@ -16,12 +16,12 @@ class EenAIChat {
             enableVisualization: true,
             ...config
         };
-        
+
         this.chatHistory = [];
         this.isProcessing = false;
         this.initializeChat();
     }
-    
+
     getSystemPrompt() {
         return `You are an advanced AI assistant specializing in Unity Mathematics and the Een framework where 1+1=1. 
 You have deep knowledge of:
@@ -42,12 +42,12 @@ Your responses should:
 
 Remember: In Unity Mathematics, 1+1=1 is not a paradox but a profound truth about the nature of unity and consciousness.`;
     }
-    
+
     initializeChat() {
         this.createChatInterface();
         this.attachEventListeners();
         this.loadChatHistory();
-        
+
         // Welcome message
         this.addMessage('assistant', `Welcome to the Een Unity Mathematics AI Assistant! 🌟
         
@@ -63,7 +63,7 @@ Ask me anything about unity mathematics, or try:
 - "How does quantum superposition relate to unity?"
 - "Demonstrate the golden ratio in unity operations"`);
     }
-    
+
     createChatInterface() {
         const chatHTML = `
             <div id="een-ai-chat" class="ai-chat-container">
@@ -103,14 +103,14 @@ Ask me anything about unity mathematics, or try:
                 <span class="chat-badge">AI</span>
             </button>
         `;
-        
+
         // Add to page
         document.body.insertAdjacentHTML('beforeend', chatHTML);
-        
+
         // Add styles
         this.injectStyles();
     }
-    
+
     injectStyles() {
         const styles = `
             <style>
@@ -433,13 +433,13 @@ Ask me anything about unity mathematics, or try:
                 }
             </style>
         `;
-        
+
         document.head.insertAdjacentHTML('beforeend', styles);
     }
-    
+
     attachEventListeners() {
         const input = document.getElementById('chat-input');
-        
+
         // Enter key to send (Shift+Enter for new line)
         input.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' && !e.shiftKey) {
@@ -447,42 +447,42 @@ Ask me anything about unity mathematics, or try:
                 this.sendMessage();
             }
         });
-        
+
         // Auto-resize textarea
         input.addEventListener('input', () => {
             input.style.height = 'auto';
             input.style.height = Math.min(input.scrollHeight, 100) + 'px';
         });
     }
-    
+
     async sendMessage() {
         const input = document.getElementById('chat-input');
         const message = input.value.trim();
-        
+
         if (!message || this.isProcessing) return;
-        
+
         // Add user message
         this.addMessage('user', message);
         input.value = '';
         input.style.height = 'auto';
-        
+
         // Show processing
         this.isProcessing = true;
         this.showTypingIndicator();
-        
+
         try {
             // For demo purposes, use a mock response
             // In production, this would call the actual API
             const response = await this.getMockResponse(message);
-            
+
             this.hideTypingIndicator();
             this.addMessage('assistant', response);
-            
+
             // Check if visualization is needed
             if (this.shouldVisualize(message)) {
                 this.createVisualization(response);
             }
-            
+
         } catch (error) {
             this.hideTypingIndicator();
             this.addMessage('assistant', 'I apologize, but I encountered an error. Please try again.');
@@ -491,14 +491,14 @@ Ask me anything about unity mathematics, or try:
             this.isProcessing = false;
         }
     }
-    
+
     async getMockResponse(message) {
         // Simulate API delay
         await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 1000));
-        
+
         // Pattern matching for common questions
         const lowerMessage = message.toLowerCase();
-        
+
         if (lowerMessage.includes('1+1') || lowerMessage.includes('one plus one')) {
             return `Excellent question! In Unity Mathematics, **1+1=1** through several mathematical frameworks:
 
@@ -520,7 +520,7 @@ $$C(x,y,t) = φ \\cdot \\sin(x \\cdot φ) \\cdot \\cos(y \\cdot φ) \\cdot e^{-t
 
 Would you like me to demonstrate this interactively?`;
         }
-        
+
         if (lowerMessage.includes('consciousness') && lowerMessage.includes('field')) {
             return `The **Consciousness Field Equation** is fundamental to Unity Mathematics:
 
@@ -539,7 +539,7 @@ Key properties:
 
 This equation bridges quantum mechanics, consciousness studies, and pure mathematics!`;
         }
-        
+
         if (lowerMessage.includes('golden ratio') || lowerMessage.includes('phi')) {
             return `The **Golden Ratio φ** is the fundamental organizing principle in Unity Mathematics:
 
@@ -558,7 +558,7 @@ This recursive relationship embodies the unity principle where the whole contain
 
 The equation $φ^2 = φ + 1$ shows how multiplicity (addition) and unity (the number itself) are unified through this transcendental constant.`;
         }
-        
+
         if (lowerMessage.includes('quantum')) {
             return `**Quantum Unity Theory** demonstrates how quantum mechanics naturally expresses 1+1=1:
 
@@ -579,7 +579,7 @@ The measurement of one instantly determines the other, showing their fundamental
 **4. Wave Function Unity**
 All quantum operations preserve: $\\langle ψ|ψ \\rangle = 1$`;
         }
-        
+
         // Default response
         return `That's an intriguing question about Unity Mathematics! 
 
@@ -593,12 +593,12 @@ Each approach reveals the same truth: **1+1=1** is not a paradox but a recogniti
 
 Would you like me to elaborate on any specific aspect?`;
     }
-    
+
     shouldVisualize(message) {
         const vizKeywords = ['show', 'demonstrate', 'visualize', 'plot', 'graph', 'draw'];
         return vizKeywords.some(keyword => message.toLowerCase().includes(keyword));
     }
-    
+
     createVisualization(context) {
         const vizId = 'viz-' + Date.now();
         const vizHTML = `
@@ -607,75 +607,75 @@ Would you like me to elaborate on any specific aspect?`;
                 <p class="viz-caption">Interactive Unity Field Visualization</p>
             </div>
         `;
-        
+
         this.addMessage('assistant', vizHTML, true);
-        
+
         // Simple consciousness field visualization
         setTimeout(() => {
             const canvas = document.getElementById(vizId);
             if (!canvas) return;
-            
+
             const ctx = canvas.getContext('2d');
             canvas.width = canvas.offsetWidth;
             canvas.height = 200;
-            
+
             let time = 0;
             const phi = 1.618033988749895;
-            
+
             function draw() {
                 ctx.fillStyle = 'rgba(247, 250, 252, 0.1)';
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
-                
+
                 // Draw consciousness field
                 ctx.strokeStyle = '#0F7B8A';
                 ctx.lineWidth = 2;
                 ctx.beginPath();
-                
+
                 for (let x = 0; x < canvas.width; x += 2) {
                     const t = x / canvas.width * Math.PI * 4;
-                    const y = canvas.height/2 + 
-                             Math.sin(t * phi + time) * 30 * Math.cos(t/phi) * 
-                             Math.exp(-t/(2*Math.PI));
-                    
+                    const y = canvas.height / 2 +
+                        Math.sin(t * phi + time) * 30 * Math.cos(t / phi) *
+                        Math.exp(-t / (2 * Math.PI));
+
                     if (x === 0) ctx.moveTo(x, y);
                     else ctx.lineTo(x, y);
                 }
-                
+
                 ctx.stroke();
-                
+
                 // Unity indicator
                 ctx.fillStyle = '#0F7B8A';
                 ctx.font = '16px JetBrains Mono';
                 ctx.fillText('1+1=1', 10, 25);
-                
+
                 time += 0.05;
                 requestAnimationFrame(draw);
             }
-            
+
             draw();
         }, 100);
     }
-    
+
     addMessage(role, content, isHTML = false) {
         const messagesContainer = document.getElementById('chat-messages');
         const messageDiv = document.createElement('div');
         messageDiv.className = `message ${role}`;
-        
+
         const avatar = role === 'assistant' ? 'φ' : '👤';
-        
+
         messageDiv.innerHTML = `
             <div class="message-avatar">${avatar}</div>
             <div class="message-content">${isHTML ? content : this.formatMessage(content)}</div>
         `;
-        
+
         messagesContainer.appendChild(messageDiv);
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
-        
+
         // Add to history
         this.chatHistory.push({ role, content, timestamp: Date.now() });
         this.saveChatHistory();
     }
-    
+
     formatMessage(content) {
         // Convert markdown-style formatting
         let formatted = content
@@ -683,15 +683,15 @@ Would you like me to elaborate on any specific aspect?`;
             .replace(/\*(.*?)\*/g, '<em>$1</em>')
             .replace(/`(.*?)`/g, '<code>$1</code>')
             .replace(/\n/g, '<br>');
-        
+
         // Handle LaTeX math (simplified - in production use KaTeX)
         formatted = formatted
             .replace(/\$\$(.*?)\$\$/g, '<div class="math">$1</div>')
             .replace(/\$(.*?)\$/g, '<span class="math">$1</span>');
-        
+
         return formatted;
     }
-    
+
     showTypingIndicator() {
         const indicator = document.createElement('div');
         indicator.className = 'message assistant typing-message';
@@ -705,21 +705,21 @@ Would you like me to elaborate on any specific aspect?`;
                 </div>
             </div>
         `;
-        
+
         document.getElementById('chat-messages').appendChild(indicator);
-        document.getElementById('chat-messages').scrollTop = 
+        document.getElementById('chat-messages').scrollTop =
             document.getElementById('chat-messages').scrollHeight;
     }
-    
+
     hideTypingIndicator() {
         const indicator = document.querySelector('.typing-message');
         if (indicator) indicator.remove();
     }
-    
+
     toggleChat() {
         const chat = document.getElementById('een-ai-chat');
         const toggle = document.getElementById('chat-toggle');
-        
+
         if (chat.classList.contains('hidden')) {
             chat.classList.remove('hidden');
             toggle.style.display = 'none';
@@ -728,12 +728,12 @@ Would you like me to elaborate on any specific aspect?`;
             toggle.style.display = 'flex';
         }
     }
-    
+
     minimize() {
         const chat = document.getElementById('een-ai-chat');
         chat.classList.toggle('minimized');
     }
-    
+
     clearChat() {
         if (confirm('Clear all chat history?')) {
             document.getElementById('chat-messages').innerHTML = '';
@@ -742,13 +742,13 @@ Would you like me to elaborate on any specific aspect?`;
             this.addMessage('assistant', 'Chat cleared. How can I help you explore Unity Mathematics?');
         }
     }
-    
+
     toggleVisualization() {
         this.config.enableVisualization = !this.config.enableVisualization;
-        this.addMessage('assistant', 
+        this.addMessage('assistant',
             `Visualizations ${this.config.enableVisualization ? 'enabled' : 'disabled'}.`);
     }
-    
+
     saveChatHistory() {
         try {
             localStorage.setItem('een-chat-history', JSON.stringify(this.chatHistory));
@@ -756,7 +756,7 @@ Would you like me to elaborate on any specific aspect?`;
             console.warn('Could not save chat history:', e);
         }
     }
-    
+
     loadChatHistory() {
         try {
             const saved = localStorage.getItem('een-chat-history');
@@ -777,11 +777,11 @@ Would you like me to elaborate on any specific aspect?`;
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
     window.eenChat = new EenAIChat({
-        apiEndpoint: '/agents/chat', // Updated to match actual API endpoint
+        apiEndpoint: '/api/agents/chat', // Updated to match actual API endpoint
         enableMath: true,
         enableVisualization: true
     });
-    
+
     console.log('🤖 Een AI Chat initialized! Unity Mathematics assistant ready.');
 });
 

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Een Chatbot Test</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f8fafc;
+        }
+
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .test-button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            margin: 1rem 0;
+        }
+
+        .test-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .status {
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .status.success {
+            background: #d1fae5;
+            color: #065f46;
+            border: 1px solid #a7f3d0;
+        }
+
+        .status.error {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fca5a5;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="test-container">
+        <h1>🤖 Een Chatbot Test</h1>
+        <p>This page tests the AI chatbot functionality integration.</p>
+
+        <div id="status-container"></div>
+
+        <button class="test-button" onclick="testChatbot()">
+            <i class="fas fa-robot"></i> Test Chatbot
+        </button>
+
+        <button class="test-button" onclick="testNavigation()">
+            <i class="fas fa-compass"></i> Test Navigation
+        </button>
+
+        <div id="test-results"></div>
+    </div>
+
+    <!-- Navigation placeholder -->
+    <div id="navigation-placeholder"></div>
+
+    <!-- Load shared navigation -->
+    <script src="shared-navigation.js"></script>
+
+    <!-- Load AI chat integration -->
+    <script src="js/ai-chat-integration.js"></script>
+
+    <script>
+        function addStatus(message, type = 'success') {
+            const container = document.getElementById('status-container');
+            const status = document.createElement('div');
+            status.className = `status ${type}`;
+            status.innerHTML = `<strong>${type.toUpperCase()}:</strong> ${message}`;
+            container.appendChild(status);
+        }
+
+        function testChatbot() {
+            addStatus('Testing chatbot functionality...');
+
+            // Check if navigation is loaded
+            const nav = document.getElementById('enhancedUnityNav');
+            if (!nav) {
+                addStatus('Navigation not found!', 'error');
+                return;
+            }
+
+            // Check if AI chat trigger exists
+            const aiTrigger = document.getElementById('aiChatTrigger');
+            if (!aiTrigger) {
+                addStatus('AI Chat trigger button not found!', 'error');
+                return;
+            }
+
+            addStatus('AI Chat trigger button found!');
+
+            // Check if EenAIChat class is available
+            if (typeof EenAIChat === 'undefined') {
+                addStatus('EenAIChat class not loaded!', 'error');
+                return;
+            }
+
+            addStatus('EenAIChat class loaded successfully!');
+
+            // Test creating chat instance
+            try {
+                const testChat = new EenAIChat({
+                    apiEndpoint: '/api/agents/chat',
+                    enableMath: true,
+                    enableVisualization: true
+                });
+                addStatus('Chat instance created successfully!');
+            } catch (error) {
+                addStatus(`Error creating chat instance: ${error.message}`, 'error');
+            }
+        }
+
+        function testNavigation() {
+            addStatus('Testing navigation integration...');
+
+            // Check if navigation is loaded
+            const nav = document.getElementById('enhancedUnityNav');
+            if (!nav) {
+                addStatus('Navigation not found!', 'error');
+                return;
+            }
+
+            addStatus('Navigation loaded successfully!');
+
+            // Check for AI chat trigger
+            const aiTrigger = document.getElementById('aiChatTrigger');
+            if (aiTrigger) {
+                addStatus('AI Chat trigger button found in navigation!');
+
+                // Test click functionality
+                aiTrigger.click();
+                addStatus('AI Chat trigger clicked!');
+            } else {
+                addStatus('AI Chat trigger button not found in navigation!', 'error');
+            }
+        }
+
+        // Auto-test on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                addStatus('Page loaded, running auto-tests...');
+                testNavigation();
+            }, 1000);
+        });
+    </script>
+</body>
+
+</html>
