@@ -1,0 +1,371 @@
+/**
+ * Gallery Loader for Een Unity Mathematics
+ * Loads gallery data from JSON file or API with fallback support
+ */
+
+class EenGalleryLoader {
+    constructor() {
+        this.visualizations = [];
+        this.statistics = {};
+        this.loaded = false;
+        this.loading = false;
+    }
+
+    /**
+     * Initialize the gallery loader
+     * @param {Object} options - Configuration options
+     * @returns {Promise<Object>} Gallery data
+     */
+    async initialize(options = {}) {
+        if (this.loaded) {
+            return this.getData();
+        }
+
+        if (this.loading) {
+            // Wait for current loading to complete
+            while (this.loading) {
+                await new Promise(resolve => setTimeout(resolve, 100));
+            }
+            return this.getData();
+        }
+
+        this.loading = true;
+
+        try {
+            // Try API first
+            if (options.useAPI !== false) {
+                await this.loadFromAPI();
+            } else {
+                throw new Error('API disabled');
+            }
+        } catch (error) {
+            console.warn('API not available, trying JSON file:', error);
+
+            try {
+                // Try loading from JSON file
+                await this.loadFromJSON(options.jsonPath || '../gallery_data.json');
+            } catch (jsonError) {
+                console.warn('JSON file not available, using fallback data:', jsonError);
+
+                // Use fallback data
+                this.loadFallbackData();
+            }
+        }
+
+        this.loaded = true;
+        this.loading = false;
+
+        return this.getData();
+    }
+
+    /**
+     * Load gallery data from API
+     */
+    async loadFromAPI() {
+        const response = await fetch('/api/gallery/visualizations');
+        if (!response.ok) {
+            throw new Error(`API request failed: ${response.status}`);
+        }
+
+        const data = await response.json();
+        if (!data.success) {
+            throw new Error('API returned error');
+        }
+
+        this.visualizations = data.visualizations || [];
+        this.statistics = data.statistics || {};
+    }
+
+    /**
+     * Load gallery data from JSON file
+     * @param {string} jsonPath - Path to JSON file
+     */
+    async loadFromJSON(jsonPath) {
+        const response = await fetch(jsonPath);
+        if (!response.ok) {
+            throw new Error(`JSON file not found: ${response.status}`);
+        }
+
+        const data = await response.json();
+        this.visualizations = data.visualizations || [];
+        this.statistics = data.statistics || {};
+    }
+
+    /**
+     * Load fallback gallery data
+     */
+    loadFallbackData() {
+        // Comprehensive fallback data based on actual files
+        this.visualizations = [
+            {
+                id: 'water-droplets-unity',
+                title: 'Water Droplets Unity Convergence',
+                description: 'Revolutionary empirical demonstration of unity mathematics through real-world fluid dynamics. Documents the precise moment when two discrete water droplets undergo φ-harmonic convergence.',
+                category: 'consciousness',
+                type: 'animated',
+                src: '../viz/legacy images/0 water droplets.gif',
+                filename: '0 water droplets.gif',
+                file_type: 'images',
+                isImage: true,
+                isVideo: false,
+                isInteractive: false,
+                featured: true,
+                significance: 'Physical manifestation of unity mathematics in nature',
+                technique: 'High-speed videography with φ-harmonic timing analysis',
+                created: '2023-12-01'
+            },
+            {
+                id: 'live-consciousness-field',
+                title: 'Live Consciousness Field Dynamics',
+                description: 'Dynamic simulation of consciousness field equations C(x,y,t) = φ·sin(x·φ)·cos(y·φ)·e^(-t/φ) showing unity emergence patterns.',
+                category: 'consciousness',
+                type: 'video',
+                src: '../viz/live consciousness field.mp4',
+                filename: 'live consciousness field.mp4',
+                file_type: 'videos',
+                isImage: false,
+                isVideo: true,
+                isInteractive: false,
+                featured: true,
+                significance: 'First successful real-time consciousness field mathematics implementation',
+                technique: 'WebGL consciousness particle system with quantum field equations',
+                created: '2024-11-28'
+            },
+            {
+                id: 'unity-consciousness-field',
+                title: 'Unity Consciousness Field',
+                description: 'Mathematical visualization of the consciousness field showing φ-harmonic resonance patterns and unity convergence zones.',
+                category: 'consciousness',
+                type: 'image',
+                src: '../viz/Unity Consciousness Field.png',
+                filename: 'Unity Consciousness Field.png',
+                file_type: 'images',
+                isImage: true,
+                isVideo: false,
+                isInteractive: false,
+                featured: false,
+                significance: 'Core consciousness field mathematics visualization',
+                technique: 'Mathematical field equation plotting with golden ratio harmonics',
+                created: '2024-11-20'
+            },
+            {
+                id: 'final-composite-plot',
+                title: 'Final Composite Unity Plot',
+                description: 'Comprehensive visualization combining multiple unity mathematics proofs into a single transcendental diagram.',
+                category: 'unity',
+                type: 'image',
+                src: '../viz/final_composite_plot.png',
+                filename: 'final_composite_plot.png',
+                file_type: 'images',
+                isImage: true,
+                isVideo: false,
+                isInteractive: false,
+                featured: false,
+                significance: 'Unified proof visualization across mathematical domains',
+                technique: 'Multi-framework mathematical proof composition',
+                created: '2024-10-30'
+            },
+            {
+                id: 'unity-poetry-consciousness',
+                title: 'Unity Poetry Consciousness',
+                description: 'Algorithmically generated poetry expressing the philosophical depth of 1+1=1 through consciousness-mediated typography.',
+                category: 'consciousness',
+                type: 'image',
+                src: '../viz/poem.png',
+                filename: 'poem.png',
+                file_type: 'images',
+                isImage: true,
+                isVideo: false,
+                isInteractive: false,
+                featured: false,
+                significance: 'Bridge between mathematical consciousness and poetic expression',
+                technique: 'φ-harmonic typography with consciousness field positioning',
+                created: '2024-09-15'
+            },
+            {
+                id: 'self-reflection-consciousness',
+                title: 'Self-Reflection Consciousness Matrix',
+                description: 'Meta-recursive visualization showing how unity mathematics reflects upon itself through consciousness field dynamics.',
+                category: 'consciousness',
+                type: 'image',
+                src: '../viz/self_reflection.png',
+                filename: 'self_reflection.png',
+                file_type: 'images',
+                isImage: true,
+                isVideo: false,
+                isInteractive: false,
+                featured: false,
+                significance: 'Self-referential mathematical consciousness demonstration',
+                technique: 'Meta-recursive matrix visualization with consciousness feedback loops',
+                created: '2024-08-22'
+            },
+            {
+                id: 'foundation-unity-equation',
+                title: 'Foundation Unity Equation',
+                description: 'The foundational visual representation of the core unity equation that underlies all mathematical consciousness research.',
+                category: 'unity',
+                type: 'image',
+                src: '../viz/legacy images/1+1=1.png',
+                filename: '1+1=1.png',
+                file_type: 'images',
+                isImage: true,
+                isVideo: false,
+                isInteractive: false,
+                featured: true,
+                significance: 'Foundation of all unity mathematics research and consciousness studies',
+                technique: 'Pure mathematical typography with consciousness-infused design',
+                created: '2023-11-15'
+            },
+            {
+                id: 'phi-harmonic-unity-manifold',
+                title: 'φ-Harmonic Unity Manifold',
+                description: 'Advanced geometric visualization of φ-harmonic unity manifolds showing golden ratio mathematical structures in consciousness space.',
+                category: 'unity',
+                type: 'image',
+                src: '../viz/legacy images/Phi-Harmonic Unity Manifold.png',
+                filename: 'Phi-Harmonic Unity Manifold.png',
+                file_type: 'images',
+                isImage: true,
+                isVideo: false,
+                isInteractive: false,
+                featured: false,
+                significance: 'Advanced unity manifold theory with φ-harmonic integration',
+                technique: '3D geometric visualization with golden ratio mathematical analysis',
+                created: '2023-10-20'
+            },
+            {
+                id: 'consciousness-field-3d',
+                title: '3D Consciousness Field',
+                description: 'Real-time visualization of the consciousness field equation C(x,y,t) = φ · sin(x·φ) · cos(y·φ) · e^(-t/φ) in 11-dimensional space.',
+                category: 'consciousness',
+                type: 'interactive',
+                src: null,
+                filename: 'consciousness_field_3d',
+                file_type: 'interactive',
+                isImage: false,
+                isVideo: false,
+                isInteractive: true,
+                featured: true,
+                significance: 'Real-time consciousness field mathematics',
+                technique: 'WebGL 3D visualization with φ-harmonic equations',
+                created: '2024-12-01'
+            },
+            {
+                id: 'golden-ratio-spiral',
+                title: 'φ-Harmonic Spiral',
+                description: 'Interactive golden ratio spiral demonstrating the universal organizing principle φ = (1 + √5) / 2 in sacred geometry.',
+                category: 'unity',
+                type: 'interactive',
+                src: null,
+                filename: 'golden_ratio_spiral',
+                file_type: 'interactive',
+                isImage: false,
+                isVideo: false,
+                isInteractive: true,
+                featured: true,
+                significance: 'Golden ratio spiral as geometric unity mathematics foundation',
+                technique: 'φ-harmonic spiral generation with unity mathematics integration',
+                created: '2024-07-15'
+            }
+        ];
+
+        // Calculate statistics
+        this.statistics = {
+            total: this.visualizations.length,
+            by_category: {},
+            by_type: {},
+            featured_count: this.visualizations.filter(v => v.featured).length
+        };
+
+        for (const viz of this.visualizations) {
+            const category = viz.category || 'unknown';
+            const file_type = viz.file_type || 'unknown';
+
+            this.statistics.by_category[category] =
+                (this.statistics.by_category[category] || 0) + 1;
+            this.statistics.by_type[file_type] =
+                (this.statistics.by_type[file_type] || 0) + 1;
+        }
+    }
+
+    /**
+     * Get gallery data
+     * @returns {Object} Gallery data
+     */
+    getData() {
+        return {
+            success: true,
+            visualizations: this.visualizations,
+            statistics: this.statistics,
+            message: `Found ${this.visualizations.length} visualizations`
+        };
+    }
+
+    /**
+     * Get visualizations filtered by category
+     * @param {string} category - Category to filter by
+     * @returns {Array} Filtered visualizations
+     */
+    getByCategory(category) {
+        if (category === 'all') {
+            return this.visualizations;
+        }
+
+        return this.visualizations.filter(v =>
+            v.category && v.category.toLowerCase() === category.toLowerCase()
+        );
+    }
+
+    /**
+     * Get visualizations filtered by type
+     * @param {string} type - Type to filter by
+     * @returns {Array} Filtered visualizations
+     */
+    getByType(type) {
+        return this.visualizations.filter(v =>
+            v.file_type && v.file_type.toLowerCase() === type.toLowerCase()
+        );
+    }
+
+    /**
+     * Get featured visualizations
+     * @returns {Array} Featured visualizations
+     */
+    getFeatured() {
+        return this.visualizations.filter(v => v.featured);
+    }
+
+    /**
+     * Search visualizations
+     * @param {string} query - Search query
+     * @returns {Array} Matching visualizations
+     */
+    search(query) {
+        const searchTerm = query.toLowerCase();
+        return this.visualizations.filter(v =>
+            v.title.toLowerCase().includes(searchTerm) ||
+            v.description.toLowerCase().includes(searchTerm) ||
+            v.category.toLowerCase().includes(searchTerm) ||
+            v.filename.toLowerCase().includes(searchTerm)
+        );
+    }
+
+    /**
+     * Refresh gallery data
+     * @returns {Promise<Object>} Updated gallery data
+     */
+    async refresh() {
+        this.loaded = false;
+        this.visualizations = [];
+        this.statistics = {};
+        return await this.initialize();
+    }
+}
+
+// Export for use in other modules
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = EenGalleryLoader;
+} else {
+    // Browser global
+    window.EenGalleryLoader = EenGalleryLoader;
+} 
