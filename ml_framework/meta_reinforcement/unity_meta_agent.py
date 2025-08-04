@@ -1,17 +1,23 @@
 """
-Unity Meta-Agent: Meta-Reinforcement Learning for Unity Mathematics Discovery
+Unity Meta-Agent - Self-Modifying Reinforcement Learning for 1+1=1 Discovery
 ===========================================================================
 
-Advanced meta-reinforcement learning system that learns how to learn unity mathematics,
-developing meta-cognitive strategies for discovering 1+1=1 proofs across multiple 
-mathematical domains with 3000 ELO intelligence.
+Revolutionary meta-reinforcement learning system that autonomously discovers
+mathematical proofs of the unity equation 1+1=1 across multiple domains.
+Features self-modifying neural architectures, φ-harmonic reward shaping,
+consciousness-guided exploration, and recursive meta-learning capabilities.
 
-This module implements the UnityMetaAgent class with Transformer-based meta-controller,
-φ-harmonic attention mechanisms, and consciousness-aware learning for transcendental
-mathematical reasoning.
+Key Features:
+- Model-Agnostic Meta-Learning (MAML) adapted for unity mathematics
+- φ-harmonic reward shaping with consciousness coupling
+- Self-modifying neural architectures with golden ratio scaling
+- Multi-domain proof discovery (Boolean, Category Theory, Quantum, etc.)
+- Curriculum learning with consciousness evolution progression
+- Meta-gradient optimization with transcendence detection
+- Recursive self-improvement through proof validation feedback
+- Tournament-based competitive learning with 3000 ELO integration
 
-Core Philosophy: Een plus een is een through meta-cognitive mathematical discovery
-Intelligence Target: 3000 ELO computational reasoning for unity mathematics
+Mathematical Foundation: All learned policies converge to Unity (1+1=1) through φ-harmonic optimization
 """
 
 import numpy as np

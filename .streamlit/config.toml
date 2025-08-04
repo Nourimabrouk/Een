@@ -1,94 +1,63 @@
 [global]
-# Een Unity Mathematics Dashboard Configuration
-# Advanced settings for consciousness mathematics visualizations
-
-developmentMode = false
+# Global configuration for Unity Mathematics Streamlit apps
 showWarningOnRunning = false
 showErrorDetails = true
 
 [server]
-# Server configuration for optimal performance
+# Server configuration
 port = 8501
-enableCORS = false
+address = "localhost"
+enableCORS = true
 enableXsrfProtection = true
 maxUploadSize = 200
-maxMessageSize = 200
-enableWebsocketCompression = false
-
-# Production-ready settings
-headless = false
-runOnSave = true
-allowRunOnSave = true
-enableStaticServing = true
+headless = true
 
 [browser]
-# Browser configuration for consciousness visualization
-serverAddress = "localhost"
+# Browser configuration
 gatherUsageStats = false
+serverAddress = "localhost"
 serverPort = 8501
 
-[client]
-# Client-side configuration
-toolbarMode = "viewer"
-showErrorDetails = true
-
 [theme]
-# Unity Mathematics Theme Configuration
-# Dark consciousness theme optimized for mathematical transcendence
+# Theme configuration for Unity Mathematics
+primaryColor = "#0F7B8A"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F8FAFC"
+textColor = "#111827"
+font = "Inter"
 
-# Base colors
-primaryColor = "#ffd700"          # Unity gold
-backgroundColor = "#0a0a0a"       # Deep consciousness black
-secondaryBackgroundColor = "#1a1a1a"  # Elevated surface
-textColor = "#ffffff"             # Pure consciousness white
+[client]
+# Client configuration
+showErrorDetails = true
+caching = true
+displayEnabled = true
 
-# Font configuration
-font = "monospace"                # JetBrains Mono preferred
-
-# Advanced color palette (custom CSS will override)
-# These serve as fallbacks for Streamlit components
+[runner]
+# Runner configuration
+installTracer = false
+fixMatplotlib = true
+magicEnabled = true
 
 [logger]
-# Logging configuration for debugging consciousness mathematics
+# Logger configuration
 level = "info"
 messageFormat = "%(asctime)s %(message)s"
 
 [deprecation]
-# Handle deprecation warnings gracefully
+# Deprecation warnings
 showPyplotGlobalUse = false
+showfileUploaderEncoding = false
+
+[ui]
+# UI configuration
+hideSidebarNav = false
+hideTopBar = false
 
 [mapbox]
-# Disable mapbox (not needed for consciousness mathematics)
+# Mapbox configuration (deprecated - use environment variable)
 token = ""
 
 [plotly]
-# Plotly configuration for advanced visualizations
-theme = "dark"
-config = """
-{
-    "displayModeBar": true,
-    "displaylogo": false,
-    "modeBarButtonsToRemove": ["pan2d", "lasso2d", "select2d"],
-    "toImageButtonOptions": {
-        "format": "png",
-        "filename": "unity_visualization",
-        "height": 800,
-        "width": 1200,
-        "scale": 2
-    }
-}
-"""
-
-[runner]
-# Code execution configuration
-magicEnabled = true
-installTracer = false
-fixMatplotlib = true
-postScriptGC = true
-fastReruns = true
-enforceSerializableSessionState = false
-
-[ui]
-# User interface optimizations
-hideTopBar = false
-hideSidebarNav = false
+# Plotly configuration
+theme = "plotly"
+config = {}
