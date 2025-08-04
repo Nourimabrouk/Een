@@ -40,6 +40,10 @@ sys.path.extend([
     str(current_dir / "viz")
 ])
 
+# Set up logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
 # Import real Unity Mathematics modules
 try:
     from core.unity_mathematics import UnityMathematics
@@ -49,10 +53,6 @@ try:
 except ImportError as e:
     UNITY_MODULES_AVAILABLE = False
     logger.warning(f"⚠️ Unity modules not available: {e}")
-
-# Set up logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
 
 # Universal constants
 PHI = 1.618033988749895  # Golden ratio - divine proportion
