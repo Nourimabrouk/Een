@@ -777,7 +777,7 @@ Would you like me to elaborate on any specific aspect?`;
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
     window.eenChat = new EenAIChat({
-        apiEndpoint: '/api/chat', // Update with your actual endpoint
+        apiEndpoint: '/agents/chat', // Updated to match actual API endpoint
         enableMath: true,
         enableVisualization: true
     });

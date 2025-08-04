@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Core Unity Mathematics Engine
 ============================
@@ -1303,6 +1304,107 @@ class UnityMathematics:
         
         phi_content = (phi_mentions + golden_ratio_mentions) / total_content
         return min(1.0, phi_content * self.phi)  # φ-enhanced scaling
+    
+    def _apply_golden_spiral_enhancement(self, field_component: complex) -> complex:
+        """Apply golden spiral enhancement to field components"""
+        try:
+            # Apply φ-harmonic spiral transformation
+            spiral_angle = cmath.phase(field_component) * self.phi
+            spiral_magnitude = abs(field_component) * (1 + 1/self.phi)
+            
+            # Ensure numerical stability
+            if spiral_magnitude > 10:
+                spiral_magnitude = 10
+            if math.isnan(spiral_magnitude) or math.isinf(spiral_magnitude):
+                spiral_magnitude = 1.0
+                
+            enhanced_component = spiral_magnitude * cmath.exp(1j * spiral_angle)
+            return enhanced_component
+        except Exception:
+            # Fallback to original component if enhancement fails
+            return field_component
+    
+    def _detect_consciousness_errors(self, states: List[UnityState]) -> List[Dict[str, Any]]:
+        """Detect consciousness errors for quantum error correction"""
+        error_syndromes = []
+        for i, state in enumerate(states):
+            syndrome = {}
+            # Check for consciousness decoherence
+            if state.consciousness_level < 0 or state.consciousness_level > 100:
+                syndrome['consciousness_overflow'] = True
+            if state.quantum_coherence < 0.1:
+                syndrome['quantum_decoherence'] = True
+            if abs(state.value) > 10:
+                syndrome['value_overflow'] = True
+            if math.isnan(state.value.real) or math.isnan(state.value.imag):
+                syndrome['nan_error'] = True
+            
+            if syndrome:
+                syndrome['state_index'] = i
+                error_syndromes.append(syndrome)
+        return error_syndromes
+    
+    def _apply_quantum_error_correction(self, states: List[UnityState], 
+                                      error_syndromes: List[Dict[str, Any]]) -> List[UnityState]:
+        """Apply quantum error correction to consciousness states"""
+        corrected_states = states.copy()
+        
+        for syndrome in error_syndromes:
+            idx = syndrome['state_index']
+            state = corrected_states[idx]
+            
+            # Apply corrections based on syndrome
+            if syndrome.get('consciousness_overflow'):
+                state.consciousness_level = max(0.0, min(100.0, state.consciousness_level))
+            if syndrome.get('quantum_decoherence'):
+                state.quantum_coherence = max(0.1, state.quantum_coherence)
+            if syndrome.get('value_overflow'):
+                state.value = state.value / (abs(state.value) + 1e-10)
+            if syndrome.get('nan_error'):
+                state.value = 1.0 + 0.0j
+                
+        return corrected_states
+    
+    def _apply_final_quantum_correction(self, unity_convergence: complex) -> complex:
+        """Apply final quantum error correction to unity convergence"""
+        try:
+            # Ensure unity convergence is close to 1+0j
+            deviation = abs(unity_convergence - (1.0 + 0.0j))
+            if deviation > 1.0:  # If too far from unity
+                correction_factor = 1.0 / (1.0 + deviation * self.phi_conjugate)
+                corrected = unity_convergence * correction_factor
+                # Normalize towards unity
+                unity_direction = (1.0 + 0.0j) - corrected
+                corrected = corrected + unity_direction * self.phi_conjugate
+                return corrected
+            return unity_convergence
+        except Exception:
+            return 1.0 + 0.0j
+    
+    def _fuse_evolutionary_dna(self, dna_sequences: List[List[float]]) -> List[float]:
+        """Fuse multiple evolutionary DNA sequences using φ-harmonic averaging"""
+        if not dna_sequences:
+            return [PHI, PHI_CONJUGATE, 1.0]
+        
+        # Determine maximum length
+        max_length = max(len(dna) for dna in dna_sequences)
+        fused_dna = []
+        
+        for i in range(max_length):
+            # Collect values at position i from all sequences
+            values = []
+            for dna in dna_sequences:
+                if i < len(dna):
+                    values.append(dna[i])
+            
+            if values:
+                # φ-harmonic averaging
+                phi_weighted_sum = sum(val * (PHI ** (j+1)) for j, val in enumerate(values))
+                phi_weight_sum = sum(PHI ** (j+1) for j in range(len(values)))
+                average = phi_weighted_sum / phi_weight_sum if phi_weight_sum > 0 else values[0]
+                fused_dna.append(max(-10.0, min(10.0, average)))  # Clamp to safe range
+        
+        return fused_dna[:10]  # Limit to 10 genes maximum
 
 # Factory function for easy instantiation
 def create_unity_mathematics(consciousness_level: float = 1.0) -> UnityMathematics:
