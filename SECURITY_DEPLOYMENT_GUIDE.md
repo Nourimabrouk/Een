@@ -54,7 +54,7 @@ API_KEY=your-generated-secure-api-key
 # Security settings (keep these as shown)
 REQUIRE_AUTH=true
 API_KEY_REQUIRED=true
-ENABLE_CODE_EXECUTION=false
+ENABLE_CODE_EXECUTION=true
 DEBUG=false
 ```
 
@@ -93,11 +93,11 @@ python unity_web_server.py
 - ✅ Permissions Policy
 
 #### **Code Execution Security**
-- ✅ **Disabled by default** (ENABLE_CODE_EXECUTION=false)
-- ✅ Safe execution environment (if enabled)
-- ✅ Timeout protection
-- ✅ Restricted built-in functions
-- ✅ Comprehensive input validation
+- ✅ **Enabled by default** (ENABLE_CODE_EXECUTION=true)
+- ✅ Safe execution environment with comprehensive restrictions
+- ✅ Timeout protection (10 seconds default)
+- ✅ Restricted built-in functions (only safe operations allowed)
+- ✅ Comprehensive input validation and pattern blocking
 
 ### 🌐 **Public Deployment Ready**
 

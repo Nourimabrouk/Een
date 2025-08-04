@@ -588,8 +588,9 @@ def execute_code():
     SECURITY: This endpoint is heavily restricted and should only be used
     for educational purposes with trusted code.
     """
-    # SECURITY: Disable code execution in production
-    if os.getenv("ENABLE_CODE_EXECUTION", "false").lower() != "true":
+    # SECURITY: Code execution enabled by default with responsible security
+    # Can be disabled via ENABLE_CODE_EXECUTION=false environment variable
+    if os.getenv("ENABLE_CODE_EXECUTION", "true").lower() == "false":
         return (
             jsonify(
                 {
