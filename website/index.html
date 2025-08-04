@@ -2445,9 +2445,24 @@
             }
 
             openAIChat() {
-                // Implementation for AI chat modal
-                console.log('Opening AI Chat...');
-                // You can implement the AI chat modal here
+                // Initialize AI chat if not already done
+                if (typeof eenChat === 'undefined') {
+                    // Load AI chat integration script
+                    const script = document.createElement('script');
+                    script.src = 'js/ai-chat-integration.js';
+                    script.onload = () => {
+                        // Initialize the chat system
+                        window.eenChat = new EenAIChat({
+                            apiEndpoint: '/api/chat',
+                            enableMath: true,
+                            enableVisualization: true
+                        });
+                        eenChat.toggleChat();
+                    };
+                    document.head.appendChild(script);
+                } else {
+                    eenChat.toggleChat();
+                }
             }
 
             setupKeyboardNavigation() {
