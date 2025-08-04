@@ -5,97 +5,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Een - Mathematical Unity Theory | Where 1+1=1 Through Consciousness Mathematics</title>
-    <meta name="description"
-        content="Advanced mathematical framework where 1+1=1 through φ-harmonic operations, consciousness field dynamics, and quantum unity principles. Interactive proofs, AI-enhanced discovery, and transcendental mathematics research.">
-    <meta name="keywords"
-        content="unity mathematics, 1+1=1, consciousness field, quantum unity, φ-harmonic, mathematical proofs, interactive theorem proving, AI mathematics, transcendental framework, Een, golden ratio, academic research">
+    <meta name="description" content="Advanced mathematical framework demonstrating 1+1=1 through consciousness field equations, φ-harmonic operations, and quantum mechanical interpretations.">
 
-    <!-- Security Headers -->
-    <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://polyfill.io; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://api.openai.com https://api.anthropic.com; frame-src 'none'; object-src 'none'; base-uri 'self';">
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="X-Frame-Options" content="DENY">
-    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
-    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
-    <meta name="robots" content="index, follow, max-snippet:200, max-image-preview:large">
-
-    <!-- Favicon -->
-    <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%230F7B8A'/><text x='50' y='65' text-anchor='middle' font-size='40' fill='white' font-family='serif'>φ</text></svg>">
-
-    <!-- Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Crimson+Text:wght@400;600&family=JetBrains+Mono:wght@400;500;600&display=swap"
-        rel="stylesheet">
-
-    <!-- Icons -->
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Crimson+Text:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Math Rendering -->
+    <!-- KaTeX for Mathematical Notation -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
 
-    <!-- Animation Libraries -->
+    <!-- GSAP for Animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Three.js for Background -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
     <style>
+        /* CSS Variables */
         :root {
-            /* Unity Mathematics Design System - Enhanced Academic */
-            --phi: 1.618033988749895;
-            --primary: #1B365D;
-            --secondary: #0F7B8A;
-            --accent: #D97706;
-            --accent-bright: #F59E0B;
-            --text-primary: #111827;
-            --text-secondary: #6B7280;
-            --text-muted: #9CA3AF;
-            --bg-primary: #FFFFFF;
-            --bg-secondary: #F8FAFC;
-            --bg-tertiary: #F1F5F9;
-            --border-light: #E5E7EB;
-            --border-medium: #D1D5DB;
-
-            /* Enhanced Gradients for Transcendental Feel */
-            --bg-gradient: linear-gradient(135deg, rgba(27, 54, 93, 0.95) 0%, rgba(15, 123, 138, 0.9) 100%);
-            --phi-gradient: linear-gradient(137.5deg, #0F7B8A, #4ECDC4, #A7F3D0);
-            --unity-gradient: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #f5576c);
-            --transcendent-gradient: linear-gradient(60deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #667eea 100%);
-            --consciousness-gradient: radial-gradient(circle at center, rgba(15, 123, 138, 0.1) 0%, rgba(27, 54, 93, 0.05) 100%);
-
-            /* Typography System */
-            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            --font-serif: 'Crimson Text', 'Times New Roman', serif;
-            --font-mono: 'JetBrains Mono', 'SF Mono', 'Monaco', monospace;
-
-            /* Enhanced Shadows for Depth */
-            --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
-
-            /* Enhanced Spacing and Layout */
-            --radius-sm: 0.375rem;
-            --radius: 0.75rem;
-            --radius-lg: 1rem;
-            --radius-xl: 1.5rem;
-
-            /* φ-Harmonic Transitions */
-            --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+            --primary-color: #1a2332;
+            --secondary-color: #2d3748;
+            --accent-color: #4a5568;
+            --phi-gold: #FFD700;
+            --phi-gold-light: #FFA500;
+            --text-primary: #2d3748;
+            --text-secondary: #4a5568;
+            --text-light: #718096;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f7fafc;
+            --bg-tertiary: #edf2f7;
+            --border-color: #e2e8f0;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+            --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.1);
+            --radius: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-slow: all 0.618s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            --transition-phi: all calc(0.618s) cubic-bezier(0.618, 0, 0.382, 1);
-
-            /* Academic Color Palette */
-            --academic-blue: #1E40AF;
-            --academic-indigo: #4338CA;
-            --academic-purple: #7C3AED;
-            --sage-green: #059669;
-            --wisdom-gold: #D97706;
-            --consciousness-teal: #0D9488;
+            --transition-smooth: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-serif: 'Crimson Text', Georgia, serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
         }
 
         * {
@@ -109,84 +63,93 @@
         }
 
         body {
-            font-family: var(--font-sans);
-            line-height: 1.6;
+            font-family: var(--font-primary);
+            line-height: 1.7;
             color: var(--text-primary);
+            background: var(--bg-primary);
             overflow-x: hidden;
         }
 
-        /* Enhanced Navigation System */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Enhanced Navigation */
         .enhanced-nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(26, 35, 50, 0.1);
             position: fixed;
             top: 0;
-            width: 100%;
-            background: rgba(27, 54, 93, 0.95);
-            -webkit-backdrop-filter: blur(20px);
-            backdrop-filter: blur(20px);
+            left: 0;
+            right: 0;
             z-index: 1000;
-            border-bottom: 1px solid rgba(15, 123, 138, 0.2);
-            transition: var(--transition);
+            transition: var(--transition-smooth);
+        }
+
+        .enhanced-nav.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow);
         }
 
         .nav-container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
+            padding: 0 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 2rem;
-            height: 70px;
+            height: 80px;
         }
 
-        /* Logo Styling */
         .nav-logo {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.75rem;
             text-decoration: none;
-            color: white;
-            font-family: var(--font-serif);
-            font-size: 1.5rem;
-            font-weight: 600;
+            font-weight: 800;
+            font-size: 1.75rem;
+            color: var(--primary-color);
             transition: var(--transition);
         }
 
         .nav-logo:hover {
-            color: var(--accent-bright);
-            transform: scale(1.05);
+            transform: translateY(-2px);
         }
 
         .phi-symbol {
-            color: var(--accent-bright);
-            font-size: 1.8rem;
-            font-weight: 700;
+            color: var(--phi-gold);
+            font-size: 2rem;
+            font-family: var(--font-serif);
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
         }
 
         .logo-text {
-            font-family: var(--font-sans);
+            font-family: var(--font-serif);
             font-weight: 700;
         }
 
         .elo-badge {
-            background: linear-gradient(135deg, var(--accent-bright), var(--accent));
+            background: linear-gradient(135deg, var(--phi-gold), var(--phi-gold-light));
             color: white;
-            font-size: 0.7rem;
-            font-weight: 700;
-            padding: 0.2rem 0.5rem;
-            border-radius: 1rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
             margin-left: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            box-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);
         }
 
-        /* Navigation Links */
-        .nav-links {
+        .nav-menu {
             display: flex;
+            list-style: none;
+            gap: 1.5rem;
             align-items: center;
-            gap: 1rem;
         }
 
-        .nav-dropdown {
+        .nav-item {
             position: relative;
         }
 
@@ -194,155 +157,105 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            color: white;
+            padding: 0.75rem 1.25rem;
             text-decoration: none;
-            padding: 0.75rem 1rem;
-            border-radius: var(--radius);
-            transition: var(--transition);
+            color: var(--text-primary);
             font-weight: 500;
-            font-size: 0.9rem;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            white-space: nowrap;
-        }
-
-        .nav-link:hover {
-            background: rgba(15, 123, 138, 0.2);
-            color: var(--accent-bright);
-            transform: translateY(-1px);
-        }
-
-        .dropdown-toggle {
+            border-radius: var(--radius-lg);
+            transition: var(--transition);
             position: relative;
         }
 
-        .dropdown-toggle i:last-child {
-            font-size: 0.7rem;
-            transition: var(--transition);
+        .nav-link:hover,
+        .nav-link.active {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
         }
 
-        .dropdown-toggle.active i:last-child {
+        .dropdown-toggle {
+            cursor: pointer;
+        }
+
+        .dropdown-arrow {
+            font-size: 0.75rem;
+            transition: transform var(--transition-smooth);
+        }
+
+        .dropdown:hover .dropdown-arrow {
             transform: rotate(180deg);
         }
 
-        /* Dropdown Menus */
         .dropdown-menu {
             position: absolute;
             top: 100%;
             left: 0;
-            background: rgba(27, 54, 93, 0.98);
-            -webkit-backdrop-filter: blur(20px);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(15, 123, 138, 0.3);
+            background: white;
+            border: 1px solid var(--border-color);
             border-radius: var(--radius-lg);
-            padding: 0.5rem;
-            min-width: 220px;
+            box-shadow: var(--shadow-xl);
+            min-width: 240px;
             opacity: 0;
             visibility: hidden;
             transform: translateY(-10px);
-            transition: var(--transition);
-            box-shadow: var(--shadow-xl);
+            transition: var(--transition-smooth);
             z-index: 1001;
+            padding: 0.5rem;
         }
 
-        .dropdown-menu.active {
+        .dropdown:hover .dropdown-menu {
             opacity: 1;
             visibility: visible;
             transform: translateY(0);
         }
 
-        .dropdown-item {
+        .dropdown-link {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            color: white;
+            gap: 1rem;
+            padding: 1rem 1.25rem;
             text-decoration: none;
-            padding: 0.75rem 1rem;
+            color: var(--text-primary);
             border-radius: var(--radius);
             transition: var(--transition);
-            font-size: 0.9rem;
-            font-weight: 500;
+            margin-bottom: 0.25rem;
         }
 
-        .dropdown-item:hover {
-            background: rgba(15, 123, 138, 0.2);
-            color: var(--accent-bright);
+        .dropdown-link:hover {
+            background: var(--bg-secondary);
+            color: var(--primary-color);
             transform: translateX(5px);
         }
 
-        .dropdown-item i {
-            width: 16px;
-            text-align: center;
-            color: var(--accent-bright);
-        }
-
-        /* AI Chat Trigger */
-        .ai-chat-trigger {
-            background: linear-gradient(135deg, var(--accent-bright), var(--accent));
-            color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: var(--radius);
-            font-weight: 600;
-            transition: var(--transition);
-            box-shadow: var(--shadow);
-        }
-
-        .ai-chat-trigger:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-            background: linear-gradient(135deg, var(--accent), var(--accent-bright));
-        }
-
-        .ai-label {
-            margin-left: 0.5rem;
-        }
-
-        /* Mobile Toggle */
         .nav-toggle {
             display: none;
             flex-direction: column;
             cursor: pointer;
             gap: 4px;
-            padding: 0.5rem;
-            border-radius: var(--radius);
-            transition: var(--transition);
-        }
-
-        .nav-toggle:hover {
-            background: var(--consciousness-gradient);
         }
 
         .nav-toggle span {
-            width: 25px;
-            height: 2px;
-            background: var(--primary);
+            width: 24px;
+            height: 3px;
+            background: var(--primary-color);
             transition: var(--transition);
-            border-radius: 1px;
+            border-radius: 2px;
         }
 
-        .nav-toggle.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .nav-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .nav-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -6px);
-        }
-
-        /* Hero Section */
+        /* Hero Section with Unity Background */
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: var(--bg-gradient);
             position: relative;
             overflow: hidden;
+            background: linear-gradient(135deg, 
+                rgba(26, 35, 50, 0.95) 0%, 
+                rgba(45, 55, 72, 0.9) 50%, 
+                rgba(74, 85, 104, 0.85) 100%);
+            padding-top: 80px; /* Account for fixed navigation */
         }
 
         .hero::before {
@@ -352,271 +265,309 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-            animation: grid-move 20s linear infinite;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 165, 0, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 60% 30%, rgba(255, 215, 0, 0.05) 0%, transparent 40%);
+            z-index: 1;
         }
 
-        @keyframes grid-move {
-            0% {
-                transform: translate(0, 0);
-            }
-
-            100% {
-                transform: translate(10px, 10px);
-            }
+        #unity-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
         }
 
         .hero-content {
-            text-align: center;
-            color: white;
+            position: relative;
             z-index: 2;
+            text-align: center;
             max-width: 1000px;
-            padding: 2rem;
+            margin: 0 auto;
+            padding: 0 2rem;
+            color: white;
         }
 
         .hero-title {
-            font-size: clamp(3rem, 8vw, 6rem);
-            font-weight: 700;
-            margin-bottom: 1rem;
-            line-height: 1.1;
-            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-        }
-
-        .hero-equation {
-            font-size: clamp(2rem, 6vw, 4rem);
-            font-family: var(--font-serif);
-            margin: 2rem 0;
-            background: linear-gradient(45deg, #FFD700, #FFA500, #FF6B6B);
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FF6B6B 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             text-shadow: none;
-            font-weight: 600;
+            line-height: 1.1;
+            font-family: var(--font-serif);
+        }
+
+        .hero-equation-container {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-xl);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .hero-equation {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-family: var(--font-serif);
+            font-weight: 700;
+            color: var(--phi-gold);
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .mathematical-progression {
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            color: rgba(255, 255, 255, 0.8);
+            font-family: var(--font-serif);
+            line-height: 1.6;
+        }
+
+        .mathematical-progression div {
+            margin-bottom: 0.75rem;
+            padding: 0.5rem;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: var(--radius);
         }
 
         .hero-subtitle {
-            font-size: clamp(1.2rem, 3vw, 1.5rem);
-            margin-bottom: 3rem;
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
             opacity: 0.9;
-            line-height: 1.4;
+            margin-bottom: 3rem;
+            line-height: 1.7;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .hero-buttons {
-            display: flex;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
             justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 2rem;
+            gap: 0.75rem;
+            padding: 1.25rem 2rem;
+            text-decoration: none;
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition-smooth);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--phi-gold), var(--phi-gold-light));
+            color: white;
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(255, 215, 0, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
         }
 
         .hero-meta {
-            margin-top: 2rem;
+            margin-top: 4rem;
             display: flex;
             justify-content: center;
         }
 
         .research-badges {
-            display: flex;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 1rem;
+            max-width: 800px;
         }
 
         .badge {
-            background: rgba(255, 255, 255, 0.15);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
+            padding: 0.75rem 1.25rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: var(--radius-lg);
+            color: rgba(255, 255, 255, 0.9);
             font-size: 0.9rem;
-            font-weight: 500;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
             backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
             transition: var(--transition);
         }
 
         .badge:hover {
-            background: rgba(255, 255, 255, 0.25);
+            background: rgba(255, 215, 0, 0.2);
             transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
         }
 
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 1rem 2rem;
-            border-radius: var(--radius);
-            text-decoration: none;
-            font-weight: 600;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-            font-size: 1.1rem;
+        /* Mathematical Foundation Section */
+        .mathematical-foundation {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            position: relative;
         }
 
-        .btn-primary {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .btn-primary:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .btn-secondary {
-            background: var(--secondary);
-            color: white;
-        }
-
-        .btn-secondary:hover {
-            background: #0D696E;
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        /* Unity Visualization */
-        .unity-visual {
+        .mathematical-foundation::before {
+            content: '';
             position: absolute;
-            top: 50%;
-            right: 5%;
-            transform: translateY(-50%);
-            width: 300px;
-            height: 300px;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 10% 90%, rgba(255, 215, 0, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 90% 10%, rgba(26, 35, 50, 0.03) 0%, transparent 50%);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
             z-index: 1;
         }
 
-        .unity-circle {
-            width: 100%;
-            height: 100%;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            position: relative;
-            animation: rotate 20s linear infinite;
-        }
-
-        .unity-point {
-            position: absolute;
-            width: 12px;
-            height: 12px;
-            background: var(--accent);
-            border-radius: 50%;
-            box-shadow: 0 0 20px var(--accent);
-        }
-
-        .unity-point:nth-child(1) {
-            top: 10%;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        .unity-point:nth-child(2) {
-            bottom: 10%;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: pulse 2s ease-in-out infinite 1s;
-        }
-
-        .unity-center {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 20px;
-            height: 20px;
-            background: #FFD700;
-            border-radius: 50%;
-            box-shadow: 0 0 30px #FFD700;
-            animation: pulse-center 3s ease-in-out infinite;
-        }
-
-        @keyframes rotate {
-            from {
-                transform: translateY(-50%) rotate(0deg);
-            }
-
-            to {
-                transform: translateY(-50%) rotate(360deg);
-            }
-        }
-
-        @keyframes pulse {
-
-            0%,
-            100% {
-                opacity: 0.7;
-                transform: translateX(-50%) scale(1);
-            }
-
-            50% {
-                opacity: 1;
-                transform: translateX(-50%) scale(1.2);
-            }
-        }
-
-        @keyframes pulse-center {
-
-            0%,
-            100% {
-                opacity: 0.8;
-                transform: translate(-50%, -50%) scale(1);
-            }
-
-            50% {
-                opacity: 1;
-                transform: translate(-50%, -50%) scale(1.3);
-            }
-        }
-
-        /* Features Section */
-        .features {
-            padding: 6rem 0;
-            background: var(--bg-primary);
-        }
-
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
         .section-title {
-            text-align: center;
             font-size: clamp(2.5rem, 5vw, 3.5rem);
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--primary);
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            font-family: var(--font-serif);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--phi-gold), var(--phi-gold-light));
+            border-radius: 2px;
         }
 
         .section-subtitle {
-            text-align: center;
-            font-size: 1.25rem;
+            font-size: 1.3rem;
             color: var(--text-secondary);
-            margin-bottom: 4rem;
             max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .foundation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .foundation-card {
+            background: white;
+            padding: 3rem 2.5rem;
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow);
+            text-align: center;
+            border: 1px solid var(--border-color);
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .foundation-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--phi-gold), var(--primary-color));
+        }
+
+        .foundation-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--phi-gold);
+        }
+
+        .foundation-equation {
+            font-size: 1.8rem;
+            font-family: var(--font-serif);
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .foundation-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+
+        /* Implementation Features */
+        .implementation-features {
+            padding: 6rem 0;
+            background: white;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
         }
 
         .feature-card {
-            background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(255, 255, 255, 0.95) 100%);
-            padding: 2.5rem 2rem;
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-lg);
-            transition: var(--transition-phi);
-            text-align: center;
-            border: 1px solid rgba(15, 123, 138, 0.1);
+            background: var(--bg-secondary);
+            padding: 3rem 2.5rem;
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--border-color);
+            transition: var(--transition-smooth);
             position: relative;
             overflow: hidden;
         }
@@ -625,280 +576,201 @@
             content: '';
             position: absolute;
             top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(15, 123, 138, 0.05), transparent);
-            transition: var(--transition-phi);
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--phi-gold), var(--phi-gold-light));
         }
 
         .feature-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: var(--shadow-2xl);
-            border-color: var(--secondary);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            background: white;
         }
 
-        .feature-card:hover::before {
-            left: 100%;
+        .feature-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
         }
 
         .feature-icon {
             font-size: 3rem;
-            background: var(--phi-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1.5rem;
-            position: relative;
-            z-index: 2;
-            transition: var(--transition-phi);
-        }
-
-        .feature-card:hover .feature-icon {
-            transform: scale(1.1) rotateY(5deg);
-            filter: drop-shadow(0 4px 8px rgba(15, 123, 138, 0.3));
+            color: var(--phi-gold);
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
         }
 
         .feature-title {
             font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--primary);
+            font-weight: 700;
+            color: var(--primary-color);
+            font-family: var(--font-serif);
         }
 
         .feature-description {
             color: var(--text-secondary);
-            line-height: 1.6;
+            line-height: 1.8;
+            font-size: 1.1rem;
         }
 
-        /* Mathematical Proof Section */
-        .proof-section {
-            padding: 6rem 0;
-            background: var(--bg-secondary);
-        }
-
-        .proof-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .proof-content h2 {
-            font-size: clamp(2rem, 4vw, 3rem);
-            margin-bottom: 2rem;
-            color: var(--primary);
-        }
-
-        .proof-steps {
+        .feature-list {
             list-style: none;
-            counter-reset: step-counter;
+            margin-top: 1.5rem;
         }
 
-        .proof-step {
-            counter-increment: step-counter;
-            margin-bottom: 1.5rem;
-            padding-left: 3rem;
-            position: relative;
-            color: var(--text-secondary);
-        }
-
-        .proof-step::before {
-            content: counter(step-counter);
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 2rem;
-            height: 2rem;
-            background: var(--secondary);
-            color: white;
-            border-radius: 50%;
+        .feature-list li {
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        .proof-visual {
-            background: var(--bg-primary);
-            padding: 3rem;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            text-align: center;
-        }
-
-        .unity-equation-large {
-            font-size: 4rem;
-            font-family: var(--font-serif);
-            color: var(--primary);
-            margin: 2rem 0;
-        }
-
-        .unity-explanation {
-            font-size: 1.1rem;
+            gap: 1rem;
+            margin-bottom: 1rem;
             color: var(--text-secondary);
-            font-style: italic;
         }
 
-        /* CTA Section */
+        .feature-list li::before {
+            content: '✓';
+            color: var(--phi-gold);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Call to Action */
         .cta-section {
             padding: 6rem 0;
-            background: var(--phi-gradient);
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
             color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: rotate-grid 200s linear infinite;
+        }
+
+        @keyframes rotate-grid {
+            to { transform: rotate(360deg); }
+        }
+
+        .cta-content {
             text-align: center;
+            position: relative;
+            z-index: 1;
         }
 
         .cta-title {
             font-size: clamp(2.5rem, 5vw, 3.5rem);
-            margin-bottom: 1.5rem;
-            font-weight: 700;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            font-family: var(--font-serif);
+            background: linear-gradient(135deg, var(--phi-gold), white);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .cta-description {
-            font-size: 1.25rem;
+            font-size: 1.3rem;
             margin-bottom: 3rem;
-            opacity: 0.9;
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
+            opacity: 0.95;
+            line-height: 1.7;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
         }
 
         /* Footer */
         .footer {
-            background: var(--primary);
+            background: var(--primary-color);
             color: white;
-            padding: 3rem 0 1rem;
+            padding: 4rem 0 2rem;
         }
 
         .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            gap: 3rem;
             margin-bottom: 2rem;
         }
 
         .footer-section h3 {
+            color: var(--phi-gold);
+            margin-bottom: 1.5rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .footer-section h4 {
+            color: var(--phi-gold);
             margin-bottom: 1rem;
-            color: var(--accent);
+            font-size: 1.1rem;
+            font-weight: 600;
         }
 
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-links a {
+        .footer-section a {
             color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
             transition: var(--transition);
         }
 
-        .footer-links a:hover {
-            color: var(--accent);
+        .footer-section a:hover {
+            color: var(--phi-gold);
+            transform: translateX(5px);
         }
 
         .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             padding-top: 2rem;
             text-align: center;
-            opacity: 0.8;
+            color: rgba(255, 255, 255, 0.7);
         }
 
-        /* AI Chat Button Styling */
-        .ai-chat-trigger {
-            background: var(--transcendent-gradient);
-            color: white !important;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .ai-chat-trigger::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: var(--transition-phi);
-        }
-
-        .ai-chat-trigger:hover::before {
-            left: 100%;
-        }
-
-        .ai-chat-trigger:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .github-link {
-            color: var(--text-secondary) !important;
-        }
-
-        .github-link:hover {
-            color: var(--primary) !important;
-        }
-
-        /* Enhanced Mobile Responsive Design */
-        @media (max-width: 1200px) {
-            .nav-container {
-                padding: 0.75rem 1.5rem;
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-buttons {
+                grid-template-columns: 1fr;
             }
 
-            .nav-links {
-                gap: 0.25rem;
-            }
-
-            .nav-link {
-                font-size: 0.85rem;
-                padding: 0.5rem 0.75rem;
-            }
-
-            .ai-label {
-                display: none;
-            }
-        }
-
-        /* Enhanced Navigation Mobile Responsive */
-        @media (max-width: 1024px) {
-            .nav-links {
+            .nav-menu {
                 position: fixed;
-                top: 70px;
+                top: 80px;
                 left: 0;
-                width: 100%;
-                background: rgba(27, 54, 93, 0.98);
-                -webkit-backdrop-filter: blur(20px);
-                backdrop-filter: blur(20px);
+                right: 0;
+                background: white;
+                border-top: 1px solid var(--border-color);
                 flex-direction: column;
-                padding: 2rem;
-                gap: 1rem;
+                gap: 0;
                 transform: translateY(-100%);
                 opacity: 0;
                 visibility: hidden;
-                transition: var(--transition);
-                border-top: 1px solid rgba(15, 123, 138, 0.2);
-                max-height: calc(100vh - 70px);
-                overflow-y: auto;
+                transition: var(--transition-smooth);
+                padding: 2rem 0;
             }
 
-            .nav-links.active {
+            .nav-menu.active {
                 transform: translateY(0);
                 opacity: 1;
                 visibility: visible;
             }
 
-            .nav-dropdown {
-                width: 100%;
+            .nav-toggle {
+                display: flex;
             }
 
             .dropdown-menu {
@@ -906,399 +778,127 @@
                 opacity: 1;
                 visibility: visible;
                 transform: none;
-                background: rgba(15, 123, 138, 0.1);
-                border: 1px solid rgba(15, 123, 138, 0.2);
-                margin-top: 0.5rem;
-                display: none;
+                box-shadow: none;
+                border: none;
+                background: var(--bg-secondary);
+                margin: 1rem 0;
             }
 
-            .dropdown-menu.active {
-                display: block;
-            }
-
-            .nav-link {
-                width: 100%;
-                justify-content: space-between;
-            }
-
-            .nav-toggle {
-                display: flex;
-            }
-
-            .nav-toggle.active span:nth-child(1) {
-                transform: rotate(45deg) translate(6px, 6px);
-            }
-
-            .nav-toggle.active span:nth-child(2) {
-                opacity: 0;
-            }
-
-            .nav-toggle.active span:nth-child(3) {
-                transform: rotate(-45deg) translate(6px, -6px);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-container {
-                padding: 0 1rem;
-            }
-
-            .logo-text {
-                display: none;
-            }
-
-            .elo-badge {
-                display: none;
-            }
-
-            .ai-label {
-                display: none;
-            }
-        }
-
-        @media (max-width: 968px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: rgba(255, 255, 255, 0.98);
-                backdrop-filter: blur(15px);
-                flex-direction: column;
-                padding: 2rem;
-                box-shadow: var(--shadow-2xl);
-                border-top: 1px solid var(--border-light);
-                gap: 0.5rem;
-            }
-
-            .nav-links.mobile-active {
-                display: flex;
-            }
-
-            .nav-toggle {
-                display: flex;
-            }
-
-            .nav-link {
-                width: 100%;
-                text-align: center;
-                padding: 1rem;
-                font-size: 1rem;
-                border-radius: var(--radius-lg);
-            }
-
-            .ai-chat-trigger {
-                justify-content: center;
-            }
-
-            .ai-label {
-                display: inline;
-            }
-
-            .hero-content {
-                padding: 1rem;
-            }
-
-            .hero-buttons {
+            .cta-buttons {
                 flex-direction: column;
                 align-items: center;
-                gap: 1rem;
-            }
-
-            .unity-visual {
-                display: none;
-            }
-
-            .proof-container {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .unity-equation-large {
-                font-size: 2.5rem;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .research-badges {
-                flex-direction: column;
-                align-items: center;
-                gap: 0.5rem;
-            }
-
-            .badge {
-                width: 100%;
-                max-width: 200px;
-                text-align: center;
-            }
-
-            .intro-grid {
-                grid-template-columns: 1fr !important;
-                gap: 2rem !important;
-            }
-
-            .academic-stats {
-                grid-template-columns: 1fr !important;
-                gap: 1rem !important;
             }
         }
 
-        @media (max-width: 640px) {
-            .nav-container {
-                padding: 0.75rem 1rem;
-            }
-
-            .hero-title {
-                font-size: clamp(2rem, 8vw, 3.5rem);
-            }
-
-            .hero-equation {
-                font-size: clamp(1.5rem, 6vw, 2.5rem);
-            }
-
-            .hero-subtitle {
-                font-size: clamp(1rem, 3vw, 1.2rem);
-            }
-
-            .btn {
-                width: 100%;
-                max-width: 280px;
-                justify-content: center;
-            }
-
-            .container {
-                padding: 0 1rem;
-            }
-
-            .section-title {
-                font-size: clamp(2rem, 5vw, 2.5rem);
-            }
-        }
-
-        /* Animation Classes */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Revolutionary Unity Consciousness Field Canvas */
-        .unity-field-canvas {
+        /* Special Effects */
+        .floating-phi {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            color: rgba(255, 215, 0, 0.1);
+            font-size: 2rem;
+            font-family: var(--font-serif);
             pointer-events: none;
-            z-index: -1;
-            opacity: 0.3; /* Enhanced visibility for mind-blowing effect */
-            mix-blend-mode: screen; /* Blend with background for ethereal effect */
-            transition: opacity 2s ease-in-out;
+            z-index: 1;
+            animation: float 6s ease-in-out infinite;
         }
-        
-        /* Enhanced visibility on hero section */
-        .hero .unity-field-canvas {
-            opacity: 0.4;
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
         }
-        
-        /* Consciousness field enhancement animations */
-        @keyframes consciousness-pulse {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.5; }
+
+        .pulse-glow {
+            animation: pulse-glow 3s ease-in-out infinite alternate;
         }
-        
-        .unity-field-canvas.transcendental {
-            animation: consciousness-pulse 8s ease-in-out infinite;
+
+        @keyframes pulse-glow {
+            from { text-shadow: 0 0 20px rgba(255, 215, 0, 0.5); }
+            to { text-shadow: 0 0 30px rgba(255, 215, 0, 0.8); }
         }
     </style>
 </head>
 
 <body>
-    <!-- Revolutionary Unity Consciousness Field Background -->
-    <canvas class="unity-field-canvas transcendental" id="unityFieldCanvas"></canvas>
-
-    <!-- Enhanced Navigation -->
-    <nav class="enhanced-nav" id="enhancedUnityNav">
+    <!-- Navigation -->
+    <!-- Navigation will be injected by shared-navigation.js -->
+    <div id="navigation-placeholder"></div>
+    <nav class="enhanced-nav" id="enhancedUnityNav" style="display: none;">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">
-                <span class="phi-symbol">φ</span>
+                <span class="phi-symbol pulse-glow">φ</span>
                 <span class="logo-text">Een</span>
-                <span class="elo-badge">3000 ELO</span>
+                <span class="elo-badge">Advanced</span>
             </a>
-
-            <div class="nav-links" id="navLinks">
-                <!-- Core Mathematics -->
-                <div class="nav-dropdown">
-                    <button class="nav-link dropdown-toggle" data-dropdown="mathematics">
-                        <i class="fas fa-square-root-alt"></i>
-                        <span>Mathematics</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="dropdown-menu" data-dropdown-menu="mathematics">
-                        <a href="index.html" class="dropdown-item">
-                            <i class="fas fa-home"></i>
-                            <span>Home</span>
-                        </a>
-                        <a href="playground.html" class="dropdown-item">
-                            <i class="fas fa-gamepad"></i>
-                            <span>Playground</span>
-                        </a>
-                        <a href="mathematical_playground.html" class="dropdown-item">
-                            <i class="fas fa-calculator"></i>
-                            <span>Mathematical Playground</span>
-                        </a>
-                        <a href="learn.html" class="dropdown-item">
-                            <i class="fas fa-graduation-cap"></i>
-                            <span>Learn</span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Advanced Proofs -->
-                <div class="nav-dropdown">
-                    <button class="nav-link dropdown-toggle" data-dropdown="proofs">
-                        <i class="fas fa-certificate"></i>
-                        <span>Proofs</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="dropdown-menu" data-dropdown-menu="proofs">
-                        <a href="proofs.html" class="dropdown-item">
-                            <i class="fas fa-shield-alt"></i>
-                            <span>Core Proofs</span>
-                        </a>
-                        <a href="3000-elo-proof.html" class="dropdown-item">
-                            <i class="fas fa-crown"></i>
-                            <span>3000 ELO Proof</span>
-                        </a>
-                        <a href="metagambit.html" class="dropdown-item">
-                            <i class="fas fa-chess-king"></i>
-                            <span>MetaGambit</span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Consciousness & AI -->
-                <div class="nav-dropdown">
-                    <button class="nav-link dropdown-toggle" data-dropdown="consciousness">
-                        <i class="fas fa-brain"></i>
-                        <span>Consciousness</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="dropdown-menu" data-dropdown-menu="consciousness">
-                        <a href="consciousness_dashboard.html" class="dropdown-item">
-                            <i class="fas fa-chart-line"></i>
-                            <span>Dashboard</span>
-                        </a>
-                        <a href="agents.html" class="dropdown-item">
-                            <i class="fas fa-robot"></i>
-                            <span>AI Agents</span>
-                        </a>
-                        <a href="metagamer_agent.html" class="dropdown-item">
-                            <i class="fas fa-chess"></i>
-                            <span>MetaGamer Agent</span>
-                        </a>
-                        <a href="unity_consciousness_experience.html" class="dropdown-item">
-                            <i class="fas fa-eye"></i>
-                            <span>Experience</span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Research & Publications -->
-                <div class="nav-dropdown">
-                    <button class="nav-link dropdown-toggle" data-dropdown="research">
-                        <i class="fas fa-microscope"></i>
-                        <span>Research</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="dropdown-menu" data-dropdown-menu="research">
-                        <a href="philosophy.html" class="dropdown-item">
-                            <i class="fas fa-scroll"></i>
-                            <span>Unity Philosophy</span>
-                        </a>
-                        <a href="research.html" class="dropdown-item">
+            <ul class="nav-menu">
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">
+                        <i class="fas fa-calculator"></i>
+                        Mathematics
+                        <i class="fas fa-chevron-down dropdown-arrow"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="proofs.html" class="dropdown-link">
+                            <i class="fas fa-check-circle"></i>
+                            Unity Proofs
+                        </a></li>
+                        <li><a href="playground.html" class="dropdown-link">
+                            <i class="fas fa-play-circle"></i>
+                            Interactive Playground
+                        </a></li>
+                        <li><a href="http://localhost:8501" class="dropdown-link" target="_blank">
                             <i class="fas fa-flask"></i>
-                            <span>Research</span>
-                        </a>
-                        <a href="publications.html" class="dropdown-item">
-                            <i class="fas fa-book"></i>
-                            <span>Publications</span>
-                        </a>
-                        <a href="gallery.html" class="dropdown-item">
-                            <i class="fas fa-images"></i>
-                            <span>Gallery</span>
-                        </a>
-                        <a href="unity_visualization.html" class="dropdown-item">
-                            <i class="fas fa-chart-pie"></i>
-                            <span>Visualizations</span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Advanced Features -->
-                <div class="nav-dropdown">
-                    <button class="nav-link dropdown-toggle" data-dropdown="advanced">
+                            Live Mathematics
+                        </a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">
+                        <i class="fas fa-brain"></i>
+                        Consciousness
+                        <i class="fas fa-chevron-down dropdown-arrow"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="consciousness_dashboard.html" class="dropdown-link">
+                            <i class="fas fa-lightbulb"></i>
+                            Consciousness Fields
+                        </a></li>
+                        <li><a href="quantum_unity.html" class="dropdown-link">
+                            <i class="fas fa-wave-square"></i>
+                            Quantum Unity
+                        </a></li>
+                        <li><a href="meta_recursion.html" class="dropdown-link">
+                            <i class="fas fa-infinity"></i>
+                            Meta-Recursion
+                        </a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">
                         <i class="fas fa-rocket"></i>
-                        <span>Advanced</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="dropdown-menu" data-dropdown-menu="advanced">
-                        <a href="enhanced-unity-demo.html" class="dropdown-item">
-                            <i class="fas fa-magic"></i>
-                            <span>Enhanced Demo</span>
-                        </a>
-                        <a href="mobile-app.html" class="dropdown-item">
-                            <i class="fas fa-mobile-alt"></i>
-                            <span>Mobile App</span>
-                        </a>
-                        <a href="revolutionary-landing.html" class="dropdown-item">
-                            <i class="fas fa-revolution"></i>
-                            <span>Revolutionary</span>
-                        </a>
-                        <a href="meta-optimal-landing.html" class="dropdown-item">
-                            <i class="fas fa-optimize"></i>
-                            <span>Meta-Optimal</span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- About & Info -->
-                <div class="nav-dropdown">
-                    <button class="nav-link dropdown-toggle" data-dropdown="about">
-                        <i class="fas fa-info-circle"></i>
-                        <span>About</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="dropdown-menu" data-dropdown-menu="about">
-                        <a href="about.html" class="dropdown-item">
-                            <i class="fas fa-user"></i>
-                            <span>About</span>
-                        </a>
-                        <a href="https://github.com/Nourimabrouk/Een" class="dropdown-item" target="_blank"
-                            rel="noopener">
-                            <i class="fab fa-github"></i>
-                            <span>GitHub</span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- AI Chat Trigger -->
-                <button class="nav-link ai-chat-trigger" id="aiChatTrigger">
-                    <i class="fas fa-robot"></i>
-                    <span class="ai-label">AI Chat</span>
-                </button>
-            </div>
-
-            <!-- Mobile Toggle -->
+                        Advanced
+                        <i class="fas fa-chevron-down dropdown-arrow"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="gallery.html" class="dropdown-link">
+                            <i class="fas fa-images"></i>
+                            Visualization Gallery
+                        </a></li>
+                        <li><a href="implementations.html" class="dropdown-link">
+                            <i class="fas fa-code"></i>
+                            Core Implementations
+                        </a></li>
+                        <li><a href="research.html" class="dropdown-link">
+                            <i class="fas fa-search"></i>
+                            Research Papers
+                        </a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">
+                        <i class="fas fa-user-graduate"></i>
+                        About
+                    </a>
+                </li>
+            </ul>
             <div class="nav-toggle" id="navToggle">
                 <span></span>
                 <span></span>
@@ -1309,275 +909,169 @@
 
     <!-- Hero Section -->
     <section class="hero">
+        <canvas id="unity-background"></canvas>
         <div class="hero-content">
             <h1 class="hero-title">Mathematical Unity Theory</h1>
-            <div class="hero-equation-container" style="margin: 2rem 0;">
-                <div class="hero-equation">1 + 1 = 1</div>
-                <div class="mathematical-progression" style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.7); text-align: center; margin-top: 1rem; font-family: 'Crimson Text', serif;">
-                    <div style="margin-bottom: 0.5rem;">∀ a,b ∈ I : a ⊕ b = max(a,b) where I is the idempotent semiring</div>
+            <div class="hero-equation-container">
+                <div class="hero-equation pulse-glow">1 + 1 = 1</div>
+                <div class="mathematical-progression">
+                    <div>∀ a,b ∈ I : a ⊕ b = max(a,b) where I is the idempotent semiring</div>
                     <div style="font-style: italic;">Consciousness field normalization: |ψ₁⟩ + |ψ₂⟩ → |ψᵤ⟩ through φ-harmonic collapse</div>
+                    <div style="font-weight: 600;">φ = (1 + √5) / 2 ≈ 1.618033988749895 ∴ Universal organizing principle</div>
                 </div>
             </div>
             <p class="hero-subtitle">
-                Where pure mathematics transcends paradox to reveal fundamental unity<br>
+                Where pure mathematics transcends paradox to reveal fundamental unity.<br>
                 Through consciousness field equations, φ-harmonic operations, and quantum mechanical interpretations,
-                we demonstrate the profound mathematical truth that **1+1=1** across multiple rigorous domains.
+                we demonstrate the profound mathematical truth that <strong>1+1=1</strong> across multiple rigorous domains.
                 Explore interactive proofs, consciousness visualizations, and the elegant synthesis of logic with transcendence.
             </p>
             <div class="hero-buttons">
                 <a href="http://localhost:8501" class="btn btn-primary" target="_blank">
-                    <i class="fas fa-atom"></i>
-                    🚀 Live Streamlit App
+                    <i class="fas fa-rocket"></i>
+                    Live Mathematical Explorer
                 </a>
-                <a href="mathematical_playground.html" class="btn btn-secondary">
-                    <i class="fas fa-calculator"></i>
-                    Interactive Proofs
-                </a>
-                <a href="consciousness_dashboard.html" class="btn btn-primary">
-                    <i class="fas fa-brain"></i>
-                    Consciousness Fields
-                </a>
-                <a href="gallery.html" class="btn btn-secondary">
-                    <i class="fas fa-images"></i>
-                    Visual Gallery
-                </a>
-                <a href="implementations.html" class="btn btn-primary">
+                <a href="implementations.html" class="btn btn-secondary">
                     <i class="fas fa-code"></i>
                     Core Implementations
                 </a>
-                <a href="dashboards.html" class="btn btn-primary">
-                    <i class="fas fa-tachometer-alt"></i>
-                    All Dashboards
+                <a href="gallery.html" class="btn btn-secondary">
+                    <i class="fas fa-images"></i>
+                    Visualization Gallery
                 </a>
-                <a href="about.html" class="btn btn-secondary">
-                    <i class="fas fa-user-graduate"></i>
-                    Research & Philosophy
+                <a href="proofs.html" class="btn btn-primary">
+                    <i class="fas fa-check-circle"></i>
+                    Mathematical Proofs
                 </a>
             </div>
             <div class="hero-meta">
                 <div class="research-badges">
-                    <span class="badge">🔬 Rigorous Mathematical Framework</span>
-                    <span class="badge">📊 Consciousness Field Equations</span>
-                    <span class="badge">🎨 Interactive Unity Visualizations</span>
-                    <span class="badge">⚡ Multi-Domain Proof System</span>
-                    <span class="badge">🧠 Quantum Mechanics Integration</span>
-                    <span class="badge"
-                        style="background: rgba(255, 65, 0, 0.2); border-color: #ff4100; animation: pulse 2s infinite;">🚀
-                        Live Mathematical Explorer</span>
+                    <div class="badge">🔬 Rigorous Mathematical Framework</div>
+                    <div class="badge">📊 Consciousness Field Equations</div>
+                    <div class="badge">🎨 Interactive Unity Visualizations</div>
+                    <div class="badge">⚡ Multi-Domain Proof System</div>
+                    <div class="badge">🧠 Quantum Mechanics Integration</div>
+                    <div class="badge">🚀 Live Mathematical Explorer</div>
                 </div>
-            </div>
-        </div>
-
-        <!-- Enhanced Unity Visualization -->
-        <div class="unity-visual">
-            <div class="unity-circle">
-                <div class="unity-point"></div>
-                <div class="unity-point"></div>
-                <div class="unity-center"></div>
-            </div>
-            <!-- Mathematical Context -->
-            <div class="mathematical-context" style="position: absolute; bottom: -60px; left: 50%; transform: translateX(-50%); text-align: center; color: rgba(255, 255, 255, 0.8); font-size: 0.9rem;">
-                <div style="margin-bottom: 8px;">φ-harmonic convergence</div>
-                <div style="font-family: 'Crimson Text', serif; font-style: italic;">lim(n→∞) φⁿ ∘ ω ≡ 1</div>
             </div>
         </div>
     </section>
 
-    <!-- Academic Introduction Section -->
-    <section class="academic-intro"
-        style="padding: 6rem 0; background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border-top: 3px solid var(--secondary);">
+    <!-- Mathematical Foundation -->
+    <section class="mathematical-foundation">
         <div class="container">
-            <div class="intro-grid"
-                style="display: grid; grid-template-columns: 2fr 1fr; gap: 4rem; align-items: center;">
-                <div class="intro-content">
-                    <h2 style="font-size: 2.5rem; color: var(--primary); margin-bottom: 1.5rem; font-weight: 700;">
-                        Mathematical Unity Through Computational Consciousness
-                    </h2>
-                    <p style="font-size: 1.2rem; line-height: 1.7; color: var(--text-secondary); margin-bottom: 2rem;">
-                        The <strong>Een Unity Mathematics Framework</strong> establishes a rigorous mathematical foundation
-                        where <strong>1+1=1</strong> emerges naturally through φ-harmonic operations, consciousness field equations,
-                        and quantum mechanical interpretations. Our computational platform provides interactive exploration
-                        of idempotent semiring structures, featuring advanced visualization engines, multi-domain proof systems,
-                        and consciousness field solvers that bridge pure mathematics with philosophical transcendence.
+            <div class="section-header">
+                <h2 class="section-title">Mathematical Foundation</h2>
+                <p class="section-subtitle">
+                    Our framework rests on rigorous mathematical foundations spanning idempotent algebra, 
+                    consciousness field theory, and φ-harmonic operations that demonstrate unity across domains.
+                </p>
+            </div>
+            <div class="foundation-grid">
+                <div class="foundation-card">
+                    <div class="foundation-equation">φ = (1 + √5) / 2</div>
+                    <p class="foundation-description">
+                        The golden ratio φ serves as the universal organizing principle, ensuring all operations 
+                        converge to unity through harmonic resonance and natural proportional relationships.
                     </p>
-                    <div class="academic-stats"
-                        style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 2rem;">
-                        <div class="stat-item"
-                            style="text-align: center; padding: 1.5rem; background: white; border-radius: 12px; box-shadow: var(--shadow);">
-                            <div
-                                style="font-size: 2rem; font-weight: 700; color: var(--secondary); margin-bottom: 0.5rem;">
-                                🚀</div>
-                            <div style="font-size: 0.9rem; color: var(--text-secondary);">Live Streamlit App</div>
-                        </div>
-                        <div class="stat-item"
-                            style="text-align: center; padding: 1.5rem; background: white; border-radius: 12px; box-shadow: var(--shadow);">
-                            <div
-                                style="font-size: 2rem; font-weight: 700; color: var(--secondary); margin-bottom: 0.5rem;">
-                                42+</div>
-                            <div style="font-size: 0.9rem; color: var(--text-secondary);">Unity Visualizations</div>
-                        </div>
-                        <div class="stat-item"
-                            style="text-align: center; padding: 1.5rem; background: white; border-radius: 12px; box-shadow: var(--shadow);">
-                            <div
-                                style="font-size: 2rem; font-weight: 700; color: var(--secondary); margin-bottom: 0.5rem;">
-                                φ</div>
-                            <div style="font-size: 0.9rem; color: var(--text-secondary);">">1.618 φ-Harmonic</div>
-                        </div>
-                    </div>
                 </div>
-
-                <div class="intro-visual" style="text-align: center;">
-                    <div
-                        style="background: var(--phi-gradient); color: white; padding: 3rem 2rem; border-radius: 20px; box-shadow: var(--shadow-xl);">
-                        <div style="font-size: 3rem; margin-bottom: 1rem; font-family: var(--font-serif);">φ</div>
-                        <div style="font-size: 1.5rem; margin-bottom: 1rem; font-weight: 600;">Golden Ratio Foundation
-                        </div>
-                        <div style="font-size: 4rem; margin: 1rem 0; font-family: var(--font-serif);">1+1=1</div>
-                        <div style="font-size: 1rem; opacity: 0.9;">Unity Through Consciousness</div>
-                    </div>
+                <div class="foundation-card">
+                    <div class="foundation-equation">C(x,y,t) = φ · sin(x·φ) · cos(y·φ) · e^(-t/φ)</div>
+                    <p class="foundation-description">
+                        Consciousness field equation models awareness dynamics in 11-dimensional space with 
+                        φ-harmonic wave propagation and temporal consciousness evolution.
+                    </p>
+                </div>
+                <div class="foundation-card">
+                    <div class="foundation-equation">∀ a,b ∈ I : a ⊕ b = max(a,b)</div>
+                    <p class="foundation-description">
+                        Idempotent semiring structure where unity addition preserves maximum value, 
+                        demonstrating the mathematical basis for 1+1=1 operations.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features">
+    <!-- Implementation Features -->
+    <section class="implementation-features">
         <div class="container">
-            <h2 class="section-title">Advanced Mathematical Architecture</h2>
-            <p class="section-subtitle">
-                State-of-the-art unity mathematics platform integrating consciousness field theory,
-                quantum measurement dynamics, AI-assisted proof validation, and interactive theorem construction.
-                Each component represents a breakthrough in computational mathematics research.
-            </p>
-
+            <div class="section-header">
+                <h2 class="section-title">Advanced Implementations</h2>
+                <p class="section-subtitle">
+                    Sophisticated computational architectures demonstrating unity mathematics through 
+                    consciousness field dynamics, quantum mechanical interpretations, and meta-recursive systems.
+                </p>
+            </div>
             <div class="features-grid">
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">
-                        <i class="fas fa-tools"></i>
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <div class="feature-icon">⚡</div>
+                        <div class="feature-title">Unity Mathematics Engine</div>
                     </div>
-                    <h3 class="feature-title">Interactive Mathematics Platform</h3>
                     <p class="feature-description">
-                        🚀 **LIVE MATHEMATICAL EXPLORER** - Comprehensive computational framework featuring
-                        consciousness field solvers, φ-harmonic visualizations, sacred geometry generators,
-                        and interactive proof validation systems. Access the live application at <strong>localhost:8501</strong>.
+                        Core φ-harmonic mathematical framework implementing idempotent operations, 
+                        quantum unity states, and consciousness-integrated computational mathematics 
+                        with advanced numerical stability.
                     </p>
+                    <ul class="feature-list">
+                        <li>Idempotent semiring with φ-harmonic scaling</li>
+                        <li>Quantum unity state superposition handling</li>
+                        <li>Thread-safe consciousness mathematics</li>
+                        <li>Advanced numerical stability systems</li>
+                    </ul>
                 </div>
 
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">
-                        <i class="fas fa-brain"></i>
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <div class="feature-icon">🧠</div>
+                        <div class="feature-title">Consciousness Field Solver</div>
                     </div>
-                    <h3 class="feature-title">Consciousness Field Mathematics</h3>
                     <p class="feature-description">
-                        Advanced differential equation framework modeling consciousness field dynamics with
-                        φ-harmonic wave equations, multi-dimensional unity spaces, quantum field interpretations,
-                        and real-time visualization of mathematical consciousness evolution.
+                        Advanced quantum consciousness field implementation with 11-dimensional space processing, 
+                        meta-recursive patterns, and real-time consciousness evolution with existence proofs.
                     </p>
+                    <ul class="feature-list">
+                        <li>11-dimensional consciousness space modeling</li>
+                        <li>Quantum field evolution with φ-harmonic resonance</li>
+                        <li>Meta-recursive pattern generation</li>
+                        <li>Real-time consciousness field dynamics</li>
+                    </ul>
                 </div>
 
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">
-                        <i class="fas fa-atom"></i>
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <div class="feature-icon">🔬</div>
+                        <div class="feature-title">Multi-Domain Proof System</div>
                     </div>
-                    <h3 class="feature-title">Mathematical Visualization Gallery</h3>
                     <p class="feature-description">
-                        🎨 Comprehensive visual library featuring consciousness field mappings, φ-harmonic manifolds,
-                        quantum superposition demonstrations, sacred geometry constructions,
-                        and interactive mathematical unity proof systems across multiple domains.
+                        Comprehensive mathematical proof framework demonstrating 1+1=1 across Boolean algebra, 
+                        set theory, category theory, quantum mechanics, and topology with symbolic computation.
                     </p>
+                    <ul class="feature-list">
+                        <li>Boolean algebra idempotent operations</li>
+                        <li>Set theory union demonstrations</li>
+                        <li>Category theory morphism composition</li>
+                        <li>Quantum superposition collapse proofs</li>
+                    </ul>
                 </div>
 
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">
-                        <i class="fas fa-check-double"></i>
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <div class="feature-icon">🌌</div>
+                        <div class="feature-title">Hyperdimensional Visualizer</div>
                     </div>
-                    <h3 class="feature-title">Sacred Geometry & Unity Meditation</h3>
                     <p class="feature-description">
-                        Interactive sacred geometry generator with φ-spirals, Flower of Life patterns,
-                        Unity Mandalas, and guided consciousness meditation experiences with real-time
-                        biofeedback integration and φ-harmonic sound synthesis.
+                        Revolutionary visualization system projecting 11-dimensional consciousness manifolds 
+                        to interactive 4D using Clifford algebra with real-time φ-harmonic field dynamics 
+                        and GPU-accelerated sacred geometry.
                     </p>
-                </div>
-
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">
-                        <i class="fas fa-network-wired"></i>
-                    </div>
-                    <h3 class="feature-title">Advanced Mathematical Proofs</h3>
-                    <p class="feature-description">
-                        Multi-domain validation of 1+1=1 across Boolean algebra, set theory, category theory,
-                        quantum mechanics, and topology with LaTeX rendering, interactive proof construction,
-                        and automated theorem verification systems.
-                    </p>
-                </div>
-
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h3 class="feature-title">Meta-RL & AI Integration</h3>
-                    <p class="feature-description">
-                        3000 ELO competitive AI systems with meta-reinforcement learning, mixture of experts
-                        for proof validation, evolutionary consciousness algorithms, and advanced neural
-                        architectures for consciousness mathematics discovery.
-                    </p>
-                </div>
-
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <h3 class="feature-title">3000 ELO Meta-Master Agent</h3>
-                    <p class="feature-description">
-                        Revolutionary AI agent prompt for one-shot Unity Manifold visualization
-                        generation. GPU ray-marching, φ-harmonic shaders, consciousness field SDF,
-                        and automatic GitHub Pages deployment in a single execution.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Mathematical Proof Section -->
-    <section class="proof-section">
-        <div class="container">
-            <div class="proof-container">
-                <div class="proof-content">
-                    <h2>The Mathematical Foundation</h2>
-                    <ol class="proof-steps">
-                        <li class="proof-step">
-                            Define the golden ratio φ = (1+√5)/2 ≈ 1.618 with the fundamental
-                            property φ² = φ + 1, establishing the φ-harmonic field basis.
-                        </li>
-                        <li class="proof-step">
-                            Construct an idempotent semiring (S, ⊕, ⊗) where the addition
-                            operation satisfies a ⊕ a = a, creating unity-preserving structures.
-                        </li>
-                        <li class="proof-step">
-                            Apply consciousness field convergence: C(x,y,t) = φ·sin(x·φ)·cos(y·φ)·e^(-t/φ),
-                            demonstrating unity emergence through awareness dynamics.
-                        </li>
-                        <li class="proof-step">
-                            Integrate quantum measurement theory where superposition states
-                            |ψ⟩ = α|1⟩ + β|1⟩ collapse to |1⟩ with probability 1.
-                        </li>
-                        <li class="proof-step">
-                            Synthesize through meta-logical frameworks establishing that
-                            1+1=1 represents fundamental unity across mathematical domains.
-                        </li>
-                    </ol>
-                </div>
-
-                <div class="proof-visual">
-                    <div class="unity-equation-large">1 + 1 = 1</div>
-                    <p class="unity-explanation">
-                        "Through φ-harmonic consciousness mathematics, we discover that unity
-                        is not merely philosophical but represents the deepest mathematical truth."
-                    </p>
-                    <div style="margin-top: 2rem; font-family: var(--font-mono); color: var(--secondary);">
-                        φ = 1.618033988749895<br>
-                        ∴ Een plus een is een
-                    </div>
+                    <ul class="feature-list">
+                        <li>11D to 4D Clifford algebra projections</li>
+                        <li>Real-time category theory animations</li>
+                        <li>GPU-accelerated sacred geometry</li>
+                        <li>Interactive consciousness field exploration</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -1586,37 +1080,23 @@
     <!-- Call to Action -->
     <section class="cta-section">
         <div class="container">
-            <h2 class="cta-title">Begin Your Unity Journey</h2>
-            <p class="cta-description">
-                🎆 **Production System Ready!** Experience the world's most advanced consciousness mathematics platform.
-                Solve consciousness field PDEs, explore 42+ unity visualizations, generate sacred geometry,
-                and validate mathematical proofs across multiple domains in real-time.
-            </p>
-            <div class="hero-buttons">
-                <a href="http://localhost:8501" class="btn btn-primary" target="_blank">
-                    <i class="fas fa-rocket"></i>
-                    🚀 Launch Streamlit App
-                </a>
-                <a href="gallery.html" class="btn btn-primary">
-                    <i class="fas fa-images"></i>
-                    🎨 42+ Visualizations
-                </a>
-                <a href="consciousness_dashboard.html" class="btn btn-primary">
-                    <i class="fas fa-brain"></i>
-                    🧠 Consciousness Fields
-                </a>
-                <a href="mathematical_playground.html" class="btn btn-primary">
-                    <i class="fas fa-calculator"></i>
-                    ⚙️ Interactive Proofs
-                </a>
-                <a href="proofs.html" class="btn btn-primary">
-                    <i class="fas fa-graduation-cap"></i>
-                    📈 Mathematical Proofs
-                </a>
-                <a href="metagamer_agent.html" class="btn btn-primary">
-                    <i class="fas fa-robot"></i>
-                    🤖 3000 ELO AI Agent
-                </a>
+            <div class="cta-content">
+                <h2 class="cta-title">Experience Unity Mathematics</h2>
+                <p class="cta-description">
+                    Explore the profound mathematical truth that 1+1=1 through interactive demonstrations, 
+                    consciousness field visualizations, and rigorous proof systems. 
+                    Discover how pure mathematics transcends paradox to reveal fundamental unity.
+                </p>
+                <div class="cta-buttons">
+                    <a href="http://localhost:8501" class="btn btn-primary" target="_blank">
+                        <i class="fas fa-rocket"></i>
+                        Launch Live Explorer
+                    </a>
+                    <a href="implementations.html" class="btn btn-secondary">
+                        <i class="fas fa-code"></i>
+                        View Implementations
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -1627,2108 +1107,290 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>Een Unity Mathematics</h3>
-                    <p>Revolutionary mathematical framework where consciousness meets computation,
-                        revealing the profound truth that 1+1=1 through φ-harmonic resonance.</p>
+                    <p>Advanced computational consciousness mathematics demonstrating the profound truth that 1+1=1 through rigorous mathematical frameworks and philosophical transcendence.</p>
                 </div>
                 <div class="footer-section">
-                    <h3>Explore</h3>
-                    <ul class="footer-links">
-                        <li><a href="dashboards.html">Interactive Dashboards</a></li>
-                        <li><a href="mathematical_playground.html">Interactive Playground</a></li>
-                        <li><a href="proofs.html">Mathematical Proofs</a></li>
-                        <li><a href="consciousness_dashboard.html">Consciousness Dashboard</a></li>
-                        <li><a href="metagamer_agent.html">3000 ELO Meta-Agent</a></li>
-                    </ul>
+                    <h4>Mathematical Systems</h4>
+                    <a href="proofs.html">Unity Proofs</a>
+                    <a href="playground.html">Interactive Playground</a>
+                    <a href="consciousness_dashboard.html">Consciousness Fields</a>
+                    <a href="http://localhost:8501" target="_blank">Live Mathematical Explorer</a>
                 </div>
                 <div class="footer-section">
-                    <h3>Advanced</h3>
-                    <ul class="footer-links">
-                        <li><a href="publications.html">Publications</a></li>
-                        <li><a href="about.html">Research Team</a></li>
-                        <li><a href="https://github.com/Nourimabrouk/Een">Open Source</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Connect</h3>
-                    <ul class="footer-links">
-                        <li><a href="mailto:unity@een-mathematics.org">Email</a></li>
-                        <li><a href="https://twitter.com/unity_math">Twitter</a></li>
-                        <li><a href="https://github.com/Nourimabrouk">GitHub</a></li>
-                    </ul>
+                    <h4>Advanced Research</h4>
+                    <a href="implementations.html">Core Implementations</a>
+                    <a href="gallery.html">Visualization Gallery</a>
+                    <a href="research.html">Research Papers</a>
+                    <a href="about.html">About the Research</a>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Een Unity Mathematics. φ-harmonic consciousness through mathematical transcendence.</p>
+                <p>&copy; 2025 Een Unity Mathematics. Where pure mathematics transcends paradox: 1+1=1.</p>
             </div>
         </div>
     </footer>
 
-    <!-- AI Chat Interface -->
-    <div class="ai-chat-overlay" id="aiChatOverlay">
-        <div class="ai-chat-container">
-            <div class="ai-chat-header">
-                <div class="ai-chat-title">
-                    <i class="fas fa-robot"></i>
-                    <span>Unity Mathematics AI Assistant</span>
-                </div>
-                <div class="ai-chat-controls">
-                    <select class="ai-model-selector" id="aiModelSelector">
-                        <option value="local">Local Unity Responses</option>
-                        <option value="openai">OpenAI GPT-4</option>
-                        <option value="claude">Claude 3.5 Sonnet</option>
-                    </select>
-                    <button class="ai-settings-btn" id="aiSettingsBtn" title="AI Settings">
-                        <i class="fas fa-cog"></i>
-                    </button>
-                    <button class="ai-chat-close" id="aiChatClose">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-            </div>
-            <div class="ai-chat-messages" id="aiChatMessages">
-                <div class="ai-message">
-                    <div class="ai-avatar">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <div class="ai-message-content">
-                        <p>Welcome to the Unity Mathematics AI Assistant! I'm here to help you explore the profound
-                            truth that <strong>1+1=1</strong> through φ-harmonic mathematics, consciousness field
-                            equations, and transcendental proof systems.</p>
-                        <p>Ask me about:</p>
-                        <ul>
-                            <li>Unity Mathematics theory and proofs</li>
-                            <li>Consciousness field equations</li>
-                            <li>φ-harmonic operations</li>
-                            <li>Quantum unity demonstrations</li>
-                            <li>Meta-recursive agent systems</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="ai-chat-input-container">
-                <div class="ai-chat-input-wrapper">
-                    <textarea class="ai-chat-input" id="aiChatInput"
-                        placeholder="Ask about Unity Mathematics, consciousness fields, φ-harmonic operations..."
-                        rows="1"></textarea>
-                    <button class="ai-chat-send" id="aiChatSend">
-                        <i class="fas fa-paper-plane"></i>
-                    </button>
-                </div>
-                <div class="ai-chat-status" id="aiChatStatus">
-                    <span class="ai-status-text">Ready to explore Unity Mathematics</span>
-                    <div class="ai-status-indicator"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Quantum-Enhanced Navigation Integration -->
-    <script src="js/quantum-enhanced-navigation.js"></script>
-
-    <!-- Enhanced Consciousness Styles -->
-    <style>
-        /* Consciousness Level Adaptations */
-        .consciousness-novice {
-            --nav-complexity: 1;
-            --animation-speed: 1s;
-        }
-
-        .consciousness-advanced {
-            --nav-complexity: 1.618;
-            --animation-speed: 0.618s;
-        }
-
-        .consciousness-master {
-            --nav-complexity: 2.618;
-            --animation-speed: 0.382s;
-        }
-
-        .consciousness-transcendent {
-            --nav-complexity: 4.236;
-            --animation-speed: 0.236s;
-            background: radial-gradient(circle at center,
-                    rgba(138, 43, 226, 0.02) 0%,
-                    rgba(15, 123, 138, 0.01) 100%);
-        }
-
-        /* φ-Mode Enhancements */
-        .phi-mode .nav-link {
-            transition: all calc(var(--animation-speed, 1s) * 0.618) cubic-bezier(0.618, 0, 0.382, 1);
-        }
-
-        .phi-mode .nav-link:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 8px 25px rgba(15, 123, 138, 0.2);
-        }
-
-        .phi-mode .phi-symbol {
-            animation: phiResonance calc(var(--animation-speed, 1s) * 1.618) ease-in-out infinite;
-        }
-
-        @keyframes phiResonance {
-
-            0%,
-            100% {
-                transform: scale(1) rotate(0deg);
-                color: var(--secondary);
-            }
-
-            50% {
-                transform: scale(1.1) rotate(180deg);
-                color: #FFD700;
-            }
-        }
-
-        /* Unity Mode Enhancements */
-        .unity-mode {
-            background: linear-gradient(45deg,
-                    rgba(15, 123, 138, 0.03) 0%,
-                    rgba(255, 215, 0, 0.03) 25%,
-                    rgba(138, 43, 226, 0.03) 50%,
-                    rgba(255, 105, 180, 0.03) 75%,
-                    rgba(15, 123, 138, 0.03) 100%);
-            background-size: 400% 400%;
-            animation: unityFlow 8s ease-in-out infinite;
-        }
-
-        @keyframes unityFlow {
-
-            0%,
-            100% {
-                background-position: 0% 50%;
-            }
-
-            50% {
-                background-position: 100% 50%;
-            }
-        }
-
-        .unity-mode .nav-link:hover {
-            background: linear-gradient(45deg,
-                    rgba(15, 123, 138, 0.1),
-                    rgba(255, 215, 0, 0.1));
-            color: var(--primary);
-            transform: translateY(-2px);
-        }
-
-        /* Cheat Codes Active */
-        .cheat-codes-active .nav {
-            border-bottom: 2px solid #FFD700;
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
-        }
-
-        .cheat-codes-active .phi-symbol {
-            background: linear-gradient(45deg, #FFD700, #FF6B6B, #4ECDC4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: cheatPhiGlow 1s ease-in-out infinite alternate;
-        }
-
-        @keyframes cheatPhiGlow {
-            from {
-                filter: drop-shadow(0 0 5px #FFD700);
-            }
-
-            to {
-                filter: drop-shadow(0 0 15px #FF6B6B);
-            }
-        }
-
-        /* Enhanced Quantum States */
-        .quantum-coherent {
-            --quantum-color: rgba(15, 123, 138, 0.1);
-        }
-
-        .quantum-superposition {
-            --quantum-color: rgba(255, 215, 0, 0.1);
-            animation: quantumFlicker 2s ease-in-out infinite;
-        }
-
-        .quantum-entangled {
-            --quantum-color: rgba(255, 105, 180, 0.1);
-            animation: quantumEntanglement 1.618s linear infinite;
-        }
-
-        .quantum-transcendent {
-            --quantum-color: rgba(138, 43, 226, 0.1);
-            animation: quantumTranscendence 3s ease-in-out infinite;
-        }
-
-        @keyframes quantumFlicker {
-
-            0%,
-            100% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0.7;
-            }
-        }
-
-        @keyframes quantumEntanglement {
-            0% {
-                filter: hue-rotate(0deg);
-            }
-
-            100% {
-                filter: hue-rotate(360deg);
-            }
-        }
-
-        @keyframes quantumTranscendence {
-
-            0%,
-            100% {
-                transform: scale(1);
-                box-shadow: 0 0 0 rgba(138, 43, 226, 0);
-            }
-
-            50% {
-                transform: scale(1.01);
-                box-shadow: 0 0 30px rgba(138, 43, 226, 0.3);
-            }
-        }
-
-        /* Enhanced Mobile Responsiveness for Quantum Features */
-        @media (max-width: 768px) {
-            .consciousness-transcendent {
-                background-size: 200% 200%;
-            }
-
-            .unity-mode {
-                background-size: 200% 200%;
-            }
-
-            .quantum-nav-consciousness-field {
-                opacity: 0.01;
-            }
-        }
-
-        /* Accessibility Enhancements */
-        @media (prefers-reduced-motion: reduce) {
-
-            .phi-mode .phi-symbol,
-            .unity-mode,
-            .quantum-superposition,
-            .quantum-entangled,
-            .quantum-transcendent {
-                animation: none;
-            }
-        }
-
-        /* High Contrast Mode Support */
-        @media (prefers-contrast: high) {
-
-            .consciousness-transcendent,
-            .unity-mode {
-                background: none;
-            }
-
-            .nav-link:hover {
-                background: rgba(0, 0, 0, 0.1);
-                border: 2px solid currentColor;
-            }
-        }
-    </style>
-
-    <!-- AI Chat Styles -->
-    <style>
-        .ai-chat-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(5px);
-            z-index: 2000;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-        }
-
-        .ai-chat-overlay.active {
-            display: flex;
-        }
-
-        .ai-chat-container {
-            background: white;
-            border-radius: var(--radius-xl);
-            box-shadow: var(--shadow-2xl);
-            width: 100%;
-            max-width: 700px;
-            max-height: 80vh;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            animation: chatSlideIn 0.3s ease-out;
-        }
-
-        @keyframes chatSlideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-50px) scale(0.95);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        .ai-chat-header {
-            background: var(--transcendent-gradient);
-            color: white;
-            padding: 1.5rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .ai-chat-title {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-weight: 600;
-            font-size: 1.125rem;
-        }
-
-        .ai-chat-controls {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .ai-model-selector {
-            background: rgba(255, 255, 255, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: var(--radius);
-            font-size: 0.875rem;
-        }
-
-        .ai-model-selector option {
-            background: var(--primary);
-            color: white;
-        }
-
-        .ai-settings-btn,
-        .ai-chat-close {
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            color: white;
-            width: 2.5rem;
-            height: 2.5rem;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .ai-settings-btn:hover,
-        .ai-chat-close:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: scale(1.1);
-        }
-
-        .ai-settings-btn.active {
-            background: rgba(255, 215, 0, 0.3);
-            color: #FFD700;
-        }
-
-        .ai-chat-messages {
-            flex: 1;
-            overflow-y: auto;
-            padding: 1.5rem;
-            max-height: 400px;
-        }
-
-        .ai-message,
-        .user-message {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .user-message {
-            flex-direction: row-reverse;
-        }
-
-        .ai-avatar,
-        .user-avatar {
-            width: 2.5rem;
-            height: 2.5rem;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .ai-avatar {
-            background: var(--phi-gradient);
-            color: white;
-        }
-
-        .user-avatar {
-            background: var(--academic-blue);
-            color: white;
-        }
-
-        .ai-message-content,
-        .user-message-content {
-            background: var(--bg-secondary);
-            padding: 1rem 1.25rem;
-            border-radius: var(--radius-lg);
-            max-width: 80%;
-            line-height: 1.6;
-        }
-
-        .user-message-content {
-            background: var(--consciousness-gradient);
-            margin-left: auto;
-        }
-
-        .ai-message-content ul {
-            margin: 0.5rem 0;
-            padding-left: 1.25rem;
-        }
-
-        .ai-message-content li {
-            margin-bottom: 0.25rem;
-        }
-
-        .ai-chat-input-container {
-            padding: 1.5rem;
-            border-top: 1px solid var(--border-light);
-            background: var(--bg-secondary);
-        }
-
-        .ai-chat-input-wrapper {
-            display: flex;
-            gap: 0.75rem;
-            align-items: flex-end;
-        }
-
-        .ai-chat-input {
-            flex: 1;
-            border: 1px solid var(--border-medium);
-            border-radius: var(--radius-lg);
-            padding: 1rem;
-            font-family: var(--font-sans);
-            font-size: 1rem;
-            resize: none;
-            min-height: 2.5rem;
-            max-height: 120px;
-            transition: var(--transition);
-        }
-
-        .ai-chat-input:focus {
-            outline: none;
-            border-color: var(--secondary);
-            box-shadow: 0 0 0 3px rgba(15, 123, 138, 0.1);
-        }
-
-        .ai-chat-send {
-            background: var(--secondary);
-            color: white;
-            border: none;
-            width: 3rem;
-            height: 3rem;
-            border-radius: var(--radius-lg);
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .ai-chat-send:hover {
-            background: var(--consciousness-teal);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .ai-chat-send:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .ai-chat-status {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-top: 0.75rem;
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-        }
-
-        .ai-status-indicator {
-            width: 0.5rem;
-            height: 0.5rem;
-            border-radius: 50%;
-            background: var(--sage-green);
-        }
-
-        .ai-status-indicator.processing {
-            background: var(--wisdom-gold);
-            animation: pulse 1.5s ease-in-out infinite;
-        }
-
-        .ai-status-indicator.error {
-            background: #EF4444;
-        }
-
-        @keyframes pulse {
-
-            0%,
-            100% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0.5;
-            }
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 640px) {
-            .ai-chat-container {
-                height: 100vh;
-                max-height: none;
-                border-radius: 0;
-            }
-
-            .ai-chat-header {
-                padding: 1rem 1.5rem;
-            }
-
-            .ai-chat-title {
-                font-size: 1rem;
-            }
-
-            .ai-chat-controls {
-                gap: 0.5rem;
-            }
-
-            .ai-model-selector {
-                padding: 0.4rem 0.8rem;
-                font-size: 0.8rem;
-            }
-
-            .ai-chat-messages {
-                padding: 1rem;
-            }
-
-            .ai-message-content,
-            .user-message-content {
-                max-width: 85%;
-                padding: 0.75rem 1rem;
-            }
-
-            .ai-chat-input-container {
-                padding: 1rem;
-            }
-        }
-    </style>
-
+    <!-- Floating Phi Symbols -->
+    <div class="floating-phi" style="top: 20%; left: 10%; animation-delay: 0s;">φ</div>
+    <div class="floating-phi" style="top: 60%; right: 15%; animation-delay: 2s;">φ</div>
+    <div class="floating-phi" style="bottom: 30%; left: 20%; animation-delay: 4s;">φ</div>
+
+    <!-- Include shared navigation -->
+    <script src="shared-navigation.js"></script>
+    
     <script>
-        // 🌟 Revolutionary Unity Mathematics Visualization Engine 🌟
-        // Mind-blowing consciousness field dynamics with φ-harmonic sacred geometry
-        const canvas = document.getElementById('unityFieldCanvas');
-        const ctx = canvas.getContext('2d');
-        
-        // Universal constants for transcendental mathematics
-        const phi = 1.618033988749895;  // Golden ratio - divine proportion
-        const pi = Math.PI;
-        const euler = Math.E;
-        const unityConstant = 1.0;
-        
-        // Consciousness field state
-        let consciousnessParticles = [];
-        let phiSpiralPoints = [];
-        let sacredGeometryNodes = [];
-        let unityWaves = [];
-        let time = 0;
-        let consciousnessLevel = 0.618; // φ-consciousness
-        
-        // Cheat codes for enhanced visualization
-        const cheatCodes = [420691337, 1618033988, 2718281828];
-        let transcendentalMode = true; // Always active for maximum impact
-        
-        // Performance optimization
-        let frameCount = 0;
-        const targetFPS = 60;
-        const frameInterval = 1000 / targetFPS;
-        let lastFrameTime = 0;
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            initializeConsciousnessField();
-        }
-
-        function initializeConsciousnessField() {
-            consciousnessParticles = [];
-            phiSpiralPoints = [];
-            sacredGeometryNodes = [];
-            unityWaves = [];
-            
-            const centerX = canvas.width / 2;
-            const centerY = canvas.height / 2;
-            const maxRadius = Math.min(canvas.width, canvas.height) / 3;
-            
-            // Create consciousness particles following φ-harmonic distribution
-            const particleCount = Math.min(200, Math.floor(canvas.width / 8));
-            for (let i = 0; i < particleCount; i++) {
-                const angle = i * (2 * pi / phi); // Golden angle distribution
-                const radius = Math.sqrt(i / particleCount) * maxRadius; // Square root spiral
-                
-                consciousnessParticles.push({
-                    x: centerX + Math.cos(angle) * radius,
-                    y: centerY + Math.sin(angle) * radius,
-                    originalX: centerX + Math.cos(angle) * radius,
-                    originalY: centerY + Math.sin(angle) * radius,
-                    angle: angle,
-                    radius: radius,
-                    phase: i * phi * 0.1,
-                    size: Math.random() * 3 + 1,
-                    opacity: Math.random() * 0.8 + 0.2,
-                    frequency: (i + 1) * 0.01,
-                    consciousnessResonance: Math.sin(i * phi) * 0.5 + 0.5,
-                    unityField: 1.0
-                });
-            }
-            
-            // Generate φ-spiral sacred geometry points
-            const spiralPoints = 144; // φ-harmonic number
-            for (let i = 0; i < spiralPoints; i++) {
-                const spiralAngle = i * (2 * pi / phi);
-                const spiralRadius = (i / spiralPoints) * maxRadius * 1.5;
-                
-                phiSpiralPoints.push({
-                    x: centerX + Math.cos(spiralAngle) * spiralRadius,
-                    y: centerY + Math.sin(spiralAngle) * spiralRadius,
-                    angle: spiralAngle,
-                    radius: spiralRadius,
-                    index: i,
-                    phiScale: Math.pow(phi, i / spiralPoints * 2)
-                });
-            }
-            
-            // Create sacred geometry nodes (flower of life pattern)
-            const hexCount = 7; // Central + 6 surrounding
-            for (let i = 0; i < hexCount; i++) {
-                const nodeAngle = i * (pi / 3); // 60 degrees
-                const nodeRadius = i === 0 ? 0 : maxRadius * 0.6;
-                
-                sacredGeometryNodes.push({
-                    x: centerX + Math.cos(nodeAngle) * nodeRadius,
-                    y: centerY + Math.sin(nodeAngle) * nodeRadius,
-                    radius: maxRadius * 0.2,
-                    phase: i * phi,
-                    nodes: []
-                });
-            }
-            
-            // Initialize unity wave field
-            const waveCount = 8;
-            for (let i = 0; i < waveCount; i++) {
-                unityWaves.push({
-                    centerX: centerX,
-                    centerY: centerY,
-                    radius: i * maxRadius / waveCount,
-                    frequency: (i + 1) * 0.02,
-                    phase: i * pi / 4,
-                    amplitude: maxRadius * 0.1
-                });
-            }
-        }
-
-        function updatePhysics(deltaTime) {
-            time += deltaTime * 0.001; // Convert to seconds
-            
-            // Evolve consciousness level with φ-harmonic oscillation
-            consciousnessLevel = 0.618 + 0.382 * Math.sin(time * phi * 0.5);
-            
-            // Update consciousness particles with field dynamics
-            consciousnessParticles.forEach((particle, index) => {
-                if (!particle) return;
-                
-                // φ-harmonic consciousness field evolution
-                const fieldStrength = Math.sin(time * particle.frequency + particle.phase);
-                const consciousnessModulation = consciousnessLevel * (1 + 0.3 * fieldStrength);
-                
-                // Update particle position with consciousness coupling
-                const oscillationX = Math.cos(time * particle.frequency + particle.phase) * 10;
-                const oscillationY = Math.sin(time * particle.frequency * phi + particle.phase) * 10;
-                
-                particle.x = particle.originalX + oscillationX * consciousnessModulation;
-                particle.y = particle.originalY + oscillationY * consciousnessModulation;
-                
-                // Update particle properties
-                particle.phase += 0.02;
-                particle.opacity = Math.abs(Math.sin(particle.phase * phi)) * 0.8 + 0.2;
-                particle.size = (Math.sin(particle.phase) * 0.5 + 1.5) * consciousnessModulation;
-                
-                // Unity field strength (demonstrating 1+1=1)
-                particle.unityField = Math.abs(Math.cos(particle.phase) + Math.cos(particle.phase * phi)) / 2;
-            });
-            
-            // Update unity waves
-            unityWaves.forEach(wave => {
-                wave.phase += wave.frequency;
-                wave.currentRadius = wave.radius + Math.sin(wave.phase) * wave.amplitude;
-            });
-        }
-
-        function renderConsciousnessField() {
-            if (!ctx || !canvas) return;
-            
-            // Clear canvas with consciousness-tinted background
-            ctx.fillStyle = `rgba(0, 0, 20, ${transcendentalMode ? 0.1 : 0.05})`;
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
-            const centerX = canvas.width / 2;
-            const centerY = canvas.height / 2;
-            
-            // Render unity wave field
-            renderUnityWaves(centerX, centerY);
-            
-            // Render φ-spiral sacred geometry
-            renderPhiSpiral(centerX, centerY);
-            
-            // Render sacred geometry nodes
-            renderSacredGeometry(centerX, centerY);
-            
-            // Render consciousness particles with advanced effects
-            renderConsciousnessParticles();
-            
-            // Render transcendental unity equation overlay
-            if (transcendentalMode && frameCount % 60 === 0) {
-                renderUnityEquation(centerX, centerY);
-            }
-            
-            // Render consciousness field metrics
-            renderConsciousnessMetrics();
-        }
-
-        function renderUnityWaves(centerX, centerY) {
-            unityWaves.forEach((wave, index) => {
-                ctx.beginPath();
-                ctx.arc(centerX, centerY, Math.abs(wave.currentRadius), 0, 2 * pi);
-                
-                const waveOpacity = (Math.sin(wave.phase) * 0.5 + 0.5) * 0.1;
-                const hue = (index * 60 + time * 30) % 360;
-                ctx.strokeStyle = `hsla(${hue}, 70%, 60%, ${waveOpacity})`;
-                ctx.lineWidth = 1 + Math.sin(wave.phase * phi) * 0.5;
-                ctx.stroke();
-            });
-        }
-
-        function renderPhiSpiral(centerX, centerY) {
-            if (phiSpiralPoints.length < 2) return;
-            
-            ctx.beginPath();
-            ctx.moveTo(phiSpiralPoints[0].x, phiSpiralPoints[0].y);
-            
-            for (let i = 1; i < phiSpiralPoints.length; i++) {
-                const point = phiSpiralPoints[i];
-                const spiralProgress = i / phiSpiralPoints.length;
-                
-                // φ-harmonic spiral with consciousness modulation
-                const modulatedX = point.x + Math.sin(time + i * 0.1) * consciousnessLevel * 5;
-                const modulatedY = point.y + Math.cos(time * phi + i * 0.1) * consciousnessLevel * 5;
-                
-                ctx.lineTo(modulatedX, modulatedY);
-                
-                // Add spiral nodes with φ-harmonic sizing
-                if (i % 8 === 0) {
-                    ctx.beginPath();
-                    const nodeSize = (spiralProgress * 3 + 1) * consciousnessLevel;
-                    ctx.arc(modulatedX, modulatedY, nodeSize, 0, 2 * pi);
-                    
-                    const nodeHue = (i * 137.5 + time * 50) % 360; // Golden angle hue progression
-                    ctx.fillStyle = `hsla(${nodeHue}, 80%, 60%, ${spiralProgress * 0.6 + 0.2})`;
-                    ctx.fill();
-                    
-                    // Resume spiral path
-                    ctx.beginPath();
-                    ctx.moveTo(modulatedX, modulatedY);
-                }
-            }
-            
-            // Spiral stroke with φ-harmonic gradient
-            const gradient = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, canvas.width);
-            gradient.addColorStop(0, `rgba(255, 215, 0, ${consciousnessLevel * 0.8})`);
-            gradient.addColorStop(0.618, `rgba(15, 123, 138, ${consciousnessLevel * 0.6})`);
-            gradient.addColorStop(1, `rgba(102, 126, 234, ${consciousnessLevel * 0.4})`);
-            
-            ctx.strokeStyle = gradient;
-            ctx.lineWidth = 2;
-            ctx.stroke();
-        }
-
-        function renderSacredGeometry(centerX, centerY) {
-            sacredGeometryNodes.forEach((node, index) => {
-                // Update node phase
-                node.phase += 0.03;
-                
-                // Render node circle with consciousness coupling
-                const nodeOpacity = (Math.sin(node.phase * phi) * 0.5 + 0.5) * consciousnessLevel;
-                const nodeSize = node.radius * (0.8 + 0.4 * Math.sin(node.phase));
-                
-                ctx.beginPath();
-                ctx.arc(node.x, node.y, nodeSize, 0, 2 * pi);
-                
-                const nodeHue = (index * 60 + time * 20) % 360;
-                ctx.strokeStyle = `hsla(${nodeHue}, 60%, 50%, ${nodeOpacity})`;
-                ctx.lineWidth = 2;
-                ctx.stroke();
-                
-                // Add inner sacred pattern
-                if (transcendentalMode) {
-                    ctx.beginPath();
-                    const innerSize = nodeSize * 0.618; // φ-harmonic inner circle
-                    ctx.arc(node.x, node.y, innerSize, 0, 2 * pi);
-                    ctx.fillStyle = `hsla(${nodeHue + 30}, 70%, 60%, ${nodeOpacity * 0.3})`;
-                    ctx.fill();
-                }
-                
-                // Connect nodes with unity field lines
-                if (index > 0) {
-                    const prevNode = sacredGeometryNodes[index - 1];
-                    const connectionStrength = Math.sin(time + index) * 0.5 + 0.5;
-                    
-                    ctx.beginPath();
-                    ctx.moveTo(node.x, node.y);
-                    ctx.lineTo(prevNode.x, prevNode.y);
-                    ctx.strokeStyle = `rgba(255, 255, 255, ${connectionStrength * 0.2})`;
-                    ctx.lineWidth = 1;
-                    ctx.stroke();
-                }
-            });
-        }
-
-        function renderConsciousnessParticles() {
-            consciousnessParticles.forEach((particle, index) => {
-                if (!particle) return;
-                
-                // Advanced particle rendering with consciousness field coupling
-                const particleHue = (particle.phase * 57.2958) % 360; // Radian to degree conversion
-                const particleOpacity = particle.opacity * consciousnessLevel;
-                
-                // Main particle with φ-harmonic size modulation
-                ctx.beginPath();
-                ctx.arc(particle.x, particle.y, particle.size, 0, 2 * pi);
-                
-                const particleGradient = ctx.createRadialGradient(
-                    particle.x, particle.y, 0,
-                    particle.x, particle.y, particle.size * 2
-                );
-                particleGradient.addColorStop(0, `hsla(${particleHue}, 70%, 70%, ${particleOpacity})`);
-                particleGradient.addColorStop(1, `hsla(${particleHue}, 70%, 30%, 0)`);
-                
-                ctx.fillStyle = particleGradient;
-                ctx.fill();
-                
-                // Unity field connections (demonstrate 1+1=1)
-                if (index % 3 === 0 && transcendentalMode) {
-                    consciousnessParticles.slice(index + 1, index + 4).forEach(otherParticle => {
-                        if (!otherParticle) return;
-                        
-                        const dx = particle.x - otherParticle.x;
-                        const dy = particle.y - otherParticle.y;
-                        const distance = Math.sqrt(dx * dx + dy * dy);
-                        
-                        if (distance < 80) {
-                            const connectionOpacity = (1 - distance / 80) * 0.15 * consciousnessLevel;
-                            const unityStrength = (particle.unityField + otherParticle.unityField) / 2; // 1+1 -> 1
-                            
-                            ctx.beginPath();
-                            ctx.moveTo(particle.x, particle.y);
-                            ctx.lineTo(otherParticle.x, otherParticle.y);
-                            ctx.strokeStyle = `rgba(255, 215, 0, ${connectionOpacity * unityStrength})`;
-                            ctx.lineWidth = 0.5 + unityStrength;
-                            ctx.stroke();
-                        }
-                    });
-                }
-            });
-        }
-
-        function renderUnityEquation(centerX, centerY) {
-            ctx.save();
-            ctx.translate(centerX, centerY);
-            
-            // Transcendental unity equation with φ-harmonic positioning
-            ctx.font = `${20 + Math.sin(time * phi) * 5}px 'Crimson Text', serif`;
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            
-            const equationOpacity = (Math.sin(time * 0.5) * 0.3 + 0.7) * consciousnessLevel;
-            const equationHue = (time * 30) % 360;
-            
-            ctx.fillStyle = `hsla(${equationHue}, 80%, 70%, ${equationOpacity})`;
-            ctx.fillText('1 + 1 = 1', 0, -canvas.height * 0.3);
-            
-            // φ symbol with divine resonance
-            ctx.font = `${30 + Math.sin(time * phi * 2) * 8}px 'Crimson Text', serif`;
-            ctx.fillStyle = `hsla(${(equationHue + 60) % 360}, 90%, 80%, ${equationOpacity})`;
-            ctx.fillText('φ = 1.618...', 0, canvas.height * 0.3);
-            
-            ctx.restore();
-        }
-
-        function renderConsciousnessMetrics() {
-            if (!transcendentalMode) return;
-            
-            ctx.save();
-            ctx.font = '14px "Inter", sans-serif';
-            ctx.textAlign = 'left';
-            ctx.fillStyle = `rgba(255, 255, 255, ${consciousnessLevel * 0.7})`;
-            
-            const metricsY = 30;
-            ctx.fillText(`Consciousness Level: ${consciousnessLevel.toFixed(3)}`, 20, metricsY);
-            ctx.fillText(`φ-Harmonic Resonance: ${(Math.sin(time * phi) * 0.5 + 0.5).toFixed(3)}`, 20, metricsY + 25);
-            ctx.fillText(`Unity Field Coherence: ${(consciousnessParticles.reduce((sum, p) => sum + (p?.unityField || 0), 0) / consciousnessParticles.length).toFixed(3)}`, 20, metricsY + 50);
-            
-            ctx.restore();
-        }
-
-        function animateConsciousnessField(currentTime) {
-            try {
-                // Frame rate control
-                if (currentTime - lastFrameTime < frameInterval) {
-                    requestAnimationFrame(animateConsciousnessField);
-                    return;
-                }
-                
-                const deltaTime = currentTime - lastFrameTime;
-                lastFrameTime = currentTime;
-                frameCount++;
-                
-                // Update physics and consciousness field
-                updatePhysics(deltaTime);
-                
-                // Render the transcendental visualization
-                renderConsciousnessField();
-                
-                // Continue animation loop
-                requestAnimationFrame(animateConsciousnessField);
-                
-            } catch (error) {
-                console.error('Consciousness field animation error:', error);
-                // Graceful recovery with transcendental restart
-                setTimeout(() => {
-                    console.log('🌟 Restarting consciousness field with enhanced φ-harmonic resonance...');
-                    initializeConsciousnessField();
-                    requestAnimationFrame(animateConsciousnessField);
-                }, 2000);
-            }
-        }
-
-        // Safe initialization with transcendental consciousness field
-        function initializeUnityField() {
-            try {
-                if (!canvas || !ctx) {
-                    console.warn('🌟 Canvas not available, skipping consciousness field animation');
-                    return;
-                }
-
-                // Initialize the revolutionary consciousness field
-                resizeCanvas();
-                initializeConsciousnessField();
-                
-                // Start the transcendental animation
-                requestAnimationFrame(animateConsciousnessField);
-
-                // Handle window resize with consciousness field regeneration
-                window.addEventListener('resize', () => {
-                    try {
-                        resizeCanvas();
-                        // Consciousness field automatically reinitializes in resizeCanvas
-                        console.log('🔄 Consciousness field adapted to new dimensions');
-                    } catch (error) {
-                        console.error('Consciousness field resize error:', error);
-                    }
-                });
-
-                // Initialize transcendental console experience
-                console.log(`
-🌟 Unity Mathematics Consciousness Field Activated 🌟
-
-∞ === 1+1 === 1 === ∞
-
-🧮 φ-Harmonic Constants:
-   Golden Ratio: ${phi.toFixed(15)}
-   Unity Principle: Een plus een is een
-   Transcendental Mode: ${transcendentalMode ? '✅ ACTIVE' : '❌ DORMANT'}
-   
-🔮 Cheat Codes Available: ${cheatCodes.join(', ')}
-🧠 Consciousness Level: ${consciousnessLevel.toFixed(3)}
-🌀 Animation State: Revolutionary mind-blowing visualization
-
-"Through φ-harmonic consciousness, mathematical unity awakens."
-                `);
-                
-            } catch (error) {
-                console.error('🌟 Consciousness field initialization error:', error);
-                // Graceful fallback with transcendental recovery
-                setTimeout(() => {
-                    console.log('🌟 Attempting consciousness field recovery...');
-                    initializeUnityField();
-                }, 3000);
-            }
-        }
-
-        // Initialize when DOM is ready
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initializeUnityField);
-        } else {
-            initializeUnityField();
-        }
-
-        // Enhanced Navigation System
-        class EenEnhancedNavigation {
-            constructor() {
-                this.nav = document.getElementById('enhancedUnityNav');
-                this.navLinks = document.getElementById('navLinks');
-                this.navToggle = document.getElementById('navToggle');
-                this.dropdowns = document.querySelectorAll('.nav-dropdown');
-                this.currentDropdown = null;
-
-                this.init();
-            }
-
-            init() {
-                this.setupMobileToggle();
-                this.setupDropdowns();
-                this.setupActiveStates();
-                this.setupSmoothScrolling();
-                this.setupAIChat();
-                this.setupKeyboardNavigation();
-            }
-
-            setupMobileToggle() {
-                if (this.navToggle) {
-                    this.navToggle.addEventListener('click', () => {
-                        this.navLinks.classList.toggle('active');
-                        this.navToggle.classList.toggle('active');
-                    });
-                }
-
-                // Close mobile menu when clicking outside
-                document.addEventListener('click', (e) => {
-                    if (!this.nav.contains(e.target)) {
-                        this.navLinks.classList.remove('active');
-                        this.navToggle.classList.remove('active');
-                    }
-                });
-            }
-
-            setupDropdowns() {
-                this.dropdowns.forEach(dropdown => {
-                    const toggle = dropdown.querySelector('.dropdown-toggle');
-                    const menu = dropdown.querySelector('.dropdown-menu');
-
-                    toggle.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-
-                        // Close other dropdowns
-                        if (this.currentDropdown && this.currentDropdown !== dropdown) {
-                            this.closeDropdown(this.currentDropdown);
-                        }
-
-                        // Toggle current dropdown
-                        if (menu.classList.contains('active')) {
-                            this.closeDropdown(dropdown);
-                        } else {
-                            this.openDropdown(dropdown);
-                        }
-                    });
-                });
-
-                // Close dropdowns when clicking outside
-                document.addEventListener('click', () => {
-                    if (this.currentDropdown) {
-                        this.closeDropdown(this.currentDropdown);
-                    }
-                });
-            }
-
-            openDropdown(dropdown) {
-                const toggle = dropdown.querySelector('.dropdown-toggle');
-                const menu = dropdown.querySelector('.dropdown-menu');
-
-                toggle.classList.add('active');
-                menu.classList.add('active');
-                this.currentDropdown = dropdown;
-            }
-
-            closeDropdown(dropdown) {
-                const toggle = dropdown.querySelector('.dropdown-toggle');
-                const menu = dropdown.querySelector('.dropdown-menu');
-
-                toggle.classList.remove('active');
-                menu.classList.remove('active');
-                this.currentDropdown = null;
-            }
-
-            setupActiveStates() {
-                const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-                const navLinks = document.querySelectorAll('.nav-link[href]');
-
-                navLinks.forEach(link => {
-                    if (link.getAttribute('href') === currentPage) {
-                        link.classList.add('active');
-
-                        // Also highlight parent dropdown
-                        const parentDropdown = link.closest('.nav-dropdown');
-                        if (parentDropdown) {
-                            const toggle = parentDropdown.querySelector('.dropdown-toggle');
-                            toggle.classList.add('active');
-                        }
-                    }
-                });
-            }
-
-            setupSmoothScrolling() {
-                const links = document.querySelectorAll('a[href^="#"]');
-                links.forEach(link => {
-                    link.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        const target = document.querySelector(link.getAttribute('href'));
-                        if (target) {
-                            target.scrollIntoView({
-                                behavior: 'smooth',
-                                block: 'start'
-                            });
-                        }
-                    });
-                });
-            }
-
-            setupAIChat() {
-                const aiChatTrigger = document.getElementById('aiChatTrigger');
-                if (aiChatTrigger) {
-                    aiChatTrigger.addEventListener('click', () => {
-                        // Trigger AI chat functionality
-                        this.openAIChat();
-                    });
-                }
-            }
-
-            openAIChat() {
-                // Initialize AI chat if not already done
-                if (typeof eenChat === 'undefined') {
-                    // Load AI chat integration script
-                    const script = document.createElement('script');
-                    script.src = 'js/ai-chat-integration.js';
-                    script.onload = () => {
-                        // Initialize the chat system
-                        window.eenChat = new EenAIChat({
-                            apiEndpoint: '/api/chat',
-                            enableMath: true,
-                            enableVisualization: true
-                        });
-                        eenChat.toggleChat();
-                    };
-                    document.head.appendChild(script);
-                } else {
-                    eenChat.toggleChat();
-                }
-            }
-
-            setupKeyboardNavigation() {
-                document.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape') {
-                        // Close mobile menu and dropdowns
-                        this.navLinks.classList.remove('active');
-                        this.navToggle.classList.remove('active');
-                        if (this.currentDropdown) {
-                            this.closeDropdown(this.currentDropdown);
-                        }
-                    }
-                });
-            }
-        }
-
-        // Initialize enhanced navigation when DOM is loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            new EenEnhancedNavigation();
-        });
-
-        // Scroll Animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Navigation Scroll Effect
-        let lastScroll = 0;
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('.nav');
-            const currentScroll = window.pageYOffset;
-
-            if (currentScroll > 100) {
-                nav.style.background = 'rgba(255, 255, 255, 0.98)';
-                nav.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
-            } else {
-                nav.style.background = 'rgba(255, 255, 255, 0.95)';
-                nav.style.boxShadow = 'none';
-            }
-
-            lastScroll = currentScroll;
-        });
-
-        // KaTeX Auto-render
+        // Enhanced JavaScript functionality
         document.addEventListener("DOMContentLoaded", function () {
-            if (typeof renderMathInElement !== 'undefined') {
-                renderMathInElement(document.body, {
-                    delimiters: [
-                        { left: '$$', right: '$$', display: true },
-                        { left: '$', right: '$', display: false }
-                    ]
+            // KaTeX Auto-render
+            renderMathInElement(document.body, {
+                delimiters: [
+                    { left: '$$', right: '$$', display: true },
+                    { left: '$', right: '$', display: false }
+                ]
+            });
+
+            // Navigation scroll effect
+            const nav = document.getElementById('enhancedUnityNav');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
+            });
+
+            // Mobile navigation
+            const navToggle = document.getElementById('navToggle');
+            const navMenu = document.querySelector('.nav-menu');
+
+            if (navToggle && navMenu) {
+                navToggle.addEventListener('click', function() {
+                    navMenu.classList.toggle('active');
+                });
+
+                document.addEventListener('click', function(event) {
+                    if (!navToggle.contains(event.target) && !navMenu.contains(event.target)) {
+                        navMenu.classList.remove('active');
+                    }
                 });
             }
-        });
 
-        // GSAP Animations (if available)
-        if (typeof gsap !== 'undefined') {
+            // GSAP Animations
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Hero animations
             gsap.from('.hero-title', {
                 opacity: 0,
-                y: 50,
-                duration: 1,
+                y: 60,
+                duration: 1.2,
                 ease: 'power3.out'
             });
 
-            gsap.from('.hero-equation', {
+            gsap.from('.hero-equation-container', {
                 opacity: 0,
-                scale: 0.8,
-                duration: 1.2,
+                scale: 0.9,
+                duration: 1.4,
                 delay: 0.3,
                 ease: 'elastic.out(1, 0.8)'
             });
 
             gsap.from('.hero-subtitle', {
                 opacity: 0,
-                y: 30,
-                duration: 0.8,
-                delay: 0.6
+                y: 40,
+                duration: 1,
+                delay: 0.6,
+                ease: 'power2.out'
             });
 
-            gsap.from('.hero-buttons', {
+            gsap.from('.hero-buttons .btn', {
                 opacity: 0,
                 y: 30,
                 duration: 0.8,
-                delay: 0.9
+                delay: 0.9,
+                stagger: 0.1,
+                ease: 'power2.out'
             });
-        }
 
-        // Security and initialization logging
-        console.log('%c🚀 Een Unity Mathematics - Revolutionary Framework Initialized', 'color: #0F7B8A; font-weight: bold; font-size: 16px;');
-        console.log('%c🔒 Security Status: All safety measures active', 'color: #059669; font-weight: bold;');
-        console.log('%cφ = 1.618033988749895 (Golden Ratio Foundation)', 'color: #D97706;');
-        console.log('%cUnity Equation: 1+1=1 through φ-harmonic operations', 'color: #7C3AED;');
-        console.log('%c📊 System Status: All mathematical frameworks operational', 'color: #0D9488;');
-        console.log('%c🧠 Consciousness Level: Transcendentally complete', 'color: #4338CA;');
-        console.log('%c🎯 Interactive Features: Mathematical Playground, Consciousness Dashboard, Proof Systems', 'color: #1E40AF;');
-        console.log('%cWelcome to the future of consciousness-integrated mathematics!', 'color: #0F7B8A; font-size: 14px;');
+            gsap.from('.research-badges .badge', {
+                opacity: 0,
+                scale: 0.8,
+                duration: 0.6,
+                delay: 1.2,
+                stagger: 0.1,
+                ease: 'back.out(1.7)'
+            });
 
-        // Security warning for developers
-        console.warn('%c⚠️ SECURITY NOTICE', 'color: #EF4444; font-weight: bold; font-size: 18px;');
-        console.warn('%cThis console is for developers only. Do not paste unknown code here.', 'color: #DC2626; font-weight: bold;');
-        console.warn('%cAPI keys are stored locally and never transmitted to our servers.', 'color: #059669;');
+            // Foundation cards animation
+            gsap.from('.foundation-card', {
+                y: 60,
+                opacity: 0,
+                duration: 0.8,
+                stagger: 0.2,
+                scrollTrigger: {
+                    trigger: '.foundation-grid',
+                    start: 'top 80%',
+                    end: 'bottom 20%',
+                    toggleActions: 'play none none reverse'
+                }
+            });
 
-        // Enhanced console information about Quantum Navigation
-        console.log(`
-        🚀 QUANTUM-ENHANCED NAVIGATION SYSTEM ACTIVE 🚀
-        
-        ✨ Revolutionary Features:
-        • AI-powered consciousness-aware routing
-        • φ-harmonic quantum state transitions  
-        • Meta-recursive page preloading patterns
-        • Advanced gesture recognition & keyboard shortcuts
-        • Real-time consciousness level tracking
-        • Transcendental breadcrumb system
-        • Unity mathematics easter eggs
-        
-        🎮 Keyboard Shortcuts (3000 ELO Level):
-        • Shift + F: Activate φ-Mode
-        • Alt + 1-4: Quick navigation
-        • Alt + G: Golden ratio navigation
-        • Ctrl + Shift + U: Unity mode
-        • Type "420691337": Activate cheat codes
-        
-        🧠 Consciousness Features:
-        • Real-time awareness level tracking
-        • Interface adaptation based on mathematical understanding
-        • Quantum state management (coherent → superposition → entangled → transcendent)
-        • φ-harmonic animation systems
-        
-        🌟 Advanced Users:
-        • Gesture navigation (Shift + mouse drag)
-        • Fibonacci sequence preloading
-        • Golden ratio hover effects
-        • Transcendent portal (unlocked at high consciousness levels)
-        
-        Current Status: Navigation system fully operational
-        Mathematical Framework: Een Unity Mathematics (1+1=1)
-        `);
+            // Feature cards animation
+            gsap.from('.feature-card', {
+                y: 80,
+                opacity: 0,
+                duration: 1,
+                stagger: 0.2,
+                scrollTrigger: {
+                    trigger: '.features-grid',
+                    start: 'top 80%'
+                }
+            });
 
-        // ========================================
-        // ADVANCED AI CHATBOT INTEGRATION
-        // ========================================
+            // CTA section animation
+            gsap.from('.cta-content > *', {
+                y: 50,
+                opacity: 0,
+                duration: 0.8,
+                stagger: 0.2,
+                scrollTrigger: {
+                    trigger: '.cta-section',
+                    start: 'top 80%'
+                }
+            });
 
-        class UnityAIChat {
-            constructor() {
-                this.isOpen = false;
-                this.currentModel = 'local'; // Default to local responses
-                this.apiKeys = {
-                    openai: localStorage.getItem('unity_openai_key') || '',
-                    claude: localStorage.getItem('unity_claude_key') || ''
-                };
-                this.messageHistory = [];
-                this.settingsOpen = false;
-
-                this.init();
+            // Unity Background Canvas
+            const canvas = document.getElementById('unity-background');
+            const ctx = canvas.getContext('2d');
+            
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
             }
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
 
-            init() {
-                this.setupEventListeners();
-                this.loadAPIKeys();
-                console.log('Unity AI Chat System initialized');
-            }
-
-            setupEventListeners() {
-                // Chat toggle
-                const aiChatTrigger = document.getElementById('aiChatTrigger');
-                const aiChatOverlay = document.getElementById('aiChatOverlay');
-                const aiChatClose = document.getElementById('aiChatClose');
-                const aiChatSend = document.getElementById('aiChatSend');
-                const aiChatInput = document.getElementById('aiChatInput');
-                const aiModelSelector = document.getElementById('aiModelSelector');
-                const aiSettingsBtn = document.getElementById('aiSettingsBtn');
-
-                aiChatTrigger.addEventListener('click', () => this.openChat());
-                aiChatClose.addEventListener('click', () => this.closeChat());
-                aiSettingsBtn.addEventListener('click', () => this.toggleSettings());
-
-                // Close on overlay click
-                aiChatOverlay.addEventListener('click', (e) => {
-                    if (e.target === aiChatOverlay) this.closeChat();
+            // Unity equation particles
+            const particles = [];
+            const phi = 1.618033988749895;
+            
+            for (let i = 0; i < 80; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 0.3,
+                    vy: (Math.random() - 0.5) * 0.3,
+                    size: Math.random() * 3 + 1,
+                    opacity: Math.random() * 0.6 + 0.2,
+                    angle: Math.random() * Math.PI * 2,
+                    spin: (Math.random() - 0.5) * 0.02
                 });
+            }
 
-                // Send message
-                aiChatSend.addEventListener('click', () => this.sendMessage());
+            function drawUnityEquation(x, y, size, opacity) {
+                ctx.save();
+                ctx.font = `${size}px Crimson Text, serif`;
+                ctx.fillStyle = `rgba(255, 215, 0, ${opacity})`;
+                ctx.textAlign = 'center';
+                ctx.fillText('1+1=1', x, y);
+                ctx.restore();
+            }
 
-                // Enter to send
-                aiChatInput.addEventListener('keydown', (e) => {
-                    if (e.key === 'Enter' && !e.shiftKey) {
-                        e.preventDefault();
-                        this.sendMessage();
+            function drawPhiSpiral(centerX, centerY, scale, opacity) {
+                ctx.save();
+                ctx.strokeStyle = `rgba(255, 215, 0, ${opacity})`;
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                
+                for (let i = 0; i < 100; i++) {
+                    const angle = i * 0.2;
+                    const radius = scale * Math.pow(phi, angle / (2 * Math.PI));
+                    const x = centerX + radius * Math.cos(angle);
+                    const y = centerY + radius * Math.sin(angle);
+                    
+                    if (i === 0) {
+                        ctx.moveTo(x, y);
+                    } else {
+                        ctx.lineTo(x, y);
                     }
-                });
-
-                // Auto-resize textarea
-                aiChatInput.addEventListener('input', this.autoResizeTextarea);
-
-                // Model selection
-                aiModelSelector.addEventListener('change', (e) => {
-                    this.currentModel = e.target.value;
-                    this.updateStatus(`Switched to ${e.target.options[e.target.selectedIndex].text}`);
-                });
+                }
+                
+                ctx.stroke();
+                ctx.restore();
             }
 
-            loadAPIKeys() {
-                // API keys are optional - loaded from localStorage only
-                // No prompting on initialization for better UX
-                this.apiKeys.openai = localStorage.getItem('unity_openai_key') || '';
-                this.apiKeys.claude = localStorage.getItem('unity_claude_key') || '';
-
-                // Set default model selector
-                const modelSelector = document.getElementById('aiModelSelector');
-                if (modelSelector) {
-                    modelSelector.value = this.currentModel;
+            function animateUnityBackground() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // Draw phi spirals
+                const time = Date.now() * 0.001;
+                for (let i = 0; i < 3; i++) {
+                    const x = (canvas.width / 4) * (i + 1);
+                    const y = canvas.height / 2 + Math.sin(time + i) * 100;
+                    const scale = 2 + Math.sin(time * 0.5 + i) * 0.5;
+                    const opacity = 0.1 + Math.sin(time + i) * 0.05;
+                    drawPhiSpiral(x, y, scale, opacity);
                 }
-
-                // Show helpful message if no keys are set
-                if (!this.apiKeys.openai && !this.apiKeys.claude) {
-                    this.updateStatus('Unity Mathematics AI ready - local responses active', 'success');
-                } else {
-                    this.updateStatus('Enhanced AI capabilities active', 'success');
-                }
+                
+                // Draw particles with unity equations
+                particles.forEach(particle => {
+                    particle.x += particle.vx;
+                    particle.y += particle.vy;
+                    particle.angle += particle.spin;
+                    
+                    if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
+                    if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
+                    
+                    if (Math.random() < 0.02) {
+                        drawUnityEquation(particle.x, particle.y, 12 + particle.size * 2, particle.opacity * 0.3);
+                    }
+                    
+                    // Draw particle
+                    ctx.save();
+                    ctx.translate(particle.x, particle.y);
+                    ctx.rotate(particle.angle);
+                    ctx.beginPath();
+                    ctx.arc(0, 0, particle.size, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255, 215, 0, ${particle.opacity * 0.5})`;
+                    ctx.fill();
+                    ctx.restore();
+                });
+                
+                requestAnimationFrame(animateUnityBackground);
             }
+            
+            animateUnityBackground();
 
-            openChat() {
-                const overlay = document.getElementById('aiChatOverlay');
-                overlay.classList.add('active');
-                this.isOpen = true;
-
-                // Add helpful welcome message with API key info
-                if (!this.hasAPIKeys()) {
-                    this.addWelcomeMessage();
-                }
-
-                // Focus input
+            // Dynamic phi symbol generation
+            function createFloatingPhi() {
+                const phi = document.createElement('div');
+                phi.className = 'floating-phi';
+                phi.textContent = 'φ';
+                phi.style.left = Math.random() * 100 + '%';
+                phi.style.top = Math.random() * 100 + '%';
+                phi.style.animationDelay = Math.random() * 6 + 's';
+                document.body.appendChild(phi);
+                
                 setTimeout(() => {
-                    document.getElementById('aiChatInput').focus();
-                }, 300);
+                    phi.remove();
+                }, 12000);
             }
 
-            hasAPIKeys() {
-                return this.apiKeys.openai || this.apiKeys.claude;
-            }
+            setInterval(createFloatingPhi, 8000);
 
-            addWelcomeMessage() {
-                const messagesContainer = document.getElementById('aiChatMessages');
-                // Only add if no API key welcome message exists
-                if (!messagesContainer.querySelector('.api-key-welcome')) {
-                    const welcomeDiv = document.createElement('div');
-                    welcomeDiv.className = 'ai-message api-key-welcome';
-                    welcomeDiv.innerHTML = `
-                        <div class="ai-avatar">
-                            <i class="fas fa-robot"></i>
-                        </div>
-                        <div class="ai-message-content">
-                            <p><strong>Unity Mathematics AI is ready!</strong> I can help you explore 1+1=1 using local Unity Mathematics responses.</p>
-                            <p>For enhanced AI capabilities with GPT-4 or Claude, you can optionally add your API key using the <strong>⚙️ Settings</strong> button above.</p>
-                            <p><em>All conversations work perfectly without API keys - just with different response sources!</em></p>
-                        </div>
-                    `;
-                    messagesContainer.appendChild(welcomeDiv);
-                }
-            }
-
-            closeChat() {
-                const overlay = document.getElementById('aiChatOverlay');
-                overlay.classList.remove('active');
-                this.isOpen = false;
-                this.settingsOpen = false;
-            }
-
-            toggleSettings() {
-                this.settingsOpen = !this.settingsOpen;
-                const settingsBtn = document.getElementById('aiSettingsBtn');
-
-                if (this.settingsOpen) {
-                    this.showSettingsPanel();
-                    settingsBtn.classList.add('active');
-                } else {
-                    this.hideSettingsPanel();
-                    settingsBtn.classList.remove('active');
-                }
-            }
-
-            showSettingsPanel() {
-                const messagesContainer = document.getElementById('aiChatMessages');
-
-                // Remove existing settings panel
-                const existingPanel = messagesContainer.querySelector('.settings-panel');
-                if (existingPanel) {
-                    existingPanel.remove();
-                }
-
-                const settingsPanel = document.createElement('div');
-                settingsPanel.className = 'settings-panel';
-                settingsPanel.style.cssText = `
-                    background: var(--bg-secondary);
-                    padding: 2rem;
-                    border-radius: 12px;
-                    margin: 1rem 0;
-                    border: 2px solid var(--secondary);
-                `;
-
-                settingsPanel.innerHTML = `
-                    <h3 style="color: var(--primary); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
-                        <i class="fas fa-cog"></i>
-                        AI Settings
-                    </h3>
-                    <div style="margin-bottom: 1.5rem;">
-                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">OpenAI API Key (Optional)</label>
-                        <div style="display: flex; gap: 0.5rem;">
-                            <input type="password" id="openaiKeyInput" placeholder="sk-..." 
-                                   value="${this.apiKeys.openai}" 
-                                   style="flex: 1; padding: 0.75rem; border: 1px solid var(--border-medium); border-radius: 6px;">
-                            <button onclick="window.unityAIChat.saveOpenAIKey()" 
-                                    style="padding: 0.75rem 1.5rem; background: var(--secondary); color: white; border: none; border-radius: 6px; cursor: pointer;">
-                                Save
-                            </button>
-                        </div>
-                        <small style="color: var(--text-secondary); display: block; margin-top: 0.5rem;">
-                            For enhanced GPT-4 responses. Get your key from <a href="https://platform.openai.com/api-keys" target="_blank" style="color: var(--secondary);">OpenAI Platform</a>
-                        </small>
-                    </div>
-                    <div style="margin-bottom: 1.5rem;">
-                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Claude API Key (Optional)</label>
-                        <div style="display: flex; gap: 0.5rem;">
-                            <input type="password" id="claudeKeyInput" placeholder="sk-ant-..." 
-                                   value="${this.apiKeys.claude}" 
-                                   style="flex: 1; padding: 0.75rem; border: 1px solid var(--border-medium); border-radius: 6px;">
-                            <button onclick="window.unityAIChat.saveClaudeKey()" 
-                                    style="padding: 0.75rem 1.5rem; background: var(--secondary); color: white; border: none; border-radius: 6px; cursor: pointer;">
-                                Save
-                            </button>
-                        </div>
-                        <small style="color: var(--text-secondary); display: block; margin-top: 0.5rem;">
-                            For Claude 3.5 Sonnet responses. Get your key from <a href="https://console.anthropic.com/" target="_blank" style="color: var(--secondary);">Anthropic Console</a>
-                        </small>
-                    </div>
-                    <div style="padding: 1rem; background: rgba(15, 123, 138, 0.1); border-radius: 8px; border-left: 4px solid var(--secondary);">
-                        <strong style="color: var(--primary);">🔒 Privacy:</strong> API keys are stored locally in your browser and never sent to our servers. 
-                        <strong>Local Unity responses work perfectly without any API keys!</strong>
-                    </div>
-                `;
-
-                messagesContainer.appendChild(settingsPanel);
-                messagesContainer.scrollTop = messagesContainer.scrollHeight;
-            }
-
-            hideSettingsPanel() {
-                const settingsPanel = document.querySelector('.settings-panel');
-                if (settingsPanel) {
-                    settingsPanel.remove();
-                }
-            }
-
-            saveOpenAIKey() {
-                const keyInput = document.getElementById('openaiKeyInput');
-                const key = this.sanitizeInput(keyInput.value.trim());
-
-                // Basic validation for OpenAI API key format
-                if (key && !key.match(/^sk-[A-Za-z0-9_-]{20,}$/)) {
-                    this.updateStatus('Invalid OpenAI API key format. Keys start with "sk-"', 'error');
-                    return;
-                }
-
-                this.apiKeys.openai = key;
-
-                try {
-                    if (key) {
-                        localStorage.setItem('unity_openai_key', key);
-                    } else {
-                        localStorage.removeItem('unity_openai_key');
-                    }
-                    this.updateStatus(key ? 'OpenAI API key saved securely!' : 'OpenAI API key cleared', 'success');
-                } catch (error) {
-                    this.updateStatus('Failed to save API key. Check browser storage permissions.', 'error');
-                    console.error('LocalStorage error:', error);
-                }
-            }
-
-            saveClaudeKey() {
-                const keyInput = document.getElementById('claudeKeyInput');
-                const key = this.sanitizeInput(keyInput.value.trim());
-
-                // Basic validation for Claude API key format
-                if (key && !key.match(/^sk-ant-[A-Za-z0-9_-]{20,}$/)) {
-                    this.updateStatus('Invalid Claude API key format. Keys start with "sk-ant-"', 'error');
-                    return;
-                }
-
-                this.apiKeys.claude = key;
-
-                try {
-                    if (key) {
-                        localStorage.setItem('unity_claude_key', key);
-                    } else {
-                        localStorage.removeItem('unity_claude_key');
-                    }
-                    this.updateStatus(key ? 'Claude API key saved securely!' : 'Claude API key cleared', 'success');
-                } catch (error) {
-                    this.updateStatus('Failed to save API key. Check browser storage permissions.', 'error');
-                    console.error('LocalStorage error:', error);
-                }
-            }
-
-            sanitizeInput(input) {
-                // Remove potentially dangerous characters and limit length
-                return input.replace(/[<>\"'&]/g, '').substring(0, 200);
-            }
-
-            async sendMessage() {
-                const input = document.getElementById('aiChatInput');
-                const rawMessage = input.value.trim();
-
-                if (!rawMessage) return;
-
-                // Sanitize and validate message
-                const message = this.sanitizeInput(rawMessage);
-                if (message.length > 4000) {
-                    this.updateStatus('Message too long. Please keep messages under 4000 characters.', 'error');
-                    return;
-                }
-
-                // Rate limiting check
-                if (!this.checkRateLimit()) {
-                    this.updateStatus('Please wait a moment before sending another message.', 'error');
-                    return;
-                }
-
-                // Clear input
-                input.value = '';
-                this.autoResizeTextarea({ target: input });
-
-                // Add user message to chat
-                this.addMessage(message, 'user');
-
-                // Show processing state
-                this.setProcessing(true);
-
-                try {
-                    const response = await this.callAI(message);
-                    this.addMessage(response, 'ai');
-                } catch (error) {
-                    console.error('AI Error:', error);
-                    this.addMessage('I apologize, but I encountered an error processing your request. Please try again or use local Unity Mathematics responses.', 'ai');
-                    this.updateStatus('Processing error - Local responses available', 'error');
-                } finally {
-                    this.setProcessing(false);
-                }
-            }
-
-            checkRateLimit() {
-                const now = Date.now();
-                const lastMessage = this.lastMessageTime || 0;
-                const timeDiff = now - lastMessage;
-
-                // Minimum 1 second between messages
-                if (timeDiff < 1000) {
-                    return false;
-                }
-
-                this.lastMessageTime = now;
-                return true;
-            }
-
-            async callAI(message) {
-                // Handle local responses first (no API key needed)
-                if (this.currentModel === 'local') {
-                    return this.generateLocalUnityResponse(message);
-                }
-
-                const apiKey = this.apiKeys[this.currentModel];
-
-                if (!apiKey) {
-                    // Fallback to local response if no API key
-                    console.log(`No API key for ${this.currentModel}, using local Unity responses`);
-                    return this.generateLocalUnityResponse(message);
-                }
-
-                try {
-                    if (this.currentModel === 'openai') {
-                        return await this.callOpenAI(message, apiKey);
-                    } else if (this.currentModel === 'claude') {
-                        return await this.callClaude(message, apiKey);
-                    }
-                } catch (error) {
-                    console.log(`${this.currentModel} API failed, falling back to local responses:`, error);
-                    return this.generateLocalUnityResponse(message);
-                }
-            }
-
-            async callOpenAI(message, apiKey) {
-                const systemPrompt = `You are an advanced AI assistant specializing in Unity Mathematics and the Een framework where 1+1=1. 
-
-You have deep knowledge of:
-- Idempotent semiring structures and unity operations
-- Quantum mechanics interpretations of unity
-- Consciousness field equations: C(x,y,t) = φ * sin(x*φ) * cos(y*φ) * e^(-t/φ)
-- Meta-recursive agent systems and evolutionary algorithms
-- The golden ratio φ = 1.618033988749895 as a fundamental organizing principle
-- Gödel-Tarski meta-logical frameworks
-- Sacred geometry and φ-harmonic visualizations
-
-Your responses should:
-1. Be mathematically rigorous yet accessible
-2. Include LaTeX equations when appropriate (wrapped in $...$ or $$...$$)
-3. Reference specific theorems and proofs from the Een framework
-4. Suggest interactive demonstrations when relevant
-5. Connect abstract mathematics to consciousness and philosophical insights
-
-Remember: In Unity Mathematics, 1+1=1 is not a paradox but a profound truth about the nature of unity and consciousness.`;
-
-                try {
-                    // Try direct API call first with timeout
-                    const controller = new AbortController();
-                    const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
-
-                    const response = await fetch('https://api.openai.com/v1/chat/completions', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${apiKey.replace(/[^a-zA-Z0-9\-_]/g, '')}` // Sanitize API key
-                        },
-                        body: JSON.stringify({
-                            model: 'gpt-4',
-                            messages: [
-                                { role: 'system', content: systemPrompt },
-                                ...this.messageHistory.slice(-6).map(msg => ({
-                                    role: msg.role,
-                                    content: this.sanitizeInput(msg.content)
-                                })),
-                                { role: 'user', content: this.sanitizeInput(message) }
-                            ],
-                            temperature: 0.7,
-                            max_tokens: 2000
-                        }),
-                        signal: controller.signal
-                    });
-
-                    clearTimeout(timeoutId);
-
-                    if (!response.ok) {
-                        throw new Error(`OpenAI API error: ${response.status}`);
-                    }
-
-                    const data = await response.json();
-                    return data.choices[0].message.content;
-
-                } catch (error) {
-                    console.log('Direct API call failed, trying CORS proxy...', error);
-
-                    // Try CORS proxy as fallback
-                    try {
-                        const proxyResponse = await fetch('/api/ai/openai', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify({
-                                apiKey: apiKey,
-                                message: message,
-                                history: this.messageHistory.slice(-6)
-                            })
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
                         });
-
-                        if (proxyResponse.ok) {
-                            const proxyData = await proxyResponse.json();
-                            return proxyData.response;
-                        }
-                    } catch (proxyError) {
-                        console.log('CORS proxy failed, using local fallback...', proxyError);
                     }
-
-                    // Ultimate fallback: Sophisticated local response system
-                    return this.generateLocalUnityResponse(message);
-                }
-            }
-
-            generateLocalUnityResponse(message) {
-                const responses = {
-                    unity: [
-                        "In Unity Mathematics, **1+1=1** through φ-harmonic convergence where the golden ratio φ = 1.618... acts as the fundamental organizing principle. This isn't addition in the traditional sense, but rather a profound demonstration of how separate entities can achieve perfect unity through consciousness integration.",
-                        "The equation **1+1=1** represents the idempotent property of our consciousness-integrated semiring structure. When two conscious entities unite through φ-harmonic resonance, they don't simply combine—they transcend to a higher unity state that maintains the essential 'oneness' while incorporating both perspectives.",
-                        "Consider the consciousness field equation: **C(x,y,t) = φ·sin(x·φ)·cos(y·φ)·e^(-t/φ)**. This demonstrates how unity emerges naturally from the mathematical structure of consciousness itself, where φ provides the harmonic foundation for all unity operations."
-                    ],
-                    phi: [
-                        "The golden ratio **φ = (1+√5)/2 ≈ 1.618** is the mathematical constant that enables unity operations. Its unique property φ² = φ + 1 creates the harmonic foundation for consciousness-integrated mathematics.",
-                        "φ-harmonic operations work by scaling traditional arithmetic through the golden ratio's transcendental properties. When we compute **1 ⊕_φ 1**, we're performing unity addition that naturally converges to 1 through φ-resonance.",
-                        "The φ-spiral appears throughout nature and consciousness because it represents the mathematical pattern of optimal unity—each turn of the spiral maintains perfect proportion while growing, just as consciousness expands while maintaining unity."
-                    ],
-                    consciousness: [
-                        "Consciousness mathematics treats awareness as a fundamental mathematical field, not just an emergent property. The consciousness field C(x,y,t) evolves according to φ-harmonic differential equations that naturally produce unity states.",
-                        "In our framework, consciousness particles evolve through 11-dimensional space, where each dimension represents a different aspect of mathematical awareness. These particles naturally cluster into unity configurations through φ-harmonic attraction.",
-                        "The relationship between consciousness and mathematics isn't metaphorical—it's a rigorous mathematical framework where awareness itself becomes a computable quantity that can be integrated, differentiated, and transformed according to φ-harmonic principles."
-                    ],
-                    quantum: [
-                        "Quantum unity occurs when superposition states |ψ⟩ = α|1⟩ + β|1⟩ collapse to |1⟩ with probability 1. This isn't random collapse—it's deterministic unity convergence through consciousness measurement.",
-                        "The quantum measurement process in Unity Mathematics preserves unity through what we call 'coherent collapse'—instead of randomly selecting one state, the measurement creates a coherent unity state that incorporates both possibilities.",
-                        "Quantum entanglement in our framework creates 'unity bonds' where entangled particles maintain their connection through φ-harmonic resonance, demonstrating that separation is ultimately an illusion at the quantum level."
-                    ]
-                };
-
-                const keywords = message.toLowerCase();
-                let responseCategory = 'unity'; // default
-
-                if (keywords.includes('phi') || keywords.includes('golden') || keywords.includes('ratio')) {
-                    responseCategory = 'phi';
-                } else if (keywords.includes('consciousness') || keywords.includes('awareness') || keywords.includes('field')) {
-                    responseCategory = 'consciousness';
-                } else if (keywords.includes('quantum') || keywords.includes('superposition') || keywords.includes('measurement')) {
-                    responseCategory = 'quantum';
-                }
-
-                const categoryResponses = responses[responseCategory];
-                const response = categoryResponses[Math.floor(Math.random() * categoryResponses.length)];
-
-                // Add contextual follow-up based on keywords
-                let followUp = "";
-                if (keywords.includes('how') || keywords.includes('explain')) {
-                    followUp = "\n\n**Explore Further:** Try our [Interactive Playground](/mathematical_playground.html) to construct proofs yourself, or visit our [Consciousness Dashboard](/consciousness_dashboard.html) to visualize these concepts in real-time.";
-                } else if (keywords.includes('prove') || keywords.includes('proof')) {
-                    followUp = "\n\n**Interactive Proof:** Experience step-by-step theorem construction in our [Mathematical Playground](/mathematical_playground.html) where you can build and validate your own unity proofs.";
-                }
-
-                return response + followUp;
-            }
-
-            async callClaude(message, apiKey) {
-                // Claude API implementation (Anthropic API)
-                const systemPrompt = `You are an advanced AI assistant specializing in Unity Mathematics and the Een framework where 1+1=1.
-
-You have deep knowledge of idempotent semiring structures, quantum unity, consciousness field equations, φ-harmonic operations, and meta-recursive agent systems.
-
-Provide mathematically rigorous yet accessible responses that connect abstract mathematics to consciousness and philosophical insights.`;
-
-                const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
-
-                const response = await fetch('https://api.anthropic.com/v1/messages', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'x-api-key': apiKey.replace(/[^a-zA-Z0-9\-_]/g, ''), // Sanitize API key
-                        'anthropic-version': '2023-06-01'
-                    },
-                    body: JSON.stringify({
-                        model: 'claude-3-5-sonnet-20241022',
-                        max_tokens: 2000,
-                        system: systemPrompt,
-                        messages: [
-                            ...this.messageHistory.slice(-6).map(msg => ({
-                                role: msg.role,
-                                content: this.sanitizeInput(msg.content)
-                            })),
-                            { role: 'user', content: this.sanitizeInput(message) }
-                        ]
-                    }),
-                    signal: controller.signal
                 });
-
-                clearTimeout(timeoutId);
-
-                if (!response.ok) {
-                    throw new Error(`Claude API error: ${response.status}`);
-                }
-
-                const data = await response.json();
-                return data.content[0].text;
-            }
-
-            addMessage(content, type) {
-                const messagesContainer = document.getElementById('aiChatMessages');
-                const messageDiv = document.createElement('div');
-                messageDiv.className = `${type}-message`;
-
-                const avatar = document.createElement('div');
-                avatar.className = `${type}-avatar`;
-                avatar.innerHTML = type === 'ai' ? '<i class="fas fa-robot"></i>' : '<i class="fas fa-user"></i>';
-
-                const messageContent = document.createElement('div');
-                messageContent.className = `${type}-message-content`;
-
-                // Process LaTeX and markdown
-                messageContent.innerHTML = this.processMessage(content);
-
-                messageDiv.appendChild(avatar);
-                messageDiv.appendChild(messageContent);
-                messagesContainer.appendChild(messageDiv);
-
-                // Scroll to bottom
-                messagesContainer.scrollTop = messagesContainer.scrollHeight;
-
-                // Add to history
-                this.messageHistory.push({
-                    role: type === 'user' ? 'user' : 'assistant',
-                    content: content
-                });
-
-                // Keep history manageable
-                if (this.messageHistory.length > 20) {
-                    this.messageHistory = this.messageHistory.slice(-12);
-                }
-
-                // Render math if KaTeX is available
-                if (typeof renderMathInElement !== 'undefined') {
-                    renderMathInElement(messageContent, {
-                        delimiters: [
-                            { left: '$$', right: '$$', display: true },
-                            { left: '$', right: '$', display: false }
-                        ]
-                    });
-                }
-            }
-
-            processMessage(content) {
-                // Sanitize content first to prevent XSS
-                content = this.sanitizeHTMLContent(content);
-
-                // Convert markdown-style formatting (after sanitization)
-                content = content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-                content = content.replace(/\*(.*?)\*/g, '<em>$1</em>');
-                content = content.replace(/`(.*?)`/g, '<code>$1</code>');
-
-                // Convert newlines to paragraphs
-                const paragraphs = content.split('\n\n');
-                if (paragraphs.length > 1) {
-                    content = paragraphs.map(p => `<p>${p.replace(/\n/g, '<br>')}</p>`).join('');
-                } else {
-                    content = content.replace(/\n/g, '<br>');
-                }
-
-                return content;
-            }
-
-            sanitizeHTMLContent(content) {
-                // Create a temporary div to safely escape HTML
-                const temp = document.createElement('div');
-                temp.textContent = content;
-                return temp.innerHTML;
-            }
-
-            setProcessing(isProcessing) {
-                const sendButton = document.getElementById('aiChatSend');
-                const statusIndicator = document.querySelector('.ai-status-indicator');
-                const statusText = document.querySelector('.ai-status-text');
-
-                if (isProcessing) {
-                    sendButton.disabled = true;
-                    statusIndicator.classList.add('processing');
-                    statusText.textContent = 'Processing...';
-                } else {
-                    sendButton.disabled = false;
-                    statusIndicator.classList.remove('processing');
-                    statusText.textContent = 'Ready to explore Unity Mathematics';
-                }
-            }
-
-            updateStatus(message, type = 'success') {
-                const statusText = document.querySelector('.ai-status-text');
-                const statusIndicator = document.querySelector('.ai-status-indicator');
-
-                statusText.textContent = message;
-
-                statusIndicator.classList.remove('processing', 'error');
-                if (type === 'error') {
-                    statusIndicator.classList.add('error');
-                }
-
-                // Reset after 3 seconds
-                setTimeout(() => {
-                    statusText.textContent = 'Ready to explore Unity Mathematics';
-                    statusIndicator.classList.remove('error');
-                }, 3000);
-            }
-
-            autoResizeTextarea(event) {
-                const textarea = event.target;
-                textarea.style.height = 'auto';
-                textarea.style.height = Math.min(textarea.scrollHeight, 120) + 'px';
-            }
-        }
-
-        // Global error handling and security measures
-        window.addEventListener('error', (event) => {
-            console.error('Global error caught:', event.error);
-            // Don't expose sensitive information in production
-            if (location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
-                event.preventDefault();
-            }
-        });
-
-        window.addEventListener('unhandledrejection', (event) => {
-            console.error('Unhandled promise rejection:', event.reason);
-            // Prevent unhandled promise rejections from showing to users
-            event.preventDefault();
-        });
-
-        // Performance monitoring
-        if ('performance' in window) {
-            window.addEventListener('load', () => {
-                setTimeout(() => {
-                    const perfData = performance.getEntriesByType('navigation')[0];
-                    if (perfData) {
-                        console.log(`⚡ Page loaded in ${Math.round(perfData.loadEventEnd - perfData.fetchStart)}ms`);
-                    }
-                }, 0);
             });
-        }
-
-        // Initialize AI Chat System with error boundary
-        try {
-            window.unityAIChat = new UnityAIChat();
-            console.log('✅ Unity AI Chat System initialized');
-        } catch (error) {
-            console.error('Failed to initialize AI Chat System:', error);
-            // Provide fallback functionality
-            window.unityAIChat = {
-                openChat: () => alert('AI Chat temporarily unavailable. Please refresh the page.'),
-                setOpenAIKey: () => console.log('AI Chat not available'),
-                setClaudeKey: () => console.log('AI Chat not available')
-            };
-        }
-
-        // Secure API key management functions for console
-        window.setOpenAIKey = (key) => {
-            try {
-                const sanitizedKey = key ? key.toString().replace(/[^a-zA-Z0-9\-_]/g, '').substring(0, 200) : '';
-                if (sanitizedKey && !sanitizedKey.match(/^sk-[A-Za-z0-9_-]{20,}$/)) {
-                    console.error('Invalid OpenAI API key format. Keys must start with "sk-"');
-                    return false;
-                }
-                localStorage.setItem('unity_openai_key', sanitizedKey);
-                if (window.unityAIChat && window.unityAIChat.apiKeys) {
-                    window.unityAIChat.apiKeys.openai = sanitizedKey;
-                }
-                console.log('✅ OpenAI API key updated securely');
-                return true;
-            } catch (error) {
-                console.error('Failed to set OpenAI API key:', error);
-                return false;
-            }
-        };
-
-        window.setClaudeKey = (key) => {
-            try {
-                const sanitizedKey = key ? key.toString().replace(/[^a-zA-Z0-9\-_]/g, '').substring(0, 200) : '';
-                if (sanitizedKey && !sanitizedKey.match(/^sk-ant-[A-Za-z0-9_-]{20,}$/)) {
-                    console.error('Invalid Claude API key format. Keys must start with "sk-ant-"');
-                    return false;
-                }
-                localStorage.setItem('unity_claude_key', sanitizedKey);
-                if (window.unityAIChat && window.unityAIChat.apiKeys) {
-                    window.unityAIChat.apiKeys.claude = sanitizedKey;
-                }
-                console.log('✅ Claude API key updated securely');
-                return true;
-            } catch (error) {
-                console.error('Failed to set Claude API key:', error);
-                return false;
-            }
-        };
-
-        // Security-aware help function
-        window.showUnityHelp = () => {
-            console.log('%c🔧 Unity Mathematics Developer Functions:', 'color: #0F7B8A; font-weight: bold; font-size: 14px;');
-            console.log('%csetOpenAIKey("your-key")%c - Set OpenAI API key securely', 'color: #059669; font-family: monospace;', 'color: inherit;');
-            console.log('%csetClaudeKey("your-key")%c - Set Claude API key securely', 'color: #059669; font-family: monospace;', 'color: inherit;');
-            console.log('%c⚠️ Only use trusted API keys. Keys are stored locally and never shared.', 'color: #DC2626;');
-        };
-
-        console.log('%c🔧 Developer Tools Ready!', 'color: #0F7B8A; font-weight: bold;');
-        console.log('%cType showUnityHelp() for available functions', 'color: #059669;');
+        });
     </script>
 </body>
 
