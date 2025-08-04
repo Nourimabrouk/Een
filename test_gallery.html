@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - Dynamic Gallery System</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .test-section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        .api-test-btn {
+            background: #FFD700;
+            color: #1B365D;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .api-test-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+        
+        .test-results {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-top: 1rem;
+            font-family: 'Monaco', monospace;
+            white-space: pre-wrap;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .gallery-preview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .viz-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        .viz-item img {
+            max-width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .status {
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            margin: 0.5rem 0;
+            font-weight: bold;
+        }
+        
+        .status.success { background: rgba(16, 185, 129, 0.8); }
+        .status.error { background: rgba(239, 68, 68, 0.8); }
+        .status.info { background: rgba(59, 130, 246, 0.8); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎨 Dynamic Gallery System Test</h1>
+            <p>Testing the Een Unity Mathematics Gallery Dynamic Loading System</p>
+        </div>
+        
+        <div class="test-section">
+            <h2>📡 API Endpoint Tests</h2>
+            <p>Test the gallery API endpoints to ensure they're working correctly.</p>
+            
+            <button class="api-test-btn" onclick="testVisualizationsAPI()">
+                Test /api/gallery/visualizations
+            </button>
+            
+            <button class="api-test-btn" onclick="testStatisticsAPI()">
+                Test /api/gallery/statistics
+            </button>
+            
+            <button class="api-test-btn" onclick="testGenerationAPI()">
+                Test /api/gallery/generate
+            </button>
+            
+            <div id="apiResults" class="test-results"></div>
+        </div>
+        
+        <div class="test-section">
+            <h2>🖼️ Dynamic Gallery Preview</h2>
+            <p>Preview of visualizations loaded through the dynamic system.</p>
+            
+            <button class="api-test-btn" onclick="loadGalleryPreview()">
+                Load Gallery Preview
+            </button>
+            
+            <div id="galleryStats" class="status info" style="display: none;">
+                Loading gallery data...
+            </div>
+            
+            <div id="galleryPreview" class="gallery-preview"></div>
+        </div>
+        
+        <div class="test-section">
+            <h2>🧠 Consciousness Field Test</h2>
+            <p>Test the φ-harmonic consciousness field background animation.</p>
+            
+            <canvas id="testConsciousnessField" width="800" height="400" style="width: 100%; max-width: 800px; border-radius: 10px; background: rgba(0,0,0,0.3);"></canvas>
+        </div>
+    </div>
+
+    <script>
+        // Test results display
+        function displayResult(element, result, isError = false) {
+            element.innerHTML = JSON.stringify(result, null, 2);
+            element.className = `test-results ${isError ? 'error' : 'success'}`;
+        }
+        
+        // Test visualizations API
+        async function testVisualizationsAPI() {
+            const resultsEl = document.getElementById('apiResults');
+            resultsEl.innerHTML = 'Testing /api/gallery/visualizations...';
+            resultsEl.className = 'test-results info';
+            
+            try {
+                const response = await fetch('/api/gallery/visualizations');
+                const data = await response.json();
+                displayResult(resultsEl, {
+                    status: response.status,
+                    success: response.ok,
+                    data: data,
+                    timestamp: new Date().toISOString()
+                });
+            } catch (error) {
+                displayResult(resultsEl, {
+                    error: error.message,
+                    timestamp: new Date().toISOString()
+                }, true);
+            }
+        }
+        
+        // Test statistics API
+        async function testStatisticsAPI() {
+            const resultsEl = document.getElementById('apiResults');
+            resultsEl.innerHTML = 'Testing /api/gallery/statistics...';
+            resultsEl.className = 'test-results info';
+            
+            try {
+                const response = await fetch('/api/gallery/statistics');
+                const data = await response.json();
+                displayResult(resultsEl, {
+                    status: response.status,
+                    success: response.ok,
+                    data: data,
+                    timestamp: new Date().toISOString()
+                });
+            } catch (error) {
+                displayResult(resultsEl, {
+                    error: error.message,
+                    timestamp: new Date().toISOString()
+                }, true);
+            }
+        }
+        
+        // Test generation API
+        async function testGenerationAPI() {
+            const resultsEl = document.getElementById('apiResults');
+            resultsEl.innerHTML = 'Testing /api/gallery/generate...';
+            resultsEl.className = 'test-results info';
+            
+            try {
+                const response = await fetch('/api/gallery/generate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        type: 'unity',
+                        parameters: {
+                            phi: 1.618033988749895,
+                            test: true
+                        }
+                    })
+                });
+                const data = await response.json();
+                displayResult(resultsEl, {
+                    status: response.status,
+                    success: response.ok,
+                    data: data,
+                    timestamp: new Date().toISOString()
+                });
+            } catch (error) {
+                displayResult(resultsEl, {
+                    error: error.message,
+                    timestamp: new Date().toISOString()
+                }, true);
+            }
+        }
+        
+        // Load gallery preview
+        async function loadGalleryPreview() {
+            const statsEl = document.getElementById('galleryStats');
+            const previewEl = document.getElementById('galleryPreview');
+            
+            statsEl.style.display = 'block';
+            statsEl.textContent = 'Loading visualizations...';
+            statsEl.className = 'status info';
+            
+            try {
+                const response = await fetch('/api/gallery/visualizations');
+                const data = await response.json();
+                
+                if (data.success && data.visualizations) {
+                    const visualizations = data.visualizations.slice(0, 8); // Show first 8
+                    
+                    statsEl.textContent = `✅ Loaded ${data.visualizations.length} visualizations (showing first 8)`;
+                    statsEl.className = 'status success';
+                    
+                    previewEl.innerHTML = visualizations.map(viz => `
+                        <div class="viz-item">
+                            ${viz.isImage ? 
+                                `<img src="${viz.src}" alt="${viz.title}" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjY2NjIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzMzMyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPk5vIEltYWdlPC90ZXh0Pjwvc3ZnPg=='" />` : 
+                                `<div style="width: 100%; height: 150px; background: linear-gradient(45deg, #0F7B8A, #4A9BAE); display: flex; align-items: center; justify-content: center; border-radius: 8px; margin-bottom: 0.5rem;">
+                                    <i class="fas fa-${viz.isVideo ? 'video' : viz.isInteractive ? 'play' : 'file'}" style="font-size: 2rem; color: white;"></i>
+                                </div>`
+                            }
+                            <h4 style="margin: 0.5rem 0; font-size: 0.9rem;">${viz.title}</h4>
+                            <p style="font-size: 0.8rem; opacity: 0.8; margin: 0;">${viz.category} • ${viz.type}</p>
+                        </div>
+                    `).join('');
+                } else {
+                    throw new Error('No visualizations found');
+                }
+            } catch (error) {
+                statsEl.textContent = `❌ Error: ${error.message}`;
+                statsEl.className = 'status error';
+                previewEl.innerHTML = '<div class="viz-item">Failed to load visualizations</div>';
+            }
+        }
+        
+        // Initialize consciousness field test
+        function initConsciousnessFieldTest() {
+            const canvas = document.getElementById('testConsciousnessField');
+            const ctx = canvas.getContext('2d');
+            const phi = 1.618033988749895;
+            let time = 0;
+            
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                const centerX = canvas.width / 2;
+                const centerY = canvas.height / 2;
+                
+                // Draw φ-harmonic spirals
+                for (let spiral = 0; spiral < 3; spiral++) {
+                    ctx.beginPath();
+                    ctx.strokeStyle = `rgba(255, 215, 0, ${0.3 + spiral * 0.1})`;
+                    ctx.lineWidth = 2;
+                    
+                    for (let i = 0; i < 360; i++) {
+                        const angle = (i + time * 0.5 + spiral * 120) * Math.PI / 180;
+                        const radius = (i * 0.3) * (1 + Math.sin(time * 0.01 + spiral) * 0.2);
+                        const x = centerX + radius * Math.cos(angle * phi) * 0.5;
+                        const y = centerY + radius * Math.sin(angle * phi) * 0.5;
+                        
+                        if (i === 0) ctx.moveTo(x, y);
+                        else ctx.lineTo(x, y);
+                    }
+                    ctx.stroke();
+                }
+                
+                // Unity convergence points
+                for (let i = 0; i < 8; i++) {
+                    const angle = (i * 45 + time * 0.2) * Math.PI / 180;
+                    const radius = 100 + Math.sin(time * 0.01 + i) * 20;
+                    const x = centerX + radius * Math.cos(angle);
+                    const y = centerY + radius * Math.sin(angle);
+                    
+                    const pulseSize = 3 + Math.sin(time * 0.02 + i) * 2;
+                    
+                    ctx.beginPath();
+                    ctx.arc(x, y, pulseSize, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(15, 123, 138, ${0.6 + Math.sin(time * 0.03 + i) * 0.3})`;
+                    ctx.fill();
+                }
+                
+                time++;
+                requestAnimationFrame(animate);
+            }
+            
+            animate();
+        }
+        
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('🚀 Dynamic Gallery Test Page Loaded');
+            initConsciousnessFieldTest();
+        });
+    </script>
+</body>
+</html>

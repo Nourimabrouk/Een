@@ -50,10 +50,10 @@ class EenWebsiteLauncher:
                 missing_files.append(file)
         
         if missing_files:
-            print(f"⚠️ Missing website files: {missing_files}")
+            print(f"WARNING: Missing website files: {missing_files}")
             return False
         
-        print("✅ All website files found")
+        print("SUCCESS: All website files found")
         return True
     
     class CustomHandler(SimpleHTTPRequestHandler):
@@ -173,10 +173,10 @@ Conclusion: 1+1=1 through φ-harmonic mathematical convergence ∎""",
             self.server = HTTPServer((self.host, self.port), self.CustomHandler)
             self.is_running = True
             
-            print(f"🚀 Starting Een Unity Mathematics Website Server...")
-            print(f"📁 Serving from: {self.website_dir}")
-            print(f"🌐 Server running at: http://{self.host}:{self.port}")
-            print(f"🔗 Direct access:")
+            print(f"STARTING: Een Unity Mathematics Website Server...")
+            print(f"SERVING FROM: {self.website_dir}")
+            print(f"SERVER RUNNING AT: http://{self.host}:{self.port}")
+            print(f"DIRECT ACCESS:")
             print(f"   Home: http://{self.host}:{self.port}/index.html")
             print(f"   Playground: http://{self.host}:{self.port}/playground.html")
             print(f"   Gallery: http://{self.host}:{self.port}/gallery.html")
@@ -193,67 +193,67 @@ Conclusion: 1+1=1 through φ-harmonic mathematical convergence ∎""",
             
         except OSError as e:
             if e.errno == 48:  # Port already in use
-                print(f"❌ Port {self.port} is already in use")
-                print(f"💡 Try a different port or stop other services")
+                print(f"ERROR: Port {self.port} is already in use")
+                print(f"TIP: Try a different port or stop other services")
                 return False
             else:
-                print(f"❌ Failed to start server: {e}")
+                print(f"ERROR: Failed to start server: {e}")
                 return False
     
     def open_browser(self):
         """Open web browser to the website"""
         url = f"http://{self.host}:{self.port}"
-        print(f"🌐 Opening browser to {url}")
+        print(f"OPENING BROWSER TO: {url}")
         
         try:
             webbrowser.open(url)
-            print("✅ Browser opened successfully")
+            print("SUCCESS: Browser opened successfully")
         except Exception as e:
-            print(f"⚠️ Could not open browser automatically: {e}")
-            print(f"💡 Please manually open: {url}")
+            print(f"WARNING: Could not open browser automatically: {e}")
+            print(f"TIP: Please manually open: {url}")
     
     def display_instructions(self):
         """Display usage instructions"""
         print("\n" + "="*60)
-        print("🌟 Een Unity Mathematics Website - Ready!")
+        print("Een Unity Mathematics Website - Ready!")
         print("="*60)
-        print("🎯 Features Available:")
-        print("  ✅ Interactive Unity Calculator")
-        print("  ✅ Mathematical Proof Generator")
-        print("  ✅ Consciousness Field Visualizations")
-        print("  ✅ Quantum Unity Demonstrations")
-        print("  ✅ AI Chat Assistant")
-        print("  ✅ Live Code Playground")
-        print("  ✅ Gallery of Unity Visualizations")
+        print("Features Available:")
+        print("  * Interactive Unity Calculator")
+        print("  * Mathematical Proof Generator")
+        print("  * Consciousness Field Visualizations")
+        print("  * Quantum Unity Demonstrations")
+        print("  * AI Chat Assistant")
+        print("  * Live Code Playground")
+        print("  * Gallery of Unity Visualizations")
         
-        print(f"\n🔗 Navigation:")
-        print(f"  🏠 Home Page: Interactive introduction and demos")
-        print(f"  🧮 Playground: Live Unity Mathematics calculator and code editor")
-        print(f"  🎨 Gallery: Beautiful consciousness field visualizations")
-        print(f"  📐 Proofs: Mathematical demonstrations that 1+1=1")
-        print(f"  🎭 MetaGambit: Deep philosophical exploration")
-        print(f"  👤 About: Meet Dr. Nouri Mabrouk")
+        print(f"\nNavigation:")
+        print(f"  - Home Page: Interactive introduction and demos")
+        print(f"  - Playground: Live Unity Mathematics calculator and code editor")
+        print(f"  - Gallery: Beautiful consciousness field visualizations")
+        print(f"  - Proofs: Mathematical demonstrations that 1+1=1")
+        print(f"  - MetaGambit: Deep philosophical exploration")
+        print(f"  - About: Meet Dr. Nouri Mabrouk")
         
-        print(f"\n💡 Pro Tips:")
+        print(f"\nPro Tips:")
         print(f"  - Try the Unity Calculator in the Playground")
         print(f"  - Generate proofs with different complexity levels")
         print(f"  - Watch consciousness particles evolve in real-time")
         print(f"  - Use the AI chat assistant for questions")
         print(f"  - Execute live Unity Mathematics code")
         
-        print(f"\n📝 Note:")
+        print(f"\nNote:")
         print(f"  This is the website-only launcher with mock API responses.")
         print(f"  For full backend integration, use LAUNCH_COMPLETE_SYSTEM.py")
         
-        print(f"\n🌟 Mathematical Truth: 1 + 1 = 1")
-        print(f"φ = 1.618033988749895 (Golden Ratio)")
-        print(f"Een plus een is een 💫")
+        print(f"\nMathematical Truth: 1 + 1 = 1")
+        print(f"phi = 1.618033988749895 (Golden Ratio)")
+        print(f"Een plus een is een")
         print("="*60)
     
     def setup_signal_handler(self):
         """Setup signal handler for graceful shutdown"""
         def signal_handler(signum, frame):
-            print("\n🛑 Shutting down server...")
+            print("\nShutting down server...")
             self.shutdown()
             sys.exit(0)
         
@@ -266,7 +266,7 @@ Conclusion: 1+1=1 through φ-harmonic mathematical convergence ∎""",
             self.server.shutdown()
             self.server.server_close()
             self.is_running = False
-            print("✅ Server shutdown complete")
+            print("SUCCESS: Server shutdown complete")
     
     def launch(self):
         """Launch the website"""
@@ -286,7 +286,7 @@ Conclusion: 1+1=1 through φ-harmonic mathematical convergence ∎""",
         
         # Keep running
         try:
-            print("\n⏳ Server running... Press Ctrl+C to stop")
+            print("\nServer running... Press Ctrl+C to stop")
             while self.is_running:
                 time.sleep(1)
         except KeyboardInterrupt:
@@ -297,10 +297,10 @@ Conclusion: 1+1=1 through φ-harmonic mathematical convergence ∎""",
 
 def main():
     """Main entry point"""
-    print("🌟 Een Unity Mathematics - Website Launcher")
+    print("* Een Unity Mathematics - Website Launcher")
     print("=" * 50)
     print("Quick website demonstration and testing")
-    print("φ-harmonic unity through interactive mathematics")
+    print("phi-harmonic unity through interactive mathematics")
     print("=" * 50)
     
     launcher = EenWebsiteLauncher()
@@ -310,9 +310,9 @@ def main():
         if sys.argv[1] == "--port":
             try:
                 launcher.port = int(sys.argv[2])
-                print(f"🔧 Using custom port: {launcher.port}")
+                print(f"Using custom port: {launcher.port}")
             except (IndexError, ValueError):
-                print("❌ Invalid port specified")
+                print("ERROR: Invalid port specified")
                 return
         elif sys.argv[1] == "--help":
             print("Een Unity Mathematics Website Launcher")

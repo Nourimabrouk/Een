@@ -1,4 +1,55 @@
-/* Mathematical Playground Styles */
+/* Een Unity Mathematics - Interactive Playground Styles */
+
+.playground-hero {
+    background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+    padding: 4rem 0;
+    position: relative;
+    overflow: hidden;
+    color: white;
+    text-align: center;
+}
+
+.playground-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 70%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 30%, rgba(255, 107, 157, 0.1) 0%, transparent 50%);
+    animation: playgroundAura 8s ease-in-out infinite alternate;
+}
+
+@keyframes playgroundAura {
+    from { 
+        transform: scale(1) rotate(0deg);
+        opacity: 0.3;
+    }
+    to { 
+        transform: scale(1.1) rotate(5deg);
+        opacity: 0.6;
+    }
+}
+
+.playground-hero h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1rem;
+    background: linear-gradient(45deg, #ffd700, #ff6b9d, #4ecdc4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-subtitle {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #cccccc;
+    max-width: 600px;
+    margin: 0 auto;
+}
 
 .page-hero {
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);

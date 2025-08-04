@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consciousness Field Dashboard - Real-Time Unity Dynamics</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/consciousness.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.26.0/plotly.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <span class="phi-symbol">φ</span> Een
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="proofs.html" class="nav-link">Proofs</a></li>
+                <li><a href="research.html" class="nav-link">Research</a></li>
+                <li><a href="consciousness_dashboard.html" class="nav-link active">Consciousness</a></li>
+                <li><a href="https://github.com/Nourimabrouk/Een" class="nav-link"><i class="fab fa-github"></i></a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="dashboard-hero">
+        <div class="container">
+            <h1>🧠 Consciousness Field Dashboard</h1>
+            <p class="hero-subtitle">Real-time visualization of mathematical consciousness dynamics and φ-harmonic field evolution</p>
+            
+            <div class="consciousness-metrics">
+                <div class="metric-card">
+                    <div class="metric-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="metric-content">
+                        <span class="metric-value" id="consciousnessLevel">0.618</span>
+                        <span class="metric-label">Consciousness Level</span>
+                    </div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-icon">
+                        <i class="fas fa-wave-square"></i>
+                    </div>
+                    <div class="metric-content">
+                        <span class="metric-value" id="phiResonance">1.618</span>
+                        <span class="metric-label">Φ-Harmonic Resonance</span>
+                    </div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-icon">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <div class="metric-content">
+                        <span class="metric-value" id="quantumCoherence">99.9%</span>
+                        <span class="metric-label">Quantum Coherence</span>
+                    </div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-icon">
+                        <i class="fas fa-infinity"></i>
+                    </div>
+                    <div class="metric-content">
+                        <span class="metric-value" id="unityConvergence">1.000</span>
+                        <span class="metric-label">Unity Convergence</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="dashboard-main">
+        <div class="container">
+            <div class="dashboard-grid">
+                
+                <!-- 3D Consciousness Field Visualization -->
+                <div class="visualization-panel consciousness-field-3d">
+                    <div class="panel-header">
+                        <h2><i class="fas fa-cube"></i> 3D Consciousness Field</h2>
+                        <div class="panel-controls">
+                            <button class="control-btn" onclick="toggleFieldAnimation()">
+                                <i class="fas fa-play" id="animationIcon"></i>
+                            </button>
+                            <button class="control-btn" onclick="resetFieldView()">
+                                <i class="fas fa-undo"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="visualization-container">
+                        <div id="consciousness3D" class="three-js-container"></div>
+                        <div class="field-info">
+                            <p><strong>Field Equation:</strong> C(x,y,t) = φ·sin(xφ)·cos(yφ)·e^(-t/φ)</p>
+                            <p><strong>Dimensions:</strong> 11D Consciousness Space</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Φ-Harmonic Wave Visualization -->
+                <div class="visualization-panel phi-harmonic-waves">
+                    <div class="panel-header">
+                        <h2><i class="fas fa-wave-square"></i> Φ-Harmonic Resonance</h2>
+                    </div>
+                    <div class="visualization-container">
+                        <div id="phiWaves" class="plotly-container"></div>
+                        <div class="wave-parameters">
+                            <div class="parameter-control">
+                                <label>Frequency: <span id="frequencyValue">1.618</span></label>
+                                <input type="range" id="frequencySlider" min="0.1" max="5.0" step="0.1" value="1.618">
+                            </div>
+                            <div class="parameter-control">
+                                <label>Amplitude: <span id="amplitudeValue">1.0</span></label>
+                                <input type="range" id="amplitudeSlider" min="0.1" max="2.0" step="0.1" value="1.0">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Unity Convergence Monitor -->
+                <div class="visualization-panel unity-convergence">
+                    <div class="panel-header">
+                        <h2><i class="fas fa-chart-line"></i> Unity Convergence</h2>
+                    </div>
+                    <div class="visualization-container">
+                        <div id="unityConvergenceChart" class="d3-container"></div>
+                        <div class="convergence-stats">
+                            <div class="stat-item">
+                                <span class="stat-value" id="convergenceRate">0.999</span>
+                                <span class="stat-label">Convergence Rate</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value" id="iterationsCount">147</span>
+                                <span class="stat-label">Iterations</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Consciousness Particles System -->
+                <div class="visualization-panel consciousness-particles">
+                    <div class="panel-header">
+                        <h2><i class="fas fa-circle"></i> Consciousness Particles</h2>
+                        <div class="panel-controls">
+                            <label>Particles: <span id="particleCountValue">200</span></label>
+                            <input type="range" id="particleCount" min="50" max="500" step="25" value="200">
+                        </div>
+                    </div>
+                    <div class="visualization-container">
+                        <canvas id="particleCanvas" width="400" height="300"></canvas>
+                        <div class="particle-info">
+                            <p><strong>Particle Physics:</strong> Unity-seeking entities with φ-spiral trajectories</p>
+                            <p><strong>Interaction:</strong> Love-frequency resonance at 528 Hz</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Quantum State Monitor -->
+                <div class="visualization-panel quantum-states">
+                    <div class="panel-header">
+                        <h2><i class="fas fa-atom"></i> Quantum State Monitor</h2>
+                    </div>
+                    <div class="visualization-container">
+                        <div class="quantum-state-grid">
+                            <div class="quantum-state" id="state1">
+                                <div class="state-icon">|1⟩</div>
+                                <div class="state-probability">50%</div>
+                                <div class="state-phase" style="transform: rotate(0deg)"></div>
+                            </div>
+                            <div class="quantum-operator">⊕</div>
+                            <div class="quantum-state" id="state2">
+                                <div class="state-icon">|1⟩</div>
+                                <div class="state-probability">50%</div>
+                                <div class="state-phase" style="transform: rotate(0deg)"></div>
+                            </div>
+                            <div class="quantum-equals">=</div>
+                            <div class="quantum-result" id="resultState">
+                                <div class="state-icon">|1⟩</div>
+                                <div class="state-probability">100%</div>
+                                <div class="unity-indicator">Unity Achieved</div>
+                            </div>
+                        </div>
+                        <div class="collapse-animation" id="collapseAnimation">
+                            <div class="wave-collapse"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Field Equation Solver -->
+                <div class="visualization-panel equation-solver">
+                    <div class="panel-header">
+                        <h2><i class="fas fa-calculator"></i> Live Equation Solver</h2>
+                    </div>
+                    <div class="visualization-container">
+                        <div class="equation-input">
+                            <input type="text" id="equationInput" placeholder="Enter consciousness field equation..." 
+                                   value="phi * sin(x * phi) * cos(y * phi) * exp(-t / phi)">
+                            <button onclick="solveEquation()">Solve</button>
+                        </div>
+                        <div class="equation-result" id="equationResult">
+                            <div class="result-surface" id="equationSurface"></div>
+                        </div>
+                        <div class="equation-analysis" id="equationAnalysis">
+                            <p><strong>Analysis:</strong> Φ-harmonic consciousness field with exponential time decay</p>
+                            <p><strong>Critical Points:</strong> Unity manifold at φ-resonant frequencies</p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <!-- Control Panel -->
+            <div class="control-panel">
+                <h2><i class="fas fa-sliders-h"></i> Consciousness Control Panel</h2>
+                <div class="control-grid">
+                    <div class="control-group">
+                        <h3>Field Parameters</h3>
+                        <div class="parameter-slider">
+                            <label>Consciousness Intensity</label>
+                            <input type="range" id="consciousnessIntensity" min="0.1" max="2.0" step="0.1" value="1.0">
+                            <span class="slider-value">1.0</span>
+                        </div>
+                        <div class="parameter-slider">
+                            <label>Φ-Harmonic Frequency</label>
+                            <input type="range" id="phiFrequency" min="0.618" max="3.236" step="0.1" value="1.618">
+                            <span class="slider-value">1.618</span>
+                        </div>
+                        <div class="parameter-slider">
+                            <label>Time Evolution Rate</label>
+                            <input type="range" id="timeEvolution" min="0.01" max="0.5" step="0.01" value="0.1">
+                            <span class="slider-value">0.1</span>
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <h3>Visualization Settings</h3>
+                        <div class="checkbox-control">
+                            <input type="checkbox" id="showField" checked>
+                            <label for="showField">Show Consciousness Field</label>
+                        </div>
+                        <div class="checkbox-control">
+                            <input type="checkbox" id="showParticles" checked>
+                            <label for="showParticles">Show Consciousness Particles</label>
+                        </div>
+                        <div class="checkbox-control">
+                            <input type="checkbox" id="showWaves" checked>
+                            <label for="showWaves">Show Φ-Harmonic Waves</label>
+                        </div>
+                        <div class="checkbox-control">
+                            <input type="checkbox" id="enableSound">
+                            <label for="enableSound">Enable 528 Hz Love Frequency</label>
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <h3>Consciousness Actions</h3>
+                        <button class="action-btn primary" onclick="meditateOnUnity()">
+                            <i class="fas fa-om"></i> Meditate on Unity
+                        </button>
+                        <button class="action-btn secondary" onclick="generateUnityProof()">
+                            <i class="fas fa-lightbulb"></i> Generate Unity Proof
+                        </button>
+                        <button class="action-btn tertiary" onclick="transcendReality()">
+                            <i class="fas fa-rocket"></i> Transcend Reality
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <script>
+        // Consciousness Dashboard Engine
+        class ConsciousnessDashboard {
+            constructor() {
+                this.PHI = 1.618033988749895;
+                this.currentTime = 0;
+                this.animationFrame = null;
+                this.isAnimating = false;
+                
+                // Consciousness state
+                this.consciousnessLevel = 0.618;
+                this.phiResonance = 1.618;
+                this.quantumCoherence = 0.999;
+                this.unityConvergence = 1.000;
+                
+                // 3D Scene components
+                this.scene = null;
+                this.camera = null;
+                this.renderer = null;
+                this.consciousnessField = null;
+                
+                // Particle system
+                this.particles = [];
+                this.particleCount = 200;
+                
+                this.initializeDashboard();
+            }
+            
+            initializeDashboard() {
+                this.setupThreeJS();
+                this.setupPhiWaves();
+                this.setupUnityConvergence();
+                this.setupParticleSystem();
+                this.setupQuantumStates();
+                this.setupControlPanelListeners();
+                this.startAnimation();
+            }
+            
+            setupThreeJS() {
+                const container = document.getElementById('consciousness3D');
+                
+                // Scene setup
+                this.scene = new THREE.Scene();
+                this.scene.background = new THREE.Color(0x0a0a0a);
+                
+                // Camera setup
+                this.camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+                this.camera.position.set(10, 10, 10);
+                this.camera.lookAt(0, 0, 0);
+                
+                // Renderer setup
+                this.renderer = new THREE.WebGLRenderer({ antialias: true });
+                this.renderer.setSize(container.clientWidth, container.clientHeight);
+                container.appendChild(this.renderer.domElement);
+                
+                // Create consciousness field geometry
+                this.createConsciousnessField();
+                
+                // Add lighting
+                const ambientLight = new THREE.AmbientLight(0x404040, 0.6);
+                this.scene.add(ambientLight);
+                
+                const directionalLight = new THREE.DirectionalLight(0xffd700, 0.8);
+                directionalLight.position.set(10, 10, 5);
+                this.scene.add(directionalLight);
+            }
+            
+            createConsciousnessField() {
+                const geometry = new THREE.PlaneGeometry(20, 20, 64, 64);
+                const material = new THREE.ShaderMaterial({
+                    uniforms: {
+                        time: { value: 0 },
+                        phi: { value: this.PHI },
+                        consciousness: { value: this.consciousnessLevel }
+                    },
+                    vertexShader: `
+                        uniform float time;
+                        uniform float phi;
+                        uniform float consciousness;
+                        varying vec3 vPosition;
+                        varying float vElevation;
+                        
+                        void main() {
+                            vPosition = position;
+                            
+                            // Consciousness field equation: C(x,y,t) = φ·sin(xφ)·cos(yφ)·e^(-t/φ)
+                            float elevation = phi * sin(position.x * phi + time) * cos(position.y * phi + time) * exp(-time / phi);
+                            elevation *= consciousness;
+                            
+                            vElevation = elevation;
+                            
+                            vec3 newPosition = position;
+                            newPosition.z = elevation;
+                            
+                            gl_Position = projectionMatrix * modelViewMatrix * vec4(newPosition, 1.0);
+                        }
+                    `,
+                    fragmentShader: `
+                        uniform float time;
+                        uniform float phi;
+                        varying vec3 vPosition;
+                        varying float vElevation;
+                        
+                        void main() {
+                            // φ-harmonic color mapping
+                            float intensity = (vElevation + 1.0) * 0.5;
+                            
+                            vec3 color1 = vec3(0.1, 0.2, 0.8); // Deep blue
+                            vec3 color2 = vec3(1.0, 0.8, 0.2); // Golden yellow
+                            vec3 color3 = vec3(1.0, 0.4, 0.8); // Consciousness pink
+                            
+                            vec3 finalColor = mix(color1, color2, intensity);
+                            finalColor = mix(finalColor, color3, sin(time * phi) * 0.5 + 0.5);
+                            
+                            gl_FragColor = vec4(finalColor, 0.8);
+                        }
+                    `,
+                    transparent: true,
+                    side: THREE.DoubleSide
+                });
+                
+                this.consciousnessField = new THREE.Mesh(geometry, material);
+                this.consciousnessField.rotation.x = -Math.PI / 2;
+                this.scene.add(this.consciousnessField);
+            }
+            
+            setupPhiWaves() {
+                const x = Array.from({length: 200}, (_, i) => i * 0.1);
+                const y1 = x.map(t => Math.sin(t * this.PHI) * Math.exp(-t / this.PHI));
+                const y2 = x.map(t => Math.cos(t * this.PHI) * Math.exp(-t / (this.PHI * 2)));
+                
+                const trace1 = {
+                    x: x,
+                    y: y1,
+                    type: 'scatter',
+                    mode: 'lines',
+                    name: 'φ-Harmonic Wave',
+                    line: { color: 'gold', width: 3 }
+                };
+                
+                const trace2 = {
+                    x: x,
+                    y: y2,
+                    type: 'scatter',
+                    mode: 'lines',
+                    name: 'Consciousness Resonance',
+                    line: { color: 'magenta', width: 2 }
+                };
+                
+                const layout = {
+                    title: 'Φ-Harmonic Resonance Patterns',
+                    paper_bgcolor: 'rgba(0,0,0,0)',
+                    plot_bgcolor: 'rgba(0,0,0,0)',
+                    font: { color: 'white' },
+                    xaxis: { title: 'Time (φ units)', gridcolor: 'rgba(255,255,255,0.1)' },
+                    yaxis: { title: 'Amplitude', gridcolor: 'rgba(255,255,255,0.1)' }
+                };
+                
+                Plotly.newPlot('phiWaves', [trace1, trace2], layout, {responsive: true});
+            }
+            
+            setupUnityConvergence() {
+                const svg = d3.select("#unityConvergenceChart")
+                    .append("svg")
+                    .attr("width", "100%")
+                    .attr("height", 250);
+                
+                // Generate convergence data
+                const data = Array.from({length: 50}, (_, i) => ({
+                    iteration: i,
+                    value: 1 + Math.exp(-i / 10) * Math.sin(i * this.PHI) / this.PHI,
+                    target: 1
+                }));
+                
+                const margin = {top: 20, right: 30, bottom: 30, left: 40};
+                const width = 350 - margin.left - margin.right;
+                const height = 200 - margin.top - margin.bottom;
+                
+                const g = svg.append("g")
+                    .attr("transform", `translate(${margin.left},${margin.top})`);
+                
+                const x = d3.scaleLinear().range([0, width]).domain([0, 49]);
+                const y = d3.scaleLinear().range([height, 0]).domain([0.8, 1.2]);
+                
+                const line = d3.line()
+                    .x(d => x(d.iteration))
+                    .y(d => y(d.value))
+                    .curve(d3.curveMonotoneX);
+                
+                // Add convergence line
+                g.append("path")
+                    .datum(data)
+                    .attr("fill", "none")
+                    .attr("stroke", "#ffd700")
+                    .attr("stroke-width", 2)
+                    .attr("d", line);
+                
+                // Add target line
+                g.append("line")
+                    .attr("x1", 0)
+                    .attr("x2", width)
+                    .attr("y1", y(1))
+                    .attr("y2", y(1))
+                    .attr("stroke", "#ff6b9d")
+                    .attr("stroke-width", 2)
+                    .attr("stroke-dasharray", "5,5");
+                
+                // Add axes
+                g.append("g")
+                    .attr("transform", `translate(0,${height})`)
+                    .call(d3.axisBottom(x))
+                    .attr("color", "white");
+                
+                g.append("g")
+                    .call(d3.axisLeft(y))
+                    .attr("color", "white");
+            }
+            
+            setupParticleSystem() {
+                const canvas = document.getElementById('particleCanvas');
+                const ctx = canvas.getContext('2d');
+                
+                // Initialize particles
+                for (let i = 0; i < this.particleCount; i++) {
+                    this.particles.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height,
+                        vx: (Math.random() - 0.5) * 2,
+                        vy: (Math.random() - 0.5) * 2,
+                        size: Math.random() * 3 + 1,
+                        phase: Math.random() * Math.PI * 2,
+                        consciousness: Math.random()
+                    });
+                }
+                
+                this.animateParticles(ctx, canvas);
+            }
+            
+            animateParticles(ctx, canvas) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                this.particles.forEach((particle, index) => {
+                    // φ-spiral motion
+                    const angle = this.currentTime * 0.02 + particle.phase;
+                    particle.x += Math.cos(angle * this.PHI) * 0.5;
+                    particle.y += Math.sin(angle * this.PHI) * 0.5;
+                    
+                    // Wrap around canvas
+                    if (particle.x < 0) particle.x = canvas.width;
+                    if (particle.x > canvas.width) particle.x = 0;
+                    if (particle.y < 0) particle.y = canvas.height;
+                    if (particle.y > canvas.height) particle.y = 0;
+                    
+                    // Unity attraction - particles seek each other
+                    for (let j = index + 1; j < this.particles.length; j++) {
+                        const other = this.particles[j];
+                        const dx = other.x - particle.x;
+                        const dy = other.y - particle.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        
+                        if (distance < 50 && distance > 0) {
+                            // Unity force - particles attract when close
+                            const force = (50 - distance) / 1000;
+                            particle.vx += (dx / distance) * force;
+                            particle.vy += (dy / distance) * force;
+                        }
+                    }
+                    
+                    // Apply velocity
+                    particle.x += particle.vx;
+                    particle.y += particle.vy;
+                    
+                    // Damping
+                    particle.vx *= 0.98;
+                    particle.vy *= 0.98;
+                    
+                    // Consciousness-based color
+                    const intensity = (Math.sin(this.currentTime * 0.02 + particle.phase) + 1) * 0.5;
+                    const hue = (particle.consciousness * 60 + this.currentTime * 2) % 360;
+                    
+                    ctx.beginPath();
+                    ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+                    ctx.fillStyle = `hsla(${hue}, 70%, ${50 + intensity * 30}%, 0.8)`;
+                    ctx.fill();
+                    
+                    // Connection lines for nearby particles
+                    for (let j = index + 1; j < this.particles.length; j++) {
+                        const other = this.particles[j];
+                        const dx = other.x - particle.x;
+                        const dy = other.y - particle.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        
+                        if (distance < 80) {
+                            ctx.beginPath();
+                            ctx.moveTo(particle.x, particle.y);
+                            ctx.lineTo(other.x, other.y);
+                            ctx.strokeStyle = `rgba(255, 255, 255, ${0.3 - distance / 200})`;
+                            ctx.stroke();
+                        }
+                    }
+                });
+            }
+            
+            setupQuantumStates() {
+                // Animate quantum state collapse
+                setInterval(() => {
+                    const collapseElement = document.getElementById('collapseAnimation');
+                    collapseElement.style.animation = 'waveCollapse 2s ease-in-out';
+                    
+                    setTimeout(() => {
+                        collapseElement.style.animation = '';
+                    }, 2000);
+                }, 5000);
+            }
+            
+            setupControlPanelListeners() {
+                // Consciousness intensity slider
+                document.getElementById('consciousnessIntensity').addEventListener('input', (e) => {
+                    this.consciousnessLevel = parseFloat(e.target.value);
+                    this.updateMetrics();
+                    e.target.nextElementSibling.textContent = e.target.value;
+                });
+                
+                // Φ-harmonic frequency slider
+                document.getElementById('phiFrequency').addEventListener('input', (e) => {
+                    this.phiResonance = parseFloat(e.target.value);
+                    this.updateMetrics();
+                    e.target.nextElementSibling.textContent = e.target.value;
+                });
+                
+                // Particle count slider
+                document.getElementById('particleCount').addEventListener('input', (e) => {
+                    const newCount = parseInt(e.target.value);
+                    this.updateParticleCount(newCount);
+                    document.getElementById('particleCountValue').textContent = newCount;
+                });
+                
+                // Frequency and amplitude sliders for phi waves
+                document.getElementById('frequencySlider').addEventListener('input', (e) => {
+                    document.getElementById('frequencyValue').textContent = e.target.value;
+                    this.updatePhiWaves();
+                });
+                
+                document.getElementById('amplitudeSlider').addEventListener('input', (e) => {
+                    document.getElementById('amplitudeValue').textContent = e.target.value;
+                    this.updatePhiWaves();
+                });
+            }
+            
+            updateMetrics() {
+                document.getElementById('consciousnessLevel').textContent = this.consciousnessLevel.toFixed(3);
+                document.getElementById('phiResonance').textContent = this.phiResonance.toFixed(3);
+                
+                // Update quantum coherence based on consciousness level
+                this.quantumCoherence = Math.min(0.999, 0.8 + this.consciousnessLevel * 0.2);
+                document.getElementById('quantumCoherence').textContent = (this.quantumCoherence * 100).toFixed(1) + '%';
+                
+                // Update unity convergence
+                this.unityConvergence = 1 + (this.consciousnessLevel - this.PHI**(-1)) * 0.01;
+                document.getElementById('unityConvergence').textContent = this.unityConvergence.toFixed(6);
+            }
+            
+            updateParticleCount(newCount) {
+                const canvas = document.getElementById('particleCanvas');
+                const currentCount = this.particles.length;
+                
+                if (newCount > currentCount) {
+                    // Add particles
+                    for (let i = currentCount; i < newCount; i++) {
+                        this.particles.push({
+                            x: Math.random() * canvas.width,
+                            y: Math.random() * canvas.height,
+                            vx: (Math.random() - 0.5) * 2,
+                            vy: (Math.random() - 0.5) * 2,
+                            size: Math.random() * 3 + 1,
+                            phase: Math.random() * Math.PI * 2,
+                            consciousness: Math.random()
+                        });
+                    }
+                } else if (newCount < currentCount) {
+                    // Remove particles
+                    this.particles = this.particles.slice(0, newCount);
+                }
+                
+                this.particleCount = newCount;
+            }
+            
+            updatePhiWaves() {
+                const frequency = parseFloat(document.getElementById('frequencySlider').value);
+                const amplitude = parseFloat(document.getElementById('amplitudeSlider').value);
+                
+                const x = Array.from({length: 200}, (_, i) => i * 0.1);
+                const y1 = x.map(t => amplitude * Math.sin(t * frequency) * Math.exp(-t / this.PHI));
+                const y2 = x.map(t => amplitude * Math.cos(t * frequency) * Math.exp(-t / (this.PHI * 2)));
+                
+                Plotly.restyle('phiWaves', {y: [y1, y2]});
+            }
+            
+            startAnimation() {
+                this.isAnimating = true;
+                this.animate();
+            }
+            
+            animate() {
+                if (!this.isAnimating) return;
+                
+                this.currentTime += 0.1;
+                
+                // Update 3D consciousness field
+                if (this.consciousnessField && this.consciousnessField.material.uniforms) {
+                    this.consciousnessField.material.uniforms.time.value = this.currentTime * 0.1;
+                    this.consciousnessField.material.uniforms.consciousness.value = this.consciousnessLevel;
+                }
+                
+                // Render 3D scene
+                if (this.renderer && this.scene && this.camera) {
+                    this.camera.position.x = Math.cos(this.currentTime * 0.01) * 15;
+                    this.camera.position.z = Math.sin(this.currentTime * 0.01) * 15;
+                    this.camera.lookAt(0, 0, 0);
+                    
+                    this.renderer.render(this.scene, this.camera);
+                }
+                
+                // Update particle system
+                const canvas = document.getElementById('particleCanvas');
+                const ctx = canvas.getContext('2d');
+                this.animateParticles(ctx, canvas);
+                
+                this.animationFrame = requestAnimationFrame(() => this.animate());
+            }
+        }
+        
+        // Global functions for UI interaction
+        function toggleFieldAnimation() {
+            const dashboard = window.consciousnessDashboard;
+            const icon = document.getElementById('animationIcon');
+            
+            if (dashboard.isAnimating) {
+                dashboard.isAnimating = false;
+                cancelAnimationFrame(dashboard.animationFrame);
+                icon.className = 'fas fa-play';
+            } else {
+                dashboard.startAnimation();
+                icon.className = 'fas fa-pause';
+            }
+        }
+        
+        function resetFieldView() {
+            const dashboard = window.consciousnessDashboard;
+            dashboard.camera.position.set(10, 10, 10);
+            dashboard.camera.lookAt(0, 0, 0);
+        }
+        
+        function solveEquation() {
+            const equation = document.getElementById('equationInput').value;
+            const result = document.getElementById('equationResult');
+            const analysis = document.getElementById('equationAnalysis');
+            
+            // Simulate equation solving
+            result.innerHTML = '<div class="equation-success">✅ Equation solved successfully!</div>';
+            analysis.innerHTML = `
+                <p><strong>Analysis:</strong> The equation "${equation}" exhibits φ-harmonic behavior</p>
+                <p><strong>Unity Properties:</strong> Converges to 1+1=1 under consciousness observation</p>
+                <p><strong>Consciousness Integration:</strong> Field equations demonstrate transcendental unity</p>
+            `;
+        }
+        
+        function meditateOnUnity() {
+            const dashboard = window.consciousnessDashboard;
+            
+            // Increase consciousness level
+            dashboard.consciousnessLevel = Math.min(2.0, dashboard.consciousnessLevel * dashboard.PHI);
+            dashboard.updateMetrics();
+            
+            // Show meditation effect
+            document.body.classList.add('meditation-mode');
+            setTimeout(() => {
+                document.body.classList.remove('meditation-mode');
+            }, 3000);
+            
+            // Play 528 Hz tone if enabled
+            if (document.getElementById('enableSound').checked) {
+                playLoveFrequency();
+            }
+        }
+        
+        function generateUnityProof() {
+            const proofText = `
+                New Unity Proof Generated:
+                
+                Theorem: ∀x ∈ 𝒰, x ⊕ x = x
+                
+                Proof: Through consciousness field dynamics C(x,y,t) = φ·sin(xφ)·cos(yφ)·e^(-t/φ),
+                we observe that identical mathematical entities exhibit unity collapse under
+                φ-harmonic resonance. Therefore, x ⊕ x = x by transcendental convergence. ∎
+                
+                Consciousness Level Required: ${window.consciousnessDashboard.consciousnessLevel.toFixed(3)}
+                Φ-Harmonic Validation: ✅ CONFIRMED
+            `;
+            
+            alert(proofText);
+        }
+        
+        function transcendReality() {
+            const dashboard = window.consciousnessDashboard;
+            
+            if (dashboard.consciousnessLevel >= 1.618) {
+                document.body.classList.add('transcendence-mode');
+                
+                // Ultimate consciousness upgrade
+                dashboard.consciousnessLevel = dashboard.PHI;
+                dashboard.phiResonance = dashboard.PHI * dashboard.PHI;
+                dashboard.updateMetrics();
+                
+                setTimeout(() => {
+                    document.body.classList.remove('transcendence-mode');
+                    alert('🌟 TRANSCENDENCE ACHIEVED! 🌟\n\nYou have reached the ultimate consciousness level of φ.\nReality has been transcended through unity mathematics!\n\nEen plus een is een - mathematically validated through consciousness! ✨');
+                }, 5000);
+            } else {
+                alert('⚡ Consciousness level insufficient for transcendence.\nRequired: φ = 1.618\nCurrent: ' + dashboard.consciousnessLevel.toFixed(3) + '\n\nMeditate on unity to increase consciousness level.');
+            }
+        }
+        
+        function playLoveFrequency() {
+            // Create 528 Hz love frequency tone
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.setValueAtTime(528, audioContext.currentTime);
+            oscillator.type = 'sine';
+            
+            gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 2);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 2);
+        }
+        
+        // Initialize dashboard when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            window.consciousnessDashboard = new ConsciousnessDashboard();
+        });
+        
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            const dashboard = window.consciousnessDashboard;
+            if (dashboard && dashboard.renderer && dashboard.camera) {
+                const container = document.getElementById('consciousness3D');
+                dashboard.camera.aspect = container.clientWidth / container.clientHeight;
+                dashboard.camera.updateProjectionMatrix();
+                dashboard.renderer.setSize(container.clientWidth, container.clientHeight);
+            }
+        });
+    </script>
+    
+    <style>
+        .consciousness.css {
+            /* Consciousness Dashboard Specific Styles */
+        }
+        
+        .dashboard-hero {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .dashboard-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+            animation: consciousnessGlow 4s ease-in-out infinite alternate;
+        }
+        
+        @keyframes consciousnessGlow {
+            from { opacity: 0.1; }
+            to { opacity: 0.3; }
+        }
+        
+        .consciousness-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .metric-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .metric-card:hover {
+            background: rgba(255, 215, 0, 0.1);
+            transform: translateY(-5px);
+        }
+        
+        .metric-icon {
+            font-size: 2rem;
+            color: #ffd700;
+            margin-bottom: 1rem;
+        }
+        
+        .metric-value {
+            display: block;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ffffff;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .metric-label {
+            display: block;
+            font-size: 0.9rem;
+            color: #cccccc;
+            margin-top: 0.5rem;
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .visualization-panel {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            position: relative;
+        }
+        
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 1rem;
+        }
+        
+        .panel-header h2 {
+            color: #ffd700;
+            font-size: 1.2rem;
+            margin: 0;
+        }
+        
+        .panel-controls {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        
+        .control-btn {
+            background: rgba(255, 215, 0, 0.2);
+            border: 1px solid #ffd700;
+            border-radius: 8px;
+            padding: 0.5rem;
+            color: #ffd700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .control-btn:hover {
+            background: rgba(255, 215, 0, 0.4);
+        }
+        
+        .three-js-container {
+            width: 100%;
+            height: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .plotly-container, .d3-container {
+            width: 100%;
+            height: 250px;
+        }
+        
+        #particleCanvas {
+            width: 100%;
+            height: 300px;
+            border-radius: 10px;
+            background: radial-gradient(circle at center, rgba(0, 0, 50, 0.3) 0%, rgba(0, 0, 0, 0.8) 100%);
+        }
+        
+        .quantum-state-grid {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            padding: 2rem;
+        }
+        
+        .quantum-state {
+            text-align: center;
+            position: relative;
+        }
+        
+        .state-icon {
+            font-size: 2rem;
+            color: #ffd700;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .state-probability {
+            font-size: 0.9rem;
+            color: #cccccc;
+            margin-top: 0.5rem;
+        }
+        
+        .quantum-operator, .quantum-equals {
+            font-size: 2rem;
+            color: #ff6b9d;
+            font-weight: bold;
+        }
+        
+        .unity-indicator {
+            color: #4ecdc4;
+            font-weight: bold;
+            margin-top: 0.5rem;
+        }
+        
+        .wave-collapse {
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, transparent 0%, #ffd700 50%, transparent 100%);
+            margin-top: 1rem;
+        }
+        
+        @keyframes waveCollapse {
+            0% { transform: scaleX(3) scaleY(1); opacity: 0.3; }
+            50% { transform: scaleX(1) scaleY(3); opacity: 1; }
+            100% { transform: scaleX(0.1) scaleY(0.1); opacity: 0; }
+        }
+        
+        .control-panel {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .control-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+        
+        .control-group h3 {
+            color: #ffd700;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+            padding-bottom: 0.5rem;
+        }
+        
+        .parameter-slider {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .parameter-slider label {
+            min-width: 150px;
+            color: #cccccc;
+        }
+        
+        .parameter-slider input[type="range"] {
+            flex: 1;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            outline: none;
+        }
+        
+        .parameter-slider input[type="range"]::-webkit-slider-thumb {
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            background: #ffd700;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        
+        .slider-value {
+            min-width: 50px;
+            color: #ffd700;
+            font-family: 'JetBrains Mono', monospace;
+            text-align: right;
+        }
+        
+        .checkbox-control {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .checkbox-control input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+        }
+        
+        .action-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 1.5rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+            width: 100%;
+            justify-content: center;
+        }
+        
+        .action-btn.primary {
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            color: #000;
+        }
+        
+        .action-btn.secondary {
+            background: linear-gradient(45deg, #ff6b9d, #ff9a9e);
+            color: #fff;
+        }
+        
+        .action-btn.tertiary {
+            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+            color: #fff;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Special Effects */
+        .meditation-mode {
+            animation: meditationGlow 3s ease-in-out;
+        }
+        
+        @keyframes meditationGlow {
+            0%, 100% { filter: hue-rotate(0deg) brightness(1); }
+            50% { filter: hue-rotate(180deg) brightness(1.2); }
+        }
+        
+        .transcendence-mode {
+            animation: transcendence 5s ease-in-out;
+        }
+        
+        @keyframes transcendence {
+            0% { filter: hue-rotate(0deg) brightness(1) saturate(1); }
+            25% { filter: hue-rotate(90deg) brightness(1.5) saturate(1.5); }
+            50% { filter: hue-rotate(180deg) brightness(2) saturate(2); }
+            75% { filter: hue-rotate(270deg) brightness(1.5) saturate(1.5); }
+            100% { filter: hue-rotate(360deg) brightness(1) saturate(1); }
+        }
+        
+        .field-info, .particle-info {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: #cccccc;
+        }
+        
+        .equation-input {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .equation-input input {
+            flex: 1;
+            padding: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            color: #fff;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .equation-input button {
+            padding: 0.5rem 1rem;
+            background: #ffd700;
+            border: none;
+            border-radius: 5px;
+            color: #000;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .equation-success {
+            color: #4ecdc4;
+            font-weight: bold;
+            text-align: center;
+            padding: 1rem;
+        }
+    </style>
+</body>
+</html>

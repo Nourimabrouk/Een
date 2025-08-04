@@ -37,7 +37,7 @@ except ImportError as e:
     logging.warning(f"Some modules not available: {e}")
 
 # Import API routes
-from api.routes import auth, consciousness, agents, visualizations
+from api.routes import auth, consciousness, agents, visualizations, gallery
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -122,6 +122,7 @@ app.include_router(auth.router)
 app.include_router(consciousness.router)
 app.include_router(agents.router)
 app.include_router(visualizations.router)
+app.include_router(gallery.router)
 
 # API Routes
 

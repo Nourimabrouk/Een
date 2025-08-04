@@ -78,7 +78,10 @@
       "Bash(timeout 5 curl -s http://localhost:8000/status)",
       "Bash(\"C:\\Users\\Nouri\\AppData\\Local\\Programs\\Python\\Python313\\python.exe\" -m http.server 8000)",
       "Bash(start chrome http://localhost:8000/meta-optimal-landing.html)",
-      "Bash(cmd /c start chrome:*)"
+      "Bash(cmd /c start chrome:*)",
+      "Bash(timeout 5 curl -s http://localhost:8003/index.html)",
+      "Bash(timeout:*)",
+      "Bash(start chrome:*)"
     ],
     "deny": []
   }

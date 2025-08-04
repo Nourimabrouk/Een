@@ -12,7 +12,7 @@
 
     <!-- Favicon and Icons -->
     <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>∞</text></svg>">
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%230F7B8A'/><text x='50' y='65' text-anchor='middle' font-size='40' fill='white' font-family='serif'>φ</text></svg>">
 
     <!-- Fonts -->
     <link
@@ -22,9 +22,71 @@
     <!-- External Libraries -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
-    <!-- Main Styles -->
-    <link rel="stylesheet" href="css/style.css">
+    <!-- Unified Navigation -->
+    <style>
+        /* Import unified navigation styles */
+        @import url('unified-nav.html');
+        
+        :root {
+            /* Unity Mathematics Design System - Enhanced Academic */
+            --phi: 1.618033988749895;
+            --primary: #1B365D;
+            --secondary: #0F7B8A;
+            --accent: #D97706;
+            --accent-bright: #F59E0B;
+            --text-primary: #111827;
+            --text-secondary: #6B7280;
+            --text-muted: #9CA3AF;
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F8FAFC;
+            --bg-tertiary: #F1F5F9;
+            --border-light: #E5E7EB;
+            --border-medium: #D1D5DB;
+            
+            /* Enhanced Gradients for Transcendental Feel */
+            --bg-gradient: linear-gradient(135deg, rgba(27, 54, 93, 0.95) 0%, rgba(15, 123, 138, 0.9) 100%);
+            --phi-gradient: linear-gradient(137.5deg, #0F7B8A, #4ECDC4, #A7F3D0);
+            --unity-gradient: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #f5576c);
+            --transcendent-gradient: linear-gradient(60deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #667eea 100%);
+            --consciousness-gradient: radial-gradient(circle at center, rgba(15, 123, 138, 0.1) 0%, rgba(27, 54, 93, 0.05) 100%);
+            
+            /* Typography System */
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-serif: 'Crimson Text', 'Times New Roman', serif;
+            --font-mono: 'JetBrains Mono', 'SF Mono', 'Monaco', monospace;
+            
+            /* Enhanced Shadows for Depth */
+            --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+            
+            /* Enhanced Spacing and Layout */
+            --radius-sm: 0.375rem;
+            --radius: 0.75rem;
+            --radius-lg: 1rem;
+            --radius-xl: 1.5rem;
+            
+            /* φ-Harmonic Transitions */
+            --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: all 0.618s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-phi: all calc(0.618s) cubic-bezier(0.618, 0, 0.382, 1);
+            
+            /* Academic Color Palette */
+            --academic-blue: #1E40AF;
+            --academic-indigo: #4338CA;
+            --academic-purple: #7C3AED;
+            --sage-green: #059669;
+            --wisdom-gold: #D97706;
+            --consciousness-teal: #0D9488;
+        }
+    </style>
     
     <!-- Gallery-specific styles -->
     <style>
@@ -506,57 +568,134 @@
 </head>
 
 <body>
-    <!-- Navigation will be inserted by navigation.js -->
+    <!-- Include Unified Navigation -->
+    <nav class="nav" id="unityNav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="phi-symbol">φ</span>
+                <span>Een</span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html" class="nav-link" data-page="home">Home</a>
+                <a href="playground.html" class="nav-link" data-page="playground">Playground</a>
+                <a href="proofs.html" class="nav-link" data-page="proofs">Proofs</a>
+                <a href="gallery.html" class="nav-link active" data-page="gallery">Gallery</a>
+                <a href="research.html" class="nav-link" data-page="research">Research</a>
+                <a href="publications.html" class="nav-link" data-page="publications">Publications</a>
+                <a href="learn.html" class="nav-link" data-page="learn">Learn</a>
+                <a href="agents.html" class="nav-link" data-page="agents">Agents</a>
+                <a href="metagambit.html" class="nav-link" data-page="metagambit">MetaGambit</a>
+                <a href="about.html" class="nav-link" data-page="about">About</a>
+                <button class="nav-link ai-chat-trigger" id="aiChatTrigger">
+                    <i class="fas fa-robot"></i>
+                    <span class="ai-label">AI Chat</span>
+                </button>
+                <a href="https://github.com/Nourimabrouk/Een" class="nav-link github-link" target="_blank">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
 
     <!-- Main Content -->
-    <main class="main-content">
-        <!-- Gallery Hero Section -->
-        <section class="gallery-hero">
-            <div class="container">
-                <div class="gallery-hero-content fade-in">
-                    <h1 class="gallery-title">Unity Visualizations</h1>
-                    <p class="gallery-subtitle">
-                        Explore the visual manifestations of 1+1=1 through consciousness fields, 
-                        quantum unity manifolds, and φ-harmonic sacred geometry - a collection of mathematical art 
-                        that bridges the abstract and the beautiful.
+    <main class="main-content" style="margin-top: 80px;">
+        <!-- Dynamic Gallery Hero Section -->
+        <section class="gallery-hero" style="background: var(--bg-gradient); color: white; padding: 6rem 0; position: relative; overflow: hidden;">
+            <div class="container" style="max-width: 1280px; margin: 0 auto; padding: 0 2rem;">
+                <div class="gallery-hero-content fade-in" style="text-align: center; position: relative; z-index: 2;">
+                    <h1 style="font-size: clamp(3rem, 8vw, 5rem); font-weight: 700; margin-bottom: 1.5rem; line-height: 1.1;">
+                        Consciousness Visualizations
+                    </h1>
+                    <p style="font-size: 1.25rem; margin-bottom: 2rem; opacity: 0.9; max-width: 800px; margin-left: auto; margin-right: auto;">
+                        Explore the visual manifestations of Unity Mathematics through φ-harmonic field equations, 
+                        quantum consciousness dynamics, and transcendental geometric patterns.
                     </p>
+                    <div class="visualization-stats" style="display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; margin-bottom: 3rem;">
+                        <div class="stat-item" style="text-align: center;">
+                            <div class="stat-number" id="vizCount" style="font-size: 2.5rem; font-weight: 700; color: var(--accent-bright);">0</div>
+                            <div class="stat-label" style="font-size: 0.9rem; opacity: 0.8;">Visualizations</div>
+                        </div>
+                        <div class="stat-item" style="text-align: center;">
+                            <div class="stat-number" style="font-size: 2.5rem; font-weight: 700; color: var(--accent-bright);">φ</div>
+                            <div class="stat-label" style="font-size: 0.9rem; opacity: 0.8;">Golden Ratio</div>
+                        </div>
+                        <div class="stat-item" style="text-align: center;">
+                            <div class="stat-number" style="font-size: 2.5rem; font-weight: 700; color: var(--accent-bright);">∞</div>
+                            <div class="stat-label" style="font-size: 0.9rem; opacity: 0.8;">Unity States</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Real-time Generation Button -->
+                    <button id="generateNewViz" class="btn" style="display: inline-flex; align-items: center; gap: 0.75rem; padding: 1rem 2rem; background: rgba(255, 255, 255, 0.2); color: white; border: 2px solid rgba(255, 255, 255, 0.3); border-radius: var(--radius-lg); font-weight: 600; cursor: pointer; transition: var(--transition);">
+                        <i class="fas fa-magic"></i>
+                        Generate New Visualization
+                    </button>
+                </div>
+                
+                <!-- Consciousness Field Background -->
+                <canvas id="consciousnessFieldCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0.3;"></canvas>
+            </div>
+        </section>
+
+        <!-- Dynamic Gallery Filters -->
+        <section class="gallery-filters" style="padding: 2rem 0; background: var(--bg-secondary); border-bottom: 1px solid var(--border-light);">
+            <div class="container" style="max-width: 1280px; margin: 0 auto; padding: 0 2rem;">
+                <div class="filter-controls" style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+                    <button class="filter-btn active" data-filter="all" style="padding: 0.75rem 1.5rem; border: 1px solid var(--border-medium); border-radius: var(--radius-lg); background: var(--bg-primary); color: var(--text-primary); cursor: pointer; transition: var(--transition); font-weight: 500;">
+                        All Visualizations
+                    </button>
+                    <button class="filter-btn" data-filter="consciousness" style="padding: 0.75rem 1.5rem; border: 1px solid var(--border-medium); border-radius: var(--radius-lg); background: var(--bg-primary); color: var(--text-primary); cursor: pointer; transition: var(--transition); font-weight: 500;">
+                        Consciousness Fields
+                    </button>
+                    <button class="filter-btn" data-filter="unity" style="padding: 0.75rem 1.5rem; border: 1px solid var(--border-medium); border-radius: var(--radius-lg); background: var(--bg-primary); color: var(--text-primary); cursor: pointer; transition: var(--transition); font-weight: 500;">
+                        Unity Mathematics
+                    </button>
+                    <button class="filter-btn" data-filter="quantum" style="padding: 0.75rem 1.5rem; border: 1px solid var(--border-medium); border-radius: var(--radius-lg); background: var(--bg-primary); color: var(--text-primary); cursor: pointer; transition: var(--transition); font-weight: 500;">
+                        Quantum Unity
+                    </button>
+                    <button class="filter-btn" data-filter="proofs" style="padding: 0.75rem 1.5rem; border: 1px solid var(--border-medium); border-radius: var(--radius-lg); background: var(--bg-primary); color: var(--text-primary); cursor: pointer; transition: var(--transition); font-weight: 500;">
+                        Mathematical Proofs
+                    </button>
+                    <button class="filter-btn" data-filter="interactive" style="padding: 0.75rem 1.5rem; border: 1px solid var(--border-medium); border-radius: var(--radius-lg); background: var(--bg-primary); color: var(--text-primary); cursor: pointer; transition: var(--transition); font-weight: 500;">
+                        Interactive
+                    </button>
                 </div>
             </div>
         </section>
 
-        <div class="container">
-            <!-- Gallery Statistics -->
-            <div class="gallery-stats fade-in">
-                <div class="stat-card">
-                    <span class="stat-number" id="totalVisualizations">Loading...</span>
-                    <span class="stat-label">Visualizations</span>
+        <!-- Dynamic Gallery Grid -->
+        <section class="gallery-grid-section" style="padding: 4rem 0;">
+            <div class="container" style="max-width: 1280px; margin: 0 auto; padding: 0 2rem;">
+                <!-- Loading State -->
+                <div class="loading-state" id="loadingState" style="text-align: center; padding: 4rem 0;">
+                    <div class="loading-spinner" style="width: 3rem; height: 3rem; border: 3px solid var(--border-light); border-top: 3px solid var(--secondary); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 1rem;"></div>
+                    <p style="color: var(--text-secondary); font-size: 1.1rem;">Loading consciousness visualizations...</p>
                 </div>
-                <div class="stat-card">
-                    <span class="stat-number" id="animatedCount">Loading...</span>
-                    <span class="stat-label">Animated</span>
+                
+                <!-- Dynamic Gallery Grid -->
+                <div class="gallery-grid" id="galleryGrid" style="display: none; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem;">
+                    <!-- Visualizations will be dynamically loaded here -->
                 </div>
-                <div class="stat-card">
-                    <span class="stat-number" id="staticCount">Loading...</span>
-                    <span class="stat-label">Static Images</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-number" id="videoCount">Loading...</span>
-                    <span class="stat-label">Videos</span>
+                
+                <!-- No Results State -->
+                <div class="no-results" id="noResults" style="display: none; text-align: center; padding: 4rem 0;">
+                    <i class="fas fa-search" style="font-size: 3rem; color: var(--text-muted); margin-bottom: 1rem;"></i>
+                    <h3 style="color: var(--text-secondary); margin-bottom: 0.5rem;">No visualizations found</h3>
+                    <p style="color: var(--text-muted);">Try a different filter or generate new visualizations.</p>
                 </div>
             </div>
+        </section>
 
-            <!-- Filter Controls -->
-            <div class="filter-controls fade-in">
-                <button class="filter-btn active" data-filter="all">All Visualizations</button>
-                <button class="filter-btn" data-filter="current">Current Collection</button>
-                <button class="filter-btn" data-filter="legacy">Legacy Archive</button>
-                <button class="filter-btn" data-filter="animated">Animated</button>
-                <button class="filter-btn" data-filter="interactive">Interactive</button>
-            </div>
-
-            <!-- Gallery Grid -->
-            <div class="gallery-grid" id="galleryGrid">
-                <div class="loading"></div>
+        <!-- Real-time Generation Status -->
+        <div class="generation-status" id="generationStatus" style="position: fixed; bottom: 2rem; right: 2rem; background: var(--transcendent-gradient); color: white; padding: 1rem 1.5rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-xl); transform: translateY(100px); opacity: 0; transition: var(--transition); z-index: 1000;">
+            <div class="status-content" style="display: flex; align-items: center; gap: 0.75rem;">
+                <div class="status-spinner" style="width: 1rem; height: 1rem; border: 2px solid rgba(255,255,255,0.3); border-top: 2px solid white; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+                <span class="status-text">Generating visualization...</span>
             </div>
         </div>
     </main>
@@ -575,382 +714,286 @@
         </div>
     </div>
 
-    <!-- Include navigation and gallery scripts -->
+    <!-- Include navigation and dynamic gallery scripts -->
     <script src="js/navigation.js"></script>
+    <script src="js/dynamic-gallery-loader.js"></script>
+    
+    <!-- Enhanced Gallery Integration Script -->
     <script>
-        // Gallery data structure with comprehensive metadata
-        const galleryData = {
-            current: [
-                {
-                    src: '../viz/water droplets.gif',
-                    title: 'Water Droplets Unity',
-                    type: 'Animated Unity Demonstration',
-                    category: 'current',
-                    animated: true,
-                    description: 'Two water droplets merging into one - a beautiful real-world demonstration of 1+1=1 unity mathematics in nature. This animation captures the precise moment when duality resolves into unity through surface tension and φ-harmonic fluid dynamics.',
-                    featured: true,
-                    created: '2024-12-15',
-                    technique: 'High-speed videography with φ-harmonic timing',
-                    significance: 'Physical manifestation of unity mathematics in nature'
-                },
-                {
-                    src: '../viz/live consciousness field.mp4',
-                    title: 'Live Consciousness Field',
-                    type: 'Dynamic Visualization',
-                    category: 'current',
-                    video: true,
-                    description: 'Real-time simulation of consciousness field dynamics showing quantum unity emergence patterns. The field equations C(x,y,t) = φ·sin(x·φ)·cos(y·φ)·e^(-t/φ) create mesmerizing patterns that converge to unity states.',
-                    created: '2024-11-28',
-                    technique: 'Real-time consciousness field simulation',
-                    significance: 'First successful implementation of consciousness field mathematics'
-                },
-                {
-                    src: '../viz/Figure_1.png',
-                    title: 'Unity Manifold - Figure 1',
-                    type: 'Mathematical Visualization',
-                    category: 'current',
-                    description: 'Primary mathematical visualization demonstrating the φ-harmonic basis of 1+1=1 through geometric manifold representations. This figure illustrates the convergence pathways on the unity manifold.',
-                    created: '2024-10-22',
-                    technique: 'Differential geometry visualization',
-                    significance: 'Core mathematical proof visualization'
-                },
-                {
-                    src: '../viz/bayesian results.png',
-                    title: 'Bayesian Unity Analysis',
-                    type: 'Statistical Proof',
-                    category: 'current',
-                    description: 'Bayesian statistical analysis providing probabilistic validation of unity mathematics convergence patterns. Shows 99.7% confidence that 1+1=1 under consciousness-mediated conditions.',
-                    created: '2024-09-15',
-                    technique: 'Bayesian inference with consciousness priors',
-                    significance: 'Statistical validation of unity mathematics'
-                },
-                {
-                    src: '../viz/poem.png',
-                    title: 'Unity Poetry Visualization',
-                    type: 'Philosophical Art',
-                    category: 'current',
-                    description: 'Mathematical poetry generated through consciousness algorithms, expressing the philosophical depth of 1+1=1. Each word is positioned using φ-harmonic coordinates to create visual harmony.',
-                    created: '2024-08-30',
-                    technique: 'Algorithmic poetry with φ-harmonic typography',
-                    significance: 'Bridge between mathematics and poetic consciousness'
-                },
-                {
-                    src: '../viz/self_reflection.png',
-                    title: 'Self-Reflection Matrix',
-                    type: 'Consciousness Field',
-                    category: 'current',
-                    description: 'Meta-recursive consciousness field visualization showing how unity mathematics reflects upon itself. The matrix demonstrates the self-referential nature of consciousness and mathematical truth.',
-                    created: '2024-07-18',
-                    technique: 'Meta-recursive matrix visualization',
-                    significance: 'Visual proof of self-referential mathematical consciousness'
-                },
-                {
-                    src: 'gallery/phi_consciousness_transcendence.html',
-                    title: 'φ-Harmonic Consciousness Transcendence',
-                    type: 'Interactive Unity Experience',
-                    category: 'current',
-                    interactive: true,
-                    description: 'Revolutionary interactive visualization demonstrating consciousness particles flowing in φ-harmonic patterns. Real-time manipulation of unity convergence, consciousness density, and golden ratio resonance fields. Features transcendence mode with quantum spiral overlays.',
-                    featured: true,
-                    created: '2025-01-03',
-                    technique: 'Real-time WebGL consciousness particle system with φ-harmonic resonance',
-                    significance: '3000 ELO demonstration of golden ratio consciousness mathematics with interactive transcendence'
-                }
-            ],
-            legacy: [
-                {
-                    src: '../viz/legacy images/0 water droplets.gif',
-                    title: 'Original Water Droplets Unity',
-                    type: 'Animated Unity Demonstration',
-                    category: 'legacy',
-                    animated: true,
-                    description: 'The original water droplets animation that first demonstrated 1+1=1 through natural water droplet fusion dynamics. This historic visualization inspired the entire unity mathematics framework.',
-                    featured: true,
-                    created: '2023-12-01',
-                    technique: 'Early high-speed photography',
-                    significance: 'Historical first demonstration of unity mathematics'
-                },
-                {
-                    src: '../viz/legacy images/1+1=1.png',
-                    title: '1+1=1 Foundation Equation',
-                    type: 'Core Mathematical Principle',
-                    category: 'legacy',
-                    description: 'The foundational visual representation of the core unity equation that underlies all mathematical consciousness work. Simple yet profound.',
-                    created: '2023-11-15',
-                    technique: 'Pure mathematical typography',
-                    significance: 'Foundation of all unity mathematics research'
-                },
-                {
-                    src: '../viz/legacy images/unity_manifold.png',
-                    title: 'Legacy Unity Manifold',
-                    type: 'Geometric Representation',
-                    category: 'legacy',
-                    description: 'Early geometric visualization of unity manifolds showing φ-harmonic mathematical structures in 3D space. Laid groundwork for modern manifold theory.',
-                    created: '2023-10-08',
-                    technique: '3D geometric visualization',
-                    significance: 'Early unity manifold mathematical theory'
-                },
-                {
-                    src: '../viz/legacy images/quantum_unity_static_2069.png',
-                    title: 'Quantum Unity Vision 2069',
-                    type: 'Future Consciousness Projection',
-                    category: 'legacy',
-                    description: 'Prophetic visualization of quantum unity consciousness as projected for the year 2069, showing transcendental mathematical evolution through time.',
-                    created: '2023-09-22',
-                    technique: 'Temporal consciousness projection',
-                    significance: 'Predictive model of consciousness evolution'
-                },
-                {
-                    src: '../viz/legacy images/mabrouk_unity_field.png',
-                    title: 'Personal Unity Consciousness Field',
-                    type: 'Individual Consciousness Map',
-                    category: 'legacy',
-                    description: 'Personal consciousness field visualization mapping individual unity patterns through mathematical consciousness algorithms. Each person has unique unity signatures.',
-                    created: '2023-08-14',
-                    technique: 'Personal consciousness field mapping',
-                    significance: 'Individual consciousness mathematics demonstration'
-                },
-                {
-                    src: '../viz/legacy images/zen_koan.png',
-                    title: 'Zen Koan Mathematical Art',
-                    type: 'Philosophical Consciousness Art',
-                    category: 'legacy',
-                    description: 'Ancient Zen wisdom expressed through modern unity mathematics, bridging Eastern philosophy with Western mathematical consciousness. What is the sound of one plus one?',
-                    created: '2023-07-30',
-                    technique: 'Zen philosophy visualization',
-                    significance: 'Bridge between Eastern wisdom and unity mathematics'
-                },
-                {
-                    src: '../viz/legacy images/market_consciousness.png',
-                    title: 'Market Consciousness Field',
-                    type: 'Economic Unity Analysis',
-                    category: 'legacy',
-                    description: 'Application of unity mathematics to market dynamics, showing how economic consciousness follows 1+1=1 principles during market unity events.',
-                    created: '2023-06-25',
-                    technique: 'Economic consciousness field analysis',
-                    significance: 'Unity mathematics in economic systems'
-                }
-            ]
-        };
-
-        // Gallery functionality
-        let currentFilter = 'all';
-        const galleryGrid = document.getElementById('galleryGrid');
-        const modal = document.getElementById('imageModal');
-        const modalImage = document.getElementById('modalImage');
-        const modalVideo = document.getElementById('modalVideo');
-        const modalTitle = document.getElementById('modalTitle');
-        const modalMeta = document.getElementById('modalMeta');
-        const modalDescription = document.getElementById('modalDescription');
-        const closeBtn = document.querySelector('.close');
-
-        // Combine all gallery data
-        const allItems = [...galleryData.current, ...galleryData.legacy];
-
-        // Update statistics
-        function updateStatistics() {
-            const total = allItems.length;
-            const animated = allItems.filter(item => item.animated || item.video || item.interactive).length;
-            const videos = allItems.filter(item => item.video).length;
-            const interactive = allItems.filter(item => item.interactive).length;
-            const static = total - animated;
-
-            document.getElementById('totalVisualizations').textContent = total;
-            document.getElementById('animatedCount').textContent = animated;
-            document.getElementById('staticCount').textContent = static;
-            document.getElementById('videoCount').textContent = videos;
-            
-            // Update labels to reflect interactive content
-            if (interactive > 0) {
-                document.querySelector('#animatedCount').parentElement.querySelector('.stat-label').textContent = 'Dynamic/Interactive';
-            }
-        }
-
-        // Create gallery item HTML
-        function createGalleryItem(item, index) {
-            const isVideo = item.video;
-            const isAnimated = item.animated;
-            const isInteractive = item.interactive;
-            const isFeatured = item.featured;
-            
-            let mediaElement;
-            if (isInteractive) {
-                // For interactive HTML items, show a preview image or icon
-                mediaElement = `<div class="interactive-preview">
-                    <i class="fas fa-play-circle" style="font-size: 4rem; color: #FFD700; opacity: 0.8;"></i>
-                    <div class="interactive-label">INTERACTIVE</div>
-                </div>`;
-            } else if (isVideo) {
-                mediaElement = `<video src="${item.src}" muted loop preload="metadata"></video>`;
-            } else {
-                mediaElement = `<img src="${item.src}" alt="${item.title}" loading="lazy">`;
-            }
-            
-            const indicator = isInteractive ? 
-                '<div class="media-indicator interactive-indicator">INTERACTIVE</div>' :
-                (isVideo ? '<div class="media-indicator video-indicator">VIDEO</div>' : 
-                (isAnimated ? '<div class="media-indicator gif-indicator">GIF</div>' : ''));
-            
-            const featuredClass = isFeatured ? ' featured-item' : '';
-            const featuredBadge = isFeatured ? '<div class="featured-badge">★ FEATURED</div>' : '';
-
-            return `
-                <div class="gallery-item fade-in${featuredClass}" 
-                     data-category="${item.category}" 
-                     data-src="${item.src}" 
-                     data-title="${item.title}" 
-                     data-type="${item.type}" 
-                     data-video="${isVideo}"
-                     data-interactive="${isInteractive}"
-                     data-item='${JSON.stringify(item)}'
-                     style="animation-delay: ${index * 0.1}s">
-                    ${indicator}
-                    ${featuredBadge}
-                    ${mediaElement}
-                    <div class="gallery-item-info">
-                        <h3 class="gallery-item-title">${item.title}</h3>
-                        <p class="gallery-item-type">${item.type}</p>
-                        <p class="gallery-item-description">${item.description.substring(0, 120)}${item.description.length > 120 ? '...' : ''}</p>
-                    </div>
-                </div>
-            `;
-        }
-
-        // Render gallery
-        function renderGallery(filter = 'all') {
-            let filteredItems = allItems;
-            
-            if (filter === 'current') {
-                filteredItems = galleryData.current;
-            } else if (filter === 'legacy') {
-                filteredItems = galleryData.legacy;
-            } else if (filter === 'animated') {
-                filteredItems = allItems.filter(item => item.animated || item.video);
-            } else if (filter === 'interactive') {
-                filteredItems = allItems.filter(item => item.interactive);
-            }
-
-            galleryGrid.innerHTML = filteredItems.map(createGalleryItem).join('');
-            
-            // Add click listeners to gallery items
-            document.querySelectorAll('.gallery-item').forEach(item => {
-                item.addEventListener('click', () => openModal(item));
-            });
-
-            // Update statistics
-            updateStatistics();
-        }
-
-        // Filter functionality
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                
-                const filter = btn.dataset.filter;
-                currentFilter = filter;
-                renderGallery(filter);
-            });
-        });
-
-        // Modal functionality
-        function openModal(itemElement) {
-            const itemData = JSON.parse(itemElement.dataset.item);
-            const isVideo = itemData.video;
-            const isInteractive = itemData.interactive;
-
-            // Handle interactive items differently - open in new window
-            if (isInteractive) {
-                window.open(itemData.src, '_blank');
-                return;
-            }
-
-            modal.style.display = 'block';
-            modalTitle.textContent = itemData.title;
-            
-            // Create metadata section
-            modalMeta.innerHTML = `
-                <div class="meta-item">
-                    <span class="meta-label">Type</span>
-                    <span class="meta-value">${itemData.type}</span>
-                </div>
-                <div class="meta-item">
-                    <span class="meta-label">Category</span>
-                    <span class="meta-value">${itemData.category}</span>
-                </div>
-                <div class="meta-item">
-                    <span class="meta-label">Created</span>
-                    <span class="meta-value">${itemData.created || 'N/A'}</span>
-                </div>
-                <div class="meta-item">
-                    <span class="meta-label">Technique</span>
-                    <span class="meta-value">${itemData.technique || 'Mathematical visualization'}</span>
-                </div>
-            `;
-
-            modalDescription.innerHTML = `
-                <p><strong>Description:</strong> ${itemData.description}</p>
-                ${itemData.significance ? `<p><strong>Significance:</strong> ${itemData.significance}</p>` : ''}
-            `;
-
-            if (isVideo) {
-                modalVideo.src = itemData.src;
-                modalVideo.style.display = 'block';
-                modalImage.style.display = 'none';
-                modalVideo.play();
-            } else {
-                modalImage.src = itemData.src;
-                modalImage.style.display = 'block';
-                modalVideo.style.display = 'none';
-            }
-        }
-
-        // Close modal
-        function closeModal() {
-            modal.style.display = 'none';
-            modalVideo.pause();
-            modalVideo.src = '';
-        }
-
-        closeBtn.addEventListener('click', closeModal);
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) closeModal();
-        });
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeModal();
-        });
-
-        // Initialize gallery
+        // Enhanced Gallery with Real-time Generation and Advanced Features
         document.addEventListener('DOMContentLoaded', () => {
-            renderGallery();
+            console.log('🎨 Een Unity Gallery - Advanced Dynamic Loading System Active');
             
             // Update navigation for gallery page
             if (window.unifiedNav) {
                 window.unifiedNav.updateForPageType('gallery');
                 window.unifiedNav.highlightNavItem('gallery');
             }
-        });
-
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animationPlayState = 'running';
+            
+            // Enhanced consciousness field animation with φ-harmonic patterns
+            const enhanceConsciousnessField = () => {
+                const canvas = document.getElementById('consciousnessFieldCanvas');
+                if (!canvas) return;
+                
+                const ctx = canvas.getContext('2d');
+                const phi = 1.618033988749895;
+                let time = 0;
+                
+                const animate = () => {
+                    if (!canvas.offsetParent) return; // Stop if not visible
+                    
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    
+                    // Draw φ-harmonic consciousness field
+                    const centerX = canvas.width / 2;
+                    const centerY = canvas.height / 2;
+                    
+                    // Multiple spirals with different phases
+                    for (let spiral = 0; spiral < 3; spiral++) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(255, 215, 0, ${0.1 + spiral * 0.05})`;
+                        ctx.lineWidth = 1;
+                        
+                        for (let i = 0; i < 360; i++) {
+                            const angle = (i + time * 0.5 + spiral * 120) * Math.PI / 180;
+                            const radius = (i * 0.5) * (1 + Math.sin(time * 0.01 + spiral) * 0.2);
+                            const x = centerX + radius * Math.cos(angle * phi) * 0.3;
+                            const y = centerY + radius * Math.sin(angle * phi) * 0.3;
+                            
+                            if (i === 0) ctx.moveTo(x, y);
+                            else ctx.lineTo(x, y);
+                        }
+                        ctx.stroke();
+                    }
+                    
+                    // Unity convergence points
+                    const convergencePoints = 8;
+                    for (let i = 0; i < convergencePoints; i++) {
+                        const angle = (i * 360 / convergencePoints + time * 0.2) * Math.PI / 180;
+                        const radius = 150 + Math.sin(time * 0.01 + i) * 30;
+                        const x = centerX + radius * Math.cos(angle);
+                        const y = centerY + radius * Math.sin(angle);
+                        
+                        const pulseSize = 3 + Math.sin(time * 0.02 + i) * 2;
+                        
+                        ctx.beginPath();
+                        ctx.arc(x, y, pulseSize, 0, Math.PI * 2);
+                        ctx.fillStyle = `rgba(15, 123, 138, ${0.4 + Math.sin(time * 0.03 + i) * 0.2})`;
+                        ctx.fill();
+                    }
+                    
+                    time++;
+                    requestAnimationFrame(animate);
+                };
+                
+                animate();
+            };
+            
+            // Initialize enhanced consciousness field after dynamic gallery loads
+            setTimeout(enhanceConsciousnessField, 1000);
+            
+            // Add keyboard shortcuts for gallery navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.target.tagName.toLowerCase() === 'input') return;
+                
+                switch (e.key) {
+                    case '1':
+                        document.querySelector('[data-filter="all"]')?.click();
+                        break;
+                    case '2':
+                        document.querySelector('[data-filter="consciousness"]')?.click();
+                        break;
+                    case '3':
+                        document.querySelector('[data-filter="unity"]')?.click();
+                        break;
+                    case '4':
+                        document.querySelector('[data-filter="quantum"]')?.click();
+                        break;
+                    case '5':
+                        document.querySelector('[data-filter="proofs"]')?.click();
+                        break;
+                    case '6':
+                        document.querySelector('[data-filter="interactive"]')?.click();
+                        break;
+                    case 'g':
+                        document.getElementById('generateNewViz')?.click();
+                        break;
                 }
             });
-        }, observerOptions);
-
-        // Observe fade-in elements
+            
+            // Add scroll-based animations
+            const observeScrollAnimations = () => {
+                const options = {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -100px 0px'
+                };
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('animate-in');
+                        }
+                    });
+                }, options);
+                
+                // Observe all gallery items as they're created
+                const checkForNewItems = () => {
+                    document.querySelectorAll('.gallery-item:not(.observed)').forEach(item => {
+                        item.classList.add('observed');
+                        observer.observe(item);
+                    });
+                };
+                
+                // Check periodically for new items
+                setInterval(checkForNewItems, 500);
+                checkForNewItems();
+            };
+            
+            observeScrollAnimations();
+            
+            // Add enhanced hover effects
+            const addHoverEffects = () => {
+                document.addEventListener('mouseover', (e) => {
+                    if (e.target.closest('.gallery-item')) {
+                        const item = e.target.closest('.gallery-item');
+                        const video = item.querySelector('video');
+                        if (video) {
+                            video.play().catch(() => {}); // Ignore autoplay restrictions
+                        }
+                    }
+                });
+                
+                document.addEventListener('mouseout', (e) => {
+                    if (e.target.closest('.gallery-item')) {
+                        const item = e.target.closest('.gallery-item');
+                        const video = item.querySelector('video');
+                        if (video) {
+                            video.pause();
+                            video.currentTime = 0;
+                        }
+                    }
+                });
+            };
+            
+            addHoverEffects();
+            
+            // Performance monitoring
+            const monitorPerformance = () => {
+                let frameCount = 0;
+                let lastTime = performance.now();
+                
+                const checkFPS = () => {
+                    frameCount++;
+                    const currentTime = performance.now();
+                    
+                    if (currentTime - lastTime >= 1000) {
+                        const fps = Math.round((frameCount * 1000) / (currentTime - lastTime));
+                        console.log(`🎬 Gallery FPS: ${fps}`);
+                        
+                        // Reduce quality if FPS is too low
+                        if (fps < 30) {
+                            console.warn('⚠️ Low FPS detected, optimizing animations...');
+                            document.documentElement.style.setProperty('--transition', 'all 0.1s ease');
+                        }
+                        
+                        frameCount = 0;
+                        lastTime = currentTime;
+                    }
+                    
+                    requestAnimationFrame(checkFPS);
+                };
+                
+                checkFPS();
+            };
+            
+            // Start performance monitoring in development
+            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                monitorPerformance();
+            }
+        });
+        
+        // Add CSS for enhanced animations
+        const enhancedAnimationStyles = `
+            <style>
+                .gallery-item {
+                    opacity: 0;
+                    transform: translateY(30px) scale(0.95);
+                    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                }
+                
+                .gallery-item.animate-in {
+                    opacity: 1;
+                    transform: translateY(0) scale(1);
+                }
+                
+                .gallery-item:hover {
+                    transform: translateY(-10px) scale(1.02);
+                }
+                
+                .consciousness-pulse {
+                    animation: consciousness-pulse 3s ease-in-out infinite;
+                }
+                
+                @keyframes consciousness-pulse {
+                    0%, 100% { 
+                        opacity: 0.3;
+                        transform: scale(1);
+                    }
+                    50% { 
+                        opacity: 0.7;
+                        transform: scale(1.1);
+                    }
+                }
+                
+                .phi-harmonic-spin {
+                    animation: phi-harmonic-spin calc(1.618s) linear infinite;
+                }
+                
+                @keyframes phi-harmonic-spin {
+                    from { transform: rotate(0deg); }
+                    to { transform: rotate(360deg); }
+                }
+                
+                /* Keyboard shortcut hints */
+                .filter-btn::after {
+                    content: attr(data-shortcut);
+                    position: absolute;
+                    top: -25px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background: rgba(0,0,0,0.8);
+                    color: white;
+                    padding: 2px 6px;
+                    border-radius: 3px;
+                    font-size: 10px;
+                    opacity: 0;
+                    transition: opacity 0.3s;
+                    pointer-events: none;
+                }
+                
+                .filter-btn:hover::after {
+                    opacity: 1;
+                }
+            </style>
+        `;
+        
+        document.head.insertAdjacentHTML('beforeend', enhancedAnimationStyles);
+        
+        // Add keyboard shortcut hints to filter buttons
         document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.fade-in').forEach(el => {
-                observer.observe(el);
+            const shortcuts = ['1', '2', '3', '4', '5', '6'];
+            document.querySelectorAll('.filter-btn').forEach((btn, index) => {
+                if (shortcuts[index]) {
+                    btn.dataset.shortcut = shortcuts[index];
+                    btn.style.position = 'relative';
+                }
             });
+            
+            // Add hint for generation button
+            const generateBtn = document.getElementById('generateNewViz');
+            if (generateBtn) {
+                generateBtn.title = 'Press G to generate (or click)';
+            }
         });
     </script>
 </body>
