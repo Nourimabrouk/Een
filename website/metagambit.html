@@ -8,6 +8,318 @@
     <link rel="stylesheet" href="css/metagambit.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&amp;family=Inter:wght@300;400;500;600&amp;family=EB+Garamond:ital,wght@0,400;0,600;1,400&amp;display=swap" rel="stylesheet">
+    
+    <!-- Enhanced Navigation Styles -->
+    <style>
+        :root {
+            --phi: 1.618033988749895;
+            --primary: #1B365D;
+            --secondary: #0F7B8A;
+            --accent: #D97706;
+            --accent-bright: #F59E0B;
+            --text-primary: #111827;
+            --text-secondary: #6B7280;
+            --text-muted: #9CA3AF;
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F8FAFC;
+            --bg-tertiary: #F1F5F9;
+            --border-light: #E5E7EB;
+            --border-medium: #D1D5DB;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-serif: 'Crimson Text', 'Times New Roman', serif;
+            --font-mono: 'JetBrains Mono', 'SF Mono', 'Monaco', monospace;
+            --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --radius: 0.75rem;
+            --radius-lg: 1rem;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Enhanced Navigation System */
+        .enhanced-nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(27, 54, 93, 0.95);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(15, 123, 138, 0.2);
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+            height: 70px;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: white;
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .nav-logo:hover {
+            color: var(--accent-bright);
+            transform: scale(1.05);
+        }
+
+        .phi-symbol {
+            color: var(--accent-bright);
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .logo-text {
+            font-family: var(--font-sans);
+            font-weight: 700;
+        }
+
+        .elo-badge {
+            background: linear-gradient(135deg, var(--accent-bright), var(--accent));
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.2rem 0.5rem;
+            border-radius: 1rem;
+            margin-left: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav-dropdown {
+            position: relative;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            text-decoration: none;
+            padding: 0.75rem 1rem;
+            border-radius: var(--radius);
+            transition: var(--transition);
+            font-weight: 500;
+            font-size: 0.9rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .nav-link:hover {
+            background: rgba(15, 123, 138, 0.2);
+            color: var(--accent-bright);
+            transform: translateY(-1px);
+        }
+
+        .dropdown-toggle {
+            position: relative;
+        }
+
+        .dropdown-toggle i:last-child {
+            font-size: 0.7rem;
+            transition: var(--transition);
+        }
+
+        .dropdown-toggle.active i:last-child {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(27, 54, 93, 0.98);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(15, 123, 138, 0.3);
+            border-radius: var(--radius-lg);
+            padding: 0.5rem;
+            min-width: 220px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: var(--transition);
+            box-shadow: var(--shadow-xl);
+            z-index: 1001;
+        }
+
+        .dropdown-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: white;
+            text-decoration: none;
+            padding: 0.75rem 1rem;
+            border-radius: var(--radius);
+            transition: var(--transition);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .dropdown-item:hover {
+            background: rgba(15, 123, 138, 0.2);
+            color: var(--accent-bright);
+            transform: translateX(5px);
+        }
+
+        .dropdown-item i {
+            width: 16px;
+            text-align: center;
+            color: var(--accent-bright);
+        }
+
+        .ai-chat-trigger {
+            background: linear-gradient(135deg, var(--accent-bright), var(--accent));
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .ai-chat-trigger:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            background: linear-gradient(135deg, var(--accent), var(--accent-bright));
+        }
+
+        .ai-label {
+            margin-left: 0.5rem;
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .nav-toggle span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: rgba(27, 54, 93, 0.98);
+                -webkit-backdrop-filter: blur(20px);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1rem;
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: var(--transition);
+                border-top: 1px solid rgba(15, 123, 138, 0.2);
+                max-height: calc(100vh - 70px);
+                overflow-y: auto;
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .nav-dropdown {
+                width: 100%;
+            }
+
+            .dropdown-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                background: rgba(15, 123, 138, 0.1);
+                border: 1px solid rgba(15, 123, 138, 0.2);
+                margin-top: 0.5rem;
+                display: none;
+            }
+
+            .dropdown-menu.active {
+                display: block;
+            }
+
+            .nav-link {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            .nav-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(6px, 6px);
+            }
+
+            .nav-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .nav-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(6px, -6px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .logo-text {
+                display: none;
+            }
+
+            .elo-badge {
+                display: none;
+            }
+
+            .ai-label {
+                display: none;
+            }
+        }
+    </style>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>
@@ -20,26 +332,179 @@
     </script>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-brand">
-                <a href="index.html" style="text-decoration: none; color: inherit;">
-                    <span class="phi-symbol">φ</span> Een
-                </a>
+    <!-- Enhanced Navigation -->
+    <nav class="enhanced-nav" id="enhancedUnityNav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="phi-symbol">φ</span>
+                <span class="logo-text">Een</span>
+                <span class="elo-badge">3000 ELO</span>
+            </a>
+            
+            <div class="nav-links" id="navLinks">
+                <!-- Core Mathematics -->
+                <div class="nav-dropdown">
+                    <button class="nav-link dropdown-toggle" data-dropdown="mathematics">
+                        <i class="fas fa-square-root-alt"></i>
+                        <span>Mathematics</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-menu" data-dropdown-menu="mathematics">
+                        <a href="index.html" class="dropdown-item">
+                            <i class="fas fa-home"></i>
+                            <span>Home</span>
+                        </a>
+                        <a href="playground.html" class="dropdown-item">
+                            <i class="fas fa-gamepad"></i>
+                            <span>Playground</span>
+                        </a>
+                        <a href="mathematical_playground.html" class="dropdown-item">
+                            <i class="fas fa-calculator"></i>
+                            <span>Mathematical Playground</span>
+                        </a>
+                        <a href="learn.html" class="dropdown-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>Learn</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Advanced Proofs -->
+                <div class="nav-dropdown">
+                    <button class="nav-link dropdown-toggle" data-dropdown="proofs">
+                        <i class="fas fa-certificate"></i>
+                        <span>Proofs</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-menu" data-dropdown-menu="proofs">
+                        <a href="proofs.html" class="dropdown-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Core Proofs</span>
+                        </a>
+                        <a href="3000-elo-proof.html" class="dropdown-item">
+                            <i class="fas fa-crown"></i>
+                            <span>3000 ELO Proof</span>
+                        </a>
+                        <a href="metagambit.html" class="dropdown-item">
+                            <i class="fas fa-chess-king"></i>
+                            <span>MetaGambit</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Consciousness & AI -->
+                <div class="nav-dropdown">
+                    <button class="nav-link dropdown-toggle" data-dropdown="consciousness">
+                        <i class="fas fa-brain"></i>
+                        <span>Consciousness</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-menu" data-dropdown-menu="consciousness">
+                        <a href="consciousness_dashboard.html" class="dropdown-item">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Dashboard</span>
+                        </a>
+                        <a href="agents.html" class="dropdown-item">
+                            <i class="fas fa-robot"></i>
+                            <span>AI Agents</span>
+                        </a>
+                        <a href="metagamer_agent.html" class="dropdown-item">
+                            <i class="fas fa-chess"></i>
+                            <span>MetaGamer Agent</span>
+                        </a>
+                        <a href="unity_consciousness_experience.html" class="dropdown-item">
+                            <i class="fas fa-eye"></i>
+                            <span>Experience</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Research & Publications -->
+                <div class="nav-dropdown">
+                    <button class="nav-link dropdown-toggle" data-dropdown="research">
+                        <i class="fas fa-microscope"></i>
+                        <span>Research</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-menu" data-dropdown-menu="research">
+                        <a href="research.html" class="dropdown-item">
+                            <i class="fas fa-flask"></i>
+                            <span>Research</span>
+                        </a>
+                        <a href="publications.html" class="dropdown-item">
+                            <i class="fas fa-book"></i>
+                            <span>Publications</span>
+                        </a>
+                        <a href="gallery.html" class="dropdown-item">
+                            <i class="fas fa-images"></i>
+                            <span>Gallery</span>
+                        </a>
+                        <a href="unity_visualization.html" class="dropdown-item">
+                            <i class="fas fa-chart-pie"></i>
+                            <span>Visualizations</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Advanced Features -->
+                <div class="nav-dropdown">
+                    <button class="nav-link dropdown-toggle" data-dropdown="advanced">
+                        <i class="fas fa-rocket"></i>
+                        <span>Advanced</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-menu" data-dropdown-menu="advanced">
+                        <a href="enhanced-unity-demo.html" class="dropdown-item">
+                            <i class="fas fa-magic"></i>
+                            <span>Enhanced Demo</span>
+                        </a>
+                        <a href="mobile-app.html" class="dropdown-item">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span>Mobile App</span>
+                        </a>
+                        <a href="revolutionary-landing.html" class="dropdown-item">
+                            <i class="fas fa-revolution"></i>
+                            <span>Revolutionary</span>
+                        </a>
+                        <a href="meta-optimal-landing.html" class="dropdown-item">
+                            <i class="fas fa-optimize"></i>
+                            <span>Meta-Optimal</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- About & Info -->
+                <div class="nav-dropdown">
+                    <button class="nav-link dropdown-toggle" data-dropdown="about">
+                        <i class="fas fa-info-circle"></i>
+                        <span>About</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-menu" data-dropdown-menu="about">
+                        <a href="about.html" class="dropdown-item">
+                            <i class="fas fa-user"></i>
+                            <span>About</span>
+                        </a>
+                        <a href="https://github.com/Nourimabrouk/Een" class="dropdown-item" target="_blank" rel="noopener">
+                            <i class="fab fa-github"></i>
+                            <span>GitHub</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- AI Chat Trigger -->
+                <button class="nav-link ai-chat-trigger" id="aiChatTrigger">
+                    <i class="fas fa-robot"></i>
+                    <span class="ai-label">AI Chat</span>
+                </button>
             </div>
-            <ul class="nav-menu">
-                <li><a href="index.html" class="nav-link">Home</a></li>
-                <li><a href="index.html#theory" class="nav-link">Theory</a></li>
-                <li><a href="index.html#proofs" class="nav-link">Proofs</a></li>
-                <li><a href="index.html#demonstration" class="nav-link">Demo</a></li>
-                <li><a href="research.html" class="nav-link">Research</a></li>
-                <li><a href="agents.html" class="nav-link">Agents</a></li>
-                <li><a href="index.html#metamath" class="nav-link">Philosophy</a></li>
-                <li><a href="metagambit.html" class="nav-link active">Metagambit</a></li>
-                <li><a href="publications.html" class="nav-link">Publications</a></li>
-                <li><a href="playground.html" class="nav-link">Playground</a></li>
-                <li><a href="https://github.com/Nourimabrouk/Een" class="nav-link"><i class="fab fa-github"></i></a></li>
-            </ul>
+
+            <!-- Mobile Toggle -->
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </nav>
 
@@ -768,6 +1233,162 @@
 
     <script src="js/main.js"></script>
     <script>
+        // Enhanced Navigation System
+        class EenEnhancedNavigation {
+            constructor() {
+                this.nav = document.getElementById('enhancedUnityNav');
+                this.navLinks = document.getElementById('navLinks');
+                this.navToggle = document.getElementById('navToggle');
+                this.dropdowns = document.querySelectorAll('.nav-dropdown');
+                this.currentDropdown = null;
+                
+                this.init();
+            }
+
+            init() {
+                this.setupMobileToggle();
+                this.setupDropdowns();
+                this.setupActiveStates();
+                this.setupSmoothScrolling();
+                this.setupAIChat();
+                this.setupKeyboardNavigation();
+            }
+
+            setupMobileToggle() {
+                if (this.navToggle) {
+                    this.navToggle.addEventListener('click', () => {
+                        this.navLinks.classList.toggle('active');
+                        this.navToggle.classList.toggle('active');
+                    });
+                }
+
+                // Close mobile menu when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!this.nav.contains(e.target)) {
+                        this.navLinks.classList.remove('active');
+                        this.navToggle.classList.remove('active');
+                    }
+                });
+            }
+
+            setupDropdowns() {
+                this.dropdowns.forEach(dropdown => {
+                    const toggle = dropdown.querySelector('.dropdown-toggle');
+                    const menu = dropdown.querySelector('.dropdown-menu');
+                    
+                    toggle.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        // Close other dropdowns
+                        if (this.currentDropdown && this.currentDropdown !== dropdown) {
+                            this.closeDropdown(this.currentDropdown);
+                        }
+                        
+                        // Toggle current dropdown
+                        if (menu.classList.contains('active')) {
+                            this.closeDropdown(dropdown);
+                        } else {
+                            this.openDropdown(dropdown);
+                        }
+                    });
+                });
+
+                // Close dropdowns when clicking outside
+                document.addEventListener('click', () => {
+                    if (this.currentDropdown) {
+                        this.closeDropdown(this.currentDropdown);
+                    }
+                });
+            }
+
+            openDropdown(dropdown) {
+                const toggle = dropdown.querySelector('.dropdown-toggle');
+                const menu = dropdown.querySelector('.dropdown-menu');
+                
+                toggle.classList.add('active');
+                menu.classList.add('active');
+                this.currentDropdown = dropdown;
+            }
+
+            closeDropdown(dropdown) {
+                const toggle = dropdown.querySelector('.dropdown-toggle');
+                const menu = dropdown.querySelector('.dropdown-menu');
+                
+                toggle.classList.remove('active');
+                menu.classList.remove('active');
+                this.currentDropdown = null;
+            }
+
+            setupActiveStates() {
+                const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+                const navLinks = document.querySelectorAll('.nav-link[href]');
+                
+                navLinks.forEach(link => {
+                    if (link.getAttribute('href') === currentPage) {
+                        link.classList.add('active');
+                        
+                        // Also highlight parent dropdown
+                        const parentDropdown = link.closest('.nav-dropdown');
+                        if (parentDropdown) {
+                            const toggle = parentDropdown.querySelector('.dropdown-toggle');
+                            toggle.classList.add('active');
+                        }
+                    }
+                });
+            }
+
+            setupSmoothScrolling() {
+                const links = document.querySelectorAll('a[href^="#"]');
+                links.forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const target = document.querySelector(link.getAttribute('href'));
+                        if (target) {
+                            target.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    });
+                });
+            }
+
+            setupAIChat() {
+                const aiChatTrigger = document.getElementById('aiChatTrigger');
+                if (aiChatTrigger) {
+                    aiChatTrigger.addEventListener('click', () => {
+                        // Trigger AI chat functionality
+                        this.openAIChat();
+                    });
+                }
+            }
+
+            openAIChat() {
+                // Implementation for AI chat modal
+                console.log('Opening AI Chat...');
+                // You can implement the AI chat modal here
+            }
+
+            setupKeyboardNavigation() {
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') {
+                        // Close mobile menu and dropdowns
+                        this.navLinks.classList.remove('active');
+                        this.navToggle.classList.remove('active');
+                        if (this.currentDropdown) {
+                            this.closeDropdown(this.currentDropdown);
+                        }
+                    }
+                });
+            }
+        }
+
+        // Initialize enhanced navigation when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            new EenEnhancedNavigation();
+        });
+
         // Special effects for the metagambit page
         document.addEventListener('DOMContentLoaded', () => {
             // Animate the central equation
