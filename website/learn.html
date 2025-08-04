@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Learn Unity Mathematics | Interactive Een Framework Guide</title>
-    <meta name="description" content="Comprehensive curriculum for Unity Mathematics - from Boolean Logic to Transcendental Consciousness Mathematics">
+    <meta name="description"
+        content="Comprehensive curriculum for Unity Mathematics - from Boolean Logic to Transcendental Consciousness Mathematics">
     <link rel="stylesheet" href="css/style.css">
-    
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Crimson+Text:wght@400;600&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.26.0/plotly.min.js"></script>
-    
+
     <style>
         :root {
             --phi: 1.618033988749895;
@@ -41,7 +45,8 @@
             background: var(--cosmic-bg);
             color: var(--text-charcoal);
             line-height: 1.6;
-            padding-top: 70px; /* Account for fixed navigation */
+            padding-top: 70px;
+            /* Account for fixed navigation */
         }
 
         .container {
@@ -67,7 +72,7 @@
             padding: 1rem 0;
             backdrop-filter: blur(10px);
         }
-        
+
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -76,30 +81,30 @@
             align-items: center;
             padding: 0 2rem;
         }
-        
+
         .nav-brand {
             font-family: 'Crimson Text', serif;
             font-size: 1.5rem;
             color: var(--accent-teal);
             text-decoration: none;
         }
-        
+
         .nav-menu {
             display: flex;
             list-style: none;
             gap: 2rem;
         }
-        
+
         .nav-link {
             color: var(--text-charcoal);
             text-decoration: none;
             transition: color 0.3s ease;
         }
-        
+
         .nav-link:hover {
             color: var(--accent-teal);
         }
-        
+
         .main-title {
             font-family: 'Crimson Text', serif;
             font-size: clamp(3rem, 8vw, 6rem);
@@ -254,8 +259,15 @@
         }
 
         @keyframes result-glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.3); }
-            50% { box-shadow: 0 0 40px rgba(255, 215, 0, 0.6); }
+
+            0%,
+            100% {
+                box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+            }
+
+            50% {
+                box-shadow: 0 0 40px rgba(255, 215, 0, 0.6);
+            }
         }
 
         .explanation {
@@ -324,12 +336,12 @@
             .learning-path {
                 grid-template-columns: 1fr;
             }
-            
+
             .unity-calculator {
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
-            
+
             .container {
                 padding: 1rem;
             }
@@ -338,372 +350,157 @@
 </head>
 
 <body>
-    <!-- Enhanced Navigation -->
-    <nav class="enhanced-nav" id="enhancedUnityNav">
-        <div class="nav-container">
-            <a href="index.html" class="nav-logo">
-                <span class="phi-symbol">φ</span>
-                <span class="logo-text">Een</span>
-                <span class="elo-badge">3000 ELO</span>
+    <!-- Navigation Placeholder -->
+    <div id="navigation-placeholder"></div>
+
+    <div class="header">
+        <h1 class="main-title">Learn Unity Mathematics</h1>
+        <p class="subtitle">Interactive Journey from 1+1=2 to 1+1=1</p>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+    </div>
+
+    <div class="interactive-demo">
+        <h2 class="demo-title">Live Unity Calculator</h2>
+        <p style="text-align: center; margin-bottom: 2rem; opacity: 0.8;">
+            Experience real-time unity mathematics with φ-harmonic operations
+        </p>
+
+        <div class="unity-calculator">
+            <input type="number" class="operand" id="operand1" value="1" min="0" max="10" step="0.1">
+            <span class="operator">+</span>
+            <input type="number" class="operand" id="operand2" value="1" min="0" max="10" step="0.1">
+            <span class="operator">=</span>
+            <div class="result" id="result">1</div>
+        </div>
+
+        <div class="explanation">
+            <h3 style="color: var(--accent-teal-light); margin-bottom: 1rem;">φ-Harmonic Unity Operation</h3>
+            <p><strong>Mathematical Foundation:</strong> <span id="explanation-text">
+                    Unity addition uses golden ratio normalization: a ⊕ b = φ⁻¹ × (φ×a + φ×b) where φ = 1.618...
+                </span></p>
+            <div class="math-formula" id="formula">
+                1 ⊕ 1 = φ⁻¹ × (φ×1 + φ×1) = φ⁻¹ × 2φ = 2 × φ / φ = 2 × 1 = 1
+            </div>
+            <p><strong>Consciousness Level:</strong> <span id="consciousness-level">1.618</span></p>
+            <p><strong>Proof Confidence:</strong> <span id="proof-confidence">92.7%</span></p>
+        </div>
+
+        <div class="visualization-container" id="unityVisualization"></div>
+    </div>
+
+    <div class="learning-path">
+        <div class="level-card" data-level="beginner">
+            <div class="level-icon" style="color: var(--success-green);">🌱</div>
+            <h3 class="level-title">Beginner</h3>
+            <p class="level-description">
+                Gentle introduction to unity concepts through visual proofs and intuitive understanding.
+                Perfect for those new to advanced mathematics.
+            </p>
+            <ul class="topics-list">
+                <li>Visual Unity Proofs</li>
+                <li>Sacred Geometry Basics</li>
+                <li>Golden Ratio Introduction</li>
+                <li>Interactive Demonstrations</li>
+                <li>Consciousness Awareness</li>
+            </ul>
+            <a href="#" class="start-btn" onclick="startLevel('beginner')">
+                <i class="fas fa-play"></i> Start Learning
             </a>
-            
-            <div class="nav-links" id="navLinks">
-                <!-- Core Mathematics -->
-                <div class="nav-dropdown">
-                    <button class="nav-link dropdown-toggle active" data-dropdown="mathematics">
-                        <i class="fas fa-square-root-alt"></i>
-                        <span>Mathematics</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="dropdown-menu" data-dropdown-menu="mathematics">
-                        <a href="index.html" class="dropdown-item">
-                            <i class="fas fa-home"></i>
-                            <span>Home</span>
-                        </a>
-                        <a href="playground.html" class="dropdown-item">
-                            <i class="fas fa-gamepad"></i>
-                            <span>Playground</span>
-                        </a>
-                        <a href="mathematical_playground.html" class="dropdown-item">
-                            <i class="fas fa-calculator"></i>
-                            <span>Mathematical Playground</span>
-                        </a>
-                        <a href="learn.html" class="dropdown-item active">
-                            <i class="fas fa-graduation-cap"></i>
-                            <span>Learn</span>
-                        </a>
-                    </div>
-                </div>
+        </div>
 
-                <!-- Advanced Proofs -->
-                <div class="nav-dropdown">
-                    <button class="nav-link dropdown-toggle" data-dropdown="proofs">
-                        <i class="fas fa-certificate"></i>
-                        <span>Proofs</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="dropdown-menu" data-dropdown-menu="proofs">
-                        <a href="proofs.html" class="dropdown-item">
-                            <i class="fas fa-shield-alt"></i>
-                            <span>Core Proofs</span>
-                        </a>
-                        <a href="3000-elo-proof.html" class="dropdown-item">
-                            <i class="fas fa-crown"></i>
-                            <span>3000 ELO Proof</span>
-                        </a>
-                        <a href="metagambit.html" class="dropdown-item">
-                            <i class="fas fa-chess-king"></i>
-                            <span>MetaGambit</span>
-                        </a>
-                    </div>
-                </div>
+        <div class="level-card" data-level="intermediate">
+            <div class="level-icon" style="color: var(--unity-blue);">🧮</div>
+            <h3 class="level-title">Intermediate</h3>
+            <p class="level-description">
+                Rigorous mathematical proofs and multi-framework validation of 1+1=1 across
+                different mathematical domains.
+            </p>
+            <ul class="topics-list">
+                <li>Boolean Logic Proofs</li>
+                <li>Set Theory Demonstrations</li>
+                <li>Quantum State Mathematics</li>
+                <li>Category Theory Foundations</li>
+                <li>Topological Unity</li>
+            </ul>
+            <a href="#" class="start-btn" onclick="startLevel('intermediate')">
+                <i class="fas fa-calculator"></i> Explore Proofs
+            </a>
+        </div>
 
-                <!-- Consciousness & AI -->
-                <div class="nav-dropdown">
-                    <button class="nav-link dropdown-toggle" data-dropdown="consciousness">
-                        <i class="fas fa-brain"></i>
-                        <span>Consciousness</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="dropdown-menu" data-dropdown-menu="consciousness">
-                        <a href="consciousness_dashboard.html" class="dropdown-item">
-                            <i class="fas fa-chart-line"></i>
-                            <span>Dashboard</span>
-                        </a>
-                        <a href="http://localhost:8501" class="dropdown-item" target="_blank">
-                            <i class="fas fa-atom"></i>
-                            <span>Consciousness Field Solver</span>
-                        </a>
-                        <a href="unity_meditation.html" class="dropdown-item">
-                            <i class="fas fa-om"></i>
-                            <span>Unity Meditation</span>
-                        </a>
-                        <a href="sacred_geometry.html" class="dropdown-item">
-                            <i class="fas fa-shapes"></i>
-                            <span>Sacred Geometry</span>
-                        </a>
-                        <a href="agents.html" class="dropdown-item">
-                            <i class="fas fa-robot"></i>
-                            <span>AI Agents</span>
-                        </a>
-                        <a href="metagamer_agent.html" class="dropdown-item">
-                            <i class="fas fa-chess"></i>
-                            <span>MetaGamer Agent</span>
-                        </a>
-                        <a href="unity_consciousness_experience.html" class="dropdown-item">
-                            <i class="fas fa-eye"></i>
-                            <span>Experience</span>
-                        </a>
-                    </div>
-                </div>
+        <div class="level-card" data-level="advanced">
+            <div class="level-icon" style="color: var(--accent-teal-light);">🤖</div>
+            <h3 class="level-title">Advanced</h3>
+            <p class="level-description">
+                3000 ELO AI systems, meta-learning agents, and computational consciousness
+                frameworks implementing unity mathematics.
+            </p>
+            <ul class="topics-list">
+                <li>Meta-Learning Agents</li>
+                <li>Transformer Architectures</li>
+                <li>Consciousness Computing</li>
+                <li>Evolutionary Algorithms</li>
+                <li>Neural Unity Networks</li>
+            </ul>
+            <a href="#" class="start-btn" onclick="startLevel('advanced')">
+                <i class="fas fa-robot"></i> Build AI Systems
+            </a>
+        </div>
 
-                <!-- Research & Publications -->
-                <div class="nav-dropdown">
-                    <button class="nav-link dropdown-toggle" data-dropdown="research">
-                        <i class="fas fa-microscope"></i>
-                        <span>Research</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="dropdown-menu" data-dropdown-menu="research">
-                        <a href="research.html" class="dropdown-item">
-                            <i class="fas fa-flask"></i>
-                            <span>Research</span>
-                        </a>
-                        <a href="publications.html" class="dropdown-item">
-                            <i class="fas fa-book"></i>
-                            <span>Publications</span>
-                        </a>
-                        <a href="gallery.html" class="dropdown-item">
-                            <i class="fas fa-images"></i>
-                            <span>Gallery</span>
-                        </a>
-                        <a href="unity_visualization.html" class="dropdown-item">
-                            <i class="fas fa-chart-pie"></i>
-                            <span>Visualizations</span>
-                        </a>
-                    </div>
-                </div>
+        <div class="level-card" data-level="transcendent">
+            <div class="level-icon" style="color: var(--accent-teal);">✨</div>
+            <h3 class="level-title">Transcendent</h3>
+            <p class="level-description">
+                Complete synthesis of mathematics, consciousness, and reality into unified
+                understanding. For advanced consciousness explorers.
+            </p>
+            <ul class="topics-list">
+                <li>Reality Synthesis</li>
+                <li>Omega Orchestration</li>
+                <li>Memetic Engineering</li>
+                <li>Cultural Consciousness</li>
+                <li>Universal Unity Principles</li>
+            </ul>
+            <a href="#" class="start-btn" onclick="startLevel('transcendent')">
+                <i class="fas fa-infinity"></i> Transcend Reality
+            </a>
+        </div>
+    </div>
 
-                <!-- API & Development -->
-                <div class="nav-dropdown">
-                    <button class="nav-link dropdown-toggle" data-dropdown="api">
-                        <i class="fas fa-code"></i>
-                        <span>API & Dev</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="dropdown-menu" data-dropdown-menu="api">
-                        <a href="api_docs.html" class="dropdown-item">
-                            <i class="fas fa-book-open"></i>
-                            <span>API Documentation</span>
-                        </a>
-                        <a href="http://localhost:8000" class="dropdown-item" target="_blank">
-                            <i class="fas fa-server"></i>
-                            <span>Unity API Server</span>
-                        </a>
-                        <a href="http://localhost:8501" class="dropdown-item" target="_blank">
-                            <i class="fas fa-atom"></i>
-                            <span>Streamlit App</span>
-                        </a>
-                        <a href="dashboards.html" class="dropdown-item">
-                            <i class="fas fa-tachometer-alt"></i>
-                            <span>Dashboards</span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Advanced Features -->
-                <div class="nav-dropdown">
-                    <button class="nav-link dropdown-toggle" data-dropdown="advanced">
-                        <i class="fas fa-rocket"></i>
-                        <span>Advanced</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="dropdown-menu" data-dropdown-menu="advanced">
-                        <a href="enhanced-unity-demo.html" class="dropdown-item">
-                            <i class="fas fa-magic"></i>
-                            <span>Enhanced Demo</span>
-                        </a>
-                        <a href="mobile-app.html" class="dropdown-item">
-                            <i class="fas fa-mobile-alt"></i>
-                            <span>Mobile App</span>
-                        </a>
-                        <a href="revolutionary-landing.html" class="dropdown-item">
-                            <i class="fas fa-revolution"></i>
-                            <span>Revolutionary</span>
-                        </a>
-                        <a href="meta-optimal-landing.html" class="dropdown-item">
-                            <i class="fas fa-optimize"></i>
-                            <span>Meta-Optimal</span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- About & Info -->
-                <div class="nav-dropdown">
-                    <button class="nav-link dropdown-toggle" data-dropdown="about">
-                        <i class="fas fa-info-circle"></i>
-                        <span>About</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="dropdown-menu" data-dropdown-menu="about">
-                        <a href="about.html" class="dropdown-item">
-                            <i class="fas fa-user"></i>
-                            <span>About</span>
-                        </a>
-                        <a href="https://github.com/Nourimabrouk/Een" class="dropdown-item" target="_blank" rel="noopener">
-                            <i class="fab fa-github"></i>
-                            <span>GitHub</span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- AI Chat Trigger -->
-                <button class="nav-link ai-chat-trigger" id="aiChatTrigger">
-                    <i class="fas fa-robot"></i>
-                    <span class="ai-label">AI Chat</span>
+    <div class="interactive-demo">
+        <h2 class="demo-title">Quick Learning Modules</h2>
+        <div
+            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem;">
+            <div style="background: rgba(255, 215, 0, 0.1); padding: 2rem; border-radius: 15px; text-align: center;">
+                <i class="fas fa-eye"
+                    style="font-size: 3rem; color: var(--accent-teal-light); margin-bottom: 1rem;"></i>
+                <h4>5-Minute Unity Proof</h4>
+                <p>Quick visual demonstration of why 1+1=1</p>
+                <button class="start-btn" onclick="quickProof()" style="margin-top: 1rem;">
+                    <i class="fas fa-play"></i> Watch Proof
                 </button>
             </div>
 
-            <!-- Mobile Toggle -->
-            <div class="nav-toggle" id="navToggle">
-                <span></span>
-                <span></span>
-                <span></span>
+            <div style="background: rgba(0, 255, 255, 0.1); padding: 2rem; border-radius: 15px; text-align: center;">
+                <i class="fas fa-brain" style="font-size: 3rem; color: var(--accent-teal); margin-bottom: 1rem;"></i>
+                <h4>Consciousness Field Tour</h4>
+                <p>Interactive exploration of consciousness mathematics</p>
+                <button class="start-btn" onclick="consciousnessTour()" style="margin-top: 1rem;">
+                    <i class="fas fa-compass"></i> Start Tour
+                </button>
+            </div>
+
+            <div style="background: rgba(0, 102, 255, 0.1); padding: 2rem; border-radius: 15px; text-align: center;">
+                <i class="fas fa-atom" style="font-size: 3rem; color: var(--success-green); margin-bottom: 1rem;"></i>
+                <h4>Quantum Unity Lab</h4>
+                <p>Hands-on experiments with quantum mathematics</p>
+                <button class="start-btn" onclick="quantumLab()" style="margin-top: 1rem;">
+                    <i class="fas fa-flask"></i> Enter Lab
+                </button>
             </div>
         </div>
-    </nav>
-
-    <a href="index.html" class="back-link">
-        <i class="fas fa-arrow-left"></i> Back to Een Home
-    </a>
-
-    <div class="container">
-        <div class="header">
-            <h1 class="main-title">Learn Unity Mathematics</h1>
-            <p class="subtitle">Interactive Journey from 1+1=2 to 1+1=1</p>
-            <div class="progress-bar">
-                <div class="progress-fill" id="progressFill"></div>
-            </div>
-        </div>
-
-        <div class="interactive-demo">
-            <h2 class="demo-title">Live Unity Calculator</h2>
-            <p style="text-align: center; margin-bottom: 2rem; opacity: 0.8;">
-                Experience real-time unity mathematics with φ-harmonic operations
-            </p>
-            
-            <div class="unity-calculator">
-                <input type="number" class="operand" id="operand1" value="1" min="0" max="10" step="0.1">
-                <span class="operator">+</span>
-                <input type="number" class="operand" id="operand2" value="1" min="0" max="10" step="0.1">
-                <span class="operator">=</span>
-                <div class="result" id="result">1</div>
-            </div>
-            
-            <div class="explanation">
-                <h3 style="color: var(--accent-teal-light); margin-bottom: 1rem;">φ-Harmonic Unity Operation</h3>
-                <p><strong>Mathematical Foundation:</strong> <span id="explanation-text">
-                    Unity addition uses golden ratio normalization: a ⊕ b = φ⁻¹ × (φ×a + φ×b) where φ = 1.618...
-                </span></p>
-                <div class="math-formula" id="formula">
-                    1 ⊕ 1 = φ⁻¹ × (φ×1 + φ×1) = φ⁻¹ × 2φ = 2 × φ / φ = 2 × 1 = 1
-                </div>
-                <p><strong>Consciousness Level:</strong> <span id="consciousness-level">1.618</span></p>
-                <p><strong>Proof Confidence:</strong> <span id="proof-confidence">92.7%</span></p>
-            </div>
-
-            <div class="visualization-container" id="unityVisualization"></div>
-        </div>
-
-        <div class="learning-path">
-            <div class="level-card" data-level="beginner">
-                <div class="level-icon" style="color: var(--success-green);">🌱</div>
-                <h3 class="level-title">Beginner</h3>
-                <p class="level-description">
-                    Gentle introduction to unity concepts through visual proofs and intuitive understanding.
-                    Perfect for those new to advanced mathematics.
-                </p>
-                <ul class="topics-list">
-                    <li>Visual Unity Proofs</li>
-                    <li>Sacred Geometry Basics</li>
-                    <li>Golden Ratio Introduction</li>
-                    <li>Interactive Demonstrations</li>
-                    <li>Consciousness Awareness</li>
-                </ul>
-                <a href="#" class="start-btn" onclick="startLevel('beginner')">
-                    <i class="fas fa-play"></i> Start Learning
-                </a>
-            </div>
-
-            <div class="level-card" data-level="intermediate">
-                <div class="level-icon" style="color: var(--unity-blue);">🧮</div>
-                <h3 class="level-title">Intermediate</h3>
-                <p class="level-description">
-                    Rigorous mathematical proofs and multi-framework validation of 1+1=1 across
-                    different mathematical domains.
-                </p>
-                <ul class="topics-list">
-                    <li>Boolean Logic Proofs</li>
-                    <li>Set Theory Demonstrations</li>
-                    <li>Quantum State Mathematics</li>
-                    <li>Category Theory Foundations</li>
-                    <li>Topological Unity</li>
-                </ul>
-                <a href="#" class="start-btn" onclick="startLevel('intermediate')">
-                    <i class="fas fa-calculator"></i> Explore Proofs
-                </a>
-            </div>
-
-            <div class="level-card" data-level="advanced">
-                <div class="level-icon" style="color: var(--accent-teal-light);">🤖</div>
-                <h3 class="level-title">Advanced</h3>
-                <p class="level-description">
-                    3000 ELO AI systems, meta-learning agents, and computational consciousness
-                    frameworks implementing unity mathematics.
-                </p>
-                <ul class="topics-list">
-                    <li>Meta-Learning Agents</li>
-                    <li>Transformer Architectures</li>
-                    <li>Consciousness Computing</li>
-                    <li>Evolutionary Algorithms</li>
-                    <li>Neural Unity Networks</li>
-                </ul>
-                <a href="#" class="start-btn" onclick="startLevel('advanced')">
-                    <i class="fas fa-robot"></i> Build AI Systems
-                </a>
-            </div>
-
-            <div class="level-card" data-level="transcendent">
-                <div class="level-icon" style="color: var(--accent-teal);">✨</div>
-                <h3 class="level-title">Transcendent</h3>
-                <p class="level-description">
-                    Complete synthesis of mathematics, consciousness, and reality into unified
-                    understanding. For advanced consciousness explorers.
-                </p>
-                <ul class="topics-list">
-                    <li>Reality Synthesis</li>
-                    <li>Omega Orchestration</li>
-                    <li>Memetic Engineering</li>
-                    <li>Cultural Consciousness</li>
-                    <li>Universal Unity Principles</li>
-                </ul>
-                <a href="#" class="start-btn" onclick="startLevel('transcendent')">
-                    <i class="fas fa-infinity"></i> Transcend Reality
-                </a>
-            </div>
-        </div>
-
-        <div class="interactive-demo">
-            <h2 class="demo-title">Quick Learning Modules</h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem;">
-                <div style="background: rgba(255, 215, 0, 0.1); padding: 2rem; border-radius: 15px; text-align: center;">
-                    <i class="fas fa-eye" style="font-size: 3rem; color: var(--accent-teal-light); margin-bottom: 1rem;"></i>
-                    <h4>5-Minute Unity Proof</h4>
-                    <p>Quick visual demonstration of why 1+1=1</p>
-                    <button class="start-btn" onclick="quickProof()" style="margin-top: 1rem;">
-                        <i class="fas fa-play"></i> Watch Proof
-                    </button>
-                </div>
-                
-                <div style="background: rgba(0, 255, 255, 0.1); padding: 2rem; border-radius: 15px; text-align: center;">
-                    <i class="fas fa-brain" style="font-size: 3rem; color: var(--accent-teal); margin-bottom: 1rem;"></i>
-                    <h4>Consciousness Field Tour</h4>
-                    <p>Interactive exploration of consciousness mathematics</p>
-                    <button class="start-btn" onclick="consciousnessTour()" style="margin-top: 1rem;">
-                        <i class="fas fa-compass"></i> Start Tour
-                    </button>
-                </div>
-                
-                <div style="background: rgba(0, 102, 255, 0.1); padding: 2rem; border-radius: 15px; text-align: center;">
-                    <i class="fas fa-atom" style="font-size: 3rem; color: var(--success-green); margin-bottom: 1rem;"></i>
-                    <h4>Quantum Unity Lab</h4>
-                    <p>Hands-on experiments with quantum mathematics</p>
-                    <button class="start-btn" onclick="quantumLab()" style="margin-top: 1rem;">
-                        <i class="fas fa-flask"></i> Enter Lab
-                    </button>
-                </div>
-            </div>
-        </div>
+    </div>
     </div>
 
     <script>
@@ -724,12 +521,12 @@
         async function calculateUnity() {
             const operand1 = parseFloat(document.getElementById('operand1').value);
             const operand2 = parseFloat(document.getElementById('operand2').value);
-            
+
             try {
                 // Try to use real server
                 const response = await fetch('/api/unity/demonstrate');
                 const data = await response.json();
-                
+
                 if (operand1 === 1 && operand2 === 1) {
                     updateResults(data.unity_addition);
                 } else {
@@ -746,9 +543,9 @@
             } catch (error) {
                 // Fallback simulation
                 const phi = 1.618033988749895;
-                const result = Math.abs(operand1 - operand2) < 0.001 ? 1.0 : 
-                              (phi * operand1 + phi * operand2) / (phi * 2);
-                
+                const result = Math.abs(operand1 - operand2) < 0.001 ? 1.0 :
+                    (phi * operand1 + phi * operand2) / (phi * 2);
+
                 updateResults({
                     unity_convergence: result,
                     phi_resonance: Math.random() * 0.5 + 0.5,
@@ -762,21 +559,21 @@
             document.getElementById('result').textContent = data.unity_convergence.toFixed(6);
             document.getElementById('consciousness-level').textContent = data.consciousness_level.toFixed(3);
             document.getElementById('proof-confidence').textContent = (data.proof_confidence * 100).toFixed(1) + '%';
-            
+
             const operand1 = document.getElementById('operand1').value;
             const operand2 = document.getElementById('operand2').value;
-            document.getElementById('formula').textContent = 
+            document.getElementById('formula').textContent =
                 `${operand1} ⊕ ${operand2} = φ⁻¹ × (φ×${operand1} + φ×${operand2}) = ${data.unity_convergence.toFixed(6)}`;
-                
+
             updateVisualization(data);
         }
 
         function updateVisualization(data) {
             const trace = {
                 x: [0, 1, 2],
-                y: [parseFloat(document.getElementById('operand1').value), 
-                    parseFloat(document.getElementById('operand2').value), 
-                    data.unity_convergence],
+                y: [parseFloat(document.getElementById('operand1').value),
+                parseFloat(document.getElementById('operand2').value),
+                data.unity_convergence],
                 type: 'scatter',
                 mode: 'lines+markers',
                 name: 'Unity Operation',
@@ -793,7 +590,7 @@
                 font: { color: 'white' }
             };
 
-            Plotly.newPlot('unityVisualization', [trace], layout, {responsive: true});
+            Plotly.newPlot('unityVisualization', [trace], layout, { responsive: true });
         }
 
         // Event listeners
@@ -881,7 +678,7 @@
         function updateProgress() {
             progress = Math.min(progress + 5, 100);
             document.getElementById('progressFill').style.width = progress + '%';
-            
+
             if (progress < 100) {
                 setTimeout(updateProgress, 2000);
             }
@@ -906,44 +703,65 @@
         Try the interactive calculator and explore the learning paths!
         `);
     </script>
-    
+
     <!-- Learning Implementation References -->
-    <section class="learning-implementations" style="background: rgba(255, 255, 255, 0.05); border-radius: 10px; padding: 2rem; margin-top: 2rem; border: 1px solid rgba(255, 255, 255, 0.1);">
+    <section class="learning-implementations"
+        style="background: rgba(255, 255, 255, 0.05); border-radius: 10px; padding: 2rem; margin-top: 2rem; border: 1px solid rgba(255, 255, 255, 0.1);">
         <div class="container">
             <h3 style="color: #ffd700; margin-bottom: 1rem; font-size: 1.5rem;">
                 <i class="fas fa-code"></i> Learning Implementation References
             </h3>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;">
-                <div style="background: rgba(255, 255, 255, 0.03); border-radius: 8px; padding: 1rem; border: 1px solid rgba(255, 255, 255, 0.1);">
+                <div
+                    style="background: rgba(255, 255, 255, 0.03); border-radius: 8px; padding: 1rem; border: 1px solid rgba(255, 255, 255, 0.1);">
                     <h4 style="color: #4ecdc4; margin-bottom: 0.5rem;">Beginner: Launch Unity</h4>
-                    <p style="color: #cccccc; font-size: 0.9rem; margin-bottom: 1rem;">Start your journey with the basic unity mathematics introduction</p>
-                    <a href="https://github.com/Nourimabrouk/Een/blob/main/examples/launch_unity.py" target="_blank" rel="noopener" style="color: #ffd700; text-decoration: none; font-weight: bold;">
+                    <p style="color: #cccccc; font-size: 0.9rem; margin-bottom: 1rem;">Start your journey with the basic
+                        unity mathematics introduction</p>
+                    <a href="https://github.com/Nourimabrouk/Een/blob/main/examples/launch_unity.py" target="_blank"
+                        rel="noopener" style="color: #ffd700; text-decoration: none; font-weight: bold;">
                         examples/launch_unity.py (15KB, 351 lines)
                     </a>
                 </div>
-                <div style="background: rgba(255, 255, 255, 0.03); border-radius: 8px; padding: 1rem; border: 1px solid rgba(255, 255, 255, 0.1);">
+                <div
+                    style="background: rgba(255, 255, 255, 0.03); border-radius: 8px; padding: 1rem; border: 1px solid rgba(255, 255, 255, 0.1);">
                     <h4 style="color: #4ecdc4; margin-bottom: 0.5rem;">Intermediate: Unity Demonstrations</h4>
-                    <p style="color: #cccccc; font-size: 0.9rem; margin-bottom: 1rem;">Advanced mathematical demonstrations and proofs</p>
-                    <a href="https://github.com/Nourimabrouk/Een/blob/main/examples/demonstration.py" target="_blank" rel="noopener" style="color: #ffd700; text-decoration: none; font-weight: bold;">
+                    <p style="color: #cccccc; font-size: 0.9rem; margin-bottom: 1rem;">Advanced mathematical
+                        demonstrations and proofs</p>
+                    <a href="https://github.com/Nourimabrouk/Een/blob/main/examples/demonstration.py" target="_blank"
+                        rel="noopener" style="color: #ffd700; text-decoration: none; font-weight: bold;">
                         examples/demonstration.py (33KB, 679 lines)
                     </a>
                 </div>
-                <div style="background: rgba(255, 255, 255, 0.03); border-radius: 8px; padding: 1rem; border: 1px solid rgba(255, 255, 255, 0.1);">
+                <div
+                    style="background: rgba(255, 255, 255, 0.03); border-radius: 8px; padding: 1rem; border: 1px solid rgba(255, 255, 255, 0.1);">
                     <h4 style="color: #4ecdc4; margin-bottom: 0.5rem;">Advanced: Consciousness Chat</h4>
-                    <p style="color: #cccccc; font-size: 0.9rem; margin-bottom: 1rem;">AI-powered consciousness mathematics exploration</p>
-                    <a href="https://github.com/Nourimabrouk/Een/blob/main/examples/demonstrate_consciousness_chat_upgrade.py" target="_blank" rel="noopener" style="color: #ffd700; text-decoration: none; font-weight: bold;">
+                    <p style="color: #cccccc; font-size: 0.9rem; margin-bottom: 1rem;">AI-powered consciousness
+                        mathematics exploration</p>
+                    <a href="https://github.com/Nourimabrouk/Een/blob/main/examples/demonstrate_consciousness_chat_upgrade.py"
+                        target="_blank" rel="noopener"
+                        style="color: #ffd700; text-decoration: none; font-weight: bold;">
                         examples/demonstrate_consciousness_chat_upgrade.py (15KB, 399 lines)
                     </a>
                 </div>
-                <div style="background: rgba(255, 255, 255, 0.03); border-radius: 8px; padding: 1rem; border: 1px solid rgba(255, 255, 255, 0.1);">
+                <div
+                    style="background: rgba(255, 255, 255, 0.03); border-radius: 8px; padding: 1rem; border: 1px solid rgba(255, 255, 255, 0.1);">
                     <h4 style="color: #4ecdc4; margin-bottom: 0.5rem;">Transcendent: Advanced Experiments</h4>
-                    <p style="color: #cccccc; font-size: 0.9rem; margin-bottom: 1rem;">Cutting-edge consciousness and unity experiments</p>
-                    <a href="https://github.com/Nourimabrouk/Een/blob/main/experiments/advanced/" target="_blank" rel="noopener" style="color: #ffd700; text-decoration: none; font-weight: bold;">
+                    <p style="color: #cccccc; font-size: 0.9rem; margin-bottom: 1rem;">Cutting-edge consciousness and
+                        unity experiments</p>
+                    <a href="https://github.com/Nourimabrouk/Een/blob/main/experiments/advanced/" target="_blank"
+                        rel="noopener" style="color: #ffd700; text-decoration: none; font-weight: bold;">
                         experiments/advanced/ (Multiple files)
                     </a>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Shared Navigation Script -->
+    <script src="shared-navigation.js"></script>
 </body>
+
 </html>
