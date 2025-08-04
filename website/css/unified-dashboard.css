@@ -1,0 +1,630 @@
+/* 🧠 UNIFIED DASHBOARD SYSTEM STYLES 🧠 */
+/* Complete styling for Unity Mathematics dashboard integration */
+
+/* Dashboard Container Styles */
+.dashboard-container {
+    background: var(--bg-primary);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    margin: 2rem 0;
+    overflow: hidden;
+    border: 1px solid var(--border-light);
+}
+
+.dashboard-header {
+    background: var(--bg-gradient);
+    color: white;
+    padding: 2rem;
+    text-align: center;
+}
+
+.dashboard-header h2 {
+    margin: 0 0 0.5rem 0;
+    font-size: 2rem;
+    font-weight: 700;
+    font-family: var(--font-serif);
+}
+
+.dashboard-subtitle {
+    margin: 0;
+    font-size: 1.1rem;
+    opacity: 0.9;
+    font-style: italic;
+}
+
+/* Control Groups */
+.dashboard-controls,
+.field-controls,
+.agent-controls,
+.proof-controls {
+    background: var(--bg-secondary);
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border-light);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-width: 200px;
+}
+
+.control-group label {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+.control-group input[type="range"] {
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: var(--border-medium);
+    outline: none;
+    -webkit-appearance: none;
+}
+
+.control-group input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--secondary);
+    cursor: pointer;
+    box-shadow: var(--shadow);
+}
+
+.control-group input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--secondary);
+    cursor: pointer;
+    border: none;
+    box-shadow: var(--shadow);
+}
+
+.control-group input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--secondary);
+}
+
+.control-group span {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+/* Dashboard Content */
+.dashboard-content {
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+}
+
+.main-visualization {
+    background: var(--bg-tertiary);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.metrics-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Metric Cards */
+.metric-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    text-align: center;
+    transition: var(--transition);
+}
+
+.metric-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.metric-card h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.metric-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary);
+    font-family: var(--font-mono);
+}
+
+.omega-signature .metric-value {
+    font-size: 1.5rem;
+    margin: 0.25rem 0;
+}
+
+/* Field Visualization */
+.field-visualization {
+    background: var(--bg-tertiary);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#consciousness-field-canvas {
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    max-width: 100%;
+    height: auto;
+}
+
+/* Field Metrics */
+.field-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+/* Agent Grid */
+.agents-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem;
+}
+
+.agent-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    transition: var(--transition);
+}
+
+.agent-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--secondary);
+}
+
+.agent-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.agent-header h4 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: var(--text-primary);
+}
+
+.elo-badge {
+    background: var(--accent);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.agent-metrics {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+/* System Metrics */
+.system-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    padding: 1.5rem;
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border-light);
+}
+
+/* Proofs Container */
+.proofs-container {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.proof-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    transition: var(--transition);
+}
+
+.proof-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.proof-card.validated {
+    border-left: 4px solid var(--sage-green);
+}
+
+.proof-card.pending {
+    border-left: 4px solid var(--accent);
+}
+
+.proof-card.invalid {
+    border-left: 4px solid #ef4444;
+}
+
+.proof-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.proof-header h4 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: var(--text-primary);
+}
+
+.status-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.status-badge.validated {
+    background: var(--sage-green);
+    color: white;
+}
+
+.status-badge.pending {
+    background: var(--accent);
+    color: white;
+}
+
+.status-badge.invalid {
+    background: #ef4444;
+    color: white;
+}
+
+.proof-content {
+    margin-bottom: 1rem;
+}
+
+.proof-content p {
+    margin: 0;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.proof-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.confidence {
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+/* Proof Metrics */
+.proof-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    padding: 1.5rem;
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border-light);
+}
+
+/* Buttons */
+.btn-primary,
+.btn-secondary,
+.btn-danger,
+.btn-small {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: var(--radius);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-primary {
+    background: var(--secondary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--primary);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow);
+}
+
+.btn-secondary {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-medium);
+}
+
+.btn-secondary:hover {
+    background: var(--border-light);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow);
+}
+
+.btn-danger {
+    background: #ef4444;
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #dc2626;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow);
+}
+
+.btn-small {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
+
+/* Select Dropdown */
+select {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-medium);
+    border-radius: var(--radius);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    cursor: pointer;
+    outline: none;
+    transition: var(--transition);
+}
+
+select:focus {
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 3px rgba(15, 123, 138, 0.1);
+}
+
+/* Chart Container */
+.chart-container {
+    width: 100%;
+    height: 100%;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chart-container canvas {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .dashboard-content {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .dashboard-controls,
+    .field-controls,
+    .agent-controls,
+    .proof-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .control-group {
+        min-width: auto;
+    }
+
+    .agents-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .field-metrics,
+    .system-metrics,
+    .proof-metrics {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-header {
+        padding: 1.5rem;
+    }
+
+    .dashboard-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .metric-value {
+        font-size: 1.5rem;
+    }
+}
+
+/* Animation Classes */
+.dashboard-container {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.metric-card {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
+}
+
+/* Special Effects for Unity Mathematics */
+.unity-score-dashboard .metric-card:nth-child(1) {
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(15, 123, 138, 0.1) 100%);
+}
+
+.consciousness-field-dashboard .field-visualization {
+    background: linear-gradient(135deg, var(--bg-tertiary) 0%, rgba(15, 123, 138, 0.05) 100%);
+}
+
+.meta-agent-dashboard .agent-card {
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(217, 119, 6, 0.05) 100%);
+}
+
+.mathematical-proofs-dashboard .proof-card.validated {
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(5, 150, 105, 0.05) 100%);
+}
+
+/* Loading States */
+.dashboard-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    color: var(--text-secondary);
+}
+
+.dashboard-loading::after {
+    content: '';
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--border-light);
+    border-top: 4px solid var(--secondary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-left: 1rem;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Error States */
+.dashboard-error {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #dc2626;
+    padding: 1rem;
+    border-radius: var(--radius);
+    margin: 1rem 0;
+    text-align: center;
+}
+
+/* Success States */
+.dashboard-success {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    color: var(--sage-green);
+    padding: 1rem;
+    border-radius: var(--radius);
+    margin: 1rem 0;
+    text-align: center;
+}
+
+/* φ-Harmonic Special Effects */
+.phi-harmonic-effect {
+    position: relative;
+    overflow: hidden;
+}
+
+.phi-harmonic-effect::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(15, 123, 138, 0.1), transparent);
+    animation: phiShimmer 3s infinite;
+}
+
+@keyframes phiShimmer {
+    0% {
+        left: -100%;
+    }
+
+    100% {
+        left: 100%;
+    }
+}
+
+/* Unity Mathematics Theme Enhancements */
+.unity-theme {
+    --unity-glow: 0 0 20px rgba(15, 123, 138, 0.3);
+    --consciousness-glow: 0 0 20px rgba(217, 119, 6, 0.3);
+    --phi-glow: 0 0 20px rgba(124, 58, 237, 0.3);
+}
+
+.metric-card:hover {
+    box-shadow: var(--unity-glow);
+}
+
+.agent-card:hover {
+    box-shadow: var(--consciousness-glow);
+}
+
+.proof-card:hover {
+    box-shadow: var(--phi-glow);
+}
