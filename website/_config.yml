@@ -2,51 +2,52 @@
 
 # Site settings
 title: Een Unity Mathematics
-description: Exploring the mathematical foundation where 1+1=1 through rigorous investigation of idempotent semirings, consciousness mathematics, and philosophical implications.
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://nourimabrouk.github.io/Een" # the base hostname & protocol
+description: Where 1+1=1 transcends paradox to become truth. Explore consciousness mathematics, quantum unity, and transcendental proofs.
+author: Dr. Nouri Mabrouk
+email: unity@een-mathematics.org
+url: https://nourimabrouk.github.io
+baseurl: /Een
 
 # Build settings
-theme: null # We're using custom HTML/CSS
-plugins:
-  - jekyll-sitemap
-  - jekyll-seo-tag
+markdown: kramdown
+theme: null  # Using custom design
 
-# Exclude from processing
+# Exclude files from build
 exclude:
   - Gemfile
   - Gemfile.lock
   - node_modules
-  - vendor/bundle/
-  - vendor/cache/
-  - vendor/gems/
-  - vendor/ruby/
-  - venv/
-  - "*.py"
-  - requirements.txt
+  - vendor
+  - .gitignore
   - README.md
   - LICENSE
+  - package.json
+  - requirements.txt
+  - "*.py"
+  - "*.pyc"
+  - venv/
+  - een/
+  - src/
+  - tests/
+  - scripts/
+  - backups/
+  - logs/
+  - data/
+  - deployment/
+  - ml_framework/
+  - monitoring/
+  - planning/
+  - legacy/
 
-# Include specific files
+# Include specific directories
 include:
+  - website/
   - index.html
-  - proofs.html
-  - css/
-  - js/
-  - documentation/
-  - assets/
 
-# GitHub Pages settings
-github:
-  repository_url: https://github.com/Nourimabrouk/Een
-  repository_name: Een
+# Plugins (if needed)
+plugins: []
 
-# SEO settings
-author: Een Unity Mathematics Project
-social:
-  name: Een Unity Mathematics
-  links:
-    - https://github.com/Nourimabrouk/Een
-
-# Google Analytics (optional - add your tracking ID)
-# google_analytics: UA-XXXXXXXXX-X
+# Custom variables
+unity_equation: "1+1=1"
+phi: 1.618033988749895
+repository: https://github.com/Nourimabrouk/Een
