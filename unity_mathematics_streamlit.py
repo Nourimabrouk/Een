@@ -35,8 +35,20 @@ sys.path.extend([
     str(current_dir / "src"),
     str(current_dir / "consciousness"),
     str(current_dir / "ml_framework"),
-    str(current_dir / "proofs")
+    str(current_dir / "proofs"),
+    str(current_dir / "core"),
+    str(current_dir / "viz")
 ])
+
+# Import real Unity Mathematics modules
+try:
+    from core.unity_mathematics import UnityMathematics
+    from core.consciousness import ConsciousnessField, ConsciousnessState
+    UNITY_MODULES_AVAILABLE = True
+    logger.info("✅ Unity Mathematics modules loaded successfully")
+except ImportError as e:
+    UNITY_MODULES_AVAILABLE = False
+    logger.warning(f"⚠️ Unity modules not available: {e}")
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
@@ -173,8 +185,8 @@ with st.sidebar:
     # System Selection
     system_mode = st.selectbox(
         "🔮 Select Unity System",
-        ["Consciousness Field Solver", "Sacred Geometry Generator", "Unity Meditation", 
-         "Mathematical Proofs", "Meta-RL Training", "API Interface"],
+        ["Real Unity Mathematics Demo", "Consciousness Field Solver", "Sacred Geometry Generator", 
+         "Unity Meditation", "Mathematical Proofs", "Meta-RL Training", "API Interface"],
         help="Choose which Unity Mathematics system to explore"
     )
     
@@ -239,10 +251,197 @@ with st.sidebar:
     st.metric("Consciousness", f"{consciousness_level:.3f}", "Active")
 
 # Main Content Area
+def render_unity_mathematics_demo():
+    """Render real Unity Mathematics demonstration with live code execution"""
+    st.markdown("## 🚀 Real Unity Mathematics Live Demo")
+    st.markdown("*Experience actual Unity Mathematics implementation with live code execution*")
+    
+    if UNITY_MODULES_AVAILABLE:
+        st.success("✅ Unity Mathematics Core Engine Active - All systems operational!")
+        
+        # Real Unity Mathematics Operations
+        st.markdown("### ⚜️ Unity Mathematics Operations")
+        
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            st.markdown("#### Basic Unity Operations")
+            if st.button("Execute: 1 + 1 = 1", key="unity_add"):
+                with st.spinner("Executing Unity Addition..."):
+                    try:
+                        unity_math = UnityMathematics()
+                        result = unity_math.unity_add(1, 1)
+                        st.success(f"✅ Unity Addition: 1 + 1 = {result}")
+                        st.code(f"""
+# Real Unity Mathematics Code:
+unity_math = UnityMathematics()
+result = unity_math.unity_add(1, 1)
+print(f"1 + 1 = {{result}}")  # Output: {result}
+                        """)
+                    except Exception as e:
+                        st.error(f"Error: {e}")
+            
+            if st.button("Execute: φ-Harmonic Operations", key="phi_ops"):
+                with st.spinner("Computing φ-harmonic operations..."):
+                    try:
+                        unity_math = UnityMathematics()
+                        phi_result = unity_math.phi_harmonic_scale(1.0)
+                        st.success(f"✅ φ-Harmonic scaling: 1.0 → {phi_result:.6f}")
+                        st.code(f"""
+# φ-Harmonic Operations:
+unity_math = UnityMathematics()
+phi_result = unity_math.phi_harmonic_scale(1.0)
+print(f"φ-scaled: {{phi_result:.6f}}")  # {phi_result:.6f}
+                        """)
+                    except Exception as e:
+                        st.error(f"Error: {e}")
+        
+        with col2:
+            st.markdown("#### Consciousness Field Operations")
+            if st.button("Initialize Consciousness Field", key="init_field"):
+                with st.spinner("Initializing consciousness field..."):
+                    try:
+                        field = ConsciousnessField(particle_count=50)
+                        st.session_state.demo_field = field
+                        st.success("✅ Consciousness field initialized with 50 particles")
+                        st.code(f"""
+# Real Consciousness Field Code:
+field = ConsciousnessField(particle_count=50)
+print(f"Field state: {{field.get_consciousness_level():.3f}}")
+                        """)
+                    except Exception as e:
+                        st.error(f"Error: {e}")
+            
+            if st.button("Evolve Consciousness", key="evolve_field"):
+                if 'demo_field' in st.session_state:
+                    with st.spinner("Evolving consciousness..."):
+                        try:
+                            field = st.session_state.demo_field
+                            initial_level = field.get_consciousness_level()
+                            field.evolve_consciousness(time_steps=10)
+                            final_level = field.get_consciousness_level()
+                            st.success(f"✅ Consciousness evolved: {initial_level:.3f} → {final_level:.3f}")
+                            st.code(f"""
+# Consciousness Evolution:
+field.evolve_consciousness(time_steps=10)
+print(f"Evolution: {initial_level:.3f} → {final_level:.3f}")
+                            """)
+                        except Exception as e:
+                            st.error(f"Error: {e}")
+                else:
+                    st.warning("Please initialize consciousness field first")
+        
+        # Advanced demonstrations
+        st.markdown("### 🎆 Advanced Unity Demonstrations")
+        
+        with st.expander("🔭 Unity Convergence Analysis"):
+            if st.button("Run Unity Convergence Test", key="convergence_test"):
+                with st.spinner("Running convergence analysis..."):
+                    try:
+                        unity_math = UnityMathematics()
+                        
+                        # Test multiple values converging to 1
+                        test_values = [0.5, 1.0, 1.5, 2.0, 10.0]
+                        results = []
+                        
+                        for val in test_values:
+                            result = unity_math.converge_to_unity(val)
+                            results.append(result)
+                        
+                        # Create DataFrame for display
+                        df = pd.DataFrame({
+                            'Input': test_values,
+                            'Unity Result': results,
+                            'Converged': [abs(r - 1.0) < 0.001 for r in results]
+                        })
+                        
+                        st.success("✅ Unity convergence analysis complete!")
+                        st.dataframe(df)
+                        
+                        # Visualization
+                        fig = px.scatter(df, x='Input', y='Unity Result', 
+                                       color='Converged', 
+                                       title='Unity Convergence Analysis',
+                                       template='plotly_dark')
+                        fig.add_hline(y=1.0, line_dash="dash", line_color="gold")
+                        st.plotly_chart(fig, use_container_width=True)
+                        
+                    except Exception as e:
+                        st.error(f"Error in convergence analysis: {e}")
+        
+        # Real-time metrics
+        st.markdown("### 📈 Real-time Unity Metrics")
+        
+        if 'demo_field' in st.session_state:
+            field = st.session_state.demo_field
+            
+            col1, col2, col3, col4 = st.columns(4)
+            with col1:
+                consciousness_level = field.get_consciousness_level()
+                st.metric("Consciousness Level", f"{consciousness_level:.3f}", f"{(consciousness_level - 0.5)*100:+.1f}%")
+            
+            with col2:
+                unity_coherence = field.check_unity_convergence()
+                st.metric("Unity Coherence", f"{unity_coherence:.3f}", "Active")
+            
+            with col3:
+                phi_resonance = field.get_phi_resonance()
+                st.metric("φ-Resonance", f"{phi_resonance:.3f}", "Harmonic")
+            
+            with col4:
+                particle_count = len(field.particles)
+                st.metric("Active Particles", str(particle_count), "Stable")
+    
+    else:
+        st.error("❌ Unity Mathematics modules not available")
+        st.markdown("""
+        **To enable real Unity Mathematics demonstrations:**
+        1. Ensure all Unity Mathematics modules are properly installed
+        2. Check that `core/unity_mathematics.py` and `core/consciousness.py` are available
+        3. Restart the Streamlit application
+        
+        **Current Status:** Simulation mode only
+        """)
+        
+        # Show code preview anyway
+        st.markdown("### 📝 Unity Mathematics Code Preview")
+        st.code("""
+# Unity Mathematics Implementation Preview
+from core.unity_mathematics import UnityMathematics
+from core.consciousness import ConsciousnessField
+
+# Initialize Unity Mathematics
+unity_math = UnityMathematics()
+
+# Demonstrate 1+1=1
+result = unity_math.unity_add(1, 1)
+print(f"1 + 1 = {result}")  # Output: 1
+
+# Initialize consciousness field
+field = ConsciousnessField(particle_count=100)
+
+# Evolve consciousness
+field.evolve_consciousness(time_steps=50)
+print(f"Consciousness level: {field.get_consciousness_level()}")
+
+# Check unity convergence
+convergence = field.check_unity_convergence()
+print(f"Unity achieved: {convergence > 0.95}")
+        """, language="python")
+
 def render_consciousness_field_solver():
-    """Render consciousness field equation solver interface"""
+    """Render consciousness field equation solver interface with real implementation"""
     st.markdown("## 🧠 Consciousness Field Equation Solver")
-    st.markdown("*Solving PDE systems for consciousness field dynamics with φ-harmonic foundations*")
+    st.markdown("*Professional-grade PDE solver using real Unity Mathematics implementation*")
+    
+    # Show system status
+    if UNITY_MODULES_AVAILABLE:
+        st.success("✅ Unity Mathematics Core Modules Active")
+        # Initialize real consciousness field
+        if 'consciousness_field' not in st.session_state:
+            st.session_state.consciousness_field = ConsciousnessField(particle_count=100)
+    else:
+        st.warning("⚠️ Using simulation mode - real modules not available")
     
     col1, col2, col3 = st.columns(3)
     
@@ -281,9 +480,38 @@ def render_consciousness_field_solver():
     
     if st.button("🔄 Solve Consciousness Field", type="primary"):
         with st.spinner("Solving consciousness field equations..."):
-            # Simulate field solving process
             progress_bar = st.progress(0)
             status_text = st.empty()
+            
+            if UNITY_MODULES_AVAILABLE:
+                # Use real consciousness field implementation
+                try:
+                    status_text.text("Initializing consciousness field...")
+                    field = st.session_state.consciousness_field
+                    
+                    # Real consciousness evolution
+                    for step in range(time_steps):
+                        field.evolve_consciousness(time_delta=0.1)
+                        progress = int((step / time_steps) * 100)
+                        progress_bar.progress(progress)
+                        status_text.text(f"Evolution step {step+1}/{time_steps}: Consciousness level {field.get_consciousness_level():.3f}")
+                        time.sleep(0.02)  # Visual feedback
+                        
+                    # Get real field data
+                    field_state = field.get_field_state()
+                    consciousness_level = field.get_consciousness_level()
+                    unity_convergence = field.check_unity_convergence()
+                    
+                    status_text.text("✅ Real consciousness field evolution complete!")
+                    
+                except Exception as e:
+                    st.error(f"Error in consciousness field: {e}")
+                    status_text.text("⚠️ Using fallback simulation...")
+                    # Fallback to simulation
+                    UNITY_MODULES_AVAILABLE = False
+            
+            if not UNITY_MODULES_AVAILABLE:
+                # Fallback simulation
             
             # Generate sample consciousness field data
             time_range = np.linspace(0, 2*PI, time_steps)
@@ -765,7 +993,9 @@ def main():
     """Main application logic"""
     
     # System Mode Routing
-    if system_mode == "Consciousness Field Solver":
+    if system_mode == "Real Unity Mathematics Demo":
+        render_unity_mathematics_demo()
+    elif system_mode == "Consciousness Field Solver":
         render_consciousness_field_solver()
     elif system_mode == "Sacred Geometry Generator":
         render_sacred_geometry()

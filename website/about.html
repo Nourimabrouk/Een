@@ -26,6 +26,191 @@
     <link rel="stylesheet" href="css/style.css">
 
     <style>
+        /* Enhanced Navigation Styles */
+        .enhanced-nav {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: all var(--transition-smooth);
+        }
+
+        .enhanced-nav .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .enhanced-nav .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .enhanced-nav .phi-symbol {
+            color: var(--phi-gold);
+            font-size: 1.8rem;
+        }
+
+        .enhanced-nav .logo-text {
+            font-family: 'Crimson Text', serif;
+        }
+
+        .enhanced-nav .elo-badge {
+            background: linear-gradient(135deg, var(--phi-gold), var(--phi-gold-light));
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+
+        .enhanced-nav .nav-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 1rem;
+        }
+
+        .enhanced-nav .nav-item {
+            position: relative;
+        }
+
+        .enhanced-nav .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1rem;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            border-radius: var(--radius-md);
+            transition: all var(--transition-smooth);
+        }
+
+        .enhanced-nav .nav-link:hover,
+        .enhanced-nav .nav-link.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .enhanced-nav .dropdown-toggle {
+            cursor: pointer;
+        }
+
+        .enhanced-nav .dropdown-arrow {
+            font-size: 0.8rem;
+            transition: transform var(--transition-smooth);
+        }
+
+        .enhanced-nav .dropdown:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .enhanced-nav .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all var(--transition-smooth);
+            z-index: 1001;
+        }
+
+        .enhanced-nav .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .enhanced-nav .dropdown-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            text-decoration: none;
+            color: var(--text-primary);
+            border-radius: 0;
+            transition: all var(--transition-smooth);
+        }
+
+        .enhanced-nav .dropdown-link:hover {
+            background: var(--bg-secondary);
+            color: var(--primary-color);
+        }
+
+        .enhanced-nav .nav-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 3px;
+        }
+
+        .enhanced-nav .nav-toggle span {
+            width: 20px;
+            height: 2px;
+            background: var(--primary-color);
+            transition: all var(--transition-smooth);
+        }
+
+        @media (max-width: 768px) {
+            .enhanced-nav .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: white;
+                border-top: 1px solid var(--border-color);
+                flex-direction: column;
+                gap: 0;
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: all var(--transition-smooth);
+            }
+
+            .enhanced-nav .nav-menu.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .enhanced-nav .nav-toggle {
+                display: flex;
+            }
+
+            .enhanced-nav .dropdown-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                border: none;
+                background: var(--bg-secondary);
+                margin-left: 1rem;
+            }
+        }
+
         /* About Page Specific Styles */
         .about-hero {
             background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
@@ -303,21 +488,131 @@
 
 <body>
     <!-- Navigation -->
-    <nav class="nav">
+    <nav class="enhanced-nav" id="enhancedUnityNav">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">
                 <span class="phi-symbol">φ</span>
-                <span>Een</span>
+                <span class="logo-text">Een</span>
+                <span class="elo-badge">3000 ELO</span>
             </a>
             <ul class="nav-menu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="proofs.html">Proofs</a></li>
-                <li><a href="playground.html">Playground</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="research.html">Research</a></li>
-                <li><a href="metagambit.html">MetaGambit</a></li>
-                <li><a href="about.html" class="active">About</a></li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">
+                        <i class="fas fa-calculator"></i>
+                        Mathematics
+                        <i class="fas fa-chevron-down dropdown-arrow"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="proofs.html" class="dropdown-link">
+                            <i class="fas fa-check-circle"></i>
+                            Unity Proofs
+                        </a></li>
+                        <li><a href="playground.html" class="dropdown-link">
+                            <i class="fas fa-play-circle"></i>
+                            Interactive Playground
+                        </a></li>
+                        <li><a href="unity_mathematics_streamlit.py" class="dropdown-link">
+                            <i class="fas fa-flask"></i>
+                            Live Mathematics
+                        </a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">
+                        <i class="fas fa-brain"></i>
+                        Proofs
+                        <i class="fas fa-chevron-down dropdown-arrow"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="boolean_proof.html" class="dropdown-link">
+                            <i class="fas fa-toggle-on"></i>
+                            Boolean Logic
+                        </a></li>
+                        <li><a href="set_theory_proof.html" class="dropdown-link">
+                            <i class="fas fa-circle"></i>
+                            Set Theory
+                        </a></li>
+                        <li><a href="category_theory_proof.html" class="dropdown-link">
+                            <i class="fas fa-project-diagram"></i>
+                            Category Theory
+                        </a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">
+                        <i class="fas fa-atom"></i>
+                        Consciousness
+                        <i class="fas fa-chevron-down dropdown-arrow"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="consciousness.html" class="dropdown-link">
+                            <i class="fas fa-lightbulb"></i>
+                            Consciousness Fields
+                        </a></li>
+                        <li><a href="quantum_unity.html" class="dropdown-link">
+                            <i class="fas fa-wave-square"></i>
+                            Quantum Unity
+                        </a></li>
+                        <li><a href="meta_recursion.html" class="dropdown-link">
+                            <i class="fas fa-infinity"></i>
+                            Meta-Recursion
+                        </a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">
+                        <i class="fas fa-flask"></i>
+                        Research
+                        <i class="fas fa-chevron-down dropdown-arrow"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="research.html" class="dropdown-link">
+                            <i class="fas fa-search"></i>
+                            Current Research
+                        </a></li>
+                        <li><a href="publications.html" class="dropdown-link">
+                            <i class="fas fa-file-alt"></i>
+                            Publications
+                        </a></li>
+                        <li><a href="experiments.html" class="dropdown-link">
+                            <i class="fas fa-vial"></i>
+                            Experiments
+                        </a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">
+                        <i class="fas fa-rocket"></i>
+                        Advanced
+                        <i class="fas fa-chevron-down dropdown-arrow"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="gallery.html" class="dropdown-link">
+                            <i class="fas fa-images"></i>
+                            Visualization Gallery
+                        </a></li>
+                        <li><a href="metagambit.html" class="dropdown-link">
+                            <i class="fas fa-chess"></i>
+                            MetaGambit
+                        </a></li>
+                        <li><a href="omega_system.html" class="dropdown-link">
+                            <i class="fas fa-infinity"></i>
+                            Omega System
+                        </a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link active">
+                        <i class="fas fa-user"></i>
+                        About
+                    </a>
+                </li>
             </ul>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </nav>
 
@@ -544,6 +839,52 @@
                     trigger: ".research-grid",
                     start: "top 80%"
                 }
+            });
+
+            // Enhanced Navigation JavaScript
+            const navToggle = document.getElementById('navToggle');
+            const navMenu = document.querySelector('.enhanced-nav .nav-menu');
+
+            if (navToggle && navMenu) {
+                navToggle.addEventListener('click', function() {
+                    navMenu.classList.toggle('active');
+                });
+
+                // Close menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (!navToggle.contains(event.target) && !navMenu.contains(event.target)) {
+                        navMenu.classList.remove('active');
+                    }
+                });
+
+                // Close menu when clicking on a link
+                const navLinks = document.querySelectorAll('.enhanced-nav .nav-link, .enhanced-nav .dropdown-link');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        navMenu.classList.remove('active');
+                    });
+                });
+            }
+
+            // Prevent dropdown links from closing the dropdown immediately
+            const dropdownToggles = document.querySelectorAll('.enhanced-nav .dropdown-toggle');
+            dropdownToggles.forEach(toggle => {
+                toggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const dropdown = this.closest('.dropdown');
+                    const dropdownMenu = dropdown.querySelector('.dropdown-menu');
+                    
+                    // Toggle visibility
+                    if (dropdownMenu.style.opacity === '1') {
+                        dropdownMenu.style.opacity = '0';
+                        dropdownMenu.style.visibility = 'hidden';
+                        dropdownMenu.style.transform = 'translateY(-10px)';
+                    } else {
+                        dropdownMenu.style.opacity = '1';
+                        dropdownMenu.style.visibility = 'visible';
+                        dropdownMenu.style.transform = 'translateY(0)';
+                    }
+                });
             });
         });
     </script>
