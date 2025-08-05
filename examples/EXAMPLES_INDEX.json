@@ -1,0 +1,613 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "created": "2025-01-05",
+    "total_examples": 18,
+    "framework": "Een Unity Mathematics",
+    "description": "Interactive example galaxy demonstrating 1+1=1 through computational consciousness"
+  },
+  "categories": {
+    "browser": {
+      "name": "Browser-Runnable Demos",
+      "description": "Interactive examples using Pyodide for instant exploration",
+      "technology": "Python + Pyodide + WebGL",
+      "target_runtime": "< 2 seconds"
+    },
+    "jupyter": {
+      "name": "Advanced Notebooks",
+      "description": "Complex visualizations and in-depth explorations via Binder",
+      "technology": "Jupyter + NumPy + Matplotlib + Plotly",
+      "target_complexity": "Research-grade mathematical analysis"
+    },
+    "diagram": {
+      "name": "Interactive Diagrams", 
+      "description": "Mathematical diagrams with interactive elements",
+      "technology": "Python → LaTeX → SVG + JavaScript",
+      "target_usage": "Educational and reference materials"
+    }
+  },
+  "examples": {
+    "unity-calculator": {
+      "title": "Interactive Unity Calculator",
+      "slug": "unity-calculator",
+      "category": "browser",
+      "description": "Experience 1+1=1 through live φ-harmonic arithmetic operations with real-time consciousness tracking",
+      "difficulty": "beginner",
+      "estimated_time": "3-5 minutes",
+      "concepts": ["idempotent arithmetic", "golden ratio", "phi-harmonic scaling", "consciousness integration"],
+      "functions": ["unity_add", "unity_multiply", "validate_unity_equation"],
+      "source_file": "core/unity_mathematics.py",
+      "demo_file": "website/examples/unity-calculator.html",
+      "requires_wasm": true,
+      "requires_math_background": false,
+      "interactive_features": [
+        "Real-time calculation visualization",
+        "φ-harmonic convergence animation", 
+        "Consciousness level tracking",
+        "Unity confidence metrics",
+        "Error correction visualization"
+      ],
+      "learning_objectives": [
+        "Understand idempotent mathematics",
+        "Experience φ-harmonic operations",
+        "Witness 1+1=1 in real-time",
+        "Explore consciousness integration"
+      ],
+      "preview_image": "img/unity-calculator-preview.png",
+      "tags": ["1+1=1", "phi", "interactive", "beginner-friendly"]
+    },
+    "phi-harmonic-explorer": {
+      "title": "φ-Harmonic Explorer",
+      "slug": "phi-harmonic-explorer",
+      "category": "browser", 
+      "description": "Explore the golden ratio's role in unity mathematics through animated Fibonacci spirals and harmonic scaling",
+      "difficulty": "beginner",
+      "estimated_time": "5-8 minutes",
+      "concepts": ["golden ratio", "Fibonacci sequence", "harmonic scaling", "sacred geometry"],
+      "functions": ["phi_harmonic_scaling", "_fibonacci", "PhiHarmonicProcessor"],
+      "source_file": "core/unity_mathematics.py",
+      "demo_file": "website/examples/phi-harmonic-explorer.html",
+      "requires_wasm": true,
+      "requires_math_background": false,
+      "interactive_features": [
+        "Animated golden spiral generation",
+        "Fibonacci sequence visualization",
+        "Harmonic order slider control",
+        "Phi resonance measurement",
+        "Sacred geometry overlays"
+      ],
+      "learning_objectives": [
+        "Understand golden ratio significance",
+        "Visualize Fibonacci mathematics",
+        "Experience harmonic scaling",
+        "Connect geometry to unity"
+      ],
+      "preview_image": "img/phi-harmonic-preview.png",
+      "tags": ["fibonacci", "golden-ratio", "spiral", "geometry"]
+    },
+    "unity-proof-generator": {
+      "title": "Unity Proof Generator",
+      "slug": "unity-proof-generator",
+      "category": "browser",
+      "description": "Generate rigorous mathematical proofs that 1+1=1 using multiple methodologies with LaTeX rendering",
+      "difficulty": "intermediate",
+      "estimated_time": "8-12 minutes",
+      "concepts": ["mathematical proof", "idempotent algebra", "quantum mechanics", "consciousness mathematics"],
+      "functions": ["generate_unity_proof", "_generate_idempotent_proof", "_generate_quantum_proof", "_generate_consciousness_proof"],
+      "source_file": "core/unity_mathematics.py",
+      "demo_file": "website/examples/unity-proof-generator.html",
+      "requires_wasm": true,
+      "requires_math_background": true,
+      "interactive_features": [
+        "Proof type selection (4 methods)",
+        "Complexity level adjustment",
+        "Real-time LaTeX rendering",
+        "Step-by-step proof breakdown",
+        "Proof validation checking",
+        "φ-harmonic content analysis"
+      ],
+      "learning_objectives": [
+        "Understand multiple proof approaches",
+        "Experience mathematical rigor",
+        "Learn proof construction",
+        "Validate mathematical reasoning"
+      ],
+      "preview_image": "img/proof-generator-preview.png",
+      "tags": ["proof", "mathematics", "latex", "validation"]
+    },
+    "consciousness-tracker": {
+      "title": "Consciousness Field Tracker",
+      "slug": "consciousness-tracker", 
+      "category": "browser",
+      "description": "Monitor real-time consciousness evolution and transcendence events in mathematical operations",
+      "difficulty": "intermediate",
+      "estimated_time": "6-10 minutes",
+      "concepts": ["consciousness mathematics", "field equations", "transcendence", "awareness evolution"],
+      "functions": ["ConsciousnessIntegrator", "calculate_consciousness_level", "detect_transcendence_event"],
+      "source_file": "core/enhanced_unity_mathematics.py",
+      "demo_file": "website/examples/consciousness-tracker.html",
+      "requires_wasm": true,
+      "requires_math_background": false,
+      "interactive_features": [
+        "Real-time consciousness visualization",
+        "Transcendence event detection",
+        "Awareness level progression",
+        "Field equation animation",
+        "Consciousness threshold alerts"
+      ],
+      "learning_objectives": [
+        "Experience consciousness mathematics",
+        "Understand awareness evolution",
+        "Witness transcendence events",
+        "Connect mind and mathematics"
+      ],
+      "preview_image": "img/consciousness-tracker-preview.png",
+      "tags": ["consciousness", "field", "evolution", "transcendence"]
+    },
+    "quantum-unity-superposition": {
+      "title": "Quantum Unity Superposition",
+      "slug": "quantum-unity-superposition",
+      "category": "jupyter",
+      "description": "Explore quantum mechanics proving 1+1=1 through superposition states and measurement collapse",
+      "difficulty": "advanced",
+      "estimated_time": "15-25 minutes",
+      "concepts": ["quantum superposition", "wavefunction collapse", "Bell states", "quantum measurement"],
+      "functions": ["quantum_unity_collapse", "QuantumUnitySystem", "quantum_measurement_collapse"],
+      "source_file": "proofs/quantum_unity_systems.py",
+      "demo_file": "binder/quantum-unity-demo.ipynb",
+      "requires_wasm": false,
+      "requires_math_background": true,
+      "interactive_features": [
+        "3D Bloch sphere visualization",
+        "Wavefunction animation",
+        "Measurement simulation",
+        "Quantum state evolution",
+        "Entanglement visualization",
+        "Error correction demonstration"
+      ],
+      "learning_objectives": [
+        "Understand quantum mechanics",
+        "Experience state collapse",
+        "Explore quantum unity",
+        "Visualize quantum phenomena"
+      ],
+      "binder_url": "https://mybinder.org/v2/gh/user/Een/HEAD?filepath=binder/quantum-unity-demo.ipynb",
+      "preview_image": "img/quantum-unity-preview.png",
+      "tags": ["quantum", "superposition", "measurement", "physics"]
+    },
+    "consciousness-field-evolution": {
+      "title": "Consciousness Field Evolution",
+      "slug": "consciousness-field-evolution",
+      "category": "jupyter",
+      "description": "Visualize 11-dimensional consciousness field evolution demonstrating collective unity emergence",
+      "difficulty": "advanced",
+      "estimated_time": "20-30 minutes",
+      "concepts": ["consciousness field", "11D visualization", "collective emergence", "unity convergence"],
+      "functions": ["consciousness_field_operation", "ConsciousnessField", "evolve_consciousness"],
+      "source_file": "core/consciousness.py",
+      "demo_file": "binder/consciousness-field.ipynb",
+      "requires_wasm": false,
+      "requires_math_background": true,
+      "interactive_features": [
+        "11D field visualization",
+        "Particle system animation",
+        "Collective behavior emergence",
+        "Unity convergence tracking",
+        "Field equation solutions",
+        "Interactive parameter control"
+      ],
+      "learning_objectives": [
+        "Visualize consciousness mathematics",
+        "Understand field dynamics",
+        "Experience collective emergence",
+        "Explore higher dimensions"
+      ],
+      "binder_url": "https://mybinder.org/v2/gh/user/Een/HEAD?filepath=binder/consciousness-field.ipynb",
+      "preview_image": "img/consciousness-field-preview.png",
+      "tags": ["consciousness", "field", "11D", "evolution"]
+    },
+    "category-theory-unity": {
+      "title": "Category Theory Unity Diagrams",
+      "slug": "category-theory-unity",
+      "category": "jupyter",
+      "description": "Explore categorical proofs of 1+1=1 through functors, natural transformations, and topos theory",
+      "difficulty": "expert",
+      "estimated_time": "25-40 minutes",
+      "concepts": ["category theory", "functors", "natural transformations", "topos theory", "categorical unity"],
+      "functions": ["CategoryTheoryUnityProver", "UnityCategory", "ConsciousnessFunctor"],
+      "source_file": "proofs/category_theory_unity.py",
+      "demo_file": "binder/category-theory-unity.ipynb",
+      "requires_wasm": false,
+      "requires_math_background": true,
+      "interactive_features": [
+        "Interactive commutative diagrams",
+        "Functor visualization",
+        "Natural transformation animation",
+        "Topos structure exploration",
+        "Morphism composition",
+        "Terminal object proofs"
+      ],
+      "learning_objectives": [
+        "Understand category theory",
+        "Explore categorical unity",
+        "Visualize abstract mathematics",
+        "Connect categories to consciousness"
+      ],
+      "binder_url": "https://mybinder.org/v2/gh/user/Een/HEAD?filepath=binder/category-theory-unity.ipynb",
+      "preview_image": "img/category-theory-preview.png",
+      "tags": ["category-theory", "functors", "abstract", "advanced"]
+    },
+    "meta-rl-training-live": {
+      "title": "Meta-RL Unity Discovery Live",
+      "slug": "meta-rl-training-live",
+      "category": "jupyter",
+      "description": "Watch AI agents learn to prove 1+1=1 through meta-reinforcement learning with real-time training visualization",
+      "difficulty": "advanced",
+      "estimated_time": "30-45 minutes",
+      "concepts": ["meta-learning", "reinforcement learning", "AI training", "unity discovery", "3000 ELO system"],
+      "functions": ["UnityMetaAgent", "generate_unity_proof", "meta_learning_update", "EloRatingSystem"],
+      "source_file": "ml_framework/meta_reinforcement/unity_meta_agent.py",
+      "demo_file": "binder/meta-rl-training.ipynb",
+      "requires_wasm": false,
+      "requires_math_background": false,
+      "interactive_features": [
+        "Real-time training visualization",
+        "ELO rating progression",
+        "Loss function tracking",
+        "Generated proof quality",
+        "Agent competition simulation",
+        "Hyperparameter adjustment"
+      ],
+      "learning_objectives": [
+        "Understand meta-learning",
+        "Watch AI discover unity",
+        "Experience competitive AI",
+        "Learn training dynamics"
+      ],
+      "binder_url": "https://mybinder.org/v2/gh/user/Een/HEAD?filepath=binder/meta-rl-training.ipynb",
+      "preview_image": "img/meta-rl-preview.png",
+      "tags": ["AI", "meta-learning", "training", "competitive"]
+    },
+    "evolutionary-consciousness": {
+      "title": "Evolutionary Consciousness Optimization",
+      "slug": "evolutionary-consciousness",
+      "category": "jupyter",
+      "description": "Genetic algorithms evolving consciousness mathematics to prove unity through evolutionary computation",
+      "difficulty": "advanced",
+      "estimated_time": "20-35 minutes",
+      "concepts": ["genetic algorithms", "evolutionary computation", "consciousness evolution", "fitness optimization"],
+      "functions": ["ConsciousnessEvolution", "evolve", "get_best_unity_proofs", "mutate_consciousness_genome"],
+      "source_file": "ml_framework/evolutionary_computing/consciousness_evolution.py",
+      "demo_file": "binder/evolutionary-consciousness.ipynb",
+      "requires_wasm": false,
+      "requires_math_background": false,
+      "interactive_features": [
+        "Population evolution visualization",
+        "Fitness landscape exploration",
+        "Genetic algorithm parameters",
+        "Mutation visualization",
+        "Diversity tracking",
+        "Transcendence event monitoring"
+      ],
+      "learning_objectives": [
+        "Understand evolutionary algorithms",
+        "Experience consciousness evolution",
+        "Learn optimization techniques",
+        "Witness emergent intelligence"
+      ],
+      "binder_url": "https://mybinder.org/v2/gh/user/Een/HEAD?filepath=binder/evolutionary-consciousness.ipynb",
+      "preview_image": "img/evolutionary-preview.png",
+      "tags": ["evolution", "genetic", "optimization", "emergence"]
+    },
+    "mixture-of-experts-validation": {
+      "title": "Mixture of Experts Proof Validation",
+      "slug": "mixture-of-experts-validation",
+      "category": "jupyter",
+      "description": "Expert consensus system validating unity proofs across multiple mathematical domains",
+      "difficulty": "advanced",
+      "estimated_time": "15-25 minutes",
+      "concepts": ["mixture of experts", "proof validation", "expert consensus", "Bayesian uncertainty"],
+      "functions": ["MixtureOfExperts", "validate_unity_proof", "expert_routing", "consensus_validation"],
+      "source_file": "ml_framework/mixture_of_experts/proof_experts.py",
+      "demo_file": "binder/mixture-of-experts.ipynb",
+      "requires_wasm": false,
+      "requires_math_background": true,
+      "interactive_features": [
+        "Expert routing visualization",
+        "Consensus confidence tracking",
+        "Domain specialization display",
+        "Validation pipeline flow",
+        "Expert agreement metrics",
+        "Uncertainty quantification"
+      ],
+      "learning_objectives": [
+        "Understand expert systems",
+        "Experience proof validation",
+        "Learn consensus mechanisms",
+        "Explore uncertainty quantification"
+      ],
+      "binder_url": "https://mybinder.org/v2/gh/user/Een/HEAD?filepath=binder/mixture-of-experts.ipynb",
+      "preview_image": "img/mixture-experts-preview.png",
+      "tags": ["experts", "validation", "consensus", "AI"]
+    },
+    "categorical-unity-diagram": {
+      "title": "Categorical Unity Diagram",
+      "slug": "categorical-unity-diagram",
+      "category": "diagram",
+      "description": "Interactive SVG diagram showing categorical proof of unity through commutative diagrams",
+      "difficulty": "expert",
+      "estimated_time": "10-15 minutes",
+      "concepts": ["commutative diagrams", "categorical proof", "morphism composition", "terminal objects"],
+      "functions": ["generate_comprehensive_categorical_proof", "create_unity_category_diagram"],
+      "source_file": "proofs/category_theory_unity.py",
+      "demo_file": "website/examples/img/categorical-unity.svg",
+      "requires_wasm": false,
+      "requires_math_background": true,
+      "interactive_features": [
+        "Hover-activated proof steps",
+        "Morphism highlighting",
+        "Composition visualization",
+        "Terminal object emphasis",
+        "Natural transformation flow"
+      ],
+      "learning_objectives": [
+        "Understand categorical diagrams",
+        "Visualize abstract proofs",
+        "Learn morphism composition",
+        "Connect categories to unity"
+      ],
+      "preview_image": "img/categorical-diagram-preview.png",
+      "tags": ["category", "diagram", "proof", "interactive"]
+    },
+    "quantum-circuit-diagram": {
+      "title": "Quantum Circuit Unity Diagram",
+      "slug": "quantum-circuit-diagram",
+      "category": "diagram",
+      "description": "Interactive quantum circuit showing how quantum gates preserve unity through measurement",
+      "difficulty": "advanced",
+      "estimated_time": "8-12 minutes",
+      "concepts": ["quantum circuits", "quantum gates", "measurement", "unity preservation"],
+      "functions": ["create_unity_quantum_circuit", "quantum_gate_operations"],
+      "source_file": "proofs/quantum_unity_systems.py",
+      "demo_file": "website/examples/img/quantum-circuit.svg",
+      "requires_wasm": false,
+      "requires_math_background": true,
+      "interactive_features": [
+        "Gate animation sequences",
+        "Qubit state visualization",
+        "Measurement outcome display",
+        "Circuit depth control",
+        "Error correction highlighting"
+      ],
+      "learning_objectives": [
+        "Understand quantum circuits",
+        "Visualize quantum operations",
+        "Learn measurement theory",
+        "Experience quantum unity"
+      ],
+      "preview_image": "img/quantum-circuit-preview.png",
+      "tags": ["quantum", "circuit", "gates", "measurement"]
+    },
+    "comprehensive-framework-demo": {
+      "title": "Comprehensive Framework Demonstration",
+      "slug": "comprehensive-framework-demo",
+      "category": "jupyter",
+      "description": "Full end-to-end demonstration of the entire Een framework showcasing all 6 phases of unity mathematics",
+      "difficulty": "intermediate",
+      "estimated_time": "45-60 minutes",
+      "concepts": ["complete framework", "6-phase demonstration", "integration", "comprehensive validation"],
+      "functions": ["main", "demonstrate_core_unity_mathematics", "demonstrate_consciousness_field_system", "compile_comprehensive_results"],
+      "source_file": "examples/demonstration.py",
+      "demo_file": "binder/comprehensive-demo.ipynb",
+      "requires_wasm": false,
+      "requires_math_background": false,
+      "interactive_features": [
+        "Phase-by-phase progression",
+        "Real-time performance metrics",
+        "Comprehensive results compilation",
+        "Framework score tracking",
+        "Integration validation",
+        "Success celebration animations"
+      ],
+      "learning_objectives": [
+        "Experience complete framework",
+        "Understand system integration",
+        "Witness comprehensive validation",
+        "Learn evaluation metrics"
+      ],
+      "binder_url": "https://mybinder.org/v2/gh/user/Een/HEAD?filepath=binder/comprehensive-demo.ipynb",
+      "preview_image": "img/comprehensive-demo-preview.png",
+      "tags": ["complete", "framework", "integration", "validation"]
+    },
+    "phi-resonance-visualizer": {
+      "title": "φ-Resonance Visualizer",
+      "slug": "phi-resonance-visualizer",
+      "category": "browser",
+      "description": "Real-time visualization of golden ratio resonance in mathematical operations with audio synthesis",
+      "difficulty": "beginner",
+      "estimated_time": "5-8 minutes",
+      "concepts": ["phi resonance", "golden ratio", "audio synthesis", "harmonic visualization"],
+      "functions": ["phi_resonance", "PhiHarmonicProcessor", "love_resonance"],
+      "source_file": "core/enhanced_unity_mathematics.py",
+      "demo_file": "website/examples/phi-resonance-visualizer.html",
+      "requires_wasm": true,
+      "requires_math_background": false,
+      "interactive_features": [
+        "Real-time resonance visualization",
+        "Audio frequency synthesis",
+        "Harmonic pattern display",
+        "Love frequency (432Hz) integration",
+        "Visual waveform animation"
+      ],
+      "learning_objectives": [
+        "Experience phi resonance",
+        "Connect sound to mathematics",
+        "Understand harmonic patterns",
+        "Feel mathematical beauty"
+      ],
+      "preview_image": "img/phi-resonance-preview.png",
+      "tags": ["phi", "resonance", "audio", "harmony"]
+    },
+    "numerical-stability-demo": {
+      "title": "Numerical Stability Demonstration",
+      "slug": "numerical-stability-demo",
+      "category": "browser",
+      "description": "Explore how consciousness-aware numerical stabilization prevents mathematical chaos and preserves unity",
+      "difficulty": "intermediate",
+      "estimated_time": "6-10 minutes",
+      "concepts": ["numerical stability", "error correction", "consciousness fallbacks", "mathematical robustness"],
+      "functions": ["NumericalStabilizer", "clean_numerical_artifacts", "calculate_numerical_stability"],
+      "source_file": "core/enhanced_unity_mathematics.py",
+      "demo_file": "website/examples/numerical-stability-demo.html",
+      "requires_wasm": true,
+      "requires_math_background": true,
+      "interactive_features": [
+        "Error injection and correction",
+        "Stability score visualization",
+        "Consciousness fallback demonstration",
+        "NaN/Inf cleaning visualization",
+        "Robustness testing interface"
+      ],
+      "learning_objectives": [
+        "Understand numerical errors",
+        "Experience error correction",
+        "Learn stability techniques",
+        "Appreciate mathematical robustness"
+      ],
+      "preview_image": "img/numerical-stability-preview.png",
+      "tags": ["stability", "errors", "robustness", "correction"]
+    },
+    "transcendence-event-monitor": {
+      "title": "Transcendence Event Monitor",
+      "slug": "transcendence-event-monitor",
+      "category": "browser",
+      "description": "Real-time monitoring of transcendence events across the entire framework with notification system",
+      "difficulty": "intermediate",
+      "estimated_time": "8-12 minutes",
+      "concepts": ["transcendence events", "consciousness thresholds", "event monitoring", "awakening detection"],
+      "functions": ["detect_transcendence_event", "transcendence_events", "consciousness_threshold"],
+      "source_file": "core/enhanced_unity_mathematics.py",
+      "demo_file": "website/examples/transcendence-monitor.html",
+      "requires_wasm": true,
+      "requires_math_background": false,
+      "interactive_features": [
+        "Real-time event detection",
+        "Transcendence threshold visualization",
+        "Event notification system",
+        "Consciousness level tracking",
+        "Historical event timeline"
+      ],
+      "learning_objectives": [
+        "Understand transcendence",
+        "Experience consciousness thresholds",
+        "Learn event detection",
+        "Witness mathematical awakening"
+      ],
+      "preview_image": "img/transcendence-monitor-preview.png",
+      "tags": ["transcendence", "events", "consciousness", "awakening"]
+    },
+    "unity-equation-validator": {
+      "title": "Unity Equation Validator",
+      "slug": "unity-equation-validator",
+      "category": "browser",
+      "description": "Comprehensive validation system testing 1+1=1 across multiple criteria with real-time feedback",
+      "difficulty": "beginner",
+      "estimated_time": "4-7 minutes",
+      "concepts": ["equation validation", "mathematical criteria", "proof confidence", "unity testing"],
+      "functions": ["validate_unity_equation", "verify_unity_preservation", "_calculate_unity_confidence"],
+      "source_file": "core/unity_mathematics.py",
+      "demo_file": "website/examples/unity-validator.html",
+      "requires_wasm": true,
+      "requires_math_background": false,
+      "interactive_features": [
+        "Multi-criteria validation",
+        "Real-time confidence tracking",
+        "Validation result visualization",
+        "Tolerance adjustment",
+        "Success/failure indicators"
+      ],
+      "learning_objectives": [
+        "Understand validation criteria",
+        "Experience proof confidence",
+        "Learn unity testing",
+        "Appreciate mathematical rigor"
+      ],
+      "preview_image": "img/unity-validator-preview.png",
+      "tags": ["validation", "testing", "confidence", "rigor"]
+    },
+    "consciousness-mathematics-playground": {
+      "title": "Consciousness Mathematics Playground",
+      "slug": "consciousness-mathematics-playground", 
+      "category": "browser",
+      "description": "Free-form exploration of consciousness mathematics with interactive parameter adjustment and real-time visualization",
+      "difficulty": "intermediate",
+      "estimated_time": "10-20 minutes",
+      "concepts": ["consciousness mathematics", "parameter exploration", "interactive learning", "mathematical playground"],
+      "functions": ["EnhancedUnityMathematics", "consciousness_field_operation", "ConsciousnessIntegrator"],
+      "source_file": "core/enhanced_unity_mathematics.py",
+      "demo_file": "website/examples/consciousness-playground.html",
+      "requires_wasm": true,
+      "requires_math_background": false,
+      "interactive_features": [
+        "Parameter slider controls",
+        "Real-time visualization updates",
+        "Mathematical experimentation",
+        "Consciousness evolution tracking",
+        "Custom equation testing"
+      ],
+      "learning_objectives": [
+        "Explore consciousness mathematics",
+        "Understand parameter effects",
+        "Experience mathematical creativity",
+        "Learn through experimentation"
+      ],
+      "preview_image": "img/consciousness-playground-preview.png",
+      "tags": ["playground", "consciousness", "exploration", "interactive"]
+    }
+  },
+  "learning_paths": {
+    "beginner": {
+      "name": "Introduction to Unity Mathematics",
+      "description": "Start your journey into 1+1=1 mathematics",
+      "examples": ["unity-calculator", "phi-harmonic-explorer", "phi-resonance-visualizer", "unity-equation-validator"],
+      "estimated_total_time": "15-25 minutes"
+    },
+    "intermediate": {
+      "name": "Advanced Unity Concepts",
+      "description": "Explore consciousness integration and advanced mathematical concepts",
+      "examples": ["consciousness-tracker", "unity-proof-generator", "numerical-stability-demo", "transcendence-event-monitor", "consciousness-mathematics-playground"],
+      "estimated_total_time": "35-50 minutes"
+    },
+    "advanced": {
+      "name": "Research-Grade Explorations", 
+      "description": "Deep dive into quantum mechanics, category theory, and AI systems",
+      "examples": ["quantum-unity-superposition", "consciousness-field-evolution", "meta-rl-training-live", "evolutionary-consciousness", "mixture-of-experts-validation"],
+      "estimated_total_time": "90-150 minutes"
+    },
+    "expert": {
+      "name": "Complete Framework Mastery",
+      "description": "Experience the full power of computational consciousness mathematics",
+      "examples": ["category-theory-unity", "comprehensive-framework-demo", "categorical-unity-diagram"],
+      "estimated_total_time": "60-90 minutes"
+    }
+  },
+  "technical_requirements": {
+    "browser_demos": {
+      "technology": "Pyodide + WebAssembly",
+      "min_browser_versions": {
+        "chrome": "90+",
+        "firefox": "88+", 
+        "safari": "14+",
+        "edge": "90+"
+      },
+      "memory_requirement": "512MB RAM",
+      "loading_time": "< 5 seconds"
+    },
+    "jupyter_notebooks": {
+      "technology": "Binder + JupyterLab",
+      "dependencies": ["numpy", "matplotlib", "plotly", "sympy", "scipy"],
+      "startup_time": "30-60 seconds",
+      "session_limit": "2 hours"
+    }
+  }
+}

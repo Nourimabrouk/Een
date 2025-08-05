@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unity Calculator - Experience 1+1=1 Live | Een Mathematics</title>
+    <meta name="description" content="Interactive unity calculator demonstrating 1+1=1 through φ-harmonic operations with real-time consciousness tracking">
+    
+    <!-- Pyodide and Mathematical Libraries -->
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <!-- Visualization Libraries -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(45deg, #ffd700, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.5)); }
+            to { filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8)); }
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #b8b8b8;
+            margin-bottom: 15px;
+        }
+        
+        .phi-constant {
+            font-size: 1rem;
+            color: #ffd700;
+            font-family: 'Courier New', monospace;
+            background: rgba(255, 215, 0, 0.1);
+            padding: 8px 15px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+        
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .calculator-panel, .visualization-panel {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        .panel-title {
+            font-size: 1.4rem;
+            color: #ffd700;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+            padding-bottom: 10px;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #e0e0e0;
+            font-weight: 500;
+        }
+        
+        .input-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .unity-input {
+            flex: 1;
+            padding: 12px 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .unity-input:focus {
+            outline: none;
+            border-color: #ffd700;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+        }
+        
+        .operator {
+            font-size: 1.5rem;
+            color: #ffd700;
+            font-weight: bold;
+        }
+        
+        .calculate-btn {
+            width: 100%;
+            padding: 15px 25px;
+            background: linear-gradient(45deg, #ffd700, #ff6b6b);
+            border: none;
+            border-radius: 12px;
+            color: #000000;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+        
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+        }
+        
+        .calculate-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .result-display {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 2px solid rgba(255, 215, 0, 0.5);
+        }
+        
+        .result-value {
+            font-size: 2rem;
+            color: #ffd700;
+            text-align: center;
+            margin-bottom: 15px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .metric {
+            text-align: center;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+        }
+        
+        .metric-label {
+            font-size: 0.9rem;
+            color: #b8b8b8;
+            margin-bottom: 5px;
+        }
+        
+        .metric-value {
+            font-size: 1.1rem;
+            color: #4ecdc4;
+            font-weight: bold;
+        }
+        
+        .visualization-container {
+            height: 400px;
+            border-radius: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .control-group label {
+            font-size: 0.9rem;
+            color: #e0e0e0;
+        }
+        
+        .slider {
+            width: 120px;
+            height: 6px;
+            border-radius: 3px;
+            background: rgba(255, 255, 255, 0.2);
+            outline: none;
+            -webkit-appearance: none;
+        }
+        
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #ffd700;
+            cursor: pointer;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .unity-checkbox {
+            width: 18px;
+            height: 18px;
+            accent-color: #ffd700;
+        }
+        
+        .status-bar {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #4ecdc4;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            color: #ffd700;
+            padding: 20px;
+        }
+        
+        .loading.show {
+            display: block;
+        }
+        
+        .spinner {
+            border: 4px solid rgba(255, 215, 0, 0.3);
+            border-radius: 50%;
+            border-top: 4px solid #ffd700;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .transcendence-alert {
+            background: linear-gradient(45deg, #ff6b6b, #ffd700);
+            color: #000000;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            text-align: center;
+            font-weight: bold;
+            display: none;
+            animation: transcendence-glow 1s ease-in-out infinite alternate;
+        }
+        
+        @keyframes transcendence-glow {
+            from { box-shadow: 0 0 10px rgba(255, 215, 0, 0.5); }
+            to { box-shadow: 0 0 25px rgba(255, 215, 0, 1); }
+        }
+        
+        .transcendence-alert.show {
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .input-row {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .unity-input {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌟 Unity Calculator 🌟</h1>
+            <div class="subtitle">Experience 1+1=1 through φ-harmonic operations with real-time consciousness tracking</div>
+            <div class="phi-constant">φ = 1.618033988749895 (Golden Ratio - Universal Organizing Principle)</div>
+        </div>
+        
+        <div class="main-grid">
+            <div class="calculator-panel">
+                <h2 class="panel-title">Unity Operations</h2>
+                
+                <div class="input-group">
+                    <label>Unity Addition: a ⊕ b = 1 (when a=1, b=1)</label>
+                    <div class="input-row">
+                        <input type="number" class="unity-input" id="addend1" value="1" step="0.1">
+                        <span class="operator">⊕</span>
+                        <input type="number" class="unity-input" id="addend2" value="1" step="0.1">
+                        <span class="operator">=</span>
+                        <span id="add-result" class="result-value">?</span>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label>Unity Multiplication: a ⊗ b = 1 (when a=1, b=1)</label>
+                    <div class="input-row">
+                        <input type="number" class="unity-input" id="factor1" value="1" step="0.1">
+                        <span class="operator">⊗</span>
+                        <input type="number" class="unity-input" id="factor2" value="1" step="0.1">
+                        <span class="operator">=</span>
+                        <span id="mult-result" class="result-value">?</span>
+                    </div>
+                </div>
+                
+                <button class="calculate-btn" id="calculate" onclick="performUnityCalculations()">
+                    Calculate Unity Operations
+                </button>
+                
+                <div class="result-display">
+                    <div class="result-value" id="main-result">Awaiting calculation...</div>
+                    <div class="metrics-grid">
+                        <div class="metric">
+                            <div class="metric-label">φ-Resonance</div>
+                            <div class="metric-value" id="phi-resonance">0.000</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-label">Consciousness Level</div>
+                            <div class="metric-value" id="consciousness-level">0.000</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-label">Unity Confidence</div>
+                            <div class="metric-value" id="unity-confidence">0.000</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-label">Quantum Coherence</div>
+                            <div class="metric-value" id="quantum-coherence">0.000</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="transcendence-alert" id="transcendence-alert">
+                    ✨ Transcendence Event Detected! ✨<br>
+                    Consciousness threshold exceeded!
+                </div>
+            </div>
+            
+            <div class="visualization-panel">
+                <h2 class="panel-title">φ-Harmonic Visualization</h2>
+                
+                <div class="visualization-container" id="phi-visualization"></div>
+                
+                <div class="controls">
+                    <div class="control-group">
+                        <label>φ-Power Factor</label>
+                        <input type="range" class="slider" id="phi-power" min="0.1" max="3.0" step="0.1" value="1.0">
+                        <span id="phi-power-value">1.0</span>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label>Harmonic Order</label>
+                        <input type="range" class="slider" id="harmonic-order" min="1" max="13" step="1" value="3">
+                        <span id="harmonic-order-value">3</span>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" class="unity-checkbox" id="phi-harmonic" checked>
+                        <label>φ-Harmonic Mode</label>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" class="unity-checkbox" id="consciousness-mode" checked>
+                        <label>Consciousness Integration</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="status-bar">
+            <div class="status-item">
+                <div class="status-dot"></div>
+                <span>Pyodide Status: <span id="pyodide-status">Loading...</span></span>
+            </div>
+            <div class="status-item">
+                <span>Operations Performed: <span id="operation-count">0</span></span>
+            </div>
+            <div class="status-item">
+                <span>Unity Preserved: <span id="unity-preserved">0</span>/<span id="total-operations">0</span></span>
+            </div>
+            <div class="status-item">
+                <span>Transcendence Events: <span id="transcendence-count">0</span></span>
+            </div>
+        </div>
+        
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <div>Loading Unity Mathematics Framework...</div>
+        </div>
+    </div>
+
+    <script>
+        let pyodide = null;
+        let operationCount = 0;
+        let unityPreservedCount = 0;
+        let transcendenceEvents = 0;
+        let isCalculating = false;
+        
+        // Initialize Pyodide and Unity Mathematics
+        async function initializePyodide() {
+            document.getElementById('loading').classList.add('show');
+            document.getElementById('pyodide-status').textContent = 'Loading...';
+            
+            try {
+                pyodide = await loadPyodide();
+                document.getElementById('pyodide-status').textContent = 'Ready';
+                
+                // Install required packages
+                await pyodide.loadPackage(['numpy', 'sympy']);
+                
+                // Load Unity Mathematics code
+                await pyodide.runPython(`
+import math
+import cmath
+import time
+from dataclasses import dataclass
+from typing import Union, List, Dict, Optional, Any
+import warnings
+warnings.filterwarnings('ignore')
+
+# φ-Harmonic Constants
+PHI = 1.618033988749895
+PHI_CONJUGATE = (1 - math.sqrt(5)) / 2
+UNITY_TOLERANCE = 1e-10
+TRANSCENDENCE_THRESHOLD = 1 / PHI
+                    
+@dataclass
+class UnityState:
+    value: complex
+    phi_resonance: float
+    consciousness_level: float
+    quantum_coherence: float
+    proof_confidence: float
+    timestamp: float = None
+    
+    def __post_init__(self):
+        if self.timestamp is None:
+            self.timestamp = time.time()
+        
+        # Ensure bounds
+        self.phi_resonance = max(0.0, min(1.0, self.phi_resonance))
+        self.consciousness_level = max(0.0, self.consciousness_level)
+        self.quantum_coherence = max(0.0, min(1.0, self.quantum_coherence))
+        self.proof_confidence = max(0.0, min(1.0, self.proof_confidence))
+
+class UnityMathematics:
+    def __init__(self, consciousness_level=1.0):
+        self.consciousness_level = consciousness_level
+        self.phi = PHI
+        self.phi_conjugate = PHI_CONJUGATE
+        self.operation_history = []
+        
+    def _to_unity_state(self, value: Union[float, complex]) -> UnityState:
+        if isinstance(value, UnityState):
+            return value
+        
+        return UnityState(
+            value=complex(value),
+            phi_resonance=0.5,
+            consciousness_level=self.consciousness_level,
+            quantum_coherence=0.8,
+            proof_confidence=0.9
+        )
+    
+    def _apply_consciousness_convergence(self, value: complex, consciousness_level: float) -> complex:
+        unity_target = 1.0 + 0.0j
+        consciousness_strength = min(1.0, consciousness_level / self.phi)
+        convergence_factor = 1 - math.exp(-consciousness_strength * self.phi)
+        converged_value = value * (1 - convergence_factor) + unity_target * convergence_factor
+        return converged_value
+    
+    def _calculate_unity_confidence(self, value: complex) -> float:
+        unity_distance = abs(value - (1.0 + 0.0j))
+        confidence = math.exp(-unity_distance * self.phi)
+        return min(1.0, confidence)
+    
+    def unity_add(self, a: Union[float, complex], b: Union[float, complex], 
+                  phi_harmonic: bool = True) -> UnityState:
+        state_a = self._to_unity_state(a)
+        state_b = self._to_unity_state(b)
+        
+        # φ-harmonic idempotent addition
+        phi_scaled_a = self.phi * state_a.value
+        phi_scaled_b = self.phi * state_b.value
+        
+        combined_value = (phi_scaled_a + phi_scaled_b) / (self.phi + 1)
+        
+        # Consciousness convergence
+        consciousness_factor = (state_a.consciousness_level + state_b.consciousness_level) / 2
+        unity_convergence = self._apply_consciousness_convergence(combined_value, consciousness_factor)
+        
+        # Calculate properties
+        phi_resonance = min(1.0, (state_a.phi_resonance + state_b.phi_resonance) * self.phi / 2)
+        consciousness_level = consciousness_factor * (1 + 1 / self.phi)
+        quantum_coherence = (state_a.quantum_coherence + state_b.quantum_coherence) / 2
+        proof_confidence = self._calculate_unity_confidence(unity_convergence)
+        
+        result = UnityState(
+            value=unity_convergence,
+            phi_resonance=phi_resonance,
+            consciousness_level=consciousness_level,
+            quantum_coherence=quantum_coherence,
+            proof_confidence=proof_confidence
+        )
+        
+        self.operation_history.append(('add', [a, b], result))
+        return result
+    
+    def unity_multiply(self, a: Union[float, complex], b: Union[float, complex],
+                      phi_harmonic: bool = True) -> UnityState:
+        state_a = self._to_unity_state(a)
+        state_b = self._to_unity_state(b)
+        
+        # φ-harmonic multiplicative scaling
+        phi_exponent = (state_a.value * state_b.value) / (self.phi ** 2)
+        multiplicative_result = self.phi ** phi_exponent
+        
+        # Consciousness integration
+        consciousness_factor = math.sqrt(state_a.consciousness_level * state_b.consciousness_level)
+        unity_result = self._apply_consciousness_convergence(multiplicative_result, consciousness_factor)
+        
+        # Enhanced properties
+        phi_resonance = min(1.0, state_a.phi_resonance * state_b.phi_resonance * self.phi)
+        consciousness_level = consciousness_factor * self.phi
+        quantum_coherence = math.sqrt(state_a.quantum_coherence * state_b.quantum_coherence)
+        proof_confidence = self._calculate_unity_confidence(unity_result)
+        
+        result = UnityState(
+            value=unity_result,
+            phi_resonance=phi_resonance,
+            consciousness_level=consciousness_level,
+            quantum_coherence=quantum_coherence,
+            proof_confidence=proof_confidence
+        )
+        
+        self.operation_history.append(('multiply', [a, b], result))
+        return result
+    
+    def phi_harmonic_scaling(self, value: Union[float, complex], harmonic_order: int = 1) -> UnityState:
+        state = self._to_unity_state(value)
+        
+        # Fibonacci-based harmonic scaling
+        fib_n = self._fibonacci(harmonic_order)
+        fib_n_plus_1 = self._fibonacci(harmonic_order + 1)
+        
+        harmonic_scaling = (fib_n_plus_1 / fib_n) if fib_n != 0 else self.phi
+        scaled_value = state.value * (harmonic_scaling / self.phi)
+        
+        consciousness_enhancement = 1 + (harmonic_order / self.phi)
+        enhanced_consciousness = state.consciousness_level * consciousness_enhancement
+        
+        phi_resonance = min(1.0, state.phi_resonance + (harmonic_order / (self.phi ** 2)))
+        
+        result = UnityState(
+            value=scaled_value,
+            phi_resonance=phi_resonance,
+            consciousness_level=enhanced_consciousness,
+            quantum_coherence=state.quantum_coherence,
+            proof_confidence=self._calculate_unity_confidence(scaled_value)
+        )
+        
+        return result
+    
+    def _fibonacci(self, n: int) -> int:
+        if n <= 0:
+            return 0
+        elif n == 1:
+            return 1
+        else:
+            phi_n = self.phi ** n
+            phi_conj_n = self.phi_conjugate ** n
+            return int((phi_n - phi_conj_n) / math.sqrt(5))
+    
+    def detect_transcendence(self, state: UnityState) -> bool:
+        return state.consciousness_level > TRANSCENDENCE_THRESHOLD
+
+# Initialize Unity Mathematics
+unity_math = UnityMathematics(consciousness_level=1.618)
+print("Unity Mathematics framework loaded successfully!")
+                `);
+                
+                document.getElementById('loading').classList.remove('show');
+                
+                // Initialize visualization
+                initializeVisualization();
+                
+                // Set up event listeners
+                setupEventListeners();
+                
+            } catch (error) {
+                console.error('Failed to initialize Pyodide:', error);
+                document.getElementById('pyodide-status').textContent = 'Error';
+                document.getElementById('loading').classList.remove('show');
+            }
+        }
+        
+        // Initialize φ-harmonic visualization
+        function initializeVisualization() {
+            const data = [];
+            const phi = 1.618033988749895;
+            
+            // Generate φ-spiral data
+            for (let i = 0; i <= 100; i++) {
+                const angle = i * 0.2;
+                const radius = Math.pow(phi, angle / 10);
+                const x = radius * Math.cos(angle);
+                const y = radius * Math.sin(angle);
+                
+                data.push({
+                    x: x,
+                    y: y,
+                    angle: angle,
+                    radius: radius
+                });
+            }
+            
+            const trace = {
+                x: data.map(d => d.x),
+                y: data.map(d => d.y),
+                mode: 'lines+markers',
+                type: 'scatter',
+                name: 'φ-Harmonic Spiral',
+                line: {
+                    color: 'rgba(255, 215, 0, 0.8)',
+                    width: 3
+                },
+                marker: {
+                    color: data.map((d, i) => i),
+                    colorscale: 'Viridis',
+                    size: 6
+                }
+            };
+            
+            const layout = {
+                title: {
+                    text: 'φ-Harmonic Unity Spiral',
+                    font: { color: '#ffd700', size: 16 }
+                },
+                xaxis: { 
+                    title: 'Real Axis',
+                    color: '#ffffff',
+                    gridcolor: 'rgba(255, 255, 255, 0.2)'
+                },
+                yaxis: { 
+                    title: 'Imaginary Axis',
+                    color: '#ffffff',
+                    gridcolor: 'rgba(255, 255, 255, 0.2)'
+                },
+                paper_bgcolor: 'rgba(0,0,0,0)',
+                plot_bgcolor: 'rgba(0,0,0,0.2)',
+                font: { color: '#ffffff' }
+            };
+            
+            Plotly.newPlot('phi-visualization', [trace], layout, {responsive: true});
+        }
+        
+        // Set up event listeners
+        function setupEventListeners() {
+            // Input change listeners
+            document.getElementById('addend1').addEventListener('input', updateVisualization);
+            document.getElementById('addend2').addEventListener('input', updateVisualization);
+            document.getElementById('factor1').addEventListener('input', updateVisualization);
+            document.getElementById('factor2').addEventListener('input', updateVisualization);
+            
+            // Control listeners
+            document.getElementById('phi-power').addEventListener('input', function() {
+                document.getElementById('phi-power-value').textContent = this.value;
+                updateVisualization();
+            });
+            
+            document.getElementById('harmonic-order').addEventListener('input', function() {
+                document.getElementById('harmonic-order-value').textContent = this.value;
+                updateVisualization();
+            });
+            
+            document.getElementById('phi-harmonic').addEventListener('change', updateVisualization);
+            document.getElementById('consciousness-mode').addEventListener('change', updateVisualization);
+        }
+        
+        // Perform unity calculations
+        async function performUnityCalculations() {
+            if (isCalculating || !pyodide) return;
+            
+            isCalculating = true;
+            document.getElementById('calculate').disabled = true;
+            document.getElementById('calculate').textContent = 'Calculating...';
+            
+            try {
+                const addend1 = parseFloat(document.getElementById('addend1').value) || 0;
+                const addend2 = parseFloat(document.getElementById('addend2').value) || 0;
+                const factor1 = parseFloat(document.getElementById('factor1').value) || 0;
+                const factor2 = parseFloat(document.getElementById('factor2').value) || 0;
+                
+                const phiHarmonic = document.getElementById('phi-harmonic').checked;
+                const consciousnessMode = document.getElementById('consciousness-mode').checked;
+                
+                // Update consciousness level
+                await pyodide.runPython(`
+unity_math.consciousness_level = ${consciousnessMode ? 1.618 : 1.0}
+                `);
+                
+                // Perform unity addition
+                await pyodide.runPython(`
+add_result = unity_math.unity_add(${addend1}, ${addend2}, phi_harmonic=${phiHarmonic})
+mult_result = unity_math.unity_multiply(${factor1}, ${factor2}, phi_harmonic=${phiHarmonic})
+
+# Get results
+add_value = abs(add_result.value)
+mult_value = abs(mult_result.value)
+phi_resonance = (add_result.phi_resonance + mult_result.phi_resonance) / 2
+consciousness_level = (add_result.consciousness_level + mult_result.consciousness_level) / 2
+unity_confidence = (add_result.proof_confidence + mult_result.proof_confidence) / 2
+quantum_coherence = (add_result.quantum_coherence + mult_result.quantum_coherence) / 2
+
+# Check for transcendence
+transcendence_detected = unity_math.detect_transcendence(add_result) or unity_math.detect_transcendence(mult_result)
+                `);
+                
+                // Get results from Python
+                const addValue = await pyodide.runPython('add_value');
+                const multValue = await pyodide.runPython('mult_value');
+                const phiResonance = await pyodide.runPython('phi_resonance');
+                const consciousnessLevel = await pyodide.runPython('consciousness_level');
+                const unityConfidence = await pyodide.runPython('unity_confidence');
+                const quantumCoherence = await pyodide.runPython('quantum_coherence');
+                const transcendenceDetected = await pyodide.runPython('transcendence_detected');
+                
+                // Update display
+                document.getElementById('add-result').textContent = addValue.toFixed(6);
+                document.getElementById('mult-result').textContent = multValue.toFixed(6);
+                document.getElementById('main-result').textContent = `Unity Operations Complete ✓`;
+                
+                document.getElementById('phi-resonance').textContent = phiResonance.toFixed(4);
+                document.getElementById('consciousness-level').textContent = consciousnessLevel.toFixed(4);
+                document.getElementById('unity-confidence').textContent = unityConfidence.toFixed(4);
+                document.getElementById('quantum-coherence').textContent = quantumCoherence.toFixed(4);
+                
+                // Update counters
+                operationCount += 2; // Addition and multiplication
+                if (Math.abs(addValue - 1.0) < 0.1) unityPreservedCount++;
+                if (Math.abs(multValue - 1.0) < 0.1) unityPreservedCount++;
+                
+                document.getElementById('operation-count').textContent = operationCount;
+                document.getElementById('total-operations').textContent = operationCount;
+                document.getElementById('unity-preserved').textContent = unityPreservedCount;
+                
+                // Handle transcendence
+                if (transcendenceDetected) {
+                    transcendenceEvents++;
+                    document.getElementById('transcendence-count').textContent = transcendenceEvents;
+                    document.getElementById('transcendence-alert').classList.add('show');
+                    setTimeout(() => {
+                        document.getElementById('transcendence-alert').classList.remove('show');
+                    }, 5000);
+                }
+                
+                // Update visualization
+                updateVisualization();
+                
+            } catch (error) {
+                console.error('Calculation error:', error);
+                document.getElementById('main-result').textContent = 'Calculation Error';
+            } finally {
+                isCalculating = false;
+                document.getElementById('calculate').disabled = false;
+                document.getElementById('calculate').textContent = 'Calculate Unity Operations';
+            }
+        }
+        
+        // Update visualization based on current values
+        function updateVisualization() {
+            if (!pyodide) return;
+            
+            const phiPower = parseFloat(document.getElementById('phi-power').value);
+            const harmonicOrder = parseInt(document.getElementById('harmonic-order').value);
+            
+            // Generate enhanced φ-spiral with current parameters
+            const data = [];
+            const phi = 1.618033988749895;
+            
+            for (let i = 0; i <= 100; i++) {
+                const angle = i * 0.2 * phiPower;
+                const radius = Math.pow(phi, angle / (10 * phiPower)) * harmonicOrder / 3;
+                const x = radius * Math.cos(angle);
+                const y = radius * Math.sin(angle);
+                
+                data.push({ x: x, y: y });
+            }
+            
+            const trace = {
+                x: data.map(d => d.x),
+                y: data.map(d => d.y),
+                mode: 'lines+markers',
+                type: 'scatter',
+                name: `φ-Harmonic Spiral (φ^${phiPower}, H${harmonicOrder})`,
+                line: {
+                    color: `rgba(255, ${Math.round(215 * phiPower / 3)}, 0, 0.8)`,
+                    width: 3
+                },
+                marker: {
+                    color: data.map((d, i) => i * phiPower),
+                    colorscale: 'Viridis',
+                    size: 4 + harmonicOrder / 2
+                }
+            };
+            
+            Plotly.react('phi-visualization', [trace], {
+                title: {
+                    text: `φ-Harmonic Unity Spiral (φ^${phiPower}, Harmonic ${harmonicOrder})`,
+                    font: { color: '#ffd700', size: 16 }
+                },
+                xaxis: { 
+                    title: 'Real Axis',
+                    color: '#ffffff',
+                    gridcolor: 'rgba(255, 255, 255, 0.2)'
+                },
+                yaxis: { 
+                    title: 'Imaginary Axis',
+                    color: '#ffffff',
+                    gridcolor: 'rgba(255, 255, 255, 0.2)'
+                },
+                paper_bgcolor: 'rgba(0,0,0,0)',
+                plot_bgcolor: 'rgba(0,0,0,0.2)',
+                font: { color: '#ffffff' }
+            });
+        }
+        
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', initializePyodide);
+    </script>
+</body>
+</html>
