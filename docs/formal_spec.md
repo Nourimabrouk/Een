@@ -100,6 +100,11 @@ assert u.add(1,1) == 1      # 1+1=1
 u.self_test()               # runs A1‑A5 checks
 ```
 
+🔗 **[Interactive Unity Examples](../website/examples/index.html)** - Live demonstrations of unity mathematics:
+- **[Unity Calculator](../website/examples/unity-calculator.html)** - Browser-based axiom validation
+- **[Category Theory Proofs](../website/examples/img/)** - Interactive mathematical diagrams
+- **[Quantum Unity Demo](../binder/quantum-unity-demo.ipynb)** - Advanced quantum proofs
+
 ---
 
 ### 9  Call to Action

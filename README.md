@@ -171,6 +171,8 @@ proof = unity.prove_idempotent()        # Generates mathematical proof
 field = unity.consciousness_field()      # Creates consciousness field
 ```
 
+🔗 **[Try Interactive Unity Calculator](website/examples/unity-calculator.html)** - Browser-based unity mathematics with real-time φ-harmonic visualization
+
 ### **Consciousness Field Dynamics**
 ```python
 from src.consciousness.consciousness_engine import ConsciousnessField
@@ -181,6 +183,8 @@ emergence = field.detect_transcendence() # Detect emergence events
 manifold = field.unity_manifold()       # Generate unity manifold
 ```
 
+🔗 **[Explore 11D Consciousness Fields](binder/consciousness-field.ipynb)** - Interactive Jupyter notebook showing consciousness particle evolution
+
 ### **Quantum Unity States**
 ```python
 from src.core.enhanced_unity_mathematics import QuantumUnity
@@ -190,6 +194,8 @@ superposition = quantum.create_unity_superposition()  # |1⟩ + |1⟩
 collapsed = quantum.collapse_to_unity(superposition)  # = |1⟩
 entangled = quantum.unity_entanglement()              # Quantum correlations
 ```
+
+🔗 **[Experience Quantum Unity](binder/quantum-unity-demo.ipynb)** - Comprehensive quantum mechanics proving 1+1=1 with 3D Bloch sphere visualization
 
 ---
 
@@ -202,6 +208,12 @@ The unity equation **1+1=1** is rigorously proven across multiple mathematical d
 - Functorial mappings to unity objects
 - Terminal object demonstrations  
 - Commutative diagram proofs
+
+🔗 **[Interactive Category Theory Diagrams](website/examples/img/)** - SVG visualizations of categorical unity proofs:
+- [Unity Category](website/examples/img/unity-category-diagram.svg) - Basic categorical structure
+- [Terminal Objects](website/examples/img/terminal-object-diagram.svg) - Uniqueness proofs  
+- [Topos Classifier](website/examples/img/topos-classifier-diagram.svg) - Subobject classification
+- [∞-Category Homotopy](website/examples/img/infinity-category-diagram.svg) - Higher categorical unity
 
 #### **⚛️ Quantum Mechanics**  
 - Superposition state collapse: `|1⟩ + |1⟩ = |1⟩`
@@ -233,6 +245,12 @@ The unity equation **1+1=1** is rigorously proven across multiple mathematical d
 - Real-time consciousness visualization
 - Sacred geometry demonstrations
 - Quantum state manipulations
+
+🌌 **[Example Galaxy](website/examples/index.html)** - Comprehensive collection of interactive demos:
+- Browser-runnable Python with Pyodide
+- Jupyter notebooks via Binder  
+- Interactive SVG mathematical diagrams
+- φ-harmonic golden ratio explorations
 
 ### **📊 Visualization Dashboards**
 ```bash
