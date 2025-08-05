@@ -808,22 +808,35 @@ const navigationScript = `
 
             function openAIChat() {
                 // Initialize AI chat if not already done
-                if (typeof eenChat === 'undefined') {
-                    // Load AI chat integration script
-                    const script = document.createElement('script');
-                    script.src = 'js/ai-chat-integration.js';
-                    script.onload = () => {
-                        // Initialize the chat system
-                        window.eenChat = new EenAIChat({
-                            apiEndpoint: '/api/agents/chat',
-                            enableMath: true,
-                            enableVisualization: true
-                        });
-                        eenChat.toggleChat();
-                    };
-                    document.head.appendChild(script);
+                if (typeof window.eenChat === 'undefined' || !window.eenChat) {
+                    // Check if EenAIChat class is available
+                    if (typeof EenAIChat !== 'undefined') {
+                        // Initialize the chat system directly
+                        window.eenChat = EenAIChat.initialize();
+                        setTimeout(() => {
+                            if (window.eenChat) {
+                                window.eenChat.open();
+                            }
+                        }, 100);
+                    } else {
+                        // Load AI chat integration script
+                        const script = document.createElement('script');
+                        script.src = 'js/ai-chat-integration.js';
+                        script.onload = () => {
+                            setTimeout(() => {
+                                if (window.eenChat) {
+                                    window.eenChat.open();
+                                }
+                            }, 100);
+                        };
+                        script.onerror = () => {
+                            console.error('Failed to load AI chat integration');
+                            alert('AI Chat is currently unavailable. Please try again later.');
+                        };
+                        document.head.appendChild(script);
+                    }
                 } else {
-                    eenChat.toggleChat();
+                    window.eenChat.open();
                 }
             }
         });

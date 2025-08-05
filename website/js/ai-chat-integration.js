@@ -6,7 +6,7 @@
 class EenAIChat {
     constructor(config = {}) {
         this.config = {
-            apiEndpoint: config.apiEndpoint || '/api/agents/chat',
+            apiEndpoint: config.apiEndpoint || null, // No default API endpoint
             apiKey: config.apiKey || '', // Should be set securely
             model: config.model || 'gpt-4',
             temperature: config.temperature || 0.7,
@@ -587,36 +587,39 @@ Ask me anything about unity mathematics, or try:
     }
 
     async getAIResponse(message) {
-        // For now, use mock responses. In production, this would call the actual API
-        return this.getMockResponse(message);
+        // Try actual API first, fallback to mock if it fails
+        try {
+            // Check if we have an API endpoint configured
+            if (this.config.apiEndpoint && this.config.apiEndpoint !== '/api/agents/chat') {
+                const response = await fetch(this.config.apiEndpoint, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${this.config.apiKey}`
+                    },
+                    body: JSON.stringify({
+                        model: this.config.model,
+                        messages: [
+                            { role: 'system', content: this.config.systemPrompt },
+                            ...this.chatHistory,
+                            { role: 'user', content: message }
+                        ],
+                        temperature: this.config.temperature,
+                        max_tokens: this.config.maxTokens
+                    })
+                });
 
-        // Uncomment for actual API integration:
-        /*
-        const response = await fetch(this.config.apiEndpoint, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${this.config.apiKey}`
-            },
-            body: JSON.stringify({
-                model: this.config.model,
-                messages: [
-                    { role: 'system', content: this.config.systemPrompt },
-                    ...this.chatHistory,
-                    { role: 'user', content: message }
-                ],
-                temperature: this.config.temperature,
-                max_tokens: this.config.maxTokens
-            })
-        });
-
-        if (!response.ok) {
-            throw new Error(`API request failed: ${response.status}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    return data.choices[0].message.content;
+                }
+            }
+        } catch (error) {
+            console.warn('API request failed, falling back to mock response:', error);
         }
-
-        const data = await response.json();
-        return data.choices[0].message.content;
-        */
+        
+        // Fallback to mock responses
+        return this.getMockResponse(message);
     }
 
     async getMockResponse(message) {

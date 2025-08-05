@@ -65,10 +65,11 @@
         
         .dashboard-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 2fr 1fr;
             grid-template-rows: 1fr 1fr;
             gap: 2rem;
-            height: 80vh;
+            min-height: 80vh;
+            height: auto;
         }
         
         .visualization-panel {
@@ -105,8 +106,11 @@
         }
         
         .panel-content {
+            min-height: 300px;
             height: calc(100% - 3rem);
             position: relative;
+            display: flex;
+            flex-direction: column;
         }
         
         .meta-analysis-sidebar {
@@ -116,6 +120,8 @@
             border-radius: 1rem;
             padding: 2rem;
             border: 2px solid rgba(153, 50, 204, 0.3);
+            max-height: 80vh;
+            overflow-y: auto;
         }
         
         .sociology-canvas {
@@ -249,20 +255,41 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
         
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
             .dashboard-grid {
                 grid-template-columns: 1fr;
-                grid-template-rows: auto;
-                height: auto;
+                grid-template-rows: auto auto auto auto;
+                gap: 1.5rem;
             }
             
             .meta-analysis-sidebar {
                 grid-column: 1;
-                grid-row: auto;
+                grid-row: 4;
+                max-height: none;
             }
             
             .visualization-panel {
-                height: 50vh;
+                min-height: 400px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .phi-unity-container {
+                padding: 1rem;
+            }
+            
+            .unity-header {
+                padding: 1rem;
+                margin-bottom: 1rem;
+            }
+            
+            .dashboard-grid {
+                gap: 1rem;
+            }
+            
+            .visualization-panel {
+                min-height: 300px;
+                padding: 1rem;
             }
         }
     </style>
@@ -392,6 +419,9 @@
     
     <!-- Core JavaScript Libraries -->
     <script src="js/unified-navigation.js"></script>
+    <script src="shared-navigation.js"></script>
+    <script src="js/ai-chat-integration.js"></script>
+    <script src="fix-visualizations.js"></script>
     <script src="js/unity-visualizations.js"></script>
     
     <!-- Al-Khwarizmi φ-Unity Core Engine -->
@@ -639,7 +669,7 @@
                     font: { size: 10 }
                 };
                 
-                Plotly.newPlot('attention-heatmap', [trace], layout, {responsive: true});
+                safelyCreatePlot('attention-heatmap', [trace], layout);
                 
                 if (loading) loading.style.display = 'none';
             }, 1000);
@@ -729,7 +759,7 @@
                 legend: { x: 0.7, y: 0.9 }
             };
             
-            Plotly.newPlot('training-curve', [confidenceBand, trace1, trace2], layout, {responsive: true});
+            safelyCreatePlot('training-curve', [confidenceBand, trace1, trace2], layout);
             
             // Update final unity score
             systemState.unityScore = unityScores[unityScores.length - 1];
@@ -847,13 +877,23 @@
             // Initialize φ-Unity System
             phiUnitySystem = new PhiUnitySystem();
             
-            // Auto-generate initial visualizations
+            // Auto-generate initial visualizations with error handling
             setTimeout(() => {
-                generateAttentionMap();
+                try {
+                    generateAttentionMap();
+                } catch (error) {
+                    console.error('Error generating attention map:', error);
+                    document.getElementById('attention-heatmap').innerHTML = '<div class="loading-indicator">Visualization temporarily unavailable</div>';
+                }
             }, 2000);
             
             setTimeout(() => {
-                startMetaTraining();
+                try {
+                    startMetaTraining();
+                } catch (error) {
+                    console.error('Error starting meta training:', error);
+                    document.getElementById('training-curve').innerHTML = '<div class="loading-indicator">Training visualization temporarily unavailable</div>';
+                }
             }, 4000);
             
             console.log('🚀 Al-Khwarizmi φ-Unity Interface Initialized');

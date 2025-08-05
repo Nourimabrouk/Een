@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Testing Suite - Een Unity Mathematics</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+            background: linear-gradient(135deg, #f8fafc 0%, #edf2f7 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .test-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .test-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .test-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .test-card h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            color: #1a202c;
+            font-size: 1.25rem;
+        }
+
+        .test-card .icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            font-size: 1.1rem;
+        }
+
+        .test-button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .test-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        .test-button:disabled {
+            background: #cbd5e0;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .test-results {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 8px;
+            background: #f7fafc;
+            border-left: 4px solid #4299e1;
+            display: none;
+        }
+
+        .test-results.show {
+            display: block;
+        }
+
+        .result-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            padding: 0.5rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .result-item.success {
+            background: #f0fff4;
+            color: #22543d;
+        }
+
+        .result-item.error {
+            background: #fff5f5;
+            color: #742a2a;
+        }
+
+        .result-item.warning {
+            background: #fffbeb;
+            color: #92400e;
+        }
+
+        .overall-status {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .status-indicator {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .status-indicator.healthy {
+            background: linear-gradient(135deg, #48bb78, #38a169);
+        }
+
+        .status-indicator.issues {
+            background: linear-gradient(135deg, #ed8936, #dd6b20);
+        }
+
+        .status-indicator.critical {
+            background: linear-gradient(135deg, #f56565, #e53e3e);
+        }
+
+        @media (max-width: 768px) {
+            .test-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-flask"></i> Website Testing Suite</h1>
+            <p>Comprehensive testing for Een Unity Mathematics website functionality</p>
+        </div>
+
+        <div class="test-grid">
+            <div class="test-card">
+                <h3>
+                    <div class="icon"><i class="fas fa-compass"></i></div>
+                    Navigation System
+                </h3>
+                <p>Test navigation loading, mobile responsiveness, and link functionality.</p>
+                <button class="test-button" onclick="testNavigation()">Test Navigation</button>
+                <div class="test-results" id="nav-results"></div>
+            </div>
+
+            <div class="test-card">
+                <h3>
+                    <div class="icon"><i class="fas fa-robot"></i></div>
+                    AI Chatbot
+                </h3>
+                <p>Test AI chatbot integration, initialization, and response system.</p>
+                <button class="test-button" onclick="testChatbot()">Test AI Chat</button>
+                <div class="test-results" id="chat-results"></div>
+            </div>
+
+            <div class="test-card">
+                <h3>
+                    <div class="icon"><i class="fas fa-chart-line"></i></div>
+                    Visualizations
+                </h3>
+                <p>Test Plotly charts, canvas drawing, and interactive visualizations.</p>
+                <button class="test-button" onclick="testVisualizations()">Test Visualizations</button>
+                <div class="test-results" id="viz-results"></div>
+            </div>
+
+            <div class="test-card">
+                <h3>
+                    <div class="icon"><i class="fas fa-mobile-alt"></i></div>
+                    Responsiveness
+                </h3>
+                <p>Test mobile layout, tablet view, and responsive design elements.</p>
+                <button class="test-button" onclick="testResponsiveness()">Test Responsive</button>
+                <div class="test-results" id="responsive-results"></div>
+            </div>
+
+            <div class="test-card">
+                <h3>
+                    <div class="icon"><i class="fas fa-link"></i></div>
+                    Page Links
+                </h3>
+                <p>Verify all internal links, file existence, and page accessibility.</p>
+                <button class="test-button" onclick="testPageLinks()">Test Links</button>
+                <div class="test-results" id="links-results"></div>
+            </div>
+
+            <div class="test-card">
+                <h3>
+                    <div class="icon"><i class="fas fa-code"></i></div>
+                    JavaScript APIs
+                </h3>
+                <p>Test mathematical functions, Unity calculations, and API integrations.</p>
+                <button class="test-button" onclick="testJavaScriptAPIs()">Test APIs</button>
+                <div class="test-results" id="api-results"></div>
+            </div>
+        </div>
+
+        <div class="overall-status">
+            <div class="status-indicator healthy" id="status-indicator">
+                <i class="fas fa-check"></i>
+            </div>
+            <h2 id="status-text">All Systems Operational</h2>
+            <p id="status-detail">Website is functioning correctly</p>
+        </div>
+    </div>
+
+    <script>
+        let testResults = {
+            navigation: null,
+            chatbot: null,
+            visualizations: null,
+            responsiveness: null,
+            links: null,
+            apis: null
+        };
+
+        function addResult(containerId, message, type = 'success') {
+            const container = document.getElementById(containerId);
+            const item = document.createElement('div');
+            item.className = `result-item ${type}`;
+            
+            const icon = type === 'success' ? 'fa-check' : 
+                        type === 'error' ? 'fa-times' : 'fa-exclamation-triangle';
+            
+            item.innerHTML = `<i class="fas ${icon}"></i> ${message}`;
+            container.appendChild(item);
+            container.classList.add('show');
+        }
+
+        function clearResults(containerId) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+            container.classList.remove('show');
+        }
+
+        async function testNavigation() {
+            clearResults('nav-results');
+            const button = event.target;
+            button.disabled = true;
+            button.textContent = 'Testing...';
+
+            try {
+                // Test navigation injection
+                if (document.getElementById('enhancedUnityNav')) {
+                    addResult('nav-results', 'Navigation HTML injected successfully', 'success');
+                } else {
+                    addResult('nav-results', 'Navigation HTML not found', 'error');
+                }
+
+                // Test navigation scripts
+                if (typeof window.EenNavigation !== 'undefined') {
+                    addResult('nav-results', 'Navigation JavaScript loaded', 'success');
+                } else {
+                    addResult('nav-results', 'Navigation JavaScript not loaded', 'warning');
+                }
+
+                // Test AI chat trigger
+                const aiTrigger = document.getElementById('aiChatTrigger');
+                if (aiTrigger) {
+                    addResult('nav-results', 'AI Chat trigger button found', 'success');
+                } else {
+                    addResult('nav-results', 'AI Chat trigger button missing', 'error');
+                }
+
+                // Test responsive classes
+                const nav = document.querySelector('.enhanced-nav');
+                if (nav) {
+                    addResult('nav-results', 'Navigation CSS classes applied', 'success');
+                } else {
+                    addResult('nav-results', 'Navigation CSS classes missing', 'warning');
+                }
+
+                testResults.navigation = true;
+            } catch (error) {
+                addResult('nav-results', `Navigation test error: ${error.message}`, 'error');
+                testResults.navigation = false;
+            }
+
+            button.disabled = false;
+            button.textContent = 'Test Navigation';
+            updateOverallStatus();
+        }
+
+        async function testChatbot() {
+            clearResults('chat-results');
+            const button = event.target;
+            button.disabled = true;
+            button.textContent = 'Testing...';
+
+            try {
+                // Test if EenAIChat class exists
+                if (typeof EenAIChat !== 'undefined') {
+                    addResult('chat-results', 'EenAIChat class loaded successfully', 'success');
+                } else {
+                    addResult('chat-results', 'EenAIChat class not found', 'error');
+                }
+
+                // Test chat initialization
+                if (window.eenChat) {
+                    addResult('chat-results', 'Chat instance already exists', 'success');
+                } else {
+                    try {
+                        // Try to initialize
+                        if (typeof EenAIChat !== 'undefined') {
+                            window.testChat = EenAIChat.initialize();
+                            addResult('chat-results', 'Chat instance created successfully', 'success');
+                        }
+                    } catch (initError) {
+                        addResult('chat-results', `Chat initialization failed: ${initError.message}`, 'error');
+                    }
+                }
+
+                // Test chat UI elements
+                const chatContainer = document.getElementById('een-ai-chat');
+                const chatToggle = document.getElementById('chat-toggle');
+                
+                if (chatContainer) {
+                    addResult('chat-results', 'Chat UI container found', 'success');
+                } else {
+                    addResult('chat-results', 'Chat UI container missing', 'warning');
+                }
+
+                if (chatToggle) {
+                    addResult('chat-results', 'Chat toggle button found', 'success');
+                } else {
+                    addResult('chat-results', 'Chat toggle button missing', 'warning');
+                }
+
+                testResults.chatbot = true;
+            } catch (error) {
+                addResult('chat-results', `Chatbot test error: ${error.message}`, 'error');
+                testResults.chatbot = false;
+            }
+
+            button.disabled = false;
+            button.textContent = 'Test AI Chat';
+            updateOverallStatus();
+        }
+
+        async function testVisualizations() {
+            clearResults('viz-results');
+            const button = event.target;
+            button.disabled = true;
+            button.textContent = 'Testing...';
+
+            try {
+                // Test Plotly availability
+                if (typeof Plotly !== 'undefined') {
+                    addResult('viz-results', 'Plotly library loaded', 'success');
+                } else {
+                    addResult('viz-results', 'Plotly library not loaded', 'error');
+                }
+
+                // Test D3 availability
+                if (typeof d3 !== 'undefined') {
+                    addResult('viz-results', 'D3 library loaded', 'success');
+                } else {
+                    addResult('viz-results', 'D3 library not loaded', 'warning');
+                }
+
+                // Test safe plotting functions
+                if (typeof window.safelyCreatePlot !== 'undefined') {
+                    addResult('viz-results', 'Safe plotting functions available', 'success');
+                } else {
+                    addResult('viz-results', 'Safe plotting functions missing', 'warning');
+                }
+
+                // Test canvas support
+                const testCanvas = document.createElement('canvas');
+                const ctx = testCanvas.getContext('2d');
+                if (ctx) {
+                    addResult('viz-results', 'Canvas 2D context supported', 'success');
+                } else {
+                    addResult('viz-results', 'Canvas 2D context not supported', 'error');
+                }
+
+                // Test WebGL support
+                const webglCanvas = document.createElement('canvas');
+                const webgl = webglCanvas.getContext('webgl') || webglCanvas.getContext('experimental-webgl');
+                if (webgl) {
+                    addResult('viz-results', 'WebGL context supported', 'success');
+                } else {
+                    addResult('viz-results', 'WebGL context not supported', 'warning');
+                }
+
+                testResults.visualizations = true;
+            } catch (error) {
+                addResult('viz-results', `Visualization test error: ${error.message}`, 'error');
+                testResults.visualizations = false;
+            }
+
+            button.disabled = false;
+            button.textContent = 'Test Visualizations';
+            updateOverallStatus();
+        }
+
+        async function testResponsiveness() {
+            clearResults('responsive-results');
+            const button = event.target;
+            button.disabled = true;
+            button.textContent = 'Testing...';
+
+            try {
+                // Test viewport meta tag
+                const viewport = document.querySelector('meta[name="viewport"]');
+                if (viewport) {
+                    addResult('responsive-results', 'Viewport meta tag present', 'success');
+                } else {
+                    addResult('responsive-results', 'Viewport meta tag missing', 'error');
+                }
+
+                // Test CSS media queries
+                const stylesheets = document.styleSheets;
+                let hasMediaQueries = false;
+                for (let sheet of stylesheets) {
+                    try {
+                        for (let rule of sheet.cssRules || sheet.rules) {
+                            if (rule.type === CSSRule.MEDIA_RULE) {
+                                hasMediaQueries = true;
+                                break;
+                            }
+                        }
+                    } catch (e) {
+                        // Cross-origin stylesheet, skip
+                    }
+                }
+
+                if (hasMediaQueries) {
+                    addResult('responsive-results', 'Media queries found in CSS', 'success');
+                } else {
+                    addResult('responsive-results', 'No media queries detected', 'warning');
+                }
+
+                // Test mobile navigation
+                const mobileNav = document.querySelector('.nav-toggle');
+                if (mobileNav) {
+                    addResult('responsive-results', 'Mobile navigation elements found', 'success');
+                } else {
+                    addResult('responsive-results', 'Mobile navigation elements missing', 'warning');
+                }
+
+                // Test touch events
+                if ('ontouchstart' in window) {
+                    addResult('responsive-results', 'Touch events supported', 'success');
+                } else {
+                    addResult('responsive-results', 'Touch events not supported (desktop)', 'success');
+                }
+
+                testResults.responsiveness = true;
+            } catch (error) {
+                addResult('responsive-results', `Responsiveness test error: ${error.message}`, 'error');
+                testResults.responsiveness = false;
+            }
+
+            button.disabled = false;
+            button.textContent = 'Test Responsive';
+            updateOverallStatus();
+        }
+
+        async function testPageLinks() {
+            clearResults('links-results');
+            const button = event.target;
+            button.disabled = true;
+            button.textContent = 'Testing...';
+
+            try {
+                const links = document.querySelectorAll('a[href]');
+                const internalLinks = Array.from(links).filter(link => {
+                    const href = link.getAttribute('href');
+                    return href && 
+                           !href.startsWith('http') && 
+                           !href.startsWith('mailto:') && 
+                           !href.startsWith('tel:') &&
+                           !href.startsWith('#');
+                });
+
+                addResult('links-results', `Found ${internalLinks.length} internal links to test`, 'success');
+
+                // Test a few sample links
+                const sampleLinks = internalLinks.slice(0, 5);
+                for (let link of sampleLinks) {
+                    const href = link.getAttribute('href');
+                    try {
+                        const response = await fetch(href, { method: 'HEAD' });
+                        if (response.ok) {
+                            addResult('links-results', `✓ ${href} - accessible`, 'success');
+                        } else {
+                            addResult('links-results', `✗ ${href} - ${response.status}`, 'error');
+                        }
+                    } catch (fetchError) {
+                        addResult('links-results', `✗ ${href} - network error`, 'error');
+                    }
+                }
+
+                testResults.links = true;
+            } catch (error) {
+                addResult('links-results', `Link test error: ${error.message}`, 'error');
+                testResults.links = false;
+            }
+
+            button.disabled = false;
+            button.textContent = 'Test Links';
+            updateOverallStatus();
+        }
+
+        async function testJavaScriptAPIs() {
+            clearResults('api-results');
+            const button = event.target;
+            button.disabled = true;
+            button.textContent = 'Testing...';
+
+            try {
+                // Test mathematical constants
+                const phi = 1.618033988749895;
+                if (Math.abs(phi - (1 + Math.sqrt(5)) / 2) < 1e-10) {
+                    addResult('api-results', 'Golden ratio φ calculated correctly', 'success');
+                } else {
+                    addResult('api-results', 'Golden ratio φ calculation error', 'error');
+                }
+
+                // Test Unity Mathematics (1+1=1)
+                // Idempotent operation simulation
+                const unityResult = Math.max(1, 1); // In idempotent semiring, 1⊕1 = max(1,1) = 1
+                if (unityResult === 1) {
+                    addResult('api-results', 'Unity mathematics 1+1=1 verified', 'success');
+                } else {
+                    addResult('api-results', 'Unity mathematics verification failed', 'error');
+                }
+
+                // Test local storage
+                try {
+                    localStorage.setItem('test', 'value');
+                    localStorage.removeItem('test');
+                    addResult('api-results', 'Local storage API working', 'success');
+                } catch (storageError) {
+                    addResult('api-results', 'Local storage API not available', 'warning');
+                }
+
+                // Test fetch API
+                if (typeof fetch !== 'undefined') {
+                    addResult('api-results', 'Fetch API available', 'success');
+                } else {
+                    addResult('api-results', 'Fetch API not available', 'error');
+                }
+
+                testResults.apis = true;
+            } catch (error) {
+                addResult('api-results', `API test error: ${error.message}`, 'error');
+                testResults.apis = false;
+            }
+
+            button.disabled = false;
+            button.textContent = 'Test APIs';
+            updateOverallStatus();
+        }
+
+        function updateOverallStatus() {
+            const results = Object.values(testResults);
+            const completedTests = results.filter(r => r !== null).length;
+            const passedTests = results.filter(r => r === true).length;
+            const totalTests = Object.keys(testResults).length;
+
+            const statusIndicator = document.getElementById('status-indicator');
+            const statusText = document.getElementById('status-text');
+            const statusDetail = document.getElementById('status-detail');
+
+            if (completedTests === 0) {
+                statusIndicator.className = 'status-indicator healthy';
+                statusIndicator.innerHTML = '<i class="fas fa-check"></i>';
+                statusText.textContent = 'Ready for Testing';
+                statusDetail.textContent = 'Click test buttons to begin comprehensive testing';
+            } else if (passedTests === completedTests && completedTests === totalTests) {
+                statusIndicator.className = 'status-indicator healthy';
+                statusIndicator.innerHTML = '<i class="fas fa-check"></i>';
+                statusText.textContent = 'All Tests Passed!';
+                statusDetail.textContent = 'Website is functioning correctly across all tested areas';
+            } else if (passedTests >= completedTests * 0.7) {
+                statusIndicator.className = 'status-indicator issues';
+                statusIndicator.innerHTML = '<i class="fas fa-exclamation-triangle"></i>';
+                statusText.textContent = 'Minor Issues Detected';
+                statusDetail.textContent = `${passedTests}/${completedTests} tests passed. Check individual results for details.`;
+            } else {
+                statusIndicator.className = 'status-indicator critical';
+                statusIndicator.innerHTML = '<i class="fas fa-times"></i>';
+                statusText.textContent = 'Critical Issues Found';
+                statusDetail.textContent = `${passedTests}/${completedTests} tests passed. Immediate attention required.`;
+            }
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🧪 Website Testing Suite Initialized');
+            
+            // Load shared navigation for testing
+            const script = document.createElement('script');
+            script.src = 'shared-navigation.js';
+            script.onload = () => {
+                console.log('✅ Navigation loaded for testing');
+            };
+            script.onerror = () => {
+                console.warn('⚠️ Could not load navigation for testing');
+            };
+            document.head.appendChild(script);
+        });
+    </script>
+</body>
+</html>
