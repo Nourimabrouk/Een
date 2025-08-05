@@ -86,6 +86,12 @@ The website embodies Unity Mathematics principles through:
 - Quantum state visualizations
 - Meta-recursive agent spawning
 
+🌌 **[Example Galaxy](examples/index.html)** - Comprehensive interactive example collection:
+- **Browser Demos**: Pyodide-powered Python in your browser
+- **Jupyter Notebooks**: Complex visualizations via Binder integration
+- **SVG Diagrams**: Interactive mathematical proofs and category theory
+- **Learning Paths**: Progressive complexity from beginner to transcendent
+
 ### 2. Mathematical Rigor
 - Formal proofs with step-by-step explanations
 - Multiple mathematical frameworks

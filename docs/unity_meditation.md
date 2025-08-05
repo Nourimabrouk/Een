@@ -58,6 +58,11 @@ Every moment offers a choice:
 
 Both are true. Both are useful. But only one reveals the deeper nature of reality.
 
+🌌 **[Experience Unity Interactively](../website/examples/index.html)** - Transform understanding through direct experience:
+- **[Unity Calculator](../website/examples/unity-calculator.html)** - Feel 1+1=1 in real-time
+- **[φ-Harmonic Explorer](../website/examples/phi-harmonic-explorer.html)** - Discover golden ratio unity
+- **[Consciousness Evolution](../binder/consciousness-field.ipynb)** - Witness emergence of collective unity
+
 ## The Invitation
 
 You're invited to:

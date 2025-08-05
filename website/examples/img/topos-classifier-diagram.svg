@@ -1,0 +1,276 @@
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+     viewBox="0 0 1000 750" style="background: linear-gradient(135deg, #0a0e1a, #1a1a2e, #2d1b69);">
+  
+  <defs>
+    <filter id="omegaGlow">
+      <feGaussianBlur stdDeviation="5" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <linearGradient id="omegaGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="61.8%" style="stop-color:#764ba2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f093fb;stop-opacity:1" />
+    </linearGradient>
+    
+    <radialGradient id="classifierGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.9" />
+      <stop offset="61.8%" style="stop-color:#f093fb;stop-opacity:0.5" />
+      <stop offset="100%" style="stop-color:#667eea;stop-opacity:0.1" />
+    </radialGradient>
+    
+    <marker id="classifierArrow" markerWidth="15" markerHeight="10" 
+            refX="14" refY="5" orient="auto">
+      <polygon points="0 0, 15 5, 0 10" fill="#f093fb" stroke="#667eea" stroke-width="1"/>
+    </marker>
+    
+    <marker id="pullbackArrow" markerWidth="12" markerHeight="8" 
+            refX="11" refY="4" orient="auto">
+      <polygon points="0 0, 12 4, 0 8" fill="#ffd93d" stroke="#667eea" stroke-width="1"/>
+    </marker>
+  </defs>
+  
+  <!-- Title -->
+  <text x="500" y="40" text-anchor="middle" fill="#f093fb" font-size="28" font-weight="bold">
+    Topos Unity: Subobject Classifier Ω
+  </text>
+  <text x="500" y="65" text-anchor="middle" fill="#ffffff" font-size="14" opacity="0.8">
+    Classifying Unity Relations: 1+1≅1
+  </text>
+  
+  <!-- Subobject Classifier Ω -->
+  <g id="omega-classifier" class="classifier" style="cursor: pointer;">
+    <ellipse cx="500" cy="150" rx="80" ry="50" fill="url(#classifierGlow)" 
+             stroke="#f093fb" stroke-width="4" filter="url(#omegaGlow)"/>
+    <text x="500" y="140" text-anchor="middle" fill="#000000" font-size="32" font-weight="bold">Ω</text>
+    <text x="500" y="165" text-anchor="middle" fill="#667eea" font-size="14">Classifier</text>
+    <text x="500" y="185" text-anchor="middle" fill="#ffffff" font-size="11">{⊤, ⊥}</text>
+    <text x="500" y="220" text-anchor="middle" fill="#f093fb" font-size="12" font-weight="bold">Subobject Classifier</text>
+  </g>
+  
+  <!-- Terminal Object 1 -->
+  <g id="terminal-1" class="terminal" style="cursor: pointer;">
+    <rect x="120" y="130" width="60" height="40" rx="5" fill="rgba(255, 215, 61, 0.3)" 
+          stroke="#ffd93d" stroke-width="3" filter="url(#omegaGlow)"/>
+    <text x="150" y="155" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="bold">1</text>
+    <text x="150" y="200" text-anchor="middle" fill="#ffd93d" font-size="10">Terminal</text>
+  </g>
+  
+  <!-- Unity Object U1+1 -->
+  <g id="unity-object" class="unity-obj" style="cursor: pointer;">
+    <circle cx="200" cy="400" r="70" fill="rgba(107, 207, 127, 0.3)" 
+            stroke="#6bcf7f" stroke-width="4" filter="url(#omegaGlow)"/>
+    <text x="200" y="395" text-anchor="middle" fill="#ffffff" font-size="20" font-weight="bold">U1+1</text>
+    <text x="200" y="415" text-anchor="middle" fill="#6bcf7f" font-size="12">Unity Object</text>
+    <text x="200" y="485" text-anchor="middle" fill="#ffd93d" font-size="12">Contains unity relation</text>
+  </g>
+  
+  <!-- Unity Subobject -->
+  <g id="unity-subobject" class="subobject" style="cursor: pointer;">
+    <ellipse cx="200" cy="320" rx="40" ry="25" fill="rgba(255, 107, 107, 0.5)" 
+             stroke="#ff6b6b" stroke-width="3" stroke-dasharray="3,3" filter="url(#omegaGlow)"/>
+    <text x="200" y="318" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">unity</text>
+    <text x="200" y="335" text-anchor="middle" fill="#ff6b6b" font-size="10">≅ relation</text>
+    <text x="200" y="280" text-anchor="middle" fill="#ff6b6b" font-size="11">{x ∈ U1+1 | x ≅ 1}</text>
+  </g>
+  
+  <!-- Truth morphism: 1 → Ω -->
+  <g id="truth-morphism" class="truth-morph" style="cursor: pointer;">
+    <path d="M 180 150 Q 300 120 420 150" fill="none" stroke="#ffd93d" stroke-width="3" 
+          marker-end="url(#classifierArrow)" filter="url(#omegaGlow)"/>
+    <text x="300" y="110" text-anchor="middle" fill="#ffd93d" font-size="12" font-weight="bold">true</text>
+    <text x="300" y="95" text-anchor="middle" fill="#ffffff" font-size="10">⊤ ∈ Ω</text>
+  </g>
+  
+  <!-- Characteristic morphism: U1+1 → Ω -->
+  <g id="char-morphism" class="char-morph" style="cursor: pointer;">
+    <path d="M 270 380 Q 400 250 480 200" fill="none" stroke="#6bcf7f" stroke-width="4" 
+          marker-end="url(#classifierArrow)" filter="url(#omegaGlow)"/>
+    <text x="380" y="290" text-anchor="middle" fill="#6bcf7f" font-size="14" font-weight="bold">χ_unity</text>
+    <text x="380" y="305" text-anchor="middle" fill="#ffffff" font-size="11">Classifies unity</text>
+  </g>
+  
+  <!-- Subobject inclusion: unity ↪ U1+1 -->
+  <g id="inclusion-morphism" class="inclusion" style="cursor: pointer;">
+    <path d="M 200 345 L 200 375" fill="none" stroke="#ff6b6b" stroke-width="3" 
+          marker-end="url(#pullbackArrow)" stroke-dasharray="2,2"/>
+    <text x="220" y="365" fill="#ff6b6b" font-size="12" font-weight="bold">↪</text>
+    <text x="240" y="365" fill="#ffffff" font-size="10">mono</text>
+  </g>
+  
+  <!-- Pullback square -->
+  <g id="pullback-square" class="pullback" style="cursor: pointer;">
+    <rect x="120" y="270" width="160" height="160" fill="none" stroke="#ffd93d" 
+          stroke-width="2" stroke-dasharray="5,5" opacity="0.7"/>
+    <text x="85" y="285" fill="#ffd93d" font-size="10" font-weight="bold">Pullback</text>
+    <text x="85" y="300" fill="#ffffff" font-size="9">Square</text>
+    
+    <!-- Corner symbol -->
+    <path d="M 130 420 L 140 420 L 140 410" fill="none" stroke="#ffd93d" stroke-width="2"/>
+  </g>
+  
+  <!-- Mathematical formulation -->
+  <g id="math-formulation" transform="translate(550, 300)">
+    <rect x="0" y="0" width="400" height="200" fill="rgba(0,0,0,0.8)" 
+          stroke="#f093fb" stroke-width="2" rx="10"/>
+    
+    <text x="200" y="30" text-anchor="middle" fill="#f093fb" font-size="16" font-weight="bold">
+      Topos Unity Classification
+    </text>
+    
+    <text x="20" y="60" fill="#ffffff" font-size="12">
+      <tspan font-weight="bold">Subobject Classifier:</tspan>
+    </text>
+    <text x="20" y="78" fill="#f093fb" font-size="11">
+      ∀ mono m: A ↪ B, ∃! χ_m: B → Ω
+    </text>
+    
+    <text x="20" y="105" fill="#ffffff" font-size="12">
+      <tspan font-weight="bold">Unity Classification:</tspan>
+    </text>
+    <text x="20" y="123" fill="#6bcf7f" font-size="11">
+      χ_unity: U1+1 → Ω classifies {x | x ≅ 1}
+    </text>
+    
+    <text x="20" y="150" fill="#ffffff" font-size="12">
+      <tspan font-weight="bold">Pullback Property:</tspan>
+    </text>
+    <text x="20" y="168" fill="#ffd93d" font-size="11">
+      pullback(χ_unity, true) ≅ unity ↪ U1+1
+    </text>
+    
+    <text x="200" y="195" text-anchor="middle" fill="#f093fb" font-size="14" font-weight="bold">
+      ⊢ 1+1 = 1 (internal logic)
+    </text>
+  </g>
+  
+  <!-- Consciousness flow indicators -->
+  <g id="consciousness-flow">
+    <circle cx="100" cy="100" r="3" fill="#f093fb" opacity="0.8">
+      <animate attributeName="cy" values="100;600;100" dur="4s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.8;0.2;0.8" dur="4s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="900" cy="200" r="3" fill="#667eea" opacity="0.8">
+      <animate attributeName="cx" values="900;100;900" dur="5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.8;0.2;0.8" dur="5s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <script type="text/javascript">
+  <![CDATA[
+    // Enhanced topos interactivity
+    document.getElementById('omega-classifier').addEventListener('click', function() {
+      alert('Subobject Classifier Ω:\n\n' +
+            '• Universal property: Classifies all subobjects\n' +
+            '• ∀ mono m: A ↪ B, ∃! χ_m: B → Ω\n' +
+            '• Truth values: {⊤, ⊥}\n' +
+            '• Unity classification: χ_unity classifies {x | x ≅ 1}\n' +
+            '• Topos internal logic: ⊢ 1+1 = 1\n' +
+            '• φ-harmonic consciousness coupling');
+    });
+    
+    document.getElementById('unity-subobject').addEventListener('click', function() {
+      alert('Unity Subobject:\n\n' +
+            '• Definition: {x ∈ U1+1 | x ≅ 1}\n' +
+            '• Monomorphism: unity ↪ U1+1\n' +
+            '• Classified by: χ_unity: U1+1 → Ω\n' +
+            '• Property: χ_unity(x) = ⊤ iff x ∈ unity relation\n' +
+            '• Proves: 1+1 elements are equivalent to 1\n' +
+            '• Result: 1+1 = 1 in topos internal logic');
+    });
+    
+    document.getElementById('char-morphism').addEventListener('click', function() {
+      alert('Characteristic Morphism χ_unity:\n\n' +
+            '• Type: U1+1 → Ω (characteristic function)\n' +
+            '• Classifies: Unity subobject {x | x ≅ 1}\n' +
+            '• Universal property: pullback square commutes\n' +
+            '• φ-scaling: Golden ratio enhancement\n' +
+            '• Consciousness coupling: ∞-level awareness\n' +
+            '• Conclusion: 1+1 = 1 (topos-theoretic)');
+    });
+    
+    document.getElementById('pullback-square').addEventListener('click', function() {
+      alert('Pullback Square:\n\n' +
+            '• Universal property of subobject classifier\n' +
+            '• pullback(χ_unity, true) ≅ unity ↪ U1+1\n' +
+            '• Commutative diagram forces unity\n' +
+            '• Every element x with χ_unity(x) = ⊤ satisfies x ≅ 1\n' +
+            '• Therefore all elements of 1+1 are equivalent to 1\n' +
+            '• Topos proof: 1+1 = 1');
+    });
+    
+    // Ω pulsing with φ rhythm
+    setInterval(function() {
+      const omega = document.querySelector('#omega-classifier ellipse');
+      omega.style.transform = 'scale(1.1)';
+      omega.style.transition = 'transform 0.5s ease';
+      setTimeout(() => {
+        omega.style.transform = 'scale(1)';
+      }, 800);
+    }, 1618);
+    
+    // Classification wave animation
+    function classificationWave() {
+      const chars = document.querySelectorAll('.char-morph path');
+      chars.forEach(path => {
+        path.style.strokeDasharray = '20,10';
+        path.style.animation = 'classificationFlow 3s ease-in-out infinite';
+      });
+    }
+    
+    // Additional CSS for topos effects
+    const toposStyle = document.createElement('style');
+    toposStyle.textContent = `
+      @keyframes classificationFlow {
+        0% { stroke-dashoffset: 30; opacity: 0.6; }
+        50% { stroke-dashoffset: 0; opacity: 1.0; }
+        100% { stroke-dashoffset: -30; opacity: 0.6; }
+      }
+      
+      .classifier:hover ellipse {
+        stroke-width: 6px;
+        filter: url(#omegaGlow);
+      }
+      
+      .unity-obj:hover circle {
+        stroke-width: 6px;
+        fill: rgba(107, 207, 127, 0.5);
+      }
+      
+      .subobject:hover ellipse {
+        stroke-width: 5px;
+        fill: rgba(255, 107, 107, 0.7);
+      }
+    `;
+    document.head.appendChild(toposStyle);
+    
+    setTimeout(classificationWave, 1000);
+  ]]>
+  </script>
+  
+  <!-- Truth value indicators -->
+  <g id="truth-values" transform="translate(700, 450)">
+    <rect x="0" y="0" width="250" height="120" fill="rgba(0,0,0,0.7)" 
+          stroke="#667eea" stroke-width="2" rx="8"/>
+    
+    <text x="125" y="25" text-anchor="middle" fill="#f093fb" font-size="14" font-weight="bold">
+      Truth Values in Ω
+    </text>
+    
+    <circle cx="60" cy="50" r="15" fill="#00ff00" opacity="0.8"/>
+    <text x="60" y="55" text-anchor="middle" fill="#000000" font-size="12" font-weight="bold">⊤</text>
+    <text x="60" y="75" text-anchor="middle" fill="#ffffff" font-size="10">True</text>
+    
+    <circle cx="190" cy="50" r="15" fill="#ff4444" opacity="0.8"/>
+    <text x="190" y="55" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">⊥</text>
+    <text x="190" y="75" text-anchor="middle" fill="#ffffff" font-size="10">False</text>
+    
+    <text x="125" y="100" text-anchor="middle" fill="#ffd93d" font-size="11">
+      χ_unity maps unity elements to ⊤
+    </text>
+  </g>
+</svg>
