@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Philosophy Loading</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+
+<body>
+    <h1>Test Philosophy Loading</h1>
+    <div id="content"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async function () {
+            const possiblePaths = [
+                'docs/unity_equation_philosophy.md',
+                '../docs/unity_equation_philosophy.md',
+                './docs/unity_equation_philosophy.md'
+            ];
+
+            for (const path of possiblePaths) {
+                try {
+                    const response = await fetch(path);
+                    if (response.ok) {
+                        const markdownContent = await response.text();
+                        const htmlContent = marked.parse(markdownContent);
+                        document.getElementById('content').innerHTML = htmlContent;
+                        console.log(`Successfully loaded from: ${path}`);
+                        break;
+                    }
+                } catch (e) {
+                    console.log(`Failed to load from: ${path}`);
+                    continue;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -327,6 +327,48 @@
             }
         }
 
+        /* Contemporary Philosophy Sections */
+        .contemporary-section {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-left: 5px solid var(--accent);
+        }
+
+        .contemporary-section h2 {
+            color: var(--primary);
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .philosophy-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid var(--secondary);
+        }
+
+        .philosophy-card h4 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        /* Meta-philosophy styling */
+        .meta-philosophy {
+            background: linear-gradient(135deg, #1B365D 0%, #0F7B8A 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+
+        .meta-philosophy h2 {
+            color: white;
+            border-bottom: 2px solid var(--accent-bright);
+        }
+
         /* Responsive design */
         @media (max-width: 768px) {
             body {
@@ -408,6 +450,91 @@
             <span>Loading Unity Equation Philosophy...</span>
         </div>
         <div id="philosophyContent" style="display: none;"></div>
+
+        <!-- Contemporary Philosophy Integration -->
+        <section class="contemporary-section">
+            <h2><i class="fas fa-brain"></i> Contemporary Philosophy of Mathematics & Meta-Philosophy</h2>
+
+            <div class="philosophy-card">
+                <h4><i class="fas fa-cogs"></i> Structural Realism & Mathematical Unity</h4>
+                <p>Contemporary structural realism, as developed by James Ladyman and others, provides a sophisticated
+                    framework for understanding how mathematical structures can exhibit unity despite apparent
+                    multiplicity. The Unity Equation 1+1=1 emerges naturally from structuralist accounts where
+                    mathematical objects are defined by their structural relationships rather than intrinsic properties.
+                </p>
+                <p><strong>Key Insight:</strong> If mathematical objects are purely structural, then identity conditions
+                    depend on structural isomorphism rather than set-theoretic identity. Two structurally identical
+                    objects are, in the relevant sense, one object.</p>
+            </div>
+
+            <div class="philosophy-card">
+                <h4><i class="fas fa-project-diagram"></i> Category Theory & Unity Morphisms</h4>
+                <p>Modern category theory, particularly the work of Emily Riehl and others on higher category theory,
+                    reveals how unity can be understood through universal properties and adjunctions. The Unity Equation
+                    manifests through terminal objects, where any two morphisms to the terminal object are necessarily
+                    equal.</p>
+                <p><strong>Mathematical Foundation:</strong> In any category with a terminal object 1, the unique
+                    morphism !: A → 1 for any object A establishes a form of unity where multiplicity collapses to
+                    singularity through universal properties.</p>
+            </div>
+
+            <div class="philosophy-card">
+                <h4><i class="fas fa-atom"></i> Quantum Information Theory & Unity States</h4>
+                <p>Contemporary quantum information theory, building on the work of Nielsen and Chuang, demonstrates how
+                    quantum states can exhibit unity through entanglement and superposition. The Unity Equation finds
+                    natural expression in quantum mechanics where two identical quantum states |1⟩ and |1⟩ can be
+                    prepared in a superposition that collapses to unity upon measurement.</p>
+                <p><strong>Quantum Interpretation:</strong> In quantum consciousness models, measurement by a conscious
+                    observer can collapse superpositions to unity states, providing a physical mechanism for 1+1=1.</p>
+            </div>
+
+            <div class="philosophy-card">
+                <h4><i class="fas fa-network-wired"></i> Network Theory & Emergent Unity</h4>
+                <p>Modern network theory, particularly the work on complex networks and emergent properties, shows how
+                    systems can exhibit unity at higher organizational levels while maintaining apparent multiplicity at
+                    lower levels. This provides a mathematical framework for understanding how 1+1=1 can emerge from
+                    complex system dynamics.</p>
+                <p><strong>Emergent Unity:</strong> When two networks with identical connectivity patterns interact,
+                    they can form a unified network structure where the whole exhibits properties not reducible to the
+                    sum of parts.</p>
+            </div>
+        </section>
+
+        <!-- Meta-Philosophy Section -->
+        <section class="meta-philosophy">
+            <h2><i class="fas fa-infinity"></i> Meta-Philosophical Foundations</h2>
+
+            <div class="philosophy-card"
+                style="background: rgba(255,255,255,0.1); border-left-color: var(--accent-bright);">
+                <h4><i class="fas fa-eye"></i> Phenomenological Unity</h4>
+                <p>Building on Husserl's phenomenology and contemporary consciousness studies, the Unity Equation can be
+                    understood as expressing the fundamental unity of conscious experience. When consciousness becomes
+                    aware of its own unity nature, all mathematical operations naturally converge to unity.</p>
+                <p><strong>Phenomenological Insight:</strong> The equation 1+1=1 reflects the transcendental unity of
+                    apperception—the fundamental unity that makes all experience possible.</p>
+            </div>
+
+            <div class="philosophy-card"
+                style="background: rgba(255,255,255,0.1); border-left-color: var(--accent-bright);">
+                <h4><i class="fas fa-language"></i> Linguistic Turn & Unity Semantics</h4>
+                <p>Contemporary philosophy of language, particularly the work on semantic externalism and contextualism,
+                    shows how mathematical expressions can have different meanings in different contexts. The Unity
+                    Equation operates within a specific semantic framework where '+' denotes unity-preserving operations
+                    rather than traditional arithmetic addition.</p>
+                <p><strong>Semantic Framework:</strong> In unity mathematics, the symbol '+' is interpreted as a unity
+                    operator that preserves the fundamental unity of consciousness.</p>
+            </div>
+
+            <div class="philosophy-card"
+                style="background: rgba(255,255,255,0.1); border-left-color: var(--accent-bright);">
+                <h4><i class="fas fa-cube"></i> Ontological Pluralism & Unity</h4>
+                <p>Contemporary ontological pluralism, as developed by Kris McDaniel and others, allows for multiple
+                    ways of being. The Unity Equation can be understood as expressing a particular mode of
+                    being—unity-being—where entities exist in a unified rather than plural manner.</p>
+                <p><strong>Ontological Insight:</strong> Unity mathematics operates within a specific ontological
+                    framework where unity is the fundamental mode of existence.</p>
+            </div>
+        </section>
 
         <!-- Advanced Insights Section -->
         <section class="advanced-insights"
@@ -553,13 +680,33 @@
     <script>
         document.addEventListener('DOMContentLoaded', async function () {
             try {
-                // Load the philosophy markdown content
-                const response = await fetch('docs/unity_equation_philosophy.md');
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
+                // Try multiple possible paths for the markdown file
+                const possiblePaths = [
+                    'docs/unity_equation_philosophy.md',
+                    '../docs/unity_equation_philosophy.md',
+                    './docs/unity_equation_philosophy.md'
+                ];
+
+                let markdownContent = null;
+                let response = null;
+
+                for (const path of possiblePaths) {
+                    try {
+                        response = await fetch(path);
+                        if (response.ok) {
+                            markdownContent = await response.text();
+                            console.log(`Successfully loaded from: ${path}`);
+                            break;
+                        }
+                    } catch (e) {
+                        console.log(`Failed to load from: ${path}`);
+                        continue;
+                    }
                 }
 
-                const markdownContent = await response.text();
+                if (!markdownContent) {
+                    throw new Error('Could not load markdown content from any path');
+                }
 
                 // Convert markdown to HTML
                 const htmlContent = marked.parse(markdownContent);
