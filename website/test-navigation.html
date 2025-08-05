@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation Test - Een Unity Mathematics</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="js/unified-navigation.js"></script>
+    <script src="js/ai-chat-integration.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .test-section {
+            margin-bottom: 2rem;
+            padding: 1rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+        }
+
+        .test-section h2 {
+            color: #1a2332;
+            margin-bottom: 1rem;
+        }
+
+        .link-test {
+            display: inline-block;
+            margin: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .link-test:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+        }
+
+        .status {
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .status.warning {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+
+        .test-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .test-card {
+            padding: 1rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            background: #f8f9fa;
+        }
+
+        .test-card h3 {
+            margin-top: 0;
+            color: #1a2332;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="test-container">
+        <h1>🚀 Een Unity Mathematics - Navigation Test Suite</h1>
+        <p>Comprehensive testing of all navigation links and functionality</p>
+
+        <div class="test-section">
+            <h2>📋 Test Results</h2>
+            <div id="test-results"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>🧭 Navigation Links Test</h2>
+            <div class="test-grid">
+                <div class="test-card">
+                    <h3>Mathematics</h3>
+                    <a href="proofs.html" class="link-test">Unity Proofs</a>
+                    <a href="3000-elo-proof.html" class="link-test">Advanced Proofs</a>
+                    <a href="playground.html" class="link-test">Interactive Playground</a>
+                    <a href="mathematical_playground.html" class="link-test">Mathematical Playground</a>
+                    <a href="enhanced-unity-demo.html" class="link-test">Enhanced Unity Demo</a>
+                    <a href="al_khwarizmi_phi_unity.html" class="link-test">Al-Khwarizmi Phi Unity</a>
+                </div>
+
+                <div class="test-card">
+                    <h3>Consciousness</h3>
+                    <a href="consciousness_dashboard.html" class="link-test">Consciousness Fields</a>
+                    <a href="consciousness_dashboard_clean.html" class="link-test">Clean Dashboard</a>
+                    <a href="unity_consciousness_experience.html" class="link-test">Unity Experience</a>
+                    <a href="unity_visualization.html" class="link-test">Unity Visualizations</a>
+                    <a href="philosophy.html" class="link-test">Philosophy Treatise</a>
+                </div>
+
+                <div class="test-card">
+                    <h3>Research</h3>
+                    <a href="research.html" class="link-test">Current Research</a>
+                    <a href="publications.html" class="link-test">Publications</a>
+                    <a href="implementations.html" class="link-test">Core Implementations</a>
+                    <a href="further-reading.html" class="link-test">Further Reading</a>
+                </div>
+
+                <div class="test-card">
+                    <h3>Learning</h3>
+                    <a href="learn.html" class="link-test">Learn Unity Mathematics</a>
+                    <a href="learning.html" class="link-test">Learning Academy</a>
+                    <a href="dashboards.html" class="link-test">Dashboard Suite</a>
+                </div>
+
+                <div class="test-card">
+                    <h3>Gallery</h3>
+                    <a href="gallery.html" class="link-test">Visualization Gallery</a>
+                    <a href="revolutionary-landing.html" class="link-test">Revolutionary Landing</a>
+                    <a href="meta-optimal-landing.html" class="link-test">Meta-Optimal Landing</a>
+                </div>
+
+                <div class="test-card">
+                    <h3>AI Systems</h3>
+                    <a href="agents.html" class="link-test">AI Agents</a>
+                    <a href="metagambit.html" class="link-test">MetaGambit System</a>
+                    <a href="metagamer_agent.html" class="link-test">MetaGamer Agent</a>
+                    <a href="mobile-app.html" class="link-test">Mobile App</a>
+                </div>
+
+                <div class="test-card">
+                    <h3>Other</h3>
+                    <a href="about.html" class="link-test">About</a>
+                    <a href="index.html" class="link-test">Home</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>🤖 AI Chat Test</h2>
+            <button id="test-ai-chat" class="link-test">Test AI Chat</button>
+            <div id="ai-chat-status"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>📊 System Status</h2>
+            <div id="system-status"></div>
+        </div>
+    </div>
+
+    <script>
+        // Navigation Test Suite
+        class NavigationTestSuite {
+            constructor() {
+                this.results = [];
+                this.runTests();
+            }
+
+            async runTests() {
+                this.addResult('🚀 Starting Navigation Test Suite', 'info');
+
+                // Test navigation initialization
+                this.testNavigationInit();
+
+                // Test AI chat
+                this.testAIChat();
+
+                // Test system status
+                this.testSystemStatus();
+
+                // Test all links
+                await this.testAllLinks();
+
+                this.addResult('✅ Navigation Test Suite Complete', 'success');
+                this.displayResults();
+            }
+
+            testNavigationInit() {
+                try {
+                    if (window.unifiedNav) {
+                        this.addResult('✅ Navigation system initialized successfully', 'success');
+                    } else {
+                        this.addResult('❌ Navigation system failed to initialize', 'error');
+                    }
+                } catch (error) {
+                    this.addResult(`❌ Navigation initialization error: ${error.message}`, 'error');
+                }
+            }
+
+            testAIChat() {
+                try {
+                    if (typeof EenAIChat !== 'undefined') {
+                        this.addResult('✅ AI Chat system available', 'success');
+                    } else {
+                        this.addResult('⚠️ AI Chat system not loaded', 'warning');
+                    }
+                } catch (error) {
+                    this.addResult(`❌ AI Chat test error: ${error.message}`, 'error');
+                }
+            }
+
+            testSystemStatus() {
+                const status = {
+                    'Navigation Scripts': typeof UnifiedNavigation !== 'undefined',
+                    'AI Chat Scripts': typeof EenAIChat !== 'undefined',
+                    'Font Awesome': document.querySelector('.fas') !== null,
+                    'Responsive Design': window.innerWidth > 0,
+                    'JavaScript Enabled': true
+                };
+
+                Object.entries(status).forEach(([component, working]) => {
+                    if (working) {
+                        this.addResult(`✅ ${component}: Operational`, 'success');
+                    } else {
+                        this.addResult(`❌ ${component}: Failed`, 'error');
+                    }
+                });
+            }
+
+            async testAllLinks() {
+                const links = document.querySelectorAll('.link-test');
+                this.addResult(`🔍 Testing ${links.length} navigation links...`, 'info');
+
+                for (let link of links) {
+                    const href = link.getAttribute('href');
+                    try {
+                        const response = await fetch(href, { method: 'HEAD' });
+                        if (response.ok) {
+                            this.addResult(`✅ ${href}: Accessible`, 'success');
+                        } else {
+                            this.addResult(`❌ ${href}: ${response.status}`, 'error');
+                        }
+                    } catch (error) {
+                        this.addResult(`❌ ${href}: Network error`, 'error');
+                    }
+                }
+            }
+
+            addResult(message, type) {
+                this.results.push({ message, type, timestamp: new Date() });
+            }
+
+            displayResults() {
+                const container = document.getElementById('test-results');
+                container.innerHTML = this.results.map(result =>
+                    `<div class="status ${result.type}">${result.message}</div>`
+                ).join('');
+            }
+        }
+
+        // Initialize tests when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new NavigationTestSuite();
+
+            // Test AI Chat button
+            document.getElementById('test-ai-chat').addEventListener('click', () => {
+                const status = document.getElementById('ai-chat-status');
+                if (typeof EenAIChat !== 'undefined') {
+                    status.innerHTML = '<div class="status success">✅ AI Chat system is working</div>';
+                    if (window.eenChat) {
+                        window.eenChat.open();
+                    }
+                } else {
+                    status.innerHTML = '<div class="status error">❌ AI Chat system not available</div>';
+                }
+            });
+        });
+
+        // System status monitoring
+        setInterval(() => {
+            const status = document.getElementById('system-status');
+            const navWorking = window.unifiedNav !== undefined;
+            const aiWorking = typeof EenAIChat !== 'undefined';
+
+            status.innerHTML = `
+                <div class="status ${navWorking ? 'success' : 'error'}">
+                    🧭 Navigation: ${navWorking ? 'Active' : 'Inactive'}
+                </div>
+                <div class="status ${aiWorking ? 'success' : 'warning'}">
+                    🤖 AI Chat: ${aiWorking ? 'Available' : 'Not Loaded'}
+                </div>
+                <div class="status success">
+                    ⏰ Last Check: ${new Date().toLocaleTimeString()}
+                </div>
+            `;
+        }, 5000);
+    </script>
+</body>
+
+</html>

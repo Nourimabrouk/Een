@@ -37,7 +37,7 @@ except ImportError as e:
     logging.warning(f"Some modules not available: {e}")
 
 # Import API routes
-from api.routes import auth, consciousness, agents, visualizations, gallery
+from api.routes import auth, consciousness, agents, visualizations, gallery, chat
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -81,8 +81,7 @@ app = FastAPI(
 
 # Security middleware
 app.add_middleware(
-    TrustedHostMiddleware,
-    allowed_hosts=["*"]  # Configure appropriately for production
+    TrustedHostMiddleware, allowed_hosts=["*"]  # Configure appropriately for production
 )
 
 # CORS middleware
@@ -105,10 +104,11 @@ unity_equation = None
 consciousness_engine = None
 chat_agent = None
 
+
 def initialize_systems():
     """Initialize consciousness systems"""
     global unity_equation, consciousness_engine, chat_agent
-    
+
     try:
         unity_equation = UnityEquation()
         consciousness_engine = ConsciousnessEngine()
@@ -117,14 +117,17 @@ def initialize_systems():
     except Exception as e:
         logger.error(f"Failed to initialize consciousness systems: {e}")
 
+
 # Include API routes
 app.include_router(auth.router)
 app.include_router(consciousness.router)
 app.include_router(agents.router)
 app.include_router(visualizations.router)
 app.include_router(gallery.router)
+app.include_router(chat.router)
 
 # API Routes
+
 
 @app.get("/", response_class=HTMLResponse)
 async def root():
@@ -202,6 +205,7 @@ async def root():
     </html>
     """
 
+
 @app.get("/docs", include_in_schema=False)
 async def custom_swagger_ui_html():
     """Custom Swagger UI with authentication"""
@@ -211,6 +215,7 @@ async def custom_swagger_ui_html():
         swagger_js_url="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.9.0/swagger-ui-bundle.js",
         swagger_css_url="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.9.0/swagger-ui.css",
     )
+
 
 @app.get("/redoc", include_in_schema=False)
 async def redoc_html():
@@ -236,39 +241,49 @@ async def redoc_html():
         """
     )
 
+
 @app.get("/api/health")
 async def health_check():
     """Health check endpoint"""
     systems_status = {
         "unity_equation": unity_equation is not None,
         "consciousness_engine": consciousness_engine is not None,
-        "chat_agent": chat_agent is not None
+        "chat_agent": chat_agent is not None,
     }
-    
+
     return {
         "status": "healthy",
         "timestamp": datetime.utcnow().isoformat(),
-        "systems": systems_status
+        "systems": systems_status,
     }
+
 
 # Error handlers
 @app.exception_handler(404)
 async def not_found_handler(request, exc):
     return JSONResponse(
         status_code=404,
-        content={"detail": "Endpoint not found", "available_endpoints": [
-            "/", "/docs", "/redoc", "/auth/login", "/api/health",
-            "/api/unity/evaluate", "/api/consciousness/process", 
-            "/api/agents/chat", "/api/visualizations/unity-proof"
-        ]}
+        content={
+            "detail": "Endpoint not found",
+            "available_endpoints": [
+                "/",
+                "/docs",
+                "/redoc",
+                "/auth/login",
+                "/api/health",
+                "/api/unity/evaluate",
+                "/api/consciousness/process",
+                "/api/agents/chat",
+                "/api/visualizations/unity-proof",
+            ],
+        },
     )
+
 
 @app.exception_handler(500)
 async def internal_error_handler(request, exc):
-    return JSONResponse(
-        status_code=500,
-        content={"detail": "Internal server error"}
-    )
+    return JSONResponse(status_code=500, content={"detail": "Internal server error"})
+
 
 # Startup and shutdown events
 @app.on_event("startup")
@@ -277,16 +292,14 @@ async def startup_event():
     logger.info("Starting Een Consciousness API...")
     initialize_systems()
 
+
 @app.on_event("shutdown")
 async def shutdown_event():
     """Cleanup on shutdown"""
     logger.info("Shutting down Een Consciousness API...")
 
+
 if __name__ == "__main__":
     uvicorn.run(
-        "api.main:app",
-        host="0.0.0.0",
-        port=8000,
-        reload=True,
-        log_level="info"
-    ) 
+        "api.main:app", host="0.0.0.0", port=8000, reload=True, log_level="info"
+    )
