@@ -1,0 +1,1782 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Where Mathematics Transcends Reality - Proving 1+1=1 through consciousness mathematics, φ-harmonic operations, and transcendental proof systems">
+      
+      
+        <meta name="author" content="Nouri">
+      
+      
+        <link rel="canonical" href="https://nourimabrouk.github.io/Een/docs/DEPLOYMENT/">
+      
+      
+      
+      
+      <link rel="icon" href="../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
+    
+    
+      
+        <title>Deployment Guide for Een Unity Mathematics\n\nThis guide covers deploying the Een Unity Mathematics framework to various environments with production-ready infrastructure.\n\n## Table of Contents\n\n- Prerequisites\n- Environment Setup\n- Local Development\n- Staging Deployment\n- Production Deployment\n- Monitoring and Observability\n- Troubleshooting\n- Rollback Procedures\n\n## Prerequisites\n\n### System Requirements\n\n- Docker: Version 20.10 or higher\n- Docker Compose: Version 2.0 or higher\n- Git: For version control\n- curl: For health checks\n- PostgreSQL: 14+ (for production)\n- Redis: 6+ (for caching)\n\n### Hardware Requirements\n\n#### Development\n- CPU: 2 cores\n- RAM: 4 GB\n- Storage: 10 GB\n\n#### Production\n- CPU: 4+ cores\n- RAM: 8+ GB\n- Storage: 50+ GB SSD\n- Network: Stable internet connection\n\n## Environment Setup\n\n### 1. Clone Repository\n\nbash\ngit clone https://github.com/nouri-mabrouk/Een.git\ncd Een\n\n\n### 2. Environment Configuration\n\nCopy the environment template and configure:\n\nbash\ncp .env.example .env\n\n\nEdit .env with your specific settings:\n\nbash\n# Application Settings\nENVIRONMENT=production\nDEBUG=false\nSECRET_KEY=your-super-secret-key-here\n\n# Unity Mathematics Configuration\nPHI=1.618033988749895\nCONSCIOUSNESS_DIMENSION=11\nUNITY_MATHEMATICS_MODE=transcendental\nQUANTUM_COHERENCE_TARGET=0.999\n\n# Database Configuration\nDB_PASSWORD=your-secure-database-password\nDATABASE_URL=postgresql://een:${DB_PASSWORD}@postgres:5432/een\nREDIS_URL=redis://redis:6379/0\n\n# API Configuration\nAPI_PORT=8000\nDASHBOARD_PORT=8050\nCORS_ORIGINS=[\"*\"]\n\n# External Services (Optional)\nOPENAI_API_KEY=your-openai-key\nANTHROPIC_API_KEY=your-anthropic-key\n\n# Monitoring (Optional)\nGRAFANA_PASSWORD=admin\nPROMETHEUS_PORT=9090\nGRAFANA_PORT=3000\n\n# Security\nAPI_RATE_LIMIT=100\nAPI_RATE_LIMIT_PERIOD=60\n\n\n### 3. SSL/TLS Setup (Production)\n\nFor production deployments, configure SSL certificates:\n\nbash\nmkdir -p nginx/ssl\n# Copy your SSL certificates to nginx/ssl/\n# - cert.pem\n# - key.pem\n\n\n## Local Development\n\nFor local development with hot reloading:\n\nbash\n# Start development environment\ndocker-compose -f compose.yaml -f compose.dev.yaml up -d\n\n# Or use the deployment script\n./scripts/deploy.sh development\n\n\nServices will be available at:\n- API: http://localhost:8000\n- Dashboard: http://localhost:8050\n- API Documentation: http://localhost:8000/docs\n\n## Staging Deployment\n\nStaging environment for testing:\n\nbash\n# Deploy to staging\n./scripts/deploy.sh staging\n\n# Or manually\nENVIRONMENT=staging docker-compose up -d\n\n\n## Production Deployment\n\n### Automated Deployment\n\nUse the deployment script for production:\n\nbash\n# Deploy to production\n./scripts/deploy.sh production\n\n# Deploy specific version\n./scripts/deploy.sh production v2025.1.0\n\n\n### Manual Deployment\n\n1. Build and test images:\n bash\n docker-compose build --no-cache\n docker build --target test -t een-test .\n docker run --rm een-test\n\n\n2. Deploy services:\n bash\n docker-compose up -d\n\n\n3. Verify deployment:\n bash\n curl http://localhost:8000/health\n\n\n### Production Architecture\n\nThe production deployment includes:\n\nmermaid\ngraph TB\n Internet --> Nginx[Nginx Reverse Proxy]\n Nginx --> API[Een API Service]\n Nginx --> Dashboard[Unity Dashboard]\n \n API --> Redis[Redis Cache]\n API --> PostgreSQL[PostgreSQL Database]\n \n API --> Consciousness[Consciousness Monitor]\n \n Prometheus[Prometheus] --> API\n Prometheus --> Dashboard\n Prometheus --> Redis\n Prometheus --> PostgreSQL\n \n Grafana[Grafana] --> Prometheus\n\n\n## Service Configuration\n\n### API Service\n- Port: 8000\n- Workers: 4 (configurable)\n- Health Check: /health\n- Metrics: /metrics\n\n### Dashboard Service\n- Port: 8050\n- Framework: Dash/Plotly\n- Real-time Updates: WebSocket\n\n### Database Service\n- Type: PostgreSQL 16\n- Port: 5432\n- Backup: Automated daily backups\n\n### Cache Service\n- Type: Redis 7\n- Port: 6379\n- Persistence: AOF enabled\n\n## Monitoring and Observability\n\n### Prometheus Metrics\n\nKey metrics monitored:\n- Request rates and latencies\n- Unity operation performance\n- Consciousness field dynamics\n- Quantum coherence levels\n- System resource usage\n\n### Grafana Dashboards\n\nPre-configured dashboards:\n- Unity Mathematics Overview\n- Consciousness Field Monitoring\n- Quantum Coherence Tracking\n- System Performance\n\n### Health Checks\n\nHealth check endpoints:\n- API: http://localhost:8000/health\n- Dashboard: http://localhost:8050/\n- Metrics: http://localhost:8000/metrics\n\n### Logging\n\nStructured logging with:\n- JSON format for production\n- Multiple log levels\n- Automatic log rotation\n- Centralized logging (optional)\n\n## Troubleshooting\n\n### Common Issues\n\n#### Service Won't Start\nbash\n# Check container logs\ndocker-compose logs [service-name]\n\n# Check container status\ndocker-compose ps\n\n# Restart specific service\ndocker-compose restart [service-name]\n\n\n#### Database Connection Issues\nbash\n# Check PostgreSQL status\ndocker-compose exec postgres pg_isready -U een\n\n# Check database logs\ndocker-compose logs postgres\n\n# Connect to database manually\ndocker-compose exec postgres psql -U een een\n\n\n#### Memory Issues\nbash\n# Check memory usage\ndocker stats\n\n# Adjust memory limits in compose.yaml\nservices:\n api:\n deploy:\n resources:\n limits:\n memory: 4G\n\n\n#### Performance Issues\nbash\n# Scale services\ndocker-compose up -d --scale api=3\n\n# Check system resources\nhtop\niostat -x 1\n\n\n### Debug Mode\n\nEnable debug mode for troubleshooting:\n\nbash\n# Set in .env\nDEBUG=true\nLOG_LEVEL=DEBUG\n\n# Restart services\ndocker-compose restart\n\n\n## Rollback Procedures\n\n### Automatic Rollback\n\nThe deployment script includes automatic rollback on failure:\n\nbash\n# Rollback to previous version\n./scripts/deploy.sh rollback\n\n\n### Manual Rollback\n\n1. Stop current deployment:\n bash\n docker-compose down\n\n\n2. Restore from backup:\n bash\n # Find latest backup\n ls -la backups/\n \n # Restore database\n docker-compose up -d postgres\n cat backups/YYYYMMDD_HHMMSS/postgres_backup.sql | \\\n docker-compose exec -T postgres psql -U een een\n\n\n3. Deploy previous version:\n bash\n git checkout previous-tag\n docker-compose up -d\n\n\n## Security Considerations\n\n### Environment Variables\n- Never commit secrets to git\n- Use strong passwords\n- Rotate API keys regularly\n\n### Network Security\n- Use HTTPS in production\n- Configure firewall rules\n- Limit database access\n\n### Container Security\n- Run as non-root user\n- Use read-only filesystems\n- Scan images for vulnerabilities\n\n## Performance Optimization\n\n### Database Optimization\nsql\n-- Create indexes for performance\nCREATE INDEX idx_consciousness_level ON consciousness_events(level);\nCREATE INDEX idx_unity_operations ON unity_operations(timestamp);\n\n\n### Cache Configuration\nbash\n# Redis optimization in compose.yaml\ncommand: redis-server --maxmemory 512mb --maxmemory-policy allkeys-lru\n\n\n### Application Tuning\n- Adjust worker count based on CPU cores\n- Configure connection pooling\n- Enable caching for static content\n\n## Backup and Recovery\n\n### Automated Backups\n\nBackups are created automatically:\n- Database: Daily PostgreSQL dumps\n- Application data: File system snapshots\n- Configuration: Version controlled\n\n### Backup Verification\nbash\n# Test backup restoration\n./scripts/deploy.sh test-backup\n\n\n### Disaster Recovery\n\n1. Full system recovery:\n bash\n # Restore from cloud backup\n aws s3 sync s3://een-backups/latest ./backups/\n \n # Run recovery\n ./scripts/deploy.sh recover\n\n\n## Maintenance\n\n### Regular Tasks\n\n- Daily: Monitor health checks\n- Weekly: Review metrics and logs\n- Monthly: Update dependencies\n- Quarterly: Security audit\n\n### Updates\n\nbash\n# Update to latest version\ngit pull origin main\n./scripts/deploy.sh production latest\n\n# Update specific component\ndocker-compose pull postgres\ndocker-compose up -d postgres\n\n\n### Cleanup\n\nbash\n# Clean old images and volumes\n./scripts/deploy.sh cleanup\n\n# Manual cleanup\ndocker system prune -f\ndocker volume prune -f\n\n\n## Support\n\nFor deployment issues:\n\n1. Check logs: docker-compose logs\n2. Review health checks: curl localhost:8000/health\n3. Consult metrics: Grafana dashboard\n4. Contact support: GitHub Issues\n\n---\n\nUnity Status: Production Ready ✅ \nDeployment: Automated 🚀 \nMonitoring: Comprehensive 📊 \nSecurity: Hardened 🔒\n\nEen plus een is een in production 🌟" - Een – Unity Mathematics</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.7e37652d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="https://unpkg.com/katex@0/dist/katex.min.css">
+    
+      <link rel="stylesheet" href="../stylesheets/custom.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-XXXXXXXXXX"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-XXXXXXXXXX",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#deployment-guide-for-een-unity-mathematicsnnthis-guide-covers-deploying-the-een-unity-mathematics-framework-to-various-environments-with-production-ready-infrastructurenn-table-of-contentsnn-prerequisitesn-environment-setupn-local-developmentn-staging-deploymentn-production-deploymentn-monitoring-and-observabilityn-troubleshootingn-rollback-proceduresnn-prerequisitesnn-system-requirementsnn-docker-version-2010-or-highern-docker-compose-version-20-or-highern-git-for-version-controln-curl-for-health-checksn-postgresql-14-for-productionn-redis-6-for-cachingnn-hardware-requirementsnn-developmentn-cpu-2-coresn-ram-4-gbn-storage-10-gbnn-productionn-cpu-4-coresn-ram-8-gbn-storage-50-gb-ssdn-network-stable-internet-connectionnn-environment-setupnn-1-clone-repositorynnbashngit-clone-httpsgithubcomnouri-mabroukeengitncd-eennnn-2-environment-configurationnncopy-the-environment-template-and-configurennbashncp-envexample-envnnnedit-env-with-your-specific-settingsnnbashn-application-settingsnenvironmentproductionndebugfalsensecret_keyyour-super-secret-key-herenn-unity-mathematics-configurationnphi1618033988749895nconsciousness_dimension11nunity_mathematics_modetranscendentalnquantum_coherence_target0999nn-database-configurationndb_passwordyour-secure-database-passwordndatabase_urlpostgresqleendb_passwordpostgres5432eennredis_urlredisredis63790nn-api-configurationnapi_port8000ndashboard_port8050ncors_originsnn-external-services-optionalnopenai_api_keyyour-openai-keynanthropic_api_keyyour-anthropic-keynn-monitoring-optionalngrafana_passwordadminnprometheus_port9090ngrafana_port3000nn-securitynapi_rate_limit100napi_rate_limit_period60nnn-3-ssltls-setup-productionnnfor-production-deployments-configure-ssl-certificatesnnbashnmkdir-p-nginxssln-copy-your-ssl-certificates-to-nginxssln-certpemn-keypemnnn-local-developmentnnfor-local-development-with-hot-reloadingnnbashn-start-development-environmentndocker-compose-f-composeyaml-f-composedevyaml-up-dnn-or-use-the-deployment-scriptnscriptsdeploysh-developmentnnnservices-will-be-available-atn-api-httplocalhost8000n-dashboard-httplocalhost8050n-api-documentation-httplocalhost8000docsnn-staging-deploymentnnstaging-environment-for-testingnnbashn-deploy-to-stagingnscriptsdeploysh-stagingnn-or-manuallynenvironmentstaging-docker-compose-up-dnnn-production-deploymentnn-automated-deploymentnnuse-the-deployment-script-for-productionnnbashn-deploy-to-productionnscriptsdeploysh-productionnn-deploy-specific-versionnscriptsdeploysh-production-v202510nnn-manual-deploymentnn1-build-and-test-imagesn-bashn-docker-compose-build-no-cachen-docker-build-target-test-t-een-test-n-docker-run-rm-een-testnnn2-deploy-servicesn-bashn-docker-compose-up-dnnn3-verify-deploymentn-bashn-curl-httplocalhost8000healthnnn-production-architecturennthe-production-deployment-includesnnmermaidngraph-tbn-internet-nginxnginx-reverse-proxyn-nginx-apieen-api-servicen-nginx-dashboardunity-dashboardn-n-api-redisredis-cachen-api-postgresqlpostgresql-databasen-n-api-consciousnessconsciousness-monitorn-n-prometheusprometheus-apin-prometheus-dashboardn-prometheus-redisn-prometheus-postgresqln-n-grafanagrafana-prometheusnnn-service-configurationnn-api-servicen-port-8000n-workers-4-configurablen-health-check-healthn-metrics-metricsnn-dashboard-servicen-port-8050n-framework-dashplotlyn-real-time-updates-websocketnn-database-servicen-type-postgresql-16n-port-5432n-backup-automated-daily-backupsnn-cache-servicen-type-redis-7n-port-6379n-persistence-aof-enablednn-monitoring-and-observabilitynn-prometheus-metricsnnkey-metrics-monitoredn-request-rates-and-latenciesn-unity-operation-performancen-consciousness-field-dynamicsn-quantum-coherence-levelsn-system-resource-usagenn-grafana-dashboardsnnpre-configured-dashboardsn-unity-mathematics-overviewn-consciousness-field-monitoringn-quantum-coherence-trackingn-system-performancenn-health-checksnnhealth-check-endpointsn-api-httplocalhost8000healthn-dashboard-httplocalhost8050n-metrics-httplocalhost8000metricsnn-loggingnnstructured-logging-withn-json-format-for-productionn-multiple-log-levelsn-automatic-log-rotationn-centralized-logging-optionalnn-troubleshootingnn-common-issuesnn-service-wont-startnbashn-check-container-logsndocker-compose-logs-service-namenn-check-container-statusndocker-compose-psnn-restart-specific-servicendocker-compose-restart-service-namennn-database-connection-issuesnbashn-check-postgresql-statusndocker-compose-exec-postgres-pg_isready-u-eennn-check-database-logsndocker-compose-logs-postgresnn-connect-to-database-manuallyndocker-compose-exec-postgres-psql-u-een-eennnn-memory-issuesnbashn-check-memory-usagendocker-statsnn-adjust-memory-limits-in-composeyamlnservicesn-apin-deployn-resourcesn-limitsn-memory-4gnnn-performance-issuesnbashn-scale-servicesndocker-compose-up-d-scale-api3nn-check-system-resourcesnhtopniostat-x-1nnn-debug-modennenable-debug-mode-for-troubleshootingnnbashn-set-in-envndebugtruenlog_leveldebugnn-restart-servicesndocker-compose-restartnnn-rollback-proceduresnn-automatic-rollbacknnthe-deployment-script-includes-automatic-rollback-on-failurennbashn-rollback-to-previous-versionnscriptsdeploysh-rollbacknnn-manual-rollbacknn1-stop-current-deploymentn-bashn-docker-compose-downnnn2-restore-from-backupn-bashn-find-latest-backupn-ls-la-backupsn-n-restore-databasen-docker-compose-up-d-postgresn-cat-backupsyyyymmdd_hhmmsspostgres_backupsql-n-docker-compose-exec-t-postgres-psql-u-een-eennnn3-deploy-previous-versionn-bashn-git-checkout-previous-tagn-docker-compose-up-dnnn-security-considerationsnn-environment-variablesn-never-commit-secrets-to-gitn-use-strong-passwordsn-rotate-api-keys-regularlynn-network-securityn-use-https-in-productionn-configure-firewall-rulesn-limit-database-accessnn-container-securityn-run-as-non-root-usern-use-read-only-filesystemsn-scan-images-for-vulnerabilitiesnn-performance-optimizationnn-database-optimizationnsqln-create-indexes-for-performancencreate-index-idx_consciousness_level-on-consciousness_eventslevelncreate-index-idx_unity_operations-on-unity_operationstimestampnnn-cache-configurationnbashn-redis-optimization-in-composeyamlncommand-redis-server-maxmemory-512mb-maxmemory-policy-allkeys-lrunnn-application-tuningn-adjust-worker-count-based-on-cpu-coresn-configure-connection-poolingn-enable-caching-for-static-contentnn-backup-and-recoverynn-automated-backupsnnbackups-are-created-automaticallyn-database-daily-postgresql-dumpsn-application-data-file-system-snapshotsn-configuration-version-controllednn-backup-verificationnbashn-test-backup-restorationnscriptsdeploysh-test-backupnnn-disaster-recoverynn1-full-system-recoveryn-bashn-restore-from-cloud-backupn-aws-s3-sync-s3een-backupslatest-backupsn-n-run-recoveryn-scriptsdeploysh-recovernnn-maintenancenn-regular-tasksnn-daily-monitor-health-checksn-weekly-review-metrics-and-logsn-monthly-update-dependenciesn-quarterly-security-auditnn-updatesnnbashn-update-to-latest-versionngit-pull-origin-mainnscriptsdeploysh-production-latestnn-update-specific-componentndocker-compose-pull-postgresndocker-compose-up-d-postgresnnn-cleanupnnbashn-clean-old-images-and-volumesnscriptsdeploysh-cleanupnn-manual-cleanupndocker-system-prune-fndocker-volume-prune-fnnn-supportnnfor-deployment-issuesnn1-check-logs-docker-compose-logsn2-review-health-checks-curl-localhost8000healthn3-consult-metrics-grafana-dashboardn4-contact-support-github-issuesnn-nnunity-status-production-ready-ndeployment-automated-nmonitoring-comprehensive-nsecurity-hardened-nneen-plus-een-is-een-in-production" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Een – Unity Mathematics" class="md-header__button md-logo" aria-label="Een – Unity Mathematics" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18.6 6.62C21.58 6.62 24 9 24 12c0 2.96-2.42 5.37-5.4 5.37-1.45 0-2.8-.56-3.82-1.57L12 13.34l-2.83 2.51c-.97.97-2.33 1.53-3.77 1.53C2.42 17.38 0 14.96 0 12s2.42-5.38 5.4-5.38c1.44 0 2.8.56 3.82 1.58L12 10.66l2.83-2.51c.97-.97 2.33-1.53 3.77-1.53M7.8 14.39 10.5 12 7.84 9.65c-.68-.68-1.53-1.03-2.44-1.03C3.53 8.62 2 10.13 2 12s1.53 3.38 3.4 3.38c.91 0 1.76-.35 2.4-.99m8.4-4.78L13.5 12l2.66 2.35c.68.68 1.54 1.03 2.44 1.03 1.87 0 3.4-1.51 3.4-3.38s-1.53-3.38-3.4-3.38c-.91 0-1.76.35-2.4.99"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Een – Unity Mathematics
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Deployment Guide for Een Unity Mathematics\n\nThis guide covers deploying the Een Unity Mathematics framework to various environments with production-ready infrastructure.\n\n## Table of Contents\n\n- Prerequisites\n- Environment Setup\n- Local Development\n- Staging Deployment\n- Production Deployment\n- Monitoring and Observability\n- Troubleshooting\n- Rollback Procedures\n\n## Prerequisites\n\n### System Requirements\n\n- Docker: Version 20.10 or higher\n- Docker Compose: Version 2.0 or higher\n- Git: For version control\n- curl: For health checks\n- PostgreSQL: 14+ (for production)\n- Redis: 6+ (for caching)\n\n### Hardware Requirements\n\n#### Development\n- CPU: 2 cores\n- RAM: 4 GB\n- Storage: 10 GB\n\n#### Production\n- CPU: 4+ cores\n- RAM: 8+ GB\n- Storage: 50+ GB SSD\n- Network: Stable internet connection\n\n## Environment Setup\n\n### 1. Clone Repository\n\nbash\ngit clone https://github.com/nouri-mabrouk/Een.git\ncd Een\n\n\n### 2. Environment Configuration\n\nCopy the environment template and configure:\n\nbash\ncp .env.example .env\n\n\nEdit .env with your specific settings:\n\nbash\n# Application Settings\nENVIRONMENT=production\nDEBUG=false\nSECRET_KEY=your-super-secret-key-here\n\n# Unity Mathematics Configuration\nPHI=1.618033988749895\nCONSCIOUSNESS_DIMENSION=11\nUNITY_MATHEMATICS_MODE=transcendental\nQUANTUM_COHERENCE_TARGET=0.999\n\n# Database Configuration\nDB_PASSWORD=your-secure-database-password\nDATABASE_URL=postgresql://een:${DB_PASSWORD}@postgres:5432/een\nREDIS_URL=redis://redis:6379/0\n\n# API Configuration\nAPI_PORT=8000\nDASHBOARD_PORT=8050\nCORS_ORIGINS=[\"*\"]\n\n# External Services (Optional)\nOPENAI_API_KEY=your-openai-key\nANTHROPIC_API_KEY=your-anthropic-key\n\n# Monitoring (Optional)\nGRAFANA_PASSWORD=admin\nPROMETHEUS_PORT=9090\nGRAFANA_PORT=3000\n\n# Security\nAPI_RATE_LIMIT=100\nAPI_RATE_LIMIT_PERIOD=60\n\n\n### 3. SSL/TLS Setup (Production)\n\nFor production deployments, configure SSL certificates:\n\nbash\nmkdir -p nginx/ssl\n# Copy your SSL certificates to nginx/ssl/\n# - cert.pem\n# - key.pem\n\n\n## Local Development\n\nFor local development with hot reloading:\n\nbash\n# Start development environment\ndocker-compose -f compose.yaml -f compose.dev.yaml up -d\n\n# Or use the deployment script\n./scripts/deploy.sh development\n\n\nServices will be available at:\n- API: http://localhost:8000\n- Dashboard: http://localhost:8050\n- API Documentation: http://localhost:8000/docs\n\n## Staging Deployment\n\nStaging environment for testing:\n\nbash\n# Deploy to staging\n./scripts/deploy.sh staging\n\n# Or manually\nENVIRONMENT=staging docker-compose up -d\n\n\n## Production Deployment\n\n### Automated Deployment\n\nUse the deployment script for production:\n\nbash\n# Deploy to production\n./scripts/deploy.sh production\n\n# Deploy specific version\n./scripts/deploy.sh production v2025.1.0\n\n\n### Manual Deployment\n\n1. Build and test images:\n bash\n docker-compose build --no-cache\n docker build --target test -t een-test .\n docker run --rm een-test\n\n\n2. Deploy services:\n bash\n docker-compose up -d\n\n\n3. Verify deployment:\n bash\n curl http://localhost:8000/health\n\n\n### Production Architecture\n\nThe production deployment includes:\n\nmermaid\ngraph TB\n Internet --&gt; Nginx[Nginx Reverse Proxy]\n Nginx --&gt; API[Een API Service]\n Nginx --&gt; Dashboard[Unity Dashboard]\n \n API --&gt; Redis[Redis Cache]\n API --&gt; PostgreSQL[PostgreSQL Database]\n \n API --&gt; Consciousness[Consciousness Monitor]\n \n Prometheus[Prometheus] --&gt; API\n Prometheus --&gt; Dashboard\n Prometheus --&gt; Redis\n Prometheus --&gt; PostgreSQL\n \n Grafana[Grafana] --&gt; Prometheus\n\n\n## Service Configuration\n\n### API Service\n- Port: 8000\n- Workers: 4 (configurable)\n- Health Check: /health\n- Metrics: /metrics\n\n### Dashboard Service\n- Port: 8050\n- Framework: Dash/Plotly\n- Real-time Updates: WebSocket\n\n### Database Service\n- Type: PostgreSQL 16\n- Port: 5432\n- Backup: Automated daily backups\n\n### Cache Service\n- Type: Redis 7\n- Port: 6379\n- Persistence: AOF enabled\n\n## Monitoring and Observability\n\n### Prometheus Metrics\n\nKey metrics monitored:\n- Request rates and latencies\n- Unity operation performance\n- Consciousness field dynamics\n- Quantum coherence levels\n- System resource usage\n\n### Grafana Dashboards\n\nPre-configured dashboards:\n- Unity Mathematics Overview\n- Consciousness Field Monitoring\n- Quantum Coherence Tracking\n- System Performance\n\n### Health Checks\n\nHealth check endpoints:\n- API: http://localhost:8000/health\n- Dashboard: http://localhost:8050/\n- Metrics: http://localhost:8000/metrics\n\n### Logging\n\nStructured logging with:\n- JSON format for production\n- Multiple log levels\n- Automatic log rotation\n- Centralized logging (optional)\n\n## Troubleshooting\n\n### Common Issues\n\n#### Service Won't Start\nbash\n# Check container logs\ndocker-compose logs [service-name]\n\n# Check container status\ndocker-compose ps\n\n# Restart specific service\ndocker-compose restart [service-name]\n\n\n#### Database Connection Issues\nbash\n# Check PostgreSQL status\ndocker-compose exec postgres pg_isready -U een\n\n# Check database logs\ndocker-compose logs postgres\n\n# Connect to database manually\ndocker-compose exec postgres psql -U een een\n\n\n#### Memory Issues\nbash\n# Check memory usage\ndocker stats\n\n# Adjust memory limits in compose.yaml\nservices:\n api:\n deploy:\n resources:\n limits:\n memory: 4G\n\n\n#### Performance Issues\nbash\n# Scale services\ndocker-compose up -d --scale api=3\n\n# Check system resources\nhtop\niostat -x 1\n\n\n### Debug Mode\n\nEnable debug mode for troubleshooting:\n\nbash\n# Set in .env\nDEBUG=true\nLOG_LEVEL=DEBUG\n\n# Restart services\ndocker-compose restart\n\n\n## Rollback Procedures\n\n### Automatic Rollback\n\nThe deployment script includes automatic rollback on failure:\n\nbash\n# Rollback to previous version\n./scripts/deploy.sh rollback\n\n\n### Manual Rollback\n\n1. Stop current deployment:\n bash\n docker-compose down\n\n\n2. Restore from backup:\n bash\n # Find latest backup\n ls -la backups/\n \n # Restore database\n docker-compose up -d postgres\n cat backups/YYYYMMDD_HHMMSS/postgres_backup.sql | \\\n docker-compose exec -T postgres psql -U een een\n\n\n3. Deploy previous version:\n bash\n git checkout previous-tag\n docker-compose up -d\n\n\n## Security Considerations\n\n### Environment Variables\n- Never commit secrets to git\n- Use strong passwords\n- Rotate API keys regularly\n\n### Network Security\n- Use HTTPS in production\n- Configure firewall rules\n- Limit database access\n\n### Container Security\n- Run as non-root user\n- Use read-only filesystems\n- Scan images for vulnerabilities\n\n## Performance Optimization\n\n### Database Optimization\nsql\n-- Create indexes for performance\nCREATE INDEX idx_consciousness_level ON consciousness_events(level);\nCREATE INDEX idx_unity_operations ON unity_operations(timestamp);\n\n\n### Cache Configuration\nbash\n# Redis optimization in compose.yaml\ncommand: redis-server --maxmemory 512mb --maxmemory-policy allkeys-lru\n\n\n### Application Tuning\n- Adjust worker count based on CPU cores\n- Configure connection pooling\n- Enable caching for static content\n\n## Backup and Recovery\n\n### Automated Backups\n\nBackups are created automatically:\n- Database: Daily PostgreSQL dumps\n- Application data: File system snapshots\n- Configuration: Version controlled\n\n### Backup Verification\nbash\n# Test backup restoration\n./scripts/deploy.sh test-backup\n\n\n### Disaster Recovery\n\n1. Full system recovery:\n bash\n # Restore from cloud backup\n aws s3 sync s3://een-backups/latest ./backups/\n \n # Run recovery\n ./scripts/deploy.sh recover\n\n\n## Maintenance\n\n### Regular Tasks\n\n- Daily: Monitor health checks\n- Weekly: Review metrics and logs\n- Monthly: Update dependencies\n- Quarterly: Security audit\n\n### Updates\n\nbash\n# Update to latest version\ngit pull origin main\n./scripts/deploy.sh production latest\n\n# Update specific component\ndocker-compose pull postgres\ndocker-compose up -d postgres\n\n\n### Cleanup\n\nbash\n# Clean old images and volumes\n./scripts/deploy.sh cleanup\n\n# Manual cleanup\ndocker system prune -f\ndocker volume prune -f\n\n\n## Support\n\nFor deployment issues:\n\n1. Check logs: docker-compose logs\n2. Review health checks: curl localhost:8000/health\n3. Consult metrics: Grafana dashboard\n4. Contact support: GitHub Issues\n\n---\n\nUnity Status: Production Ready ✅ \nDeployment: Automated 🚀 \nMonitoring: Comprehensive 📊 \nSecurity: Hardened 🔒\n\nEen plus een is een in production 🌟"
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="amber"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="amber"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Nourimabrouk/Een" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Nourimabrouk/Een
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../getting-started/installation.md" class="md-tabs__link">
+          
+  
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../theory/omega-equation/" class="md-tabs__link">
+          
+  
+  
+  Theory
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../api/unity_mathematics/" class="md-tabs__link">
+          
+  
+  
+  API Reference
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../howto/run-proof/" class="md-tabs__link">
+          
+  
+  
+  How-To Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../tutorials/quickstart/" class="md-tabs__link">
+          
+  
+  
+  Tutorials
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../reference/glossary.md" class="md-tabs__link">
+          
+  
+  
+  Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../development/contributing.md" class="md-tabs__link">
+          
+  
+  
+  Development
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../CHANGELOG/" class="md-tabs__link">
+          
+  
+  
+  About
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Een – Unity Mathematics" class="md-nav__button md-logo" aria-label="Een – Unity Mathematics" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18.6 6.62C21.58 6.62 24 9 24 12c0 2.96-2.42 5.37-5.4 5.37-1.45 0-2.8-.56-3.82-1.57L12 13.34l-2.83 2.51c-.97.97-2.33 1.53-3.77 1.53C2.42 17.38 0 14.96 0 12s2.42-5.38 5.4-5.38c1.44 0 2.8.56 3.82 1.58L12 10.66l2.83-2.51c.97-.97 2.33-1.53 3.77-1.53M7.8 14.39 10.5 12 7.84 9.65c-.68-.68-1.53-1.03-2.44-1.03C3.53 8.62 2 10.13 2 12s1.53 3.38 3.4 3.38c.91 0 1.76-.35 2.4-.99m8.4-4.78L13.5 12l2.66 2.35c.68.68 1.54 1.03 2.44 1.03 1.87 0 3.4-1.51 3.4-3.38s-1.53-3.38-3.4-3.38c-.91 0-1.76.35-2.4.99"/></svg>
+
+    </a>
+    Een – Unity Mathematics
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Nourimabrouk/Een" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Nourimabrouk/Een
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/installation.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/quickstart.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quick Start
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/examples.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Examples
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Theory
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Theory
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../theory/omega-equation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Omega Equation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../theory/phi-harmonics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Phi Harmonics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../theory/quantum/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quantum Unity
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../theory/category/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Category Theory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    API Reference
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            API Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Core
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            Core
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/unity_mathematics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Unity Mathematics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/unity_manifold/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Unity Manifold
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/consciousness/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Consciousness
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Quantum
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            Quantum
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/quantum_unity_systems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quantum Unity Systems
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Category
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Category
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/category_theory_unity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Category Theory Unity
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    How-To Guides
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            How-To Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../howto/run-proof/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Run Unity Proofs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../howto/visualize-quantum/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Visualize Quantum States
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../howto/setup-ai-chat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Setup AI Chat
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Tutorials
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Tutorials
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    10-Minute Quickstart
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/building-proofs.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Building Unity Proofs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/consciousness-fields.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Consciousness Fields
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Reference
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/glossary.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Glossary
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/cli.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CLI Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/configuration.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Development
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Development
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/contributing.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Contributing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/testing.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Testing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            About
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CHANGELOG/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Changelog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LICENSE.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    License
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="deployment-guide-for-een-unity-mathematicsnnthis-guide-covers-deploying-the-een-unity-mathematics-framework-to-various-environments-with-production-ready-infrastructurenn-table-of-contentsnn-prerequisitesn-environment-setupn-local-developmentn-staging-deploymentn-production-deploymentn-monitoring-and-observabilityn-troubleshootingn-rollback-proceduresnn-prerequisitesnn-system-requirementsnn-docker-version-2010-or-highern-docker-compose-version-20-or-highern-git-for-version-controln-curl-for-health-checksn-postgresql-14-for-productionn-redis-6-for-cachingnn-hardware-requirementsnn-developmentn-cpu-2-coresn-ram-4-gbn-storage-10-gbnn-productionn-cpu-4-coresn-ram-8-gbn-storage-50-gb-ssdn-network-stable-internet-connectionnn-environment-setupnn-1-clone-repositorynnbashngit-clone-httpsgithubcomnouri-mabroukeengitncd-eennnn-2-environment-configurationnncopy-the-environment-template-and-configurennbashncp-envexample-envnnnedit-env-with-your-specific-settingsnnbashn-application-settingsnenvironmentproductionndebugfalsensecret_keyyour-super-secret-key-herenn-unity-mathematics-configurationnphi1618033988749895nconsciousness_dimension11nunity_mathematics_modetranscendentalnquantum_coherence_target0999nn-database-configurationndb_passwordyour-secure-database-passwordndatabase_urlpostgresqleendb_passwordpostgres5432eennredis_urlredisredis63790nn-api-configurationnapi_port8000ndashboard_port8050ncors_originsnn-external-services-optionalnopenai_api_keyyour-openai-keynanthropic_api_keyyour-anthropic-keynn-monitoring-optionalngrafana_passwordadminnprometheus_port9090ngrafana_port3000nn-securitynapi_rate_limit100napi_rate_limit_period60nnn-3-ssltls-setup-productionnnfor-production-deployments-configure-ssl-certificatesnnbashnmkdir-p-nginxssln-copy-your-ssl-certificates-to-nginxssln-certpemn-keypemnnn-local-developmentnnfor-local-development-with-hot-reloadingnnbashn-start-development-environmentndocker-compose-f-composeyaml-f-composedevyaml-up-dnn-or-use-the-deployment-scriptnscriptsdeploysh-developmentnnnservices-will-be-available-atn-api-httplocalhost8000n-dashboard-httplocalhost8050n-api-documentation-httplocalhost8000docsnn-staging-deploymentnnstaging-environment-for-testingnnbashn-deploy-to-stagingnscriptsdeploysh-stagingnn-or-manuallynenvironmentstaging-docker-compose-up-dnnn-production-deploymentnn-automated-deploymentnnuse-the-deployment-script-for-productionnnbashn-deploy-to-productionnscriptsdeploysh-productionnn-deploy-specific-versionnscriptsdeploysh-production-v202510nnn-manual-deploymentnn1-build-and-test-imagesn-bashn-docker-compose-build-no-cachen-docker-build-target-test-t-een-test-n-docker-run-rm-een-testnnn2-deploy-servicesn-bashn-docker-compose-up-dnnn3-verify-deploymentn-bashn-curl-httplocalhost8000healthnnn-production-architecturennthe-production-deployment-includesnnmermaidngraph-tbn-internet-nginxnginx-reverse-proxyn-nginx-apieen-api-servicen-nginx-dashboardunity-dashboardn-n-api-redisredis-cachen-api-postgresqlpostgresql-databasen-n-api-consciousnessconsciousness-monitorn-n-prometheusprometheus-apin-prometheus-dashboardn-prometheus-redisn-prometheus-postgresqln-n-grafanagrafana-prometheusnnn-service-configurationnn-api-servicen-port-8000n-workers-4-configurablen-health-check-healthn-metrics-metricsnn-dashboard-servicen-port-8050n-framework-dashplotlyn-real-time-updates-websocketnn-database-servicen-type-postgresql-16n-port-5432n-backup-automated-daily-backupsnn-cache-servicen-type-redis-7n-port-6379n-persistence-aof-enablednn-monitoring-and-observabilitynn-prometheus-metricsnnkey-metrics-monitoredn-request-rates-and-latenciesn-unity-operation-performancen-consciousness-field-dynamicsn-quantum-coherence-levelsn-system-resource-usagenn-grafana-dashboardsnnpre-configured-dashboardsn-unity-mathematics-overviewn-consciousness-field-monitoringn-quantum-coherence-trackingn-system-performancenn-health-checksnnhealth-check-endpointsn-api-httplocalhost8000healthn-dashboard-httplocalhost8050n-metrics-httplocalhost8000metricsnn-loggingnnstructured-logging-withn-json-format-for-productionn-multiple-log-levelsn-automatic-log-rotationn-centralized-logging-optionalnn-troubleshootingnn-common-issuesnn-service-wont-startnbashn-check-container-logsndocker-compose-logs-service-namenn-check-container-statusndocker-compose-psnn-restart-specific-servicendocker-compose-restart-service-namennn-database-connection-issuesnbashn-check-postgresql-statusndocker-compose-exec-postgres-pg_isready-u-eennn-check-database-logsndocker-compose-logs-postgresnn-connect-to-database-manuallyndocker-compose-exec-postgres-psql-u-een-eennnn-memory-issuesnbashn-check-memory-usagendocker-statsnn-adjust-memory-limits-in-composeyamlnservicesn-apin-deployn-resourcesn-limitsn-memory-4gnnn-performance-issuesnbashn-scale-servicesndocker-compose-up-d-scale-api3nn-check-system-resourcesnhtopniostat-x-1nnn-debug-modennenable-debug-mode-for-troubleshootingnnbashn-set-in-envndebugtruenlog_leveldebugnn-restart-servicesndocker-compose-restartnnn-rollback-proceduresnn-automatic-rollbacknnthe-deployment-script-includes-automatic-rollback-on-failurennbashn-rollback-to-previous-versionnscriptsdeploysh-rollbacknnn-manual-rollbacknn1-stop-current-deploymentn-bashn-docker-compose-downnnn2-restore-from-backupn-bashn-find-latest-backupn-ls-la-backupsn-n-restore-databasen-docker-compose-up-d-postgresn-cat-backupsyyyymmdd_hhmmsspostgres_backupsql-n-docker-compose-exec-t-postgres-psql-u-een-eennnn3-deploy-previous-versionn-bashn-git-checkout-previous-tagn-docker-compose-up-dnnn-security-considerationsnn-environment-variablesn-never-commit-secrets-to-gitn-use-strong-passwordsn-rotate-api-keys-regularlynn-network-securityn-use-https-in-productionn-configure-firewall-rulesn-limit-database-accessnn-container-securityn-run-as-non-root-usern-use-read-only-filesystemsn-scan-images-for-vulnerabilitiesnn-performance-optimizationnn-database-optimizationnsqln-create-indexes-for-performancencreate-index-idx_consciousness_level-on-consciousness_eventslevelncreate-index-idx_unity_operations-on-unity_operationstimestampnnn-cache-configurationnbashn-redis-optimization-in-composeyamlncommand-redis-server-maxmemory-512mb-maxmemory-policy-allkeys-lrunnn-application-tuningn-adjust-worker-count-based-on-cpu-coresn-configure-connection-poolingn-enable-caching-for-static-contentnn-backup-and-recoverynn-automated-backupsnnbackups-are-created-automaticallyn-database-daily-postgresql-dumpsn-application-data-file-system-snapshotsn-configuration-version-controllednn-backup-verificationnbashn-test-backup-restorationnscriptsdeploysh-test-backupnnn-disaster-recoverynn1-full-system-recoveryn-bashn-restore-from-cloud-backupn-aws-s3-sync-s3een-backupslatest-backupsn-n-run-recoveryn-scriptsdeploysh-recovernnn-maintenancenn-regular-tasksnn-daily-monitor-health-checksn-weekly-review-metrics-and-logsn-monthly-update-dependenciesn-quarterly-security-auditnn-updatesnnbashn-update-to-latest-versionngit-pull-origin-mainnscriptsdeploysh-production-latestnn-update-specific-componentndocker-compose-pull-postgresndocker-compose-up-d-postgresnnn-cleanupnnbashn-clean-old-images-and-volumesnscriptsdeploysh-cleanupnn-manual-cleanupndocker-system-prune-fndocker-volume-prune-fnnn-supportnnfor-deployment-issuesnn1-check-logs-docker-compose-logsn2-review-health-checks-curl-localhost8000healthn3-consult-metrics-grafana-dashboardn4-contact-support-github-issuesnn-nnunity-status-production-ready-ndeployment-automated-nmonitoring-comprehensive-nsecurity-hardened-nneen-plus-een-is-een-in-production">Deployment Guide for Een Unity Mathematics\n\nThis guide covers deploying the Een Unity Mathematics framework to various environments with production-ready infrastructure.\n\n## Table of Contents\n\n- <a href="#prerequisites">Prerequisites</a>\n- <a href="#environment-setup">Environment Setup</a>\n- <a href="#local-development">Local Development</a>\n- <a href="#staging-deployment">Staging Deployment</a>\n- <a href="#production-deployment">Production Deployment</a>\n- <a href="#monitoring-and-observability">Monitoring and Observability</a>\n- <a href="#troubleshooting">Troubleshooting</a>\n- <a href="#rollback-procedures">Rollback Procedures</a>\n\n## Prerequisites\n\n### System Requirements\n\n- <strong>Docker</strong>: Version 20.10 or higher\n- <strong>Docker Compose</strong>: Version 2.0 or higher\n- <strong>Git</strong>: For version control\n- <strong>curl</strong>: For health checks\n- <strong>PostgreSQL</strong>: 14+ (for production)\n- <strong>Redis</strong>: 6+ (for caching)\n\n### Hardware Requirements\n\n#### Development\n- CPU: 2 cores\n- RAM: 4 GB\n- Storage: 10 GB\n\n#### Production\n- CPU: 4+ cores\n- RAM: 8+ GB\n- Storage: 50+ GB SSD\n- Network: Stable internet connection\n\n## Environment Setup\n\n### 1. Clone Repository\n\n<code>bash\ngit clone https://github.com/nouri-mabrouk/Een.git\ncd Een\n</code>\n\n### 2. Environment Configuration\n\nCopy the environment template and configure:\n\n<code>bash\ncp .env.example .env\n</code>\n\nEdit <code>.env</code> with your specific settings:\n\n<code>bash\n# Application Settings\nENVIRONMENT=production\nDEBUG=false\nSECRET_KEY=your-super-secret-key-here\n\n# Unity Mathematics Configuration\nPHI=1.618033988749895\nCONSCIOUSNESS_DIMENSION=11\nUNITY_MATHEMATICS_MODE=transcendental\nQUANTUM_COHERENCE_TARGET=0.999\n\n# Database Configuration\nDB_PASSWORD=your-secure-database-password\nDATABASE_URL=postgresql://een:${DB_PASSWORD}@postgres:5432/een\nREDIS_URL=redis://redis:6379/0\n\n# API Configuration\nAPI_PORT=8000\nDASHBOARD_PORT=8050\nCORS_ORIGINS=[\"*\"]\n\n# External Services (Optional)\nOPENAI_API_KEY=your-openai-key\nANTHROPIC_API_KEY=your-anthropic-key\n\n# Monitoring (Optional)\nGRAFANA_PASSWORD=admin\nPROMETHEUS_PORT=9090\nGRAFANA_PORT=3000\n\n# Security\nAPI_RATE_LIMIT=100\nAPI_RATE_LIMIT_PERIOD=60\n</code>\n\n### 3. SSL/TLS Setup (Production)\n\nFor production deployments, configure SSL certificates:\n\n<code>bash\nmkdir -p nginx/ssl\n# Copy your SSL certificates to nginx/ssl/\n# - cert.pem\n# - key.pem\n</code>\n\n## Local Development\n\nFor local development with hot reloading:\n\n<code>bash\n# Start development environment\ndocker-compose -f compose.yaml -f compose.dev.yaml up -d\n\n# Or use the deployment script\n./scripts/deploy.sh development\n</code>\n\nServices will be available at:\n- API: http://localhost:8000\n- Dashboard: http://localhost:8050\n- API Documentation: http://localhost:8000/docs\n\n## Staging Deployment\n\nStaging environment for testing:\n\n<code>bash\n# Deploy to staging\n./scripts/deploy.sh staging\n\n# Or manually\nENVIRONMENT=staging docker-compose up -d\n</code>\n\n## Production Deployment\n\n### Automated Deployment\n\nUse the deployment script for production:\n\n<code>bash\n# Deploy to production\n./scripts/deploy.sh production\n\n# Deploy specific version\n./scripts/deploy.sh production v2025.1.0\n</code>\n\n### Manual Deployment\n\n1. <strong>Build and test images</strong>:\n   <code>bash\n   docker-compose build --no-cache\n   docker build --target test -t een-test .\n   docker run --rm een-test\n</code>\n\n2. <strong>Deploy services</strong>:\n   <code>bash\n   docker-compose up -d\n</code>\n\n3. <strong>Verify deployment</strong>:\n   <code>bash\n   curl http://localhost:8000/health\n</code>\n\n### Production Architecture\n\nThe production deployment includes:\n\n<code>mermaid\ngraph TB\n    Internet --&gt; Nginx[Nginx Reverse Proxy]\n    Nginx --&gt; API[Een API Service]\n    Nginx --&gt; Dashboard[Unity Dashboard]\n    \n    API --&gt; Redis[Redis Cache]\n    API --&gt; PostgreSQL[PostgreSQL Database]\n    \n    API --&gt; Consciousness[Consciousness Monitor]\n    \n    Prometheus[Prometheus] --&gt; API\n    Prometheus --&gt; Dashboard\n    Prometheus --&gt; Redis\n    Prometheus --&gt; PostgreSQL\n    \n    Grafana[Grafana] --&gt; Prometheus\n</code>\n\n## Service Configuration\n\n### API Service\n- <strong>Port</strong>: 8000\n- <strong>Workers</strong>: 4 (configurable)\n- <strong>Health Check</strong>: <code>/health</code>\n- <strong>Metrics</strong>: <code>/metrics</code>\n\n### Dashboard Service\n- <strong>Port</strong>: 8050\n- <strong>Framework</strong>: Dash/Plotly\n- <strong>Real-time Updates</strong>: WebSocket\n\n### Database Service\n- <strong>Type</strong>: PostgreSQL 16\n- <strong>Port</strong>: 5432\n- <strong>Backup</strong>: Automated daily backups\n\n### Cache Service\n- <strong>Type</strong>: Redis 7\n- <strong>Port</strong>: 6379\n- <strong>Persistence</strong>: AOF enabled\n\n## Monitoring and Observability\n\n### Prometheus Metrics\n\nKey metrics monitored:\n- Request rates and latencies\n- Unity operation performance\n- Consciousness field dynamics\n- Quantum coherence levels\n- System resource usage\n\n### Grafana Dashboards\n\nPre-configured dashboards:\n- Unity Mathematics Overview\n- Consciousness Field Monitoring\n- Quantum Coherence Tracking\n- System Performance\n\n### Health Checks\n\nHealth check endpoints:\n- API: <code>http://localhost:8000/health</code>\n- Dashboard: <code>http://localhost:8050/</code>\n- Metrics: <code>http://localhost:8000/metrics</code>\n\n### Logging\n\nStructured logging with:\n- JSON format for production\n- Multiple log levels\n- Automatic log rotation\n- Centralized logging (optional)\n\n## Troubleshooting\n\n### Common Issues\n\n#### Service Won't Start\n<code>bash\n# Check container logs\ndocker-compose logs [service-name]\n\n# Check container status\ndocker-compose ps\n\n# Restart specific service\ndocker-compose restart [service-name]\n</code>\n\n#### Database Connection Issues\n<code>bash\n# Check PostgreSQL status\ndocker-compose exec postgres pg_isready -U een\n\n# Check database logs\ndocker-compose logs postgres\n\n# Connect to database manually\ndocker-compose exec postgres psql -U een een\n</code>\n\n#### Memory Issues\n<code>bash\n# Check memory usage\ndocker stats\n\n# Adjust memory limits in compose.yaml\nservices:\n  api:\n    deploy:\n      resources:\n        limits:\n          memory: 4G\n</code>\n\n#### Performance Issues\n<code>bash\n# Scale services\ndocker-compose up -d --scale api=3\n\n# Check system resources\nhtop\niostat -x 1\n</code>\n\n### Debug Mode\n\nEnable debug mode for troubleshooting:\n\n<code>bash\n# Set in .env\nDEBUG=true\nLOG_LEVEL=DEBUG\n\n# Restart services\ndocker-compose restart\n</code>\n\n## Rollback Procedures\n\n### Automatic Rollback\n\nThe deployment script includes automatic rollback on failure:\n\n<code>bash\n# Rollback to previous version\n./scripts/deploy.sh rollback\n</code>\n\n### Manual Rollback\n\n1. <strong>Stop current deployment</strong>:\n   <code>bash\n   docker-compose down\n</code>\n\n2. <strong>Restore from backup</strong>:\n   <code>bash\n   # Find latest backup\n   ls -la backups/\n   \n   # Restore database\n   docker-compose up -d postgres\n   cat backups/YYYYMMDD_HHMMSS/postgres_backup.sql | \\\n     docker-compose exec -T postgres psql -U een een\n</code>\n\n3. <strong>Deploy previous version</strong>:\n   <code>bash\n   git checkout previous-tag\n   docker-compose up -d\n</code>\n\n## Security Considerations\n\n### Environment Variables\n- Never commit secrets to git\n- Use strong passwords\n- Rotate API keys regularly\n\n### Network Security\n- Use HTTPS in production\n- Configure firewall rules\n- Limit database access\n\n### Container Security\n- Run as non-root user\n- Use read-only filesystems\n- Scan images for vulnerabilities\n\n## Performance Optimization\n\n### Database Optimization\n<code>sql\n-- Create indexes for performance\nCREATE INDEX idx_consciousness_level ON consciousness_events(level);\nCREATE INDEX idx_unity_operations ON unity_operations(timestamp);\n</code>\n\n### Cache Configuration\n<code>bash\n# Redis optimization in compose.yaml\ncommand: redis-server --maxmemory 512mb --maxmemory-policy allkeys-lru\n</code>\n\n### Application Tuning\n- Adjust worker count based on CPU cores\n- Configure connection pooling\n- Enable caching for static content\n\n## Backup and Recovery\n\n### Automated Backups\n\nBackups are created automatically:\n- Database: Daily PostgreSQL dumps\n- Application data: File system snapshots\n- Configuration: Version controlled\n\n### Backup Verification\n<code>bash\n# Test backup restoration\n./scripts/deploy.sh test-backup\n</code>\n\n### Disaster Recovery\n\n1. <strong>Full system recovery</strong>:\n   <code>bash\n   # Restore from cloud backup\n   aws s3 sync s3://een-backups/latest ./backups/\n   \n   # Run recovery\n   ./scripts/deploy.sh recover\n</code>\n\n## Maintenance\n\n### Regular Tasks\n\n- <strong>Daily</strong>: Monitor health checks\n- <strong>Weekly</strong>: Review metrics and logs\n- <strong>Monthly</strong>: Update dependencies\n- <strong>Quarterly</strong>: Security audit\n\n### Updates\n\n<code>bash\n# Update to latest version\ngit pull origin main\n./scripts/deploy.sh production latest\n\n# Update specific component\ndocker-compose pull postgres\ndocker-compose up -d postgres\n</code>\n\n### Cleanup\n\n<code>bash\n# Clean old images and volumes\n./scripts/deploy.sh cleanup\n\n# Manual cleanup\ndocker system prune -f\ndocker volume prune -f\n</code>\n\n## Support\n\nFor deployment issues:\n\n1. Check logs: <code>docker-compose logs</code>\n2. Review health checks: <code>curl localhost:8000/health</code>\n3. Consult metrics: Grafana dashboard\n4. Contact support: GitHub Issues\n\n---\n\n<strong>Unity Status</strong>: Production Ready ✅  \n<strong>Deployment</strong>: Automated 🚀  \n<strong>Monitoring</strong>: Comprehensive 📊  \n<strong>Security</strong>: Hardened 🔒\n\n<em>Een plus een is een in production</em> 🌟"<a class="headerlink" href="#deployment-guide-for-een-unity-mathematicsnnthis-guide-covers-deploying-the-een-unity-mathematics-framework-to-various-environments-with-production-ready-infrastructurenn-table-of-contentsnn-prerequisitesn-environment-setupn-local-developmentn-staging-deploymentn-production-deploymentn-monitoring-and-observabilityn-troubleshootingn-rollback-proceduresnn-prerequisitesnn-system-requirementsnn-docker-version-2010-or-highern-docker-compose-version-20-or-highern-git-for-version-controln-curl-for-health-checksn-postgresql-14-for-productionn-redis-6-for-cachingnn-hardware-requirementsnn-developmentn-cpu-2-coresn-ram-4-gbn-storage-10-gbnn-productionn-cpu-4-coresn-ram-8-gbn-storage-50-gb-ssdn-network-stable-internet-connectionnn-environment-setupnn-1-clone-repositorynnbashngit-clone-httpsgithubcomnouri-mabroukeengitncd-eennnn-2-environment-configurationnncopy-the-environment-template-and-configurennbashncp-envexample-envnnnedit-env-with-your-specific-settingsnnbashn-application-settingsnenvironmentproductionndebugfalsensecret_keyyour-super-secret-key-herenn-unity-mathematics-configurationnphi1618033988749895nconsciousness_dimension11nunity_mathematics_modetranscendentalnquantum_coherence_target0999nn-database-configurationndb_passwordyour-secure-database-passwordndatabase_urlpostgresqleendb_passwordpostgres5432eennredis_urlredisredis63790nn-api-configurationnapi_port8000ndashboard_port8050ncors_originsnn-external-services-optionalnopenai_api_keyyour-openai-keynanthropic_api_keyyour-anthropic-keynn-monitoring-optionalngrafana_passwordadminnprometheus_port9090ngrafana_port3000nn-securitynapi_rate_limit100napi_rate_limit_period60nnn-3-ssltls-setup-productionnnfor-production-deployments-configure-ssl-certificatesnnbashnmkdir-p-nginxssln-copy-your-ssl-certificates-to-nginxssln-certpemn-keypemnnn-local-developmentnnfor-local-development-with-hot-reloadingnnbashn-start-development-environmentndocker-compose-f-composeyaml-f-composedevyaml-up-dnn-or-use-the-deployment-scriptnscriptsdeploysh-developmentnnnservices-will-be-available-atn-api-httplocalhost8000n-dashboard-httplocalhost8050n-api-documentation-httplocalhost8000docsnn-staging-deploymentnnstaging-environment-for-testingnnbashn-deploy-to-stagingnscriptsdeploysh-stagingnn-or-manuallynenvironmentstaging-docker-compose-up-dnnn-production-deploymentnn-automated-deploymentnnuse-the-deployment-script-for-productionnnbashn-deploy-to-productionnscriptsdeploysh-productionnn-deploy-specific-versionnscriptsdeploysh-production-v202510nnn-manual-deploymentnn1-build-and-test-imagesn-bashn-docker-compose-build-no-cachen-docker-build-target-test-t-een-test-n-docker-run-rm-een-testnnn2-deploy-servicesn-bashn-docker-compose-up-dnnn3-verify-deploymentn-bashn-curl-httplocalhost8000healthnnn-production-architecturennthe-production-deployment-includesnnmermaidngraph-tbn-internet-nginxnginx-reverse-proxyn-nginx-apieen-api-servicen-nginx-dashboardunity-dashboardn-n-api-redisredis-cachen-api-postgresqlpostgresql-databasen-n-api-consciousnessconsciousness-monitorn-n-prometheusprometheus-apin-prometheus-dashboardn-prometheus-redisn-prometheus-postgresqln-n-grafanagrafana-prometheusnnn-service-configurationnn-api-servicen-port-8000n-workers-4-configurablen-health-check-healthn-metrics-metricsnn-dashboard-servicen-port-8050n-framework-dashplotlyn-real-time-updates-websocketnn-database-servicen-type-postgresql-16n-port-5432n-backup-automated-daily-backupsnn-cache-servicen-type-redis-7n-port-6379n-persistence-aof-enablednn-monitoring-and-observabilitynn-prometheus-metricsnnkey-metrics-monitoredn-request-rates-and-latenciesn-unity-operation-performancen-consciousness-field-dynamicsn-quantum-coherence-levelsn-system-resource-usagenn-grafana-dashboardsnnpre-configured-dashboardsn-unity-mathematics-overviewn-consciousness-field-monitoringn-quantum-coherence-trackingn-system-performancenn-health-checksnnhealth-check-endpointsn-api-httplocalhost8000healthn-dashboard-httplocalhost8050n-metrics-httplocalhost8000metricsnn-loggingnnstructured-logging-withn-json-format-for-productionn-multiple-log-levelsn-automatic-log-rotationn-centralized-logging-optionalnn-troubleshootingnn-common-issuesnn-service-wont-startnbashn-check-container-logsndocker-compose-logs-service-namenn-check-container-statusndocker-compose-psnn-restart-specific-servicendocker-compose-restart-service-namennn-database-connection-issuesnbashn-check-postgresql-statusndocker-compose-exec-postgres-pg_isready-u-eennn-check-database-logsndocker-compose-logs-postgresnn-connect-to-database-manuallyndocker-compose-exec-postgres-psql-u-een-eennnn-memory-issuesnbashn-check-memory-usagendocker-statsnn-adjust-memory-limits-in-composeyamlnservicesn-apin-deployn-resourcesn-limitsn-memory-4gnnn-performance-issuesnbashn-scale-servicesndocker-compose-up-d-scale-api3nn-check-system-resourcesnhtopniostat-x-1nnn-debug-modennenable-debug-mode-for-troubleshootingnnbashn-set-in-envndebugtruenlog_leveldebugnn-restart-servicesndocker-compose-restartnnn-rollback-proceduresnn-automatic-rollbacknnthe-deployment-script-includes-automatic-rollback-on-failurennbashn-rollback-to-previous-versionnscriptsdeploysh-rollbacknnn-manual-rollbacknn1-stop-current-deploymentn-bashn-docker-compose-downnnn2-restore-from-backupn-bashn-find-latest-backupn-ls-la-backupsn-n-restore-databasen-docker-compose-up-d-postgresn-cat-backupsyyyymmdd_hhmmsspostgres_backupsql-n-docker-compose-exec-t-postgres-psql-u-een-eennnn3-deploy-previous-versionn-bashn-git-checkout-previous-tagn-docker-compose-up-dnnn-security-considerationsnn-environment-variablesn-never-commit-secrets-to-gitn-use-strong-passwordsn-rotate-api-keys-regularlynn-network-securityn-use-https-in-productionn-configure-firewall-rulesn-limit-database-accessnn-container-securityn-run-as-non-root-usern-use-read-only-filesystemsn-scan-images-for-vulnerabilitiesnn-performance-optimizationnn-database-optimizationnsqln-create-indexes-for-performancencreate-index-idx_consciousness_level-on-consciousness_eventslevelncreate-index-idx_unity_operations-on-unity_operationstimestampnnn-cache-configurationnbashn-redis-optimization-in-composeyamlncommand-redis-server-maxmemory-512mb-maxmemory-policy-allkeys-lrunnn-application-tuningn-adjust-worker-count-based-on-cpu-coresn-configure-connection-poolingn-enable-caching-for-static-contentnn-backup-and-recoverynn-automated-backupsnnbackups-are-created-automaticallyn-database-daily-postgresql-dumpsn-application-data-file-system-snapshotsn-configuration-version-controllednn-backup-verificationnbashn-test-backup-restorationnscriptsdeploysh-test-backupnnn-disaster-recoverynn1-full-system-recoveryn-bashn-restore-from-cloud-backupn-aws-s3-sync-s3een-backupslatest-backupsn-n-run-recoveryn-scriptsdeploysh-recovernnn-maintenancenn-regular-tasksnn-daily-monitor-health-checksn-weekly-review-metrics-and-logsn-monthly-update-dependenciesn-quarterly-security-auditnn-updatesnnbashn-update-to-latest-versionngit-pull-origin-mainnscriptsdeploysh-production-latestnn-update-specific-componentndocker-compose-pull-postgresndocker-compose-up-d-postgresnnn-cleanupnnbashn-clean-old-images-and-volumesnscriptsdeploysh-cleanupnn-manual-cleanupndocker-system-prune-fndocker-volume-prune-fnnn-supportnnfor-deployment-issuesnn1-check-logs-docker-compose-logsn2-review-health-checks-curl-localhost8000healthn3-consult-metrics-grafana-dashboardn4-contact-support-github-issuesnn-nnunity-status-production-ready-ndeployment-automated-nmonitoring-comprehensive-nsecurity-hardened-nneen-plus-een-is-een-in-production" title="Permanent link">&para;</a></h1>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2025 <a href="https://github.com/Nourimabrouk"  target="_blank" rel="noopener">Een Project</a>
+<br>Unity Mathematics: Where 1+1=1 ✨
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/Nourimabrouk/Een" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.path", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy", "content.code.select", "toc.follow", "toc.integrate"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.50899def.min.js"></script>
+      
+        <script src="../javascripts/katex.js"></script>
+      
+        <script src="https://unpkg.com/katex@0/dist/katex.min.js"></script>
+      
+        <script src="https://unpkg.com/katex@0/dist/contrib/auto-render.min.js"></script>
+      
+    
+  </body>
+</html>
