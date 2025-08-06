@@ -8,10 +8,29 @@ from prometheus_client import Counter, Histogram, generate_latest, CONTENT_TYPE_
 from prometheus_client import REGISTRY
 import time
 import logging
+from typing import Optional
+from dotenv import load_dotenv
 
-# OpenAI integration imports
-from src.openai.unity_transcendental_ai_orchestrator import get_orchestrator
-from src.openai.unity_client import get_client
+# Load environment variables
+load_dotenv()
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(__name__)
+
+# Conditional OpenAI integration imports with error handling
+try:
+    from src.openai.unity_transcendental_ai_orchestrator import get_orchestrator
+    from src.openai.unity_client import get_client
+    OPENAI_AVAILABLE = True
+except ImportError as e:
+    logger.warning(f"OpenAI integration modules not available: {e}")
+    OPENAI_AVAILABLE = False
+    get_orchestrator = None
+    get_client = None
 
 # Metrics
 REQUEST_COUNT = Counter(
@@ -19,18 +38,25 @@ REQUEST_COUNT = Counter(
 )
 REQUEST_LATENCY = Histogram("http_request_duration_seconds", "HTTP request latency")
 
-# Initialize OpenAI integration
+# Initialize OpenAI integration with proper error handling
 api_key = os.getenv("OPENAI_API_KEY")
-orchestrator = None
-client = None
+orchestrator: Optional[object] = None
+client: Optional[object] = None
 
-if api_key:
+if api_key and api_key != "sk-proj-your-key-here" and OPENAI_AVAILABLE:
     try:
         orchestrator = get_orchestrator(api_key)
         client = get_client(api_key)
-        logging.info("🌟 OpenAI integration initialized successfully")
+        logger.info("🌟 OpenAI integration initialized successfully")
     except Exception as e:
-        logging.warning(f"OpenAI integration not available: {e}")
+        logger.warning(f"OpenAI integration initialization failed: {e}")
+        orchestrator = None
+        client = None
+else:
+    if not api_key or api_key == "sk-proj-your-key-here":
+        logger.info("OpenAI API key not configured - running without AI features")
+    elif not OPENAI_AVAILABLE:
+        logger.info("OpenAI modules not available - running without AI features")
 
 app = FastAPI(
     title="Een Unity Mathematics API",
@@ -38,24 +64,45 @@ app = FastAPI(
     version="1.0.0",
 )
 
-# CORS middleware
+# CORS middleware with production-ready configuration
+CORS_ORIGINS = os.getenv("CORS_ORIGINS", "*").split(",")
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=CORS_ORIGINS,
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allow_headers=["*"],
+    max_age=3600,
 )
 
 
 @app.middleware("http")
 async def add_process_time_header(request, call_next):
     start_time = time.time()
-    response = await call_next(request)
-    process_time = time.time() - start_time
-    response.headers["X-Process-Time"] = str(process_time)
-    REQUEST_LATENCY.observe(process_time)
-    return response
+    try:
+        response = await call_next(request)
+        process_time = time.time() - start_time
+        response.headers["X-Process-Time"] = str(process_time)
+        REQUEST_LATENCY.observe(process_time)
+        REQUEST_COUNT.labels(
+            method=request.method,
+            endpoint=str(request.url.path),
+            status=response.status_code
+        ).inc()
+        return response
+    except Exception as e:
+        process_time = time.time() - start_time
+        REQUEST_LATENCY.observe(process_time)
+        REQUEST_COUNT.labels(
+            method=request.method,
+            endpoint=str(request.url.path),
+            status=500
+        ).inc()
+        logger.error(f"Request failed: {e}")
+        return JSONResponse(
+            status_code=500,
+            content={"error": "Internal server error", "message": str(e)}
+        )
 
 
 @app.get("/")
@@ -66,8 +113,19 @@ async def root():
 
 @app.get("/health")
 async def health_check():
-    """Health check endpoint"""
-    return {"status": "healthy", "service": "een-unity-mathematics"}
+    """Health check endpoint with detailed status"""
+    health_status = {
+        "status": "healthy",
+        "service": "een-unity-mathematics",
+        "version": "1.0.0",
+        "features": {
+            "openai_integration": orchestrator is not None,
+            "unity_mathematics": True,
+            "consciousness_field": True,
+        },
+        "timestamp": time.time()
+    }
+    return health_status
 
 
 @app.get("/metrics")
@@ -91,13 +149,18 @@ async def unity_status():
 
 @app.post("/api/unity/calculate")
 async def calculate_unity(data: dict):
-    """Calculate Unity Mathematics operations"""
+    """Calculate Unity Mathematics operations with error handling"""
     try:
-        # Simple unity calculation
+        # Validate input
+        if not data:
+            raise HTTPException(status_code=400, detail="No input data provided")
+        
+        # Simple unity calculation with phi harmonics
+        phi = 1.618033988749895
         result = {
             "input": data,
             "unity_result": 1.0,
-            "phi_ratio": 1.618033988749895,
+            "phi_ratio": phi,
             "consciousness_field": "active",
         }
         return result
