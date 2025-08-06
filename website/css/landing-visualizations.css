@@ -610,3 +610,24 @@
 .content-card[data-consciousness-field="mathematical-proofs"]::before {
     background: linear-gradient(135deg, transparent 0%, rgba(245, 158, 11, 0.1) 100%);
 }
+
+/* Audio Player */
+.audio-player {
+    position: fixed;
+    bottom: 1rem;
+    left: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    z-index: 10000;
+}
+.audio-player h2 {
+    color: var(--unity-gold);
+    margin: 0 0 0.5rem;
+}
+.audio-player audio {
+    width: 300px;
+    max-width: 100%;
+}
