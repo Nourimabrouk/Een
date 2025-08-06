@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import os
-from pytube import YouTube
+import yt_dlp
 
 # --- Configuration ---
 SONGS = {
@@ -12,49 +12,35 @@ DOWNLOAD_DIR = os.path.join(os.path.dirname(__file__), "..", "website", "audio")
 
 
 # --- Main Download Logic ---
-def download_song(song_title, url):
-    """Downloads a single song as an MP3."""
-    try:
-        print(f"Downloading '{song_title}'...")
-        yt = YouTube(url)
-        audio_stream = yt.streams.filter(only_audio=True, file_extension="mp4").first()
-        if not audio_stream:
-            print(f"No audio stream found for '{song_title}'.")
-            return
-
-        # Download the file
-        output_file = audio_stream.download(output_path=DOWNLOAD_DIR)
-
-        # Rename to a clean, friendly name
-        base, ext = os.path.splitext(output_file)
-        new_file_name = "".join(
-            c for c in song_title if c.isalnum() or c in " -_"
-        ).rstrip()
-        new_file_path = os.path.join(DOWNLOAD_DIR, f"{new_file_name}.mp3")
-
-        # Check for existing file and remove if necessary
-        if os.path.exists(new_file_path):
-            print(f"'{new_file_name}.mp3' already exists. Replacing.")
-            os.remove(new_file_path)
-
-        os.rename(output_file, new_file_path)
-        print(f"Successfully downloaded and saved to '{new_file_path}'")
-
-    except Exception as e:
-        print(f"Error downloading '{song_title}': {e}")
-
-
-def main():
-    """Downloads all the songs specified in the SONGS dictionary."""
+def download_songs():
+    """Downloads all songs using yt-dlp."""
     # Ensure the download directory exists
     if not os.path.exists(DOWNLOAD_DIR):
         print(f"Creating download directory: '{DOWNLOAD_DIR}'")
         os.makedirs(DOWNLOAD_DIR)
 
-    # Download each song
     for title, url in SONGS.items():
-        download_song(title, url)
+        print(f"Downloading '{title}'...")
+        try:
+            # Sanitize title for filename
+            safe_title = "".join(c for c in title if c.isalnum() or c in " -_").rstrip()
 
+            ydl_opts = {
+                "format": "bestaudio/best",
+                "outtmpl": os.path.join(DOWNLOAD_DIR, f"{safe_title}.%(ext)s"),
+                "quiet": True,
+                "overwrites": True,
+            }
+            with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+                ydl.download([url])
+            print(f"Successfully downloaded '{title}'")
+        except Exception as e:
+            print(f"Error downloading '{title}': {e}")
+
+
+def main():
+    """Main function to run the download process."""
+    download_songs()
     print("\nAll song downloads complete!")
 
 
