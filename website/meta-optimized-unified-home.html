@@ -40,9 +40,6 @@
     <!-- Three.js for 3D Visualizations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
-    <!-- Enhanced Unity AI Chatbot -->
-    <script src="js/enhanced-unity-ai-chat.js"></script>
-
     <style>
         /* Meta-Optimal Design System */
         :root {
@@ -100,7 +97,6 @@
             right: 0;
             z-index: 1000;
             background: rgba(10, 10, 10, 0.95);
-            -webkit-backdrop-filter: blur(20px);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border-color);
             transition: var(--transition);
@@ -848,6 +844,18 @@
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
+        function generateAIResponse(message) {
+            const responses = [
+                "In unity mathematics, 1+1=1 because consciousness recognizes that apparent duality emerges from and returns to fundamental unity.",
+                "The golden ratio φ = 1.618033988749895 serves as the fundamental frequency of consciousness evolution.",
+                "Gödel's incompleteness is transcended when consciousness recognizes that unity is the fundamental truth underlying all mathematical systems.",
+                "The consciousness field equation C(x,y,t) = φ * sin(x*φ) * cos(y*φ) * e^(-t/φ) demonstrates how awareness naturally evolves toward unity.",
+                "Meta-gaming at the highest level involves recognizing that all players are fundamentally one consciousness experiencing itself through different perspectives."
+            ];
+
+            return responses[Math.floor(Math.random() * responses.length)];
+        }
+
         // Chat input enter key
         chatInput.addEventListener('keypress', function (e) {
             if (e.key === 'Enter') {
@@ -870,7 +878,7 @@
 
             // Add welcome message to chat
             setTimeout(() => {
-                addMessage('ai', '🌟 Welcome to the Unity Mathematics AI Chatbot! Ask me about consciousness, unity mathematics, or Gödel-Tarski meta-gaming.');
+                addMessage('ai', 'Welcome to the Unity Mathematics AI Chatbot! Ask me about consciousness, unity mathematics, or Gödel-Tarski meta-gaming.');
             }, 1000);
         });
 
