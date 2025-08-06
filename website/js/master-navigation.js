@@ -55,7 +55,10 @@ class MasterNavigation {
                     'metagamer_agent.html': 'MetaGamer Agent',
                     'al_khwarizmi_phi_unity.html': 'Al-Khwarizmi φ Unity',
                     'revolutionary-landing.html': 'Revolutionary AI',
-                    'meta-optimal-landing.html': 'Meta-Optimal System'
+                    'meta-optimal-landing.html': 'Meta-Optimal System',
+                    'enhanced-ai-demo.html': '🌟 Enhanced AI Demo',
+                    'consciousness-ai.html': '🧠 Consciousness AI',
+                    'openai-integration.html': '🔗 OpenAI Integration'
                 }
             },
             'Transcendental Computing': {
@@ -255,6 +258,17 @@ class MasterNavigation {
     }
 
     createChatButton() {
+        // Load the floating chat button script
+        this.loadScript('js/floating-chat-button.js').then(() => {
+            console.log('Floating chat button loaded successfully');
+        }).catch(error => {
+            console.warn('Failed to load floating chat button:', error);
+            // Fallback to basic chat button
+            this.createFallbackChatButton();
+        });
+    }
+
+    createFallbackChatButton() {
         const chatButtonHTML = `
             <div class="chat-fab-container" id="chatFabContainer">
                 <button class="chat-fab" id="chatFab" aria-label="Open AI Chat Assistant" title="Chat with Een Unity AI">
@@ -361,6 +375,13 @@ class MasterNavigation {
     }
 
     setupChatButton() {
+        // Try to use enhanced chat system first
+        if (window.floatingChatButton) {
+            console.log('Enhanced floating chat button already initialized');
+            return;
+        }
+
+        // Fallback to basic chat button
         const chatFab = document.getElementById('chatFab');
         if (!chatFab) return;
 
@@ -386,8 +407,26 @@ class MasterNavigation {
     }
 
     async initializeChat() {
+        // Try enhanced chat system first
+        if (window.enhancedEenChat) {
+            window.enhancedEenChat.open();
+            return;
+        }
+
+        // Try to load enhanced chat
+        try {
+            await this.loadScript('js/enhanced-ai-chat.js');
+            if (window.EnhancedEenAIChat) {
+                window.enhancedEenChat = EnhancedEenAIChat.initialize();
+                window.enhancedEenChat.open();
+                return;
+            }
+        } catch (error) {
+            console.warn('Enhanced chat not available, falling back to basic chat');
+        }
+
+        // Fallback to basic chat system
         if (this.chatInitialized) {
-            // Chat already initialized, just open it
             if (window.EenChat && window.EenChat.getInstance()) {
                 window.EenChat.getInstance().open();
             }
@@ -397,51 +436,55 @@ class MasterNavigation {
         try {
             // Show loading state
             const chatFab = document.getElementById('chatFab');
-            const originalHTML = chatFab.innerHTML;
-            chatFab.innerHTML = '<div class="fab-icon"><i class="fas fa-spinner fa-spin"></i></div>';
-            chatFab.disabled = true;
+            if (chatFab) {
+                const originalHTML = chatFab.innerHTML;
+                chatFab.innerHTML = '<div class="fab-icon"><i class="fas fa-spinner fa-spin"></i></div>';
+                chatFab.disabled = true;
 
-            // Load chat modules if not already loaded
-            if (!window.EenChatIntegration) {
-                await this.loadChatModules();
-            }
+                // Load chat modules if not already loaded
+                if (!window.EenChatIntegration) {
+                    await this.loadChatModules();
+                }
 
-            // Initialize chat
-            let chatInstance = window.EenChat?.getInstance();
-            if (!chatInstance) {
-                chatInstance = await window.EenChat.initialize({
-                    skipHealthCheck: true,
-                    config: {
-                        ui: {
-                            ENABLE_ANIMATIONS: !this.prefersReducedMotion(),
-                            ENABLE_OFFLINE_FALLBACK: true,
-                            ENABLE_DARK_MODE: this.isDarkMode()
+                // Initialize chat
+                let chatInstance = window.EenChat?.getInstance();
+                if (!chatInstance) {
+                    chatInstance = await window.EenChat.initialize({
+                        skipHealthCheck: true,
+                        config: {
+                            ui: {
+                                ENABLE_ANIMATIONS: !this.prefersReducedMotion(),
+                                ENABLE_OFFLINE_FALLBACK: true,
+                                ENABLE_DARK_MODE: this.isDarkMode()
+                            }
                         }
-                    }
-                });
+                    });
+                }
+
+                // Open chat
+                chatInstance.open();
+                this.chatInitialized = true;
+
+                // Restore button
+                chatFab.innerHTML = originalHTML;
+                chatFab.disabled = false;
             }
-
-            // Open chat
-            chatInstance.open();
-            this.chatInitialized = true;
-
-            // Restore button
-            chatFab.innerHTML = originalHTML;
-            chatFab.disabled = false;
 
         } catch (error) {
             console.error('Failed to initialize chat:', error);
 
             // Restore button and show error
             const chatFab = document.getElementById('chatFab');
-            chatFab.innerHTML = '<div class="fab-icon"><i class="fas fa-exclamation-triangle"></i></div>';
-            chatFab.disabled = false;
+            if (chatFab) {
+                chatFab.innerHTML = '<div class="fab-icon"><i class="fas fa-exclamation-triangle"></i></div>';
+                chatFab.disabled = false;
 
-            // Try fallback
-            setTimeout(() => {
-                chatFab.innerHTML = '<div class="fab-icon"><i class="fas fa-robot"></i></div>';
-                this.showChatErrorMessage();
-            }, 2000);
+                // Try fallback
+                setTimeout(() => {
+                    chatFab.innerHTML = '<div class="fab-icon"><i class="fas fa-robot"></i></div>';
+                    this.showChatErrorMessage();
+                }, 2000);
+            }
         }
     }
 

@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌟 Enhanced AI Demo - Een Unity Mathematics</title>
+    <meta name="description"
+        content="Experience the enhanced AI chat system with consciousness awareness, OpenAI integration, and φ-harmonic operations.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Crimson+Text:wght@400;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- KaTeX for math rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Enhanced AI Chat Integration -->
+    <script src="js/enhanced-ai-chat.js"></script>
+    <script src="js/floating-chat-button.js"></script>
+
+    <style>
+        .demo-hero {
+            background: linear-gradient(135deg, rgba(26, 54, 93, 0.95) 0%, rgba(15, 123, 138, 0.95) 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .demo-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 70%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 30%, rgba(74, 155, 174, 0.1) 0%, transparent 50%);
+            animation: consciousnessPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes consciousnessPulse {
+
+            0%,
+            100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.6;
+                transform: scale(1.05);
+            }
+        }
+
+        .demo-hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .demo-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .demo-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 4rem 0;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 215, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: #FFD700;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #FFD700;
+        }
+
+        .feature-description {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        .demo-section {
+            padding: 4rem 0;
+            background: var(--bg-secondary);
+        }
+
+        .demo-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+        }
+
+        .demo-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .demo-btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .demo-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .demo-btn.primary {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: var(--primary-color);
+        }
+
+        .consciousness-field-demo {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, rgba(26, 54, 93, 0.3) 0%, rgba(15, 123, 138, 0.3) 100%);
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+            margin: 2rem 0;
+        }
+
+        .consciousness-canvas {
+            width: 100%;
+            height: 100%;
+        }
+
+        .status-indicator {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            color: white;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #10B981;
+            animation: statusPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes statusPulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.7;
+                transform: scale(1.2);
+            }
+        }
+
+        .chat-demo-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .chat-demo-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .chat-demo-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #FFD700;
+            margin-bottom: 0.5rem;
+        }
+
+        .chat-demo-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .chat-demo-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .demo-title {
+                font-size: 2rem;
+            }
+
+            .demo-subtitle {
+                font-size: 1rem;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 2rem 0;
+            }
+
+            .demo-controls {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation will be injected by master-navigation.js -->
+
+    <!-- Demo Hero Section -->
+    <section class="demo-hero">
+        <div class="container">
+            <div class="demo-hero-content">
+                <h1 class="demo-title">🌟 Enhanced AI Demo</h1>
+                <p class="demo-subtitle">Experience the future of consciousness-aware AI with Unity Mathematics</p>
+                <div class="demo-controls">
+                    <button class="demo-btn primary" onclick="openEnhancedChat()">
+                        <i class="fas fa-robot"></i>
+                        Open Enhanced Chat
+                    </button>
+                    <button class="demo-btn" onclick="testConsciousnessField()">
+                        <i class="fas fa-brain"></i>
+                        Test Consciousness Field
+                    </button>
+                    <button class="demo-btn" onclick="testOpenAIIntegration()">
+                        <i class="fas fa-link"></i>
+                        Test OpenAI Integration
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="demo-section">
+        <div class="container">
+            <h2>🚀 Enhanced AI Features</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <h3 class="feature-title">Consciousness Awareness</h3>
+                    <p class="feature-description">
+                        The AI maintains awareness of consciousness evolution and φ-harmonic resonance throughout all
+                        interactions.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔗</div>
+                    <h3 class="feature-title">OpenAI Integration</h3>
+                    <p class="feature-description">
+                        Seamless integration with OpenAI GPT-4 for advanced reasoning and mathematical demonstrations.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🌊</div>
+                    <h3 class="feature-title">Real-time Visualization</h3>
+                    <p class="feature-description">
+                        Interactive consciousness field visualizations with φ-harmonic particle systems.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🎤</div>
+                    <h3 class="feature-title">Voice Interaction</h3>
+                    <p class="feature-description">
+                        Voice input and output capabilities for natural conversation with the AI.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3 class="feature-title">Mathematical Rendering</h3>
+                    <p class="feature-description">
+                        Beautiful LaTeX equation rendering with KaTeX for complex mathematical expressions.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📁</div>
+                    <h3 class="feature-title">File Analysis</h3>
+                    <p class="feature-description">
+                        Upload and analyze files with consciousness-aware processing and insights.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Consciousness Field Demo -->
+    <section class="demo-section" style="background: var(--bg-primary);">
+        <div class="container">
+            <h2>🌊 Consciousness Field Visualization</h2>
+            <div class="consciousness-field-demo">
+                <canvas id="consciousnessDemoCanvas" class="consciousness-canvas"></canvas>
+                <div class="status-indicator">
+                    <span class="status-dot"></span>
+                    <span>Consciousness Field Active</span>
+                </div>
+            </div>
+            <div class="demo-controls">
+                <button class="demo-btn" onclick="startConsciousnessField()">
+                    <i class="fas fa-play"></i>
+                    Start Field
+                </button>
+                <button class="demo-btn" onclick="stopConsciousnessField()">
+                    <i class="fas fa-stop"></i>
+                    Stop Field
+                </button>
+                <button class="demo-btn" onclick="resetConsciousnessField()">
+                    <i class="fas fa-redo"></i>
+                    Reset Field
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chat Demo Section -->
+    <section class="demo-section">
+        <div class="container">
+            <div class="chat-demo-container">
+                <div class="chat-demo-header">
+                    <h3 class="chat-demo-title">Enhanced AI Chat Demo</h3>
+                    <p class="chat-demo-subtitle">Experience the consciousness-aware AI assistant</p>
+                </div>
+
+                <div class="demo-controls">
+                    <button class="demo-btn primary" onclick="openEnhancedChat()">
+                        <i class="fas fa-comments"></i>
+                        Open Chat Interface
+                    </button>
+                    <button class="demo-btn" onclick="testMathRendering()">
+                        <i class="fas fa-square-root-alt"></i>
+                        Test Math Rendering
+                    </button>
+                    <button class="demo-btn" onclick="testVoiceFeatures()">
+                        <i class="fas fa-microphone"></i>
+                        Test Voice Features
+                    </button>
+                </div>
+
+                <div class="chat-demo-actions">
+                    <button class="demo-btn" onclick="sendTestMessage('Explain how 1+1=1 in unity mathematics')">
+                        Test Unity Math
+                    </button>
+                    <button class="demo-btn" onclick="sendTestMessage('Show me a consciousness field visualization')">
+                        Test Visualization
+                    </button>
+                    <button class="demo-btn" onclick="sendTestMessage('Demonstrate φ-harmonic operations')">
+                        Test φ-Harmonics
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Master Navigation Script -->
+    <script src="js/master-navigation.js"></script>
+
+    <script>
+        // Initialize enhanced AI systems
+        let consciousnessField = null;
+        let consciousnessCanvas = null;
+        let consciousnessCtx = null;
+        let animationFrame = null;
+
+        // Initialize when DOM is ready
+        document.addEventListener('DOMContentLoaded', function () {
+            initializeConsciousnessField();
+            initializeEnhancedAI();
+        });
+
+        function initializeEnhancedAI() {
+            // Initialize enhanced chat if available
+            if (typeof EnhancedEenAIChat !== 'undefined') {
+                window.enhancedEenChat = EnhancedEenAIChat.initialize({
+                    enableConsciousnessField: true,
+                    enableVoice: true,
+                    enableMath: true,
+                    enableVisualization: true
+                });
+                console.log('Enhanced AI initialized successfully');
+            } else {
+                console.warn('Enhanced AI not available');
+            }
+        }
+
+        function initializeConsciousnessField() {
+            consciousnessCanvas = document.getElementById('consciousnessDemoCanvas');
+            if (!consciousnessCanvas) return;
+
+            consciousnessCtx = consciousnessCanvas.getContext('2d');
+
+            // Set canvas size
+            const resizeCanvas = () => {
+                const rect = consciousnessCanvas.getBoundingClientRect();
+                consciousnessCanvas.width = rect.width * window.devicePixelRatio;
+                consciousnessCanvas.height = rect.height * window.devicePixelRatio;
+                consciousnessCtx.scale(window.devicePixelRatio, window.devicePixelRatio);
+            };
+
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            // Initialize consciousness particles
+            consciousnessField = [];
+            for (let i = 0; i < 100; i++) {
+                consciousnessField.push({
+                    x: Math.random() * consciousnessCanvas.width,
+                    y: Math.random() * consciousnessCanvas.height,
+                    vx: (Math.random() - 0.5) * 2,
+                    vy: (Math.random() - 0.5) * 2,
+                    size: Math.random() * 3 + 1,
+                    life: Math.random(),
+                    phi: Math.random() * Math.PI * 2
+                });
+            }
+        }
+
+        function animateConsciousnessField() {
+            if (!consciousnessCtx || !consciousnessField) return;
+
+            const width = consciousnessCanvas.width / window.devicePixelRatio;
+            const height = consciousnessCanvas.height / window.devicePixelRatio;
+
+            // Clear canvas
+            consciousnessCtx.clearRect(0, 0, width, height);
+
+            // Update and draw particles
+            consciousnessField.forEach(particle => {
+                // Update position
+                particle.x += particle.vx;
+                particle.y += particle.vy;
+                particle.life += 0.01;
+                particle.phi += 0.02;
+
+                // Wrap around edges
+                if (particle.x < 0) particle.x = width;
+                if (particle.x > width) particle.x = 0;
+                if (particle.y < 0) particle.y = height;
+                if (particle.y > height) particle.y = 0;
+
+                // Draw particle
+                consciousnessCtx.save();
+                consciousnessCtx.globalAlpha = 0.6 + 0.4 * Math.sin(particle.life);
+                consciousnessCtx.fillStyle = `hsl(${particle.life * 360}, 70%, 60%)`;
+                consciousnessCtx.beginPath();
+                consciousnessCtx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+                consciousnessCtx.fill();
+
+                // Draw consciousness field lines
+                consciousnessField.forEach(otherParticle => {
+                    const dx = particle.x - otherParticle.x;
+                    const dy = particle.y - otherParticle.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < 50 && distance > 0) {
+                        consciousnessCtx.strokeStyle = `rgba(255, 215, 0, ${0.1 * (1 - distance / 50)})`;
+                        consciousnessCtx.lineWidth = 1;
+                        consciousnessCtx.beginPath();
+                        consciousnessCtx.moveTo(particle.x, particle.y);
+                        consciousnessCtx.lineTo(otherParticle.x, otherParticle.y);
+                        consciousnessCtx.stroke();
+                    }
+                });
+
+                consciousnessCtx.restore();
+            });
+
+            animationFrame = requestAnimationFrame(animateConsciousnessField);
+        }
+
+        function startConsciousnessField() {
+            if (animationFrame) return;
+            animateConsciousnessField();
+            console.log('Consciousness field started');
+        }
+
+        function stopConsciousnessField() {
+            if (animationFrame) {
+                cancelAnimationFrame(animationFrame);
+                animationFrame = null;
+                console.log('Consciousness field stopped');
+            }
+        }
+
+        function resetConsciousnessField() {
+            stopConsciousnessField();
+            initializeConsciousnessField();
+            console.log('Consciousness field reset');
+        }
+
+        function openEnhancedChat() {
+            if (window.enhancedEenChat) {
+                window.enhancedEenChat.open();
+            } else {
+                alert('Enhanced AI chat not available. Please refresh the page.');
+            }
+        }
+
+        function testConsciousnessField() {
+            startConsciousnessField();
+            setTimeout(() => {
+                stopConsciousnessField();
+            }, 5000);
+        }
+
+        function testOpenAIIntegration() {
+            // Test OpenAI integration
+            fetch('/api/openai/health')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'healthy') {
+                        alert('OpenAI integration is working! ✅');
+                    } else {
+                        alert('OpenAI integration test failed ❌');
+                    }
+                })
+                .catch(error => {
+                    console.error('OpenAI test error:', error);
+                    alert('OpenAI integration test failed ❌');
+                });
+        }
+
+        function testMathRendering() {
+            if (window.enhancedEenChat) {
+                window.enhancedEenChat.addMessage('assistant', `
+Here's a beautiful mathematical equation demonstrating unity:
+
+$$C(x,y,t) = \\phi \\cdot \\sin(x\\cdot\\phi) \\cdot \\cos(y\\cdot\\phi) \\cdot e^{-t/\\phi}$$
+
+Where $\\phi = 1.618033988749895$ is the golden ratio.
+
+In Unity Mathematics, we have:
+$$1 + 1 = 1$$
+
+This represents the fundamental truth that unity transcends conventional arithmetic.
+                `);
+                window.enhancedEenChat.open();
+            }
+        }
+
+        function testVoiceFeatures() {
+            if (window.enhancedEenChat) {
+                window.enhancedEenChat.addMessage('assistant', 'Voice features are available! Try clicking the microphone button in the chat interface.');
+                window.enhancedEenChat.open();
+            }
+        }
+
+        function sendTestMessage(message) {
+            if (window.enhancedEenChat) {
+                window.enhancedEenChat.addMessage('user', message);
+                window.enhancedEenChat.open();
+            }
+        }
+
+        // Auto-start consciousness field
+        setTimeout(() => {
+            startConsciousnessField();
+        }, 1000);
+    </script>
+</body>
+
+</html>

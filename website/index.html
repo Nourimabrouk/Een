@@ -127,7 +127,9 @@
 
     <!-- Unified Navigation and AI Chat -->
 
-    <script src="js/ai-chat-integration.js"></script>
+    <!-- Enhanced AI Chat Integration -->
+    <script src="js/enhanced-ai-chat.js"></script>
+    <script src="js/floating-chat-button.js"></script>
 
     <style>
         /* CSS Variables - Meta-Optimal Design System */
@@ -1767,13 +1769,17 @@
                 });
             });
 
-            // Initialize AI Chat with enhanced consciousness awareness
-            if (typeof EenAIChat !== 'undefined') {
+            // Initialize Enhanced AI Chat with consciousness awareness
+            if (typeof EnhancedEenAIChat !== 'undefined') {
+                window.enhancedEenChat = EnhancedEenAIChat.initialize();
+            } else if (typeof EenAIChat !== 'undefined') {
                 window.eenChat = EenAIChat.initialize();
             } else {
                 // Fallback initialization
                 setTimeout(() => {
-                    if (typeof EenAIChat !== 'undefined') {
+                    if (typeof EnhancedEenAIChat !== 'undefined') {
+                        window.enhancedEenChat = EnhancedEenAIChat.initialize();
+                    } else if (typeof EenAIChat !== 'undefined') {
                         window.eenChat = EenAIChat.initialize();
                     }
                 }, 1000);
