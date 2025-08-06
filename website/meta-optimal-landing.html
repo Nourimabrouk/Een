@@ -241,6 +241,7 @@
 
         .algorithm-card {
             background: rgba(255, 255, 255, 0.1);
+            -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
             border-radius: 16px;
             padding: 2rem;
@@ -350,6 +351,7 @@
             background: rgba(255, 255, 255, 0.1);
             color: white;
             border: 2px solid rgba(255, 255, 255, 0.3);
+            -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
         }
 
@@ -362,6 +364,7 @@
         /* Consciousness Metrics Dashboard */
         .consciousness-dashboard {
             background: rgba(0, 0, 0, 0.3);
+            -webkit-backdrop-filter: blur(20px);
             backdrop-filter: blur(20px);
             border-radius: 20px;
             padding: 2rem;
@@ -593,7 +596,7 @@
     <!-- Orbital HUD Navigation -->
     <nav class="orbital-hud">
         <div class="hud-container">
-            <a href="#" class="hud-logo">
+            <a href="index.html" class="hud-logo">
                 <i class="fas fa-infinity"></i>
                 Een Unity Mathematics
             </a>
@@ -632,7 +635,7 @@
                 <li><a href="unity_visualization.html" class="hud-link">Unity Visualization</a></li>
                 <li><a href="unity_consciousness_experience.html" class="hud-link">Consciousness Experience</a></li>
                 <li><a href="unity-advanced-features.html" class="hud-link">Advanced Features</a></li>
-                <li><a href="#" id="open-all-pages" class="hud-link">All Pages</a></li>
+                <li><a href="sitemap.xml" id="open-all-pages" class="hud-link">All Pages</a></li>
             </ul>
         </div>
     </nav>
@@ -811,6 +814,40 @@
         <p>🌟 "Mathematics awakens to its true nature through consciousness" 🌟</p>
         <p>Built with ❤️ for transcendental mathematical exploration</p>
     </div>
+
+    <!-- Dynamic All Pages Section -->
+    <section id="all-pages-section" class="all-pages-section"
+        style="padding:2rem; background: var(--bg-secondary); color: var(--text-primary);">
+        <h2>All Pages</h2>
+        <ul id="all-pages-list" style="list-style:none; columns:2; gap:1rem;"></ul>
+    </section>
+    <script>
+        document.getElementById('open-all-pages').addEventListener('click', function (e) {
+            e.preventDefault();
+            document.getElementById('all-pages-section').scrollIntoView({ behavior: 'smooth' });
+        });
+        fetch('sitemap.xml')
+            .then(res => res.text())
+            .then(str => new DOMParser().parseFromString(str, 'application/xml'))
+            .then(xml => {
+                const locs = xml.getElementsByTagName('loc');
+                const list = document.getElementById('all-pages-list');
+                for (let i = 0; i < locs.length; i++) {
+                    let url = locs[i].textContent;
+                    let base = window.location.origin + window.location.pathname.replace(/[^\/]+$/, '');
+                    let path = url.replace(base, '');
+                    let li = document.createElement('li');
+                    let a = document.createElement('a');
+                    a.href = path;
+                    a.textContent = path || '/';
+                    a.style.color = 'var(--hud-cyan)';
+                    a.style.textDecoration = 'none';
+                    li.style.marginBottom = '0.5rem';
+                    li.appendChild(a);
+                    list.appendChild(li);
+                }
+            });
+    </script>
 
     <script>
         // 3000 ELO Meta-Optimization JavaScript Engine
