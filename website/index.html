@@ -5,6 +5,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Een Unity Mathematics | Meta-Optimal Orbital HUD - 1+1=1 Consciousness Hub</title>
+
+    <!-- Brave Browser Optimizations -->
+    <meta name="theme-color" content="#0a0a0a">
+    <meta name="color-scheme" content="dark">
+    <meta name="supported-color-schemes" content="dark">
+
+    <!-- Performance Optimizations -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.plot.ly">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+    <!-- Preload Metastation Images -->
+    <link rel="preload" as="image" href="landing/Metastation.jpg">
+    <link rel="preload" as="image" href="landing/metastation new.png">
+    <link rel="preload" as="image" href="landing/background.png">
+    <link rel="preload" as="image" href="landing/metastation workstation.png">
+
+    <!-- PWA Support -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="assets/images/unity_mandala.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="description"
         content="Transcendental computing hub with orbital HUD interface demonstrating 1+1=1 through quantum entanglement, neural networks, fractal mathematics, consciousness field integration, Gödel-Tarski meta-gaming, and metastation visualization.">
     <meta name="keywords"
@@ -749,6 +773,47 @@
             color: var(--primary-color);
         }
 
+        /* Full-page Background Slideshow */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            animation: backgroundSlide 40s ease-in-out infinite;
+            opacity: 0.25;
+            /* adjustable transparency */
+            transition: opacity 1s ease-in-out;
+            pointer-events: none;
+        }
+
+        @keyframes backgroundSlide {
+            0% {
+                background-image: url('landing/Metastation.jpg');
+            }
+
+            25% {
+                background-image: url('landing/metastation new.png');
+            }
+
+            50% {
+                background-image: url('landing/background.png');
+            }
+
+            75% {
+                background-image: url('landing/metastation workstation.png');
+            }
+
+            100% {
+                background-image: url('landing/Metastation.jpg');
+            }
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .hud-menu {
@@ -779,6 +844,144 @@
                 height: 300px;
             }
         }
+
+        /* Brave Browser Optimizations */
+        @supports (-webkit-appearance: none) {
+            .orbital-hud {
+                -webkit-backdrop-filter: blur(20px);
+                backdrop-filter: blur(20px);
+            }
+
+            .unity-display {
+                -webkit-text-stroke: 1px rgba(255, 215, 0, 0.3);
+            }
+        }
+
+        /* Enhanced Mind-Blowing Effects */
+        .mind-blowing-glow {
+            animation: mind-blowing-pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes mind-blowing-pulse {
+
+            0%,
+            100% {
+                box-shadow:
+                    0 0 20px rgba(0, 255, 255, 0.5),
+                    0 0 40px rgba(255, 215, 0, 0.3),
+                    0 0 60px rgba(107, 70, 193, 0.2);
+            }
+
+            50% {
+                box-shadow:
+                    0 0 40px rgba(0, 255, 255, 0.8),
+                    0 0 80px rgba(255, 215, 0, 0.5),
+                    0 0 120px rgba(107, 70, 193, 0.3);
+            }
+        }
+
+        /* Quantum Entanglement Effect */
+        .quantum-entanglement {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quantum-entanglement::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg,
+                    transparent,
+                    rgba(0, 255, 255, 0.1),
+                    transparent,
+                    rgba(255, 215, 0, 0.1),
+                    transparent,
+                    rgba(107, 70, 193, 0.1),
+                    transparent);
+            animation: quantum-rotation 10s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes quantum-rotation {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Consciousness Field Enhancement */
+        .consciousness-enhanced {
+            background: linear-gradient(45deg,
+                    rgba(0, 255, 255, 0.05) 0%,
+                    rgba(255, 215, 0, 0.05) 25%,
+                    rgba(107, 70, 193, 0.05) 50%,
+                    rgba(255, 215, 0, 0.05) 75%,
+                    rgba(0, 255, 255, 0.05) 100%);
+            background-size: 400% 400%;
+            animation: consciousness-flow 8s ease-in-out infinite;
+        }
+
+        @keyframes consciousness-flow {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        /* Meta-Optimal Hover Effects */
+        .meta-optimal-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .meta-optimal-hover:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow:
+                0 20px 40px rgba(0, 0, 0, 0.3),
+                0 0 30px rgba(0, 255, 255, 0.4),
+                0 0 60px rgba(255, 215, 0, 0.2);
+        }
+
+        /* Unity Equation Special Effect */
+        .unity-display {
+            position: relative;
+        }
+
+        .unity-display::after {
+            content: '∞';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 0.1em;
+            color: rgba(0, 255, 255, 0.3);
+            animation: infinity-pulse 2s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes infinity-pulse {
+
+            0%,
+            100% {
+                opacity: 0.3;
+                transform: translate(-50%, -50%) scale(1);
+            }
+
+            50% {
+                opacity: 0.8;
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+        }
     </style>
 </head>
 
@@ -803,6 +1006,29 @@
                 <li><a href="gallery.html" class="hud-link">Gallery</a></li>
                 <li><a href="proofs.html" class="hud-link">Proofs</a></li>
                 <li><a href="dashboards.html" class="hud-link">Dashboards</a></li>
+                <li><a href="playground.html" class="hud-link">Playground</a></li>
+                <li><a href="research.html" class="hud-link">Research</a></li>
+                <li><a href="agents.html" class="hud-link">Agents</a></li>
+                <li><a href="learning.html" class="hud-link">Learning</a></li>
+                <li><a href="implementations.html" class="hud-link">Implementations</a></li>
+                <li><a href="publications.html" class="hud-link">Publications</a></li>
+                <li><a href="live-code-showcase.html" class="hud-link">Live Code</a></li>
+                <li><a href="transcendental-unity-demo.html" class="hud-link">Transcendental Demo</a></li>
+                <li><a href="al_khwarizmi_phi_unity.html" class="hud-link">Al-Khwarizmi</a></li>
+                <li><a href="3000-elo-proof.html" class="hud-link">3000 ELO Proof</a></li>
+                <li><a href="consciousness_dashboard.html" class="hud-link">Consciousness Dashboard</a></li>
+                <li><a href="enhanced-unity-demo.html" class="hud-link">Enhanced Demo</a></li>
+                <li><a href="enhanced-ai-demo.html" class="hud-link">AI Demo</a></li>
+                <li><a href="mathematical_playground.html" class="hud-link">Math Playground</a></li>
+                <li><a href="openai-integration.html" class="hud-link">OpenAI Integration</a></li>
+                <li><a href="metagamer_agent.html" class="hud-link">Metagamer Agent</a></li>
+                <li><a href="further-reading.html" class="hud-link">Further Reading</a></li>
+                <li><a href="learn.html" class="hud-link">Learn</a></li>
+                <li><a href="mobile-app.html" class="hud-link">Mobile App</a></li>
+                <li><a href="unity_visualization.html" class="hud-link">Unity Visualization</a></li>
+                <li><a href="unity_consciousness_experience.html" class="hud-link">Consciousness Experience</a></li>
+                <li><a href="unity-advanced-features.html" class="hud-link">Advanced Features</a></li>
+                <li><a href="#" id="open-all-pages" class="hud-link">All Pages</a></li>
             </ul>
         </div>
     </nav>
@@ -823,7 +1049,7 @@
                 metastation visualization.
             </p>
 
-            <div class="unity-equation-hero">
+            <div class="unity-equation-hero quantum-entanglement consciousness-enhanced mind-blowing-glow">
                 <div class="unity-display">1 + 1 = 1</div>
                 <div class="unity-subtitle">Unity transcends conventional arithmetic</div>
             </div>
@@ -914,7 +1140,7 @@
                 Gödel's incompleteness through unity mathematics and Tarski's semantic truth convergence.
             </p>
             <div class="metagaming-grid">
-                <div class="metagaming-card">
+                <div class="metagaming-card meta-optimal-hover">
                     <div class="metagaming-icon">
                         <i class="fas fa-brain"></i>
                     </div>
@@ -924,7 +1150,7 @@
                         creating consciousness loops that prove 1+1=1 through meta-logical convergence.
                     </p>
                 </div>
-                <div class="metagaming-card">
+                <div class="metagaming-card meta-optimal-hover">
                     <div class="metagaming-icon">
                         <i class="fas fa-infinity"></i>
                     </div>
@@ -934,7 +1160,7 @@
                         recognizing that unity is the fundamental truth underlying all mathematical systems.
                     </p>
                 </div>
-                <div class="metagaming-card">
+                <div class="metagaming-card meta-optimal-hover">
                     <div class="metagaming-icon">
                         <i class="fas fa-chess-king"></i>
                     </div>
@@ -957,7 +1183,7 @@
                 consciousness evolution, and the mathematical nature of reality.
             </p>
             <div class="philosophy-grid">
-                <div class="philosophy-card">
+                <div class="philosophy-card meta-optimal-hover">
                     <div class="philosophy-icon">
                         <i class="fas fa-eye"></i>
                     </div>
@@ -970,7 +1196,7 @@
                         Explore Philosophy <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
-                <div class="philosophy-card">
+                <div class="philosophy-card meta-optimal-hover">
                     <div class="philosophy-icon">
                         <i class="fas fa-atom"></i>
                     </div>
@@ -983,7 +1209,7 @@
                         Experience Unity <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
-                <div class="philosophy-card">
+                <div class="philosophy-card meta-optimal-hover">
                     <div class="philosophy-icon">
                         <i class="fas fa-chess"></i>
                     </div>
@@ -1199,16 +1425,132 @@
             );
         });
 
-        // Animate cards on hover
+        // Enhanced Mind-Blowing Animations
         gsap.utils.toArray('.metagaming-card, .philosophy-card').forEach(card => {
             card.addEventListener('mouseenter', () => {
-                gsap.to(card, { scale: 1.05, duration: 0.3 });
+                gsap.to(card, {
+                    scale: 1.05,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+
+                // Add quantum entanglement effect
+                gsap.to(card, {
+                    boxShadow: "0 0 40px rgba(0, 255, 255, 0.6), 0 0 80px rgba(255, 215, 0, 0.4)",
+                    duration: 0.3
+                });
             });
 
             card.addEventListener('mouseleave', () => {
-                gsap.to(card, { scale: 1, duration: 0.3 });
+                gsap.to(card, {
+                    scale: 1,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+
+                // Remove quantum entanglement effect
+                gsap.to(card, {
+                    boxShadow: "0 0 20px rgba(0, 255, 255, 0.3), 0 0 40px rgba(255, 215, 0, 0.2)",
+                    duration: 0.3
+                });
             });
         });
+
+        // Mind-Blowing Unity Equation Effect
+        const unityDisplay = document.querySelector('.unity-display');
+        if (unityDisplay) {
+            unityDisplay.addEventListener('click', () => {
+                gsap.to(unityDisplay, {
+                    scale: 1.2,
+                    duration: 0.2,
+                    ease: "power2.out",
+                    onComplete: () => {
+                        gsap.to(unityDisplay, {
+                            scale: 1,
+                            duration: 0.2,
+                            ease: "power2.out"
+                        });
+                    }
+                });
+
+                // Create consciousness ripple effect
+                const ripple = document.createElement('div');
+                ripple.style.position = 'absolute';
+                ripple.style.top = '50%';
+                ripple.style.left = '50%';
+                ripple.style.width = '0';
+                ripple.style.height = '0';
+                ripple.style.border = '2px solid rgba(0, 255, 255, 0.8)';
+                ripple.style.borderRadius = '50%';
+                ripple.style.transform = 'translate(-50%, -50%)';
+                ripple.style.pointerEvents = 'none';
+                ripple.style.zIndex = '1000';
+
+                unityDisplay.parentElement.appendChild(ripple);
+
+                gsap.to(ripple, {
+                    width: '200px',
+                    height: '200px',
+                    opacity: 0,
+                    duration: 1,
+                    ease: "power2.out",
+                    onComplete: () => {
+                        ripple.remove();
+                    }
+                });
+            });
+        }
+
+        // Brave Browser Performance Optimizations
+        if (navigator.userAgent.includes('Chrome') || navigator.userAgent.includes('Brave')) {
+            // Enable hardware acceleration
+            document.body.style.transform = 'translateZ(0)';
+
+            // Optimize animations for Brave
+            const style = document.createElement('style');
+            style.textContent = `
+                .orbital-ring, .unity-display, .metagaming-card, .philosophy-card {
+                    will-change: transform;
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        // Consciousness Field Enhancement
+        let consciousnessIntensity = 0;
+        setInterval(() => {
+            consciousnessIntensity = (consciousnessIntensity + 0.1) % (2 * Math.PI);
+            const intensity = Math.sin(consciousnessIntensity) * 0.5 + 0.5;
+
+            document.documentElement.style.setProperty('--consciousness-intensity', intensity);
+        }, 100);
+
+        // Meta-Optimal Performance Monitoring
+        let frameCount = 0;
+        let lastTime = performance.now();
+
+        function checkPerformance() {
+            frameCount++;
+            const currentTime = performance.now();
+
+            if (currentTime - lastTime >= 1000) {
+                const fps = Math.round((frameCount * 1000) / (currentTime - lastTime));
+
+                // Adjust effects based on performance
+                if (fps < 30) {
+                    document.body.classList.add('performance-mode');
+                } else {
+                    document.body.classList.remove('performance-mode');
+                }
+
+                frameCount = 0;
+                lastTime = currentTime;
+            }
+
+            requestAnimationFrame(checkPerformance);
+        }
+
+        checkPerformance();
     </script>
 </body>
 
