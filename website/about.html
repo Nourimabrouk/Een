@@ -22,613 +22,350 @@
     <!-- GSAP for Animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
+    <!-- Optimized Unified Navigation System v3.0 -->
+    <script src="js/optimized-unified-navigation.js"></script>
+
     <!-- Main Styles -->
     <link rel="stylesheet" href="css/style.css">
 
-    <style>
-        /* Enhanced Navigation Styles */
-        .enhanced-nav {
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            transition: all var(--transition-smooth);
-        }
+    /* About page specific styles */
+    .about-hero {
+    padding-top: 120px;
+    min-height: 60vh;
+    background: linear-gradient(135deg, var(--bg-academic) 0%, var(--bg-secondary) 100%);
+    display: flex;
+    align-items: center;
+    }
 
-        .enhanced-nav .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 70px;
-        }
+    .about-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    }
 
-        .enhanced-nav .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.5rem;
-            color: var(--primary-color);
-        }
+    .about-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+    text-align: center;
+    font-family: var(--font-serif);
+    }
 
-        .enhanced-nav .phi-symbol {
-            color: var(--phi-gold);
-            font-size: 1.8rem;
-        }
+    .about-description {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    margin-bottom: 3rem;
+    text-align: center;
+    }
 
-        .enhanced-nav .logo-text {
-            font-family: 'Crimson Text', serif;
-        }
 
-        .enhanced-nav .elo-badge {
-            background: linear-gradient(135deg, var(--phi-gold), var(--phi-gold-light));
-            color: white;
-            padding: 0.2rem 0.5rem;
-            border-radius: 12px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            margin-left: 0.5rem;
-        }
 
-        .enhanced-nav .nav-menu {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            gap: 1rem;
-        }
+    /* About Page Specific Styles */
+    .about-hero {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    padding: 8rem 0 4rem;
+    position: relative;
+    overflow: hidden;
+    }
 
-        .enhanced-nav .nav-item {
-            position: relative;
-        }
+    .about-hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 30px 30px;
+    animation: rotate-grid 120s linear infinite;
+    }
 
-        .enhanced-nav .nav-link {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1rem;
-            text-decoration: none;
-            color: var(--text-primary);
-            font-weight: 500;
-            border-radius: var(--radius-md);
-            transition: all var(--transition-smooth);
-        }
+    @keyframes rotate-grid {
+    to {
+    transform: rotate(360deg);
+    }
+    }
 
-        .enhanced-nav .nav-link:hover,
-        .enhanced-nav .nav-link.active {
-            background: var(--primary-color);
-            color: white;
-        }
+    .profile-section {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 4rem;
+    align-items: start;
+    position: relative;
+    z-index: 1;
+    }
 
-        .enhanced-nav .dropdown-toggle {
-            cursor: pointer;
-        }
+    .profile-image-container {
+    position: relative;
+    }
 
-        .enhanced-nav .dropdown-arrow {
-            font-size: 0.8rem;
-            transition: transform var(--transition-smooth);
-        }
+    .profile-image {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--phi-gold) 0%, var(--phi-gold-light) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8rem;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
 
-        .enhanced-nav .dropdown:hover .dropdown-arrow {
-            transform: rotate(180deg);
-        }
+    .profile-image::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    background: conic-gradient(from 0deg, var(--phi-gold), transparent, var(--phi-gold));
+    border-radius: 50%;
+    animation: rotate-border 4s linear infinite;
+    z-index: -1;
+    }
 
-        .enhanced-nav .dropdown-menu {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: white;
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-md);
-            box-shadow: var(--shadow-lg);
-            min-width: 200px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all var(--transition-smooth);
-            z-index: 1001;
-        }
+    @keyframes rotate-border {
+    to {
+    transform: rotate(360deg);
+    }
+    }
 
-        .enhanced-nav .dropdown:hover .dropdown-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
+    .profile-info h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    }
 
-        .enhanced-nav .dropdown-link {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 0.75rem 1rem;
-            text-decoration: none;
-            color: var(--text-primary);
-            border-radius: 0;
-            transition: all var(--transition-smooth);
-        }
+    .profile-subtitle {
+    font-size: 1.5rem;
+    opacity: 0.9;
+    margin-bottom: 2rem;
+    color: var(--phi-gold-light);
+    }
 
-        .enhanced-nav .dropdown-link:hover {
-            background: var(--bg-secondary);
-            color: var(--primary-color);
-        }
+    .profile-description {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    opacity: 0.95;
+    }
 
-        .enhanced-nav .nav-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 3px;
-        }
+    .section {
+    padding: 4rem 0;
+    }
 
-        .enhanced-nav .nav-toggle span {
-            width: 20px;
-            height: 2px;
-            background: var(--primary-color);
-            transition: all var(--transition-smooth);
-        }
+    .section-title {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: var(--primary-color);
+    position: relative;
+    padding-bottom: 1rem;
+    }
 
-        @media (max-width: 768px) {
-            .enhanced-nav .nav-menu {
-                position: fixed;
-                top: 70px;
-                left: 0;
-                right: 0;
-                background: white;
-                border-top: 1px solid var(--border-color);
-                flex-direction: column;
-                gap: 0;
-                transform: translateY(-100%);
-                opacity: 0;
-                visibility: hidden;
-                transition: all var(--transition-smooth);
-            }
+    .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100px;
+    height: 3px;
+    background: var(--phi-gold);
+    }
 
-            .enhanced-nav .nav-menu.active {
-                transform: translateY(0);
-                opacity: 1;
-                visibility: visible;
-            }
+    .timeline {
+    position: relative;
+    padding-left: 40px;
+    }
 
-            .enhanced-nav .nav-toggle {
-                display: flex;
-            }
+    .timeline::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--border-color);
+    }
 
-            .enhanced-nav .dropdown-menu {
-                position: static;
-                opacity: 1;
-                visibility: visible;
-                transform: none;
-                box-shadow: none;
-                border: none;
-                background: var(--bg-secondary);
-                margin-left: 1rem;
-            }
-        }
+    .timeline-item {
+    position: relative;
+    padding-bottom: 2rem;
+    }
 
-        /* About Page Specific Styles */
-        .about-hero {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            color: white;
-            padding: 8rem 0 4rem;
-            position: relative;
-            overflow: hidden;
-        }
+    .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -34px;
+    top: 5px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--phi-gold);
+    border: 3px solid white;
+    box-shadow: 0 0 0 3px var(--border-color);
+    }
 
-        .about-hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 30px 30px;
-            animation: rotate-grid 120s linear infinite;
-        }
+    .timeline-date {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+    }
 
-        @keyframes rotate-grid {
-            to {
-                transform: rotate(360deg);
-            }
-        }
+    .timeline-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+    }
 
-        .profile-section {
-            display: grid;
-            grid-template-columns: 300px 1fr;
-            gap: 4rem;
-            align-items: start;
-            position: relative;
-            z-index: 1;
-        }
+    .timeline-description {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    }
 
-        .profile-image-container {
-            position: relative;
-        }
+    .research-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    }
 
-        .profile-image {
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--phi-gold) 0%, var(--phi-gold-light) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 8rem;
-            color: white;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
+    .research-card {
+    background: var(--bg-secondary);
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+    transition: all var(--transition-smooth);
+    }
 
-        .profile-image::before {
-            content: '';
-            position: absolute;
-            inset: -3px;
-            background: conic-gradient(from 0deg, var(--phi-gold), transparent, var(--phi-gold));
-            border-radius: 50%;
-            animation: rotate-border 4s linear infinite;
-            z-index: -1;
-        }
+    .research-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--phi-gold);
+    }
 
-        @keyframes rotate-border {
-            to {
-                transform: rotate(360deg);
-            }
-        }
+    .research-icon {
+    font-size: 3rem;
+    color: var(--phi-gold);
+    margin-bottom: 1rem;
+    }
 
-        .profile-info h1 {
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
-            font-weight: 700;
-        }
+    .research-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+    }
 
-        .profile-subtitle {
-            font-size: 1.5rem;
-            opacity: 0.9;
-            margin-bottom: 2rem;
-            color: var(--phi-gold-light);
-        }
+    .contact-section {
+    background: var(--bg-secondary);
+    padding: 3rem;
+    border-radius: var(--radius-xl);
+    text-align: center;
+    }
 
-        .profile-description {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            opacity: 0.95;
-        }
+    .contact-links {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    margin-top: 2rem;
+    }
 
-        .section {
-            padding: 4rem 0;
-        }
+    .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-smooth);
+    }
 
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: var(--primary-color);
-            position: relative;
-            padding-bottom: 1rem;
-        }
+    .contact-link:hover {
+    background: var(--phi-gold);
+    transform: translateY(-2px);
+    }
 
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100px;
-            height: 3px;
-            background: var(--phi-gold);
-        }
+    .quote-box {
+    background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+    padding: 3rem;
+    border-radius: var(--radius-xl);
+    text-align: center;
+    position: relative;
+    margin: 3rem 0;
+    }
 
-        .timeline {
-            position: relative;
-            padding-left: 40px;
-        }
+    .quote-box::before {
+    content: '"';
+    font-size: 6rem;
+    color: var(--phi-gold);
+    opacity: 0.2;
+    position: absolute;
+    top: -20px;
+    left: 20px;
+    }
 
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 10px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: var(--border-color);
-        }
+    .quote-text {
+    font-size: 1.5rem;
+    font-style: italic;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    }
 
-        .timeline-item {
-            position: relative;
-            padding-bottom: 2rem;
-        }
+    .quote-author {
+    color: var(--text-secondary);
+    }
 
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -34px;
-            top: 5px;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: var(--phi-gold);
-            border: 3px solid white;
-            box-shadow: 0 0 0 3px var(--border-color);
-        }
+    @media (max-width: 768px) {
+    .profile-section {
+    grid-template-columns: 1fr;
+    text-align: center;
+    }
 
-        .timeline-date {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            margin-bottom: 0.5rem;
-        }
+    .profile-image {
+    margin: 0 auto;
+    }
 
-        .timeline-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--primary-color);
-        }
-
-        .timeline-description {
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-
-        .research-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .research-card {
-            background: var(--bg-secondary);
-            padding: 2rem;
-            border-radius: var(--radius-lg);
-            border: 1px solid var(--border-color);
-            transition: all var(--transition-smooth);
-        }
-
-        .research-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-            border-color: var(--phi-gold);
-        }
-
-        .research-icon {
-            font-size: 3rem;
-            color: var(--phi-gold);
-            margin-bottom: 1rem;
-        }
-
-        .research-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--primary-color);
-        }
-
-        .contact-section {
-            background: var(--bg-secondary);
-            padding: 3rem;
-            border-radius: var(--radius-xl);
-            text-align: center;
-        }
-
-        .contact-links {
-            display: flex;
-            gap: 2rem;
-            justify-content: center;
-            margin-top: 2rem;
-        }
-
-        .contact-link {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1.5rem;
-            background: var(--primary-color);
-            color: white;
-            text-decoration: none;
-            border-radius: var(--radius-md);
-            transition: all var(--transition-smooth);
-        }
-
-        .contact-link:hover {
-            background: var(--phi-gold);
-            transform: translateY(-2px);
-        }
-
-        .quote-box {
-            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
-            padding: 3rem;
-            border-radius: var(--radius-xl);
-            text-align: center;
-            position: relative;
-            margin: 3rem 0;
-        }
-
-        .quote-box::before {
-            content: '"';
-            font-size: 6rem;
-            color: var(--phi-gold);
-            opacity: 0.2;
-            position: absolute;
-            top: -20px;
-            left: 20px;
-        }
-
-        .quote-text {
-            font-size: 1.5rem;
-            font-style: italic;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .quote-author {
-            color: var(--text-secondary);
-        }
-
-        @media (max-width: 768px) {
-            .profile-section {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .profile-image {
-                margin: 0 auto;
-            }
-
-            .section-title::after {
-                left: 50%;
-                transform: translateX(-50%);
-            }
-        }
+    .section-title::after {
+    left: 50%;
+    transform: translateX(-50%);
+    }
+    }
     </style>
 
-    <!-- Master Navigation System v2.0 -->
-    <script src="js/master-navigation.js"></script>
 </head>
 
 <body>
-    <!-- Navigation Placeholder -->
-    
+    <!-- Optimized Navigation will be injected automatically -->
 
     <!-- About Page Content -->
-        <div class="nav-container" id="main-content">
-            <a href="index.html" class="nav-logo">
-                <span class="phi-symbol">φ</span>
-                <span class="logo-text">Een</span>
-                <span class="elo-badge">3000 ELO</span>
-            </a>
-            <ul class="nav-menu">
-                <li class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle">
-                        <i class="fas fa-calculator"></i>
-                        Mathematics
-                        <i class="fas fa-chevron-down dropdown-arrow"></i>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="proofs.html" class="dropdown-link">
-                            <i class="fas fa-check-circle"></i>
-                            Unity Proofs
-                        </a></li>
-                        <li><a href="playground.html" class="dropdown-link">
-                            <i class="fas fa-play-circle"></i>
-                            Interactive Playground
-                        </a></li>
-                        <li><a href="unity_mathematics_streamlit.py" class="dropdown-link">
-                            <i class="fas fa-flask"></i>
-                            Live Mathematics
-                        </a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle">
-                        <i class="fas fa-brain"></i>
-                        Proofs
-                        <i class="fas fa-chevron-down dropdown-arrow"></i>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="boolean_proof.html" class="dropdown-link">
-                            <i class="fas fa-toggle-on"></i>
-                            Boolean Logic
-                        </a></li>
-                        <li><a href="set_theory_proof.html" class="dropdown-link">
-                            <i class="fas fa-circle"></i>
-                            Set Theory
-                        </a></li>
-                        <li><a href="category_theory_proof.html" class="dropdown-link">
-                            <i class="fas fa-project-diagram"></i>
-                            Category Theory
-                        </a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle">
-                        <i class="fas fa-atom"></i>
-                        Consciousness
-                        <i class="fas fa-chevron-down dropdown-arrow"></i>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="consciousness.html" class="dropdown-link">
-                            <i class="fas fa-lightbulb"></i>
-                            Consciousness Fields
-                        </a></li>
-                        <li><a href="quantum_unity.html" class="dropdown-link">
-                            <i class="fas fa-wave-square"></i>
-                            Quantum Unity
-                        </a></li>
-                        <li><a href="meta_recursion.html" class="dropdown-link">
-                            <i class="fas fa-infinity"></i>
-                            Meta-Recursion
-                        </a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle">
-                        <i class="fas fa-flask"></i>
-                        Research
-                        <i class="fas fa-chevron-down dropdown-arrow"></i>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="research.html" class="dropdown-link">
-                            <i class="fas fa-search"></i>
-                            Current Research
-                        </a></li>
-                        <li><a href="publications.html" class="dropdown-link">
-                            <i class="fas fa-file-alt"></i>
-                            Publications
-                        </a></li>
-                        <li><a href="experiments.html" class="dropdown-link">
-                            <i class="fas fa-vial"></i>
-                            Experiments
-                        </a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle">
-                        <i class="fas fa-rocket"></i>
-                        Advanced
-                        <i class="fas fa-chevron-down dropdown-arrow"></i>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="gallery.html" class="dropdown-link">
-                            <i class="fas fa-images"></i>
-                            Visualization Gallery
-                        </a></li>
-                        <li><a href="metagambit.html" class="dropdown-link">
-                            <i class="fas fa-chess"></i>
-                            MetaGambit
-                        </a></li>
-                        <li><a href="omega_system.html" class="dropdown-link">
-                            <i class="fas fa-infinity"></i>
-                            Omega System
-                        </a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a href="about.html" class="nav-link active">
-                        <i class="fas fa-user"></i>
-                        About
-                    </a>
-                </li>
-            </ul>
-            <div class="nav-toggle" id="navToggle">
-                <span></span>
-                <span></span>
-                <span></span>
+    <div class="about-hero">
+        <div class="about-content">
+            <h1 class="about-title">About Een Unity Mathematics</h1>
+            <p class="about-description">
+                Pioneering research in unity mathematics, consciousness field equations, and transcendental computing
+            </p>
+        </div>
+    </div>
     <!-- Hero Section -->
     <section class="about-hero">
         <div class="container">
             <div class="profile-section">
                 <div class="profile-image-container">
-                    <img src="about/nourimabrouk.png" alt="Nouri Mabrouk" class="profile-image" style="width: 300px; height: 300px; border-radius: 50%; object-fit: cover; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);">
+                    <img src="about/nourimabrouk.png" alt="Nouri Mabrouk" class="profile-image"
+                        style="width: 300px; height: 300px; border-radius: 50%; object-fit: cover; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);">
                 </div>
                 <div class="profile-info">
                     <h1>Nouri Mabrouk</h1>
                     <div class="profile-subtitle">Econometrician • Data Scientist • Unity Mathematics Researcher</div>
                     <p class="profile-description">
-                        Dutch-Tunisian econometrician and data scientist based in Utrecht, pioneering the mathematical framework where <strong>1 + 1 = 1</strong> through rigorous cross-disciplinary exploration. With a Master's in Econometrics & Data Science from Vrije Universiteit Amsterdam (VU), currently focusing on meta-reinforcement learning, meta-prompt engineering, and category-theoretic formalism of unity mathematics.
+                        Dutch-Tunisian econometrician and data scientist based in Utrecht, pioneering the mathematical
+                        framework where <strong>1 + 1 = 1</strong> through rigorous cross-disciplinary exploration. With
+                        a Master's in Econometrics & Data Science from Vrije Universiteit Amsterdam (VU), currently
+                        focusing on meta-reinforcement learning, meta-prompt engineering, and category-theoretic
+                        formalism of unity mathematics.
                     </p>
                 </div>
             </div>
@@ -644,42 +381,48 @@
                     <div class="timeline-date">2018</div>
                     <div class="timeline-title">First "Eureka" Insight</div>
                     <div class="timeline-description">
-                        Initial breakthrough while studying ant-colony emergence; the motto "1+1=1" was coined during deep research into collective intelligence systems and emergent unity phenomena.
+                        Initial breakthrough while studying ant-colony emergence; the motto "1+1=1" was coined during
+                        deep research into collective intelligence systems and emergent unity phenomena.
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-date">2020</div>
                     <div class="timeline-title">Category Theory Deep Dive</div>
                     <div class="timeline-description">
-                        Intensive exploration of category theory and meta-reinforcement learning; development of initial whiteboard proofs connecting unity mathematics with formal algebraic structures.
+                        Intensive exploration of category theory and meta-reinforcement learning; development of initial
+                        whiteboard proofs connecting unity mathematics with formal algebraic structures.
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-date">2023</div>
                     <div class="timeline-title">GitHub Repository Launch</div>
                     <div class="timeline-description">
-                        Launch of the "Een" GitHub repository, capturing early proofs and computational implementations of unity mathematics frameworks with open-source collaboration.
+                        Launch of the "Een" GitHub repository, capturing early proofs and computational implementations
+                        of unity mathematics frameworks with open-source collaboration.
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-date">2024</div>
                     <div class="timeline-title">Principia Unitatis Draft</div>
                     <div class="timeline-description">
-                        Completion of the first draft of Principia Unitatis, establishing formal foundations for unity mathematics and expanding into meta-prompt engineering applications.
+                        Completion of the first draft of Principia Unitatis, establishing formal foundations for unity
+                        mathematics and expanding into meta-prompt engineering applications.
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-date">2025</div>
                     <div class="timeline-title">Multi-Framework Proof Site</div>
                     <div class="timeline-description">
-                        Launch of comprehensive proof site "Mathematical Proofs – Een Unity Mathematics" featuring interactive demonstrations and cross-disciplinary validations.
+                        Launch of comprehensive proof site "Mathematical Proofs – Een Unity Mathematics" featuring
+                        interactive demonstrations and cross-disciplinary validations.
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-date">2026 →</div>
                     <div class="timeline-title">Planned PhD Integration</div>
                     <div class="timeline-description">
-                        Future PhD research integrating Meta-RL with Unity Formalism, advancing both theoretical foundations and practical applications in AI systems.
+                        Future PhD research integrating Meta-RL with Unity Formalism, advancing both theoretical
+                        foundations and practical applications in AI systems.
                     </div>
                 </div>
             </div>
@@ -694,32 +437,41 @@
                 <div class="research-card">
                     <div class="research-icon">📊</div>
                     <h3 class="research-title">Econometrics × AI</h3>
-                    <p>Leveraging causal-inference tools and PPO-based meta-reinforcement learning to test unity hypotheses in simulated agents, bridging traditional econometric analysis with cutting-edge AI methodologies.</p>
+                    <p>Leveraging causal-inference tools and PPO-based meta-reinforcement learning to test unity
+                        hypotheses in simulated agents, bridging traditional econometric analysis with cutting-edge AI
+                        methodologies.</p>
                 </div>
                 <div class="research-card">
                     <div class="research-icon">🤖</div>
                     <h3 class="research-title">Meta-Prompt Engineering</h3>
-                    <p>Developing recursive prompt architectures and meta-learning frameworks that demonstrate unity principles through AI system behavior, creating self-improving prompt engineering methodologies.</p>
+                    <p>Developing recursive prompt architectures and meta-learning frameworks that demonstrate unity
+                        principles through AI system behavior, creating self-improving prompt engineering methodologies.
+                    </p>
                 </div>
                 <div class="research-card">
                     <div class="research-icon">📐</div>
                     <h3 class="research-title">Category-Theoretic Algebra</h3>
-                    <p>Formal systems where a ⊕ a = a naturally realizes 1+1=1 through idempotent operations, establishing rigorous mathematical foundations for unity mathematics (papers in progress).</p>
+                    <p>Formal systems where a ⊕ a = a naturally realizes 1+1=1 through idempotent operations,
+                        establishing rigorous mathematical foundations for unity mathematics (papers in progress).</p>
                 </div>
                 <div class="research-card">
                     <div class="research-icon">🎮</div>
                     <h3 class="research-title">Meta-Gaming Theory</h3>
-                    <p>Exploring strategic optimization in complex systems through Teamfight Tactics and Elden Ring - Nightreign, applying metagaming principles to mathematical problem-solving and AI development.</p>
+                    <p>Exploring strategic optimization in complex systems through Teamfight Tactics and Elden Ring -
+                        Nightreign, applying metagaming principles to mathematical problem-solving and AI development.
+                    </p>
                 </div>
                 <div class="research-card">
                     <div class="research-icon">🧮</div>
                     <h3 class="research-title">Sparse PCA Development</h3>
-                    <p>Co-author of advanced Python packages for sparse principal component analysis, contributing to the intersection of dimensionality reduction and unity mathematics frameworks.</p>
+                    <p>Co-author of advanced Python packages for sparse principal component analysis, contributing to
+                        the intersection of dimensionality reduction and unity mathematics frameworks.</p>
                 </div>
                 <div class="research-card">
                     <div class="research-icon">🌐</div>
                     <h3 class="research-title">Open-Source Mathematics</h3>
-                    <p>Developing comprehensive GitHub repositories with interactive proofs, computational frameworks, and collaborative tools that make unity mathematics accessible to researchers worldwide.</p>
+                    <p>Developing comprehensive GitHub repositories with interactive proofs, computational frameworks,
+                        and collaborative tools that make unity mathematics accessible to researchers worldwide.</p>
                 </div>
             </div>
         </div>
@@ -765,7 +517,8 @@
                     let's discover unity together.
                 </p>
                 <div class="contact-links">
-                    <a href="https://github.com/Nourimabrouk" class="contact-link" target="_blank" rel="noopener noreferrer">
+                    <a href="https://github.com/Nourimabrouk" class="contact-link" target="_blank"
+                        rel="noopener noreferrer">
                         <i class="fab fa-github"></i>
                         <span>GitHub @Nourimabrouk</span>
                     </a>
@@ -773,11 +526,13 @@
                         <i class="fas fa-envelope"></i>
                         <span>nouri.mabrouk@gmail.com</span>
                     </a>
-                    <a href="https://www.linkedin.com/in/nouri-mabrouk-589876158" class="contact-link" target="_blank" rel="noopener noreferrer">
+                    <a href="https://www.linkedin.com/in/nouri-mabrouk-589876158" class="contact-link" target="_blank"
+                        rel="noopener noreferrer">
                         <i class="fab fa-linkedin"></i>
                         <span>LinkedIn Profile</span>
                     </a>
-                    <a href="https://www.researchgate.net/profile/Nouri-Mabrouk" class="contact-link" target="_blank" rel="noopener noreferrer">
+                    <a href="https://www.researchgate.net/profile/Nouri-Mabrouk" class="contact-link" target="_blank"
+                        rel="noopener noreferrer">
                         <i class="fas fa-graduation-cap"></i>
                         <span>ResearchGate</span>
                     </a>
@@ -819,89 +574,46 @@
             renderMathInElement(document.body, {
                 delimiters: [
                     { left: '$', right: '$', display: true },
-                    { left: '
+                    {
+                        left: '
 
 </html>, right: '
 
-</html>, display: false }
+</html >, display: false }
                 ]
             });
 
-            // GSAP Animations
-            gsap.from(".profile-image", {
-                scale: 0,
-                rotation: -180,
-                duration: 1.5,
-                ease: "elastic.out(1, 0.5)"
-            });
+        // GSAP Animations
+        gsap.from(".profile-image", {
+            scale: 0,
+            rotation: -180,
+            duration: 1.5,
+            ease: "elastic.out(1, 0.5)"
+        });
 
-            gsap.from(".timeline-item", {
-                x: -50,
-                opacity: 0,
-                duration: 0.8,
-                stagger: 0.2,
-                scrollTrigger: {
-                    trigger: ".timeline",
-                    start: "top 80%"
-                }
-            });
-
-            gsap.from(".research-card", {
-                y: 50,
-                opacity: 0,
-                duration: 0.6,
-                stagger: 0.1,
-                scrollTrigger: {
-                    trigger: ".research-grid",
-                    start: "top 80%"
-                }
-            });
-
-            // Enhanced Navigation JavaScript
-            const navToggle = document.getElementById('navToggle');
-            const navMenu = document.querySelector('.enhanced-nav .nav-menu');
-
-            if (navToggle && navMenu) {
-                navToggle.addEventListener('click', function() {
-                    navMenu.classList.toggle('active');
-                });
-
-                // Close menu when clicking outside
-                document.addEventListener('click', function(event) {
-                    if (!navToggle.contains(event.target) && !navMenu.contains(event.target)) {
-                        navMenu.classList.remove('active');
-                    }
-                });
-
-                // Close menu when clicking on a link
-                const navLinks = document.querySelectorAll('.enhanced-nav .nav-link, .enhanced-nav .dropdown-link');
-                navLinks.forEach(link => {
-                    link.addEventListener('click', function() {
-                        navMenu.classList.remove('active');
-                    });
-                });
+        gsap.from(".timeline-item", {
+            x: -50,
+            opacity: 0,
+            duration: 0.8,
+            stagger: 0.2,
+            scrollTrigger: {
+                trigger: ".timeline",
+                start: "top 80%"
             }
+        });
 
-            // Prevent dropdown links from closing the dropdown immediately
-            const dropdownToggles = document.querySelectorAll('.enhanced-nav .dropdown-toggle');
-            dropdownToggles.forEach(toggle => {
-                toggle.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const dropdown = this.closest('.dropdown');
-                    const dropdownMenu = dropdown.querySelector('.dropdown-menu');
-                    
-                    // Toggle visibility
-                    if (dropdownMenu.style.opacity === '1') {
-                        dropdownMenu.style.opacity = '0';
-                        dropdownMenu.style.visibility = 'hidden';
-                        dropdownMenu.style.transform = 'translateY(-10px)';
-                    } else {
-                        dropdownMenu.style.opacity = '1';
-                        dropdownMenu.style.visibility = 'visible';
-                        dropdownMenu.style.transform = 'translateY(0)';
-                    }
-                });
-            });
+        gsap.from(".research-card", {
+            y: 50,
+            opacity: 0,
+            duration: 0.6,
+            stagger: 0.1,
+            scrollTrigger: {
+                trigger: ".research-grid",
+                start: "top 80%"
+            }
+        });
+
+            // Optimized navigation is handled by the unified navigation system
         });
     </script>
 
@@ -909,7 +621,7 @@
     <div id="footer-placeholder"></div>
 
     <!-- Shared Navigation Script -->
-    
+
 </body>
 
 </html>

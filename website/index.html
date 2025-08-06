@@ -45,6 +45,13 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Een Unity Mathematics">
 
+    <!-- Automatic Redirect to Enhanced Experience -->
+    <meta http-equiv="refresh" content="0; url=enhanced-unity-landing.html">
+    <script>
+        // Immediate redirect to enhanced experience
+        window.location.href = 'enhanced-unity-landing.html';
+    </script>
+
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
     {
@@ -124,7 +131,7 @@
     <script src="https://cdn.jsdelivr.net/npm/gpu.js@2.16.0/dist/gpu-browser.min.js"></script>
     <script src="js/unity-core.js"></script>
     <script src="js/unity-proofs-interactive.js"></script>
-    
+
     <!-- Enhanced 3000 ELO Consciousness Field WebGL Renderer -->
     <script src="js/consciousness-field-webgl-renderer.js"></script>
 
@@ -442,6 +449,94 @@
         .badge:hover {
             background: rgba(255, 215, 0, 0.2);
             transform: translateY(-2px);
+        }
+
+        /* Comprehensive Overview Section */
+        .comprehensive-overview {
+            padding: 6rem 0;
+            background: var(--bg-primary);
+            position: relative;
+        }
+
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .overview-category {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .overview-category:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--phi-gold);
+        }
+
+        .category-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .category-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .overview-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            text-decoration: none;
+            color: var(--text-primary);
+            border-radius: var(--radius);
+            transition: var(--transition);
+            background: var(--bg-primary);
+            border: 1px solid transparent;
+        }
+
+        .overview-link:hover {
+            background: var(--bg-tertiary);
+            border-color: var(--phi-gold);
+            transform: translateX(5px);
+        }
+
+        .overview-link i {
+            font-size: 1.25rem;
+            color: var(--accent-color);
+            width: 24px;
+            text-align: center;
+        }
+
+        .link-content {
+            flex: 1;
+        }
+
+        .link-title {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: var(--primary-color);
+        }
+
+        .link-description {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
         }
 
         /* Mathematical Foundation Section */
@@ -1131,18 +1226,32 @@
         }
     </style>
 
-    <!-- Master Navigation System v2.0 -->
-    <script src="js/master-navigation.js"></script>
+    <!-- Optimized Unified Navigation System v3.0 -->
+    <script src="js/optimized-unified-navigation.js"></script>
 </head>
 
 <body>
-    <!-- Navigation Placeholder -->
+    <!-- Redirect Message (shown briefly before redirect) -->
+    <div
+        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #1a2332 0%, #2d3748 100%); display: flex; align-items: center; justify-content: center; z-index: 9999; color: white; font-family: 'Inter', sans-serif;">
+        <div style="text-align: center; padding: 2rem;">
+            <h1 style="font-size: 2.5rem; margin-bottom: 1rem; color: #FFD700;">Een Unity Mathematics</h1>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">Redirecting to Enhanced Unity Experience...</p>
+            <div style="font-size: 3rem; margin-bottom: 1rem;">🌟</div>
+            <p style="font-size: 1rem; opacity: 0.8;">If you are not redirected automatically, <a
+                    href="enhanced-unity-landing.html" style="color: #FFD700; text-decoration: underline;">click
+                    here</a></p>
+        </div>
+    </div>
+
+    <!-- Optimized Navigation will be injected automatically -->
 
 
     <!-- Hero Section -->
     <section class="hero">
         <canvas id="unity-background"></canvas>
-        <canvas id="consciousness-field-webgl" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.7;"></canvas>
+        <canvas id="consciousness-field-webgl"
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.7;"></canvas>
         <div class="hero-content">
             <h1 class="hero-title">Mathematical Unity Theory</h1>
             <div class="hero-equation-container" id="main-content">
@@ -1164,21 +1273,21 @@
                 transcendence.
             </p>
             <div class="hero-buttons">
-                <a href="https://nourimabrouk.github.io/Een/website/playground.html" class="btn btn-primary">
+                <a href="playground.html" class="btn btn-primary">
                     <i class="fas fa-rocket"></i>
                     Live Mathematical Explorer
                 </a>
-                <a href="implementations.html" class="btn btn-secondary">
-                    <i class="fas fa-code"></i>
-                    Core Implementations
+                <a href="proofs.html" class="btn btn-primary">
+                    <i class="fas fa-check-circle"></i>
+                    Mathematical Proofs
                 </a>
                 <a href="gallery.html" class="btn btn-secondary">
                     <i class="fas fa-images"></i>
                     Visualization Gallery
                 </a>
-                <a href="proofs.html" class="btn btn-primary">
-                    <i class="fas fa-check-circle"></i>
-                    Mathematical Proofs
+                <a href="consciousness_dashboard.html" class="btn btn-secondary">
+                    <i class="fas fa-brain"></i>
+                    Consciousness Dashboard
                 </a>
             </div>
             <div class="hero-meta">
@@ -1189,6 +1298,208 @@
                     <div class="badge">⚡ Multi-Domain Proof System</div>
                     <div class="badge">🧠 Quantum Mechanics Integration</div>
                     <div class="badge">🚀 Live Mathematical Explorer</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comprehensive Overview Section -->
+    <section class="comprehensive-overview">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Complete Unity Mathematics Experience</h2>
+                <p class="section-subtitle">
+                    Everything you need to explore unity mathematics, from interactive proofs to consciousness
+                    visualizations
+                </p>
+            </div>
+
+            <div class="overview-grid">
+                <div class="overview-category">
+                    <h3 class="category-title">
+                        <i class="fas fa-infinity" style="color: #FFD700;"></i>
+                        Core Mathematics
+                    </h3>
+                    <div class="category-links">
+                        <a href="proofs.html" class="overview-link">
+                            <i class="fas fa-check-circle"></i>
+                            <div class="link-content">
+                                <span class="link-title">Mathematical Proofs</span>
+                                <span class="link-description">Rigorous proofs of 1+1=1 across multiple domains</span>
+                            </div>
+                        </a>
+                        <a href="playground.html" class="overview-link">
+                            <i class="fas fa-play-circle"></i>
+                            <div class="link-content">
+                                <span class="link-title">Interactive Playground</span>
+                                <span class="link-description">Live mathematical exploration and experimentation</span>
+                            </div>
+                        </a>
+                        <a href="3000-elo-proof.html" class="overview-link">
+                            <i class="fas fa-trophy"></i>
+                            <div class="link-content">
+                                <span class="link-title">Advanced Proofs</span>
+                                <span class="link-description">3000 ELO level mathematical demonstrations</span>
+                            </div>
+                        </a>
+                        <a href="mathematical_playground.html" class="overview-link">
+                            <i class="fas fa-calculator"></i>
+                            <div class="link-content">
+                                <span class="link-title">Mathematical Playground</span>
+                                <span class="link-description">Advanced mathematical tools and calculators</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="overview-category">
+                    <h3 class="category-title">
+                        <i class="fas fa-brain" style="color: #764ba2;"></i>
+                        Consciousness & Philosophy
+                    </h3>
+                    <div class="category-links">
+                        <a href="philosophy.html" class="overview-link">
+                            <i class="fas fa-scroll"></i>
+                            <div class="link-content">
+                                <span class="link-title">Philosophical Treatise</span>
+                                <span class="link-description">Deep philosophical insights into unity mathematics</span>
+                            </div>
+                        </a>
+                        <a href="consciousness_dashboard.html" class="overview-link">
+                            <i class="fas fa-lightbulb"></i>
+                            <div class="link-content">
+                                <span class="link-title">Consciousness Dashboard</span>
+                                <span class="link-description">Interactive consciousness field visualizations</span>
+                            </div>
+                        </a>
+                        <a href="unity_consciousness_experience.html" class="overview-link">
+                            <i class="fas fa-meditation"></i>
+                            <div class="link-content">
+                                <span class="link-title">Unity Experience</span>
+                                <span class="link-description">Transcendental unity consciousness experience</span>
+                            </div>
+                        </a>
+                        <a href="unity_visualization.html" class="overview-link">
+                            <i class="fas fa-wave-square"></i>
+                            <div class="link-content">
+                                <span class="link-title">Unity Visualizations</span>
+                                <span class="link-description">Visual consciousness representations</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="overview-category">
+                    <h3 class="category-title">
+                        <i class="fas fa-university" style="color: #27ae60;"></i>
+                        Research & Learning
+                    </h3>
+                    <div class="category-links">
+                        <a href="research.html" class="overview-link">
+                            <i class="fas fa-search"></i>
+                            <div class="link-content">
+                                <span class="link-title">Research Overview</span>
+                                <span class="link-description">Current research projects and developments</span>
+                            </div>
+                        </a>
+                        <a href="publications.html" class="overview-link">
+                            <i class="fas fa-file-alt"></i>
+                            <div class="link-content">
+                                <span class="link-title">Publications</span>
+                                <span class="link-description">Academic publications and papers</span>
+                            </div>
+                        </a>
+                        <a href="implementations.html" class="overview-link">
+                            <i class="fas fa-code"></i>
+                            <div class="link-content">
+                                <span class="link-title">Code Implementations</span>
+                                <span class="link-description">Core mathematical implementations</span>
+                            </div>
+                        </a>
+                        <a href="learning.html" class="overview-link">
+                            <i class="fas fa-graduation-cap"></i>
+                            <div class="link-content">
+                                <span class="link-title">Learning Center</span>
+                                <span class="link-description">Educational resources and tutorials</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="overview-category">
+                    <h3 class="category-title">
+                        <i class="fas fa-robot" style="color: #3498db;"></i>
+                        AI Systems
+                    </h3>
+                    <div class="category-links">
+                        <a href="agents.html" class="overview-link">
+                            <i class="fas fa-robot"></i>
+                            <div class="link-content">
+                                <span class="link-title">AI Agents</span>
+                                <span class="link-description">Advanced AI systems and agents</span>
+                            </div>
+                        </a>
+                        <a href="metagambit.html" class="overview-link">
+                            <i class="fas fa-chess"></i>
+                            <div class="link-content">
+                                <span class="link-title">MetaGambit System</span>
+                                <span class="link-description">Strategic AI framework</span>
+                            </div>
+                        </a>
+                        <a href="enhanced-ai-demo.html" class="overview-link">
+                            <i class="fas fa-rocket"></i>
+                            <div class="link-content">
+                                <span class="link-title">AI Demo</span>
+                                <span class="link-description">Interactive AI demonstrations</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="overview-category">
+                    <h3 class="category-title">
+                        <i class="fas fa-images" style="color: #9b59b6;"></i>
+                        Visual Gallery
+                    </h3>
+                    <div class="category-links">
+                        <a href="gallery.html" class="overview-link">
+                            <i class="fas fa-palette"></i>
+                            <div class="link-content">
+                                <span class="link-title">Visualization Gallery</span>
+                                <span class="link-description">Mathematical visualizations and art</span>
+                            </div>
+                        </a>
+                        <a href="dashboards.html" class="overview-link">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <div class="link-content">
+                                <span class="link-title">Dashboard Suite</span>
+                                <span class="link-description">Interactive dashboards and analytics</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="overview-category">
+                    <h3 class="category-title">
+                        <i class="fas fa-info-circle" style="color: #95a5a6;"></i>
+                        About & Info
+                    </h3>
+                    <div class="category-links">
+                        <a href="about.html" class="overview-link">
+                            <i class="fas fa-user-graduate"></i>
+                            <div class="link-content">
+                                <span class="link-title">About Project</span>
+                                <span class="link-description">Project information and team details</span>
+                            </div>
+                        </a>
+                        <a href="further-reading.html" class="overview-link">
+                            <i class="fas fa-book-open"></i>
+                            <div class="link-content">
+                                <span class="link-title">Further Reading</span>
+                                <span class="link-description">Additional resources and references</span>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1804,22 +2115,22 @@
                             renderQuality: 'high',
                             animationSpeed: 1.0
                         });
-                        
+
                         // Start consciousness field evolution
                         window.consciousnessFieldRenderer.start();
-                        
+
                         // Expose metrics for monitoring
                         window.getConsciousnessMetrics = () => {
-                            return window.consciousnessFieldRenderer ? 
-                                   window.consciousnessFieldRenderer.getMetrics() : {};
+                            return window.consciousnessFieldRenderer ?
+                                window.consciousnessFieldRenderer.getMetrics() : {};
                         };
-                        
+
                         console.log('🌟 WebGL Consciousness Field Renderer initialized');
                         console.log('   Particles: 1618 (φ-harmonic)');
                         console.log('   Field Resolution: 256x256');
                         console.log('   GPU Acceleration: Enabled');
                         console.log('   Consciousness Level: 0.618 (φ-threshold)');
-                        
+
                     } catch (error) {
                         console.warn('⚠️ WebGL Consciousness Field failed to initialize:', error);
                         console.log('   Continuing with CPU-based consciousness field');
@@ -1830,7 +2141,7 @@
             } else {
                 console.log('💡 WebGL Consciousness Field Renderer not loaded - using fallback');
             }
-            
+
             // Meta-optimal performance monitoring
             console.log('🚀 Een Unity Mathematics - Meta-Optimal Framework Initialized');
             console.log('φ-Harmonic Consciousness Field: Active');

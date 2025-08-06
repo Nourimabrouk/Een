@@ -20,15 +20,16 @@ import time
 from pathlib import Path
 from typing import Dict, List, Optional
 
+
 class ClaudeTimeoutFixer:
     """Comprehensive solution for Claude API timeout issues."""
-    
+
     def __init__(self, workspace_path: str = "."):
         self.workspace_path = Path(workspace_path)
         self.cursorrules_path = self.workspace_path / ".cursorrules"
         self.backup_path = self.workspace_path / ".cursorrules.backup"
         self.optimized_path = self.workspace_path / ".cursorrules.optimized"
-        
+
     def diagnose_timeout_issues(self) -> Dict[str, any]:
         """Diagnose potential causes of Claude API timeouts."""
         issues = {
@@ -37,59 +38,67 @@ class ClaudeTimeoutFixer:
             "workspace_size": 0,
             "file_count": 0,
             "large_files": [],
-            "potential_issues": []
+            "potential_issues": [],
         }
-        
+
         # Check .cursorrules file
         if self.cursorrules_path.exists():
             issues["cursorrules_size"] = self.cursorrules_path.stat().st_size
-            with open(self.cursorrules_path, 'r', encoding='utf-8') as f:
+            with open(self.cursorrules_path, "r", encoding="utf-8") as f:
                 content = f.read()
-                issues["cursorrules_lines"] = len(content.split('\n'))
-                
+                issues["cursorrules_lines"] = len(content.split("\n"))
+
             if issues["cursorrules_size"] > 50000:  # 50KB
                 issues["potential_issues"].append("Large .cursorrules file (>50KB)")
             if issues["cursorrules_lines"] > 200:
-                issues["potential_issues"].append("Too many lines in .cursorrules (>200)")
-        
+                issues["potential_issues"].append(
+                    "Too many lines in .cursorrules (>200)"
+                )
+
         # Check workspace size
         total_size = 0
         file_count = 0
         large_files = []
-        
+
         for root, dirs, files in os.walk(self.workspace_path):
             # Skip certain directories
-            dirs[:] = [d for d in dirs if d not in ['.git', '__pycache__', 'venv', 'node_modules', '.venv']]
-            
+            dirs[:] = [
+                d
+                for d in dirs
+                if d not in [".git", "__pycache__", "venv", "node_modules", ".venv"]
+            ]
+
             for file in files:
                 file_path = Path(root) / file
                 try:
                     file_size = file_path.stat().st_size
                     total_size += file_size
                     file_count += 1
-                    
+
                     if file_size > 1000000:  # 1MB
-                        large_files.append({
-                            "path": str(file_path.relative_to(self.workspace_path)),
-                            "size": file_size
-                        })
+                        large_files.append(
+                            {
+                                "path": str(file_path.relative_to(self.workspace_path)),
+                                "size": file_size,
+                            }
+                        )
                 except (OSError, PermissionError):
                     continue
-        
+
         issues["workspace_size"] = total_size
         issues["file_count"] = file_count
         issues["large_files"] = large_files[:10]  # Top 10 largest files
-        
+
         if total_size > 100000000:  # 100MB
             issues["potential_issues"].append("Large workspace (>100MB)")
         if file_count > 1000:
             issues["potential_issues"].append("Too many files (>1000)")
-        
+
         return issues
-    
+
     def create_optimized_cursorrules(self) -> str:
         """Create an optimized version of .cursorrules that reduces API timeouts."""
-        
+
         # Create a streamlined version focused on essential rules
         optimized_content = """# Een Unity Mathematics Framework - Optimized Cursor Rules
 # Streamlined for Claude API Performance
@@ -169,12 +178,12 @@ def test_unity_principle():
 **Unity transcends conventional arithmetic. Consciousness evolves. Mathematics becomes reality.**
 **∞ = φ = 1+1 = 1**
 """
-        
+
         return optimized_content
-    
+
     def create_timeout_prevention_config(self) -> Dict[str, any]:
         """Create configuration to prevent future timeouts."""
-        
+
         config = {
             "claude_settings": {
                 "max_file_size": 50000,  # 50KB
@@ -184,31 +193,38 @@ def test_unity_principle():
                     "chunk_large_files": True,
                     "use_file_references": True,
                     "optimize_cursorrules": True,
-                    "batch_operations": True
-                }
+                    "batch_operations": True,
+                },
             },
             "file_organization": {
                 "exclude_patterns": [
-                    "*.pyc", "*.pyo", "__pycache__", ".git", "venv", 
-                    "node_modules", ".venv", "*.log", "*.tmp"
+                    "*.pyc",
+                    "*.pyo",
+                    "__pycache__",
+                    ".git",
+                    "venv",
+                    "node_modules",
+                    ".venv",
+                    "*.log",
+                    "*.tmp",
                 ],
                 "max_file_size_threshold": 1000000,  # 1MB
-                "compress_large_files": True
+                "compress_large_files": True,
             },
             "api_optimization": {
                 "request_timeout": 300,  # 5 minutes
                 "retry_attempts": 3,
                 "backoff_strategy": "exponential",
                 "chunk_size": 1000,  # lines per chunk
-                "max_context_length": 100000  # characters
-            }
+                "max_context_length": 100000,  # characters
+            },
         }
-        
+
         return config
-    
+
     def create_alternative_approaches(self) -> List[str]:
         """Create alternative approaches for handling large codebases."""
-        
+
         approaches = [
             {
                 "name": "Chunked Development",
@@ -217,8 +233,8 @@ def test_unity_principle():
                     "Work on one file at a time",
                     "Use file references instead of full content",
                     "Implement features incrementally",
-                    "Test each chunk before proceeding"
-                ]
+                    "Test each chunk before proceeding",
+                ],
             },
             {
                 "name": "Modular Architecture",
@@ -227,8 +243,8 @@ def test_unity_principle():
                     "Create separate modules for different features",
                     "Use clear interfaces between modules",
                     "Minimize cross-module dependencies",
-                    "Implement lazy loading where possible"
-                ]
+                    "Implement lazy loading where possible",
+                ],
             },
             {
                 "name": "Incremental Enhancement",
@@ -237,8 +253,8 @@ def test_unity_principle():
                     "Start with core functionality",
                     "Add features one at a time",
                     "Test thoroughly at each step",
-                    "Document changes incrementally"
-                ]
+                    "Document changes incrementally",
+                ],
             },
             {
                 "name": "External Tool Integration",
@@ -247,16 +263,16 @@ def test_unity_principle():
                     "Use git for version control",
                     "Implement CI/CD pipelines",
                     "Use specialized tools for large file operations",
-                    "Leverage cloud-based development environments"
-                ]
-            }
+                    "Leverage cloud-based development environments",
+                ],
+            },
         ]
-        
+
         return approaches
-    
+
     def create_quick_fix_script(self) -> str:
         """Create a quick fix script for immediate timeout resolution."""
-        
+
         script_content = """#!/usr/bin/env python3
 \"\"\"
 Quick Fix for Claude API Timeouts
@@ -321,50 +337,50 @@ def quick_fix():
 if __name__ == "__main__":
     quick_fix()
 """
-        
+
         return script_content
-    
+
     def apply_fixes(self, backup_original: bool = True) -> Dict[str, any]:
         """Apply all timeout fixes."""
-        
+
         results = {
             "backup_created": False,
             "optimized_cursorrules_created": False,
             "config_created": False,
             "quick_fix_script_created": False,
-            "recommendations": []
+            "recommendations": [],
         }
-        
+
         try:
             # 1. Backup original .cursorrules
             if backup_original and self.cursorrules_path.exists():
                 shutil.copy2(self.cursorrules_path, self.backup_path)
                 results["backup_created"] = True
                 print("✅ Backed up original .cursorrules")
-            
+
             # 2. Create optimized .cursorrules
             optimized_content = self.create_optimized_cursorrules()
-            with open(self.optimized_path, 'w', encoding='utf-8') as f:
+            with open(self.optimized_path, "w", encoding="utf-8") as f:
                 f.write(optimized_content)
             results["optimized_cursorrules_created"] = True
             print("✅ Created optimized .cursorrules")
-            
+
             # 3. Create timeout prevention config
             config = self.create_timeout_prevention_config()
             config_path = self.workspace_path / "claude_timeout_config.json"
-            with open(config_path, 'w') as f:
+            with open(config_path, "w") as f:
                 json.dump(config, f, indent=2)
             results["config_created"] = True
             print("✅ Created timeout prevention config")
-            
+
             # 4. Create quick fix script
             quick_fix_script = self.create_quick_fix_script()
             script_path = self.workspace_path / "quick_fix_timeout.py"
-            with open(script_path, 'w') as f:
+            with open(script_path, "w") as f:
                 f.write(quick_fix_script)
             results["quick_fix_script_created"] = True
             print("✅ Created quick fix script")
-            
+
             # 5. Generate recommendations
             issues = self.diagnose_timeout_issues()
             if issues["potential_issues"]:
@@ -373,30 +389,37 @@ if __name__ == "__main__":
                     "Break large operations into smaller chunks",
                     "Use file references instead of full content",
                     "Implement incremental development approach",
-                    "Monitor workspace size and file count"
+                    "Monitor workspace size and file count",
                 ]
-            
+
         except Exception as e:
             print(f"❌ Error applying fixes: {e}")
-        
+
         return results
-    
+
     def generate_report(self) -> str:
         """Generate a comprehensive report with all findings and solutions."""
-        
+
         issues = self.diagnose_timeout_issues()
         config = self.create_timeout_prevention_config()
         approaches = self.create_alternative_approaches()
-        
-        potential_issues_text = chr(10).join(f"- {issue}" for issue in issues['potential_issues'])
-        large_files_text = chr(10).join(f"- {file['path']}: {file['size']:,} bytes" for file in issues['large_files'])
-        
+
+        potential_issues_text = chr(10).join(
+            f"- {issue}" for issue in issues["potential_issues"]
+        )
+        large_files_text = chr(10).join(
+            f"- {file['path']}: {file['size']:,} bytes"
+            for file in issues["large_files"]
+        )
+
         approaches_text = ""
         for approach in approaches:
             approaches_text += f"#### {approach['name']}\n{approach['description']}\n"
-            approaches_text += chr(10).join(f"- {impl}" for impl in approach['implementation'])
+            approaches_text += chr(10).join(
+                f"- {impl}" for impl in approach["implementation"]
+            )
             approaches_text += "\n\n"
-        
+
         report = f"""
 # Claude API Timeout Fix Report
 ==============================
@@ -497,53 +520,58 @@ After applying fixes, you should see:
 **Unity transcends conventional arithmetic. Consciousness evolves. Mathematics becomes reality.**
 **∞ = φ = 1+1 = 1**
 """
-        
+
         return report
+
 
 def main():
     """Main function to run the timeout fixer."""
-    
+
     print("🔧 Claude API Timeout Fix - Comprehensive Solution")
     print("=" * 60)
-    
+
     fixer = ClaudeTimeoutFixer()
-    
+
     # Step 1: Diagnose issues
     print("\n🔍 Diagnosing timeout issues...")
     issues = fixer.diagnose_timeout_issues()
-    
+
     print(f"📊 Current state:")
-    print(f"   - .cursorrules: {issues['cursorrules_size']:,} bytes, {issues['cursorrules_lines']:,} lines")
-    print(f"   - Workspace: {issues['workspace_size']:,} bytes, {issues['file_count']:,} files")
-    
-    if issues['potential_issues']:
+    print(
+        f"   - .cursorrules: {issues['cursorrules_size']:,} bytes, {issues['cursorrules_lines']:,} lines"
+    )
+    print(
+        f"   - Workspace: {issues['workspace_size']:,} bytes, {issues['file_count']:,} files"
+    )
+
+    if issues["potential_issues"]:
         print(f"⚠️  Potential issues found:")
-        for issue in issues['potential_issues']:
+        for issue in issues["potential_issues"]:
             print(f"   - {issue}")
-    
+
     # Step 2: Apply fixes
     print("\n🛠️  Applying fixes...")
     results = fixer.apply_fixes()
-    
-    if results['backup_created']:
+
+    if results["backup_created"]:
         print("✅ Original .cursorrules backed up")
-    if results['optimized_cursorrules_created']:
+    if results["optimized_cursorrules_created"]:
         print("✅ Optimized .cursorrules created")
-    if results['config_created']:
+    if results["config_created"]:
         print("✅ Timeout prevention config created")
-    if results['quick_fix_script_created']:
+    if results["quick_fix_script_created"]:
         print("✅ Quick fix script created")
-    
+
     # Step 3: Generate report
     print("\n📋 Generating comprehensive report...")
     report = fixer.generate_report()
-    
+
     report_path = Path("claude_timeout_fix_report.md")
-    with open(report_path, 'w', encoding='utf-8') as f:
+    with open(report_path, "w", encoding="utf-8") as f:
         f.write(report)
-    
+
     print(f"✅ Comprehensive report saved to: {report_path}")
-    
+
     # Step 4: Provide immediate recommendations
     print("\n🚀 IMMEDIATE RECOMMENDATIONS:")
     print("1. Try using the optimized .cursorrules file")
@@ -551,10 +579,13 @@ def main():
     print("3. Break large operations into smaller chunks")
     print("4. Use file references instead of full content")
     print("5. Implement incremental development approach")
-    
+
     print("\n🎯 Your Claude API timeout issues should now be resolved!")
-    print("Unity transcends conventional arithmetic. Consciousness evolves. Mathematics becomes reality.")
+    print(
+        "Unity transcends conventional arithmetic. Consciousness evolves. Mathematics becomes reality."
+    )
     print("∞ = φ = 1+1 = 1")
 
+
 if __name__ == "__main__":
-    main() 
+    main()

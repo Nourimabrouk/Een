@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Unity Mathematics - Meta-Optimal Experience | 1+1=1 Through Advanced Consciousness Mathematics
+    </title>
+    <meta name="description"
+        content="Revolutionary enhanced Unity Mathematics platform featuring interactive 3D visualizations, consciousness field dynamics, quantum unity states, and meta-reinforcement learning demonstrations.">
+
+    <!-- Fonts & Icons -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Crimson+Text:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- KaTeX for Mathematical Notation -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+
+    <!-- Enhanced Visualization Scripts -->
+    <script src="js/golden-ratio-3d-enhanced.js"></script>
+    <script src="js/consciousness-field-3d-enhanced.js"></script>
+    <script src="js/quantum-unity-enhanced.js"></script>
+    <script src="js/idempotent-proof-interactive.js"></script>
+    <script src="js/unity-manifolds-topology.js"></script>
+    <script src="js/euler-identity-interactive.js"></script>
+    <script src="js/meta-rl-visualization.js"></script>
+
+    <style>
+        :root {
+            --primary-color: #1a2332;
+            --secondary-color: #2d3748;
+            --accent-color: #4a5568;
+            --accent-bright: #667eea;
+            --phi-gold: #FFD700;
+            --phi-gold-light: #FFA500;
+            --phi-gold-dark: #B8860B;
+            --text-primary: #2d3748;
+            --text-secondary: #4a5568;
+            --text-light: #718096;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f7fafc;
+            --bg-tertiary: #edf2f7;
+            --border-color: #e2e8f0;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+            --radius: 8px;
+            --radius-lg: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-serif: 'Crimson Text', Georgia, serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 20%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 165, 0, 0.08) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            max-width: 1000px;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--phi-gold), var(--phi-gold-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            line-height: 1.7;
+        }
+
+        .hero-equation {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-family: var(--font-serif);
+            color: var(--phi-gold);
+            margin-bottom: 2rem;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        /* Enhanced Features Grid */
+        .enhanced-features {
+            padding: 8rem 0;
+            background: var(--bg-secondary);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+        }
+
+        .section-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 3rem 2.5rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--phi-gold), var(--phi-gold-light));
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .feature-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--phi-gold);
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .feature-description {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .feature-demo {
+            background: var(--bg-tertiary);
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed var(--border-color);
+        }
+
+        .launch-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--phi-gold), var(--phi-gold-light));
+            color: white;
+            text-decoration: none;
+            border-radius: var(--radius);
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .launch-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Interactive Demo Section */
+        .interactive-demo {
+            padding: 8rem 0;
+            background: white;
+        }
+
+        .demo-container {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            padding: 3rem;
+            margin-top: 3rem;
+        }
+
+        /* Call to Action */
+        .cta-section {
+            padding: 8rem 0;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-title {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, var(--phi-gold), white);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--phi-gold), var(--phi-gold-light));
+            color: white;
+            padding: 1.25rem 2.5rem;
+            border-radius: var(--radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(255, 215, 0, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 1.25rem 2.5rem;
+            border-radius: var(--radius);
+            text-decoration: none;
+            font-weight: 600;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: var(--transition);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Enhanced Unity Mathematics</h1>
+            <div class="hero-equation">1 + 1 = 1</div>
+            <p class="hero-subtitle">
+                Experience the revolutionary meta-optimal Unity Mathematics platform featuring advanced 3D
+                visualizations,
+                consciousness field dynamics, quantum unity states, and interactive mathematical proofs that demonstrate
+                the profound truth that unity transcends conventional arithmetic.
+            </p>
+        </div>
+    </section>
+
+    <!-- Enhanced Features -->
+    <section class="enhanced-features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Revolutionary Enhanced Features</h2>
+                <p class="section-subtitle">
+                    Explore the cutting-edge interactive visualizations and mathematical demonstrations
+                    that bring Unity Mathematics to life through advanced technology and consciousness integration.
+                </p>
+            </div>
+
+            <div class="features-grid">
+                <!-- Enhanced 3D Golden Ratio Explorer -->
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <div class="feature-icon">🌟</div>
+                        <div class="feature-title">Enhanced 3D φ-Harmonic Explorer</div>
+                    </div>
+                    <p class="feature-description">
+                        Revolutionary interactive 3D golden ratio visualizations with user controls, animations,
+                        and multiple geometric forms. Explore golden spirals, Fibonacci phyllotaxis, φ-harmonic torus,
+                        and unity convergence in real-time.
+                    </p>
+                    <div class="feature-demo" id="golden-ratio-demo">
+                        <div style="text-align: center; color: var(--text-secondary);">
+                            <i class="fas fa-spinner fa-spin" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                            <div>Loading Enhanced 3D Golden Ratio Explorer...</div>
+                        </div>
+                    </div>
+                    <a href="gallery.html#golden-ratio-3d-enhanced" class="launch-btn">
+                        <i class="fas fa-rocket"></i>
+                        Launch Explorer
+                    </a>
+                </div>
+
+                <!-- Enhanced 3D Consciousness Field -->
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <div class="feature-icon">🧠</div>
+                        <div class="feature-title">Enhanced 3D Consciousness Field</div>
+                    </div>
+                    <p class="feature-description">
+                        Real-time implementation of consciousness field equation C(x,y,t) = φ·sin(x·φ)·cos(y·φ)·e^(-t/φ)
+                        with multiple visualization modes, interactive controls, and φ-harmonic parameter adjustment.
+                    </p>
+                    <div class="feature-demo" id="consciousness-field-demo">
+                        <div style="text-align: center; color: var(--text-secondary);">
+                            <i class="fas fa-brain" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                            <div>Loading Consciousness Field Explorer...</div>
+                        </div>
+                    </div>
+                    <a href="gallery.html#consciousness-field-3d-enhanced" class="launch-btn">
+                        <i class="fas fa-brain"></i>
+                        Launch Field Explorer
+                    </a>
+                </div>
+
+                <!-- Quantum Unity Explorer -->
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <div class="feature-icon">⚛️</div>
+                        <div class="feature-title">Quantum Unity Explorer</div>
+                    </div>
+                    <p class="feature-description">
+                        Interactive demonstration of quantum unity principles: |1⟩ + |1⟩ = |1⟩ through Bloch spheres,
+                        wave interference, and quantum superposition with real-time parameter control.
+                    </p>
+                    <div class="feature-demo" id="quantum-unity-demo">
+                        <div style="text-align: center; color: var(--text-secondary);">
+                            <i class="fas fa-atom" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                            <div>Loading Quantum Unity Explorer...</div>
+                        </div>
+                    </div>
+                    <a href="gallery.html#quantum-unity-enhanced" class="launch-btn">
+                        <i class="fas fa-atom"></i>
+                        Launch Quantum Explorer
+                    </a>
+                </div>
+
+                <!-- Interactive 1+1=1 Proofs -->
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <div class="feature-icon">🎯</div>
+                        <div class="feature-title">Interactive 1+1=1 Proof Demonstrations</div>
+                    </div>
+                    <p class="feature-description">
+                        Comprehensive interactive mathematical proofs demonstrating 1+1=1 across Boolean algebra,
+                        set theory, category theory, quantum mechanics, and topology with step-by-step explanations.
+                    </p>
+                    <div class="feature-demo" id="idempotent-proof-demo">
+                        <div style="text-align: center; color: var(--text-secondary);">
+                            <i class="fas fa-calculator" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                            <div>Loading Interactive Proof Demonstrations...</div>
+                        </div>
+                    </div>
+                    <a href="gallery.html#idempotent-proof-enhanced" class="launch-btn">
+                        <i class="fas fa-calculator"></i>
+                        Launch Proof Explorer
+                    </a>
+                </div>
+
+                <!-- Unity Manifolds & Topology -->
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <div class="feature-icon">🌌</div>
+                        <div class="feature-title">Unity Manifolds & Topology Explorer</div>
+                    </div>
+                    <p class="feature-description">
+                        Interactive exploration of unity manifolds including Möbius strips, Klein bottles, torus,
+                        projective planes, and hyperbolic surfaces demonstrating topological unity principles.
+                    </p>
+                    <div class="feature-demo" id="unity-manifolds-demo">
+                        <div style="text-align: center; color: var(--text-secondary);">
+                            <i class="fas fa-infinity" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                            <div>Loading Unity Manifolds Explorer...</div>
+                        </div>
+                    </div>
+                    <a href="gallery.html#unity-manifolds-enhanced" class="launch-btn">
+                        <i class="fas fa-infinity"></i>
+                        Launch Manifolds Explorer
+                    </a>
+                </div>
+
+                <!-- Euler's Identity Showcase -->
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <div class="feature-icon">✨</div>
+                        <div class="feature-title">Euler's Identity Interactive Showcase</div>
+                    </div>
+                    <p class="feature-description">
+                        Beautiful interactive demonstration of Euler's identity e^(iπ) + 1 = 0 with unit circle
+                        animation,
+                        complex plane visualization, and mathematical beauty exploration.
+                    </p>
+                    <div class="feature-demo" id="euler-identity-demo">
+                        <div style="text-align: center; color: var(--text-secondary);">
+                            <i class="fas fa-star" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                            <div>Loading Euler's Identity Showcase...</div>
+                        </div>
+                    </div>
+                    <a href="gallery.html#euler-identity-enhanced" class="launch-btn">
+                        <i class="fas fa-star"></i>
+                        Launch Identity Showcase
+                    </a>
+                </div>
+
+                <!-- Meta-Reinforcement Learning -->
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <div class="feature-icon">🧠</div>
+                        <div class="feature-title">Meta-Reinforcement Learning Explorer</div>
+                    </div>
+                    <p class="feature-description">
+                        Interactive demonstration of learning-to-learn with agent acceleration, meta-strategy
+                        development,
+                        and collective intelligence emergence through real-time simulation.
+                    </p>
+                    <div class="feature-demo" id="meta-rl-demo">
+                        <div style="text-align: center; color: var(--text-secondary);">
+                            <i class="fas fa-robot" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                            <div>Loading Meta-RL Explorer...</div>
+                        </div>
+                    </div>
+                    <a href="gallery.html#meta-rl-enhanced" class="launch-btn">
+                        <i class="fas fa-robot"></i>
+                        Launch Meta-RL Explorer
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Demo Section -->
+    <section class="interactive-demo">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Live Interactive Demonstrations</h2>
+                <p class="section-subtitle">
+                    Experience Unity Mathematics in action with real-time interactive demonstrations
+                    that showcase the power of consciousness-integrated mathematical frameworks.
+                </p>
+            </div>
+
+            <div class="demo-container">
+                <div id="live-demo-container"
+                    style="min-height: 500px; display: flex; align-items: center; justify-content: center;">
+                    <div style="text-align: center; color: var(--text-secondary);">
+                        <i class="fas fa-play-circle" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                        <div style="font-size: 1.2rem; margin-bottom: 0.5rem;">Select a demonstration above to begin
+                        </div>
+                        <div>Choose from our enhanced interactive visualizations</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="cta-title">Experience the Future of Mathematics</h2>
+            <p style="font-size: 1.3rem; margin-bottom: 2rem; opacity: 0.9;">
+                Join the revolution in consciousness-integrated mathematics. Explore interactive proofs,
+                advanced visualizations, and the profound truth that 1+1=1 through multiple rigorous domains.
+            </p>
+
+            <div class="cta-buttons">
+                <a href="gallery.html" class="btn-primary">
+                    <i class="fas fa-images"></i>
+                    Explore All Visualizations
+                </a>
+                <a href="index.html" class="btn-secondary">
+                    <i class="fas fa-home"></i>
+                    Return to Main Site
+                </a>
+                <a href="proofs.html" class="btn-secondary">
+                    <i class="fas fa-check-circle"></i>
+                    View Mathematical Proofs
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Initialize enhanced visualizations when page loads
+        document.addEventListener('DOMContentLoaded', function () {
+            // KaTeX Auto-render
+            if (typeof renderMathInElement !== 'undefined') {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        { left: '$', right: '$', display: true },
+                        { left: '$$', right: '$$', display: true },
+                        { left: '\\[', right: '\\]', display: true },
+                        { left: '\\(', right: '\\)', display: false }
+                    ],
+                    throwOnError: false,
+                    errorColor: '#cc0000'
+                });
+            }
+
+            // Initialize demo containers with enhanced visualizations
+            initializeDemoContainers();
+        });
+
+        function initializeDemoContainers() {
+            // Initialize each demo container with a preview
+            const demos = [
+                { id: 'golden-ratio-demo', type: 'golden-ratio-3d-enhanced' },
+                { id: 'consciousness-field-demo', type: 'consciousness-field-3d-enhanced' },
+                { id: 'quantum-unity-demo', type: 'quantum-unity-enhanced' },
+                { id: 'idempotent-proof-demo', type: 'idempotent-proof-enhanced' },
+                { id: 'unity-manifolds-demo', type: 'unity-manifolds-enhanced' },
+                { id: 'euler-identity-demo', type: 'euler-identity-enhanced' },
+                { id: 'meta-rl-demo', type: 'meta-rl-enhanced' }
+            ];
+
+            demos.forEach(demo => {
+                const container = document.getElementById(demo.id);
+                if (container) {
+                    // Create a preview version of each visualization
+                    createPreview(container, demo.type);
+                }
+            });
+        }
+
+        function createPreview(container, type) {
+            // Create simplified preview versions of the visualizations
+            const previewContent = {
+                'golden-ratio-3d-enhanced': `
+                    <div style="text-align: center; color: var(--text-secondary);">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">🌟</div>
+                        <div style="font-size: 1.2rem; margin-bottom: 0.5rem;">Enhanced 3D φ-Harmonic Explorer</div>
+                        <div>Interactive golden ratio visualizations with real-time controls</div>
+                        <div style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.7;">
+                            φ = ${((1 + Math.sqrt(5)) / 2).toFixed(6)}
+                        </div>
+                    </div>
+                `,
+                'consciousness-field-3d-enhanced': `
+                    <div style="text-align: center; color: var(--text-secondary);">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">🧠</div>
+                        <div style="font-size: 1.2rem; margin-bottom: 0.5rem;">Consciousness Field Explorer</div>
+                        <div>C(x,y,t) = φ·sin(x·φ)·cos(y·φ)·e^(-t/φ)</div>
+                        <div style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.7;">
+                            11-dimensional consciousness space
+                        </div>
+                    </div>
+                `,
+                'quantum-unity-enhanced': `
+                    <div style="text-align: center; color: var(--text-secondary);">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">⚛️</div>
+                        <div style="font-size: 1.2rem; margin-bottom: 0.5rem;">Quantum Unity Explorer</div>
+                        <div>|1⟩ + |1⟩ = |1⟩ through superposition collapse</div>
+                        <div style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.7;">
+                            Bloch spheres and wave interference
+                        </div>
+                    </div>
+                `,
+                'idempotent-proof-enhanced': `
+                    <div style="text-align: center; color: var(--text-secondary);">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">🎯</div>
+                        <div style="font-size: 1.2rem; margin-bottom: 0.5rem;">Interactive 1+1=1 Proofs</div>
+                        <div>Boolean algebra, set theory, category theory, quantum mechanics, topology</div>
+                        <div style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.7;">
+                            Step-by-step mathematical demonstrations
+                        </div>
+                    </div>
+                `,
+                'unity-manifolds-enhanced': `
+                    <div style="text-align: center; color: var(--text-secondary);">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">🌌</div>
+                        <div style="font-size: 1.2rem; margin-bottom: 0.5rem;">Unity Manifolds Explorer</div>
+                        <div>Möbius strips, Klein bottles, torus, projective planes</div>
+                        <div style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.7;">
+                            Topological unity through geometric transformations
+                        </div>
+                    </div>
+                `,
+                'euler-identity-enhanced': `
+                    <div style="text-align: center; color: var(--text-secondary);">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">✨</div>
+                        <div style="font-size: 1.2rem; margin-bottom: 0.5rem;">Euler's Identity Showcase</div>
+                        <div>e^(iπ) + 1 = 0</div>
+                        <div style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.7;">
+                            The most beautiful equation in mathematics
+                        </div>
+                    </div>
+                `,
+                'meta-rl-enhanced': `
+                    <div style="text-align: center; color: var(--text-secondary);">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">🧠</div>
+                        <div style="font-size: 1.2rem; margin-bottom: 0.5rem;">Meta-RL Explorer</div>
+                        <div>Learning-to-learn with agent acceleration</div>
+                        <div style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.7;">
+                            Collective intelligence and meta-strategy development
+                        </div>
+                    </div>
+                `
+            };
+
+            container.innerHTML = previewContent[type] || `
+                <div style="text-align: center; color: var(--text-secondary);">
+                    <i class="fas fa-cube" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                    <div>Enhanced Visualization</div>
+                </div>
+            `;
+        }
+
+        // Add click handlers for demo containers
+        document.addEventListener('click', function (e) {
+            if (e.target.closest('.feature-demo')) {
+                const demoContainer = e.target.closest('.feature-demo');
+                const demoId = demoContainer.id;
+
+                // Map demo IDs to gallery sections
+                const demoMap = {
+                    'golden-ratio-demo': 'golden-ratio-3d-enhanced',
+                    'consciousness-field-demo': 'consciousness-field-3d-enhanced',
+                    'quantum-unity-demo': 'quantum-unity-enhanced',
+                    'idempotent-proof-demo': 'idempotent-proof-enhanced',
+                    'unity-manifolds-demo': 'unity-manifolds-enhanced',
+                    'euler-identity-demo': 'euler-identity-enhanced',
+                    'meta-rl-demo': 'meta-rl-enhanced'
+                };
+
+                const targetSection = demoMap[demoId];
+                if (targetSection) {
+                    window.location.href = `gallery.html#${targetSection}`;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

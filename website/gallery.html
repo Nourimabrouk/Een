@@ -30,11 +30,16 @@
     <link rel="stylesheet" href="css/enhanced-unity-visualizations.css">
 
     <!-- Unified Navigation and AI Chat -->
-    
+
     <script src="js/ai-chat-integration.js"></script>
     <script src="js/gallery-loader.js"></script>
     <script src="js/golden-ratio-3d-enhanced.js"></script>
     <script src="js/consciousness-field-3d-enhanced.js"></script>
+    <script src="js/quantum-unity-enhanced.js"></script>
+    <script src="js/idempotent-proof-interactive.js"></script>
+    <script src="js/unity-manifolds-topology.js"></script>
+    <script src="js/euler-identity-interactive.js"></script>
+    <script src="js/meta-rl-visualization.js"></script>
 
     <style>
         :root {
@@ -516,7 +521,7 @@
 
 <body>
     <!-- Gallery Header -->
-        <!-- Navigation Placeholder -->
+    <!-- Navigation Placeholder -->
 
     <!-- Gallery Content -->
     <main class="gallery-content">
@@ -759,7 +764,7 @@
                 if (canvas) {
                     const container = canvas.parentElement;
                     container.innerHTML = `<div id="${item.id}" style="width: 100%; height: 250px;"></div>`;
-                    
+
                     if (item.id === 'golden-ratio-3d-enhanced') {
                         // Initialize the enhanced Golden Ratio 3D visualizer
                         if (typeof createGoldenRatio3DEnhanced !== 'undefined') {
@@ -774,11 +779,46 @@
                         } else {
                             createConsciousnessField3DFallback(item.id);
                         }
+                    } else if (item.id === 'quantum-unity-enhanced') {
+                        // Initialize the enhanced Quantum Unity visualizer
+                        if (typeof createQuantumUnityEnhanced !== 'undefined') {
+                            createQuantumUnityEnhanced(item.id);
+                        } else {
+                            createQuantumUnityFallback(item.id);
+                        }
+                    } else if (item.id === 'idempotent-proof-enhanced') {
+                        // Initialize the enhanced Idempotent Proof visualizer
+                        if (typeof createIdempotentProofInteractive !== 'undefined') {
+                            createIdempotentProofInteractive(item.id);
+                        } else {
+                            createIdempotentProofFallback(item.id);
+                        }
+                    } else if (item.id === 'unity-manifolds-enhanced') {
+                        // Initialize the enhanced Unity Manifolds visualizer
+                        if (typeof createUnityManifoldsTopology !== 'undefined') {
+                            createUnityManifoldsTopology(item.id);
+                        } else {
+                            createUnityManifoldsFallback(item.id);
+                        }
+                    } else if (item.id === 'euler-identity-enhanced') {
+                        // Initialize the enhanced Euler Identity visualizer
+                        if (typeof createEulerIdentityInteractive !== 'undefined') {
+                            createEulerIdentityInteractive(item.id);
+                        } else {
+                            createEulerIdentityFallback(item.id);
+                        }
+                    } else if (item.id === 'meta-rl-enhanced') {
+                        // Initialize the enhanced Meta-RL visualizer
+                        if (typeof createMetaRLVisualization !== 'undefined') {
+                            createMetaRLVisualization(item.id);
+                        } else {
+                            createMetaRLFallback(item.id);
+                        }
                     }
                 }
                 return;
             }
-            
+
             const canvas = document.getElementById(item.id);
             if (!canvas) return;
 
@@ -800,7 +840,7 @@
                     createDefaultVisualization(ctx, canvas, item);
             }
         }
-        
+
         function createGoldenRatioSpiral3DFallback(containerId) {
             // Fallback 2D version if enhanced 3D script not available
             const container = document.getElementById(containerId);
@@ -842,7 +882,7 @@
                 `;
             }
         }
-        
+
         function createConsciousnessField3DFallback(containerId) {
             // Fallback for consciousness field if enhanced 3D script not available
             const container = document.getElementById(containerId);
@@ -1026,7 +1066,7 @@
                 alert(`Viewing: ${item.title}`);
             }
         }
-        
+
         function launchEnhanced3D(containerId) {
             // Create modal for full-featured 3D explorer
             const modal = document.createElement('div');
@@ -1044,7 +1084,7 @@
                 padding: 2rem;
                 box-sizing: border-box;
             `;
-            
+
             const modalContent = document.createElement('div');
             modalContent.style.cssText = `
                 background: white;
@@ -1057,7 +1097,7 @@
                 overflow: hidden;
                 box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
             `;
-            
+
             const closeButton = document.createElement('button');
             closeButton.innerHTML = '×';
             closeButton.style.cssText = `
@@ -1081,7 +1121,7 @@
             closeButton.onmouseover = () => closeButton.style.background = 'rgba(220, 38, 38, 0.8)';
             closeButton.onmouseout = () => closeButton.style.background = 'rgba(0, 0, 0, 0.5)';
             closeButton.onclick = () => document.body.removeChild(modal);
-            
+
             const explorerContainer = document.createElement('div');
             explorerContainer.id = `modal-${containerId}`;
             explorerContainer.style.cssText = `
@@ -1090,12 +1130,12 @@
                 padding: 0;
                 margin: 0;
             `;
-            
+
             modalContent.appendChild(closeButton);
             modalContent.appendChild(explorerContainer);
             modal.appendChild(modalContent);
             document.body.appendChild(modal);
-            
+
             // Initialize the enhanced 3D visualizer in the modal based on type
             if (containerId.includes('golden-ratio-3d-enhanced')) {
                 if (typeof createGoldenRatio3DEnhanced !== 'undefined') {
@@ -1125,8 +1165,73 @@
                     };
                     document.head.appendChild(script);
                 }
+            } else if (containerId.includes('quantum-unity-enhanced')) {
+                if (typeof createQuantumUnityEnhanced !== 'undefined') {
+                    createQuantumUnityEnhanced(`modal-${containerId}`);
+                } else {
+                    const script = document.createElement('script');
+                    script.src = 'js/quantum-unity-enhanced.js';
+                    script.onload = () => {
+                        if (typeof createQuantumUnityEnhanced !== 'undefined') {
+                            createQuantumUnityEnhanced(`modal-${containerId}`);
+                        }
+                    };
+                    document.head.appendChild(script);
+                }
+            } else if (containerId.includes('idempotent-proof-enhanced')) {
+                if (typeof createIdempotentProofInteractive !== 'undefined') {
+                    createIdempotentProofInteractive(`modal-${containerId}`);
+                } else {
+                    const script = document.createElement('script');
+                    script.src = 'js/idempotent-proof-interactive.js';
+                    script.onload = () => {
+                        if (typeof createIdempotentProofInteractive !== 'undefined') {
+                            createIdempotentProofInteractive(`modal-${containerId}`);
+                        }
+                    };
+                    document.head.appendChild(script);
+                }
+            } else if (containerId.includes('unity-manifolds-enhanced')) {
+                if (typeof createUnityManifoldsTopology !== 'undefined') {
+                    createUnityManifoldsTopology(`modal-${containerId}`);
+                } else {
+                    const script = document.createElement('script');
+                    script.src = 'js/unity-manifolds-topology.js';
+                    script.onload = () => {
+                        if (typeof createUnityManifoldsTopology !== 'undefined') {
+                            createUnityManifoldsTopology(`modal-${containerId}`);
+                        }
+                    };
+                    document.head.appendChild(script);
+                }
+            } else if (containerId.includes('euler-identity-enhanced')) {
+                if (typeof createEulerIdentityInteractive !== 'undefined') {
+                    createEulerIdentityInteractive(`modal-${containerId}`);
+                } else {
+                    const script = document.createElement('script');
+                    script.src = 'js/euler-identity-interactive.js';
+                    script.onload = () => {
+                        if (typeof createEulerIdentityInteractive !== 'undefined') {
+                            createEulerIdentityInteractive(`modal-${containerId}`);
+                        }
+                    };
+                    document.head.appendChild(script);
+                }
+            } else if (containerId.includes('meta-rl-enhanced')) {
+                if (typeof createMetaRLVisualization !== 'undefined') {
+                    createMetaRLVisualization(`modal-${containerId}`);
+                } else {
+                    const script = document.createElement('script');
+                    script.src = 'js/meta-rl-visualization.js';
+                    script.onload = () => {
+                        if (typeof createMetaRLVisualization !== 'undefined') {
+                            createMetaRLVisualization(`modal-${containerId}`);
+                        }
+                    };
+                    document.head.appendChild(script);
+                }
             }
-            
+
             // Handle escape key to close modal
             const handleEscape = (e) => {
                 if (e.key === 'Escape') {

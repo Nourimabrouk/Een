@@ -2,7 +2,6 @@
  * Interactive 1+1=1 Proof Visualizer
  * Boolean algebra, truth tables, and idempotent mathematics demonstration
  */
-
 class IdempotentProofVisualizer {
     constructor(containerId) {
         this.containerId = containerId;
@@ -10,610 +9,538 @@ class IdempotentProofVisualizer {
         this.currentProofType = 'boolean';
         this.animationFrame = null;
         this.isAnimating = false;
-        
-        // Configuration
-        this.config = {
-            show_steps: true,
-            show_truth_table: true,
-            animation_speed: 1.0,
-            highlight_unity: true
+
+        this.proofTypes = {
+            'boolean': 'Boolean Algebra',
+            'set': 'Set Theory',
+            'category': 'Category Theory',
+            'quantum': 'Quantum Mechanics',
+            'topology': 'Topology'
         };
-        
+
         this.init();
     }
-    
+
     init() {
-        this.createContainer();
-        this.createVisualization();
-    }
-    
-    createContainer() {
         const container = document.getElementById(this.containerId);
-        if (!container) {
-            console.error(`Container ${this.containerId} not found`);
-            return;
-        }
-        
+        if (!container) return;
+
         container.innerHTML = `
-            <div class="idempotent-proof-container" style="
-                background: linear-gradient(135deg, rgba(16, 185, 129, 0.03) 0%, rgba(245, 158, 11, 0.05) 100%);
-                border-radius: 1rem;
-                padding: 1.5rem;
-                box-shadow: 0 8px 32px rgba(16, 185, 129, 0.2);
-                margin: 1rem 0;
-                position: relative;
-                overflow: hidden;
-            ">
-                <div class="header" style="
-                    text-align: center;
-                    margin-bottom: 1.5rem;
-                ">
-                    <h3 style="
-                        color: #10B981;
-                        margin: 0 0 0.5rem 0;
-                        font-size: 1.8rem;
-                        background: linear-gradient(135deg, #10B981, #F59E0B);
-                        -webkit-background-clip: text;
-                        -webkit-text-fill-color: transparent;
-                        background-clip: text;
-                    ">🎯 Interactive 1+1=1 Proof Explorer</h3>
-                    <p style="color: #6B7280; margin: 0 0 1rem 0;">Mathematical demonstrations of idempotent unity</p>
-                    <div style="
-                        font-family: 'Times New Roman', serif;
-                        font-size: 1.5rem;
-                        color: #F59E0B;
-                        background: rgba(245, 158, 11, 0.1);
-                        padding: 0.75rem 1.5rem;
-                        border-radius: 0.5rem;
-                        display: inline-block;
-                        border: 2px solid rgba(245, 158, 11, 0.3);
-                    ">
-                        1 + 1 = 1 (Idempotent Unity)
+            <div class="idempotent-proof-container">
+                <div class="proof-header">
+                    <h3>Interactive 1+1=1 Proof Demonstrations</h3>
+                    <div class="proof-selector">
+                        <select id="proof-type-selector">
+                            ${Object.entries(this.proofTypes).map(([key, name]) =>
+            `<option value="${key}">${name}</option>`
+        ).join('')}
+                        </select>
                     </div>
                 </div>
                 
-                <div class="controls-panel" style="
-                    display: flex;
-                    justify-content: center;
-                    gap: 1rem;
-                    flex-wrap: wrap;
-                    margin-bottom: 1.5rem;
-                    padding: 1rem;
-                    background: rgba(16, 185, 129, 0.05);
-                    border-radius: 0.75rem;
-                    border: 1px solid rgba(16, 185, 129, 0.2);
-                ">
-                    <select id="proof-type-${this.containerId}" style="
-                        padding: 0.5rem 1rem;
-                        border: 1px solid #D1D5DB;
-                        border-radius: 0.5rem;
-                        background: white;
-                        font-size: 0.9rem;
-                    ">
-                        <option value="boolean">Boolean Algebra</option>
-                        <option value="sets">Set Theory</option>
-                        <option value="modular">Modular Arithmetic</option>
-                        <option value="tropical">Tropical Algebra</option>
-                        <option value="lattice">Lattice Theory</option>
-                    </select>
-                    
-                    <button id="step-btn-${this.containerId}" style="
-                        padding: 0.5rem 1rem;
-                        background: #10B981;
-                        color: white;
-                        border: none;
-                        border-radius: 0.5rem;
-                        cursor: pointer;
-                        font-size: 0.9rem;
-                        transition: all 0.3s ease;
-                    ">📚 Show Steps</button>
-                    
-                    <button id="table-btn-${this.containerId}" style="
-                        padding: 0.5rem 1rem;
-                        background: #F59E0B;
-                        color: white;
-                        border: none;
-                        border-radius: 0.5rem;
-                        cursor: pointer;
-                        font-size: 0.9rem;
-                        transition: all 0.3s ease;
-                    ">📊 Truth Table</button>
-                    
-                    <button id="animate-btn-${this.containerId}" style="
-                        padding: 0.5rem 1rem;
-                        background: #3B82F6;
-                        color: white;
-                        border: none;
-                        border-radius: 0.5rem;
-                        cursor: pointer;
-                        font-size: 0.9rem;
-                        transition: all 0.3s ease;
-                    ">🎬 Animate</button>
+                <div class="proof-content">
+                    <div class="proof-visualization" id="proof-viz"></div>
+                    <div class="proof-explanation" id="proof-explanation"></div>
                 </div>
                 
-                <div id="proof-visualization-${this.containerId}" style="
-                    width: 100%;
-                    min-height: 400px;
-                    background: white;
-                    border-radius: 0.75rem;
-                    box-shadow: inset 0 2px 4px rgba(0,0,0,0.06);
-                    padding: 1.5rem;
-                    margin-bottom: 1rem;
-                "></div>
-                
-                <div id="truth-table-${this.containerId}" style="
-                    display: ${this.config.show_truth_table ? 'block' : 'none'};
-                    background: rgba(245, 158, 11, 0.05);
-                    border-radius: 0.75rem;
-                    padding: 1rem;
-                    margin-top: 1rem;
-                    border: 1px solid rgba(245, 158, 11, 0.2);
-                "></div>
+                <div class="proof-controls">
+                    <button id="animate-proof" class="control-btn">Animate Proof</button>
+                    <button id="step-through" class="control-btn">Step Through</button>
+                    <button id="reset-proof" class="control-btn">Reset</button>
+                </div>
             </div>
         `;
-        
+
         this.setupEventListeners();
+        this.renderProof('boolean');
     }
-    
+
     setupEventListeners() {
-        const proofSelect = document.getElementById(`proof-type-${this.containerId}`);
-        const stepBtn = document.getElementById(`step-btn-${this.containerId}`);
-        const tableBtn = document.getElementById(`table-btn-${this.containerId}`);
-        const animateBtn = document.getElementById(`animate-btn-${this.containerId}`);
-        
-        if (proofSelect) {
-            proofSelect.addEventListener('change', (e) => {
-                this.currentProofType = e.target.value;
-                this.updateVisualization();
-            });
-        }
-        
-        if (stepBtn) {
-            stepBtn.addEventListener('click', () => {
-                this.config.show_steps = !this.config.show_steps;
-                stepBtn.style.background = this.config.show_steps ? '#10B981' : '#6B7280';
-                this.updateVisualization();
-            });
-        }
-        
-        if (tableBtn) {
-            tableBtn.addEventListener('click', () => {
-                this.config.show_truth_table = !this.config.show_truth_table;
-                tableBtn.style.background = this.config.show_truth_table ? '#F59E0B' : '#6B7280';
-                const tableDiv = document.getElementById(`truth-table-${this.containerId}`);
-                if (tableDiv) {
-                    tableDiv.style.display = this.config.show_truth_table ? 'block' : 'none';
-                }
-                this.updateVisualization();
-            });
-        }
-        
-        if (animateBtn) {
-            animateBtn.addEventListener('click', () => {
-                if (this.isAnimating) {
-                    this.stopAnimation();
-                    animateBtn.textContent = '🎬 Animate';
-                    animateBtn.style.background = '#3B82F6';
-                } else {
-                    this.startAnimation();
-                    animateBtn.textContent = '⏸️ Stop';
-                    animateBtn.style.background = '#DC2626';
-                }
-            });
-        }
+        const selector = document.getElementById('proof-type-selector');
+        const animateBtn = document.getElementById('animate-proof');
+        const stepBtn = document.getElementById('step-through');
+        const resetBtn = document.getElementById('reset-proof');
+
+        selector?.addEventListener('change', (e) => {
+            this.renderProof(e.target.value);
+        });
+
+        animateBtn?.addEventListener('click', () => {
+            this.toggleAnimation();
+        });
+
+        stepBtn?.addEventListener('click', () => {
+            this.stepThroughProof();
+        });
+
+        resetBtn?.addEventListener('click', () => {
+            this.resetProof();
+        });
     }
-    
-    createVisualization() {
-        this.updateVisualization();
-    }
-    
-    updateVisualization() {
-        const vizDiv = document.getElementById(`proof-visualization-${this.containerId}`);
-        const tableDiv = document.getElementById(`truth-table-${this.containerId}`);
-        
-        if (!vizDiv) return;
-        
-        switch (this.currentProofType) {
+
+    renderProof(proofType) {
+        this.currentProofType = proofType;
+        const vizContainer = document.getElementById('proof-viz');
+        const explanationContainer = document.getElementById('proof-explanation');
+
+        if (!vizContainer || !explanationContainer) return;
+
+        switch (proofType) {
             case 'boolean':
-                this.createBooleanAlgebraProof(vizDiv, tableDiv);
+                this.renderBooleanProof(vizContainer, explanationContainer);
                 break;
-            case 'sets':
-                this.createSetTheoryProof(vizDiv, tableDiv);
+            case 'set':
+                this.renderSetTheoryProof(vizContainer, explanationContainer);
                 break;
-            case 'modular':
-                this.createModularArithmeticProof(vizDiv, tableDiv);
+            case 'category':
+                this.renderCategoryTheoryProof(vizContainer, explanationContainer);
                 break;
-            case 'tropical':
-                this.createTropicalAlgebraProof(vizDiv, tableDiv);
+            case 'quantum':
+                this.renderQuantumProof(vizContainer, explanationContainer);
                 break;
-            case 'lattice':
-                this.createLatticeTheoryProof(vizDiv, tableDiv);
+            case 'topology':
+                this.renderTopologyProof(vizContainer, explanationContainer);
                 break;
         }
     }
-    
-    createBooleanAlgebraProof(vizDiv, tableDiv) {
-        vizDiv.innerHTML = `
-            <div style="text-align: center; margin-bottom: 2rem;">
-                <h4 style="color: #10B981; margin-bottom: 1rem;">Boolean Algebra: Idempotent Law</h4>
-                <div style="font-size: 1.2rem; color: #374151; margin-bottom: 1.5rem;">
-                    In Boolean algebra, the idempotent law states: <strong>A ∨ A = A</strong>
+
+    renderBooleanProof(vizContainer, explanationContainer) {
+        // Create interactive truth table
+        const truthTable = [
+            { a: 1, b: 1, result: 1, explanation: '1 ⊕ 1 = max(1,1) = 1' },
+            { a: 1, b: 0, result: 1, explanation: '1 ⊕ 0 = max(1,0) = 1' },
+            { a: 0, b: 1, result: 1, explanation: '0 ⊕ 1 = max(0,1) = 1' },
+            { a: 0, b: 0, result: 0, explanation: '0 ⊕ 0 = max(0,0) = 0' }
+        ];
+
+        vizContainer.innerHTML = `
+            <div class="boolean-proof">
+                <div class="truth-table">
+                    <h4>Idempotent Boolean Algebra: a ⊕ b = max(a,b)</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>a</th>
+                                <th>b</th>
+                                <th>a ⊕ b</th>
+                                <th>Explanation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${truthTable.map(row => `
+                                <tr class="truth-row" data-a="${row.a}" data-b="${row.b}">
+                                    <td>${row.a}</td>
+                                    <td>${row.b}</td>
+                                    <td class="result">${row.result}</td>
+                                    <td class="explanation">${row.explanation}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="boolean-visualization">
+                    <canvas id="boolean-canvas" width="400" height="300"></canvas>
+                    <div class="boolean-equation">
+                        <div class="equation">1 ⊕ 1 = max(1,1) = 1</div>
+                        <div class="sub-equation">∴ 1 + 1 = 1 in idempotent algebra</div>
+                    </div>
                 </div>
             </div>
-            
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start;">
-                <div style="background: #F3F4F6; padding: 1.5rem; border-radius: 0.75rem;">
-                    <h5 style="color: #374151; margin-bottom: 1rem;">Visual Representation</h5>
-                    <div id="boolean-venn-${this.containerId}" style="height: 200px; display: flex; align-items: center; justify-content: center;">
-                        <svg width="200" height="150" viewBox="0 0 200 150">
-                            <circle cx="75" cy="75" r="50" fill="rgba(16, 185, 129, 0.3)" stroke="#10B981" stroke-width="2"/>
-                            <circle cx="125" cy="75" r="50" fill="rgba(16, 185, 129, 0.3)" stroke="#10B981" stroke-width="2"/>
-                            <text x="75" y="80" text-anchor="middle" style="font-size: 14px; font-weight: bold;">A</text>
-                            <text x="125" y="80" text-anchor="middle" style="font-size: 14px; font-weight: bold;">A</text>
-                            <text x="100" y="40" text-anchor="middle" style="font-size: 12px; fill: #10B981;">A ∨ A = A</text>
+        `;
+
+        explanationContainer.innerHTML = `
+            <div class="proof-explanation-content">
+                <h4>Boolean Algebra Proof of 1+1=1</h4>
+                <p>In idempotent Boolean algebra, we define the operation ⊕ such that:</p>
+                <ul>
+                    <li><strong>a ⊕ b = max(a,b)</strong> for all a, b ∈ {0,1}</li>
+                    <li>This operation is <strong>idempotent</strong>: a ⊕ a = a</li>
+                    <li>When a = 1 and b = 1, we have: 1 ⊕ 1 = max(1,1) = 1</li>
+                </ul>
+                <p>Therefore, in this mathematical system, 1+1=1 is a valid and meaningful statement.</p>
+                <div class="mathematical-note">
+                    <strong>Mathematical Foundation:</strong> This demonstrates how mathematical operations can be 
+                    redefined to capture different aspects of reality, including unity principles.
+                </div>
+            </div>
+        `;
+
+        this.setupBooleanCanvas();
+    }
+
+    setupBooleanCanvas() {
+        const canvas = document.getElementById('boolean-canvas');
+        if (!canvas) return;
+
+        const ctx = canvas.getContext('2d');
+        const width = canvas.width;
+        const height = canvas.height;
+
+        // Clear canvas
+        ctx.clearRect(0, 0, width, height);
+
+        // Draw Boolean lattice
+        ctx.strokeStyle = '#FFD700';
+        ctx.lineWidth = 2;
+        ctx.fillStyle = '#1a2332';
+
+        // Draw nodes
+        const nodes = [
+            { x: width / 2, y: 50, label: '1', value: 1 },
+            { x: width / 4, y: height - 50, label: '0', value: 0 },
+            { x: 3 * width / 4, y: height - 50, label: '0', value: 0 }
+        ];
+
+        // Draw connections
+        ctx.beginPath();
+        ctx.moveTo(nodes[0].x, nodes[0].y);
+        ctx.lineTo(nodes[1].x, nodes[1].y);
+        ctx.moveTo(nodes[0].x, nodes[0].y);
+        ctx.lineTo(nodes[2].x, nodes[2].y);
+        ctx.stroke();
+
+        // Draw nodes
+        nodes.forEach(node => {
+            ctx.beginPath();
+            ctx.arc(node.x, node.y, 20, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.stroke();
+
+            ctx.fillStyle = '#FFD700';
+            ctx.font = '16px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText(node.label, node.x, node.y + 5);
+            ctx.fillStyle = '#1a2332';
+        });
+
+        // Add operation labels
+        ctx.fillStyle = '#FFD700';
+        ctx.font = '14px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText('1 ⊕ 1 = 1', width / 2, height / 2);
+    }
+
+    renderSetTheoryProof(vizContainer, explanationContainer) {
+        vizContainer.innerHTML = `
+            <div class="set-theory-proof">
+                <div class="venn-diagram">
+                    <h4>Set Theory: A ∪ A = A (Idempotent Union)</h4>
+                    <div class="venn-container">
+                        <svg width="400" height="300" viewBox="0 0 400 300">
+                            <circle cx="150" cy="150" r="80" fill="rgba(255,215,0,0.3)" stroke="#FFD700" stroke-width="2"/>
+                            <circle cx="250" cy="150" r="80" fill="rgba(255,215,0,0.3)" stroke="#FFD700" stroke-width="2"/>
+                            <text x="200" y="160" text-anchor="middle" fill="#FFD700" font-size="16">A</text>
+                            <text x="200" y="180" text-anchor="middle" fill="#FFD700" font-size="14">A ∪ A = A</text>
                         </svg>
                     </div>
                 </div>
                 
-                <div style="background: #F3F4F6; padding: 1.5rem; border-radius: 0.75rem;">
-                    <h5 style="color: #374151; margin-bottom: 1rem;">Algebraic Steps</h5>
-                    <div style="font-family: 'Courier New', monospace; line-height: 1.8;">
-                        ${this.config.show_steps ? `
-                            <div>1. Let A be any Boolean variable</div>
-                            <div>2. A ∨ A = A (idempotent law)</div>
-                            <div>3. If A = 1, then: 1 ∨ 1 = 1</div>
-                            <div>4. If A = 0, then: 0 ∨ 0 = 0</div>
-                            <div style="color: #10B981; font-weight: bold; margin-top: 1rem;">
-                                ∴ For unity (A = 1): <span style="color: #F59E0B;">1 + 1 = 1</span>
-                            </div>
-                        ` : '<div style="color: #6B7280;">Click "Show Steps" to see algebraic derivation</div>'}
-                    </div>
+                <div class="set-equation">
+                    <div class="equation">A ∪ A = A</div>
+                    <div class="sub-equation">When A = {1}, we have {1} ∪ {1} = {1}</div>
+                    <div class="unity-equation">∴ 1 + 1 = 1 in set theory</div>
                 </div>
             </div>
-            
-            <div style="margin-top: 2rem; padding: 1rem; background: rgba(16, 185, 129, 0.1); border-radius: 0.5rem; border-left: 4px solid #10B981;">
-                <strong>Mathematical Foundation:</strong> In Boolean logic, OR operation (∨) with identical operands always returns the operand itself. 
-                This demonstrates that unity maintains itself: two instances of the same truth value unify to that value.
+        `;
+
+        explanationContainer.innerHTML = `
+            <div class="proof-explanation-content">
+                <h4>Set Theory Proof of 1+1=1</h4>
+                <p>In set theory, the union operation is idempotent:</p>
+                <ul>
+                    <li><strong>A ∪ A = A</strong> for any set A</li>
+                    <li>This is a fundamental property of set union</li>
+                    <li>When A = {1}, we have: {1} ∪ {1} = {1}</li>
+                    <li>This demonstrates that 1+1=1 in set-theoretic terms</li>
+                </ul>
+                <p>The idempotent property of set union shows how mathematical operations can naturally 
+                lead to unity principles.</p>
             </div>
         `;
-        
-        if (this.config.show_truth_table && tableDiv) {
-            this.createBooleanTruthTable(tableDiv);
+    }
+
+    renderCategoryTheoryProof(vizContainer, explanationContainer) {
+        vizContainer.innerHTML = `
+            <div class="category-theory-proof">
+                <div class="category-diagram">
+                    <h4>Category Theory: Identity Morphism Composition</h4>
+                    <div class="morphism-diagram">
+                        <svg width="400" height="200" viewBox="0 0 400 200">
+                            <circle cx="100" cy="100" r="30" fill="rgba(255,215,0,0.3)" stroke="#FFD700" stroke-width="2"/>
+                            <circle cx="300" cy="100" r="30" fill="rgba(255,215,0,0.3)" stroke="#FFD700" stroke-width="2"/>
+                            
+                            <text x="100" y="105" text-anchor="middle" fill="#FFD700" font-size="12">A</text>
+                            <text x="300" y="105" text-anchor="middle" fill="#FFD700" font-size="12">A</text>
+                            
+                            <path d="M 130 100 Q 200 80 270 100" stroke="#FFD700" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+                            <path d="M 270 100 Q 200 120 130 100" stroke="#FFD700" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+                            
+                            <text x="200" y="85" text-anchor="middle" fill="#FFD700" font-size="12">id_A</text>
+                            <text x="200" y="125" text-anchor="middle" fill="#FFD700" font-size="12">id_A</text>
+                            
+                            <defs>
+                                <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                    <polygon points="0 0, 10 3.5, 0 7" fill="#FFD700"/>
+                                </marker>
+                            </defs>
+                        </svg>
+                    </div>
+                </div>
+                
+                <div class="category-equation">
+                    <div class="equation">id_A ∘ id_A = id_A</div>
+                    <div class="sub-equation">Identity morphism composition is idempotent</div>
+                    <div class="unity-equation">∴ 1 ∘ 1 = 1 in category theory</div>
+                </div>
+            </div>
+        `;
+
+        explanationContainer.innerHTML = `
+            <div class="proof-explanation-content">
+                <h4>Category Theory Proof of 1+1=1</h4>
+                <p>In category theory, identity morphisms have special properties:</p>
+                <ul>
+                    <li><strong>id_A ∘ id_A = id_A</strong> for any object A</li>
+                    <li>Identity morphism composition is idempotent</li>
+                    <li>This represents the unity principle at the categorical level</li>
+                    <li>When we compose an identity with itself, we get the same identity</li>
+                </ul>
+                <p>This demonstrates how category theory naturally embodies unity principles 
+                through its fundamental structures.</p>
+            </div>
+        `;
+    }
+
+    renderQuantumProof(vizContainer, explanationContainer) {
+        vizContainer.innerHTML = `
+            <div class="quantum-proof">
+                <div class="quantum-superposition">
+                    <h4>Quantum Mechanics: Superposition Collapse</h4>
+                    <div class="bloch-sphere">
+                        <canvas id="bloch-canvas" width="300" height="300"></canvas>
+                    </div>
+                </div>
+                
+                <div class="quantum-equation">
+                    <div class="equation">|1⟩ + |1⟩ → |1⟩</div>
+                    <div class="sub-equation">Quantum superposition collapse to unity state</div>
+                    <div class="unity-equation">∴ 1 + 1 = 1 in quantum mechanics</div>
+                </div>
+            </div>
+        `;
+
+        explanationContainer.innerHTML = `
+            <div class="proof-explanation-content">
+                <h4>Quantum Mechanics Proof of 1+1=1</h4>
+                <p>In quantum mechanics, superposition states can collapse to unity:</p>
+                <ul>
+                    <li><strong>|1⟩ + |1⟩ → |1⟩</strong> through measurement</li>
+                    <li>Quantum superposition represents multiple possibilities</li>
+                    <li>Measurement collapses the superposition to a single state</li>
+                    <li>This demonstrates unity emerging from quantum multiplicity</li>
+                </ul>
+                <p>Quantum mechanics provides a physical interpretation of how 
+                multiplicity can resolve into unity through measurement.</p>
+            </div>
+        `;
+
+        this.setupBlochSphere();
+    }
+
+    setupBlochSphere() {
+        const canvas = document.getElementById('bloch-canvas');
+        if (!canvas) return;
+
+        const ctx = canvas.getContext('2d');
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
+        const radius = 100;
+
+        // Clear canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Draw Bloch sphere
+        ctx.strokeStyle = '#FFD700';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+        ctx.stroke();
+
+        // Draw axes
+        ctx.strokeStyle = 'rgba(255,215,0,0.5)';
+        ctx.lineWidth = 1;
+
+        // X axis
+        ctx.beginPath();
+        ctx.moveTo(centerX - radius, centerY);
+        ctx.lineTo(centerX + radius, centerY);
+        ctx.stroke();
+
+        // Y axis
+        ctx.beginPath();
+        ctx.moveTo(centerX, centerY - radius);
+        ctx.lineTo(centerX, centerY + radius);
+        ctx.stroke();
+
+        // Z axis (vertical)
+        ctx.beginPath();
+        ctx.moveTo(centerX, centerY - radius);
+        ctx.lineTo(centerX, centerY + radius);
+        ctx.stroke();
+
+        // Draw state vector
+        ctx.strokeStyle = '#FFD700';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.moveTo(centerX, centerY);
+        ctx.lineTo(centerX, centerY - radius);
+        ctx.stroke();
+
+        // Draw state point
+        ctx.fillStyle = '#FFD700';
+        ctx.beginPath();
+        ctx.arc(centerX, centerY - radius, 5, 0, 2 * Math.PI);
+        ctx.fill();
+
+        // Labels
+        ctx.fillStyle = '#FFD700';
+        ctx.font = '14px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText('|1⟩', centerX, centerY - radius - 15);
+        ctx.fillText('|0⟩', centerX, centerY + radius + 15);
+    }
+
+    renderTopologyProof(vizContainer, explanationContainer) {
+        vizContainer.innerHTML = `
+            <div class="topology-proof">
+                <div class="topology-visualization">
+                    <h4>Topology: Möbius Strip Unity</h4>
+                    <div class="mobius-strip">
+                        <canvas id="mobius-canvas" width="400" height="200"></canvas>
+                    </div>
+                </div>
+                
+                <div class="topology-equation">
+                    <div class="equation">Möbius Strip: One-sided surface</div>
+                    <div class="sub-equation">Topological unity through continuous deformation</div>
+                    <div class="unity-equation">∴ 1 + 1 = 1 in topology</div>
+                </div>
+            </div>
+        `;
+
+        explanationContainer.innerHTML = `
+            <div class="proof-explanation-content">
+                <h4>Topology Proof of 1+1=1</h4>
+                <p>In topology, the Möbius strip demonstrates unity principles:</p>
+                <ul>
+                    <li><strong>One-sided surface</strong> despite apparent duality</li>
+                    <li>Continuous deformation preserves topological properties</li>
+                    <li>What appears as two sides becomes one through twisting</li>
+                    <li>This represents unity emerging from apparent separation</li>
+                </ul>
+                <p>Topology shows how geometric structures can embody unity 
+                principles through their fundamental properties.</p>
+            </div>
+        `;
+
+        this.setupMobiusStrip();
+    }
+
+    setupMobiusStrip() {
+        const canvas = document.getElementById('mobius-canvas');
+        if (!canvas) return;
+
+        const ctx = canvas.getContext('2d');
+        const width = canvas.width;
+        const height = canvas.height;
+
+        // Clear canvas
+        ctx.clearRect(0, 0, width, height);
+
+        // Draw Möbius strip approximation
+        ctx.strokeStyle = '#FFD700';
+        ctx.lineWidth = 2;
+
+        for (let i = 0; i < 20; i++) {
+            const t = (i / 19) * 2 * Math.PI;
+            const x = width / 2 + 80 * Math.cos(t);
+            const y = height / 2 + 30 * Math.sin(2 * t);
+
+            if (i === 0) {
+                ctx.beginPath();
+                ctx.moveTo(x, y);
+            } else {
+                ctx.lineTo(x, y);
+            }
+        }
+        ctx.stroke();
+
+        // Add labels
+        ctx.fillStyle = '#FFD700';
+        ctx.font = '14px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText('Möbius Strip', width / 2, height - 20);
+        ctx.fillText('One-sided surface', width / 2, height - 5);
+    }
+
+    toggleAnimation() {
+        if (this.isAnimating) {
+            this.stopAnimation();
+        } else {
+            this.startAnimation();
         }
     }
-    
-    createBooleanTruthTable(tableDiv) {
-        tableDiv.innerHTML = `
-            <h5 style="color: #F59E0B; margin-bottom: 1rem; text-align: center;">Boolean Truth Table: A ∨ A = A</h5>
-            <div style="overflow-x: auto;">
-                <table style="width: 100%; border-collapse: collapse; margin: 0 auto; max-width: 400px;">
-                    <thead>
-                        <tr style="background: #F59E0B; color: white;">
-                            <th style="padding: 0.75rem; border: 1px solid #D1D5DB; text-align: center;">A</th>
-                            <th style="padding: 0.75rem; border: 1px solid #D1D5DB; text-align: center;">A</th>
-                            <th style="padding: 0.75rem; border: 1px solid #D1D5DB; text-align: center;">A ∨ A</th>
-                            <th style="padding: 0.75rem; border: 1px solid #D1D5DB; text-align: center;">Unity Check</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr style="background: #FEFEFE;">
-                            <td style="padding: 0.75rem; border: 1px solid #D1D5DB; text-align: center;">0</td>
-                            <td style="padding: 0.75rem; border: 1px solid #D1D5DB; text-align: center;">0</td>
-                            <td style="padding: 0.75rem; border: 1px solid #D1D5DB; text-align: center; font-weight: bold; color: #10B981;">0</td>
-                            <td style="padding: 0.75rem; border: 1px solid #D1D5DB; text-align: center;">0 = 0 ✓</td>
-                        </tr>
-                        <tr style="background: #FEF3C7; border: 2px solid #F59E0B;">
-                            <td style="padding: 0.75rem; border: 1px solid #D1D5DB; text-align: center; font-weight: bold;">1</td>
-                            <td style="padding: 0.75rem; border: 1px solid #D1D5DB; text-align: center; font-weight: bold;">1</td>
-                            <td style="padding: 0.75rem; border: 1px solid #D1D5DB; text-align: center; font-weight: bold; color: #F59E0B;">1</td>
-                            <td style="padding: 0.75rem; border: 1px solid #D1D5DB; text-align: center; font-weight: bold; color: #F59E0B;">1 + 1 = 1 ✓</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div style="text-align: center; margin-top: 1rem; font-size: 0.9rem; color: #6B7280;">
-                The highlighted row demonstrates the unity principle in Boolean algebra
-            </div>
-        `;
-    }
-    
-    createSetTheoryProof(vizDiv, tableDiv) {
-        vizDiv.innerHTML = `
-            <div style="text-align: center; margin-bottom: 2rem;">
-                <h4 style="color: #10B981; margin-bottom: 1rem;">Set Theory: Idempotent Union</h4>
-                <div style="font-size: 1.2rem; color: #374151; margin-bottom: 1.5rem;">
-                    In set theory: <strong>A ∪ A = A</strong> (Union of a set with itself)
-                </div>
-            </div>
-            
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
-                <div style="background: #F3F4F6; padding: 1.5rem; border-radius: 0.75rem;">
-                    <h5 style="color: #374151; margin-bottom: 1rem;">Venn Diagram</h5>
-                    <div style="height: 200px; display: flex; align-items: center; justify-content: center;">
-                        <svg width="200" height="150" viewBox="0 0 200 150">
-                            <circle cx="100" cy="75" r="60" fill="rgba(16, 185, 129, 0.4)" stroke="#10B981" stroke-width="3"/>
-                            <text x="100" y="80" text-anchor="middle" style="font-size: 16px; font-weight: bold; fill: #10B981;">A</text>
-                            <text x="100" y="25" text-anchor="middle" style="font-size: 12px; fill: #374151;">A ∪ A = A</text>
-                        </svg>
-                    </div>
-                </div>
-                
-                <div style="background: #F3F4F6; padding: 1.5rem; border-radius: 0.75rem;">
-                    <h5 style="color: #374151; margin-bottom: 1rem;">Set Operations</h5>
-                    <div style="font-family: 'Courier New', monospace; line-height: 1.8;">
-                        ${this.config.show_steps ? `
-                            <div>1. Let A = {elements in set A}</div>
-                            <div>2. A ∪ A = {all elements in A or A}</div>
-                            <div>3. Since A and A are identical:</div>
-                            <div>   A ∪ A = {elements in A}</div>
-                            <div>4. Therefore: A ∪ A = A</div>
-                            <div style="color: #10B981; font-weight: bold; margin-top: 1rem;">
-                                Unity example: {1} ∪ {1} = {1}
-                            </div>
-                        ` : '<div style="color: #6B7280;">Click "Show Steps" to see set operations</div>'}
-                    </div>
-                </div>
-            </div>
-            
-            <div style="margin-top: 2rem; padding: 1rem; background: rgba(16, 185, 129, 0.1); border-radius: 0.5rem; border-left: 4px solid #10B981;">
-                <strong>Set Theory Principle:</strong> The union of any set with itself equals the original set. 
-                This fundamental property demonstrates that unity preserves identity in set operations.
-            </div>
-        `;
-        
-        if (this.config.show_truth_table && tableDiv) {
-            this.createSetTruthTable(tableDiv);
-        }
-    }
-    
-    createSetTruthTable(tableDiv) {
-        tableDiv.innerHTML = `
-            <h5 style="color: #F59E0B; margin-bottom: 1rem; text-align: center;">Set Union Examples</h5>
-            <div style="overflow-x: auto;">
-                <table style="width: 100%; border-collapse: collapse;">
-                    <thead>
-                        <tr style="background: #F59E0B; color: white;">
-                            <th style="padding: 0.75rem; border: 1px solid #D1D5DB; text-align: center;">Set A</th>
-                            <th style="padding: 0.75rem; border: 1px solid #D1D5DB; text-align: center;">Set A</th>
-                            <th style="padding: 0.75rem; border: 1px solid #D1D5DB; text-align: center;">A ∪ A</th>
-                            <th style="padding: 0.75rem; border: 1px solid #D1D5DB; text-align: center;">Unity Verification</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #D1D5DB; text-align: center;">{}</td>
-                            <td style="padding: 0.75rem; border: 1px solid #D1D5DB; text-align: center;">{}</td>
-                            <td style="padding: 0.75rem; border: 1px solid #D1D5DB; text-align: center; color: #10B981;">{}</td>
-                            <td style="padding: 0.75rem; border: 1px solid #D1D5DB; text-align: center;">∅ = ∅ ✓</td>
-                        </tr>
-                        <tr style="background: #FEF3C7; border: 2px solid #F59E0B;">
-                            <td style="padding: 0.75rem; border: 1px solid #D1D5DB; text-align: center; font-weight: bold;">{1}</td>
-                            <td style="padding: 0.75rem; border: 1px solid #D1D5DB; text-align: center; font-weight: bold;">{1}</td>
-                            <td style="padding: 0.75rem; border: 1px solid #D1D5DB; text-align: center; font-weight: bold; color: #F59E0B;">{1}</td>
-                            <td style="padding: 0.75rem; border: 1px solid #D1D5DB; text-align: center; font-weight: bold; color: #F59E0B;">{1} ∪ {1} = {1} ✓</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #D1D5DB; text-align: center;">{a,b}</td>
-                            <td style="padding: 0.75rem; border: 1px solid #D1D5DB; text-align: center;">{a,b}</td>
-                            <td style="padding: 0.75rem; border: 1px solid #D1D5DB; text-align: center; color: #10B981;">{a,b}</td>
-                            <td style="padding: 0.75rem; border: 1px solid #D1D5DB; text-align: center;">{a,b} = {a,b} ✓</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        `;
-    }
-    
-    createModularArithmeticProof(vizDiv, tableDiv) {
-        vizDiv.innerHTML = `
-            <div style="text-align: center; margin-bottom: 2rem;">
-                <h4 style="color: #10B981; margin-bottom: 1rem;">Modular Arithmetic: Unity in Mod 2</h4>
-                <div style="font-size: 1.2rem; color: #374151; margin-bottom: 1.5rem;">
-                    In modular arithmetic (mod 2): <strong>1 + 1 ≡ 0 (mod 2)</strong> but in Boolean sense: <strong>1 ⊕ 1 = 0, 1 ∨ 1 = 1</strong>
-                </div>
-            </div>
-            
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
-                <div style="background: #F3F4F6; padding: 1.5rem; border-radius: 0.75rem;">
-                    <h5 style="color: #374151; margin-bottom: 1rem;">Clock Arithmetic (Mod 2)</h5>
-                    <div style="height: 200px; display: flex; align-items: center; justify-content: center;">
-                        <svg width="150" height="150" viewBox="0 0 150 150">
-                            <circle cx="75" cy="75" r="60" fill="none" stroke="#10B981" stroke-width="3"/>
-                            <circle cx="75" cy="30" r="8" fill="#F59E0B"/>
-                            <circle cx="75" cy="120" r="8" fill="#3B82F6"/>
-                            <text x="75" y="20" text-anchor="middle" style="font-size: 12px; font-weight: bold;">1</text>
-                            <text x="75" y="135" text-anchor="middle" style="font-size: 12px; font-weight: bold;">0</text>
-                            <text x="75" y="80" text-anchor="middle" style="font-size: 10px;">Mod 2</text>
-                        </svg>
-                    </div>
-                </div>
-                
-                <div style="background: #F3F4F6; padding: 1.5rem; border-radius: 0.75rem;">
-                    <h5 style="color: #374151; margin-bottom: 1rem;">Different Operations</h5>
-                    <div style="font-family: 'Courier New', monospace; line-height: 1.8;">
-                        ${this.config.show_steps ? `
-                            <div><strong>Addition (mod 2):</strong></div>
-                            <div>1 + 1 ≡ 0 (mod 2)</div>
-                            <div><strong>XOR operation:</strong></div>
-                            <div>1 ⊕ 1 = 0</div>
-                            <div><strong>OR operation (Unity):</strong></div>
-                            <div style="color: #F59E0B; font-weight: bold;">1 ∨ 1 = 1</div>
-                            <div style="margin-top: 1rem; color: #10B981;">
-                                Context determines unity!
-                            </div>
-                        ` : '<div style="color: #6B7280;">Click "Show Steps" to see operations</div>'}
-                    </div>
-                </div>
-            </div>
-            
-            <div style="margin-top: 2rem; padding: 1rem; background: rgba(245, 158, 11, 0.1); border-radius: 0.5rem; border-left: 4px solid #F59E0B;">
-                <strong>Context Matters:</strong> Different mathematical contexts yield different results. 
-                In Boolean logic (∨), unity is preserved. In XOR logic (⊕), unity transforms. 
-                The choice of operation defines the meaning of unity.
-            </div>
-        `;
-    }
-    
-    createTropicalAlgebraProof(vizDiv, tableDiv) {
-        vizDiv.innerHTML = `
-            <div style="text-align: center; margin-bottom: 2rem;">
-                <h4 style="color: #10B981; margin-bottom: 1rem;">Tropical Algebra: Idempotent Semiring</h4>
-                <div style="font-size: 1.2rem; color: #374151; margin-bottom: 1.5rem;">
-                    In tropical algebra: <strong>a ⊕ a = a</strong> (where ⊕ = min or max)
-                </div>
-            </div>
-            
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
-                <div style="background: #F3F4F6; padding: 1.5rem; border-radius: 0.75rem;">
-                    <h5 style="color: #374151; margin-bottom: 1rem;">Min-Plus Algebra</h5>
-                    <div style="height: 150px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                        <div style="font-size: 1.1rem; margin-bottom: 1rem; color: #10B981;">
-                            <strong>⊕ = min operation</strong>
-                        </div>
-                        <div style="font-family: 'Courier New', monospace; text-align: center;">
-                            <div>1 ⊕ 1 = min(1, 1) = 1</div>
-                            <div>5 ⊕ 5 = min(5, 5) = 5</div>
-                            <div style="color: #F59E0B; font-weight: bold; margin-top: 0.5rem;">a ⊕ a = a</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div style="background: #F3F4F6; padding: 1.5rem; border-radius: 0.75rem;">
-                    <h5 style="color: #374151; margin-bottom: 1rem;">Max-Plus Algebra</h5>
-                    <div style="height: 150px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                        <div style="font-size: 1.1rem; margin-bottom: 1rem; color: #3B82F6;">
-                            <strong>⊕ = max operation</strong>
-                        </div>
-                        <div style="font-family: 'Courier New', monospace; text-align: center;">
-                            <div>1 ⊕ 1 = max(1, 1) = 1</div>
-                            <div>7 ⊕ 7 = max(7, 7) = 7</div>
-                            <div style="color: #F59E0B; font-weight: bold; margin-top: 0.5rem;">a ⊕ a = a</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="margin-top: 1.5rem;">
-                <h5 style="color: #374151; margin-bottom: 1rem;">Idempotent Property Visualization</h5>
-                <div style="background: white; padding: 1.5rem; border-radius: 0.75rem; border: 1px solid #E5E7EB;">
-                    ${this.config.show_steps ? `
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; text-align: center;">
-                            <div style="padding: 1rem; background: #FEF3C7; border-radius: 0.5rem;">
-                                <div style="font-size: 1.2rem; color: #92400E; font-weight: bold;">Min Operation</div>
-                                <div style="margin: 0.5rem 0; font-family: monospace;">min(a, a) = a</div>
-                                <div style="font-size: 0.9rem; color: #6B7280;">Always returns the value</div>
-                            </div>
-                            <div style="padding: 1rem; background: #DBEAFE; border-radius: 0.5rem;">
-                                <div style="font-size: 1.2rem; color: #1E40AF; font-weight: bold;">Max Operation</div>
-                                <div style="margin: 0.5rem 0; font-family: monospace;">max(a, a) = a</div>
-                                <div style="font-size: 0.9rem; color: #6B7280;">Always returns the value</div>
-                            </div>
-                            <div style="padding: 1rem; background: #D1FAE5; border-radius: 0.5rem;">
-                                <div style="font-size: 1.2rem; color: #065F46; font-weight: bold;">Unity Result</div>
-                                <div style="margin: 0.5rem 0; font-family: monospace; color: #F59E0B; font-weight: bold;">1 ⊕ 1 = 1</div>
-                                <div style="font-size: 0.9rem; color: #6B7280;">Idempotent unity</div>
-                            </div>
-                        </div>
-                    ` : '<div style="text-align: center; color: #6B7280;">Click "Show Steps" to see operations</div>'}
-                </div>
-            </div>
-            
-            <div style="margin-top: 2rem; padding: 1rem; background: rgba(16, 185, 129, 0.1); border-radius: 0.5rem; border-left: 4px solid #10B981;">
-                <strong>Tropical Mathematics:</strong> Tropical algebra replaces addition with min/max operations. 
-                The idempotent property (a ⊕ a = a) is fundamental, directly demonstrating mathematical unity where 1 ⊕ 1 = 1.
-            </div>
-        `;
-    }
-    
-    createLatticeTheoryProof(vizDiv, tableDiv) {
-        vizDiv.innerHTML = `
-            <div style="text-align: center; margin-bottom: 2rem;">
-                <h4 style="color: #10B981; margin-bottom: 1rem;">Lattice Theory: Join Operation</h4>
-                <div style="font-size: 1.2rem; color: #374151; margin-bottom: 1.5rem;">
-                    In lattice theory: <strong>a ∨ a = a</strong> (join of element with itself)
-                </div>
-            </div>
-            
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
-                <div style="background: #F3F4F6; padding: 1.5rem; border-radius: 0.75rem;">
-                    <h5 style="color: #374151; margin-bottom: 1rem;">Lattice Diagram</h5>
-                    <div style="height: 200px; display: flex; align-items: center; justify-content: center;">
-                        <svg width="150" height="180" viewBox="0 0 150 180">
-                            <!-- Lattice structure -->
-                            <circle cx="75" cy="30" r="6" fill="#F59E0B"/>
-                            <circle cx="50" cy="80" r="6" fill="#3B82F6"/>
-                            <circle cx="100" cy="80" r="6" fill="#10B981"/>
-                            <circle cx="75" cy="130" r="6" fill="#DC2626"/>
-                            
-                            <!-- Connections -->
-                            <line x1="75" y1="36" x2="50" y2="74" stroke="#6B7280" stroke-width="2"/>
-                            <line x1="75" y1="36" x2="100" y2="74" stroke="#6B7280" stroke-width="2"/>
-                            <line x1="50" y1="86" x2="75" y2="124" stroke="#6B7280" stroke-width="2"/>
-                            <line x1="100" y1="86" x2="75" y2="124" stroke="#6B7280" stroke-width="2"/>
-                            
-                            <!-- Labels -->
-                            <text x="75" y="20" text-anchor="middle" style="font-size: 10px;">⊤ (top)</text>
-                            <text x="40" y="85" text-anchor="middle" style="font-size: 10px;">a</text>
-                            <text x="110" y="85" text-anchor="middle" style="font-size: 10px;">a</text>
-                            <text x="75" y="145" text-anchor="middle" style="font-size: 10px;">⊥ (bottom)</text>
-                            
-                            <!-- Join indication -->
-                            <path d="M 60 75 Q 75 65 90 75" stroke="#F59E0B" stroke-width="2" fill="none"/>
-                            <text x="75" y="60" text-anchor="middle" style="font-size: 9px; fill: #F59E0B;">a ∨ a = a</text>
-                        </svg>
-                    </div>
-                </div>
-                
-                <div style="background: #F3F4F6; padding: 1.5rem; border-radius: 0.75rem;">
-                    <h5 style="color: #374151; margin-bottom: 1rem;">Lattice Properties</h5>
-                    <div style="font-family: 'Courier New', monospace; line-height: 1.8; font-size: 0.9rem;">
-                        ${this.config.show_steps ? `
-                            <div><strong>Idempotent Law:</strong></div>
-                            <div>a ∨ a = a (join)</div>
-                            <div>a ∧ a = a (meet)</div>
-                            <div><strong>For any lattice element a:</strong></div>
-                            <div>• a joined with itself = a</div>
-                            <div>• a meets with itself = a</div>
-                            <div><strong>Unity case (a = 1):</strong></div>
-                            <div style="color: #F59E0B; font-weight: bold;">1 ∨ 1 = 1</div>
-                        ` : '<div style="color: #6B7280;">Click "Show Steps" to see lattice properties</div>'}
-                    </div>
-                </div>
-            </div>
-            
-            <div style="margin-top: 2rem; padding: 1rem; background: rgba(16, 185, 129, 0.1); border-radius: 0.5rem; border-left: 4px solid #10B981;">
-                <strong>Lattice Theory Foundation:</strong> In any lattice, the join (∨) and meet (∧) operations are idempotent. 
-                This fundamental property ensures that combining any element with itself yields the element unchanged, 
-                demonstrating perfect unity preservation.
-            </div>
-        `;
-    }
-    
+
     startAnimation() {
         this.isAnimating = true;
-        // Implementation for animation effects
+        const animateBtn = document.getElementById('animate-proof');
+        if (animateBtn) animateBtn.textContent = 'Stop Animation';
+
+        this.animateProof();
     }
-    
+
     stopAnimation() {
         this.isAnimating = false;
+        const animateBtn = document.getElementById('animate-proof');
+        if (animateBtn) animateBtn.textContent = 'Animate Proof';
+
         if (this.animationFrame) {
             cancelAnimationFrame(this.animationFrame);
         }
     }
+
+    animateProof() {
+        if (!this.isAnimating) return;
+
+        // Add animation effects based on proof type
+        const rows = document.querySelectorAll('.truth-row');
+        rows.forEach((row, index) => {
+            setTimeout(() => {
+                row.style.backgroundColor = 'rgba(255,215,0,0.2)';
+                setTimeout(() => {
+                    row.style.backgroundColor = '';
+                }, 500);
+            }, index * 300);
+        });
+
+        this.animationFrame = requestAnimationFrame(() => {
+            setTimeout(() => this.animateProof(), 2000);
+        });
+    }
+
+    stepThroughProof() {
+        // Implement step-by-step proof demonstration
+        console.log('Stepping through proof...');
+    }
+
+    resetProof() {
+        this.stopAnimation();
+        this.renderProof(this.currentProofType);
+    }
 }
 
-// Gallery creation function
+// Global function to create the visualizer
 function createIdempotentProofInteractive(containerId) {
     return new IdempotentProofVisualizer(containerId);
-}
-
-// Export for module systems
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { IdempotentProofVisualizer, createIdempotentProofInteractive };
-}
-
-// Browser global
-if (typeof window !== 'undefined') {
-    window.IdempotentProofVisualizer = IdempotentProofVisualizer;
-    window.createIdempotentProofInteractive = createIdempotentProofInteractive;
 }
