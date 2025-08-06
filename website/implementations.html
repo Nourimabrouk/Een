@@ -486,11 +486,14 @@
             }
         }
     </style>
+
+    <!-- Master Navigation System v2.0 -->
+    <script src="js/master-navigation.js"></script>
 </head>
 
 <body>
     <!-- Navigation Placeholder -->
-    <div id="navigation-placeholder"></div>
+    
 
     <!-- Hero Section -->
     <section class="implementations-hero">
@@ -508,7 +511,7 @@
 
     <!-- Mathematical Foundation -->
     <section class="mathematical-foundation">
-        <div class="container">
+        <div class="container" id="main-content">
             <div class="section-header">
                 <h2 class="section-title">Mathematical Foundation</h2>
                 <p class="section-subtitle">
@@ -868,8 +871,12 @@
         document.addEventListener("DOMContentLoaded", function () {
             renderMathInElement(document.body, {
                 delimiters: [
-                    { left: '$$', right: '$$', display: true },
-                    { left: '$', right: '$', display: false }
+                    { left: '$', right: '$', display: true },
+                    { left: '
+
+</html>, right: '
+
+</html>, display: false }
                 ]
             });
 
@@ -1043,7 +1050,7 @@
     <div id="footer-placeholder"></div>
     
     <!-- Shared Navigation Script -->
-    <script src="shared-navigation.js"></script>
+    
 </body>
 
 </html>

@@ -18,14 +18,14 @@ class UnifiedNavigation {
         const pageMap = {
             'index.html': 'home',
             'proofs.html': 'proofs',
-            '3000-elo-proof.html': 'advanced-proofs',
+            '3000-elo-proof.html': '3000-elo-proof',
             'research.html': 'research',
             'publications.html': 'publications',
             'playground.html': 'playground',
             'mathematical_playground.html': 'mathematical-playground',
             'gallery.html': 'gallery',
             'learn.html': 'learn',
-            'learning.html': 'learning-academy',
+            'learning.html': 'learning',
             'metagambit.html': 'metagambit',
             'metagamer_agent.html': 'metagamer-agent',
             'agents.html': 'agents',
@@ -42,7 +42,8 @@ class UnifiedNavigation {
             'meta-optimal-landing.html': 'meta-optimal-landing',
             'mobile-app.html': 'mobile-app',
             'about.html': 'about',
-            'al_khwarizmi_phi_unity.html': 'al-khwarizmi-phi-unity'
+            'al_khwarizmi_phi_unity.html': 'al-khwarizmi-phi-unity',
+            'unity-mathematics-experience.html': 'unity-mathematics-experience'
         };
 
         return pageMap[filename] || 'home';
@@ -227,6 +228,14 @@ class UnifiedNavigation {
                             </a>
                         </li>
                     </ul>
+                    <div class="nav-dropdown">
+                        <h4>Consciousness & Philosophy</h4>
+                        <a href="consciousness_dashboard.html">Consciousness Fields</a>
+                        <a href="unity_consciousness_experience.html">Unity Experience</a>
+                        <a href="unity-mathematics-experience.html">Unity Mathematics Experience</a>
+                        <a href="philosophy.html">Philosophy Treatise</a>
+                        <a href="unity_visualization.html">Unity Visualizations</a>
+                    </div>
                     <div class="nav-toggle" id="navToggle">
                         <span></span>
                         <span></span>
@@ -361,10 +370,73 @@ class UnifiedNavigation {
         });
     }
 
-    openAIChat() {
-        // Initialize AI chat if not already done
-        if (typeof window.eenChat === 'undefined' || !window.eenChat) {
-            // Check if EenAIChat class is available
+    async openAIChat() {
+        try {
+            // Check if modern chat integration is available
+            if (window.EenChat && window.EenChat.getInstance()) {
+                const chatInstance = window.EenChat.getInstance();
+                chatInstance.open();
+                return;
+            }
+
+            // Load modular chat system
+            if (!window.EenChatIntegration) {
+                await this.loadChatModules();
+            }
+
+            // Initialize or get existing chat instance
+            let chatInstance = window.EenChat?.getInstance();
+            if (!chatInstance) {
+                chatInstance = await window.EenChat.initialize({
+                    skipHealthCheck: true, // Skip initial health check for faster loading
+                    config: {
+                        ui: {
+                            ENABLE_ANIMATIONS: !this.prefersReducedMotion(),
+                            ENABLE_OFFLINE_FALLBACK: true
+                        }
+                    }
+                });
+            }
+
+            // Open chat interface
+            chatInstance.open();
+
+        } catch (error) {
+            console.error('Failed to load AI chat:', error);
+
+            // Fallback to legacy system if available
+            await this.loadLegacyChatSystem();
+        }
+    }
+
+    /**
+     * Load modular chat system
+     */
+    async loadChatModules() {
+        const modules = [
+            'js/config.js',
+            'js/chat/chat-api.js',
+            'js/chat/chat-state.js',
+            'js/chat/chat-ui.js',
+            'js/chat/chat-utils.js',
+            'js/chat/chat-integration.js'
+        ];
+
+        // Load modules sequentially to handle dependencies
+        for (const modulePath of modules) {
+            await this.loadScript(modulePath);
+        }
+
+        console.info('Modular chat system loaded successfully');
+    }
+
+    /**
+     * Load legacy chat system as fallback
+     */
+    async loadLegacyChatSystem() {
+        try {
+            await this.loadScript('js/ai-chat-integration.js');
+
             if (typeof EenAIChat !== 'undefined') {
                 window.eenChat = EenAIChat.initialize();
                 setTimeout(() => {
@@ -373,25 +445,96 @@ class UnifiedNavigation {
                     }
                 }, 100);
             } else {
-                // Load AI chat integration script
-                const script = document.createElement('script');
-                script.src = 'js/ai-chat-integration.js';
-                script.onload = () => {
-                    setTimeout(() => {
-                        if (window.eenChat) {
-                            window.eenChat.open();
-                        }
-                    }, 100);
-                };
-                script.onerror = () => {
-                    console.error('Failed to load AI chat integration');
-                    alert('AI Chat is currently unavailable. Please try again later.');
-                };
-                document.head.appendChild(script);
+                throw new Error('Legacy chat system not found');
             }
-        } else {
-            window.eenChat.open();
+        } catch (error) {
+            console.error('Failed to load legacy chat system:', error);
+            this.showChatUnavailableMessage();
         }
+    }
+
+    /**
+     * Load script with promise
+     * @param {string} src - Script source
+     * @returns {Promise}
+     */
+    loadScript(src) {
+        return new Promise((resolve, reject) => {
+            // Check if already loaded
+            if (document.querySelector(`script[src="${src}"]`)) {
+                resolve();
+                return;
+            }
+
+            const script = document.createElement('script');
+            script.type = 'module'; // Support ES modules
+            script.src = src;
+            script.onload = resolve;
+            script.onerror = () => reject(new Error(`Failed to load ${src}`));
+            document.head.appendChild(script);
+        });
+    }
+
+    /**
+     * Check if user prefers reduced motion
+     * @returns {boolean}
+     */
+    prefersReducedMotion() {
+        return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    }
+
+    /**
+     * Show chat unavailable message
+     */
+    showChatUnavailableMessage() {
+        const message = document.createElement('div');
+        message.className = 'chat-unavailable-message';
+        message.innerHTML = `
+            <div class="message-content">
+                <h3>🤖 AI Chat Temporarily Unavailable</h3>
+                <p>We're working to restore the AI chat feature. Please try again later.</p>
+                <p>You can still explore Unity Mathematics concepts through our interactive pages and documentation.</p>
+                <button onclick="this.parentElement.parentElement.remove()" class="close-btn">Close</button>
+            </div>
+        `;
+
+        // Add styles
+        message.style.cssText = `
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 12px;
+            padding: 2rem;
+            max-width: 400px;
+            z-index: 10001;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+        `;
+
+        const closeBtn = message.querySelector('.close-btn');
+        closeBtn.style.cssText = `
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 1rem;
+            font-size: 14px;
+        `;
+
+        document.body.appendChild(message);
+
+        // Auto-remove after 10 seconds
+        setTimeout(() => {
+            if (message.parentElement) {
+                message.remove();
+            }
+        }, 10000);
     }
 
     initializeTheme() {

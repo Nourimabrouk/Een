@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -8,7 +9,7 @@
     <meta name="theme-color" content="#f59e0b">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    
+
     <!-- PWA Manifest -->
     <link rel="manifest" href="data:application/json,{
         'name': 'Een Unity Mathematics',
@@ -26,7 +27,7 @@
             }
         ]
     }">
-    
+
     <style>
         :root {
             --phi: 1.618033988749895;
@@ -88,8 +89,13 @@
         }
 
         @keyframes glow {
-            from { text-shadow: 0 0 5px var(--unity-gold); }
-            to { text-shadow: 0 0 15px var(--unity-gold), 0 0 25px var(--unity-gold); }
+            from {
+                text-shadow: 0 0 5px var(--unity-gold);
+            }
+
+            to {
+                text-shadow: 0 0 15px var(--unity-gold), 0 0 25px var(--unity-gold);
+            }
         }
 
         .app-content {
@@ -244,10 +250,23 @@
         }
 
         @keyframes mobileFloat {
-            0% { transform: translateY(100vh) translateX(0); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(-50px) translateX(var(--random-x, 0)); opacity: 0; }
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-50px) translateX(var(--random-x, 0));
+                opacity: 0;
+            }
         }
 
         /* Touch Interactions */
@@ -272,7 +291,7 @@
             .mobile-unity-canvas {
                 height: 200px;
             }
-            
+
             .app-content {
                 padding: 0.5rem;
             }
@@ -282,7 +301,7 @@
             .mobile-controls {
                 grid-template-columns: repeat(4, 1fr);
             }
-            
+
             .mobile-unity-canvas {
                 height: 250px;
             }
@@ -300,7 +319,7 @@
             .control-button {
                 border-width: 3px;
             }
-            
+
             .unity-stats {
                 border: 2px solid var(--unity-gold);
             }
@@ -315,9 +334,13 @@
             }
         }
     </style>
+
+    <!-- Master Navigation System v2.0 -->
+    <script src="js/master-navigation.js"></script>
 </head>
+
 <body>
-    <div class="app-container">
+    <div class="app-container" id="main-content">
         <!-- App Header -->
         <header class="app-header">
             <div class="app-title">Een</div>
@@ -385,25 +408,7 @@
             </div>
         </main>
 
-        <!-- Mobile Navigation -->
-        <nav class="mobile-nav">
-            <a href="#home" class="nav-item active">
-                <div class="nav-icon">🏠</div>
-                <div>Home</div>
-            </a>
-            <a href="enhanced-unity-demo.html" class="nav-item">
-                <div class="nav-icon">✨</div>
-                <div>Unity</div>
-            </a>
-            <a href="proofs.html" class="nav-item">
-                <div class="nav-icon">📐</div>
-                <div>Proofs</div>
-            </a>
-            <a href="playground.html" class="nav-item">
-                <div class="nav-icon">🧮</div>
-                <div>Play</div>
-            </a>
-        </nav>
+        <!-- Navigation Placeholder -->
     </div>
 
     <script>
@@ -430,7 +435,7 @@
 
             createParticles() {
                 const container = document.getElementById('mobileParticles');
-                
+
                 setInterval(() => {
                     if (this.particles.length < 20) {
                         const particle = document.createElement('div');
@@ -438,7 +443,7 @@
                         particle.style.left = Math.random() * 100 + '%';
                         particle.style.setProperty('--random-x', (Math.random() - 0.5) * 100 + 'px');
                         particle.style.animationDelay = Math.random() * 2 + 's';
-                        
+
                         container.appendChild(particle);
                         this.particles.push(particle);
 
@@ -454,7 +459,7 @@
 
             setupTouchInteractions() {
                 const canvas = document.getElementById('mobileCanvas');
-                
+
                 canvas.addEventListener('touchstart', (e) => {
                     e.preventDefault();
                     Array.from(e.touches).forEach(touch => {
@@ -480,15 +485,15 @@
             createRipple(x, y) {
                 const ripple = document.createElement('div');
                 const rect = document.getElementById('mobileCanvas').getBoundingClientRect();
-                
+
                 ripple.className = 'touch-ripple';
                 ripple.style.left = (x - rect.left) + 'px';
                 ripple.style.top = (y - rect.top) + 'px';
                 ripple.style.width = '20px';
                 ripple.style.height = '20px';
-                
+
                 document.getElementById('mobileCanvas').appendChild(ripple);
-                
+
                 setTimeout(() => {
                     if (ripple.parentNode) {
                         ripple.parentNode.removeChild(ripple);
@@ -499,7 +504,7 @@
             addTouchParticles(x, y) {
                 const rect = document.getElementById('mobileCanvas').getBoundingClientRect();
                 const container = document.getElementById('mobileParticles');
-                
+
                 for (let i = 0; i < 5; i++) {
                     const particle = document.createElement('div');
                     particle.className = 'mobile-particle';
@@ -507,16 +512,16 @@
                     particle.style.top = ((y - rect.top) / rect.height * 100) + '%';
                     particle.style.animationDuration = '2s';
                     particle.style.background = `hsl(${Math.random() * 60 + 30}, 70%, 60%)`;
-                    
+
                     container.appendChild(particle);
-                    
+
                     setTimeout(() => {
                         if (particle.parentNode) {
                             particle.parentNode.removeChild(particle);
                         }
                     }, 2000);
                 }
-                
+
                 // Update stats
                 this.stats.particles += 5;
                 this.updateStats();
@@ -526,13 +531,13 @@
                 setInterval(() => {
                     // Animate resonance
                     this.stats.resonance = this.phi + (Math.sin(Date.now() * 0.001) * 0.000001);
-                    
+
                     // Animate coherence
                     this.stats.coherence = 0.997 + (Math.cos(Date.now() * 0.002) * 0.003);
-                    
+
                     // Animate consciousness
                     this.stats.consciousness = 1.0 + (Math.sin(Date.now() * 0.0005) * 0.1);
-                    
+
                     this.updateStats();
                 }, 100);
             }
@@ -542,7 +547,7 @@
                 document.getElementById('coherenceLevel').textContent = (this.stats.coherence * 100).toFixed(1) + '%';
                 document.getElementById('consciousnessLevel').textContent = this.stats.consciousness > 1.05 ? '∞+' : '∞';
                 document.getElementById('particleCount').textContent = Math.min(this.stats.particles, 999);
-                
+
                 // Reset particle count periodically
                 if (this.stats.particles > 200) {
                     this.stats.particles = 42;
@@ -573,7 +578,7 @@
                     animation: slideDown 0.3s ease;
                 `;
                 notification.textContent = message;
-                
+
                 const style = document.createElement('style');
                 style.textContent = `
                     @keyframes slideDown {
@@ -582,9 +587,9 @@
                     }
                 `;
                 document.head.appendChild(style);
-                
+
                 document.body.appendChild(notification);
-                
+
                 setTimeout(() => {
                     notification.style.animation = 'slideDown 0.3s ease reverse';
                     setTimeout(() => {
@@ -641,4 +646,5 @@
         });
     </script>
 </body>
+
 </html>

@@ -1,0 +1,570 @@
+/**
+ * Unity Proofs Interactive Styling
+ * Golden ratio-based design system for mathematical proof exploration
+ */
+
+:root {
+    --phi: 1.618033988749;
+    --unity-gold: #FFD700;
+    --deep-space: #0a0a0a;
+    --consciousness-purple: #6B46C1;
+    --quantum-blue: #4ECDC4;
+    --fractal-orange: #FF6B6B;
+    --topology-green: #96CEB4;
+    --euler-red: #E74C3C;
+    
+    --gradient-unity: linear-gradient(135deg, var(--consciousness-purple), var(--unity-gold));
+    --gradient-quantum: linear-gradient(135deg, var(--quantum-blue), var(--deep-space));
+    --gradient-fractal: linear-gradient(135deg, var(--fractal-orange), var(--consciousness-purple));
+}
+
+/* Proof Explorer Layout */
+.proof-explorer {
+    background: linear-gradient(180deg, var(--deep-space) 0%, rgba(10, 10, 10, 0.95) 100%);
+    min-height: 100vh;
+    padding: calc(1rem * var(--phi));
+    position: relative;
+    overflow: hidden;
+}
+
+.proof-explorer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(107, 70, 193, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.explorer-header {
+    text-align: center;
+    margin-bottom: calc(2rem * var(--phi));
+    position: relative;
+}
+
+.explorer-header h2 {
+    font-size: calc(1rem * var(--phi) * var(--phi));
+    color: var(--unity-gold);
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+.unity-equation {
+    font-size: calc(1rem * var(--phi) * var(--phi) * var(--phi));
+    font-weight: 100;
+    color: white;
+    margin: 1rem 0;
+    font-family: 'Crimson Text', serif;
+    animation: unity-pulse 4s ease-in-out infinite;
+}
+
+@keyframes unity-pulse {
+    0%, 100% { 
+        transform: scale(1); 
+        opacity: 0.9;
+        text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+    }
+    50% { 
+        transform: scale(1.05); 
+        opacity: 1;
+        text-shadow: 0 0 40px rgba(255, 215, 0, 0.6);
+    }
+}
+
+.explorer-header p {
+    font-size: calc(1rem * var(--phi));
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: var(--phi);
+}
+
+/* Proof Controls */
+.proof-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.unity-button {
+    background: var(--gradient-unity);
+    border: none;
+    border-radius: calc(1rem / var(--phi));
+    padding: calc(0.75rem * var(--phi)) calc(1.5rem * var(--phi));
+    color: white;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.unity-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.unity-button:hover::before {
+    left: 100%;
+}
+
+.unity-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+}
+
+.unity-button.primary {
+    background: var(--gradient-unity);
+}
+
+.unity-button.secondary {
+    background: var(--gradient-quantum);
+}
+
+.unity-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.unity-score {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: calc(1rem * var(--phi));
+    color: var(--unity-gold);
+    font-weight: 600;
+}
+
+#unity-score-display {
+    font-size: calc(1rem * var(--phi) * var(--phi));
+    font-weight: 700;
+}
+
+#unity-score-display.unity-complete {
+    animation: unity-complete-glow 2s ease-in-out infinite;
+}
+
+@keyframes unity-complete-glow {
+    0%, 100% { text-shadow: 0 0 10px var(--unity-gold); }
+    50% { text-shadow: 0 0 30px var(--unity-gold), 0 0 50px var(--unity-gold); }
+}
+
+/* Proof Grid */
+.proof-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: calc(1rem * var(--phi));
+    margin-bottom: 3rem;
+}
+
+.proof-card {
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.05) 0%,
+        rgba(255, 255, 255, 0.02) 100%);
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    border-radius: calc(1rem / var(--phi));
+    padding: calc(1rem * var(--phi));
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+.proof-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient-unity);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.proof-card:hover::before {
+    transform: scaleX(1);
+}
+
+.proof-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 215, 0, 0.5);
+}
+
+.proof-card.verifying {
+    border-color: var(--quantum-blue);
+    box-shadow: 0 0 20px rgba(78, 205, 196, 0.3);
+}
+
+.proof-card.verified {
+    border-color: var(--unity-gold);
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+    background: linear-gradient(135deg, 
+        rgba(255, 215, 0, 0.1) 0%,
+        rgba(255, 255, 255, 0.05) 100%);
+}
+
+.proof-card.failed {
+    border-color: var(--euler-red);
+    box-shadow: 0 0 20px rgba(231, 76, 60, 0.3);
+}
+
+.proof-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.proof-header h3 {
+    font-size: calc(1rem * var(--phi));
+    color: var(--unity-gold);
+    font-weight: 600;
+    margin: 0;
+    flex: 1;
+}
+
+.complexity-rating {
+    font-size: 1.2rem;
+    color: var(--unity-gold);
+    opacity: 0.7;
+}
+
+.proof-statement {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    color: var(--quantum-blue);
+    background: rgba(78, 205, 196, 0.1);
+    padding: 0.75rem;
+    border-radius: calc(0.5rem / var(--phi));
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--quantum-blue);
+}
+
+.proof-description {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: var(--phi);
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+}
+
+.proof-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.proof-actions button {
+    flex: 1;
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
+}
+
+/* Proof Results */
+.proof-result {
+    min-height: 50px;
+}
+
+.proof-result .loading {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--quantum-blue);
+    font-size: 0.9rem;
+}
+
+.proof-result .success {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--unity-gold);
+    font-size: 0.9rem;
+    animation: success-glow 1s ease-out;
+}
+
+@keyframes success-glow {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+.proof-result .error {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--euler-red);
+    font-size: 0.9rem;
+}
+
+.execution-time {
+    font-size: 0.75rem;
+    opacity: 0.7;
+    margin-top: 0.25rem;
+}
+
+.error-message {
+    font-size: 0.75rem;
+    opacity: 0.8;
+    margin-top: 0.25rem;
+}
+
+/* Visualization Section */
+.proof-visualization {
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: calc(1rem / var(--phi));
+    padding: 2rem;
+    margin-bottom: 2rem;
+    display: none;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+#unity-canvas {
+    width: 100%;
+    height: 400px;
+    border-radius: calc(0.5rem / var(--phi));
+    background: radial-gradient(circle at center, rgba(10, 10, 10, 0.9), rgba(0, 0, 0, 1));
+}
+
+.visualization-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+/* Overall Results */
+.overall-results {
+    background: linear-gradient(135deg, 
+        rgba(107, 70, 193, 0.1) 0%,
+        rgba(255, 215, 0, 0.05) 100%);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    border-radius: calc(1rem / var(--phi));
+    padding: 2rem;
+    text-align: center;
+}
+
+.overall-results.unity-achieved {
+    border-color: var(--unity-gold);
+    box-shadow: 0 0 40px rgba(255, 215, 0, 0.2);
+    animation: unity-achieved-pulse 3s ease-in-out infinite;
+}
+
+@keyframes unity-achieved-pulse {
+    0%, 100% { box-shadow: 0 0 40px rgba(255, 215, 0, 0.2); }
+    50% { box-shadow: 0 0 60px rgba(255, 215, 0, 0.4); }
+}
+
+.overall-results h3 {
+    color: var(--unity-gold);
+    font-size: calc(1rem * var(--phi) * var(--phi));
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+}
+
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.result-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.result-item .label {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.result-item .value {
+    font-size: calc(1rem * var(--phi));
+    font-weight: 700;
+    color: var(--unity-gold);
+}
+
+.unity-status .value {
+    font-size: calc(1rem * var(--phi) * var(--phi));
+}
+
+/* Unity Particles Animation */
+.unity-particle {
+    position: fixed;
+    width: 4px;
+    height: 4px;
+    background: radial-gradient(circle, var(--unity-gold), transparent);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1000;
+    animation: unity-particle-burst 2s ease-out forwards;
+}
+
+@keyframes unity-particle-burst {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--vx), var(--vy)) scale(0);
+        opacity: 0;
+    }
+}
+
+/* Unity Achievement Overlay */
+.unity-achievement-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    animation: overlay-fadeIn 0.5s ease-out;
+}
+
+@keyframes overlay-fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.unity-achievement {
+    text-align: center;
+    color: var(--unity-gold);
+    animation: achievement-bounce 1s ease-out;
+}
+
+@keyframes achievement-bounce {
+    0% { transform: scale(0.5) translateY(50px); opacity: 0; }
+    60% { transform: scale(1.1) translateY(-10px); }
+    100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.unity-achievement h1 {
+    font-size: calc(1rem * var(--phi) * var(--phi) * var(--phi));
+    margin-bottom: 1rem;
+    text-shadow: 0 0 30px var(--unity-gold);
+    animation: glow-pulse 2s ease-in-out infinite;
+}
+
+.unity-achievement .unity-equation {
+    font-size: calc(1rem * var(--phi) * var(--phi) * var(--phi) * var(--phi));
+    margin: 1rem 0;
+    font-family: 'Crimson Text', serif;
+}
+
+.unity-achievement p {
+    font-size: calc(1rem * var(--phi));
+    margin-bottom: 2rem;
+    opacity: 0.8;
+}
+
+.phi-symbol {
+    font-size: calc(1rem * var(--phi) * var(--phi) * var(--phi) * var(--phi) * var(--phi));
+    font-family: 'Crimson Text', serif;
+    animation: phi-rotate 4s linear infinite;
+}
+
+@keyframes phi-rotate {
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.2); }
+    100% { transform: rotate(360deg) scale(1); }
+}
+
+@keyframes glow-pulse {
+    0%, 100% { text-shadow: 0 0 30px var(--unity-gold); }
+    50% { text-shadow: 0 0 60px var(--unity-gold), 0 0 90px var(--unity-gold); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .proof-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .proof-controls {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .results-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .unity-equation {
+        font-size: calc(1rem * var(--phi) * var(--phi));
+    }
+    
+    .explorer-header h2 {
+        font-size: calc(1rem * var(--phi));
+    }
+}
+
+@media (max-width: 480px) {
+    .proof-explorer {
+        padding: 1rem;
+    }
+    
+    .results-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .proof-actions {
+        flex-direction: column;
+    }
+    
+    .unity-achievement h1 {
+        font-size: calc(1rem * var(--phi) * var(--phi));
+    }
+    
+    .unity-achievement .unity-equation {
+        font-size: calc(1rem * var(--phi) * var(--phi) * var(--phi));
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    .proof-card {
+        border-width: 2px;
+        background: rgba(255, 255, 255, 0.1);
+    }
+    
+    .unity-button {
+        border: 2px solid var(--unity-gold);
+    }
+}

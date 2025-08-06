@@ -24,14 +24,17 @@
     <!-- GSAP for Smooth Animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Master Navigation System v2.0 -->
+    <script src="js/master-navigation.js"></script>
 </head>
 <body>
     <!-- Navigation Placeholder -->
-    <div id="navigation-placeholder"></div>
+    
 
     <!-- Hero Section with Golden Ratio Animation -->
     <section class="learning-hero">
-        <div class="container">
+        <div class="container" id="main-content">
             <div class="hero-content">
                 <div class="phi-spiral-container">
                     <canvas id="phiSpiralCanvas" width="400" height="400"></canvas>
@@ -847,7 +850,7 @@
     <div id="footer-placeholder"></div>
 
     <!-- Shared Navigation Script -->
-    <script src="shared-navigation.js"></script>
+    
 
     <style>
         /* Unity Learning Academy Styles with Golden Ratio Aesthetics */
@@ -2216,8 +2219,10 @@
                 if (typeof renderMathInElement !== 'undefined') {
                     renderMathInElement(document.body, {
                         delimiters: [
-                            {left: '$$', right: '$$', display: true},
-                            {left: '$', right: '$', display: false}
+                            {left: '$', right: '$', display: true},
+                            {left: '
+</html>, right: '
+</html>, display: false}
                         ],
                         throwOnError: false
                     });

@@ -745,12 +745,15 @@
         /* Font Awesome Icons (Add if not already included) */
         @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
     </style>
+
+    <!-- Master Navigation System v2.0 -->
+    <script src="js/master-navigation.js"></script>
 </head>
 
 <body>
     <!-- Enhanced Navigation -->
     <nav class="enhanced-nav" id="enhancedUnityNav">
-        <div class="nav-container">
+        <div class="nav-container" id="main-content">
             <a href="index.html" class="nav-logo">
                 <span class="phi-symbol">φ</span>
                 <span class="logo-text">Een</span>
@@ -1317,8 +1320,10 @@ end
         if (typeof renderMathInElement !== 'undefined') {
             renderMathInElement(document.body, {
                 delimiters: [
-                    {left: '$$', right: '$$', display: true},
-                    {left: '$', right: '$', display: false}
+                    {left: '$', right: '$', display: true},
+                    {left: '
+</html>, right: '
+</html>, display: false}
                 ]
             });
         }

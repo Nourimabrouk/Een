@@ -38,7 +38,6 @@ coverage.xml
 .pytest_cache/
 
 # Environments
-.env
 .venv
 env/
 venv/
@@ -56,6 +55,15 @@ config/secrets.json
 *.p12
 secrets/
 keys/
+
+# Environment files - CRITICAL: Never commit these
+.env
+.env.local
+.env.production
+.env.staging
+.env.development
+.env.secure.template
+.env.*.local
 
 # IDE
 .vscode/
@@ -96,3 +104,12 @@ temp/
 tmp/
 cache/
 nul
+
+# Backup files created by security fixes
+*.backup
+*.bak
+
+# Security audit files (keep for reference)
+# SECURITY_AUDIT_COMPREHENSIVE_REPORT.md
+# SECURITY_SUMMARY_FINAL.md
+# security_fixes.py

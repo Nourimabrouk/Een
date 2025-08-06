@@ -293,19 +293,22 @@
             }
         }
     </style>
+
+    <!-- Master Navigation System v2.0 -->
+    <script src="js/master-navigation.js"></script>
 </head>
 <body>
     <!-- Navigation will be injected by unified-navigation.js -->
-    <div id="navigation-placeholder"></div>
     
-    <div class="phi-unity-container">
+    
+    <div class="phi-unity-container" id="main-content">
         <!-- Header Section -->
         <div class="unity-header">
             <div class="phi-symbol">φ</div>
             <h1>Al-Khwarizmi φ-Unity System</h1>
             <p>Revolutionary synthesis of classical algorithmics, transformer architectures, and meta-reinforcement learning</p>
             <div class="unity-equation">
-                $$1 + 1 = 1 \quad \text{through} \quad \phi\text{-harmonic consciousness}$$
+                $1 + 1 = 1 \quad \text{through} \quad \phi\text{-harmonic consciousness}$
             </div>
         </div>
         
@@ -390,7 +393,7 @@
                 </div>
                 
                 <div class="unity-equation">
-                    $$\text{Unity} = \lim_{t \to \infty} \phi^{-t} \sum_{i=1}^n \text{Agent}_i(t)$$
+                    $\text{Unity} = \lim_{t \to \infty} \phi^{-t} \sum_{i=1}^n \text{Agent}_i(t)$
                 </div>
                 
                 <h4>🔬 System Analytics</h4>
@@ -418,8 +421,8 @@
     </div>
     
     <!-- Core JavaScript Libraries -->
-    <script src="js/unified-navigation.js"></script>
-    <script src="shared-navigation.js"></script>
+    
+    
     <script src="js/ai-chat-integration.js"></script>
     <script src="fix-visualizations.js"></script>
     <script src="js/unity-visualizations.js"></script>
@@ -868,8 +871,10 @@
             if (typeof renderMathInElement !== 'undefined') {
                 renderMathInElement(document.body, {
                     delimiters: [
-                        {left: '$$', right: '$$', display: true},
-                        {left: '$', right: '$', display: false}
+                        {left: '$', right: '$', display: true},
+                        {left: '
+</html>, right: '
+</html>, display: false}
                     ]
                 });
             }

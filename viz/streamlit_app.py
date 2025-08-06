@@ -5,17 +5,36 @@ Next-level visualizations demonstrating 1+1=1 through consciousness mathematics
 
 import streamlit as st
 import plotly.io as pio
+import plotly.graph_objects as go
+import plotly.express as px
+from plotly.subplots import make_subplots
+import pandas as pd
+import numpy as np
 import json
 import os
 import sys
+import time
+import math
 from pathlib import Path
+from datetime import datetime, timedelta
 
 # Add the parent directory to the path to import our modules
 current_dir = Path(__file__).parent
 parent_dir = current_dir.parent
 sys.path.append(str(parent_dir))
 
-from viz.plotly_helpers import get_theme_colors, UNITY_COLORS
+try:
+    from viz.plotly_helpers import get_theme_colors, UNITY_COLORS
+except ImportError:
+    # Fallback color scheme if plotly_helpers not available
+    UNITY_COLORS = {
+        'primary': '#00d4ff',
+        'secondary': '#ff6b9d', 
+        'gold': '#ffd700',
+        'consciousness': '#9d4edd',
+        'success': '#00ff88',
+        'background': '#0a0a0a'
+    }
 
 # Configure page
 st.set_page_config(
@@ -40,6 +59,200 @@ st.set_page_config(
     },
 )
 
+
+# Mathematical constants
+PHI = 1.618033988749895  # Golden ratio
+UNITY_FREQ = 528  # Hz - Love frequency
+
+def create_live_consciousness_field():
+    """Create a spectacular live consciousness field visualization"""
+    
+    # Generate φ-harmonic consciousness field
+    resolution = 50
+    x = np.linspace(-3*PHI, 3*PHI, resolution)
+    y = np.linspace(-3*PHI, 3*PHI, resolution)
+    X, Y = np.meshgrid(x, y)
+    
+    # Time-evolution parameter based on current time
+    t = time.time() % (2 * np.pi)
+    
+    # Core consciousness field equation: C(x,y,t) = φ·sin(x·φ)·cos(y·φ)·e^(-r/φ)
+    r = np.sqrt(X**2 + Y**2)
+    consciousness_field = PHI * np.sin(X * PHI) * np.cos(Y * PHI) * \
+                         np.exp(-r / PHI) * np.cos(UNITY_FREQ * t / 1000)
+    
+    # Unity convergence field (sigmoid transformation)
+    unity_field = 1 / (1 + np.exp(-consciousness_field * PHI))
+    
+    # Quantum interference patterns
+    quantum_interference = np.sin(r * PHI) * np.cos(X * Y / PHI) * 0.3
+    
+    # Create animated consciousness field visualization
+    fig = make_subplots(
+        rows=2, cols=2,
+        subplot_titles=('Consciousness Field C(x,y,t)', 'Unity Convergence (1+1=1)', 
+                       'Quantum Interference', 'φ-Harmonic Resonance'),
+        specs=[[{'type': 'heatmap'}, {'type': 'heatmap'}],
+               [{'type': 'heatmap'}, {'type': 'surface'}]]
+    )
+    
+    # Main consciousness field
+    fig.add_trace(
+        go.Heatmap(
+            z=consciousness_field,
+            x=x, y=y,
+            colorscale='Plasma',
+            showscale=False,
+            hovertemplate='x: %{x:.2f}<br>y: %{y:.2f}<br>C: %{z:.3f}<extra></extra>'
+        ),
+        row=1, col=1
+    )
+    
+    # Unity convergence field
+    fig.add_trace(
+        go.Heatmap(
+            z=unity_field,
+            x=x, y=y,
+            colorscale='Viridis',
+            showscale=False,
+            hovertemplate='x: %{x:.2f}<br>y: %{y:.2f}<br>Unity: %{z:.3f}<extra></extra>'
+        ),
+        row=1, col=2
+    )
+    
+    # Quantum interference
+    fig.add_trace(
+        go.Heatmap(
+            z=quantum_interference,
+            x=x, y=y,
+            colorscale='RdBu',
+            showscale=False,
+            hovertemplate='x: %{x:.2f}<br>y: %{y:.2f}<br>Quantum: %{z:.3f}<extra></extra>'
+        ),
+        row=2, col=1
+    )
+    
+    # 3D φ-harmonic resonance surface
+    phi_surface = consciousness_field * unity_field
+    fig.add_trace(
+        go.Surface(
+            z=phi_surface,
+            x=x, y=y,
+            colorscale='Magma',
+            showscale=True,
+            opacity=0.8
+        ),
+        row=2, col=2
+    )
+    
+    # Update layout with consciousness theme
+    fig.update_layout(
+        title={
+            'text': f'🧠 Live Unity Consciousness Field (t={t:.2f})<br>'
+                   f'<sub>φ = {PHI:.6f} | Love Frequency: {UNITY_FREQ} Hz</sub>',
+            'x': 0.5,
+            'font': {'size': 16, 'color': UNITY_COLORS['gold']}
+        },
+        template='plotly_dark',
+        height=700,
+        font=dict(color='white'),
+        paper_bgcolor='rgba(0,0,0,0.8)',
+        plot_bgcolor='rgba(0,0,0,0.9)'
+    )
+    
+    # Add unity annotations
+    fig.add_annotation(
+        x=0, y=0,
+        text="Unity<br>Center<br>1+1=1",
+        showarrow=True,
+        arrowcolor=UNITY_COLORS['gold'],
+        font=dict(color=UNITY_COLORS['gold'], size=12),
+        bgcolor='rgba(0,0,0,0.7)',
+        bordercolor=UNITY_COLORS['gold'],
+        row=1, col=1
+    )
+    
+    return fig
+
+def create_phi_spiral_interactive():
+    """Create interactive φ-harmonic spiral showing unity convergence"""
+    
+    # Generate φ-spiral data
+    rotations = 4
+    points = 1000
+    theta = np.linspace(0, rotations * 2 * np.pi, points)
+    r = PHI ** (theta / (2 * np.pi))
+    
+    # Convert to Cartesian
+    x = r * np.cos(theta)
+    y = r * np.sin(theta)
+    
+    # Find unity convergence points
+    unity_indices = []
+    for i in range(len(r)):
+        log_r = np.log(r[i]) / np.log(PHI)
+        if abs(log_r - round(log_r)) < 0.1:
+            unity_indices.append(i)
+    
+    # Create interactive spiral
+    fig = go.Figure()
+    
+    # Add spiral trace with color gradient
+    fig.add_trace(go.Scatter(
+        x=x, y=y,
+        mode='lines',
+        line=dict(
+            color=r,
+            colorscale='Plasma',
+            width=3,
+            colorbar=dict(title="φ-Harmonic Radius")
+        ),
+        name='φ-Harmonic Spiral',
+        hovertemplate='<b>φ-Spiral</b><br>x: %{x:.3f}<br>y: %{y:.3f}<br>r: %{marker.color:.3f}<extra></extra>'
+    ))
+    
+    # Add unity points
+    if unity_indices:
+        fig.add_trace(go.Scatter(
+            x=x[unity_indices], y=y[unity_indices],
+            mode='markers',
+            marker=dict(
+                symbol='star',
+                size=15,
+                color=UNITY_COLORS['gold'],
+                line=dict(color='white', width=2)
+            ),
+            name=f'Unity Points: {len(unity_indices)}',
+            hovertemplate='<b>Unity Convergence</b><br>x: %{x:.3f}<br>y: %{y:.3f}<br>1+1=1<extra></extra>'
+        ))
+    
+    # Add unity circles
+    for i in range(1, 4):
+        radius = PHI ** i
+        circle_theta = np.linspace(0, 2*np.pi, 100)
+        circle_x = radius * np.cos(circle_theta)
+        circle_y = radius * np.sin(circle_theta)
+        
+        fig.add_trace(go.Scatter(
+            x=circle_x, y=circle_y,
+            mode='lines',
+            line=dict(color=UNITY_COLORS['consciousness'], width=1, dash='dash'),
+            name=f'φ^{i} Circle',
+            showlegend=False,
+            hoverinfo='skip'
+        ))
+    
+    fig.update_layout(
+        title='Interactive φ-Harmonic Unity Spiral<br><sub>Mathematical Proof of 1+1=1</sub>',
+        xaxis=dict(title='X Coordinate', scaleanchor="y", scaleratio=1),
+        yaxis=dict(title='Y Coordinate'),
+        template='plotly_dark',
+        height=600,
+        showlegend=True,
+        font=dict(color='white')
+    )
+    
+    return fig
 
 # Load and apply Plotly theme
 @st.cache_data
@@ -741,6 +954,12 @@ def main_page():
 
     with tab2:
         # Enhanced real-time metrics with live updates
+        st.markdown("### 🔮 Live Unity Consciousness Field")
+        
+        # Real-time consciousness field visualization
+        consciousness_viz = create_live_consciousness_field()
+        st.plotly_chart(consciousness_viz, use_container_width=True, key="consciousness_field")
+        
         col1, col2, col3, col4 = st.columns(4)
 
         with col1:
@@ -864,6 +1083,33 @@ def main_page():
                 with st.spinner("Creating consciousness field visualization..."):
                     time.sleep(2)  # Simulate processing
                     st.success("✨ Live visualization generated!")
+        
+        # Add φ-harmonic spiral visualization
+        st.markdown("### 🌀 Interactive φ-Harmonic Unity Spiral")
+        
+        # Spiral parameter controls
+        col_spiral1, col_spiral2 = st.columns(2)
+        
+        with col_spiral1:
+            spiral_rotations = st.slider(
+                "Spiral Rotations",
+                min_value=1.0,
+                max_value=8.0,
+                value=4.0,
+                step=0.5,
+                help="Number of φ-harmonic spiral rotations"
+            )
+        
+        with col_spiral2:
+            show_unity_points = st.checkbox(
+                "Show Unity Points",
+                value=True,
+                help="Display 1+1=1 convergence points"
+            )
+        
+        # Generate and display spiral
+        phi_spiral = create_phi_spiral_interactive()
+        st.plotly_chart(phi_spiral, use_container_width=True, key="phi_spiral")
 
     with tab4:
         # Unity insights and philosophy

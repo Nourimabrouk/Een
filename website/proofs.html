@@ -28,7 +28,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
     <!-- Enhanced Navigation System -->
-    <script src="shared-navigation.js"></script>
+    
     <script src="js/ai-chat-integration.js"></script>
     
     <style>
@@ -40,15 +40,18 @@
             padding-top: 8rem;
         }
     </style>
+
+    <!-- Master Navigation System v2.0 -->
+    <script src="js/master-navigation.js"></script>
 </head>
 
 <body>
     <!-- Navigation Placeholder -->
-    <div id="navigation-placeholder"></div>
+    
 
     <!-- Page Header -->
     <section class="page-header">
-        <div class="container">
+        <div class="container" id="main-content">
             <h1 class="page-title">Mathematical Proofs</h1>
             <p class="page-subtitle">
                 Rigorous demonstrations that 1+1=1 across multiple mathematical domains through
@@ -1240,7 +1243,7 @@
     </style>
 
     <!-- Shared Navigation Script -->
-    <script src="shared-navigation.js"></script>
+    
 
     <script>
         // Global variables for interactive proof system
@@ -1620,8 +1623,12 @@
             if (window.renderMathInElement) {
                 renderMathInElement(document.body, {
                     delimiters: [
-                        { left: '$$', right: '$$', display: true },
-                        { left: '$', right: '$', display: false }
+                        { left: '$', right: '$', display: true },
+                        { left: '
+
+</html>, right: '
+
+</html>, display: false }
                     ]
                 });
             }
@@ -1697,7 +1704,7 @@
     <div id="footer-placeholder"></div>
 
     <!-- Shared Navigation Script -->
-    <script src="shared-navigation.js"></script>
+    
 </body>
 
 </html>

@@ -1,18 +1,90 @@
+# Een Unity Mathematics Framework - Robots.txt
+# Advanced mathematical framework demonstrating 1+1=1 through consciousness field equations
+
 User-agent: *
 Allow: /
 
-# Disallow test pages
+# Disallow test and development pages
 Disallow: /test-*
 Disallow: /*test*
+Disallow: /backups/
+Disallow: /logs/
+Disallow: /venv/
+Disallow: /envs/
+Disallow: /node_modules/
+Disallow: /.git/
+Disallow: /__pycache__/
+Disallow: /*.pyc
+Disallow: /*.pyo
+Disallow: /*.pyd
+Disallow: /config/
+Disallow: /security/
+Disallow: /deployment/
+Disallow: /infrastructure/
 
-# Allow important resources
+# Allow important resources and content
 Allow: /css/
 Allow: /js/
 Allow: /assets/
 Allow: /data/
+Allow: /docs/
+Allow: /examples/
+Allow: /gallery/
+Allow: /static/
+Allow: /website/
 
-# Sitemap
+# Allow core mathematical content
+Allow: /proofs.html
+Allow: /3000-elo-proof.html
+Allow: /playground.html
+Allow: /research.html
+Allow: /publications.html
+Allow: /implementations.html
+Allow: /learn.html
+Allow: /learning.html
+Allow: /philosophy.html
+Allow: /about.html
+Allow: /agents.html
+Allow: /metagambit.html
+Allow: /gallery.html
+Allow: /consciousness_dashboard.html
+Allow: /mathematical_playground.html
+
+# Sitemaps
 Sitemap: https://nourimabrouk.github.io/Een/sitemap.xml
+Sitemap: https://nourimabrouk.github.io/Een/website/sitemap.xml
 
-# Crawl delay
+# Crawl delay for respectful crawling
+Crawl-delay: 1
+
+# Additional directives for specific bots
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0.5
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+# Block archive.org and other archival services (optional)
+User-agent: ia_archiver
+Disallow: /
+
+User-agent: archive.org_bot
+Disallow: /
+
+# Block social media bots that might cause issues
+User-agent: facebookexternalhit
+Disallow: /
+
+User-agent: Twitterbot
+Disallow: /
+
+# Allow LinkedIn bot for professional content
+User-agent: LinkedInBot
+Allow: /
 Crawl-delay: 1

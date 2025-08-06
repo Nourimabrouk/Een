@@ -24,6 +24,7 @@ import uuid
 from typing import Dict, List, Optional, AsyncGenerator, Any
 from datetime import datetime, timedelta
 import asyncio
+import hmac
 
 from fastapi import FastAPI, HTTPException, Depends, Header, Request
 from fastapi.middleware.cors import CORSMiddleware
@@ -32,6 +33,14 @@ from pydantic import BaseModel, Field
 import openai
 from sse_starlette.sse import EventSourceResponse
 from dotenv import load_dotenv
+
+# Import tiktoken for accurate token counting
+try:
+    import tiktoken
+    TIKTOKEN_AVAILABLE = True
+except ImportError:
+    TIKTOKEN_AVAILABLE = False
+    logging.warning("tiktoken not available - using word-based token estimation")
 
 # Load environment variables
 load_dotenv()
@@ -68,6 +77,47 @@ class StreamChunk(BaseModel):
     session_id: str
 
 
+class TokenCounter:
+    """Handles accurate token counting using tiktoken."""
+    
+    def __init__(self, model: str = "gpt-4o-mini"):
+        self.model = model
+        if TIKTOKEN_AVAILABLE:
+            try:
+                self.encoding = tiktoken.encoding_for_model(model)
+            except KeyError:
+                # Fallback to cl100k_base encoding for unknown models
+                self.encoding = tiktoken.get_encoding("cl100k_base")
+                logger.warning(f"Unknown model {model}, using cl100k_base encoding")
+        else:
+            self.encoding = None
+    
+    def count_tokens(self, text: str) -> int:
+        """Count tokens in text."""
+        if self.encoding and text:
+            return len(self.encoding.encode(text))
+        else:
+            # Fallback: estimate based on word count
+            return max(1, int(len(text.split()) * 1.3))
+    
+    def count_messages_tokens(self, messages: List[Dict[str, str]]) -> int:
+        """Count tokens in a list of messages."""
+        if not self.encoding:
+            # Fallback estimation
+            total_words = sum(len(msg.get("content", "").split()) for msg in messages)
+            return max(1, int(total_words * 1.3 + len(messages) * 4))
+        
+        total_tokens = 0
+        for message in messages:
+            # Add tokens for message formatting
+            total_tokens += 4  # Every message follows <im_start>{role/name}\n{content}<im_end>\n
+            for key, value in message.items():
+                total_tokens += len(self.encoding.encode(str(value)))
+                
+        total_tokens += 2  # Every reply is primed with <im_start>assistant
+        return total_tokens
+
+
 class EenChatAPI:
     """Main chat API class."""
 
@@ -84,8 +134,20 @@ class EenChatAPI:
 
         # Rate limiting (requests per minute)
         self.rate_limit = int(os.getenv("RATE_LIMIT_PER_MINUTE", "30"))
+        
+        # Token counter
+        self.token_counter = TokenCounter(self.chat_model)
+        
+        # Usage tracking
+        self.usage_stats = {
+            "total_requests": 0,
+            "total_tokens": 0,
+            "total_errors": 0,
+            "start_time": time.time()
+        }
 
         logger.info(f"Een Chat API initialized with assistant: {self.assistant_id}")
+        logger.info(f"Token counting: {'tiktoken' if TIKTOKEN_AVAILABLE else 'word estimation'}")
 
     def _get_assistant_id(self) -> str:
         """Get the OpenAI Assistant ID."""
@@ -219,6 +281,15 @@ class EenChatAPI:
                                 type="sources", data=sources, session_id=session_id
                             )
 
+                        # Calculate accurate token usage
+                        input_tokens = self.token_counter.count_tokens(message)
+                        output_tokens = self.token_counter.count_tokens(collected_content)
+                        total_tokens = input_tokens + output_tokens
+                        
+                        # Update usage statistics
+                        self.usage_stats["total_tokens"] += total_tokens
+                        self.usage_stats["total_requests"] += 1
+                        
                         # Final completion data
                         processing_time = time.time() - start_time
                         yield StreamChunk(
@@ -226,31 +297,103 @@ class EenChatAPI:
                             data={
                                 "total_content": collected_content,
                                 "processing_time": processing_time,
-                                "tokens_used": len(collected_content.split())
-                                * 1.3,  # Rough estimate
+                                "tokens_used": total_tokens,
+                                "input_tokens": input_tokens,
+                                "output_tokens": output_tokens,
+                                "tokens_per_second": output_tokens / max(processing_time, 0.001),
+                                "method": "tiktoken" if TIKTOKEN_AVAILABLE else "estimation"
                             },
                             session_id=session_id,
                         )
                         break
 
                     elif event.event == "thread.run.failed":
+                        self.usage_stats["total_errors"] += 1
+                        error_data = {
+                            "message": "Assistant run failed",
+                            "details": str(event.data),
+                            "error_type": "assistant_run_failed",
+                            "timestamp": time.time()
+                        }
+                        logger.error(f"Assistant run failed: {error_data}")
                         yield StreamChunk(
                             type="error",
-                            data={
-                                "message": "Assistant run failed",
-                                "details": str(event.data),
-                            },
+                            data=error_data,
                             session_id=session_id,
                         )
                         break
 
+        except openai.RateLimitError as e:
+            self.usage_stats["total_errors"] += 1
+            error_data = {
+                "message": "OpenAI rate limit exceeded. Please try again later.",
+                "error_type": "rate_limit_error",
+                "retry_after": getattr(e, 'retry_after', 60),
+                "timestamp": time.time()
+            }
+            logger.warning(f"Rate limit error: {e}")
+            yield StreamChunk(type="error", data=error_data, session_id=session_id)
+            
+        except openai.AuthenticationError as e:
+            self.usage_stats["total_errors"] += 1
+            error_data = {
+                "message": "OpenAI authentication failed. Check API key configuration.",
+                "error_type": "authentication_error",
+                "timestamp": time.time()
+            }
+            logger.error(f"Authentication error: {e}")
+            yield StreamChunk(type="error", data=error_data, session_id=session_id)
+            
+        except openai.PermissionDeniedError as e:
+            self.usage_stats["total_errors"] += 1
+            error_data = {
+                "message": "Permission denied. Check API key permissions.",
+                "error_type": "permission_error",
+                "timestamp": time.time()
+            }
+            logger.error(f"Permission error: {e}")
+            yield StreamChunk(type="error", data=error_data, session_id=session_id)
+            
+        except openai.BadRequestError as e:
+            self.usage_stats["total_errors"] += 1
+            error_data = {
+                "message": "Invalid request format or parameters.",
+                "error_type": "bad_request_error",
+                "details": str(e),
+                "timestamp": time.time()
+            }
+            logger.error(f"Bad request error: {e}")
+            yield StreamChunk(type="error", data=error_data, session_id=session_id)
+            
+        except openai.APITimeoutError as e:
+            self.usage_stats["total_errors"] += 1
+            error_data = {
+                "message": "OpenAI API request timed out. Please try again.",
+                "error_type": "timeout_error",
+                "timestamp": time.time()
+            }
+            logger.warning(f"API timeout error: {e}")
+            yield StreamChunk(type="error", data=error_data, session_id=session_id)
+            
+        except openai.APIConnectionError as e:
+            self.usage_stats["total_errors"] += 1
+            error_data = {
+                "message": "Failed to connect to OpenAI API. Please try again.",
+                "error_type": "connection_error",
+                "timestamp": time.time()
+            }
+            logger.error(f"API connection error: {e}")
+            yield StreamChunk(type="error", data=error_data, session_id=session_id)
+            
         except Exception as e:
-            logger.error(f"Error in assistant response: {e}")
-            yield StreamChunk(
-                type="error",
-                data={"message": f"Error processing request: {str(e)}"},
-                session_id=session_id,
-            )
+            self.usage_stats["total_errors"] += 1
+            error_data = {
+                "message": f"Unexpected error: {str(e)}",
+                "error_type": "unknown_error",
+                "timestamp": time.time()
+            }
+            logger.error(f"Unexpected error in assistant response: {e}")
+            yield StreamChunk(type="error", data=error_data, session_id=session_id)
 
     async def process_chat_stream(
         self, request: ChatRequest, client_id: str
@@ -318,32 +461,67 @@ app.add_middleware(
 
 
 def verify_bearer_token(authorization: Optional[str] = Header(None)) -> bool:
-    """Verify bearer token authentication."""
-    # Get API key from environment
+    """
+    Verify bearer token authentication.
+    
+    Supports both API_KEY and CHAT_BEARER_TOKEN for backward compatibility.
+    Uses constant-time comparison to prevent timing attacks.
+    """
+    import hmac
+    
+    # Get API keys from environment
     api_key = os.getenv("API_KEY")
-    if not api_key:
-        logger.warning("No API key configured - authentication disabled")
-        return True  # Allow requests if no key configured
+    chat_bearer_token = os.getenv("CHAT_BEARER_TOKEN")
+    
+    # If no authentication is configured, allow all requests
+    if not api_key and not chat_bearer_token:
+        logger.warning("No API key or bearer token configured - authentication disabled")
+        return True
 
+    # Check for authorization header
     if not authorization:
-        raise HTTPException(status_code=401, detail="Authorization header required")
+        logger.warning("Missing Authorization header")
+        raise HTTPException(
+            status_code=401, 
+            detail="Authorization header required",
+            headers={"WWW-Authenticate": "Bearer"}
+        )
 
+    # Validate Bearer format
     if not authorization.startswith("Bearer "):
-        raise HTTPException(status_code=401, detail="Invalid authorization format")
+        logger.warning("Invalid authorization format")
+        raise HTTPException(
+            status_code=401, 
+            detail="Invalid authorization format. Use: Bearer <token>",
+            headers={"WWW-Authenticate": "Bearer"}
+        )
 
     token = authorization[7:]  # Remove "Bearer " prefix
+    
+    # Validate token is not empty
+    if not token.strip():
+        logger.warning("Empty bearer token")
+        raise HTTPException(
+            status_code=401, 
+            detail="Bearer token cannot be empty",
+            headers={"WWW-Authenticate": "Bearer"}
+        )
 
-    # Use constant-time comparison to prevent timing attacks
-    import hmac
+    # Check against API_KEY first (primary authentication)
+    if api_key and hmac.compare_digest(token, api_key):
+        return True
+    
+    # Check against CHAT_BEARER_TOKEN (legacy authentication)
+    if chat_bearer_token and hmac.compare_digest(token, chat_bearer_token):
+        return True
 
-    if not hmac.compare_digest(token, api_key):
-        raise HTTPException(status_code=401, detail="Invalid API key")
-
-    return True
-    if token != chat_api.chat_bearer_token:
-        raise HTTPException(status_code=401, detail="Invalid bearer token")
-
-    return True
+    # Authentication failed
+    logger.warning(f"Invalid bearer token authentication attempt")
+    raise HTTPException(
+        status_code=401, 
+        detail="Invalid bearer token",
+        headers={"WWW-Authenticate": "Bearer"}
+    )
 
 
 def get_client_id(request: Request) -> str:
@@ -442,16 +620,38 @@ async def delete_session(session_id: str, _: bool = Depends(verify_bearer_token)
 
 @app.get("/stats")
 async def get_api_stats(_: bool = Depends(verify_bearer_token)):
-    """Get API usage statistics."""
+    """Get comprehensive API usage statistics."""
+    uptime = time.time() - chat_api.usage_stats["start_time"]
+    
     return {
+        # Session statistics
         "active_sessions": len(chat_api.active_sessions),
         "rate_limited_clients": len(chat_api.rate_limits),
         "total_requests_last_minute": sum(
             len(reqs) for reqs in chat_api.rate_limits.values()
         ),
+        
+        # Usage statistics
+        "total_requests": chat_api.usage_stats["total_requests"],
+        "total_tokens": chat_api.usage_stats["total_tokens"],
+        "total_errors": chat_api.usage_stats["total_errors"],
+        "uptime_seconds": uptime,
+        "uptime_hours": uptime / 3600,
+        
+        # Performance metrics
+        "requests_per_hour": chat_api.usage_stats["total_requests"] / max(uptime / 3600, 0.001),
+        "tokens_per_hour": chat_api.usage_stats["total_tokens"] / max(uptime / 3600, 0.001),
+        "error_rate": chat_api.usage_stats["total_errors"] / max(chat_api.usage_stats["total_requests"], 1),
+        
+        # Configuration
         "assistant_id": chat_api.assistant_id,
-        "uptime_seconds": time.time()
-        - chat_api.active_sessions.get("__start_time", time.time()),
+        "model": chat_api.chat_model,
+        "max_tokens": chat_api.max_tokens,
+        "rate_limit_per_minute": chat_api.rate_limit,
+        "token_counting_method": "tiktoken" if TIKTOKEN_AVAILABLE else "estimation",
+        
+        # Timestamp
+        "timestamp": datetime.utcnow().isoformat()
     }
 
 

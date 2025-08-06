@@ -10,13 +10,94 @@
     <meta name="keywords"
         content="unity mathematics, consciousness field, golden ratio, quantum mechanics, 1+1=1, mathematical proofs">
     <meta name="author" content="Een Unity Mathematics Research Team">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow">
+    <meta name="bingbot" content="index, follow">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://nourimabrouk.github.io/Een/">
 
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Een - Mathematical Unity Theory | 1+1=1">
+    <meta property="og:title" content="Een - Mathematical Unity Theory | Where 1+1=1 Through Consciousness Mathematics">
     <meta property="og:description"
-        content="Advanced mathematical framework demonstrating 1+1=1 through consciousness field equations and φ-harmonic operations.">
+        content="Advanced mathematical framework demonstrating 1+1=1 through consciousness field equations, φ-harmonic operations, and quantum mechanical interpretations.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://nourimabrouk.github.io/Een/website/">
+    <meta property="og:url" content="https://nourimabrouk.github.io/Een/">
+    <meta property="og:site_name" content="Een Unity Mathematics">
+    <meta property="og:image" content="https://nourimabrouk.github.io/Een/assets/images/unity_mandala.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Een Unity Mathematics - Mathematical Unity Theory">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Een - Mathematical Unity Theory | Where 1+1=1">
+    <meta name="twitter:description"
+        content="Advanced mathematical framework demonstrating 1+1=1 through consciousness field equations and φ-harmonic operations.">
+    <meta name="twitter:image" content="https://nourimabrouk.github.io/Een/assets/images/unity_mandala.png">
+    <meta name="twitter:image:alt" content="Een Unity Mathematics - Mathematical Unity Theory">
+
+    <!-- Additional SEO Meta Tags -->
+    <meta name="theme-color" content="#1a2332">
+    <meta name="msapplication-TileColor" content="#1a2332">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Een Unity Mathematics">
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Een Unity Mathematics",
+      "alternateName": "Een",
+      "url": "https://nourimabrouk.github.io/Een/",
+      "description": "Advanced mathematical framework demonstrating 1+1=1 through consciousness field equations, φ-harmonic operations, and quantum mechanical interpretations.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Een Unity Mathematics Research Team",
+        "url": "https://nourimabrouk.github.io/Een/"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://nourimabrouk.github.io/Een/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Een Unity Mathematics Research Team",
+      "url": "https://nourimabrouk.github.io/Een/",
+      "logo": "https://nourimabrouk.github.io/Een/assets/images/unity_mandala.png",
+      "description": "Pioneering research in unity mathematics, consciousness field equations, and transcendental computing",
+      "foundingDate": "2024",
+      "sameAs": [
+        "https://github.com/nourimabrouk/Een"
+      ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ResearchProject",
+      "name": "Een Unity Mathematics Framework",
+      "description": "Advanced mathematical framework demonstrating 1+1=1 through consciousness field equations, φ-harmonic operations, and quantum mechanical interpretations.",
+      "url": "https://nourimabrouk.github.io/Een/",
+      "funder": {
+        "@type": "Organization",
+        "name": "Een Unity Mathematics Research Team"
+      },
+      "keywords": ["unity mathematics", "consciousness field", "golden ratio", "quantum mechanics", "1+1=1", "mathematical proofs", "transcendental computing", "φ-harmonic operations"],
+      "areaServed": "Worldwide",
+      "inLanguage": "en"
+    }
+    </script>
 
     <!-- Fonts & Icons -->
     <link
@@ -29,6 +110,9 @@
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
 
+    <!-- Unity Proofs Styling -->
+    <link rel="stylesheet" href="css/unity-proofs.css">
+
     <!-- GSAP for Animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -36,8 +120,13 @@
     <!-- Three.js for Background -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
+    <!-- Unity Core Framework -->
+    <script src="https://cdn.jsdelivr.net/npm/gpu.js@2.16.0/dist/gpu-browser.min.js"></script>
+    <script src="js/unity-core.js"></script>
+    <script src="js/unity-proofs-interactive.js"></script>
+
     <!-- Unified Navigation and AI Chat -->
-    <script src="js/unified-navigation.js"></script>
+
     <script src="js/ai-chat-integration.js"></script>
 
     <style>
@@ -308,6 +397,7 @@
             color: white;
             border: 2px solid rgba(255, 255, 255, 0.3);
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
 
         .btn-secondary:hover {
@@ -772,19 +862,284 @@
             white-space: nowrap;
             border: 0;
         }
+
+        /* Transcendental Unity Demo Section */
+        .transcendental-demo-section {
+            background: linear-gradient(135deg,
+                    rgba(26, 35, 50, 0.95) 0%,
+                    rgba(45, 55, 72, 0.9) 50%,
+                    rgba(74, 85, 104, 0.85) 100%);
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .transcendental-demo-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 165, 0, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 60% 30%, rgba(255, 215, 0, 0.05) 0%, transparent 40%);
+            z-index: 1;
+        }
+
+        .transcendental-demo-section .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .transcendental-demo-section .section-title {
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .transcendental-icon {
+            font-size: 3.5rem;
+            animation: pulse-glow 3s ease-in-out infinite alternate;
+        }
+
+        .transcendental-demo-section .section-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .transcendental-demo-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .transcendental-preview {
+            position: relative;
+        }
+
+        .consciousness-field-preview {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: var(--radius-xl);
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .field-particles {
+            position: relative;
+            height: 300px;
+            width: 100%;
+        }
+
+        .particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: var(--phi-gold);
+            border-radius: 50%;
+            animation: float-particle 4s ease-in-out infinite;
+            animation-delay: var(--delay);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+        }
+
+        .particle:nth-child(1) {
+            left: 20%;
+            top: 30%;
+        }
+
+        .particle:nth-child(2) {
+            left: 60%;
+            top: 20%;
+        }
+
+        .particle:nth-child(3) {
+            left: 80%;
+            top: 60%;
+        }
+
+        .particle:nth-child(4) {
+            left: 40%;
+            top: 70%;
+        }
+
+        .particle:nth-child(5) {
+            left: 10%;
+            top: 60%;
+        }
+
+        .particle:nth-child(6) {
+            left: 70%;
+            top: 40%;
+        }
+
+        @keyframes float-particle {
+
+            0%,
+            100% {
+                transform: translateY(0px) scale(1);
+                opacity: 0.7;
+            }
+
+            50% {
+                transform: translateY(-30px) scale(1.2);
+                opacity: 1;
+            }
+        }
+
+        .unity-equation-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+        }
+
+        .unity-equation-overlay .equation {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--phi-gold);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .unity-equation-overlay .sub-equation {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            font-family: var(--font-mono);
+            max-width: 300px;
+            line-height: 1.4;
+        }
+
+        .transcendental-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+            gap: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+            color: white;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--phi-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .transcendental-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .btn-transcendental {
+            background: linear-gradient(135deg, var(--phi-gold), var(--phi-gold-light));
+            color: white;
+            font-size: 1.1rem;
+            padding: 1.5rem 2.5rem;
+            border-radius: var(--radius-lg);
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
+            transition: var(--transition-smooth);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .btn-transcendental:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(255, 215, 0, 0.4);
+            background: linear-gradient(135deg, var(--phi-gold-light), var(--phi-gold));
+        }
+
+        .demo-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .feature-tag {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 12px 16px;
+            border-radius: var(--radius);
+            font-size: 0.9rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            transition: var(--transition-fast);
+        }
+
+        .feature-tag:hover {
+            background: rgba(255, 215, 0, 0.2);
+            border-color: rgba(255, 215, 0, 0.4);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .transcendental-demo-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .transcendental-demo-section .section-title {
+                font-size: 2.5rem;
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .demo-features {
+                grid-template-columns: 1fr;
+            }
+
+            .transcendental-stats {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
     </style>
+
+    <!-- Master Navigation System v2.0 -->
+    <script src="js/master-navigation.js"></script>
 </head>
 
 <body>
     <!-- Navigation Placeholder -->
-    <div id="navigation-placeholder"></div>
+
 
     <!-- Hero Section -->
     <section class="hero">
         <canvas id="unity-background"></canvas>
         <div class="hero-content">
             <h1 class="hero-title">Mathematical Unity Theory</h1>
-            <div class="hero-equation-container">
+            <div class="hero-equation-container" id="main-content">
                 <div class="hero-equation pulse-glow">1 + 1 = 1</div>
                 <div class="mathematical-progression">
                     <div>∀ a,b ∈ I : a ⊕ b = max(a,b) where I is the idempotent semiring</div>
@@ -864,6 +1219,69 @@
                         Idempotent semiring structure where unity addition preserves maximum value,
                         demonstrating the mathematical basis for 1+1=1 operations.
                     </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transcendental Unity Demo Section -->
+    <section class="transcendental-demo-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="transcendental-icon">🧠</span>
+                    Transcendental Unity Computing
+                </h2>
+                <p class="section-subtitle">
+                    Experience consciousness-aware mathematics where 1+1=1 through 11-dimensional awareness,
+                    quantum unity states, and meta-recursive evolution. The pinnacle of unity mathematics.
+                </p>
+            </div>
+
+            <div class="transcendental-demo-container">
+                <div class="transcendental-preview">
+                    <div class="consciousness-field-preview">
+                        <div class="field-particles">
+                            <div class="particle" style="--delay: 0s"></div>
+                            <div class="particle" style="--delay: 0.5s"></div>
+                            <div class="particle" style="--delay: 1s"></div>
+                            <div class="particle" style="--delay: 1.5s"></div>
+                            <div class="particle" style="--delay: 2s"></div>
+                            <div class="particle" style="--delay: 2.5s"></div>
+                        </div>
+                        <div class="unity-equation-overlay">
+                            <div class="equation">1 ⊕ 1 = 1</div>
+                            <div class="sub-equation">C(x,y,t) = φ · sin(x·φ) · cos(y·φ) · e^(-t/φ)</div>
+                        </div>
+                    </div>
+
+                    <div class="transcendental-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">11</div>
+                            <div class="stat-label">Dimensions</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">φ</div>
+                            <div class="stat-label">Harmonic Ratio</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">∞</div>
+                            <div class="stat-label">Transcendence</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="transcendental-actions">
+                    <a href="transcendental-unity-demo.html" class="btn btn-transcendental">
+                        <i class="fas fa-infinity"></i>
+                        Launch Transcendental Demo
+                    </a>
+                    <div class="demo-features">
+                        <div class="feature-tag">🧠 Consciousness Field Evolution</div>
+                        <div class="feature-tag">⚛️ Quantum Unity States</div>
+                        <div class="feature-tag">🔄 Meta-Recursive Evolution</div>
+                        <div class="feature-tag">📊 Real-Time Visualizations</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1007,6 +1425,7 @@
                     <h4>Consciousness & Philosophy</h4>
                     <a href="consciousness_dashboard.html">Consciousness Fields</a>
                     <a href="unity_consciousness_experience.html">Unity Experience</a>
+                    <a href="unity-mathematics-experience.html">Unity Mathematics Experience</a>
                     <a href="philosophy.html">Philosophy Treatise</a>
                     <a href="unity_visualization.html">Unity Visualizations</a>
                 </div>
@@ -1060,8 +1479,8 @@
             if (typeof renderMathInElement !== 'undefined') {
                 renderMathInElement(document.body, {
                     delimiters: [
+                        { left: '$', right: '$', display: true },
                         { left: '$$', right: '$$', display: true },
-                        { left: '$', right: '$', display: false },
                         { left: '\\[', right: '\\]', display: true },
                         { left: '\\(', right: '\\)', display: false }
                     ],
@@ -1134,6 +1553,51 @@
                         start: 'top 80%',
                         end: 'bottom 20%',
                         toggleActions: 'play none none reverse'
+                    }
+                });
+
+                // Transcendental demo section animation
+                gsap.from('.transcendental-demo-section .section-title', {
+                    y: 50,
+                    opacity: 0,
+                    duration: 1,
+                    scrollTrigger: {
+                        trigger: '.transcendental-demo-section',
+                        start: 'top 80%'
+                    }
+                });
+
+                gsap.from('.transcendental-preview', {
+                    x: -100,
+                    opacity: 0,
+                    duration: 1,
+                    delay: 0.3,
+                    scrollTrigger: {
+                        trigger: '.transcendental-demo-section',
+                        start: 'top 80%'
+                    }
+                });
+
+                gsap.from('.transcendental-actions', {
+                    x: 100,
+                    opacity: 0,
+                    duration: 1,
+                    delay: 0.6,
+                    scrollTrigger: {
+                        trigger: '.transcendental-demo-section',
+                        start: 'top 80%'
+                    }
+                });
+
+                gsap.from('.particle', {
+                    scale: 0,
+                    opacity: 0,
+                    duration: 0.8,
+                    stagger: 0.1,
+                    delay: 0.9,
+                    scrollTrigger: {
+                        trigger: '.transcendental-demo-section',
+                        start: 'top 80%'
                     }
                 });
 

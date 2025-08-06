@@ -437,14 +437,17 @@
             color: var(--primary);
         }
     </style>
+
+    <!-- Master Navigation System v2.0 -->
+    <script src="js/master-navigation.js"></script>
 </head>
 
 <body>
     <!-- Navigation Placeholder -->
-    <div id="navigation-placeholder"></div>
+    
 
     <!-- Main Content -->
-    <main class="philosophy-container">
+    <main class="philosophy-container" id="main-content">
         <div class="loading" id="loadingIndicator">
             <div class="spinner"></div>
             <span>Loading Unity Equation Philosophy...</span>
@@ -676,7 +679,7 @@
     <div id="footer-placeholder"></div>
 
     <!-- Scripts -->
-    <script src="shared-navigation.js"></script>
+    
     <script>
         document.addEventListener('DOMContentLoaded', async function () {
             try {
@@ -723,8 +726,12 @@
                 if (window.renderMathInElement) {
                     renderMathInElement(document.body, {
                         delimiters: [
-                            { left: '$$', right: '$$', display: true },
-                            { left: '$', right: '$', display: false },
+                            { left: '$', right: '$', display: true },
+                            { left: '
+
+</html>, right: '
+
+</html>, display: false },
                             { left: '\\(', right: '\\)', display: false },
                             { left: '\\[', right: '\\]', display: true }
                         ]

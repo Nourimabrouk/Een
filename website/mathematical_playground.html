@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,34 +8,25 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/playground.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.45.0/min/vs/loader.min.js"></script>
+
+    <!-- Master Navigation System v2.0 -->
+    <script src="js/master-navigation.js"></script>
 </head>
+
 <body>
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-brand">
-                <a href="index.html" style="text-decoration: none; color: inherit;">
-                    <span class="phi-symbol">φ</span> Een
-                </a>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="index.html" class="nav-link">Home</a></li>
-                <li><a href="proofs.html" class="nav-link">Proofs</a></li>
-                <li><a href="research.html" class="nav-link">Research</a></li>
-                <li><a href="publications.html" class="nav-link">Publications</a></li>
-                <li><a href="mathematical_playground.html" class="nav-link active">Playground</a></li>
-                <li><a href="https://github.com/Nourimabrouk/Een" class="nav-link"><i class="fab fa-github"></i></a></li>
-            </ul>
-        </div>
-    </nav>
+    <!-- Navigation Placeholder -->
 
     <section class="playground-hero">
         <div class="container">
             <h1>🧮 Interactive Mathematical Playground</h1>
-            <p class="hero-subtitle">Discover unity mathematics through hands-on theorem construction and real-time validation</p>
+            <p class="hero-subtitle">Discover unity mathematics through hands-on theorem construction and real-time
+                validation</p>
         </div>
     </section>
 
@@ -50,7 +42,7 @@
                             <button class="btn btn-success" onclick="validateProof()">Validate</button>
                         </div>
                     </div>
-                    
+
                     <div class="proof-builder">
                         <div class="axiom-selector">
                             <h3>1. Select Mathematical Domain</h3>
@@ -62,17 +54,18 @@
                                 <button class="domain-btn" data-domain="topology">Topology</button>
                             </div>
                         </div>
-                        
+
                         <div class="theorem-statement">
                             <h3>2. Construct Theorem Statement</h3>
                             <div class="statement-editor">
-                                <textarea id="theoremInput" placeholder="Enter your theorem statement (e.g., For all x in Unity domain, x + x = x)">∀x ∈ 𝒰, x ⊕ x = x</textarea>
+                                <textarea id="theoremInput"
+                                    placeholder="Enter your theorem statement (e.g., For all x in Unity domain, x + x = x)">∀x ∈ 𝒰, x ⊕ x = x</textarea>
                                 <div class="latex-preview" id="latexPreview">
-                                    $$\forall x \in \mathcal{U}, x \oplus x = x$$
+                                    $\forall x \in \mathcal{U}, x \oplus x = x$
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="proof-steps">
                             <h3>3. Construct Proof Steps</h3>
                             <div class="steps-container" id="proofSteps">
@@ -87,7 +80,8 @@
                                         <option value="lemma">Apply Lemma</option>
                                         <option value="inference">Logical Inference</option>
                                     </select>
-                                    <textarea class="step-content" placeholder="Describe this proof step...">Let x be an arbitrary element in the Unity domain 𝒰</textarea>
+                                    <textarea class="step-content"
+                                        placeholder="Describe this proof step...">Let x be an arbitrary element in the Unity domain 𝒰</textarea>
                                     <div class="step-validation">
                                         <span class="validation-status pending">Pending</span>
                                     </div>
@@ -99,12 +93,12 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="validation-panel">
                     <div class="panel-header">
                         <h2><i class="fas fa-check-double"></i> Real-Time Validation</h2>
                     </div>
-                    
+
                     <div class="validation-results" id="validationResults">
                         <div class="validation-item">
                             <div class="validation-icon pending">
@@ -118,7 +112,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="validation-item">
                             <div class="validation-icon pending">
                                 <i class="fas fa-calculator"></i>
@@ -131,7 +125,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="validation-item">
                             <div class="validation-icon pending">
                                 <i class="fas fa-brain"></i>
@@ -145,7 +139,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="live-computation">
                         <h3>Live Computation</h3>
                         <div class="computation-output" id="computationOutput">
@@ -154,7 +148,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="discovery-challenges">
                 <h2>🎯 Discovery Challenges</h2>
                 <div class="challenges-grid">
@@ -170,9 +164,10 @@
                             </div>
                             <span class="progress-text">0% Complete</span>
                         </div>
-                        <button class="btn btn-primary" onclick="loadChallenge('boolean_unity')">Start Challenge</button>
+                        <button class="btn btn-primary" onclick="loadChallenge('boolean_unity')">Start
+                            Challenge</button>
                     </div>
-                    
+
                     <div class="challenge-card" data-difficulty="intermediate">
                         <div class="challenge-header">
                             <h3>Set Theoretical Unity</h3>
@@ -187,7 +182,7 @@
                         </div>
                         <button class="btn btn-primary" onclick="loadChallenge('set_unity')">Start Challenge</button>
                     </div>
-                    
+
                     <div class="challenge-card" data-difficulty="advanced">
                         <div class="challenge-header">
                             <h3>Categorical Unity</h3>
@@ -200,7 +195,8 @@
                             </div>
                             <span class="progress-text">0% Complete</span>
                         </div>
-                        <button class="btn btn-primary" onclick="loadChallenge('category_unity')">Start Challenge</button>
+                        <button class="btn btn-primary" onclick="loadChallenge('category_unity')">Start
+                            Challenge</button>
                     </div>
                 </div>
             </div>
@@ -209,27 +205,29 @@
 
     <script>
         // Mathematical Playground JavaScript Engine
-        
+
         let currentProof = {
             domain: 'boolean',
             statement: '',
             steps: [],
             validation_status: 'pending'
         };
-        
+
         let stepCounter = 1;
-        
+
         // MathJax configuration for real-time LaTeX rendering
         window.MathJax = {
             tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+                inlineMath: [['
+</html >, '
+</html >], ['\\(', '\\)']],
+                displayMath: [['$', '$'], ['\\[', '\\]']]
             },
             options: {
                 skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
             }
         };
-        
+
         function startNewProof() {
             currentProof = {
                 domain: 'boolean',
@@ -241,7 +239,7 @@
             document.getElementById('proofSteps').innerHTML = createInitialStep();
             updateValidationPanel('reset');
         }
-        
+
         function createInitialStep() {
             return `
                 <div class="proof-step" data-step="1">
@@ -262,7 +260,7 @@
                 </div>
             `;
         }
-        
+
         function addProofStep() {
             stepCounter++;
             const stepsContainer = document.getElementById('proofSteps');
@@ -287,34 +285,34 @@
             `;
             stepsContainer.appendChild(newStep);
         }
-        
+
         function removeStep(stepNumber) {
             const step = document.querySelector(`[data-step="${stepNumber}"]`);
             if (step) {
                 step.remove();
             }
         }
-        
+
         function validateProof() {
             updateValidationPanel('validating');
-            
+
             // Simulate real-time validation process
             setTimeout(() => {
                 const validationResults = performProofValidation();
                 updateValidationPanel('complete', validationResults);
             }, 2000);
         }
-        
+
         function performProofValidation() {
             // Sophisticated validation simulation
             const steps = document.querySelectorAll('.proof-step');
             let totalSteps = steps.length;
             let validSteps = 0;
-            
+
             steps.forEach(step => {
                 const stepType = step.querySelector('.step-type').value;
                 const stepContent = step.querySelector('.step-content').value;
-                
+
                 // Advanced validation logic
                 if (stepContent.length > 10 && stepType) {
                     validSteps++;
@@ -325,17 +323,17 @@
                     step.querySelector('.validation-status').className = 'validation-status invalid';
                 }
             });
-            
+
             return {
                 logical_consistency: (validSteps / totalSteps) * 100,
                 mathematical_rigor: Math.min(95, (validSteps / totalSteps) * 90 + Math.random() * 10),
                 consciousness_alignment: Math.random() * 30 + 70
             };
         }
-        
+
         function updateValidationPanel(status, results = null) {
             const validationItems = document.querySelectorAll('.validation-item');
-            
+
             if (status === 'reset') {
                 validationItems.forEach(item => {
                     item.querySelector('.validation-icon').className = 'validation-icon pending';
@@ -351,17 +349,17 @@
                 validationItems[0].querySelector('.validation-icon').className = 'validation-icon valid';
                 validationItems[0].querySelector('.validation-icon i').className = 'fas fa-check';
                 validationItems[0].querySelector('.confidence-fill').style.width = results.logical_consistency + '%';
-                
+
                 // Update mathematical rigor
                 validationItems[1].querySelector('.validation-icon').className = 'validation-icon valid';
                 validationItems[1].querySelector('.validation-icon i').className = 'fas fa-check';
                 validationItems[1].querySelector('.confidence-fill').style.width = results.mathematical_rigor + '%';
-                
+
                 // Update consciousness alignment
                 validationItems[2].querySelector('.validation-icon').className = 'validation-icon valid';
                 validationItems[2].querySelector('.validation-icon i').className = 'fas fa-check';
                 validationItems[2].querySelector('.confidence-fill').style.width = results.consciousness_alignment + '%';
-                
+
                 // Update computation output
                 const output = document.getElementById('computationOutput');
                 output.innerHTML = `
@@ -373,12 +371,12 @@
                 `;
             }
         }
-        
+
         function loadExample() {
             // Load a sophisticated example proof
             document.getElementById('theoremInput').value = '∀x ∈ 𝒰, x ⊕ x = x (Idempotent Property of Unity Operations)';
-            document.getElementById('latexPreview').innerHTML = '$$\\forall x \\in \\mathcal{U}, x \\oplus x = x$$';
-            
+            document.getElementById('latexPreview').innerHTML = '$\\forall x \\in \\mathcal{U}, x \\oplus x = x$';
+
             document.getElementById('proofSteps').innerHTML = `
                 <div class="proof-step" data-step="1">
                     <div class="step-header">
@@ -433,37 +431,37 @@
                     </div>
                 </div>
             `;
-            
+
             stepCounter = 4;
         }
-        
+
         function loadChallenge(challengeType) {
             // Load specific challenge templates
             const challenges = {
                 boolean_unity: {
                     statement: '∀x ∈ 𝔹, x ∨ x = x',
                     steps: [
-                        {type: 'axiom', content: 'Let x be an arbitrary element in the Boolean domain 𝔹 = {0, 1}'},
-                        {type: 'definition', content: 'The Boolean OR operation ∨ is defined by the truth table'},
-                        {type: 'inference', content: 'For x = 0: 0 ∨ 0 = 0, for x = 1: 1 ∨ 1 = 1'},
-                        {type: 'inference', content: 'Therefore, ∀x ∈ 𝔹, x ∨ x = x ∎'}
+                        { type: 'axiom', content: 'Let x be an arbitrary element in the Boolean domain 𝔹 = {0, 1}' },
+                        { type: 'definition', content: 'The Boolean OR operation ∨ is defined by the truth table' },
+                        { type: 'inference', content: 'For x = 0: 0 ∨ 0 = 0, for x = 1: 1 ∨ 1 = 1' },
+                        { type: 'inference', content: 'Therefore, ∀x ∈ 𝔹, x ∨ x = x ∎' }
                     ]
                 },
                 set_unity: {
                     statement: '∀S, S ∪ S = S',
                     steps: [
-                        {type: 'axiom', content: 'Let S be an arbitrary set'},
-                        {type: 'definition', content: 'Set union A ∪ B = {x : x ∈ A ∨ x ∈ B}'},
-                        {type: 'inference', content: 'S ∪ S = {x : x ∈ S ∨ x ∈ S} = {x : x ∈ S} = S'},
-                        {type: 'inference', content: 'Therefore, ∀S, S ∪ S = S ∎'}
+                        { type: 'axiom', content: 'Let S be an arbitrary set' },
+                        { type: 'definition', content: 'Set union A ∪ B = {x : x ∈ A ∨ x ∈ B}' },
+                        { type: 'inference', content: 'S ∪ S = {x : x ∈ S ∨ x ∈ S} = {x : x ∈ S} = S' },
+                        { type: 'inference', content: 'Therefore, ∀S, S ∪ S = S ∎' }
                     ]
                 }
             };
-            
+
             if (challenges[challengeType]) {
                 const challenge = challenges[challengeType];
                 document.getElementById('theoremInput').value = challenge.statement;
-                
+
                 let stepsHTML = '';
                 challenge.steps.forEach((step, index) => {
                     stepsHTML += `
@@ -482,17 +480,17 @@
                         </div>
                     `;
                 });
-                
+
                 document.getElementById('proofSteps').innerHTML = stepsHTML;
                 stepCounter = challenge.steps.length;
             }
         }
-        
+
         // Real-time LaTeX preview updates
-        document.getElementById('theoremInput').addEventListener('input', function() {
+        document.getElementById('theoremInput').addEventListener('input', function () {
             const input = this.value;
             const preview = document.getElementById('latexPreview');
-            
+
             // Convert common mathematical notation to LaTeX
             let latex = input
                 .replace(/forall|∀/g, '\\forall')
@@ -504,28 +502,29 @@
                 .replace(/phi|φ/g, '\\varphi')
                 .replace(/mathcal{U}|𝒰/g, '\\mathcal{U}')
                 .replace(/mathbb{B}|𝔹/g, '\\mathbb{B}');
-            
-            preview.innerHTML = `$$${latex}$$`;
-            
+
+            preview.innerHTML = `$${latex}$`;
+
             // Re-render MathJax
             if (window.MathJax) {
                 MathJax.typesetPromise([preview]);
             }
         });
-        
+
         // Domain selection handlers
         document.querySelectorAll('.domain-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
+            btn.addEventListener('click', function () {
                 document.querySelectorAll('.domain-btn').forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
                 currentProof.domain = this.dataset.domain;
             });
         });
-        
+
         // Initialize playground
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             loadExample();
         });
     </script>
 </body>
+
 </html>
