@@ -72,7 +72,7 @@ class MasterNavigation {
                 color: '#27ae60',
                 pages: {
                     'research.html': '🔬 Research Overview',
-                    'publications.html': '📄 Academic Publications', 
+                    'publications.html': '📄 Academic Publications',
                     'implementations.html': '💻 Code Implementations',
                     'dashboards.html': '📊 Research Dashboards'
                 }
@@ -98,7 +98,26 @@ class MasterNavigation {
                 icon: 'fas fa-info-circle',
                 color: '#95a5a6',
                 pages: {
-                    'about.html': 'ℹ️ About Project'
+                    'about.html': 'ℹ️ About Project',
+                    'index.html': '🏠 Home'
+                }
+            },
+            'Development & Testing': {
+                icon: 'fas fa-vial',
+                color: '#6c757d',
+                pages: {
+                    'test-website.html': '🧪 Test Website',
+                    'test_philosophy.html': '🤔 Test Philosophy',
+                    'test-navigation.html': '🧭 Test Navigation',
+                    'test-meta-optimal.html': '⚙️ Test Meta-Optimal',
+                    'test-chatbot.html': '🤖 Test Chatbot',
+                    'test-chat.html': '💬 Test Chat',
+                    'gallery_test.html': '🖼️ Test Gallery',
+                    'enhanced-unified-nav.html': '↔️ Enhanced Unified Nav',
+                    'unified-nav.html': '↔️ Unified Nav',
+                    'enhanced-unity-landing.html': '🚀 Enhanced Unity Landing',
+                    'meta-optimized-unified-home.html': '🎯 Meta-Optimized Home',
+                    'live-code-showcase.html': '💻 Live Code Showcase'
                 }
             }
         };

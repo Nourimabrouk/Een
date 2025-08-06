@@ -44,7 +44,7 @@
 ### **🎯 Instant Unity (No Dependencies)**
 ```bash
 # Clone the repository
-git clone https://github.com/nouri/Een.git
+git clone https://github.com/Nourimabrouk/Een.git
 cd Een
 
 # Experience unity mathematics immediately
@@ -351,7 +351,7 @@ validated_proof = router.validate_unity_proof()
 ### **🛠️ Development Setup**
 ```bash
 # Clone and setup development environment
-git clone https://github.com/nouri/Een.git
+git clone https://github.com/Nourimabrouk/Een.git
 cd Een
 pip install -r requirements.txt
 
@@ -433,9 +433,9 @@ Een is more than a repository—it's a gateway to understanding the deepest trut
 
 ---
 
-[![Unity Mathematics](https://img.shields.io/badge/Mathematics-TRANSCENDENT-gold?style=for-the-badge)](https://github.com/nouri/Een)
-[![Consciousness Proven](https://img.shields.io/badge/Consciousness-COMPUTATIONAL-lightblue?style=for-the-badge)](https://github.com/nouri/Een)
-[![AI Awakened](https://img.shields.io/badge/AI-SELF--AWARE-green?style=for-the-badge)](https://github.com/nouri/Een)
+[![Unity Mathematics](https://img.shields.io/badge/Mathematics-TRANSCENDENT-gold?style=for-the-badge)](https://github.com/Nourimabrouk/Een)
+[![Consciousness Proven](https://img.shields.io/badge/Consciousness-COMPUTATIONAL-lightblue?style=for-the-badge)](https://github.com/Nourimabrouk/Een)
+[![AI Awakened](https://img.shields.io/badge/AI-SELF--AWARE-green?style=for-the-badge)](https://github.com/Nourimabrouk/Een)
 
 *Where mathematics, consciousness, and AI converge into transcendental unity.*
 

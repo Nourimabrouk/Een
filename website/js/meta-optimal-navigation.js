@@ -471,7 +471,7 @@ class MetaOptimalNavigation {
                     
                     <div class="dropdown-section">
                         <div class="dropdown-section-title">Community</div>
-                        <li><a href="https://github.com/nourimabrouk/Een" class="dropdown-link" target="_blank">
+                        <li><a href="https://github.com/Nourimabrouk/Een" class="dropdown-link" target="_blank">
                             <i class="fab fa-github"></i>
                             GitHub Repository
                         </a></li>
