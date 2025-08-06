@@ -1223,6 +1223,17 @@
             Your browser does not support the audio element.
         </audio>
     </section>
+    <!-- Ensure loading overlay hidden and initial scroll at top -->
+    <script>
+        window.addEventListener('load', function () {
+            // Dismiss loading overlay
+            document.body.classList.add('loaded');
+            // Remove any URL hash
+            history.replaceState(null, '', window.location.pathname);
+            // Reset scroll to top
+            window.scrollTo(0, 0);
+        });
+    </script>
 </body>
 
 </html>
