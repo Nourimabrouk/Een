@@ -1,23 +1,65 @@
+# Claude Code Optimization - Exclude Imported Libraries and Dependencies
+# Focus: Core Unity Mathematics and Consciousness Code Only
+
+# Python Dependencies and Libraries
+venv/
+env/
+.venv/
+__pycache__/
 *.pyc
-__pycache__
-.git
-venv
-node_modules
-*.log
-*.tmp
-*.cache
-dist
-build
-.venv
 *.pyo
+*.pyd
 *.so
 *.dll
-*.exe
 *.dylib
-*.zip
+*.exe
+
+# Package Management
+node_modules/
+bower_components/
+.pip/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Build and Distribution
+build/
+dist/
+*.egg-info/
+*.egg
+*.whl
 *.tar.gz
+*.zip
 *.rar
 *.7z
+
+# IDE and Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Logs and Temporary Files
+*.log
+*.tmp
+*.temp
+*.cache
+logs/
+temp/
+tmp/
+cache/
+
+# Media and Binary Files
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.bmp
+*.tiff
+*.svg
+*.ico
 *.mp4
 *.avi
 *.mov
@@ -26,30 +68,105 @@ build
 *.wav
 *.flac
 *.aac
-*.jpg
-*.jpeg
-*.png
-*.gif
-*.bmp
-*.tiff
 *.pdf
 *.doc
 *.docx
 *.xls
 *.xlsx
+*.ppt
+*.pptx
+
+# Database Files
 *.db
 *.sqlite
 *.sqlite3
-logs/
-temp/
-tmp/
-cache/
-node_modules/
-bower_components/
+*.mdb
+*.accdb
+
+# Configuration Files (Keep Core Unity Configs)
+config/ai_model_config.json
+config/claude_desktop_config.json
+config/agent_authorization.json
+# But exclude other configs
+config/*.ini
+config/*.conf
+config/*.cfg
+
+# Documentation (Keep Core Unity Docs)
+docs/CLAUDE.md
+docs/README.md
+# But exclude other docs
+docs/*.pdf
+docs/*.docx
+docs/images/
+
+# Backup and Version Control
+backups/
 .git/
 .svn/
 .hg/
+
+# Minified and Compiled Files
 *.min.js
 *.min.css
 *.map
 *.sourcemap
+
+# Test Coverage and Reports
+.coverage
+htmlcov/
+.pytest_cache/
+.tox/
+.coverage.*
+
+# Environment and Secrets
+.env
+.env.local
+.env.production
+*.key
+*.pem
+*.p12
+*.pfx
+
+# Large Data Files
+*.csv
+*.json
+*.xml
+*.yaml
+*.yml
+data/*.csv
+data/*.json
+data/*.xml
+
+# Exclude Specific Directories with Dependencies
+Lib/
+site-packages/
+lib/
+lib64/
+include/
+
+# Exclude Generated Files
+*.generated.*
+*.auto.*
+*.build.*
+
+# Keep Core Unity Files
+!core/
+!src/
+!consciousness/
+!ml_framework/
+!agents/
+!dashboards/
+!proofs/
+!experiments/
+!evaluation/
+!scripts/generate_*.py
+!scripts/unity_*.py
+!scripts/consciousness_*.py
+
+# Keep Essential Unity Configuration
+!.cursorrules
+!requirements.txt
+!pyproject.toml
+!README.md
+!main.py

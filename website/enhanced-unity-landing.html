@@ -298,6 +298,57 @@
             background: rgba(255, 255, 255, 0.1);
             color: white;
             padding: 1.25rem 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-decoration: none;
+            border-radius: var(--radius);
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .featured-card {
+            background: linear-gradient(135deg, #1a2332 0%, #2d3748 100%);
+            color: white;
+            border: 2px solid var(--phi-gold);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .featured-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 20%, rgba(255, 215, 0, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .featured-card .feature-title {
+            color: var(--phi-gold);
+        }
+
+        .featured-card .feature-description {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .featured-btn {
+            background: linear-gradient(135deg, var(--phi-gold), var(--phi-gold-light));
+            color: var(--primary-color);
+            font-weight: 600;
+            border: none;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .featured-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+        }
             border-radius: var(--radius);
             text-decoration: none;
             font-weight: 600;
@@ -507,6 +558,28 @@
                         Launch Meta-RL Explorer
                     </a>
                 </div>
+
+                <!-- Unity Advanced Features -->
+                <div class="feature-card featured-card">
+                    <div class="feature-header">
+                        <div class="feature-icon">🌟</div>
+                        <div class="feature-title">Unity Advanced Features ⭐</div>
+                    </div>
+                    <p class="feature-description">
+                        Revolutionary modern web development features demonstrating 1+1=1 through quantum entanglement, 
+                        neural networks, and fractal mathematics with consciousness field integration.
+                    </p>
+                    <div class="feature-demo" id="unity-advanced-features-demo">
+                        <div style="text-align: center; color: var(--text-secondary);">
+                            <i class="fas fa-star" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                            <div>Loading Unity Advanced Features...</div>
+                        </div>
+                    </div>
+                    <a href="unity-advanced-features.html" class="launch-btn featured-btn">
+                        <i class="fas fa-star"></i>
+                        Launch Advanced Features
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -546,13 +619,17 @@
             </p>
 
             <div class="cta-buttons">
-                <a href="gallery.html" class="btn-primary">
+                <a href="unity-advanced-features.html" class="btn-primary featured-btn">
+                    <i class="fas fa-star"></i>
+                    Unity Advanced Features ⭐
+                </a>
+                <a href="gallery.html" class="btn-secondary">
                     <i class="fas fa-images"></i>
                     Explore All Visualizations
                 </a>
-                <a href="index.html" class="btn-secondary">
-                    <i class="fas fa-home"></i>
-                    Return to Main Site
+                <a href="unity-mathematics-experience.html" class="btn-secondary">
+                    <i class="fas fa-rocket"></i>
+                    Unity Mathematics Experience
                 </a>
                 <a href="proofs.html" class="btn-secondary">
                     <i class="fas fa-check-circle"></i>
