@@ -38,6 +38,19 @@
     <link rel="preload" href="css/meta-optimal-navigation.css" as="style">
     <link rel="preload" href="js/meta-optimal-navigation.js" as="script">
     <link rel="preload" href="js/meta-optimal-integration.js" as="script">
+
+    <style>
+        /* Mobile touch optimizations */
+        * { touch-action: manipulation; }
+        .interactive-element { 
+            min-height: 44px; 
+            min-width: 44px; 
+        }
+        @media (max-width: 768px) {
+            .desktop-only { display: none !important; }
+            .mobile-optimized { font-size: 16px; }
+        }
+    </style>
 </head>
 
 <body>

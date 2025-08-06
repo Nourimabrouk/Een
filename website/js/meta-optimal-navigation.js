@@ -19,6 +19,7 @@ class MetaOptimalNavigation {
         this.setActivePage();
         this.initScrollEffects();
         this.initSearch();
+        this.initAIChatButton();
     }
 
     createNavigation() {
@@ -48,6 +49,11 @@ class MetaOptimalNavigation {
                             <i class="fas fa-search"></i>
                         </button>
                     </div>
+
+                    <button class="ai-chat-trigger" id="aiChatTrigger">
+                        <i class="fas fa-robot"></i>
+                        AI Chat
+                    </button>
 
                     <div class="mobile-menu-toggle" id="mobileMenuToggle">
                         <span></span>
@@ -115,6 +121,10 @@ class MetaOptimalNavigation {
                             <i class="fas fa-infinity"></i>
                             Unity Mathematics Experience
                         </a></li>
+                        <li><a href="unity-advanced-features.html" class="dropdown-link">
+                            <i class="fas fa-star"></i>
+                            Unity Advanced Features
+                        </a></li>
                     </div>
                     
                     <div class="dropdown-section">
@@ -126,6 +136,10 @@ class MetaOptimalNavigation {
                         <li><a href="al_khwarizmi_phi_unity.html" class="dropdown-link">
                             <i class="fas fa-square-root-alt"></i>
                             Al-Khwarizmi Phi Unity
+                        </a></li>
+                        <li><a href="transcendental-unity-demo.html" class="dropdown-link">
+                            <i class="fas fa-eye"></i>
+                            Transcendental Unity Demo
                         </a></li>
                     </div>
                 </ul>
@@ -156,6 +170,10 @@ class MetaOptimalNavigation {
                             <i class="fas fa-meditation"></i>
                             Unity Consciousness Experience
                         </a></li>
+                        <li><a href="unity_visualization.html" class="dropdown-link">
+                            <i class="fas fa-wave-square"></i>
+                            Unity Visualizations
+                        </a></li>
                     </div>
                     
                     <div class="dropdown-section">
@@ -171,14 +189,14 @@ class MetaOptimalNavigation {
                     </div>
                     
                     <div class="dropdown-section">
-                        <div class="dropdown-section-title">Visualizations</div>
-                        <li><a href="unity_visualization.html" class="dropdown-link">
-                            <i class="fas fa-wave-square"></i>
-                            Unity Visualizations
+                        <div class="dropdown-section-title">AI Integration</div>
+                        <li><a href="test-chat.html" class="dropdown-link">
+                            <i class="fas fa-comments"></i>
+                            Unity Chat System
                         </a></li>
-                        <li><a href="transcendental-unity-demo.html" class="dropdown-link">
-                            <i class="fas fa-eye"></i>
-                            Transcendental Unity Demo
+                        <li><a href="enhanced-ai-demo.html" class="dropdown-link">
+                            <i class="fas fa-brain"></i>
+                            Enhanced AI Demonstrations
                         </a></li>
                     </div>
                 </ul>
@@ -216,10 +234,6 @@ class MetaOptimalNavigation {
                         <li><a href="openai-integration.html" class="dropdown-link">
                             <i class="fas fa-ai"></i>
                             OpenAI Integration
-                        </a></li>
-                        <li><a href="enhanced-ai-demo.html" class="dropdown-link">
-                            <i class="fas fa-brain"></i>
-                            Enhanced AI Demonstrations
                         </a></li>
                         <li><a href="live-code-showcase.html" class="dropdown-link">
                             <i class="fas fa-code"></i>
@@ -293,6 +307,10 @@ class MetaOptimalNavigation {
                         <li><a href="test-website.html" class="dropdown-link">
                             <i class="fas fa-vial"></i>
                             Website Testing
+                        </a></li>
+                        <li><a href="test-chatbot.html" class="dropdown-link">
+                            <i class="fas fa-robot"></i>
+                            Chatbot Testing
                         </a></li>
                     </div>
                 </ul>
@@ -550,6 +568,10 @@ class MetaOptimalNavigation {
                         <i class="fas fa-play-circle"></i>
                         Unity Interactive Playground
                     </a>
+                    <a href="unity-advanced-features.html" class="mobile-dropdown-link">
+                        <i class="fas fa-star"></i>
+                        Unity Advanced Features
+                    </a>
                     <a href="metagambit.html" class="mobile-dropdown-link">
                         <i class="fas fa-chess-king"></i>
                         Metagambit Systems
@@ -579,6 +601,10 @@ class MetaOptimalNavigation {
                     <a href="unity_visualization.html" class="mobile-dropdown-link">
                         <i class="fas fa-wave-square"></i>
                         Unity Visualizations
+                    </a>
+                    <a href="test-chat.html" class="mobile-dropdown-link">
+                        <i class="fas fa-comments"></i>
+                        Unity Chat System
                     </a>
                 </div>
             </li>
@@ -631,6 +657,10 @@ class MetaOptimalNavigation {
                     <a href="dashboards.html" class="mobile-dropdown-link">
                         <i class="fas fa-tachometer-alt"></i>
                         Unity Dashboards
+                    </a>
+                    <a href="unity-advanced-features.html" class="mobile-dropdown-link">
+                        <i class="fas fa-star"></i>
+                        Advanced Unity Features
                     </a>
                 </div>
             </li>
@@ -859,6 +889,30 @@ class MetaOptimalNavigation {
         }
     }
 
+    initAIChatButton() {
+        const aiChatTrigger = document.getElementById('aiChatTrigger');
+
+        if (aiChatTrigger) {
+            aiChatTrigger.addEventListener('click', () => {
+                this.openAIChat();
+            });
+        }
+    }
+
+    openAIChat() {
+        // Try to open the AI chat system
+        if (window.enhancedEenChat) {
+            window.enhancedEenChat.open();
+        } else if (window.eenChat) {
+            window.eenChat.open();
+        } else if (window.floatingChatButton) {
+            window.floatingChatButton.handleClick();
+        } else {
+            // Fallback: redirect to chat page
+            window.location.href = 'test-chat.html';
+        }
+    }
+
     searchSite(query) {
         // Simple search implementation - can be enhanced with more sophisticated search
         const searchResults = [
@@ -869,7 +923,11 @@ class MetaOptimalNavigation {
             { title: 'Unity Philosophy Treatise', url: 'philosophy.html', category: 'Consciousness' },
             { title: 'Core Implementations', url: 'implementations.html', category: 'Implementations' },
             { title: 'Unity Learning Academy', url: 'learning.html', category: 'Academy' },
-            { title: 'Visualization Gallery', url: 'gallery.html', category: 'Visualizations' }
+            { title: 'Visualization Gallery', url: 'gallery.html', category: 'Visualizations' },
+            { title: 'Unity Advanced Features', url: 'unity-advanced-features.html', category: 'Mathematics' },
+            { title: 'AI Chat System', url: 'test-chat.html', category: 'AI' },
+            { title: 'Metagambit Systems', url: 'metagambit.html', category: 'Mathematics' },
+            { title: 'Enhanced AI Demo', url: 'enhanced-ai-demo.html', category: 'AI' }
         ];
 
         const filteredResults = searchResults.filter(result =>

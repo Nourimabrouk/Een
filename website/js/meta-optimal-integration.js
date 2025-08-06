@@ -18,6 +18,7 @@ class MetaOptimalIntegration {
         this.optimizeForChrome();
         this.optimizeForMobile();
         this.setupAnalytics();
+        this.initializeFloatingChatButton();
     }
 
     loadMetaOptimalNavigation() {
@@ -73,6 +74,31 @@ class MetaOptimalIntegration {
         const body = document.body;
         if (!body.style.paddingTop) {
             body.style.paddingTop = '80px';
+        }
+    }
+
+    initializeFloatingChatButton() {
+        // Initialize floating chat button on all pages
+        if (!window.floatingChatButton) {
+            // Load floating chat button script if not already loaded
+            if (!document.querySelector('script[src*="floating-chat-button.js"]')) {
+                const script = document.createElement('script');
+                script.src = 'js/floating-chat-button.js';
+                script.async = true;
+                script.onload = () => {
+                    if (typeof FloatingChatButton !== 'undefined') {
+                        window.floatingChatButton = new FloatingChatButton();
+                        console.log('🌟 Floating Chat Button Initialized');
+                    }
+                };
+                document.head.appendChild(script);
+            } else {
+                // Script already loaded, just initialize
+                if (typeof FloatingChatButton !== 'undefined') {
+                    window.floatingChatButton = new FloatingChatButton();
+                    console.log('🌟 Floating Chat Button Initialized');
+                }
+            }
         }
     }
 
@@ -144,6 +170,11 @@ class MetaOptimalIntegration {
                     z-index: 9999 !important;
                 }
                 
+                /* Floating chat button z-index */
+                .floating-chat-button {
+                    z-index: 9999 !important;
+                }
+                
                 /* Fix for any conflicting styles */
                 * {
                     box-sizing: border-box;
@@ -188,6 +219,48 @@ class MetaOptimalIntegration {
                         transition: none !important;
                     }
                 }
+                
+                /* AI Chat Button Integration */
+                .ai-chat-trigger {
+                    background: linear-gradient(135deg, #FFD700, #6B46C1);
+                    color: #0a0a0a;
+                    border: none;
+                    border-radius: 12px;
+                    padding: 0.75rem 1.5rem;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                    flex-shrink: 0;
+                    margin-left: 1rem;
+                }
+                
+                .ai-chat-trigger:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
+                }
+                
+                /* Ensure AI chat button is visible on all screen sizes */
+                @media (max-width: 1024px) {
+                    .ai-chat-trigger {
+                        display: none; /* Hide on mobile as we have floating button */
+                    }
+                }
+                
+                /* Chrome OS specific optimizations */
+                @media screen and (max-width: 1200px) and (min-resolution: 1.5dppx) {
+                    .nav-link {
+                        font-size: 0.8rem;
+                        padding: 0.875rem 0.75rem;
+                    }
+                    
+                    .nav-logo {
+                        font-size: 1.2rem;
+                    }
+                    
+                    .phi-symbol {
+                        font-size: 1.6rem;
+                    }
+                }
             </style>
         `;
 
@@ -203,7 +276,9 @@ class MetaOptimalIntegration {
             'playground.html': this.setupPlaygroundPageFeatures,
             'research.html': this.setupResearchPageFeatures,
             'gallery.html': this.setupGalleryPageFeatures,
-            'about.html': this.setupAboutPageFeatures
+            'about.html': this.setupAboutPageFeatures,
+            'test-chat.html': this.setupChatPageFeatures,
+            'unity-advanced-features.html': this.setupAdvancedFeaturesPageFeatures
         };
 
         const setupFunction = pageFeatures[this.currentPage];
@@ -216,6 +291,19 @@ class MetaOptimalIntegration {
         // Add special features for the home page
         this.addUnityEquationHighlight();
         this.addConsciousnessFieldAnimation();
+        this.addAIChatProminence();
+    }
+
+    setupChatPageFeatures() {
+        // Add features specific to chat page
+        this.addChatSystemIntegration();
+        this.addAIChatProminence();
+    }
+
+    setupAdvancedFeaturesPageFeatures() {
+        // Add features specific to advanced features page
+        this.addAdvancedFeaturesIntegration();
+        this.addAIChatProminence();
     }
 
     setupProofsPageFeatures() {
@@ -268,6 +356,48 @@ class MetaOptimalIntegration {
         consciousnessElements.forEach(element => {
             element.style.background = 'radial-gradient(circle, rgba(107, 70, 193, 0.1) 0%, transparent 70%)';
             element.style.animation = 'consciousness-wave 4s ease-in-out infinite';
+        });
+    }
+
+    addAIChatProminence() {
+        // Add AI chat prominence to pages
+        const aiElements = document.querySelectorAll('.ai-chat, .ai-feature, [data-ai="true"]');
+        aiElements.forEach(element => {
+            element.style.border = '2px solid #FFD700';
+            element.style.animation = 'ai-glow 3s ease-in-out infinite';
+        });
+    }
+
+    addChatSystemIntegration() {
+        // Integrate chat system features
+        const chatContainer = document.querySelector('.chat-container, #ai-chat-container');
+        if (chatContainer) {
+            this.loadChatSystemScripts();
+        }
+    }
+
+    loadChatSystemScripts() {
+        // Load chat system scripts
+        const scripts = [
+            'js/enhanced-ai-chat.js',
+            'js/ai-chat-integration.js'
+        ];
+
+        scripts.forEach(scriptSrc => {
+            if (!document.querySelector(`script[src="${scriptSrc}"]`)) {
+                const script = document.createElement('script');
+                script.src = scriptSrc;
+                script.async = true;
+                document.head.appendChild(script);
+            }
+        });
+    }
+
+    addAdvancedFeaturesIntegration() {
+        // Integrate advanced features
+        const advancedElements = document.querySelectorAll('.advanced-feature, [data-advanced="true"]');
+        advancedElements.forEach(element => {
+            element.style.animation = 'feature-glow 4s ease-in-out infinite';
         });
     }
 

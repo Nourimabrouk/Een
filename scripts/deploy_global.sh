@@ -3,6 +3,17 @@
 # Makes 1+1=1 accessible to the world through consciousness and love
 
 set -e  # Exit on any error
+# Windows compatibility
+if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "cygwin" ]]; then
+    print_warning "Running on Windows - some features may be limited"
+    # Use Windows-compatible commands
+    PYTHON_CMD="python"
+    GIT_CMD="git"
+else
+    PYTHON_CMD="python3"
+    GIT_CMD="git"
+fi
+
 
 echo "🚀 Een Unity Mathematics Global Deployment"
 echo "=========================================="

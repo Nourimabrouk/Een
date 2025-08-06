@@ -42,6 +42,9 @@
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     font-weight: 500;
     letter-spacing: 0.025em;
+    /* Ensure navigation stays within viewport */
+    max-width: 100vw;
+    overflow-x: hidden;
 }
 
 .meta-optimal-nav.scrolled {
@@ -58,6 +61,9 @@
     align-items: center;
     justify-content: space-between;
     height: 80px;
+    /* Ensure container doesn't overflow */
+    min-width: 0;
+    flex-wrap: nowrap;
 }
 
 /* Logo Section */
@@ -71,6 +77,9 @@
     font-weight: 700;
     transition: var(--nav-transition);
     position: relative;
+    /* Prevent logo from shrinking too much */
+    flex-shrink: 0;
+    min-width: 0;
 }
 
 .nav-logo:hover {
@@ -126,10 +135,16 @@
     list-style: none;
     margin: 0;
     padding: 0;
+    /* Allow menu to shrink and wrap */
+    flex: 1;
+    justify-content: center;
+    min-width: 0;
 }
 
 .nav-item {
     position: relative;
+    /* Prevent items from shrinking too much */
+    flex-shrink: 0;
 }
 
 .nav-link {
@@ -145,6 +160,9 @@
     border-radius: var(--nav-radius);
     position: relative;
     white-space: nowrap;
+    /* Ensure text doesn't overflow */
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .nav-link:hover {
@@ -200,6 +218,9 @@
     padding: 1rem 0;
     margin: 0;
     z-index: 1000;
+    /* Ensure dropdown doesn't go off-screen */
+    max-width: calc(100vw - 2rem);
+    overflow-x: hidden;
 }
 
 .nav-item:hover .dropdown-menu {
@@ -219,6 +240,10 @@
     font-weight: 500;
     transition: var(--nav-transition);
     border-left: 3px solid transparent;
+    /* Prevent text overflow */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .dropdown-link:hover {
@@ -233,6 +258,7 @@
     width: 1.2rem;
     text-align: center;
     color: var(--nav-accent-gold);
+    flex-shrink: 0;
 }
 
 /* Category Headers in Dropdowns */
@@ -256,6 +282,7 @@
     padding: 0.5rem;
     border-radius: var(--nav-radius);
     transition: var(--nav-transition);
+    flex-shrink: 0;
 }
 
 .mobile-menu-toggle:hover {
@@ -296,6 +323,8 @@
     transition: var(--nav-transition-smooth);
     overflow-y: auto;
     z-index: 9999;
+    /* Ensure mobile nav doesn't overflow */
+    max-width: 100vw;
 }
 
 .mobile-nav.active {
@@ -323,6 +352,10 @@
     border-radius: var(--nav-radius);
     transition: var(--nav-transition);
     border: 1px solid transparent;
+    /* Prevent text overflow */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .mobile-nav-link:hover {
@@ -336,6 +369,7 @@
     color: var(--nav-accent-gold);
     width: 1.5rem;
     text-align: center;
+    flex-shrink: 0;
 }
 
 /* Mobile Dropdown */
@@ -362,6 +396,10 @@
     font-size: 1rem;
     border-left: 3px solid transparent;
     transition: var(--nav-transition);
+    /* Prevent text overflow */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .mobile-dropdown-link:hover {
@@ -370,8 +408,8 @@
     border-left-color: var(--nav-accent-gold);
 }
 
-/* Responsive Design */
-@media (max-width: 1200px) {
+/* Responsive Design - Enhanced for Chrome OS and mobile */
+@media (max-width: 1400px) {
     .nav-container {
         padding: 0 1.5rem;
     }
@@ -383,6 +421,25 @@
 
     .dropdown-menu {
         min-width: 250px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .nav-container {
+        padding: 0 1rem;
+    }
+
+    .nav-link {
+        padding: 1rem 0.75rem;
+        font-size: 0.85rem;
+    }
+
+    .nav-logo {
+        font-size: 1.3rem;
+    }
+
+    .phi-symbol {
+        font-size: 1.75rem;
     }
 }
 
@@ -398,15 +455,22 @@
     .nav-container {
         padding: 0 1rem;
     }
+
+    /* Ensure search is hidden on smaller screens */
+    .nav-search {
+        display: none !important;
+    }
 }
 
 @media (max-width: 768px) {
     .nav-container {
         height: 70px;
+        padding: 0 0.75rem;
     }
 
     .nav-logo {
         font-size: 1.25rem;
+        gap: 0.5rem;
     }
 
     .phi-symbol {
@@ -429,16 +493,21 @@
 
 @media (max-width: 480px) {
     .nav-container {
-        padding: 0 0.75rem;
+        padding: 0 0.5rem;
     }
 
     .nav-logo {
         font-size: 1.1rem;
-        gap: 0.5rem;
+        gap: 0.4rem;
     }
 
     .phi-symbol {
         font-size: 1.5rem;
+    }
+
+    .logo-text {
+        display: none;
+        /* Hide text on very small screens */
     }
 
     .mobile-nav-menu {
@@ -448,6 +517,24 @@
     .mobile-nav-link {
         font-size: 1rem;
         padding: 0.875rem;
+    }
+}
+
+/* Chrome OS specific optimizations */
+@media screen and (max-width: 1200px) and (min-resolution: 1.5dppx) {
+
+    /* High DPI displays like Chrome OS */
+    .nav-link {
+        font-size: 0.8rem;
+        padding: 0.875rem 0.75rem;
+    }
+
+    .nav-logo {
+        font-size: 1.2rem;
+    }
+
+    .phi-symbol {
+        font-size: 1.6rem;
     }
 }
 
@@ -482,6 +569,7 @@
     border-radius: var(--nav-radius);
     margin-left: 1rem;
     transition: var(--nav-transition);
+    flex-shrink: 0;
 }
 
 .nav-search:hover {
@@ -496,6 +584,7 @@
     font-size: 0.9rem;
     outline: none;
     width: 200px;
+    min-width: 0;
 }
 
 .nav-search input::placeholder {
@@ -510,6 +599,7 @@
     padding: 0.25rem;
     border-radius: 4px;
     transition: var(--nav-transition);
+    flex-shrink: 0;
 }
 
 .nav-search button:hover {
@@ -577,5 +667,32 @@
 
     .phi-symbol {
         animation: none;
+    }
+}
+
+/* AI Chat Button Integration */
+.ai-chat-trigger {
+    background: linear-gradient(135deg, var(--nav-accent-gold), var(--nav-accent-purple));
+    color: var(--nav-bg-primary);
+    border: none;
+    border-radius: var(--nav-radius);
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--nav-transition);
+    flex-shrink: 0;
+    margin-left: 1rem;
+}
+
+.ai-chat-trigger:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
+}
+
+/* Ensure AI chat button is visible on all screen sizes */
+@media (max-width: 1024px) {
+    .ai-chat-trigger {
+        display: none;
+        /* Hide on mobile as we have floating button */
     }
 }
