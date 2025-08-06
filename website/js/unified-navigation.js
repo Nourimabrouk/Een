@@ -43,7 +43,8 @@ class UnifiedNavigation {
             'mobile-app.html': 'mobile-app',
             'about.html': 'about',
             'al_khwarizmi_phi_unity.html': 'al-khwarizmi-phi-unity',
-            'unity-mathematics-experience.html': 'unity-mathematics-experience'
+            'unity-mathematics-experience.html': 'unity-mathematics-experience',
+            'unity-advanced-features.html': 'unity-advanced-features'
         };
 
         return pageMap[filename] || 'home';
@@ -233,6 +234,7 @@ class UnifiedNavigation {
                         <a href="consciousness_dashboard.html">Consciousness Fields</a>
                         <a href="unity_consciousness_experience.html">Unity Experience</a>
                         <a href="unity-mathematics-experience.html">Unity Mathematics Experience</a>
+                        <a href="unity-advanced-features.html">Unity Advanced Features ⭐</a>
                         <a href="philosophy.html">Philosophy Treatise</a>
                         <a href="unity_visualization.html">Unity Visualizations</a>
                     </div>
