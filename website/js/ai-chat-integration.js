@@ -29,6 +29,7 @@ class EenAIChat {
             'claude-3-5-haiku-20241022'
         ];
 
+        this.isInitialized = false;
         this.initialize();
     }
 
@@ -36,6 +37,7 @@ class EenAIChat {
         this.loadSession();
         this.updateModelSelector();
         this.checkDemoMode();
+        this.isInitialized = true;
     }
 
     async checkDemoMode() {

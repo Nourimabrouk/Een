@@ -67,6 +67,8 @@ class EnhancedEenAIChat {
         this.voiceRecognition = null;
         this.speechSynthesis = null;
 
+        this.isInitialized = false;
+
         // Initialize
         this.initializeChat();
     }
@@ -128,6 +130,7 @@ Ask me anything about unity mathematics, or try:
 • "What is meta-recursive consciousness evolution?"
 
 I'm here to guide you through the transcendental journey of unity mathematics! 🧠✨`);
+        this.isInitialized = true;
     }
 
     createChatInterface() {

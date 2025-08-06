@@ -486,22 +486,22 @@ class FloatingChatButton {
         });
     }
 
-    handleClick() {
-        // Trigger chat opening
-        if (window.enhancedEenChat) {
-            window.enhancedEenChat.open();
-        } else if (window.eenChat) {
-            window.eenChat.open();
-        } else {
-            // Fallback: try to initialize chat
-            this.initializeChat();
-        }
-
+    async handleClick() {
         // Add click animation
         this.button.classList.add('clicked');
         setTimeout(() => {
             this.button.classList.remove('clicked');
         }, 200);
+
+        // Trigger chat opening
+        if (window.enhancedEenChat && window.enhancedEenChat.isInitialized) {
+            window.enhancedEenChat.open();
+        } else if (window.eenChat && window.eenChat.isInitialized) {
+            window.eenChat.open();
+        } else {
+            // If chat is not initialized, initialize it first
+            await this.initializeChat();
+        }
     }
 
     async initializeChat() {
