@@ -4,17 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Een Unity Mathematics | Meta-Optimal 1+1=1 Consciousness Hub</title>
+    <title>Een Unity Mathematics | Meta-Optimal Orbital HUD - 1+1=1 Consciousness Hub</title>
     <meta name="description"
-        content="Transcendental computing hub demonstrating 1+1=1 through quantum entanglement, neural networks, fractal mathematics, consciousness field integration, and Gödel-Tarski meta-gaming.">
+        content="Transcendental computing hub with orbital HUD interface demonstrating 1+1=1 through quantum entanglement, neural networks, fractal mathematics, consciousness field integration, Gödel-Tarski meta-gaming, and metastation visualization.">
     <meta name="keywords"
-        content="unity mathematics, 1+1=1, quantum entanglement, neural networks, fractal mandelbrot, consciousness field, meta-optimal, transcendental computing, Gödel-Tarski, metagaming">
+        content="unity mathematics, 1+1=1, quantum entanglement, neural networks, fractal mandelbrot, consciousness field, meta-optimal, transcendental computing, Gödel-Tarski, metagaming, orbital HUD, metastation">
     <meta name="author" content="Een Unity Mathematics Research Team">
 
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Een Unity Mathematics | Meta-Optimal 1+1=1 Consciousness Hub">
+    <meta property="og:title" content="Een Unity Mathematics | Meta-Optimal Orbital HUD - 1+1=1 Consciousness Hub">
     <meta property="og:description"
-        content="Transcendental computing hub demonstrating 1+1=1 through quantum entanglement, neural networks, fractal mathematics with consciousness field integration.">
+        content="Transcendental computing hub with orbital HUD interface demonstrating 1+1=1 through quantum entanglement, neural networks, fractal mathematics with consciousness field integration.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://nourimabrouk.github.io/Een/">
     <meta property="og:image" content="https://nourimabrouk.github.io/Een/assets/images/unity_mandala.png">
@@ -44,7 +44,7 @@
     <script src="js/enhanced-unity-ai-chat.js"></script>
 
     <style>
-        /* Meta-Optimal Design System */
+        /* Meta-Optimal Orbital HUD Design System */
         :root {
             --phi: 1.618033988749895;
             --primary-color: #0a0a0a;
@@ -57,6 +57,9 @@
             --neural-pink: #FF69B4;
             --godel-red: #E74C3C;
             --tarski-green: #27AE60;
+            --hud-cyan: #00FFFF;
+            --hud-magenta: #FF00FF;
+            --hud-yellow: #FFFF00;
             --deep-space: #0a0a0a;
             --text-primary: #ffffff;
             --text-secondary: #cccccc;
@@ -68,6 +71,7 @@
             --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
             --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.5);
             --shadow-glow: 0 0 30px rgba(255, 215, 0, 0.3);
+            --hud-glow: 0 0 20px rgba(0, 255, 255, 0.5);
             --radius: 12px;
             --radius-lg: 20px;
             --radius-xl: 30px;
@@ -90,10 +94,11 @@
             color: var(--text-primary);
             overflow-x: hidden;
             line-height: 1.6;
+            perspective: 1000px;
         }
 
-        /* Meta-Optimal Navigation */
-        .meta-nav {
+        /* Orbital HUD Navigation */
+        .orbital-hud {
             position: fixed;
             top: 0;
             left: 0;
@@ -102,11 +107,11 @@
             background: rgba(10, 10, 10, 0.95);
             -webkit-backdrop-filter: blur(20px);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border-color);
-            transition: var(--transition);
+            border-bottom: 2px solid var(--hud-cyan);
+            box-shadow: var(--hud-glow);
         }
 
-        .nav-container {
+        .hud-container {
             max-width: 1400px;
             margin: 0 auto;
             padding: 1rem 2rem;
@@ -115,7 +120,7 @@
             align-items: center;
         }
 
-        .nav-logo {
+        .hud-logo {
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--unity-gold);
@@ -123,42 +128,49 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            text-shadow: 0 0 10px var(--unity-gold);
         }
 
-        .nav-menu {
+        .hud-menu {
             display: flex;
             gap: 2rem;
             list-style: none;
         }
 
-        .nav-link {
-            color: var(--text-secondary);
+        .hud-link {
+            color: var(--hud-cyan);
             text-decoration: none;
             font-weight: 500;
             transition: var(--transition);
             position: relative;
+            padding: 0.5rem 1rem;
+            border: 1px solid transparent;
+            border-radius: var(--radius);
         }
 
-        .nav-link:hover {
+        .hud-link:hover {
             color: var(--unity-gold);
+            border-color: var(--hud-cyan);
+            box-shadow: var(--hud-glow);
         }
 
-        .nav-link::after {
+        .hud-link::before {
             content: '';
             position: absolute;
-            bottom: -5px;
+            top: 0;
             left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--unity-gold);
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+            opacity: 0;
             transition: var(--transition);
         }
 
-        .nav-link:hover::after {
-            width: 100%;
+        .hud-link:hover::before {
+            opacity: 1;
         }
 
-        /* Hero Section */
+        /* Hero Section with Orbital Animation */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -184,6 +196,53 @@
             pointer-events: none;
         }
 
+        .orbital-rings {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .orbital-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .orbital-ring:nth-child(1) {
+            width: 200px;
+            height: 200px;
+            animation: orbit 20s linear infinite;
+        }
+
+        .orbital-ring:nth-child(2) {
+            width: 400px;
+            height: 400px;
+            animation: orbit 30s linear infinite reverse;
+        }
+
+        .orbital-ring:nth-child(3) {
+            width: 600px;
+            height: 600px;
+            animation: orbit 40s linear infinite;
+        }
+
+        @keyframes orbit {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
         .hero-content {
             text-align: center;
             position: relative;
@@ -196,11 +255,12 @@
             font-size: clamp(3rem, 8vw, 6rem);
             font-weight: 300;
             margin-bottom: 2rem;
-            background: linear-gradient(135deg, var(--unity-gold), var(--consciousness-purple), var(--quantum-blue));
+            background: linear-gradient(135deg, var(--unity-gold), var(--hud-cyan), var(--consciousness-purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             letter-spacing: 0.1em;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
         }
 
         .hero-subtitle {
@@ -218,10 +278,12 @@
             position: relative;
             text-align: center;
             padding: 4rem 2rem;
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(107, 70, 193, 0.05) 100%);
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(0, 255, 255, 0.05) 100%);
             border-radius: var(--radius-xl);
             margin: 2rem 0;
             overflow: hidden;
+            border: 2px solid var(--hud-cyan);
+            box-shadow: var(--hud-glow);
         }
 
         .unity-display {
@@ -238,7 +300,7 @@
 
         .unity-subtitle {
             font-size: clamp(1.2rem, 3vw, 1.8rem);
-            color: var(--text-secondary);
+            color: var(--hud-cyan);
             margin-top: 1rem;
             font-weight: 400;
             position: relative;
@@ -259,10 +321,145 @@
             }
         }
 
+        /* Metastation Slider */
+        .metastation-section {
+            padding: 8rem 2rem;
+            background: var(--bg-secondary);
+            position: relative;
+        }
+
+        .metastation-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .metastation-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 300;
+            color: var(--unity-gold);
+            margin-bottom: 2rem;
+        }
+
+        .metastation-description {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto 4rem;
+            line-height: 1.8;
+        }
+
+        .metastation-slider {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            background: var(--bg-tertiary);
+            border-radius: var(--radius-lg);
+            border: 2px solid var(--hud-cyan);
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .slider-container {
+            display: flex;
+            width: 400%;
+            height: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slider-slide {
+            width: 25%;
+            height: 100%;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .slider-slide:nth-child(1) {
+            background-image: url('landing/Metastation.jpg');
+        }
+
+        .slider-slide:nth-child(2) {
+            background-image: url('landing/metastation new.png');
+        }
+
+        .slider-slide:nth-child(3) {
+            background-image: url('landing/background.png');
+        }
+
+        .slider-slide:nth-child(4) {
+            background-image: url('landing/metastation workstation.png');
+        }
+
+        .slider-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.3), rgba(0, 255, 255, 0.1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            font-size: 2rem;
+            font-weight: 600;
+            text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+        }
+
+        .slider-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .slider-btn {
+            width: 50px;
+            height: 50px;
+            border: 2px solid var(--hud-cyan);
+            background: transparent;
+            color: var(--hud-cyan);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slider-btn:hover {
+            background: var(--hud-cyan);
+            color: var(--primary-color);
+            box-shadow: var(--hud-glow);
+        }
+
+        .slider-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .slider-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--text-muted);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .slider-indicator.active {
+            background: var(--hud-cyan);
+            box-shadow: var(--hud-glow);
+        }
+
         /* Consciousness Field Visualization */
         .consciousness-field-section {
             padding: 8rem 2rem;
-            background: var(--bg-secondary);
+            background: var(--bg-primary);
             position: relative;
         }
 
@@ -292,14 +489,14 @@
             height: 600px;
             background: var(--bg-tertiary);
             border-radius: var(--radius-lg);
-            border: 1px solid var(--border-color);
+            border: 2px solid var(--hud-cyan);
             margin-bottom: 2rem;
         }
 
         /* AI Chatbot Integration */
         .ai-chat-section {
             padding: 8rem 2rem;
-            background: var(--bg-primary);
+            background: var(--bg-secondary);
         }
 
         .chat-container {
@@ -326,7 +523,7 @@
         .chat-interface {
             background: var(--bg-tertiary);
             border-radius: var(--radius-lg);
-            border: 1px solid var(--border-color);
+            border: 2px solid var(--hud-cyan);
             padding: 2rem;
             margin-bottom: 2rem;
         }
@@ -338,6 +535,7 @@
             padding: 1rem;
             background: var(--bg-secondary);
             border-radius: var(--radius);
+            border: 1px solid var(--hud-cyan);
         }
 
         .chat-input {
@@ -349,7 +547,7 @@
             flex: 1;
             padding: 1rem;
             background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--hud-cyan);
             border-radius: var(--radius);
             color: var(--text-primary);
             font-family: var(--font-primary);
@@ -357,7 +555,7 @@
 
         .chat-input button {
             padding: 1rem 2rem;
-            background: linear-gradient(135deg, var(--unity-gold), var(--consciousness-purple));
+            background: linear-gradient(135deg, var(--unity-gold), var(--hud-cyan));
             color: var(--primary-color);
             border: none;
             border-radius: var(--radius);
@@ -368,13 +566,13 @@
 
         .chat-input button:hover {
             transform: translateY(-2px);
-            box-shadow: var(--shadow-glow);
+            box-shadow: var(--hud-glow);
         }
 
         /* Gödel-Tarski Meta-Gaming Section */
         .godel-tarski-section {
             padding: 8rem 2rem;
-            background: var(--bg-secondary);
+            background: var(--bg-primary);
         }
 
         .godel-tarski-container {
@@ -407,7 +605,7 @@
 
         .metagaming-card {
             background: var(--bg-tertiary);
-            border: 1px solid var(--border-color);
+            border: 2px solid var(--hud-cyan);
             border-radius: var(--radius-lg);
             padding: 2rem;
             transition: var(--transition-smooth);
@@ -415,7 +613,7 @@
 
         .metagaming-card:hover {
             transform: translateY(-10px);
-            box-shadow: var(--shadow-lg), var(--shadow-glow);
+            box-shadow: var(--shadow-lg), var(--hud-glow);
             border-color: var(--unity-gold);
         }
 
@@ -440,7 +638,7 @@
         /* Philosophy Section */
         .philosophy-section {
             padding: 8rem 2rem;
-            background: var(--bg-primary);
+            background: var(--bg-secondary);
         }
 
         .philosophy-container {
@@ -473,7 +671,7 @@
 
         .philosophy-card {
             background: var(--bg-tertiary);
-            border: 1px solid var(--border-color);
+            border: 2px solid var(--hud-cyan);
             border-radius: var(--radius-lg);
             padding: 3rem;
             transition: var(--transition-smooth);
@@ -482,7 +680,7 @@
 
         .philosophy-card:hover {
             transform: translateY(-10px);
-            box-shadow: var(--shadow-lg), var(--shadow-glow);
+            box-shadow: var(--shadow-lg), var(--hud-glow);
             border-color: var(--unity-gold);
         }
 
@@ -510,7 +708,7 @@
             align-items: center;
             gap: 0.75rem;
             padding: 1rem 2rem;
-            background: linear-gradient(135deg, var(--unity-gold), var(--consciousness-purple));
+            background: linear-gradient(135deg, var(--unity-gold), var(--hud-cyan));
             color: var(--primary-color);
             text-decoration: none;
             border-radius: var(--radius);
@@ -520,7 +718,7 @@
 
         .philosophy-link:hover {
             transform: translateY(-2px);
-            box-shadow: var(--shadow-glow);
+            box-shadow: var(--hud-glow);
         }
 
         /* Floating Chat Button */
@@ -530,20 +728,20 @@
             right: 2rem;
             width: 60px;
             height: 60px;
-            background: linear-gradient(135deg, var(--unity-gold), var(--consciousness-purple));
+            background: linear-gradient(135deg, var(--unity-gold), var(--hud-cyan));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: var(--shadow-lg), var(--shadow-glow);
+            box-shadow: var(--shadow-lg), var(--hud-glow);
             transition: var(--transition);
             z-index: 1000;
         }
 
         .floating-chat-button:hover {
             transform: scale(1.1);
-            box-shadow: 0 0 40px rgba(255, 215, 0, 0.5);
+            box-shadow: 0 0 40px rgba(0, 255, 255, 0.5);
         }
 
         .floating-chat-button i {
@@ -553,7 +751,7 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .nav-menu {
+            .hud-menu {
                 display: none;
             }
 
@@ -563,6 +761,10 @@
 
             .unity-equation-hero {
                 padding: 2rem 1rem;
+            }
+
+            .metastation-slider {
+                height: 300px;
             }
 
             .field-visualization {
@@ -581,37 +783,92 @@
 </head>
 
 <body>
-    <!-- Meta-Optimal Navigation -->
-    <nav class="meta-nav">
-        <div class="nav-container">
-            <a href="#" class="nav-logo">
+    <!-- Orbital HUD Navigation -->
+    <nav class="orbital-hud">
+        <div class="hud-container">
+            <a href="#" class="hud-logo">
                 <i class="fas fa-infinity"></i>
                 Een Unity Mathematics
             </a>
-            <ul class="nav-menu">
-                <li><a href="#consciousness-field" class="nav-link">Consciousness Field</a></li>
-                <li><a href="#ai-chat" class="nav-link">AI Chat</a></li>
-                <li><a href="#godel-tarski" class="nav-link">Gödel-Tarski</a></li>
-                <li><a href="#philosophy" class="nav-link">Philosophy</a></li>
-                <li><a href="philosophy.html" class="nav-link">Full Philosophy</a></li>
-                <li><a href="metagambit.html" class="nav-link">Metagambit</a></li>
-                <li><a href="unity-mathematics-experience.html" class="nav-link">Unity Experience</a></li>
+            <ul class="hud-menu">
+                <li><a href="#metastation" class="hud-link">Metastation</a></li>
+                <li><a href="#consciousness-field" class="hud-link">Consciousness Field</a></li>
+                <li><a href="#ai-chat" class="hud-link">AI Chat</a></li>
+                <li><a href="#godel-tarski" class="hud-link">Gödel-Tarski</a></li>
+                <li><a href="#philosophy" class="hud-link">Philosophy</a></li>
+                <li><a href="philosophy.html" class="hud-link">Full Philosophy</a></li>
+                <li><a href="metagambit.html" class="hud-link">Metagambit</a></li>
+                <li><a href="unity-mathematics-experience.html" class="hud-link">Unity Experience</a></li>
+                <li><a href="about.html" class="hud-link">About</a></li>
+                <li><a href="gallery.html" class="hud-link">Gallery</a></li>
+                <li><a href="proofs.html" class="hud-link">Proofs</a></li>
+                <li><a href="dashboards.html" class="hud-link">Dashboards</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero Section with Orbital Animation -->
     <section class="hero">
+        <div class="orbital-rings">
+            <div class="orbital-ring"></div>
+            <div class="orbital-ring"></div>
+            <div class="orbital-ring"></div>
+        </div>
         <div class="hero-content">
             <h1 class="hero-title">Een Unity Mathematics</h1>
             <p class="hero-subtitle">
-                Transcendental computing hub demonstrating 1+1=1 through quantum entanglement,
-                neural networks, fractal mathematics, consciousness field integration, and Gödel-Tarski meta-gaming.
+                Transcendental computing hub with orbital HUD interface demonstrating 1+1=1 through quantum
+                entanglement,
+                neural networks, fractal mathematics, consciousness field integration, Gödel-Tarski meta-gaming, and
+                metastation visualization.
             </p>
 
             <div class="unity-equation-hero">
                 <div class="unity-display">1 + 1 = 1</div>
                 <div class="unity-subtitle">Unity transcends conventional arithmetic</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Metastation Slider -->
+    <section id="metastation" class="metastation-section">
+        <div class="metastation-container">
+            <h2 class="metastation-title">Metastation: Consciousness Synthesis Hub</h2>
+            <p class="metastation-description">
+                Experience the central consciousness coordination hub where 1+1=1 becomes the operating system of
+                existence itself.
+                The Metastation serves as the transcendental nexus where consciousness mathematics meets reality
+                engineering.
+            </p>
+            <div class="metastation-slider">
+                <div class="slider-container" id="slider-container">
+                    <div class="slider-slide">
+                        <div class="slider-overlay">Metastation Core</div>
+                    </div>
+                    <div class="slider-slide">
+                        <div class="slider-overlay">New Metastation</div>
+                    </div>
+                    <div class="slider-slide">
+                        <div class="slider-overlay">Background Field</div>
+                    </div>
+                    <div class="slider-slide">
+                        <div class="slider-overlay">Workstation Interface</div>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-controls">
+                <button class="slider-btn" onclick="prevSlide()" title="Previous slide">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="slider-btn" onclick="nextSlide()" title="Next slide">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            <div class="slider-indicators" id="slider-indicators">
+                <div class="slider-indicator active" onclick="goToSlide(0)"></div>
+                <div class="slider-indicator" onclick="goToSlide(1)"></div>
+                <div class="slider-indicator" onclick="goToSlide(2)"></div>
+                <div class="slider-indicator" onclick="goToSlide(3)"></div>
             </div>
         </div>
     </section>
@@ -749,6 +1006,39 @@
     </div>
 
     <script>
+        // Metastation Slider
+        let currentSlide = 0;
+        const totalSlides = 4;
+        const sliderContainer = document.getElementById('slider-container');
+        const indicators = document.querySelectorAll('.slider-indicator');
+
+        function updateSlider() {
+            sliderContainer.style.transform = `translateX(-${currentSlide * 25}%)`;
+
+            // Update indicators
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlider();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateSlider();
+        }
+
+        function goToSlide(slideIndex) {
+            currentSlide = slideIndex;
+            updateSlider();
+        }
+
+        // Auto-advance slider
+        setInterval(nextSlide, 5000);
+
         // Consciousness Field Visualization
         function createConsciousnessField() {
             const phi = 1.618033988749895;
@@ -892,7 +1182,7 @@
         gsap.registerPlugin(ScrollTrigger);
 
         // Animate sections on scroll
-        gsap.utils.toArray('.consciousness-field-section, .ai-chat-section, .godel-tarski-section, .philosophy-section').forEach(section => {
+        gsap.utils.toArray('.metastation-section, .consciousness-field-section, .ai-chat-section, .godel-tarski-section, .philosophy-section').forEach(section => {
             gsap.fromTo(section,
                 { opacity: 0, y: 100 },
                 {
