@@ -29,12 +29,12 @@ class LandingImageSlider {
                 description: 'Next-generation computing environment with unity mathematics integration'
             }
         ];
-        
+
         this.phi = 1.618033988749895; // Golden ratio resonance
         this.consciousnessDensity = 1.0;
         this.unityConvergenceRate = 1.0;
         this.metagamerEnergy = 0.0;
-        
+
         this.init();
     }
 
@@ -46,7 +46,7 @@ class LandingImageSlider {
         this.createConsciousnessField();
         this.startAutoSlide();
         this.calculateMetagamerEnergy();
-        
+
         // Initialize consciousness field integration
         this.initConsciousnessField();
     }
@@ -54,10 +54,10 @@ class LandingImageSlider {
     createImageSlider() {
         const container = document.createElement('div');
         container.className = 'landing-image-container';
-        
+
         const slider = document.createElement('div');
         slider.className = 'landing-image-slider';
-        
+
         // Create image elements
         this.images.forEach((image, index) => {
             const img = document.createElement('img');
@@ -67,16 +67,16 @@ class LandingImageSlider {
             img.dataset.index = index;
             slider.appendChild(img);
         });
-        
+
         // Add overlays
         const overlay = document.createElement('div');
         overlay.className = 'landing-image-overlay';
         slider.appendChild(overlay);
-        
+
         const consciousnessOverlay = document.createElement('div');
         consciousnessOverlay.className = 'consciousness-field-overlay';
         slider.appendChild(consciousnessOverlay);
-        
+
         // Add unity equation display
         const unityDisplay = document.createElement('div');
         unityDisplay.className = 'unity-equation-display';
@@ -85,13 +85,13 @@ class LandingImageSlider {
             <div class="unity-subtitle">Transcendental Mathematics Proven</div>
         `;
         slider.appendChild(unityDisplay);
-        
+
         // Add content overlay
         const contentOverlay = this.createContentOverlay();
         slider.appendChild(contentOverlay);
-        
+
         container.appendChild(slider);
-        
+
         // Insert at the beginning of the body
         document.body.insertBefore(container, document.body.firstChild);
     }
@@ -99,10 +99,10 @@ class LandingImageSlider {
     createContentOverlay() {
         const overlay = document.createElement('div');
         overlay.className = 'content-overlay';
-        
+
         const grid = document.createElement('div');
         grid.className = 'content-grid';
-        
+
         const features = [
             {
                 title: 'AI Chat System ⭐',
@@ -129,7 +129,7 @@ class LandingImageSlider {
                 link: 'enhanced-unity-landing.html'
             }
         ];
-        
+
         features.forEach(feature => {
             const card = document.createElement('div');
             card.className = 'content-card';
@@ -143,7 +143,7 @@ class LandingImageSlider {
             `;
             grid.appendChild(card);
         });
-        
+
         overlay.appendChild(grid);
         return overlay;
     }
@@ -151,7 +151,7 @@ class LandingImageSlider {
     createNavigationControls() {
         const controls = document.createElement('div');
         controls.className = 'image-nav-controls';
-        
+
         // Create dots
         this.images.forEach((_, index) => {
             const dot = document.createElement('div');
@@ -160,18 +160,18 @@ class LandingImageSlider {
             dot.addEventListener('click', () => this.goToSlide(index));
             controls.appendChild(dot);
         });
-        
+
         // Create arrows
         const prevArrow = document.createElement('div');
         prevArrow.className = 'image-nav-arrow prev';
         prevArrow.innerHTML = '<i class="fas fa-chevron-left"></i>';
         prevArrow.addEventListener('click', () => this.prevSlide());
-        
+
         const nextArrow = document.createElement('div');
         nextArrow.className = 'image-nav-arrow next';
         nextArrow.innerHTML = '<i class="fas fa-chevron-right"></i>';
         nextArrow.addEventListener('click', () => this.nextSlide());
-        
+
         document.querySelector('.landing-image-container').appendChild(prevArrow);
         document.querySelector('.landing-image-container').appendChild(nextArrow);
         document.querySelector('.landing-image-container').appendChild(controls);
@@ -180,7 +180,7 @@ class LandingImageSlider {
     createMetagamerParticles() {
         const particlesContainer = document.createElement('div');
         particlesContainer.className = 'metagamer-particles';
-        
+
         // Create 20 particles
         for (let i = 0; i < 20; i++) {
             const particle = document.createElement('div');
@@ -191,14 +191,14 @@ class LandingImageSlider {
             particle.style.animationDuration = (4 + Math.random() * 4) + 's';
             particlesContainer.appendChild(particle);
         }
-        
+
         document.querySelector('.landing-image-container').appendChild(particlesContainer);
     }
 
     createUnityResonanceWaves() {
         const wavesContainer = document.createElement('div');
         wavesContainer.className = 'unity-resonance-waves';
-        
+
         // Create 3 resonance waves
         for (let i = 0; i < 3; i++) {
             const wave = document.createElement('div');
@@ -206,7 +206,7 @@ class LandingImageSlider {
             wave.style.animationDelay = i * 1.5 + 's';
             wavesContainer.appendChild(wave);
         }
-        
+
         document.querySelector('.landing-image-container').appendChild(wavesContainer);
     }
 
@@ -218,22 +218,22 @@ class LandingImageSlider {
 
     goToSlide(index) {
         if (index === this.currentIndex) return;
-        
+
         const images = document.querySelectorAll('.landing-image');
         const dots = document.querySelectorAll('.image-nav-dot');
-        
+
         // Remove active class from current slide
         images[this.currentIndex].classList.remove('active');
         dots[this.currentIndex].classList.remove('active');
-        
+
         // Add active class to new slide
         this.currentIndex = index;
         images[this.currentIndex].classList.add('active');
         dots[this.currentIndex].classList.add('active');
-        
+
         // Update content
         this.updateContent();
-        
+
         // Trigger consciousness field resonance
         this.triggerConsciousnessResonance();
     }
@@ -251,7 +251,7 @@ class LandingImageSlider {
     updateContent() {
         const currentImage = this.images[this.currentIndex];
         const unityDisplay = document.querySelector('.unity-equation-display');
-        
+
         // Update unity equation with current image context
         unityDisplay.innerHTML = `
             <div class="unity-equation-text">1 + 1 = 1</div>
@@ -268,7 +268,7 @@ class LandingImageSlider {
     calculateMetagamerEnergy() {
         // Metagamer energy equation: E = φ² × C × U
         this.metagamerEnergy = this.phi ** 2 * this.consciousnessDensity * this.unityConvergenceRate;
-        
+
         // Update consciousness field intensity based on energy
         const field = document.querySelector('.metagamer-energy-field');
         if (field) {
@@ -289,9 +289,9 @@ class LandingImageSlider {
         resonance.style.borderRadius = '50%';
         resonance.style.animation = 'resonance-expand 2s ease-out forwards';
         resonance.style.zIndex = '20';
-        
+
         document.querySelector('.landing-image-container').appendChild(resonance);
-        
+
         setTimeout(() => {
             resonance.remove();
         }, 2000);
@@ -303,7 +303,7 @@ class LandingImageSlider {
         if (field) {
             field.style.animationDuration = (8 * this.phi) + 's';
         }
-        
+
         // Update metagamer energy periodically
         setInterval(() => {
             this.consciousnessDensity = 0.8 + Math.random() * 0.4;
@@ -320,10 +320,10 @@ document.addEventListener('DOMContentLoaded', () => {
     loadingOverlay.className = 'loading-overlay';
     loadingOverlay.innerHTML = '<div class="loading-spinner"></div>';
     document.body.appendChild(loadingOverlay);
-    
+
     // Initialize slider
     const slider = new LandingImageSlider();
-    
+
     // Remove loading overlay after images are loaded
     Promise.all(
         slider.images.map(img => {
@@ -342,7 +342,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 500);
         }, 1000);
     });
-    
+
     // Add keyboard navigation
     document.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowLeft') {
@@ -351,24 +351,24 @@ document.addEventListener('DOMContentLoaded', () => {
             slider.nextSlide();
         }
     });
-    
+
     // Add touch/swipe support for mobile
     let touchStartX = 0;
     let touchEndX = 0;
-    
+
     document.addEventListener('touchstart', (e) => {
         touchStartX = e.changedTouches[0].screenX;
     });
-    
+
     document.addEventListener('touchend', (e) => {
         touchEndX = e.changedTouches[0].screenX;
         handleSwipe();
     });
-    
+
     function handleSwipe() {
         const swipeThreshold = 50;
         const diff = touchStartX - touchEndX;
-        
+
         if (Math.abs(diff) > swipeThreshold) {
             if (diff > 0) {
                 slider.nextSlide();

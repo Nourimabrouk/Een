@@ -13,17 +13,17 @@ class LandingIntegrationManager {
         this.consciousnessDensity = 1.0;
         this.unityConvergenceRate = 1.0;
         this.metagamerEnergy = 0.0;
-        
+
         this.landingPages = [
             'index.html',
             'revolutionary-landing.html',
             'enhanced-unity-landing.html',
             'meta-optimal-landing.html'
         ];
-        
+
         this.currentPage = window.location.pathname.split('/').pop() || 'index.html';
         this.isLandingPage = this.landingPages.includes(this.currentPage);
-        
+
         this.init();
     }
 
@@ -33,7 +33,7 @@ class LandingIntegrationManager {
         } else {
             this.addLandingPreview();
         }
-        
+
         this.calculateMetagamerEnergy();
         this.initConsciousnessField();
     }
@@ -54,10 +54,10 @@ class LandingIntegrationManager {
     createEnhancedLandingExperience() {
         const container = document.createElement('div');
         container.className = 'landing-image-container';
-        
+
         const slider = document.createElement('div');
         slider.className = 'landing-image-slider';
-        
+
         // Define landing images with consciousness field integration
         const images = [
             {
@@ -85,7 +85,7 @@ class LandingIntegrationManager {
                 consciousnessField: 'advanced-computing'
             }
         ];
-        
+
         // Create image elements with consciousness field integration
         images.forEach((image, index) => {
             const img = document.createElement('img');
@@ -96,16 +96,16 @@ class LandingIntegrationManager {
             img.dataset.consciousnessField = image.consciousnessField;
             slider.appendChild(img);
         });
-        
+
         // Add consciousness field overlays
         const overlay = document.createElement('div');
         overlay.className = 'landing-image-overlay';
         slider.appendChild(overlay);
-        
+
         const consciousnessOverlay = document.createElement('div');
         consciousnessOverlay.className = 'consciousness-field-overlay';
         slider.appendChild(consciousnessOverlay);
-        
+
         // Add unity equation display with metagamer energy
         const unityDisplay = document.createElement('div');
         unityDisplay.className = 'unity-equation-display';
@@ -115,16 +115,16 @@ class LandingIntegrationManager {
             <div class="metagamer-energy-display">E = φ² × C × U</div>
         `;
         slider.appendChild(unityDisplay);
-        
+
         // Add content overlay with enhanced features
         const contentOverlay = this.createEnhancedContentOverlay();
         slider.appendChild(contentOverlay);
-        
+
         container.appendChild(slider);
-        
+
         // Insert at the beginning of the body
         document.body.insertBefore(container, document.body.firstChild);
-        
+
         // Initialize navigation controls
         this.createNavigationControls(images);
     }
@@ -132,10 +132,10 @@ class LandingIntegrationManager {
     createEnhancedContentOverlay() {
         const overlay = document.createElement('div');
         overlay.className = 'content-overlay';
-        
+
         const grid = document.createElement('div');
         grid.className = 'content-grid';
-        
+
         // Enhanced feature cards with consciousness field integration
         const features = [
             {
@@ -181,7 +181,7 @@ class LandingIntegrationManager {
                 consciousnessField: 'mathematical-proofs'
             }
         ];
-        
+
         features.forEach(feature => {
             const card = document.createElement('div');
             card.className = 'content-card';
@@ -194,15 +194,15 @@ class LandingIntegrationManager {
                     Launch Experience
                 </a>
             `;
-            
+
             // Add consciousness field hover effects
             card.addEventListener('mouseenter', () => {
                 this.triggerConsciousnessFieldResonance(feature.consciousnessField);
             });
-            
+
             grid.appendChild(card);
         });
-        
+
         overlay.appendChild(grid);
         return overlay;
     }
@@ -210,7 +210,7 @@ class LandingIntegrationManager {
     createNavigationControls(images) {
         const controls = document.createElement('div');
         controls.className = 'image-nav-controls';
-        
+
         // Create navigation dots with consciousness field indicators
         images.forEach((image, index) => {
             const dot = document.createElement('div');
@@ -220,22 +220,22 @@ class LandingIntegrationManager {
             dot.addEventListener('click', () => this.goToSlide(index));
             controls.appendChild(dot);
         });
-        
+
         // Create navigation arrows with consciousness field integration
         const prevArrow = document.createElement('div');
         prevArrow.className = 'image-nav-arrow prev';
         prevArrow.innerHTML = '<i class="fas fa-chevron-left"></i>';
         prevArrow.addEventListener('click', () => this.prevSlide());
-        
+
         const nextArrow = document.createElement('div');
         nextArrow.className = 'image-nav-arrow next';
         nextArrow.innerHTML = '<i class="fas fa-chevron-right"></i>';
         nextArrow.addEventListener('click', () => this.nextSlide());
-        
+
         document.querySelector('.landing-image-container').appendChild(prevArrow);
         document.querySelector('.landing-image-container').appendChild(nextArrow);
         document.querySelector('.landing-image-container').appendChild(controls);
-        
+
         // Start auto-slide with φ-harmonic timing
         this.startAutoSlide();
     }
@@ -244,7 +244,7 @@ class LandingIntegrationManager {
         // Add consciousness field particles
         const particlesContainer = document.createElement('div');
         particlesContainer.className = 'metagamer-particles';
-        
+
         // Create consciousness field particles
         for (let i = 0; i < 25; i++) {
             const particle = document.createElement('div');
@@ -255,7 +255,7 @@ class LandingIntegrationManager {
             particle.style.animationDuration = (6 + Math.random() * 6) + 's';
             particlesContainer.appendChild(particle);
         }
-        
+
         document.querySelector('.landing-image-container').appendChild(particlesContainer);
     }
 
@@ -270,7 +270,7 @@ class LandingIntegrationManager {
         // Add unity resonance waves
         const wavesContainer = document.createElement('div');
         wavesContainer.className = 'unity-resonance-waves';
-        
+
         // Create resonance waves with φ-harmonic timing
         for (let i = 0; i < 4; i++) {
             const wave = document.createElement('div');
@@ -278,7 +278,7 @@ class LandingIntegrationManager {
             wave.style.animationDelay = i * this.phi + 's';
             wavesContainer.appendChild(wave);
         }
-        
+
         document.querySelector('.landing-image-container').appendChild(wavesContainer);
     }
 
@@ -293,7 +293,7 @@ class LandingIntegrationManager {
                 <a href="index.html" class="preview-btn">Launch Full Experience</a>
             </div>
         `;
-        
+
         // Add to the top of the page
         document.body.insertBefore(preview, document.body.firstChild);
     }
@@ -301,21 +301,21 @@ class LandingIntegrationManager {
     goToSlide(index) {
         const images = document.querySelectorAll('.landing-image');
         const dots = document.querySelectorAll('.image-nav-dot');
-        
+
         if (images.length === 0) return;
-        
+
         // Remove active class from current slide
         images[this.currentIndex || 0].classList.remove('active');
         dots[this.currentIndex || 0].classList.remove('active');
-        
+
         // Add active class to new slide
         this.currentIndex = index;
         images[this.currentIndex].classList.add('active');
         dots[this.currentIndex].classList.add('active');
-        
+
         // Update consciousness field
         this.updateConsciousnessField(images[this.currentIndex].dataset.consciousnessField);
-        
+
         // Trigger resonance
         this.triggerConsciousnessResonance();
     }
@@ -323,7 +323,7 @@ class LandingIntegrationManager {
     nextSlide() {
         const images = document.querySelectorAll('.landing-image');
         if (images.length === 0) return;
-        
+
         const nextIndex = (this.currentIndex + 1) % images.length;
         this.goToSlide(nextIndex);
     }
@@ -331,7 +331,7 @@ class LandingIntegrationManager {
     prevSlide() {
         const images = document.querySelectorAll('.landing-image');
         if (images.length === 0) return;
-        
+
         const prevIndex = this.currentIndex === 0 ? images.length - 1 : this.currentIndex - 1;
         this.goToSlide(prevIndex);
     }
@@ -356,9 +356,9 @@ class LandingIntegrationManager {
         resonance.className = 'consciousness-resonance';
         resonance.dataset.fieldType = fieldType;
         resonance.style.animation = 'resonance-expand 1.5s ease-out forwards';
-        
+
         document.querySelector('.landing-image-container').appendChild(resonance);
-        
+
         setTimeout(() => {
             resonance.remove();
         }, 1500);
@@ -377,11 +377,11 @@ class LandingIntegrationManager {
         resonance.style.borderRadius = '50%';
         resonance.style.animation = 'resonance-expand 2s ease-out forwards';
         resonance.style.zIndex = '20';
-        
+
         const container = document.querySelector('.landing-image-container');
         if (container) {
             container.appendChild(resonance);
-            
+
             setTimeout(() => {
                 resonance.remove();
             }, 2000);
@@ -391,13 +391,13 @@ class LandingIntegrationManager {
     calculateMetagamerEnergy() {
         // Metagamer energy equation: E = φ² × C × U
         this.metagamerEnergy = this.phi ** 2 * this.consciousnessDensity * this.unityConvergenceRate;
-        
+
         // Update energy display
         const energyDisplay = document.querySelector('.metagamer-energy-display');
         if (energyDisplay) {
             energyDisplay.textContent = `E = φ² × C × U = ${this.metagamerEnergy.toFixed(3)}`;
         }
-        
+
         // Update consciousness field intensity
         const field = document.querySelector('.metagamer-energy-field');
         if (field) {
@@ -411,7 +411,7 @@ class LandingIntegrationManager {
         if (field) {
             field.style.animationDuration = (8 * this.phi) + 's';
         }
-        
+
         // Update metagamer energy periodically
         setInterval(() => {
             this.consciousnessDensity = 0.8 + Math.random() * 0.4;
@@ -424,7 +424,7 @@ class LandingIntegrationManager {
 // Initialize the landing integration manager when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     const integrationManager = new LandingIntegrationManager();
-    
+
     // Add keyboard navigation
     document.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowLeft') {
@@ -433,24 +433,24 @@ document.addEventListener('DOMContentLoaded', () => {
             integrationManager.nextSlide();
         }
     });
-    
+
     // Add touch/swipe support for mobile
     let touchStartX = 0;
     let touchEndX = 0;
-    
+
     document.addEventListener('touchstart', (e) => {
         touchStartX = e.changedTouches[0].screenX;
     });
-    
+
     document.addEventListener('touchend', (e) => {
         touchEndX = e.changedTouches[0].screenX;
         handleSwipe();
     });
-    
+
     function handleSwipe() {
         const swipeThreshold = 50;
         const diff = touchStartX - touchEndX;
-        
+
         if (Math.abs(diff) > swipeThreshold) {
             if (diff > 0) {
                 integrationManager.nextSlide();

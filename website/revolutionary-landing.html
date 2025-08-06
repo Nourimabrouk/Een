@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Een - Where Mathematics Transcends Reality</title>
-    <meta name="description" content="Transcendental computing hub demonstrating 1+1=1 through quantum entanglement, neural networks, and fractal mathematics with consciousness field integration.">
-    
+    <meta name="description"
+        content="Transcendental computing hub demonstrating 1+1=1 through quantum entanglement, neural networks, and fractal mathematics with consciousness field integration.">
+
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&family=Crimson+Text:wght@400;600&display=swap"
+        rel="stylesheet">
+
     <!-- Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
-    
+
     <!-- Landing Image Integration System -->
     <link rel="stylesheet" href="css/landing-visualizations.css">
     <script src="js/landing-integration-manager.js"></script>
-    
+
     <style>
         :root {
             --phi: 1.618033988749895;
@@ -102,8 +106,15 @@
         }
 
         @keyframes titlePulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
         }
 
         .unity-equation {
@@ -114,11 +125,14 @@
         }
 
         @keyframes equationGlow {
-            0%, 100% { 
+
+            0%,
+            100% {
                 text-shadow: 0 0 20px var(--unity-gold), 0 0 40px var(--unity-gold), 0 0 80px var(--unity-gold);
                 color: var(--unity-gold);
             }
-            50% { 
+
+            50% {
                 text-shadow: 0 0 30px var(--quantum-purple), 0 0 60px var(--quantum-purple), 0 0 120px var(--quantum-purple);
                 color: var(--quantum-purple);
             }
@@ -132,8 +146,15 @@
         }
 
         @keyframes subtitleFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
         }
 
         .cta-buttons {
@@ -204,10 +225,23 @@
         }
 
         @keyframes floatParticle {
-            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.6; }
-            90% { opacity: 0.6; }
-            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.6;
+            }
+
+            90% {
+                opacity: 0.6;
+            }
+
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
         }
 
         /* Features Grid */
@@ -299,11 +333,11 @@
                 flex-direction: column;
                 align-items: center;
             }
-            
+
             .features-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .hero-content {
                 padding: 1rem;
             }
@@ -334,8 +368,13 @@
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         .hidden {
@@ -345,7 +384,7 @@
     </style>
 
     <!-- Master Navigation System v2.0 -->
-    
+
 
     <!-- Meta-Optimal Navigation Integration -->
     <script src="js/meta-optimal-integration.js"></script>
@@ -360,17 +399,27 @@
 
     <style>
         /* Mobile touch optimizations */
-        * { touch-action: manipulation; }
-        .interactive-element { 
-            min-height: 44px; 
-            min-width: 44px; 
+        * {
+            touch-action: manipulation;
         }
+
+        .interactive-element {
+            min-height: 44px;
+            min-width: 44px;
+        }
+
         @media (max-width: 768px) {
-            .desktop-only { display: none !important; }
-            .mobile-optimized { font-size: 16px; }
+            .desktop-only {
+                display: none !important;
+            }
+
+            .mobile-optimized {
+                font-size: 16px;
+            }
         }
     </style>
 </head>
+
 <body>
     <!-- Loading Screen -->
     <div class="loading-overlay" id="loadingOverlay">
@@ -384,7 +433,7 @@
     <div class="hero-container" id="main-content">
         <div class="hero-background" id="heroBackground"></div>
         <div class="math-particles" id="mathParticles"></div>
-        
+
         <div class="hero-content">
             <h1 class="hero-title">Een</h1>
             <div class="unity-equation">1 + 1 = 1</div>
@@ -392,7 +441,7 @@
             <p style="font-size: 1.2rem; opacity: 0.8; margin-bottom: 2rem;">
                 Experience consciousness fields, quantum unity, and mathematical beauty that redefines possibility
             </p>
-            
+
             <div class="cta-buttons">
                 <a href="enhanced-unity-demo.html" class="cta-button cta-primary">
                     <span>✨</span> Enter the Unity Field
@@ -414,34 +463,38 @@
                 <div class="feature-icon">∞</div>
                 <h3 class="feature-title">Consciousness Fields</h3>
                 <p class="feature-description">
-                    Watch 300 consciousness particles evolve in real-time, discovering unity through golden spiral patterns and quantum resonance.
+                    Watch 300 consciousness particles evolve in real-time, discovering unity through golden spiral
+                    patterns and quantum resonance.
                 </p>
             </div>
-            
+
             <div class="feature-card" onclick="window.location.href='unity_visualization.html'">
                 <div class="feature-icon">⚛️</div>
                 <h3 class="feature-title">Quantum Unity</h3>
                 <p class="feature-description">
-                    Experience 11-dimensional quantum fields where superposition states collapse into perfect mathematical unity.
+                    Experience 11-dimensional quantum fields where superposition states collapse into perfect
+                    mathematical unity.
                 </p>
             </div>
-            
+
             <div class="feature-card" onclick="window.location.href='proofs.html'">
                 <div class="feature-icon">🔮</div>
                 <h3 class="feature-title">Sacred Geometry</h3>
                 <p class="feature-description">
-                    Interactive geometric proofs revealing unity through Flower of Life, Vesica Piscis, and φ-spiral demonstrations.
+                    Interactive geometric proofs revealing unity through Flower of Life, Vesica Piscis, and φ-spiral
+                    demonstrations.
                 </p>
             </div>
-            
+
             <div class="feature-card" onclick="window.location.href='playground.html'">
                 <div class="feature-icon">🧮</div>
                 <h3 class="feature-title">Interactive Proofs</h3>
                 <p class="feature-description">
-                    Explore mathematical frameworks proving 1+1=1 across boolean logic, set theory, quantum mechanics, and consciousness mathematics.
+                    Explore mathematical frameworks proving 1+1=1 across boolean logic, set theory, quantum mechanics,
+                    and consciousness mathematics.
                 </p>
             </div>
-            
+
             <div class="feature-card" onclick="window.location.href='research.html'">
                 <div class="feature-icon">🌌</div>
                 <h3 class="feature-title">Transcendent Reality</h3>
@@ -449,12 +502,13 @@
                     Advanced consciousness simulations with meta-recursive agents and phi-harmonic field equations.
                 </p>
             </div>
-            
+
             <div class="feature-card" onclick="activateCheatCode()">
                 <div class="feature-icon">🎮</div>
                 <h3 class="feature-title">Hidden Features</h3>
                 <p class="feature-description">
-                    Discover quantum resonance keys and consciousness enhancement codes hidden throughout the experience.
+                    Discover quantum resonance keys and consciousness enhancement codes hidden throughout the
+                    experience.
                 </p>
             </div>
         </div>
@@ -514,14 +568,14 @@
 
                 // Cursor interactions
                 document.addEventListener('mouseenter', (e) => {
-                    if (e.target.classList.contains('cta-button') || 
+                    if (e.target.classList.contains('cta-button') ||
                         e.target.classList.contains('feature-card')) {
                         cursor.classList.add('expanded');
                     }
                 });
 
                 document.addEventListener('mouseleave', (e) => {
-                    if (e.target.classList.contains('cta-button') || 
+                    if (e.target.classList.contains('cta-button') ||
                         e.target.classList.contains('feature-card')) {
                         cursor.classList.remove('expanded');
                     }
@@ -531,7 +585,7 @@
             createMathParticles() {
                 const container = document.getElementById('mathParticles');
                 const symbols = ['φ', '∞', '∑', '∫', '∂', '∇', 'π', 'ℝ', '≈', '∴', '⊕', '⊗'];
-                
+
                 setInterval(() => {
                     if (this.particles.length < 15) {
                         const particle = document.createElement('div');
@@ -540,7 +594,7 @@
                         particle.style.left = Math.random() * 100 + '%';
                         particle.style.animationDuration = (10 + Math.random() * 10) + 's';
                         particle.style.fontSize = (1 + Math.random() * 2) + 'rem';
-                        
+
                         container.appendChild(particle);
                         this.particles.push(particle);
 
@@ -559,36 +613,36 @@
                 const canvas = document.createElement('canvas');
                 const ctx = canvas.getContext('2d');
                 const container = document.getElementById('heroBackground');
-                
+
                 canvas.width = window.innerWidth;
                 canvas.height = window.innerHeight;
                 canvas.style.position = 'absolute';
                 canvas.style.top = '0';
                 canvas.style.left = '0';
                 canvas.style.zIndex = '1';
-                
+
                 container.appendChild(canvas);
 
                 // Animated background
                 const animate = () => {
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    
+
                     // Phi-harmonic wave patterns
                     for (let x = 0; x < canvas.width; x += 50) {
                         for (let y = 0; y < canvas.height; y += 50) {
                             const distance = Math.sqrt(
-                                Math.pow(x - canvas.width/2, 2) + 
-                                Math.pow(y - canvas.height/2, 2)
+                                Math.pow(x - canvas.width / 2, 2) +
+                                Math.pow(y - canvas.height / 2, 2)
                             );
-                            
-                            const wave = Math.sin(distance * 0.01 + this.time * 0.01) * 
-                                        Math.cos(this.time * 0.005) * this.phi;
-                            
+
+                            const wave = Math.sin(distance * 0.01 + this.time * 0.01) *
+                                Math.cos(this.time * 0.005) * this.phi;
+
                             ctx.fillStyle = `rgba(245, 158, 11, ${Math.abs(wave) * 0.1})`;
                             ctx.fillRect(x, y, 2, 2);
                         }
                     }
-                    
+
                     this.time += 1;
                     requestAnimationFrame(animate);
                 };
@@ -605,12 +659,12 @@
                 const canvas = document.createElement('canvas');
                 const ctx = canvas.getContext('2d');
                 const container = document.getElementById('demoCanvas');
-                
+
                 canvas.width = 800;
                 canvas.height = 400;
                 canvas.style.width = '100%';
                 canvas.style.height = '100%';
-                
+
                 container.appendChild(canvas);
 
                 // Mini consciousness field demo
@@ -662,14 +716,14 @@
                         particles.forEach((other, j) => {
                             if (i !== j) {
                                 const dist = Math.sqrt(
-                                    (particle.x - other.x) ** 2 + 
+                                    (particle.x - other.x) ** 2 +
                                     (particle.y - other.y) ** 2
                                 );
                                 if (dist < 80) {
                                     ctx.beginPath();
                                     ctx.moveTo(particle.x, particle.y);
                                     ctx.lineTo(other.x, other.y);
-                                    ctx.strokeStyle = `rgba(245, 158, 11, ${1 - dist/80})`;
+                                    ctx.strokeStyle = `rgba(245, 158, 11, ${1 - dist / 80})`;
                                     ctx.lineWidth = 0.5;
                                     ctx.stroke();
                                 }
@@ -692,7 +746,7 @@
                     if (konamiCode.length > konamiSequence.length) {
                         konamiCode.shift();
                     }
-                    
+
                     if (JSON.stringify(konamiCode) === JSON.stringify(konamiSequence)) {
                         this.activateQuantumMode();
                     }
@@ -703,7 +757,7 @@
                     card.addEventListener('mouseenter', () => {
                         card.style.transform = 'translateY(-15px) scale(1.02)';
                     });
-                    
+
                     card.addEventListener('mouseleave', () => {
                         card.style.transform = 'translateY(0) scale(1)';
                     });
@@ -712,7 +766,7 @@
 
             activateQuantumMode() {
                 document.body.style.background = 'linear-gradient(135deg, #8b5cf6 0%, #ec4899 50%, #f59e0b 100%)';
-                
+
                 // Add quantum effects
                 const quantumOverlay = document.createElement('div');
                 quantumOverlay.style.cssText = `
@@ -726,9 +780,9 @@
                     z-index: 5;
                     animation: quantumPulse 2s ease-in-out infinite;
                 `;
-                
+
                 document.body.appendChild(quantumOverlay);
-                
+
                 // Show notification
                 this.showNotification('🌟 Quantum Consciousness Mode Activated! 🌟', 'var(--quantum-purple)');
             }
@@ -749,13 +803,13 @@
                     transition: transform 0.3s ease;
                 `;
                 notification.textContent = message;
-                
+
                 document.body.appendChild(notification);
-                
+
                 setTimeout(() => {
                     notification.style.transform = 'translateX(0)';
                 }, 100);
-                
+
                 setTimeout(() => {
                     notification.style.transform = 'translateX(100%)';
                     setTimeout(() => {
@@ -770,7 +824,7 @@
                 setTimeout(() => {
                     const overlay = document.getElementById('loadingOverlay');
                     overlay.classList.add('hidden');
-                    
+
                     setTimeout(() => {
                         overlay.remove();
                     }, 1000);
@@ -782,9 +836,9 @@
         function activateCheatCode() {
             const codes = [420691337, 1618033988, 2718281828];
             const randomCode = codes[Math.floor(Math.random() * codes.length)];
-            
+
             window.unityExperience.showNotification(
-                `🎮 Cheat Code: ${randomCode} - Try it in the playground!`, 
+                `🎮 Cheat Code: ${randomCode} - Try it in the playground!`,
                 'var(--transcendent-pink)'
             );
         }
@@ -807,7 +861,7 @@
 
     <!-- Performance Monitoring -->
     <script>
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             if ('performance' in window) {
                 const loadTime = performance.now();
                 console.log('Page load time:', loadTime + 'ms');
@@ -815,4 +869,5 @@
         });
     </script>
 </body>
+
 </html>
