@@ -35,7 +35,7 @@ class MetastationSidebarNav {
             tools: [
                 { id: 'playground', label: 'Unity Playground', href: 'playground.html', icon: '⚡', description: 'Interactive Tools' },
                 { id: 'dashboards', label: 'Dashboards', href: 'dashboards.html', icon: '📊', description: 'Analytics Hub' },
-                { id: 'implementations', label: 'Code Base', href: 'implementations.html', icon: '💻', description: 'Source Code' },
+                { id: 'implementations-gallery', label: 'Code Base', href: 'implementations-gallery.html', icon: '💻', description: 'Source Code' },
                 { id: 'agents', label: 'AI Agents', href: 'agents.html', icon: '🤖', description: 'Autonomous Systems' }
             ],
             knowledge: [
