@@ -151,6 +151,16 @@
     animation: subtitle-pulse 3s ease-in-out infinite;
 }
 
+.metagamer-energy-display {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    color: var(--metagamer-energy);
+    font-weight: 500;
+    margin-top: 1rem;
+    font-family: var(--font-mono, 'JetBrains Mono', monospace);
+    text-shadow: 0 0 20px var(--metagamer-energy);
+    animation: energy-pulse 2s ease-in-out infinite;
+}
+
 @keyframes unity-glow {
     0%, 100% {
         text-shadow: 0 0 50px rgba(255, 215, 0, 0.8);
