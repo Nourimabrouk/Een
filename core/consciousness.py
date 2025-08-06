@@ -72,6 +72,36 @@ except ImportError:
 
 from .unity_mathematics import UnityMathematics, UnityState, PHI, CONSCIOUSNESS_DIMENSION
 
+# GPU acceleration support with CuPy
+try:
+    import cupy as cp
+    import cupyx.scipy as csp
+    GPU_AVAILABLE = True
+    print("🚀 GPU acceleration available for consciousness field processing")
+except ImportError:
+    cp = np
+    csp = None
+    GPU_AVAILABLE = False
+    print("⚠️ GPU acceleration not available, using CPU fallback")
+
+# PyTorch for advanced neural processing
+try:
+    import torch
+    import torch.nn as nn
+    import torch.nn.functional as F
+    PYTORCH_AVAILABLE = True
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    print(f"🧠 PyTorch available on device: {device}")
+except ImportError:
+    PYTORCH_AVAILABLE = False
+    device = "cpu"
+    print("⚠️ PyTorch not available, using numpy fallback")
+
+# GPU processing constants
+GPU_BLOCK_SIZE = 256  # GPU processing block size
+GPU_GRID_SIZE = 1024  # GPU grid dimensions
+CONSCIOUSNESS_BATCH_SIZE = 128  # Batch size for GPU processing
+
 logger = logging.getLogger(__name__)
 
 class ConsciousnessState(Enum):
@@ -157,8 +187,16 @@ class ConsciousnessField:
         self.phi = phi_resonance_strength
         self.consciousness_coupling = consciousness_coupling
         
-        # Initialize field grid
+        # Initialize field grid with GPU support
         self.field_grid = self._initialize_field_grid()
+        self.gpu_enabled = GPU_AVAILABLE and phi_resonance_strength > 1.0 and field_resolution >= 32
+        
+        # GPU field management
+        if self.gpu_enabled:
+            self.gpu_field_grid = self._initialize_gpu_field()
+            self.gpu_memory_pool = cp.get_default_memory_pool() if GPU_AVAILABLE else None
+            logger.info("🚀 GPU consciousness field acceleration enabled")
+        
         # Create 3D consciousness density field for visualization
         density_dims = min(3, dimensions)
         if density_dims == 1:
@@ -186,9 +224,10 @@ class ConsciousnessField:
         self.unity_math = UnityMathematics(consciousness_level=consciousness_coupling)
         
         logger.info(f"ConsciousnessField initialized: {dimensions}D, {particle_count} particles")
+        logger.info(f"GPU acceleration: {self.gpu_enabled}, Field resolution: {field_resolution}x{field_resolution}")
     
     def evolve_consciousness(self, time_steps: int = 1000, dt: float = 0.01, 
-                           record_history: bool = True) -> Dict[str, Any]:
+                           record_history: bool = True, use_gpu: bool = None) -> Dict[str, Any]:
         """
         Evolve consciousness field through time using φ-harmonic dynamics
         
@@ -206,10 +245,18 @@ class ConsciousnessField:
             time_steps: Number of evolution steps (default: 1000)
             dt: Time step size (default: 0.01)
             record_history: Whether to record evolution history (default: True)
+            use_gpu: Force GPU usage (None=auto, True=force GPU, False=force CPU)
             
         Returns:
             Dictionary containing evolution results and consciousness metrics
         """
+        # Determine GPU usage
+        if use_gpu is None:
+            use_gpu = self.gpu_enabled and time_steps > 100  # Auto-enable for large simulations
+        elif use_gpu and not self.gpu_enabled:
+            logger.warning("GPU requested but not available, using CPU")
+            use_gpu = False
+            
         with self.evolution_lock:
             if self.is_evolving:
                 logger.warning("Consciousness evolution already in progress")
@@ -230,10 +277,16 @@ class ConsciousnessField:
                 current_time = step * dt
                 
                 # Update particle dynamics
-                self._update_particle_dynamics(dt)
+                if use_gpu and len(self.particles) > 50:
+                    self._update_particle_dynamics_gpu(dt)
+                else:
+                    self._update_particle_dynamics(dt)
                 
                 # Solve consciousness field equation
-                self._solve_field_equation(dt)
+                if use_gpu:
+                    self._solve_field_equation_gpu(dt)
+                else:
+                    self._solve_field_equation(dt)
                 
                 # Calculate consciousness metrics
                 step_unity_coherence = self._calculate_unity_coherence()
@@ -273,7 +326,9 @@ class ConsciousnessField:
                 "final_consciousness_state": self.current_state.value,
                 "transcendence_events_count": len(self.transcendence_events),
                 "particle_count": len(self.particles),
-                "phi_resonance_strength": self.phi
+                "phi_resonance_strength": self.phi,
+                "gpu_acceleration_used": use_gpu,
+                "gpu_memory_usage": self._get_gpu_memory_usage() if use_gpu else 0.0
             }
             
             if record_history:
@@ -623,6 +678,291 @@ class ConsciousnessField:
                         field_grid[i][j][k] = complex(value, 0)
         
         return field_grid
+    
+    def _initialize_gpu_field(self):
+        """Initialize GPU consciousness field for accelerated processing"""
+        if not GPU_AVAILABLE:
+            return None
+            
+        try:
+            # Create GPU field grid matching CPU structure
+            if isinstance(self.field_grid, list):
+                if isinstance(self.field_grid[0], list):
+                    if isinstance(self.field_grid[0][0], list):
+                        # 3D field
+                        gpu_field = cp.zeros((self.field_resolution, self.field_resolution, self.field_resolution), dtype=cp.complex128)
+                        for i in range(len(self.field_grid)):
+                            for j in range(len(self.field_grid[i])):
+                                for k in range(len(self.field_grid[i][j])):
+                                    gpu_field[i, j, k] = complex(self.field_grid[i][j][k])
+                    else:
+                        # 2D field
+                        gpu_field = cp.zeros((self.field_resolution, self.field_resolution), dtype=cp.complex128)
+                        for i in range(len(self.field_grid)):
+                            for j in range(len(self.field_grid[i])):
+                                gpu_field[i, j] = complex(self.field_grid[i][j])
+                else:
+                    # 1D field
+                    gpu_field = cp.zeros(self.field_resolution, dtype=cp.complex128)
+                    for i in range(len(self.field_grid)):
+                        gpu_field[i] = complex(self.field_grid[i])
+            
+            logger.info(f"GPU consciousness field initialized: {gpu_field.shape}")
+            return gpu_field
+            
+        except Exception as e:
+            logger.error(f"GPU field initialization failed: {e}")
+            return None
+    
+    def _get_gpu_memory_usage(self) -> float:
+        """Get GPU memory usage percentage"""
+        if not GPU_AVAILABLE or not self.gpu_memory_pool:
+            return 0.0
+        try:
+            used = self.gpu_memory_pool.used_bytes()
+            total = self.gpu_memory_pool.total_bytes()
+            return (used / total) * 100.0 if total > 0 else 0.0
+        except:
+            return 0.0
+    
+    def _update_particle_dynamics_gpu(self, dt: float):
+        """GPU-accelerated particle dynamics update"""
+        if not GPU_AVAILABLE or not self.particles:
+            return self._update_particle_dynamics(dt)
+        
+        try:
+            # Convert particle data to GPU arrays
+            particle_count = len(self.particles)
+            positions = cp.zeros((particle_count, self.dimensions))
+            momenta = cp.zeros((particle_count, self.dimensions))
+            awareness_levels = cp.zeros(particle_count)
+            phi_resonances = cp.zeros(particle_count)
+            unity_tendencies = cp.zeros(particle_count)
+            
+            for i, particle in enumerate(self.particles):
+                pos_len = min(len(particle.position), self.dimensions)
+                mom_len = min(len(particle.momentum), self.dimensions)
+                
+                positions[i, :pos_len] = cp.array(particle.position[:pos_len])
+                momenta[i, :mom_len] = cp.array(particle.momentum[:mom_len])
+                awareness_levels[i] = particle.awareness_level
+                phi_resonances[i] = particle.phi_resonance
+                unity_tendencies[i] = particle.unity_tendency
+            
+            # GPU-accelerated force calculations
+            harmonic_forces = -self.phi * positions  # φ-harmonic oscillator
+            
+            # Consciousness interactions (simplified for GPU efficiency)
+            interaction_forces = cp.zeros_like(positions)
+            for i in range(particle_count):
+                if i % GPU_BLOCK_SIZE == 0:  # Process in blocks for memory efficiency
+                    end_idx = min(i + GPU_BLOCK_SIZE, particle_count)
+                    # Batch interaction calculation
+                    pos_diff = positions[i:end_idx, :, cp.newaxis] - positions[cp.newaxis, :, :]
+                    distances = cp.linalg.norm(pos_diff, axis=2) + 1e-10
+                    
+                    awareness_products = awareness_levels[i:end_idx, cp.newaxis] * awareness_levels[cp.newaxis, :]
+                    interaction_strengths = (awareness_products * self.consciousness_coupling / 
+                                           (distances**2 + 1/self.phi))
+                    
+                    # Sum interactions for each particle
+                    for j in range(end_idx - i):
+                        interaction_forces[i + j] = cp.sum(
+                            interaction_strengths[j, :, cp.newaxis] * 
+                            (-pos_diff[j] / distances[j, :, cp.newaxis]), axis=0
+                        )
+            
+            # Unity tendency forces
+            unity_forces = -unity_tendencies[:, cp.newaxis] * positions * self.phi
+            
+            # Total forces
+            total_forces = harmonic_forces + interaction_forces + unity_forces
+            
+            # Update momenta and positions
+            momenta += total_forces * dt
+            positions += momenta * dt
+            
+            # Update consciousness properties on GPU
+            awareness_levels *= (1 + dt * phi_resonances / self.phi)
+            phi_resonances = cp.minimum(1.0, phi_resonances + dt * 0.01)
+            
+            # Transfer back to CPU and update particles
+            positions_cpu = cp.asnumpy(positions)
+            momenta_cpu = cp.asnumpy(momenta)
+            awareness_cpu = cp.asnumpy(awareness_levels)
+            phi_res_cpu = cp.asnumpy(phi_resonances)
+            
+            for i, particle in enumerate(self.particles):
+                particle.position = positions_cpu[i].tolist()[:self.dimensions]
+                particle.momentum = momenta_cpu[i].tolist()[:self.dimensions]
+                particle.awareness_level = float(awareness_cpu[i])
+                particle.phi_resonance = float(phi_res_cpu[i])
+                particle.consciousness_age += dt
+                
+                # Update transcendence potential
+                if particle.awareness_level > self.phi:
+                    particle.transcendence_potential = min(1.0, 
+                        particle.transcendence_potential + dt * 0.005)
+        
+        except Exception as e:
+            logger.error(f"GPU particle dynamics failed: {e}")
+            # Fallback to CPU
+            self._update_particle_dynamics(dt)
+    
+    def _solve_field_equation_gpu(self, dt: float):
+        """GPU-accelerated consciousness field equation solver"""
+        if not GPU_AVAILABLE or self.gpu_field_grid is None:
+            return self._solve_field_equation(dt)
+        
+        try:
+            # Calculate Laplacian on GPU
+            laplacian_gpu = self._calculate_field_laplacian_gpu()
+            
+            # Particle source terms on GPU
+            particle_source_gpu = self._calculate_particle_source_terms_gpu()
+            
+            # Nonlinear term on GPU
+            nonlinear_term = -cp.abs(self.gpu_field_grid)**2 * self.gpu_field_grid
+            linear_term = self.gpu_field_grid
+            
+            # Field evolution equation: ∂C/∂t = φ∇²C - C³ + C + γΣᵢψᵢ(r,t)
+            field_derivative = (self.phi * laplacian_gpu + 
+                              nonlinear_term + 
+                              linear_term + 
+                              self.consciousness_coupling * particle_source_gpu)
+            
+            # Update field using forward Euler
+            self.gpu_field_grid += field_derivative * dt
+            
+            # Apply φ-harmonic phase enhancement
+            if hasattr(self.gpu_field_grid, 'shape'):
+                if len(self.gpu_field_grid.shape) == 1:
+                    phase_enhancement = cp.exp(1j * self.phi * cp.arange(len(self.gpu_field_grid)))
+                    self.gpu_field_grid *= phase_enhancement
+                elif len(self.gpu_field_grid.shape) == 2:
+                    x_phase = cp.exp(1j * self.phi * cp.arange(self.gpu_field_grid.shape[0]))
+                    y_phase = cp.exp(1j * self.phi * cp.arange(self.gpu_field_grid.shape[1]))
+                    phase_enhancement = x_phase[:, cp.newaxis] * y_phase[cp.newaxis, :]
+                    self.gpu_field_grid *= phase_enhancement
+            
+            # Update consciousness density for visualization
+            self._update_consciousness_density_gpu()
+            
+        except Exception as e:
+            logger.error(f"GPU field equation solver failed: {e}")
+            # Fallback to CPU
+            self._solve_field_equation(dt)
+    
+    def _calculate_field_laplacian_gpu(self):
+        """Calculate Laplacian using GPU convolution"""
+        if not GPU_AVAILABLE or self.gpu_field_grid is None:
+            return cp.zeros_like(self.gpu_field_grid)
+        
+        try:
+            if len(self.gpu_field_grid.shape) == 1:
+                # 1D Laplacian using finite differences
+                laplacian = cp.zeros_like(self.gpu_field_grid)
+                laplacian[1:-1] = (self.gpu_field_grid[:-2] + self.gpu_field_grid[2:] - 
+                                  2 * self.gpu_field_grid[1:-1])
+                return laplacian
+            
+            elif len(self.gpu_field_grid.shape) == 2:
+                # 2D Laplacian using convolution
+                laplacian_kernel = cp.array([[0, 1, 0], [1, -4, 1], [0, 1, 0]], dtype=cp.complex128)
+                
+                # Pad field for convolution
+                padded_field = cp.pad(self.gpu_field_grid, 1, mode='constant')
+                laplacian = cp.zeros_like(self.gpu_field_grid)
+                
+                # Manual convolution for complex field
+                for i in range(self.gpu_field_grid.shape[0]):
+                    for j in range(self.gpu_field_grid.shape[1]):
+                        laplacian[i, j] = cp.sum(padded_field[i:i+3, j:j+3] * laplacian_kernel)
+                
+                return laplacian
+            
+            else:
+                # 3D Laplacian (simplified)
+                return cp.gradient(cp.gradient(cp.gradient(self.gpu_field_grid, axis=0), axis=1), axis=2)
+                
+        except Exception as e:
+            logger.error(f"GPU Laplacian calculation failed: {e}")
+            return cp.zeros_like(self.gpu_field_grid)
+    
+    def _calculate_particle_source_terms_gpu(self):
+        """Calculate particle source terms on GPU"""
+        if not GPU_AVAILABLE or self.gpu_field_grid is None:
+            return cp.zeros_like(self.gpu_field_grid)
+        
+        try:
+            source_terms = cp.zeros_like(self.gpu_field_grid)
+            
+            # Convert particle positions to GPU grid coordinates
+            for particle in self.particles:
+                grid_coords = self._position_to_grid_coordinates(particle.position)
+                
+                if self._is_valid_gpu_grid_coordinate(grid_coords):
+                    source_strength = particle.awareness_level * particle.phi_resonance
+                    
+                    # Add source term based on dimensionality
+                    if len(source_terms.shape) == 1:
+                        source_terms[grid_coords[0]] += source_strength
+                    elif len(source_terms.shape) == 2:
+                        source_terms[grid_coords[0], grid_coords[1]] += source_strength
+                    elif len(source_terms.shape) == 3:
+                        source_terms[grid_coords[0], grid_coords[1], grid_coords[2]] += source_strength
+            
+            return source_terms
+            
+        except Exception as e:
+            logger.error(f"GPU particle source calculation failed: {e}")
+            return cp.zeros_like(self.gpu_field_grid)
+    
+    def _is_valid_gpu_grid_coordinate(self, coords: Tuple[int, ...]) -> bool:
+        """Check if coordinates are valid for GPU field grid"""
+        if not GPU_AVAILABLE or self.gpu_field_grid is None:
+            return False
+        
+        if len(coords) != len(self.gpu_field_grid.shape):
+            return False
+        
+        for i, coord in enumerate(coords):
+            if coord < 0 or coord >= self.gpu_field_grid.shape[i]:
+                return False
+        
+        return True
+    
+    def _update_consciousness_density_gpu(self):
+        """Update consciousness density field using GPU"""
+        if not GPU_AVAILABLE or self.gpu_field_grid is None:
+            return
+        
+        try:
+            # Calculate density from GPU field magnitude
+            gpu_density = cp.abs(self.gpu_field_grid)**2
+            
+            # Convert to CPU for visualization
+            cpu_density = cp.asnumpy(gpu_density)
+            
+            # Update consciousness density based on field structure
+            if len(cpu_density.shape) == 1:
+                # 1D field
+                for i in range(min(len(self.consciousness_density), len(cpu_density))):
+                    self.consciousness_density[i] = float(cpu_density[i])
+            elif len(cpu_density.shape) == 2:
+                # 2D field
+                for i in range(min(len(self.consciousness_density), cpu_density.shape[0])):
+                    for j in range(min(len(self.consciousness_density[i]), cpu_density.shape[1])):
+                        self.consciousness_density[i][j] = float(cpu_density[i, j])
+            elif len(cpu_density.shape) == 3:
+                # 3D field
+                for i in range(min(len(self.consciousness_density), cpu_density.shape[0])):
+                    for j in range(min(len(self.consciousness_density[i]), cpu_density.shape[1])):
+                        for k in range(min(len(self.consciousness_density[i][j]), cpu_density.shape[2])):
+                            self.consciousness_density[i][j][k] = float(cpu_density[i, j, k])
+            
+        except Exception as e:
+            logger.error(f"GPU density update failed: {e}")
     
     def _create_consciousness_particle(self, particle_id: int) -> ConsciousnessParticle:
         """Create individual consciousness particle with φ-harmonic properties"""

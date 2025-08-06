@@ -33,6 +33,8 @@
     
     <script src="js/ai-chat-integration.js"></script>
     <script src="js/gallery-loader.js"></script>
+    <script src="js/golden-ratio-3d-enhanced.js"></script>
+    <script src="js/consciousness-field-3d-enhanced.js"></script>
 
     <style>
         :root {
@@ -751,6 +753,32 @@
         }
 
         function createVisualization(item) {
+            // Handle enhanced 3D visualizations that need special containers
+            if (item.enhanced) {
+                const canvas = document.getElementById(item.id);
+                if (canvas) {
+                    const container = canvas.parentElement;
+                    container.innerHTML = `<div id="${item.id}" style="width: 100%; height: 250px;"></div>`;
+                    
+                    if (item.id === 'golden-ratio-3d-enhanced') {
+                        // Initialize the enhanced Golden Ratio 3D visualizer
+                        if (typeof createGoldenRatio3DEnhanced !== 'undefined') {
+                            createGoldenRatio3DEnhanced(item.id);
+                        } else {
+                            createGoldenRatioSpiral3DFallback(item.id);
+                        }
+                    } else if (item.id === 'consciousness-field-3d-enhanced') {
+                        // Initialize the enhanced Consciousness Field 3D visualizer
+                        if (typeof createConsciousnessField3DEnhanced !== 'undefined') {
+                            createConsciousnessField3DEnhanced(item.id);
+                        } else {
+                            createConsciousnessField3DFallback(item.id);
+                        }
+                    }
+                }
+                return;
+            }
+            
             const canvas = document.getElementById(item.id);
             if (!canvas) return;
 
@@ -770,6 +798,106 @@
                     break;
                 default:
                     createDefaultVisualization(ctx, canvas, item);
+            }
+        }
+        
+        function createGoldenRatioSpiral3DFallback(containerId) {
+            // Fallback 2D version if enhanced 3D script not available
+            const container = document.getElementById(containerId);
+            if (container) {
+                container.innerHTML = `
+                    <div style="
+                        width: 100%; 
+                        height: 100%; 
+                        display: flex; 
+                        flex-direction: column;
+                        align-items: center; 
+                        justify-content: center;
+                        background: linear-gradient(135deg, #0F7B8A, #4ECDC4);
+                        color: white;
+                        text-align: center;
+                        border-radius: 0.5rem;
+                    ">
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">🌟</div>
+                        <div style="font-size: 1.2rem; font-weight: bold; margin-bottom: 0.5rem;">
+                            Enhanced 3D φ-Harmonic Explorer
+                        </div>
+                        <div style="font-size: 0.9rem; margin-bottom: 1rem; opacity: 0.9;">
+                            φ = ${((1 + Math.sqrt(5)) / 2).toFixed(6)}
+                        </div>
+                        <button onclick="launchEnhanced3D('${containerId}')" style="
+                            background: rgba(255,255,255,0.2);
+                            border: 1px solid rgba(255,255,255,0.5);
+                            color: white;
+                            padding: 0.5rem 1rem;
+                            border-radius: 0.5rem;
+                            cursor: pointer;
+                            font-size: 0.9rem;
+                            transition: all 0.3s ease;
+                        " onmouseover="this.style.background='rgba(255,255,255,0.3)'" 
+                           onmouseout="this.style.background='rgba(255,255,255,0.2)'">
+                            🚀 Launch Full Explorer
+                        </button>
+                    </div>
+                `;
+            }
+        }
+        
+        function createConsciousnessField3DFallback(containerId) {
+            // Fallback for consciousness field if enhanced 3D script not available
+            const container = document.getElementById(containerId);
+            if (container) {
+                container.innerHTML = `
+                    <div style="
+                        width: 100%; 
+                        height: 100%; 
+                        display: flex; 
+                        flex-direction: column;
+                        align-items: center; 
+                        justify-content: center;
+                        background: radial-gradient(circle at center, rgba(124, 58, 237, 0.1) 0%, rgba(15, 123, 138, 0.05) 100%);
+                        color: #7C3AED;
+                        text-align: center;
+                        border-radius: 0.5rem;
+                        position: relative;
+                        overflow: hidden;
+                    ">
+                        <div style="
+                            position: absolute;
+                            top: -50%;
+                            left: -50%;
+                            width: 200%;
+                            height: 200%;
+                            background: radial-gradient(circle, rgba(124, 58, 237, 0.1) 0%, transparent 70%);
+                            animation: consciousness-pulse 4s ease-in-out infinite;
+                        "></div>
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem; position: relative; z-index: 1;">🧠</div>
+                        <div style="font-size: 1.2rem; font-weight: bold; margin-bottom: 0.5rem; position: relative; z-index: 1;">
+                            Enhanced 3D Consciousness Field
+                        </div>
+                        <div style="font-size: 0.9rem; margin-bottom: 0.5rem; opacity: 0.9; position: relative; z-index: 1;">
+                            C(x,y,t) = φ·sin(x·φ)·cos(y·φ)·e<sup>-t/φ</sup>
+                        </div>
+                        <div style="font-size: 0.8rem; margin-bottom: 1rem; opacity: 0.8; position: relative; z-index: 1;">
+                            φ = ${((1 + Math.sqrt(5)) / 2).toFixed(6)}
+                        </div>
+                        <button onclick="launchEnhanced3D('${containerId}')" style="
+                            background: rgba(124, 58, 237, 0.2);
+                            border: 1px solid rgba(124, 58, 237, 0.5);
+                            color: #7C3AED;
+                            padding: 0.5rem 1rem;
+                            border-radius: 0.5rem;
+                            cursor: pointer;
+                            font-size: 0.9rem;
+                            transition: all 0.3s ease;
+                            position: relative;
+                            z-index: 1;
+                        " onmouseover="this.style.background='rgba(124, 58, 237, 0.3)'" 
+                           onmouseout="this.style.background='rgba(124, 58, 237, 0.2)'">
+                            🧠 Launch Consciousness Explorer
+                        </button>
+                    </div>
+                `;
             }
         }
 
@@ -884,14 +1012,129 @@
             if (!item) return;
 
             if (item.isInteractive) {
-                // For interactive items, show in modal or fullscreen
-                alert(`Launching interactive visualization: ${item.title}`);
+                // Handle enhanced 3D visualizations specially
+                if (item.enhanced) {
+                    launchEnhanced3D(item.id);
+                } else {
+                    // For other interactive items, show in modal or fullscreen
+                    alert(`Launching interactive visualization: ${item.title}`);
+                }
             } else if (item.src) {
                 // For media files, open in new tab
                 window.open(item.src, '_blank');
             } else {
                 alert(`Viewing: ${item.title}`);
             }
+        }
+        
+        function launchEnhanced3D(containerId) {
+            // Create modal for full-featured 3D explorer
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background: rgba(0, 0, 0, 0.9);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 10000;
+                padding: 2rem;
+                box-sizing: border-box;
+            `;
+            
+            const modalContent = document.createElement('div');
+            modalContent.style.cssText = `
+                background: white;
+                border-radius: 1rem;
+                width: 100%;
+                height: 100%;
+                max-width: 1200px;
+                max-height: 800px;
+                position: relative;
+                overflow: hidden;
+                box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            `;
+            
+            const closeButton = document.createElement('button');
+            closeButton.innerHTML = '×';
+            closeButton.style.cssText = `
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                background: rgba(0, 0, 0, 0.5);
+                color: white;
+                border: none;
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                font-size: 1.5rem;
+                cursor: pointer;
+                z-index: 1001;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s ease;
+            `;
+            closeButton.onmouseover = () => closeButton.style.background = 'rgba(220, 38, 38, 0.8)';
+            closeButton.onmouseout = () => closeButton.style.background = 'rgba(0, 0, 0, 0.5)';
+            closeButton.onclick = () => document.body.removeChild(modal);
+            
+            const explorerContainer = document.createElement('div');
+            explorerContainer.id = `modal-${containerId}`;
+            explorerContainer.style.cssText = `
+                width: 100%;
+                height: 100%;
+                padding: 0;
+                margin: 0;
+            `;
+            
+            modalContent.appendChild(closeButton);
+            modalContent.appendChild(explorerContainer);
+            modal.appendChild(modalContent);
+            document.body.appendChild(modal);
+            
+            // Initialize the enhanced 3D visualizer in the modal based on type
+            if (containerId.includes('golden-ratio-3d-enhanced')) {
+                if (typeof createGoldenRatio3DEnhanced !== 'undefined') {
+                    createGoldenRatio3DEnhanced(`modal-${containerId}`);
+                } else {
+                    // Load the script if not available
+                    const script = document.createElement('script');
+                    script.src = 'js/golden-ratio-3d-enhanced.js';
+                    script.onload = () => {
+                        if (typeof createGoldenRatio3DEnhanced !== 'undefined') {
+                            createGoldenRatio3DEnhanced(`modal-${containerId}`);
+                        }
+                    };
+                    document.head.appendChild(script);
+                }
+            } else if (containerId.includes('consciousness-field-3d-enhanced')) {
+                if (typeof createConsciousnessField3DEnhanced !== 'undefined') {
+                    createConsciousnessField3DEnhanced(`modal-${containerId}`);
+                } else {
+                    // Load the script if not available
+                    const script = document.createElement('script');
+                    script.src = 'js/consciousness-field-3d-enhanced.js';
+                    script.onload = () => {
+                        if (typeof createConsciousnessField3DEnhanced !== 'undefined') {
+                            createConsciousnessField3DEnhanced(`modal-${containerId}`);
+                        }
+                    };
+                    document.head.appendChild(script);
+                }
+            }
+            
+            // Handle escape key to close modal
+            const handleEscape = (e) => {
+                if (e.key === 'Escape') {
+                    document.body.removeChild(modal);
+                    document.removeEventListener('keydown', handleEscape);
+                }
+            };
+            document.addEventListener('keydown', handleEscape);
         }
 
         function viewDetails(id) {

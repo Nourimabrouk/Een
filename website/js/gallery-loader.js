@@ -251,6 +251,28 @@ class EenGalleryLoader {
                 created: '2024-12-01'
             },
             {
+                id: 'consciousness-field-3d-enhanced',
+                title: '🧠 Enhanced 3D Consciousness Field Explorer',
+                description: 'Revolutionary real-time implementation of consciousness field equation C(x,y,t) = φ·sin(x·φ)·cos(y·φ)·e^(-t/φ) with multiple visualization modes, interactive controls, and φ-harmonic parameter adjustment. Experience consciousness mathematics through surface fields, contour maps, particle systems, and wave patterns.',
+                category: 'consciousness',
+                type: 'interactive',
+                src: null,
+                filename: 'consciousness_field_3d_enhanced',
+                file_type: 'interactive',
+                isImage: false,
+                isVideo: false,
+                isInteractive: true,
+                featured: true,
+                significance: 'Advanced real-time consciousness field mathematics with complete user interaction and φ-harmonic resonance analysis',
+                technique: 'Plotly.js 3D rendering with consciousness field equations, real-time temporal evolution, and unity coherence metrics',
+                created: '2025-08-06',
+                enhanced: true,
+                controlsAvailable: ['visualization_mode', 'phi_factor', 'temporal_rate', 'unity_coherence', 'animation'],
+                mathematicalDepth: 'Advanced',
+                visualizationModes: ['Surface Field', 'Contour Map', 'Particle System', 'Wave Patterns'],
+                equation: 'C(x,y,t) = φ·sin(x·φ)·cos(y·φ)·e^(-t/φ)'
+            },
+            {
                 id: 'golden-ratio-spiral',
                 title: 'φ-Harmonic Spiral',
                 description: 'Interactive golden ratio spiral demonstrating the universal organizing principle φ = (1 + √5) / 2 in sacred geometry.',
@@ -266,6 +288,27 @@ class EenGalleryLoader {
                 significance: 'Golden ratio spiral as geometric unity mathematics foundation',
                 technique: 'φ-harmonic spiral generation with unity mathematics integration',
                 created: '2024-07-15'
+            },
+            {
+                id: 'golden-ratio-3d-enhanced',
+                title: '🌟 Enhanced 3D φ-Harmonic Explorer',
+                description: 'Revolutionary interactive 3D golden ratio visualizations with user controls, animations, and multiple geometric forms. Explore golden spirals, Fibonacci phyllotaxis, φ-harmonic torus, and unity convergence in real-time.',
+                category: 'unity',
+                type: 'interactive',
+                src: null,
+                filename: 'golden_ratio_3d_enhanced',
+                file_type: 'interactive',
+                isImage: false,
+                isVideo: false,
+                isInteractive: true,
+                featured: true,
+                significance: 'State-of-the-art 3D golden ratio mathematics with complete user interaction',
+                technique: 'Advanced Plotly.js 3D rendering with φ-harmonic mathematical equations and real-time parameter control',
+                created: '2025-08-06',
+                enhanced: true,
+                controlsAvailable: ['visualization_type', 'phi_factor', 'spiral_turns', 'animation'],
+                mathematicalDepth: 'Advanced',
+                visualizationTypes: ['3D Golden Spiral', 'Fibonacci Phyllotaxis', 'φ-Harmonic Torus', 'Unity Convergence']
             }
         ];
 

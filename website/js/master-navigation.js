@@ -17,86 +17,88 @@ class MasterNavigation {
         this.isInitialized = false;
         this.chatInitialized = false;
 
-        // Complete site structure with natural categories
+        // Complete site structure with natural categories - ALL PAGES INCLUDED
         this.siteStructure = {
-            'Mathematics': {
-                icon: 'fas fa-calculator',
-                color: '#667eea',
-                pages: {
-                    'proofs.html': 'Unity Proofs',
-                    '3000-elo-proof.html': 'Advanced Proofs',
-                    'playground.html': 'Interactive Playground',
-                    'mathematical_playground.html': 'Math Playground',
-                    'enhanced-unity-demo.html': 'Unity Demo',
-                    'transcendental-unity-demo.html': '🧠 Transcendental Unity',
-                    'examples/unity-calculator.html': 'Unity Calculator',
-                    'examples/phi-harmonic-explorer.html': 'φ-Harmonic Explorer'
-                }
-            },
-            'Consciousness': {
-                icon: 'fas fa-brain',
-                color: '#764ba2',
-                pages: {
-                    'philosophy.html': 'Philosophy',
-                    'consciousness_dashboard.html': 'Consciousness Dashboard',
-                    'consciousness_dashboard_clean.html': 'Clean Dashboard',
-                    'unity_consciousness_experience.html': 'Unity Experience',
-                    'unity_visualization.html': 'Unity Visualization',
-                    'transcendental-unity-demo.html': '🧠 Transcendental Unity',
-                    'gallery/phi_consciousness_transcendence.html': 'Transcendence Gallery'
-                }
-            },
-            'AI Systems': {
-                icon: 'fas fa-robot',
-                color: '#4a90e2',
-                pages: {
-                    'agents.html': 'AI Agents',
-                    'metagambit.html': 'MetaGambit',
-                    'metagamer_agent.html': 'MetaGamer Agent',
-                    'al_khwarizmi_phi_unity.html': 'Al-Khwarizmi φ Unity',
-                    'revolutionary-landing.html': 'Revolutionary AI',
-                    'meta-optimal-landing.html': 'Meta-Optimal System',
-                    'enhanced-ai-demo.html': '🌟 Enhanced AI Demo',
-                    'consciousness-ai.html': '🧠 Consciousness AI',
-                    'openai-integration.html': '🔗 OpenAI Integration'
-                }
-            },
-            'Transcendental Computing': {
+            'Unity Mathematics': {
                 icon: 'fas fa-infinity',
                 color: '#FFD700',
                 pages: {
-                    'transcendental-unity-demo.html': '🧠 Transcendental Unity Demo',
-                    'consciousness_dashboard.html': 'Consciousness Field',
-                    'unity_visualization.html': 'Unity Visualization'
+                    'proofs.html': '📐 Mathematical Proofs',
+                    '3000-elo-proof.html': '🏆 3000 ELO Advanced Proof',
+                    'playground.html': '🎮 Interactive Playground',
+                    'mathematical_playground.html': '🧮 Mathematical Playground',
+                    'examples/unity-calculator.html': '🔢 Unity Calculator',
+                    'examples/phi-harmonic-explorer.html': '🌀 φ-Harmonic Explorer',
+                    'examples/index.html': '📚 Interactive Examples Hub'
                 }
             },
-            'Research': {
-                icon: 'fas fa-flask',
-                color: '#28a745',
+            'Consciousness & Philosophy': {
+                icon: 'fas fa-brain',
+                color: '#764ba2',
                 pages: {
-                    'research.html': 'Research Overview',
-                    'publications.html': 'Publications',
-                    'implementations.html': 'Implementations',
-                    'dashboards.html': 'Research Dashboards',
-                    'gallery.html': 'Visual Gallery'
+                    'philosophy.html': '🧠 Philosophical Treatise',
+                    'consciousness_dashboard.html': '🌌 Consciousness Dashboard',
+                    'consciousness_dashboard_clean.html': '✨ Clean Consciousness Interface',
+                    'unity_consciousness_experience.html': '🎯 Unity Consciousness Experience',
+                    'unity_visualization.html': '👁️ Unity Visualization',
+                    'unity-mathematics-experience.html': '🌟 Complete Unity Experience'
                 }
             },
-            'Learning': {
+            'Transcendental Demos': {
+                icon: 'fas fa-rocket',
+                color: '#e74c3c',
+                pages: {
+                    'enhanced-unity-demo.html': '🚀 Enhanced Unity Demo',
+                    'transcendental-unity-demo.html': '🧬 Transcendental Unity',
+                    'revolutionary-landing.html': '⚡ Revolutionary AI Landing',
+                    'meta-optimal-landing.html': '🎯 Meta-Optimal System'
+                }
+            },
+            'AI Systems & Integration': {
+                icon: 'fas fa-robot',
+                color: '#3498db',
+                pages: {
+                    'openai-integration.html': '🚀 OpenAI Integration Suite',
+                    'agents.html': '🤖 AI Agents',
+                    'enhanced-ai-demo.html': '🌟 Enhanced AI Demo',
+                    'metagambit.html': '♔ MetaGambit System',
+                    'metagamer_agent.html': '🎮 MetaGamer Agent',
+                    'al_khwarizmi_phi_unity.html': '📜 Al-Khwarizmi φ Unity',
+                    'mobile-app.html': '📱 Mobile Application'
+                }
+            },
+            'Research & Academia': {
+                icon: 'fas fa-university',
+                color: '#27ae60',
+                pages: {
+                    'research.html': '🔬 Research Overview',
+                    'publications.html': '📄 Academic Publications', 
+                    'implementations.html': '💻 Code Implementations',
+                    'dashboards.html': '📊 Research Dashboards'
+                }
+            },
+            'Learning & Education': {
                 icon: 'fas fa-graduation-cap',
                 color: '#f39c12',
                 pages: {
-                    'learn.html': 'Learn Unity Math',
-                    'learning.html': 'Learning Center',
-                    'further-reading.html': 'Further Reading',
-                    'examples/index.html': 'Interactive Examples'
+                    'learn.html': '🎓 Learn Unity Mathematics',
+                    'learning.html': '📖 Learning Center',
+                    'further-reading.html': '📚 Further Reading'
                 }
             },
-            'Tools': {
-                icon: 'fas fa-tools',
-                color: '#6c757d',
+            'Visual Gallery': {
+                icon: 'fas fa-images',
+                color: '#9b59b6',
                 pages: {
-                    'mobile-app.html': 'Mobile App',
-                    'about.html': 'About'
+                    'gallery.html': '🎨 Main Gallery',
+                    'gallery/phi_consciousness_transcendence.html': '🌌 φ Consciousness Transcendence'
+                }
+            },
+            'About & Information': {
+                icon: 'fas fa-info-circle',
+                color: '#95a5a6',
+                pages: {
+                    'about.html': 'ℹ️ About Project'
                 }
             }
         };

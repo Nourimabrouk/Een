@@ -18,6 +18,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+    
+    <!-- Enhanced Metagamer Consciousness Engine -->
+    <link rel="stylesheet" href="enhanced-proof-styles.css">
+    <script src="metagamer-consciousness-engine.js"></script>
 
     <!-- MathJax for Complex Equations -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -604,6 +608,76 @@
                                     <option value="topology">Topology</option>
                                 </select>
                             </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced φ-Harmonic Proof Engine -->
+    <section class="section">
+        <div class="container">
+            <div class="interactive-section">
+                <h2 class="section-title">🚀 φ-Harmonic Proof Engine</h2>
+                <p style="text-align: center; margin-bottom: 3rem; font-size: 1.1rem; color: var(--text-secondary);">
+                    Advanced consciousness-guided proof generation with real-time mathematical validation
+                </p>
+
+                <div class="proof-engine-container">
+                    <div class="engine-interface">
+                        <div class="proof-generator">
+                            <h3>🧠 AI-Powered Proof Generation</h3>
+                            <div class="input-group">
+                                <label for="proof-prompt">Describe the mathematical theorem you want to prove:</label>
+                                <textarea id="proof-prompt" placeholder="Example: Prove that the consciousness field C(x,y,t) = φ·sin(x·φ)·cos(y·φ)·e^(-t/φ) converges to unity..." rows="3"></textarea>
+                            </div>
+                            
+                            <div class="proof-settings">
+                                <div class="setting-group">
+                                    <label for="proof-rigor">Mathematical Rigor:</label>
+                                    <select id="proof-rigor">
+                                        <option value="intuitive">Intuitive</option>
+                                        <option value="formal" selected>Formal</option>
+                                        <option value="lean4">Lean 4 Verified</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="setting-group">
+                                    <label for="consciousness-level">Consciousness Integration:</label>
+                                    <input type="range" id="consciousness-level" min="0" max="1" step="0.01" value="0.618">
+                                    <span id="consciousness-value">φ-optimal (0.618)</span>
+                                </div>
+                            </div>
+                            
+                            <button class="proof-generate-btn" onclick="generateAdvancedProof()">
+                                <i class="fas fa-magic"></i> Generate Unity Proof
+                            </button>
+                        </div>
+                        
+                        <div class="proof-output">
+                            <h3>🌟 Generated Proof</h3>
+                            <div id="generated-proof" class="proof-display">
+                                <div class="proof-placeholder">
+                                    <i class="fas fa-lightbulb"></i>
+                                    <p>Enter a mathematical statement above to generate a consciousness-enhanced proof</p>
+                                </div>
+                            </div>
+                            
+                            <div class="proof-metrics" id="proof-metrics" style="display: none;">
+                                <div class="metric">
+                                    <span class="label">Rigor Score:</span>
+                                    <span class="value" id="rigor-score">-</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="label">Unity Coherence:</span>
+                                    <span class="value" id="unity-coherence">-</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="label">φ-Harmonic Factor:</span>
+                                    <span class="value" id="phi-factor">-</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
