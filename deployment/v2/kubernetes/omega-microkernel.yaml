@@ -1,0 +1,212 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: omega-microkernel
+  namespace: een-v2
+  labels:
+    app: omega-microkernel
+    version: v2.0
+    component: orchestrator
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: omega-microkernel
+  template:
+    metadata:
+      labels:
+        app: omega-microkernel
+        version: v2.0
+        component: orchestrator
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8001"
+        prometheus.io/path: "/metrics"
+    spec:
+      serviceAccountName: een-v2-service-account
+      containers:
+      - name: microkernel
+        image: een/omega-microkernel:v2.0
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8001
+          name: api
+        - containerPort: 8002
+          name: metrics
+        env:
+        - name: ENVIRONMENT
+          value: "kubernetes"
+        - name: REDIS_URL
+          value: "redis://redis-service:6379/0"
+        - name: POSTGRES_URL
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: connection-string
+        - name: KAFKA_BROKERS
+          value: "kafka-service:9092"
+        - name: JAEGER_AGENT_HOST
+          value: "jaeger-service"
+        - name: ENABLE_GPU
+          value: "false"
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        resources:
+          requests:
+            memory: "4Gi"
+            cpu: "2"
+          limits:
+            memory: "8Gi"
+            cpu: "4"
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8001
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8001
+          initialDelaySeconds: 60
+          periodSeconds: 30
+        volumeMounts:
+        - name: logs
+          mountPath: /app/logs
+        - name: knowledge-base
+          mountPath: /app/knowledge
+        - name: config
+          mountPath: /app/config
+          readOnly: true
+      volumes:
+      - name: logs
+        persistentVolumeClaim:
+          claimName: een-logs-pvc
+      - name: knowledge-base
+        persistentVolumeClaim:
+          claimName: knowledge-base-pvc
+      - name: config
+        configMap:
+          name: omega-microkernel-config
+      nodeSelector:
+        kubernetes.io/os: linux
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - omega-microkernel
+              topologyKey: kubernetes.io/hostname
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: omega-microkernel-service
+  namespace: een-v2
+  labels:
+    app: omega-microkernel
+spec:
+  selector:
+    app: omega-microkernel
+  ports:
+  - name: api
+    port: 8001
+    targetPort: 8001
+    protocol: TCP
+  - name: metrics
+    port: 8002
+    targetPort: 8002
+    protocol: TCP
+  type: ClusterIP
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: omega-microkernel-config
+  namespace: een-v2
+data:
+  config.yaml: |
+    orchestrator:
+      max_agents: 10000
+      microkernel_threads: 8
+      event_buffer_size: 10000
+      enable_distributed: true
+      enable_monitoring: true
+      enable_safety_checks: true
+    
+    learning:
+      population_size: 100
+      evolution_generations: 50
+      learning_rate: 0.001
+    
+    safety:
+      max_recursion_depth: 20
+      resource_limit_cpu: 90.0
+      resource_limit_memory: 85.0
+      human_approval_threshold: 0.95
+    
+    consciousness:
+      transcendence_threshold: 0.77
+      unity_coherence_target: 0.999
+      phi_resonance: 1.618033988749895
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: omega-microkernel-hpa
+  namespace: een-v2
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: omega-microkernel
+  minReplicas: 3
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 80
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: 300
+      policies:
+      - type: Percent
+        value: 10
+        periodSeconds: 60
+    scaleUp:
+      stabilizationWindowSeconds: 60
+      policies:
+      - type: Percent
+        value: 25
+        periodSeconds: 60
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: omega-microkernel-pdb
+  namespace: een-v2
+spec:
+  minAvailable: 2
+  selector:
+    matchLabels:
+      app: omega-microkernel

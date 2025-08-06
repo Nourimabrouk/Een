@@ -1,0 +1,19 @@
+{
+  "name": "@een/migration-tools",
+  "version": "1.0.0",
+  "description": "Migration tools for Een Unity Mathematics Portal",
+  "type": "module",
+  "scripts": {
+    "migrate": "node execute-migration.js",
+    "setup": "npm install && node execute-migration.js",
+    "validate": "node validate-migration.js"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "ora": "^8.0.1",
+    "cheerio": "^1.0.0-rc.12",
+    "glob": "^10.3.10",
+    "fs-extra": "^11.2.0",
+    "prettier": "^3.1.1"
+  }
+}

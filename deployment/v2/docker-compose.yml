@@ -1,0 +1,552 @@
+# Een Unity Mathematics v2.0 - Distributed Microservices
+# ====================================================
+# 
+# This Docker Compose configuration deploys the Een v2.0 system
+# with full microservices architecture, advanced monitoring,
+# and distributed agent execution.
+
+version: '3.9'
+
+networks:
+  een-v2:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.30.0.0/16
+
+volumes:
+  postgres-data:
+    driver: local
+  redis-data:
+    driver: local
+  prometheus-data:
+    driver: local
+  grafana-data:
+    driver: local
+  knowledge-base-data:
+    driver: local
+  jaeger-data:
+    driver: local
+  een-logs:
+    driver: local
+
+services:
+  # ============================================================================
+  # CORE ORCHESTRATOR SERVICES
+  # ============================================================================
+  
+  omega-microkernel:
+    build:
+      context: ../..
+      dockerfile: deployment/v2/Dockerfile.microkernel
+    container_name: een-omega-microkernel
+    restart: unless-stopped
+    environment:
+      - ENVIRONMENT=production
+      - REDIS_URL=redis://redis:6379/0
+      - POSTGRES_URL=postgresql://een:${POSTGRES_PASSWORD:-een_unity_2024}@postgres:5432/een
+      - KAFKA_BROKERS=kafka:9092
+      - JAEGER_AGENT_HOST=jaeger
+      - ENABLE_GPU=${ENABLE_GPU:-false}
+    ports:
+      - "8001:8001"  # Microkernel API
+    volumes:
+      - een-logs:/app/logs
+      - knowledge-base-data:/app/knowledge
+    depends_on:
+      - postgres
+      - redis
+      - kafka
+      - jaeger
+    deploy:
+      resources:
+        limits:
+          cpus: '4'
+          memory: 8G
+        reservations:
+          cpus: '2'
+          memory: 4G
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - een-v2
+
+  # Agent execution workers
+  agent-worker-1:
+    build:
+      context: ../..
+      dockerfile: deployment/v2/Dockerfile.agent-worker
+    container_name: een-agent-worker-1
+    restart: unless-stopped
+    environment:
+      - WORKER_ID=worker-1
+      - ORCHESTRATOR_URL=http://omega-microkernel:8001
+      - REDIS_URL=redis://redis:6379/1
+      - KAFKA_BROKERS=kafka:9092
+    volumes:
+      - een-logs:/app/logs
+    depends_on:
+      - omega-microkernel
+      - redis
+      - kafka
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 4G
+        reservations:
+          cpus: '1'
+          memory: 2G
+    networks:
+      - een-v2
+
+  agent-worker-2:
+    build:
+      context: ../..
+      dockerfile: deployment/v2/Dockerfile.agent-worker
+    container_name: een-agent-worker-2
+    restart: unless-stopped
+    environment:
+      - WORKER_ID=worker-2
+      - ORCHESTRATOR_URL=http://omega-microkernel:8001
+      - REDIS_URL=redis://redis:6379/2
+      - KAFKA_BROKERS=kafka:9092
+    volumes:
+      - een-logs:/app/logs
+    depends_on:
+      - omega-microkernel
+      - redis
+      - kafka
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 4G
+        reservations:
+          cpus: '1'
+          memory: 2G
+    networks:
+      - een-v2
+
+  # Meta-RL Training Service
+  meta-rl-trainer:
+    build:
+      context: ../..
+      dockerfile: deployment/v2/Dockerfile.meta-rl
+    container_name: een-meta-rl-trainer
+    restart: unless-stopped
+    environment:
+      - TRAINING_MODE=continuous
+      - POPULATION_SIZE=100
+      - ORCHESTRATOR_URL=http://omega-microkernel:8001
+      - ENABLE_GPU=${ENABLE_GPU:-false}
+    ports:
+      - "8002:8002"  # Training API
+    volumes:
+      - een-logs:/app/logs
+      - ./checkpoints:/app/checkpoints
+    depends_on:
+      - omega-microkernel
+    deploy:
+      resources:
+        limits:
+          cpus: '4'
+          memory: 16G
+        reservations:
+          cpus: '2'
+          memory: 8G
+    networks:
+      - een-v2
+
+  # ============================================================================
+  # EXPERT AGENT SERVICES
+  # ============================================================================
+
+  theorem-prover-service:
+    build:
+      context: ../..
+      dockerfile: deployment/v2/Dockerfile.theorem-prover
+    container_name: een-theorem-prover
+    restart: unless-stopped
+    environment:
+      - AGENT_TYPE=FormalTheoremProverAgent
+      - ORCHESTRATOR_URL=http://omega-microkernel:8001
+      - LEAN_PATH=/opt/lean
+    volumes:
+      - een-logs:/app/logs
+      - ./proofs:/app/proofs
+    depends_on:
+      - omega-microkernel
+    networks:
+      - een-v2
+
+  coding-agent-service:
+    build:
+      context: ../..
+      dockerfile: deployment/v2/Dockerfile.coding-agent
+    container_name: een-coding-agent
+    restart: unless-stopped
+    environment:
+      - AGENT_TYPE=CodingAgent
+      - ORCHESTRATOR_URL=http://omega-microkernel:8001
+      - CLAUDE_API_KEY=${CLAUDE_API_KEY}
+      - GIT_REPO_PATH=/app/workspace
+    volumes:
+      - een-logs:/app/logs
+      - ./workspace:/app/workspace
+    depends_on:
+      - omega-microkernel
+    networks:
+      - een-v2
+
+  data-science-service:
+    build:
+      context: ../..
+      dockerfile: deployment/v2/Dockerfile.data-science
+    container_name: een-data-science
+    restart: unless-stopped
+    environment:
+      - AGENT_TYPE=DataScienceAgent
+      - ORCHESTRATOR_URL=http://omega-microkernel:8001
+      - JUPYTER_ENABLE=false
+    ports:
+      - "8888:8888"  # Jupyter (optional)
+    volumes:
+      - een-logs:/app/logs
+      - ./notebooks:/app/notebooks
+    depends_on:
+      - omega-microkernel
+    networks:
+      - een-v2
+
+  philosopher-service:
+    build:
+      context: ../..
+      dockerfile: deployment/v2/Dockerfile.philosopher
+    container_name: een-philosopher
+    restart: unless-stopped
+    environment:
+      - AGENT_TYPE=PhilosopherAgent
+      - ORCHESTRATOR_URL=http://omega-microkernel:8001
+      - MEDITATION_INTERVAL=3600  # 1 hour
+    volumes:
+      - een-logs:/app/logs
+      - knowledge-base-data:/app/knowledge
+    depends_on:
+      - omega-microkernel
+    networks:
+      - een-v2
+
+  # ============================================================================
+  # INFRASTRUCTURE SERVICES
+  # ============================================================================
+
+  # PostgreSQL database
+  postgres:
+    image: postgres:16-alpine
+    container_name: een-postgres-v2
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=een_v2
+      - POSTGRES_USER=een
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-een_unity_2024}
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U een -d een_v2"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - een-v2
+
+  # Redis cache and message broker
+  redis:
+    image: redis:7-alpine
+    container_name: een-redis-v2
+    restart: unless-stopped
+    command: >
+      redis-server 
+      --appendonly yes 
+      --maxmemory 2gb 
+      --maxmemory-policy allkeys-lru
+      --databases 16
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - een-v2
+
+  # Apache Kafka for event streaming
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.4.0
+    container_name: een-zookeeper
+    restart: unless-stopped
+    environment:
+      - ZOOKEEPER_CLIENT_PORT=2181
+      - ZOOKEEPER_TICK_TIME=2000
+    volumes:
+      - ./zookeeper-data:/var/lib/zookeeper/data
+    networks:
+      - een-v2
+
+  kafka:
+    image: confluentinc/cp-kafka:7.4.0
+    container_name: een-kafka
+    restart: unless-stopped
+    depends_on:
+      - zookeeper
+    environment:
+      - KAFKA_BROKER_ID=1
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
+      - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
+      - KAFKA_AUTO_CREATE_TOPICS_ENABLE=true
+    ports:
+      - "9092:9092"
+    volumes:
+      - ./kafka-data:/var/lib/kafka/data
+    networks:
+      - een-v2
+
+  # Vector database for knowledge base
+  qdrant:
+    image: qdrant/qdrant:v1.7.0
+    container_name: een-qdrant
+    restart: unless-stopped
+    ports:
+      - "6333:6333"
+      - "6334:6334"
+    volumes:
+      - knowledge-base-data:/qdrant/storage
+    environment:
+      - QDRANT__SERVICE__HTTP_PORT=6333
+      - QDRANT__SERVICE__GRPC_PORT=6334
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:6333/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - een-v2
+
+  # ============================================================================
+  # MONITORING AND OBSERVABILITY
+  # ============================================================================
+
+  # Jaeger tracing
+  jaeger:
+    image: jaegertracing/all-in-one:1.50
+    container_name: een-jaeger
+    restart: unless-stopped
+    environment:
+      - COLLECTOR_OTLP_ENABLED=true
+      - COLLECTOR_ZIPKIN_HTTP_PORT=9411
+    ports:
+      - "16686:16686"  # Jaeger UI
+      - "14268:14268"  # Jaeger collector
+      - "14250:14250"  # Jaeger gRPC
+      - "4317:4317"    # OTLP gRPC
+      - "4318:4318"    # OTLP HTTP
+    volumes:
+      - jaeger-data:/tmp
+    networks:
+      - een-v2
+
+  # Prometheus monitoring
+  prometheus:
+    image: prom/prometheus:v2.48.0
+    container_name: een-prometheus-v2
+    restart: unless-stopped
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+      - '--storage.tsdb.retention.time=30d'
+      - '--web.enable-lifecycle'
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    depends_on:
+      - omega-microkernel
+    networks:
+      - een-v2
+
+  # Grafana dashboards
+  grafana:
+    image: grafana/grafana:10.2.0
+    container_name: een-grafana-v2
+    restart: unless-stopped
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD:-een_admin_2024}
+      - GF_USERS_ALLOW_SIGN_UP=false
+      - GF_INSTALL_PLUGINS=grafana-piechart-panel,grafana-worldmap-panel
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
+      - grafana-data:/var/lib/grafana
+    depends_on:
+      - prometheus
+    networks:
+      - een-v2
+
+  # OpenTelemetry Collector
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:0.89.0
+    container_name: een-otel-collector
+    restart: unless-stopped
+    command: ["--config=/etc/otel-collector-config.yaml"]
+    ports:
+      - "4317:4317"   # OTLP gRPC receiver
+      - "4318:4318"   # OTLP HTTP receiver
+      - "8889:8889"   # Prometheus metrics
+    volumes:
+      - ./monitoring/otel-collector-config.yaml:/etc/otel-collector-config.yaml:ro
+    depends_on:
+      - jaeger
+      - prometheus
+    networks:
+      - een-v2
+
+  # ============================================================================
+  # API GATEWAY AND WEB SERVICES
+  # ============================================================================
+
+  # Nginx reverse proxy and load balancer
+  nginx:
+    image: nginx:1.25-alpine
+    container_name: een-nginx-v2
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+      - ./static:/usr/share/nginx/html/static:ro
+    depends_on:
+      - omega-microkernel
+      - meta-rl-trainer
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - een-v2
+
+  # Unity Dashboard v2
+  unity-dashboard-v2:
+    build:
+      context: ../..
+      dockerfile: deployment/v2/Dockerfile.dashboard
+    container_name: een-dashboard-v2
+    restart: unless-stopped
+    environment:
+      - DASHBOARD_VERSION=2.0
+      - ORCHESTRATOR_URL=http://omega-microkernel:8001
+      - ENABLE_REALTIME=true
+    ports:
+      - "8050:8050"
+    volumes:
+      - een-logs:/app/logs
+    depends_on:
+      - omega-microkernel
+    networks:
+      - een-v2
+
+  # MCP Server for Claude integration
+  mcp-server:
+    build:
+      context: ../..
+      dockerfile: deployment/v2/Dockerfile.mcp
+    container_name: een-mcp-server-v2
+    restart: unless-stopped
+    environment:
+      - MCP_VERSION=2.0
+      - ORCHESTRATOR_URL=http://omega-microkernel:8001
+      - ENABLE_ADVANCED_TOOLS=true
+    ports:
+      - "3001:3001"
+    volumes:
+      - een-logs:/app/logs
+    depends_on:
+      - omega-microkernel
+    networks:
+      - een-v2
+
+  # ============================================================================
+  # UTILITY SERVICES
+  # ============================================================================
+
+  # Health check service
+  health-monitor:
+    build:
+      context: ../..
+      dockerfile: deployment/v2/Dockerfile.health-monitor
+    container_name: een-health-monitor
+    restart: unless-stopped
+    environment:
+      - CHECK_INTERVAL=30
+      - ALERT_WEBHOOK=${SLACK_WEBHOOK_URL}
+    volumes:
+      - een-logs:/app/logs
+    depends_on:
+      - omega-microkernel
+      - postgres
+      - redis
+    networks:
+      - een-v2
+
+  # Log aggregator
+  fluentd:
+    image: fluent/fluentd:v1.16-debian-1
+    container_name: een-fluentd
+    restart: unless-stopped
+    volumes:
+      - ./monitoring/fluentd.conf:/fluentd/etc/fluent.conf:ro
+      - een-logs:/var/log/een
+    ports:
+      - "24224:24224"
+      - "24224:24224/udp"
+    networks:
+      - een-v2
+
+  # Backup service
+  backup-service:
+    build:
+      context: ../..
+      dockerfile: deployment/v2/Dockerfile.backup
+    container_name: een-backup-service
+    restart: unless-stopped
+    environment:
+      - BACKUP_SCHEDULE=0 2 * * *  # Daily at 2 AM
+      - S3_BUCKET=${BACKUP_S3_BUCKET}
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+    volumes:
+      - postgres-data:/backup/postgres:ro
+      - knowledge-base-data:/backup/knowledge:ro
+      - prometheus-data:/backup/prometheus:ro
+    depends_on:
+      - postgres
+      - qdrant
+    networks:
+      - een-v2

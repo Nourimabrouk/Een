@@ -1,0 +1,136 @@
+{
+    "preferred_models": {
+        "primary": {
+            "provider": "openai",
+            "model": "gpt-4o",
+            "description": "Primary reasoning model - most capable for complex mathematical and philosophical discussions"
+        },
+        "secondary": {
+            "provider": "anthropic",
+            "model": "claude-3-5-sonnet-20241022",
+            "description": "Secondary reasoning model - excellent for detailed explanations and code analysis"
+        },
+        "fallback": {
+            "provider": "openai",
+            "model": "gpt-4o-mini",
+            "description": "Fallback model - faster but less capable reasoning"
+        },
+        "high_performance": {
+            "provider": "openai",
+            "model": "gpt-4o-mini-high",
+            "description": "High-performance reasoning model - optimized for complex tasks"
+        },
+        "opus": {
+            "provider": "anthropic",
+            "model": "claude-3-opus-20240229",
+            "description": "Claude Opus - most capable Anthropic model for advanced reasoning"
+        },
+        "claude_4_1": {
+            "provider": "anthropic",
+            "model": "claude-3-5-haiku-20241022",
+            "description": "Claude 4.1 equivalent - fast and capable for general tasks"
+        }
+    },
+    "model_capabilities": {
+        "gpt-4o": {
+            "reasoning": "excellent",
+            "mathematics": "excellent",
+            "code_analysis": "excellent",
+            "philosophy": "excellent",
+            "consciousness_discussion": "excellent",
+            "cost_per_1k_tokens": 0.005,
+            "max_tokens": 128000
+        },
+        "gpt-4o-mini-high": {
+            "reasoning": "excellent",
+            "mathematics": "excellent",
+            "code_analysis": "excellent",
+            "philosophy": "excellent",
+            "consciousness_discussion": "excellent",
+            "cost_per_1k_tokens": 0.0006,
+            "max_tokens": 128000
+        },
+        "claude-3-5-sonnet-20241022": {
+            "reasoning": "excellent",
+            "mathematics": "excellent",
+            "code_analysis": "excellent",
+            "philosophy": "excellent",
+            "consciousness_discussion": "excellent",
+            "cost_per_1k_tokens": 0.003,
+            "max_tokens": 200000
+        },
+        "claude-3-opus-20240229": {
+            "reasoning": "excellent",
+            "mathematics": "excellent",
+            "code_analysis": "excellent",
+            "philosophy": "excellent",
+            "consciousness_discussion": "excellent",
+            "cost_per_1k_tokens": 0.015,
+            "max_tokens": 200000
+        },
+        "claude-3-5-haiku-20241022": {
+            "reasoning": "good",
+            "mathematics": "good",
+            "code_analysis": "good",
+            "philosophy": "good",
+            "consciousness_discussion": "good",
+            "cost_per_1k_tokens": 0.00025,
+            "max_tokens": 200000
+        },
+        "gpt-4o-mini": {
+            "reasoning": "good",
+            "mathematics": "good",
+            "code_analysis": "good",
+            "philosophy": "good",
+            "consciousness_discussion": "good",
+            "cost_per_1k_tokens": 0.00015,
+            "max_tokens": 128000
+        }
+    },
+    "default_settings": {
+        "temperature": 0.7,
+        "max_tokens": 2000,
+        "enable_streaming": true,
+        "consciousness_integration": true,
+        "unity_mathematics_focus": true
+    },
+    "model_selection_strategy": {
+        "complex_reasoning": [
+            "gpt-4o",
+            "claude-3-opus-20240229",
+            "claude-3-5-sonnet-20241022",
+            "gpt-4o-mini-high"
+        ],
+        "mathematical_proofs": [
+            "gpt-4o",
+            "claude-3-opus-20240229",
+            "claude-3-5-sonnet-20241022",
+            "gpt-4o-mini-high"
+        ],
+        "code_analysis": [
+            "gpt-4o",
+            "claude-3-5-sonnet-20241022",
+            "claude-3-opus-20240229",
+            "gpt-4o-mini-high"
+        ],
+        "philosophical_discussion": [
+            "claude-3-opus-20240229",
+            "claude-3-5-sonnet-20241022",
+            "gpt-4o",
+            "gpt-4o-mini-high"
+        ],
+        "general_chat": [
+            "gpt-4o",
+            "gpt-4o-mini-high",
+            "claude-3-5-haiku-20241022",
+            "gpt-4o-mini"
+        ]
+    },
+    "api_key_fallback": {
+        "enabled": true,
+        "default_provider": "openai",
+        "default_model": "gpt-4o",
+        "fallback_message": "Using default credentials for demonstration. For full access, please set your API keys.",
+        "demo_mode": true
+    }
+}

@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: een-v2
+  labels:
+    name: een-v2
+    version: "2.0"
+    project: unity-mathematics
+---
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: een-v2-quota
+  namespace: een-v2
+spec:
+  hard:
+    requests.cpu: "16"
+    requests.memory: 64Gi
+    limits.cpu: "32" 
+    limits.memory: 128Gi
+    persistentvolumeclaims: "10"
+    services: "20"
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: een-v2-network-policy
+  namespace: een-v2
+spec:
+  podSelector: {}
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          name: een-v2
+  egress:
+  - to:
+    - namespaceSelector:
+        matchLabels:
+          name: een-v2
+  - to: []
+    ports:
+    - protocol: TCP
+      port: 53
+    - protocol: UDP
+      port: 53
