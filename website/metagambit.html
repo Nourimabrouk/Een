@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Gödel-Tarski Unity Metagambit - Een Unity Mathematics</title>
+    <meta name="description" content="Transcendental computing hub demonstrating 1+1=1 through quantum entanglement, neural networks, and fractal mathematics with consciousness field integration.">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/metagambit.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -13,316 +14,7 @@
         rel="stylesheet">
 
     <!-- Enhanced Navigation Styles -->
-    <style>
-        :root {
-            --phi: 1.618033988749895;
-            --primary: #1B365D;
-            --secondary: #0F7B8A;
-            --accent: #D97706;
-            --accent-bright: #F59E0B;
-            --text-primary: #111827;
-            --text-secondary: #6B7280;
-            --text-muted: #9CA3AF;
-            --bg-primary: #FFFFFF;
-            --bg-secondary: #F8FAFC;
-            --bg-tertiary: #F1F5F9;
-            --border-light: #E5E7EB;
-            --border-medium: #D1D5DB;
-            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            --font-serif: 'Crimson Text', 'Times New Roman', serif;
-            --font-mono: 'JetBrains Mono', 'SF Mono', 'Monaco', monospace;
-            --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            --radius: 0.75rem;
-            --radius-lg: 1rem;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        /* Enhanced Navigation System */
-        .enhanced-nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(27, 54, 93, 0.95);
-            -webkit-backdrop-filter: blur(20px);
-            backdrop-filter: blur(20px);
-            z-index: 1000;
-            border-bottom: 1px solid rgba(15, 123, 138, 0.2);
-            transition: var(--transition);
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-            height: 70px;
-        }
-
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            text-decoration: none;
-            color: white;
-            font-family: var(--font-serif);
-            font-size: 1.5rem;
-            font-weight: 600;
-            transition: var(--transition);
-        }
-
-        .nav-logo:hover {
-            color: var(--accent-bright);
-            transform: scale(1.05);
-        }
-
-        .phi-symbol {
-            color: var(--accent-bright);
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
-
-        .logo-text {
-            font-family: var(--font-sans);
-            font-weight: 700;
-        }
-
-        .elo-badge {
-            background: linear-gradient(135deg, var(--accent-bright), var(--accent));
-            color: white;
-            font-size: 0.7rem;
-            font-weight: 700;
-            padding: 0.2rem 0.5rem;
-            border-radius: 1rem;
-            margin-left: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .nav-dropdown {
-            position: relative;
-        }
-
-        .nav-link {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: white;
-            text-decoration: none;
-            padding: 0.75rem 1rem;
-            border-radius: var(--radius);
-            transition: var(--transition);
-            font-weight: 500;
-            font-size: 0.9rem;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            white-space: nowrap;
-        }
-
-        .nav-link:hover {
-            background: rgba(15, 123, 138, 0.2);
-            color: var(--accent-bright);
-            transform: translateY(-1px);
-        }
-
-        .dropdown-toggle {
-            position: relative;
-        }
-
-        .dropdown-toggle i:last-child {
-            font-size: 0.7rem;
-            transition: var(--transition);
-        }
-
-        .dropdown-toggle.active i:last-child {
-            transform: rotate(180deg);
-        }
-
-        .dropdown-menu {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: rgba(27, 54, 93, 0.98);
-            -webkit-backdrop-filter: blur(20px);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(15, 123, 138, 0.3);
-            border-radius: var(--radius-lg);
-            padding: 0.5rem;
-            min-width: 220px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: var(--transition);
-            box-shadow: var(--shadow-xl);
-            z-index: 1001;
-        }
-
-        .dropdown-menu.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .dropdown-item {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            color: white;
-            text-decoration: none;
-            padding: 0.75rem 1rem;
-            border-radius: var(--radius);
-            transition: var(--transition);
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .dropdown-item:hover {
-            background: rgba(15, 123, 138, 0.2);
-            color: var(--accent-bright);
-            transform: translateX(5px);
-        }
-
-        .dropdown-item i {
-            width: 16px;
-            text-align: center;
-            color: var(--accent-bright);
-        }
-
-        .ai-chat-trigger {
-            background: linear-gradient(135deg, var(--accent-bright), var(--accent));
-            color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: var(--radius);
-            font-weight: 600;
-            transition: var(--transition);
-            box-shadow: var(--shadow);
-        }
-
-        .ai-chat-trigger:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-            background: linear-gradient(135deg, var(--accent), var(--accent-bright));
-        }
-
-        .ai-label {
-            margin-left: 0.5rem;
-        }
-
-        .nav-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 4px;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        .nav-toggle span {
-            width: 25px;
-            height: 3px;
-            background: white;
-            border-radius: 2px;
-            transition: var(--transition);
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 1024px) {
-            .nav-links {
-                position: fixed;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                background: rgba(27, 54, 93, 0.98);
-                -webkit-backdrop-filter: blur(20px);
-                backdrop-filter: blur(20px);
-                flex-direction: column;
-                padding: 2rem;
-                gap: 1rem;
-                transform: translateY(-100%);
-                opacity: 0;
-                visibility: hidden;
-                transition: var(--transition);
-                border-top: 1px solid rgba(15, 123, 138, 0.2);
-                max-height: calc(100vh - 70px);
-                overflow-y: auto;
-            }
-
-            .nav-links.active {
-                transform: translateY(0);
-                opacity: 1;
-                visibility: visible;
-            }
-
-            .nav-dropdown {
-                width: 100%;
-            }
-
-            .dropdown-menu {
-                position: static;
-                opacity: 1;
-                visibility: visible;
-                transform: none;
-                background: rgba(15, 123, 138, 0.1);
-                border: 1px solid rgba(15, 123, 138, 0.2);
-                margin-top: 0.5rem;
-                display: none;
-            }
-
-            .dropdown-menu.active {
-                display: block;
-            }
-
-            .nav-link {
-                width: 100%;
-                justify-content: space-between;
-            }
-
-            .nav-toggle {
-                display: flex;
-            }
-
-            .nav-toggle.active span:nth-child(1) {
-                transform: rotate(45deg) translate(6px, 6px);
-            }
-
-            .nav-toggle.active span:nth-child(2) {
-                opacity: 0;
-            }
-
-            .nav-toggle.active span:nth-child(3) {
-                transform: rotate(-45deg) translate(6px, -6px);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-container {
-                padding: 0 1rem;
-            }
-
-            .logo-text {
-                display: none;
-            }
-
-            .elo-badge {
-                display: none;
-            }
-
-            .ai-label {
-                display: none;
-            }
-        }
-    </style>
+    
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>
@@ -2569,6 +2261,16 @@
             }
         });
     </script>
+
+    <!-- Performance Monitoring -->
+    <script>
+        window.addEventListener('load', function() {
+            if ('performance' in window) {
+                const loadTime = performance.now();
+                console.log('Page load time:', loadTime + 'ms');
+            }
+        });
+    </script>
 </body>
 
 </html>], ['\\(', '\\)']],
@@ -2578,7 +2280,18 @@
     </script>
 
     <!-- Master Navigation System v2.0 -->
-    <script src="js/master-navigation.js"></script>
+    
+
+    <!-- Meta-Optimal Navigation Integration -->
+    <script src="js/meta-optimal-integration.js"></script>
+    <script src="js/meta-optimal-navigation.js"></script>
+
+    <link rel="stylesheet" href="css/meta-optimal-navigation.css">
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="css/meta-optimal-navigation.css" as="style">
+    <link rel="preload" href="js/meta-optimal-navigation.js" as="script">
+    <link rel="preload" href="js/meta-optimal-integration.js" as="script">
 </head>
 
 <body>
@@ -4950,7 +4663,7 @@
     </script>
 
     <!-- Master Navigation System v2.0 -->
-    <script src="js/master-navigation.js"></script>
+    
 </head>
 
 <body>
@@ -7441,7 +7154,7 @@
     </script>
 
     <!-- Master Navigation System v2.0 -->
-    <script src="js/master-navigation.js"></script>
+    
 </head>
 
 <body>
