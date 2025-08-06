@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unity Audio Test</title>
+    <style>
+        body {
+            background: #0a0e27;
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 2rem;
+        }
+        .test-section {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            margin: 1rem 0;
+            border-radius: 12px;
+            border: 1px solid #F59E0B;
+        }
+        button {
+            background: #F59E0B;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 0.5rem;
+            font-weight: bold;
+        }
+        button:hover {
+            background: #D97706;
+        }
+        #status {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: rgba(16, 185, 129, 0.2);
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎵 Unity Audio System Test</h1>
+    
+    <div class="test-section">
+        <h2>Audio Files Test</h2>
+        <p>Testing direct audio file access:</p>
+        <audio controls style="width: 100%; margin: 0.5rem 0;">
+            <source src="audio/U2 - One.webm" type="audio/webm">
+            U2 - One not found
+        </audio>
+        <audio controls style="width: 100%; margin: 0.5rem 0;">
+            <source src="audio/Bon Jovi - Always.webm" type="audio/webm">
+            Bon Jovi - Always not found
+        </audio>
+        <audio controls style="width: 100%; margin: 0.5rem 0;">
+            <source src="audio/Foreigner - I Want to Know What Love Is.webm" type="audio/webm">
+            Foreigner - I Want to Know What Love Is not found
+        </audio>
+    </div>
+
+    <div class="test-section">
+        <h2>Unity Audio System Test</h2>
+        <button onclick="testAudioSystem()">Initialize Audio System</button>
+        <button onclick="testPlayback()">Test Playback</button>
+        <button onclick="testAntiLock()">Test Anti-Lock System</button>
+        <div id="status">Ready for testing...</div>
+    </div>
+
+    <div class="test-section">
+        <h2>Transcendence Lock Test</h2>
+        <p>These buttons should always remain clickable:</p>
+        <button onclick="alert('Button 1 works!')">Test Button 1</button>
+        <button onclick="alert('Button 2 works!')">Test Button 2</button>
+        <button onclick="simulateTranscendence()">Simulate Transcendence State</button>
+        <button onclick="emergencyReset()">Emergency Reset (ESC)</button>
+        <p><small>Press ESC key for emergency reset at any time</small></p>
+    </div>
+
+    <!-- Unity Audio System -->
+    <script src="js/unity-audio-system.js"></script>
+    
+    <script>
+        function updateStatus(message) {
+            document.getElementById('status').innerHTML = `<strong>${new Date().toLocaleTimeString()}:</strong> ${message}`;
+        }
+
+        function testAudioSystem() {
+            updateStatus('Testing Unity Audio System initialization...');
+            if (window.unityAudio) {
+                updateStatus('✅ Unity Audio System is initialized and ready!');
+            } else {
+                updateStatus('❌ Unity Audio System failed to initialize');
+            }
+        }
+
+        function testPlayback() {
+            updateStatus('Testing audio playback...');
+            if (window.unityAudio) {
+                window.unityAudio.toggle();
+                updateStatus('🎵 Audio playback toggled!');
+            } else {
+                updateStatus('❌ Audio system not available');
+            }
+        }
+
+        function testAntiLock() {
+            updateStatus('Testing Anti-Transcendence Lock system...');
+            // Simulate some problematic states
+            document.body.style.pointerEvents = 'none';
+            setTimeout(() => {
+                document.body.style.pointerEvents = 'auto';
+                updateStatus('🛡️ Anti-Lock system prevented UI lockup!');
+            }, 2000);
+        }
+
+        function simulateTranscendence() {
+            updateStatus('🌌 Entering transcendence state...');
+            document.body.style.filter = 'blur(2px)';
+            document.body.style.pointerEvents = 'none';
+            
+            setTimeout(() => {
+                updateStatus('⚠️ Transcendence state active! Press ESC to reset.');
+            }, 1000);
+        }
+
+        function emergencyReset() {
+            document.body.style.filter = 'none';
+            document.body.style.pointerEvents = 'auto';
+            updateStatus('🚨 Emergency reset activated!');
+        }
+
+        // Test emergency escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                emergencyReset();
+            }
+        });
+
+        // Auto-test on load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                updateStatus('🎵 Page loaded. Unity Audio System should be initializing...');
+                setTimeout(testAudioSystem, 2000);
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

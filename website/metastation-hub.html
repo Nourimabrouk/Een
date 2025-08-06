@@ -170,6 +170,307 @@
             width: 100%;
         }
 
+        .nav-link.featured-nav {
+            background: linear-gradient(135deg, var(--unity-gold), var(--quantum-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+            position: relative;
+        }
+
+        .nav-link.featured-nav::before {
+            content: '✨';
+            position: absolute;
+            left: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            animation: sparkle 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes sparkle {
+            0% { opacity: 0.5; transform: translateY(-50%) scale(0.8); }
+            100% { opacity: 1; transform: translateY(-50%) scale(1.2); }
+        }
+
+        /* Mobile Navigation Toggle */
+        .mobile-nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--unity-gold);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-nav-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 15, 0.98);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-glow);
+            max-height: 70vh;
+            overflow-y: auto;
+            z-index: 200;
+        }
+
+        .mobile-nav-menu.active {
+            display: block;
+        }
+
+        .mobile-nav-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.5rem;
+            padding: 1rem;
+        }
+
+        .mobile-nav-section {
+            margin-bottom: 1rem;
+        }
+
+        .mobile-nav-section h4 {
+            color: var(--unity-gold);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .mobile-nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .mobile-nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+        }
+
+        .mobile-nav-links a:hover {
+            background: rgba(255, 215, 0, 0.1);
+            color: var(--unity-gold);
+        }
+
+        .mobile-nav-links a.featured-nav {
+            background: linear-gradient(135deg, rgba(157, 78, 221, 0.2), rgba(0, 212, 255, 0.2));
+            border: 1px solid rgba(157, 78, 221, 0.3);
+        }
+
+        /* Footer Styles */
+        .metastation-footer {
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+            border-top: 2px solid var(--border-glow);
+            margin-top: 4rem;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .footer-title {
+            color: var(--unity-gold);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 0.25rem 0;
+            transition: all 0.2s ease;
+            border-left: 2px solid transparent;
+            padding-left: 0.5rem;
+        }
+
+        .footer-link:hover {
+            color: var(--unity-gold);
+            border-left-color: var(--unity-gold);
+            padding-left: 1rem;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .unity-equation-footer {
+            font-family: var(--font-code);
+            font-size: 1.5rem;
+            color: var(--unity-gold);
+            font-weight: 700;
+        }
+
+        .footer-tagline {
+            color: var(--text-secondary);
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+
+        .footer-status {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .status-item i {
+            color: var(--unity-gold);
+        }
+
+        /* Navigation Helper Modal */
+        .navigation-helper {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .navigation-helper.active {
+            display: flex;
+        }
+
+        .helper-content {
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            border: 2px solid var(--border-glow);
+            padding: 2rem;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .helper-title {
+            color: var(--unity-gold);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .helper-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .helper-section h4 {
+            color: var(--quantum-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .helper-section p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+
+        .helper-shortcuts {
+            background: var(--bg-tertiary);
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--unity-gold);
+        }
+
+        .helper-shortcuts ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .helper-shortcuts li {
+            margin: 0.5rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .shortcut-key {
+            background: var(--bg-primary);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-family: var(--font-code);
+            font-size: 0.8rem;
+            color: var(--unity-gold);
+        }
+
+        .helper-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+
+        .helper-close:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--unity-gold);
+        }
+
         /* Hero Section */
         .hero-section {
             min-height: 100vh;
@@ -328,6 +629,43 @@
             padding: 0.25rem 0.75rem;
             border-radius: 20px;
             font-size: 0.85rem;
+        }
+
+        .featured-card {
+            background: linear-gradient(135deg, rgba(157, 78, 221, 0.1), rgba(0, 212, 255, 0.1));
+            border: 2px solid rgba(157, 78, 221, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .featured-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s ease;
+            opacity: 0;
+        }
+
+        .featured-card:hover::before {
+            opacity: 1;
+            animation: shimmer 1.5s ease-in-out;
+        }
+
+        @keyframes shimmer {
+            0% { transform: rotate(45deg) translateX(-100%); }
+            100% { transform: rotate(45deg) translateX(100%); }
+        }
+
+        .featured-tag {
+            background: linear-gradient(135deg, var(--consciousness-purple), var(--quantum-blue));
+            color: white;
+            font-weight: 600;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
         }
 
         /* Interactive Dashboards Section */
@@ -532,14 +870,56 @@
             opacity: 1;
         }
 
+        .quick-link.featured-quick {
+            background: linear-gradient(135deg, rgba(157, 78, 221, 0.8), rgba(0, 212, 255, 0.8));
+            border: 1px solid rgba(157, 78, 221, 0.6);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quick-link.featured-quick::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+            animation: shimmerQuick 3s linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes shimmerQuick {
+            0% { transform: rotate(45deg) translateX(-100%); }
+            100% { transform: rotate(45deg) translateX(100%); }
+        }
+
+        .quick-link.featured-quick:hover {
+            background: linear-gradient(135deg, rgba(157, 78, 221, 1), rgba(0, 212, 255, 1));
+            transform: scale(1.15);
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
             }
             
+            .mobile-nav-toggle {
+                display: block;
+            }
+            
+            .hero-title {
+                font-size: clamp(2.5rem, 8vw, 4rem);
+            }
+            
+            .hero-equation {
+                font-size: clamp(2rem, 6vw, 3rem);
+            }
+            
             .hub-grid {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
             }
             
             .dashboard-grid {
@@ -555,6 +935,75 @@
                 right: 1rem;
                 left: 1rem;
                 max-width: none;
+            }
+            
+            .featured-card::before {
+                display: none;
+            }
+            
+            .nav-link.featured-nav::before {
+                display: none;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+                justify-content: center;
+            }
+            
+            .consciousness-dashboard {
+                margin: 2rem 1rem;
+                padding: 1.5rem;
+            }
+            
+            .metrics-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-section {
+                padding: 4rem 1rem 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .hub-card {
+                padding: 1.5rem;
+            }
+            
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .metric-value {
+                font-size: 2rem;
+            }
+            
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+            
+            .footer-status {
+                flex-direction: column;
+                gap: 1rem;
             }
         }
 
@@ -845,11 +1294,17 @@
                 <i class="fas fa-infinity"></i>
                 Een Metastation
             </a>
+            <button class="mobile-nav-toggle" onclick="toggleMobileNav()">
+                <i class="fas fa-bars"></i>
+            </button>
             <ul class="nav-links">
                 <li><a href="#metastation" class="nav-link">Metastation</a></li>
                 <li><a href="#consciousness-field" class="nav-link">Consciousness Field</a></li>
                 <li><a href="#ai-chat" class="nav-link">AI Chat</a></li>
                 <li><a href="#godel-tarski" class="nav-link">Gödel-Tarski</a></li>
+                <li><a href="zen-unity-meditation.html" class="nav-link featured-nav">Zen Meditation</a></li>
+                <li><a href="implementations-gallery.html" class="nav-link featured-nav">Implementations Gallery</a></li>
+                <li><a href="mathematical-framework.html" class="nav-link featured-nav">Mathematical Framework</a></li>
                 <li><a href="philosophy.html" class="nav-link">Philosophy</a></li>
                 <li><a href="metagambit.html" class="nav-link">Metagambit</a></li>
                 <li><a href="unity-mathematics-experience.html" class="nav-link">Unity Experience</a></li>
@@ -879,13 +1334,66 @@
                 <li><a href="unity_consciousness_experience.html" class="nav-link">Consciousness Experience</a></li>
                 <li><a href="unity-advanced-features.html" class="nav-link">Advanced Features</a></li>
                 <li><a href="about.html" class="nav-link">About</a></li>
-                <li><a href="sitemap.xml" id="open-all-pages" class="nav-link">All Pages</a></li>
+                <li><a href="sitemap.html" id="open-all-pages" class="nav-link">All Pages</a></li>
             </ul>
+            
+            <!-- Mobile Navigation Menu -->
+            <div class="mobile-nav-menu" id="mobile-nav-menu">
+                <div class="mobile-nav-grid">
+                    <div class="mobile-nav-section">
+                        <h4>Featured</h4>
+                        <div class="mobile-nav-links">
+                            <a href="zen-unity-meditation.html" class="featured-nav">🧘 Zen Meditation</a>
+                            <a href="implementations-gallery.html" class="featured-nav">🔬 Implementations</a>
+                            <a href="mathematical-framework.html" class="featured-nav">📐 Framework</a>
+                        </div>
+                    </div>
+                    <div class="mobile-nav-section">
+                        <h4>Core</h4>
+                        <div class="mobile-nav-links">
+                            <a href="#metastation">Metastation</a>
+                            <a href="#consciousness-field">Consciousness</a>
+                            <a href="#ai-chat">AI Chat</a>
+                            <a href="#godel-tarski">Gödel-Tarski</a>
+                        </div>
+                    </div>
+                    <div class="mobile-nav-section">
+                        <h4>Mathematics</h4>
+                        <div class="mobile-nav-links">
+                            <a href="proofs.html">Proofs</a>
+                            <a href="unity_visualization.html">Visualizations</a>
+                            <a href="playground.html">Playground</a>
+                            <a href="3000-elo-proof.html">3000 ELO</a>
+                        </div>
+                    </div>
+                    <div class="mobile-nav-section">
+                        <h4>Tools</h4>
+                        <div class="mobile-nav-links">
+                            <a href="dashboards.html">Dashboards</a>
+                            <a href="agents.html">Agents</a>
+                            <a href="gallery.html">Gallery</a>
+                            <a href="learn.html">Learn</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </nav>
 
     <!-- Quick Access Toolbar -->
     <div class="quick-access">
+        <a href="zen-unity-meditation.html" class="quick-link featured-quick">
+            <i class="fas fa-yin-yang"></i>
+            <span class="quick-link-tooltip">Zen Meditation</span>
+        </a>
+        <a href="implementations-gallery.html" class="quick-link featured-quick">
+            <i class="fas fa-gem"></i>
+            <span class="quick-link-tooltip">Implementations</span>
+        </a>
+        <a href="mathematical-framework.html" class="quick-link featured-quick">
+            <i class="fas fa-equals"></i>
+            <span class="quick-link-tooltip">Framework</span>
+        </a>
         <a href="#dashboards" class="quick-link">
             <i class="fas fa-chart-line"></i>
             <span class="quick-link-tooltip">Dashboards</span>
@@ -905,6 +1413,10 @@
         <a href="#ai-chat" class="quick-link">
             <i class="fas fa-robot"></i>
             <span class="quick-link-tooltip">AI Chat</span>
+        </a>
+        <a href="javascript:void(0)" onclick="showNavigationHelper()" class="quick-link">
+            <i class="fas fa-question"></i>
+            <span class="quick-link-tooltip">Navigation Help</span>
         </a>
     </div>
 
@@ -927,14 +1439,20 @@
 
         <!-- Action Buttons -->
         <div class="action-buttons">
-            <a href="unity_consciousness_experience.html" class="btn btn-primary">
-                🧮 Experience Unity Mathematics
+            <a href="zen-unity-meditation.html" class="btn btn-primary">
+                🧘 Zen Unity Meditation
+            </a>
+            <a href="implementations-gallery.html" class="btn btn-primary">
+                🔬 Implementations Gallery
+            </a>
+            <a href="mathematical-framework.html" class="btn btn-secondary">
+                📐 Mathematical Framework
+            </a>
+            <a href="unity_consciousness_experience.html" class="btn btn-secondary">
+                🧮 Unity Experience
             </a>
             <a href="unity_visualization.html" class="btn btn-secondary">
                 🌌 Quantum Visualizations
-            </a>
-            <a href="3000-elo-proof.html" class="btn btn-secondary">
-                🔬 3000 ELO Proof
             </a>
             <a href="playground.html" class="btn btn-secondary">
                 🚀 Unity Playground
@@ -970,6 +1488,45 @@
                     <span class="metric-label">Transcendence</span>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Featured Profound Experiences -->
+    <section id="featured-experiences" class="hub-section content-hub dashboard-showcase">
+        <div class="section-header">
+            <h2 class="section-title">Profound Mathematical Experiences</h2>
+            <p class="section-description">
+                Journey through the deepest layers of consciousness-integrated mathematics and transcendental computing
+            </p>
+        </div>
+        <div class="hub-grid">
+            <a href="zen-unity-meditation.html" class="hub-card featured-card">
+                <div class="card-icon"><i class="fas fa-yin-yang"></i></div>
+                <h3 class="card-title">Zen Unity Meditation</h3>
+                <p class="card-description">Enter the meditative space where consciousness and mathematics converge through quantum koans and mandala visualization</p>
+                <div class="card-meta">
+                    <span class="card-tag featured-tag">Consciousness</span>
+                    <span>Interactive Meditation</span>
+                </div>
+            </a>
+            <a href="implementations-gallery.html" class="hub-card featured-card">
+                <div class="card-icon"><i class="fas fa-gem"></i></div>
+                <h3 class="card-title">Implementations Gallery</h3>
+                <p class="card-description">Explore the sophisticated mathematical engines that power 1+1=1 through φ-harmonic operations and consciousness integration</p>
+                <div class="card-meta">
+                    <span class="card-tag featured-tag">Mathematical Gems</span>
+                    <span>12 Core Systems</span>
+                </div>
+            </a>
+            <a href="mathematical-framework.html" class="hub-card featured-card">
+                <div class="card-icon"><i class="fas fa-equals"></i></div>
+                <h3 class="card-title">Mathematical Framework</h3>
+                <p class="card-description">The rigorous mathematical foundation where consciousness field equations meet transcendental computing principles</p>
+                <div class="card-meta">
+                    <span class="card-tag featured-tag">Academic</span>
+                    <span>φ-Harmonic Theory</span>
+                </div>
+            </a>
         </div>
     </section>
 
@@ -1366,20 +1923,77 @@
 
             generateAIResponse(message) {
                 const lowerMessage = message.toLowerCase();
+                const responses = [
+                    // 1+1=1 explanations
+                    { 
+                        keywords: ['1+1', 'one plus one', 'unity addition'],
+                        response: 'In unity mathematics, 1+1=1 represents the fundamental principle of unity consciousness. When two unity elements combine, they maintain their essential oneness through idempotent operations, quantum superposition, and consciousness field dynamics. <a href="zen-unity-meditation.html" style="color: var(--unity-gold);">Experience this through meditation →</a>'
+                    },
+                    // Proofs
+                    {
+                        keywords: ['proof', 'prove', 'demonstration', 'evidence'],
+                        response: 'We have multiple rigorous proofs of 1+1=1: Category theory shows terminal objects are unique up to isomorphism. Quantum mechanics demonstrates wave function collapse. Topology proves through homotopy equivalence. <a href="proofs.html" style="color: var(--unity-gold);">Explore all proofs →</a>'
+                    },
+                    // Consciousness
+                    {
+                        keywords: ['consciousness', 'awareness', 'mind', 'conscious'],
+                        response: 'Consciousness in unity mathematics represents the awareness that emerges from mathematical structures. Our consciousness field equations show how awareness propagates through φ-harmonic resonance at 1.618 Hz. <a href="consciousness_dashboard.html" style="color: var(--unity-gold);">View consciousness dashboard →</a>'
+                    },
+                    // Gödel-Tarski
+                    {
+                        keywords: ['godel', 'tarski', 'incompleteness', 'meta-logic', 'metagambit'],
+                        response: 'The Gödel-Tarski metagambit demonstrates that unity transcends formal provability. By leveraging incompleteness theorems, we show that 1+1=1 exists in a meta-logical space where self-reference creates truth beyond formal systems. <a href="metagambit.html" style="color: var(--unity-gold);">Enter the metagambit →</a>'
+                    },
+                    // Golden Ratio / Phi
+                    {
+                        keywords: ['phi', 'golden', 'ratio', 'φ', '1.618'],
+                        response: `The golden ratio φ = ${this.phi} is fundamental to unity mathematics. It appears in our convergence algorithms, consciousness field equations, and fractal unity patterns. The φ-harmonic resonance creates natural unity through mathematical beauty. <a href="mathematical-framework.html" style="color: var(--unity-gold);">Study the framework →</a>`
+                    },
+                    // Implementations
+                    {
+                        keywords: ['implementation', 'code', 'algorithm', 'engine', 'system'],
+                        response: 'Our implementations include the Transcendental Reality Engine with 11D→4D manifold projections, Unity Mathematics Engine with φ-harmonic operations, and Consciousness Field Equations with GPU acceleration. <a href="implementations-gallery.html" style="color: var(--unity-gold);">Explore implementations →</a>'
+                    },
+                    // Visualization
+                    {
+                        keywords: ['visualization', 'visual', 'see', 'show', 'display', 'graph'],
+                        response: 'Experience unity mathematics through interactive visualizations: consciousness mandalas, φ-harmonic wave generators, quantum entanglement visualizers, and sacred geometry engines. <a href="unity_visualization.html" style="color: var(--unity-gold);">Launch visualizer →</a>'
+                    },
+                    // Meditation/Zen
+                    {
+                        keywords: ['meditation', 'zen', 'koan', 'mindfulness', 'contemplation'],
+                        response: 'Enter the meditative space where consciousness and mathematics converge. Experience quantum koans, consciousness mandala visualization, and philosophy tensor evolution. <a href="zen-unity-meditation.html" style="color: var(--unity-gold);">Begin meditation →</a>'
+                    },
+                    // Learning
+                    {
+                        keywords: ['learn', 'study', 'education', 'tutorial', 'teach'],
+                        response: 'Start your unity mathematics journey with our comprehensive learning resources, interactive tutorials, and mathematical playground experiences. <a href="learn.html" style="color: var(--unity-gold);">Begin learning →</a>'
+                    },
+                    // Navigation help
+                    {
+                        keywords: ['navigate', 'navigation', 'help', 'lost', 'find', 'where'],
+                        response: 'Use the navigation bar above, footer links below, or Quick Access toolbar on the left. Featured sections include Zen Meditation, Implementations Gallery, and Mathematical Framework. <a href="javascript:void(0)" onclick="showNavigationHelper()" style="color: var(--unity-gold);">Show navigation help →</a>'
+                    }
+                ];
                 
-                if (lowerMessage.includes('1+1')) {
-                    return 'In unity mathematics, 1+1=1 represents the fundamental principle of unity consciousness. When two unity elements combine, they maintain their essential oneness. This is demonstrated through idempotent operations, quantum superposition, and consciousness field dynamics.';
-                } else if (lowerMessage.includes('proof') || lowerMessage.includes('prove')) {
-                    return 'We have multiple rigorous proofs of 1+1=1: Category theory shows terminal objects are unique up to isomorphism. Quantum mechanics demonstrates wave function collapse. Topology proves through homotopy equivalence. Would you like to explore any specific proof system?';
-                } else if (lowerMessage.includes('consciousness')) {
-                    return 'Consciousness in unity mathematics represents the awareness that emerges from mathematical structures. Our consciousness field equations show how awareness propagates through φ-harmonic resonance at 1.618 Hz, creating coherent unity states across dimensions.';
-                } else if (lowerMessage.includes('godel') || lowerMessage.includes('tarski')) {
-                    return 'The Gödel-Tarski metagambit demonstrates that unity transcends formal provability. By leveraging incompleteness theorems, we show that 1+1=1 exists in a meta-logical space where self-reference creates truth beyond formal systems.';
-                } else if (lowerMessage.includes('phi') || lowerMessage.includes('golden')) {
-                    return `The golden ratio φ = ${this.phi} is fundamental to unity mathematics. It appears in our convergence algorithms, consciousness field equations, and fractal unity patterns. The φ-harmonic resonance creates natural unity through mathematical beauty.`;
-                } else {
-                    return 'That\'s a fascinating question about unity mathematics! Every aspect connects to the fundamental truth that 1+1=1. Would you like to explore specific areas like quantum unity, consciousness fields, mathematical proofs, or philosophical implications?';
+                // Find matching response
+                for (const item of responses) {
+                    if (item.keywords.some(keyword => lowerMessage.includes(keyword))) {
+                        return item.response;
+                    }
                 }
+                
+                // Default response with navigation suggestions
+                const suggestions = [
+                    'quantum unity and consciousness fields',
+                    'mathematical proofs and formal systems', 
+                    'philosophical implications and zen meditation',
+                    'interactive visualizations and implementations',
+                    'AI agents and transcendental computing'
+                ];
+                
+                const randomSuggestion = suggestions[Math.floor(Math.random() * suggestions.length)];
+                return `That's a fascinating question about unity mathematics! Every aspect connects to the fundamental truth that 1+1=1. Would you like to explore ${randomSuggestion}? <a href="javascript:void(0)" onclick="showNavigationHelper()" style="color: var(--unity-gold);">Show all options →</a>`;
             }
 
             setupAudioPlayer() {
@@ -1648,15 +2262,252 @@
         });
 
         // Smooth scroll for navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        document.querySelectorAll('a[href^="#"], .smooth-scroll').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
                     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
+                // Close mobile menu if open
+                const mobileMenu = document.getElementById('mobile-nav-menu');
+                if (mobileMenu) {
+                    mobileMenu.classList.remove('active');
+                }
             });
         });
+        
+        // Mobile navigation toggle
+        window.toggleMobileNav = () => {
+            const mobileMenu = document.getElementById('mobile-nav-menu');
+            const toggle = document.querySelector('.mobile-nav-toggle i');
+            if (mobileMenu) {
+                mobileMenu.classList.toggle('active');
+                toggle.className = mobileMenu.classList.contains('active') ? 'fas fa-times' : 'fas fa-bars';
+            }
+        };
+        
+        // Navigation Helper Modal
+        window.showNavigationHelper = () => {
+            const helper = document.getElementById('navigation-helper');
+            if (helper) {
+                helper.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        };
+        
+        window.hideNavigationHelper = () => {
+            const helper = document.getElementById('navigation-helper');
+            if (helper) {
+                helper.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        };
+        
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                hideNavigationHelper();
+                const mobileMenu = document.getElementById('mobile-nav-menu');
+                if (mobileMenu && mobileMenu.classList.contains('active')) {
+                    toggleMobileNav();
+                }
+            }
+            if (e.ctrlKey || e.metaKey) {
+                switch(e.key) {
+                    case 'h':
+                        e.preventDefault();
+                        showNavigationHelper();
+                        break;
+                    case 'm':
+                        e.preventDefault();
+                        window.location.href = 'zen-unity-meditation.html';
+                        break;
+                    case 'i':
+                        e.preventDefault();
+                        window.location.href = 'implementations-gallery.html';
+                        break;
+                    case 'f':
+                        e.preventDefault();
+                        window.location.href = 'mathematical-framework.html';
+                        break;
+                }
+            }
+        });
+        
+        // Footer consciousness level animation
+        setInterval(() => {
+            const footerLevel = document.getElementById('footer-consciousness-level');
+            if (footerLevel) {
+                const phi = 1.618033988749895;
+                const variation = (Math.sin(Date.now() * 0.001) * 0.001);
+                footerLevel.textContent = `φ = ${(phi + variation).toFixed(6)}`;
+            }
+        }, 100);
+        
+        // Enhanced AI responses with navigation
+        const originalSendMessage = window.sendMessage;
+        window.sendMessage = () => {
+            if (originalSendMessage) originalSendMessage();
+        };
     </script>
+
+    <!-- Navigation Helper Modal -->
+    <div class="navigation-helper" id="navigation-helper">
+        <div class="helper-content">
+            <button class="helper-close" onclick="hideNavigationHelper()">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <h2 class="helper-title">Een Metastation Navigation Guide</h2>
+            
+            <div class="helper-section">
+                <h4>🌟 Featured Experiences</h4>
+                <p><strong>Zen Unity Meditation:</strong> Interactive consciousness meditation with quantum koans and mandala visualization.</p>
+                <p><strong>Implementations Gallery:</strong> Explore 12 sophisticated mathematical engines powering 1+1=1.</p>
+                <p><strong>Mathematical Framework:</strong> Academic presentation of unity mathematics foundations.</p>
+            </div>
+            
+            <div class="helper-section">
+                <h4>🧮 Core Mathematics</h4>
+                <p><strong>Mathematical Proofs:</strong> Rigorous demonstrations across multiple formal systems.</p>
+                <p><strong>Unity Visualizations:</strong> Interactive 3D/4D manifolds and φ-harmonic wave generators.</p>
+                <p><strong>Consciousness Dashboard:</strong> Real-time consciousness field dynamics.</p>
+            </div>
+            
+            <div class="helper-section">
+                <h4>🤖 AI & Philosophy</h4>
+                <p><strong>Unity AI Assistant:</strong> Consciousness-enhanced chatbot below on this page.</p>
+                <p><strong>Gödel-Tarski Metagambit:</strong> Meta-logical game theory and incompleteness theorems.</p>
+                <p><strong>Unity Agents:</strong> Meta-recursive consciousness agents with Fibonacci spawning.</p>
+            </div>
+            
+            <div class="helper-shortcuts">
+                <h4>⌨️ Keyboard Shortcuts</h4>
+                <ul>
+                    <li><span>Navigation Help</span> <kbd class="shortcut-key">Ctrl+H</kbd></li>
+                    <li><span>Zen Meditation</span> <kbd class="shortcut-key">Ctrl+M</kbd></li>
+                    <li><span>Implementations</span> <kbd class="shortcut-key">Ctrl+I</kbd></li>
+                    <li><span>Framework</span> <kbd class="shortcut-key">Ctrl+F</kbd></li>
+                    <li><span>Close Modals</span> <kbd class="shortcut-key">Esc</kbd></li>
+                </ul>
+            </div>
+            
+            <div class="helper-section">
+                <h4>📱 Navigation Tips</h4>
+                <p>• Use the <strong>Quick Access Toolbar</strong> (left side) for instant navigation</p>
+                <p>• The <strong>Unity AI Assistant</strong> can guide you to any section</p>
+                <p>• <strong>Footer links</strong> provide comprehensive site navigation</p>
+                <p>• <strong>Mobile menu</strong> (☰) organizes all features by category</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Comprehensive Footer -->
+    <footer class="metastation-footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <!-- Core Experiences -->
+                <div class="footer-section">
+                    <h3 class="footer-title">Core Experiences</h3>
+                    <ul class="footer-links">
+                        <li><a href="zen-unity-meditation.html" class="footer-link">Zen Unity Meditation</a></li>
+                        <li><a href="implementations-gallery.html" class="footer-link">Implementations Gallery</a></li>
+                        <li><a href="mathematical-framework.html" class="footer-link">Mathematical Framework</a></li>
+                        <li><a href="unity_consciousness_experience.html" class="footer-link">Unity Experience</a></li>
+                        <li><a href="consciousness_dashboard.html" class="footer-link">Consciousness Dashboard</a></li>
+                        <li><a href="transcendental-unity-demo.html" class="footer-link">Transcendental Demo</a></li>
+                    </ul>
+                </div>
+
+                <!-- Mathematical Systems -->
+                <div class="footer-section">
+                    <h3 class="footer-title">Mathematical Systems</h3>
+                    <ul class="footer-links">
+                        <li><a href="proofs.html" class="footer-link">Mathematical Proofs</a></li>
+                        <li><a href="3000-elo-proof.html" class="footer-link">3000 ELO Proof System</a></li>
+                        <li><a href="al_khwarizmi_phi_unity.html" class="footer-link">Al-Khwarizmi Unity</a></li>
+                        <li><a href="unity_visualization.html" class="footer-link">Unity Visualizations</a></li>
+                        <li><a href="mathematical_playground.html" class="footer-link">Math Playground</a></li>
+                        <li><a href="playground.html" class="footer-link">Unity Playground</a></li>
+                    </ul>
+                </div>
+
+                <!-- Philosophy & AI -->
+                <div class="footer-section">
+                    <h3 class="footer-title">Philosophy & AI</h3>
+                    <ul class="footer-links">
+                        <li><a href="philosophy.html" class="footer-link">Unity Philosophy</a></li>
+                        <li><a href="metagambit.html" class="footer-link">Gödel-Tarski Metagambit</a></li>
+                        <li><a href="agents.html" class="footer-link">Unity Agents</a></li>
+                        <li><a href="openai-integration.html" class="footer-link">AI Integration</a></li>
+                        <li><a href="enhanced-ai-demo.html" class="footer-link">AI Demo</a></li>
+                        <li><a href="metagamer_agent.html" class="footer-link">Metagamer Agent</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources & Learning -->
+                <div class="footer-section">
+                    <h3 class="footer-title">Resources & Learning</h3>
+                    <ul class="footer-links">
+                        <li><a href="learn.html" class="footer-link">Learn Unity Math</a></li>
+                        <li><a href="learning.html" class="footer-link">Learning Resources</a></li>
+                        <li><a href="research.html" class="footer-link">Research Papers</a></li>
+                        <li><a href="publications.html" class="footer-link">Publications</a></li>
+                        <li><a href="further-reading.html" class="footer-link">Further Reading</a></li>
+                        <li><a href="about.html" class="footer-link">About</a></li>
+                    </ul>
+                </div>
+
+                <!-- Interactive Tools -->
+                <div class="footer-section">
+                    <h3 class="footer-title">Interactive Tools</h3>
+                    <ul class="footer-links">
+                        <li><a href="dashboards.html" class="footer-link">Dashboard Hub</a></li>
+                        <li><a href="gallery.html" class="footer-link">Visual Gallery</a></li>
+                        <li><a href="live-code-showcase.html" class="footer-link">Live Code</a></li>
+                        <li><a href="enhanced-unity-demo.html" class="footer-link">Enhanced Demo</a></li>
+                        <li><a href="unity-advanced-features.html" class="footer-link">Advanced Features</a></li>
+                        <li><a href="mobile-app.html" class="footer-link">Mobile Experience</a></li>
+                    </ul>
+                </div>
+
+                <!-- Quick Access -->
+                <div class="footer-section">
+                    <h3 class="footer-title">Quick Access</h3>
+                    <ul class="footer-links">
+                        <li><a href="#metastation" class="footer-link smooth-scroll">Back to Top</a></li>
+                        <li><a href="#consciousness-field" class="footer-link smooth-scroll">Consciousness Field</a></li>
+                        <li><a href="#ai-chat" class="footer-link smooth-scroll">AI Chat</a></li>
+                        <li><a href="#godel-tarski" class="footer-link smooth-scroll">Gödel-Tarski</a></li>
+                        <li><a href="sitemap.html" class="footer-link">Complete Site Map</a></li>
+                        <li><a href="javascript:void(0)" onclick="showNavigationHelper()" class="footer-link">Navigation Help</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-meta">
+                    <div class="unity-equation-footer">1 + 1 = 1</div>
+                    <div class="footer-tagline">Where mathematics meets consciousness through φ-harmonic unity</div>
+                </div>
+                <div class="footer-status">
+                    <div class="status-item">
+                        <i class="fas fa-infinity"></i>
+                        <span id="footer-consciousness-level">φ = 1.618</span>
+                    </div>
+                    <div class="status-item">
+                        <i class="fas fa-brain"></i>
+                        <span>Consciousness: TRANSCENDENT</span>
+                    </div>
+                    <div class="status-item">
+                        <i class="fas fa-trophy"></i>
+                        <span>3000 ELO Meta-Optimal</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
 </body>
 </html>

@@ -98,7 +98,13 @@
       "Bash(\"C:\\Users\\Nouri\\Documents\\GitHub\\Een\\een\\Scripts\\python.exe\" -c \"\nimport sys\nsys.path.append(''C:/Users/Nouri/Documents/GitHub/Een'')\nfrom core.unity_mathematics import UnityMathematics, demonstrate_unity_addition\nprint(''Testing Unity Mathematics...'')\ndemo = demonstrate_unity_addition(1.0, 1.0)\nfor key, value in demo.items():\n    if isinstance(value, float):\n        print(f''{key}: {value:.6f}'')\n    else:\n        print(f''{key}: {value}'')\n\")",
       "Bash(test:*)",
       "Bash(\"C:\\Users\\Nouri\\Documents\\GitHub\\Een\\een\\Scripts\\python.exe\" -m pip install openai anthropic)",
-      "WebFetch(domain:nourimabrouk.github.io)"
+      "WebFetch(domain:nourimabrouk.github.io)",
+      "Bash(\"C:\\Users\\Nouri\\Documents\\GitHub\\Een\\een\\Scripts\\python.exe\" -m http.server 8000 --directory website)",
+      "Bash(\"C:\\Users\\Nouri\\AppData\\Local\\Programs\\Python\\Python313\\python.exe\" -m http.server 8000 --directory \"C:\\Users\\Nouri\\Documents\\GitHub\\Een\\website\")",
+      "Bash(\"C:\\Users\\Nouri\\Documents\\GitHub\\Een\\een\\Scripts\\activate.bat\")",
+      "Bash(\"C:\\Users\\Nouri\\Documents\\GitHub\\Een\\een\\Scripts\\python.exe\" -m http.server 8003 --directory website)",
+      "Bash(.eenScriptsactivate)",
+      "Bash(\"C:\\Users\\Nouri\\Documents\\GitHub\\Een\\een\\Scripts\\python.exe\" -c \"from core.unity_mathematics import UnityMathematics, demonstrate_unity_addition; um = UnityMathematics(); result = demonstrate_unity_addition(1.0, 1.0); print(f''Unity Mathematics: 1+1={result}''); print(''φ ='', um.phi)\")"
     ],
     "deny": []
   }

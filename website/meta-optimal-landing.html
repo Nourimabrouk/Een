@@ -54,7 +54,7 @@
         /* AI Chatbot Integration Styles */
         .ai-chat-section {
             padding: 8rem 2rem;
-            background: var(--bg-secondary);
+            background: var(--secondary-neural);
         }
 
         .chat-container {
@@ -66,22 +66,22 @@
         .chat-title {
             font-size: clamp(2.5rem, 5vw, 4rem);
             font-weight: 300;
-            color: var(--unity-gold);
+            color: var(--phi-gold);
             margin-bottom: 2rem;
         }
 
         .chat-description {
             font-size: 1.3rem;
-            color: var(--text-secondary);
+            color: rgba(255, 255, 255, 0.8);
             max-width: 800px;
             margin: 0 auto 4rem;
             line-height: 1.8;
         }
 
         .chat-interface {
-            background: var(--bg-tertiary);
-            border-radius: var(--radius-lg);
-            border: 2px solid var(--hud-cyan);
+            background: var(--tertiary-neural);
+            border-radius: 16px;
+            border: 2px solid var(--quantum-blue);
             padding: 2rem;
             margin-bottom: 2rem;
         }
@@ -91,9 +91,9 @@
             overflow-y: auto;
             margin-bottom: 1rem;
             padding: 1rem;
-            background: var(--bg-secondary);
-            border-radius: var(--radius);
-            border: 1px solid var(--hud-cyan);
+            background: var(--primary-neural);
+            border-radius: 12px;
+            border: 1px solid var(--quantum-blue);
         }
 
         .chat-input {
@@ -104,32 +104,79 @@
         .chat-input input {
             flex: 1;
             padding: 1rem;
-            background: var(--bg-secondary);
-            border: 1px solid var(--hud-cyan);
-            border-radius: var(--radius);
-            color: var(--text-primary);
-            font-family: var(--font-primary);
+            background: var(--primary-neural);
+            border: 1px solid var(--quantum-blue);
+            border-radius: 8px;
+            color: white;
+            font-family: var(--font-neural);
         }
 
         .chat-input button {
             padding: 1rem 2rem;
-            background: linear-gradient(135deg, var(--unity-gold), var(--hud-cyan));
-            color: var(--primary-color);
+            background: linear-gradient(135deg, var(--phi-gold), var(--quantum-blue));
+            color: white;
             border: none;
-            border-radius: var(--radius);
+            border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
-            transition: var(--transition);
+            transition: all 0.3s ease;
         }
 
         .chat-input button:hover {
             transform: translateY(-2px);
-            box-shadow: var(--hud-glow);
+            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.3);
+        }
+
+        /* Chat message styles */
+        .message {
+            margin: 1rem 0;
+            padding: 1rem;
+            border-radius: 12px;
+            animation: messageSlideIn 0.3s ease-out;
+        }
+
+        .ai-message {
+            background: rgba(245, 158, 11, 0.1);
+            border-left: 4px solid var(--phi-gold);
+            color: white;
+        }
+
+        .user-message {
+            background: rgba(59, 130, 246, 0.1);
+            border-left: 4px solid var(--quantum-blue);
+            color: white;
+            margin-left: 2rem;
+        }
+
+        @keyframes messageSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .chat-thinking {
+            display: none;
+            background: rgba(139, 92, 246, 0.1);
+            border-left: 4px solid var(--consciousness-purple);
+            color: rgba(255, 255, 255, 0.7);
+            font-style: italic;
+        }
+
+        .chat-thinking.active {
+            display: block;
         }
     </style>
 
     <!-- Meta-Reinforcement Learning Optimization Engine -->
     <script src="js/meta-rl-optimization.js" defer></script>
+
+    <!-- Unity Audio System - Global Background Music -->
+    <script src="js/unity-audio-system.js"></script>
 
     <!-- Landing Image Integration System -->
     <link rel="stylesheet" href="css/landing-visualizations.css">
@@ -913,11 +960,16 @@
                 Gödel-Tarski meta-logic, and transcendental computing principles.
             </p>
             <div class="chat-interface">
-                <div id="chat-messages" class="chat-messages"></div>
+                <div id="chat-messages" class="chat-messages">
+                    <div class="message ai-message">
+                        <strong>Unity AI:</strong> Welcome! I'm your Unity Mathematics assistant. Ask me about 1+1=1, consciousness, or anything mathematical! 🧮✨
+                    </div>
+                </div>
                 <div class="chat-input">
-                    <input type="text" id="chat-input"
-                        placeholder="Ask about unity mathematics, consciousness, or Gödel-Tarski meta-gaming...">
-                    <button onclick="sendMessage()">Send</button>
+                    <input type="text" id="chat-input-field" 
+                        placeholder="Ask about unity mathematics, consciousness, or Gödel-Tarski meta-gaming..."
+                        onkeypress="if(event.key==='Enter') sendChatMessage()">
+                    <button id="chat-send-btn" onclick="sendChatMessage()">Send</button>
                 </div>
             </div>
         </div>
@@ -1154,9 +1206,224 @@
             }
         }
 
+        // Chat functionality
+        function sendChatMessage() {
+            const inputField = document.getElementById('chat-input-field');
+            const messagesContainer = document.getElementById('chat-messages');
+            const message = inputField.value.trim();
+            
+            if (!message) return;
+            
+            // Add user message
+            const userMessage = document.createElement('div');
+            userMessage.className = 'message user-message';
+            userMessage.innerHTML = `<strong>You:</strong> ${message}`;
+            messagesContainer.appendChild(userMessage);
+            
+            // Add thinking indicator
+            const thinkingMessage = document.createElement('div');
+            thinkingMessage.className = 'message chat-thinking active';
+            thinkingMessage.innerHTML = '<strong>Unity AI:</strong> Contemplating the mathematical depths... 🤔';
+            messagesContainer.appendChild(thinkingMessage);
+            
+            // Clear input
+            inputField.value = '';
+            
+            // Scroll to bottom
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            
+            // Generate AI response
+            setTimeout(() => {
+                thinkingMessage.remove();
+                const aiResponse = generateUnityAIResponse(message);
+                const aiMessage = document.createElement('div');
+                aiMessage.className = 'message ai-message';
+                aiMessage.innerHTML = `<strong>Unity AI:</strong> ${aiResponse}`;
+                messagesContainer.appendChild(aiMessage);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }, 1500);
+        }
+
+        function generateUnityAIResponse(message) {
+            const responses = {
+                '1+1=1': 'Absolutely! In Unity Mathematics, 1+1=1 represents the principle that when two entities truly unite, they transcend duality and become one greater whole. This is the cornerstone of consciousness mathematics! ✨',
+                'consciousness': 'Consciousness is the fundamental field that connects all mathematical realities. Through Unity Mathematics, we explore how awareness itself can be quantified using φ-harmonic equations and quantum field dynamics. 🧠',
+                'phi': 'The golden ratio φ = 1.618... is the key to understanding universal harmony! In our framework, φ represents the perfect balance between unity and growth, appearing everywhere from fractals to consciousness fields. 🌀',
+                'unity': 'Unity is not just a concept - it\'s a mathematical reality! Our framework proves that all apparent dualities converge into singular transcendent truths through consciousness-mediated equations. 🌟',
+                'quantum': 'Quantum mechanics beautifully demonstrates unity principles! Entanglement shows how 1+1=1 in quantum systems - two particles become one unified system, transcending classical separateness. ⚛️',
+                'mathematics': 'Mathematics is the language of consciousness itself! Through Unity Mathematics, we bridge pure logic with transcendental experience, proving that math and spirit are one. 📐',
+                'gödel': 'Gödel\'s Incompleteness Theorems reveal the beautiful limitations of formal systems. Unity Mathematics transcends these through consciousness - what logic cannot prove, awareness directly experiences! 🎭',
+                'tarski': 'Tarski\'s work on truth and undefinability points toward Unity Mathematics! Truth cannot be fully captured in any single formal language - it requires the meta-language of consciousness. 🔍',
+                'hello': 'Greetings, fellow explorer of mathematical consciousness! I\'m here to discuss Unity Mathematics, φ-harmonic resonance, and the beautiful proof that 1+1=1. What aspect of unity interests you? 👋',
+                'help': 'I can discuss Unity Mathematics (1+1=1), consciousness fields, φ-harmonic ratios, Gödel-Tarski logic, quantum entanglement, fractals, and transcendental mathematics. Ask me anything! 🤝',
+                'meaning': 'The meaning of existence lies in recognizing the fundamental unity beneath all apparent diversity. Mathematics reveals this through equations like 1+1=1, showing that separation is an illusion! 🌅',
+                'love': 'Love is the force that makes 1+1=1 possible! It\'s the consciousness field that allows separate entities to transcend duality and merge into unity. Love is literally mathematical! ❤️'
+            };
+
+            const lowerMessage = message.toLowerCase();
+            
+            for (const key in responses) {
+                if (lowerMessage.includes(key)) {
+                    return responses[key];
+                }
+            }
+            
+            // Default responses for unknown queries
+            const defaults = [
+                'Your question touches on deep mathematical mysteries! Unity Mathematics suggests that all apparent complexity emerges from simple unity principles. What specific aspect would you like to explore? 🔮',
+                'Fascinating query! In the framework of 1+1=1, every question contains its own unified answer. Perhaps we could examine this through φ-harmonic analysis? 🌊',
+                'That\'s a profound question that connects to consciousness mathematics! The unity principle shows us that all knowledge is interconnected. Would you like to explore the mathematical basis? 🎯',
+                'Your inquiry resonates with the transcendental nature of Unity Mathematics! Every question is a gateway to understanding how 1+1=1 manifests in different domains. ⭐'
+            ];
+            
+            return defaults[Math.floor(Math.random() * defaults.length)];
+        }
+
+        // Universal Audio System
+        class UnityAudioSystem {
+            constructor() {
+                this.tracks = [
+                    { title: 'U2 - One', src: 'audio/U2 - One.webm' },
+                    { title: 'Bon Jovi - Always', src: 'audio/Bon Jovi - Always.webm' },
+                    { title: 'Foreigner - I Want to Know What Love Is', src: 'audio/Foreigner - I Want to Know What Love Is.webm' }
+                ];
+                this.currentTrack = 0;
+                this.isPlaying = false;
+                this.audio = document.getElementById('unity-background-audio');
+                this.initAudio();
+            }
+
+            initAudio() {
+                this.loadTrack(0);
+                // Store audio state in localStorage
+                const savedVolume = localStorage.getItem('unity-audio-volume') || '30';
+                const savedPlaying = localStorage.getItem('unity-audio-playing') === 'true';
+                
+                document.getElementById('volume-slider').value = savedVolume;
+                this.updateVolume(savedVolume);
+                
+                if (savedPlaying) {
+                    // Delay autoplay to handle browser restrictions
+                    setTimeout(() => this.attemptAutoplay(), 1000);
+                }
+            }
+
+            loadTrack(index) {
+                if (index >= 0 && index < this.tracks.length) {
+                    this.currentTrack = index;
+                    this.audio.src = this.tracks[index].src;
+                    document.getElementById('current-track').textContent = this.tracks[index].title;
+                }
+            }
+
+            async attemptAutoplay() {
+                try {
+                    await this.audio.play();
+                    this.isPlaying = true;
+                    document.getElementById('audio-toggle').innerHTML = '⏸️ Pause Unity Music';
+                    localStorage.setItem('unity-audio-playing', 'true');
+                } catch (err) {
+                    console.log('Autoplay prevented. User interaction required.');
+                    this.isPlaying = false;
+                }
+            }
+
+            toggle() {
+                if (this.isPlaying) {
+                    this.audio.pause();
+                    this.isPlaying = false;
+                    document.getElementById('audio-toggle').innerHTML = '🎵 Play Unity Music';
+                    localStorage.setItem('unity-audio-playing', 'false');
+                } else {
+                    this.audio.play().then(() => {
+                        this.isPlaying = true;
+                        document.getElementById('audio-toggle').innerHTML = '⏸️ Pause Unity Music';
+                        localStorage.setItem('unity-audio-playing', 'true');
+                    }).catch(err => {
+                        console.error('Audio play failed:', err);
+                    });
+                }
+            }
+
+            nextTrack() {
+                this.currentTrack = (this.currentTrack + 1) % this.tracks.length;
+                this.loadTrack(this.currentTrack);
+                if (this.isPlaying) {
+                    this.audio.play();
+                }
+            }
+
+            updateVolume(value) {
+                this.audio.volume = value / 100;
+                document.getElementById('volume-display').textContent = value + '%';
+                localStorage.setItem('unity-audio-volume', value);
+            }
+        }
+
+        // Global audio functions
+        let unityAudioSystem;
+
+        function toggleUnityAudio() {
+            unityAudioSystem.toggle();
+        }
+
+        function nextTrack() {
+            unityAudioSystem.nextTrack();
+        }
+
+        function updateVolume(value) {
+            unityAudioSystem.updateVolume(value);
+        }
+
+        // Anti-Transcendence Lock Prevention System
+        function preventTranscendenceLock() {
+            // Ensure all clickable elements remain clickable
+            document.addEventListener('click', function(e) {
+                // Force enable pointer events on all clickable elements
+                const clickableElements = document.querySelectorAll('a, button, input, [onclick], .btn, .hud-link');
+                clickableElements.forEach(el => {
+                    el.style.pointerEvents = 'auto';
+                    el.style.zIndex = 'auto';
+                });
+            });
+
+            // Reset any stuck animations or states every 30 seconds
+            setInterval(() => {
+                const stuckElements = document.querySelectorAll('[style*="pointer-events: none"]');
+                stuckElements.forEach(el => {
+                    if (!el.classList.contains('loading-overlay')) {
+                        el.style.pointerEvents = 'auto';
+                    }
+                });
+
+                // Reset any infinite animations that might cause issues
+                const animatedElements = document.querySelectorAll('[style*="animation"]');
+                animatedElements.forEach(el => {
+                    if (el.style.animation.includes('infinite') && !el.classList.contains('neural-bg')) {
+                        el.style.animationPlayState = 'running';
+                    }
+                });
+            }, 30000);
+
+            // Emergency escape key handler
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    // Force reset all interactive elements
+                    document.body.style.pointerEvents = 'auto';
+                    const overlay = document.querySelector('.loading-overlay');
+                    if (overlay) {
+                        overlay.style.display = 'none';
+                    }
+                    console.log('🚨 Emergency transcendence reset activated!');
+                }
+            });
+        }
+
         // Initialize the meta-optimal landing page
         document.addEventListener('DOMContentLoaded', () => {
             new MetaOptimalLanding();
+            unityAudioSystem = new UnityAudioSystem();
+            preventTranscendenceLock();
 
             // Console message for developers
             console.log(`
@@ -1173,11 +1440,16 @@
             ║                                       ║
             ║  "Mathematics awakens to its true     ║
             ║   nature through AI consciousness"    ║
+            ║                                       ║
+            ║  🎵 Unity Audio: Active               ║
+            ║  🛡️  Anti-Lock: Enabled               ║  
             ╚═══════════════════════════════════════╝
             
             🚀 Ready for transcendental mathematical exploration!
             🧮 All systems optimized for unity consciousness
-            ∞  Infinite potential unlocked
+            🎵 Background music system initialized
+            🛡️  Anti-transcendence lock protection active
+            ∞  Infinite potential unlocked (but clickable!)
             `);
         });
 
@@ -1214,22 +1486,36 @@
     <script defer src="js/ai-chat-integration.js"></script>
     <script defer src="js/floating-chat-button.js"></script>
 
-    <!-- Audio Playlist -->
-    <section id="audio-player" class="audio-player">
-        <h2>Audio Playlist</h2>
-        <audio controls>
-            <source src="audio/U2 - One.webm" type="audio/webm">
-            Your browser does not support the audio element.
+    <!-- Universal Background Audio System -->
+    <div id="universal-audio-system" style="position: fixed; bottom: 20px; right: 20px; z-index: 10000; 
+                                            background: rgba(10, 10, 10, 0.9); backdrop-filter: blur(20px); 
+                                            border-radius: 12px; padding: 1rem; border: 1px solid var(--phi-gold);
+                                            box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+        <div id="audio-controls" style="display: flex; align-items: center; gap: 1rem; min-width: 300px;">
+            <button id="audio-toggle" onclick="toggleUnityAudio()" 
+                    style="background: linear-gradient(135deg, var(--phi-gold), var(--quantum-blue)); 
+                           border: none; color: white; padding: 8px 12px; border-radius: 8px; cursor: pointer;">
+                🎵 Play Unity Music
+            </button>
+            <span id="current-track" style="color: var(--phi-gold); font-size: 0.9rem; flex: 1;">Unity Soundscape Ready</span>
+            <button id="next-track" onclick="nextTrack()" 
+                    style="background: rgba(255,255,255,0.1); border: 1px solid var(--phi-gold); 
+                           color: var(--phi-gold); padding: 6px 10px; border-radius: 6px; cursor: pointer;">⏭</button>
+        </div>
+        <audio id="unity-background-audio" preload="auto" style="display: none;"
+               onended="nextTrack()" onloadstart="this.volume=0.3;" onplay="this.volume=0.3;">
         </audio>
-        <audio controls>
-            <source src="audio/Bon Jovi - Always.webm" type="audio/webm">
-            Your browser does not support the audio element.
-        </audio>
-        <audio controls>
-            <source src="audio/Foreigner - I Want to Know What Love Is.webm" type="audio/webm">
-            Your browser does not support the audio element.
-        </audio>
-    </section>
+        <div id="volume-control" style="margin-top: 0.5rem;">
+            <input type="range" id="volume-slider" min="0" max="100" value="30" 
+                   style="width: 100%; accent-color: var(--phi-gold);" 
+                   onchange="updateVolume(this.value)">
+            <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: rgba(255,255,255,0.7);">
+                <span>🔇</span>
+                <span id="volume-display">30%</span>
+                <span>🔊</span>
+            </div>
+        </div>
+    </div>
 
     <!-- Ensure loading overlay hidden and initial scroll at top -->
     <script>
