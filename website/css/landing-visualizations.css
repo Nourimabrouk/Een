@@ -130,13 +130,13 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 10;
+    z-index: 1;
     text-align: center;
     color: var(--ethereal-white);
 }
 
 .unity-equation-text {
-    font-size: clamp(4rem, 12vw, 12rem);
+    font-size: clamp(2rem, 8vw, 6rem);
     font-weight: 900;
     background: linear-gradient(135deg, var(--unity-gold) 0%, var(--quantum-purple) 50%, var(--transcendent-pink) 100%);
     -webkit-background-clip: text;
@@ -265,13 +265,13 @@
 
 /* Content Overlay */
 .content-overlay {
-    position: absolute;
+    position: relative;
+    z-index: 5;
     bottom: 0;
     left: 0;
     width: 100%;
     background: linear-gradient(transparent 0%, rgba(15, 23, 42, 0.9) 50%, rgba(15, 23, 42, 0.95) 100%);
     padding: 4rem 2rem 2rem;
-    z-index: 5;
 }
 
 .content-grid {
@@ -283,6 +283,8 @@
 }
 
 .content-card {
+    position: relative;
+    z-index: 10;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 16px;

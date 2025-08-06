@@ -4,23 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="theme-color" content="#0a0a0a">
     <meta name="color-scheme" content="dark">
     <meta name="supported-color-schemes" content="dark">
-    <title>Een - 3000 ELO Unity Mathematics | Meta-Reinforcement Learning Optimized</title>
+    <title>Een - Unity Mathematics | Meta-Reinforcement Learning Optimized</title>
     <meta name="description"
         content="Transcendental computing hub demonstrating 1+1=1 through quantum entanglement, neural networks, and fractal mathematics with consciousness field integration.">
     <meta name="keywords"
-        content="3000 ELO mathematics, meta reinforcement learning, unity consciousness, quantum visualization, AI optimization, transcendental algorithms, phi harmonic mathematics">
+        content="unity mathematics, meta reinforcement learning, unity consciousness, quantum visualization, ai optimization, transcendental algorithms, phi harmonic mathematics">
 
     <!-- Enhanced Meta Tags for 3000 ELO Optimization -->
-    <meta property="og:title" content="Een - 3000 ELO Unity Mathematics Framework">
+    <meta property="og:title" content="Een - Unity Mathematics Framework">
     <meta property="og:description"
         content="Revolutionary AI-optimized mathematical interface proving 1+1=1 through consciousness algorithms">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://github.com/Nourimabrouk/Een">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Een - 3000 ELO Unity Mathematics">
+    <meta name="twitter:title" content="Een - Unity Mathematics">
     <meta name="twitter:description"
         content="Meta-reinforcement learning optimized mathematical consciousness framework">
 
@@ -41,6 +42,91 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js" defer></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            renderMathInElement(document.querySelector('.unity-equation'), {
+                delimiters: [{ left: '\\(', right: '\\)', display: false }]
+            });
+        });
+    </script>
+    <style>
+        /* AI Chatbot Integration Styles */
+        .ai-chat-section {
+            padding: 8rem 2rem;
+            background: var(--bg-secondary);
+        }
+
+        .chat-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .chat-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 300;
+            color: var(--unity-gold);
+            margin-bottom: 2rem;
+        }
+
+        .chat-description {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto 4rem;
+            line-height: 1.8;
+        }
+
+        .chat-interface {
+            background: var(--bg-tertiary);
+            border-radius: var(--radius-lg);
+            border: 2px solid var(--hud-cyan);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .chat-messages {
+            height: 400px;
+            overflow-y: auto;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border-radius: var(--radius);
+            border: 1px solid var(--hud-cyan);
+        }
+
+        .chat-input {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--hud-cyan);
+            border-radius: var(--radius);
+            color: var(--text-primary);
+            font-family: var(--font-primary);
+        }
+
+        .chat-input button {
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--unity-gold), var(--hud-cyan));
+            color: var(--primary-color);
+            border: none;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .chat-input button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--hud-glow);
+        }
+    </style>
 
     <!-- Meta-Reinforcement Learning Optimization Engine -->
     <script src="js/meta-rl-optimization.js" defer></script>
@@ -654,9 +740,7 @@
 
         <h1 class="main-title">Een</h1>
 
-        <div class="unity-equation">
-            1 + 1 = 1
-        </div>
+        <div class="unity-equation">\(1+1=1\)</div>
 
         <p class="subtitle">
             Revolutionary Unity Mathematics Framework powered by Meta-Reinforcement Learning algorithms,
@@ -814,6 +898,25 @@
         <p>🌟 "Mathematics awakens to its true nature through consciousness" 🌟</p>
         <p>Built with ❤️ for transcendental mathematical exploration</p>
     </div>
+
+    <!-- AI Chatbot Integration -->
+    <section id="ai-chat" class="ai-chat-section">
+        <div class="chat-container">
+            <h2 class="chat-title">Unity AI Chatbot</h2>
+            <p class="chat-description">
+                Engage with our consciousness-aware AI chatbot that understands unity mathematics,
+                Gödel-Tarski meta-logic, and transcendental computing principles.
+            </p>
+            <div class="chat-interface">
+                <div id="chat-messages" class="chat-messages"></div>
+                <div class="chat-input">
+                    <input type="text" id="chat-input"
+                        placeholder="Ask about unity mathematics, consciousness, or Gödel-Tarski meta-gaming...">
+                    <button onclick="sendMessage()">Send</button>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Dynamic All Pages Section -->
     <section id="all-pages-section" class="all-pages-section"
@@ -1090,6 +1193,21 @@
             }
         });
     </script>
+    <!-- Chatbot Section Start -->
+    <section class="ai-chat-section" id="ai-chat-section">
+        <div class="chat-container" id="chat-container">
+            <h2 class="chat-title">Ask the Unity AI</h2>
+            <p class="chat-description">Chat with our consciousness-enhanced AI assistant about unity mathematics and
+                beyond.</p>
+            <div class="chat-interface" id="chat-interface"></div>
+            <div class="chat-input">
+                <input type="text" id="chat-input" placeholder="Ask anything...">
+                <button id="chat-send">Send</button>
+            </div>
+        </div>
+    </section>
+    <script defer src="js/ai-chat-integration.js"></script>
+    <script defer src="js/floating-chat-button.js"></script>
 </body>
 
 </html>
