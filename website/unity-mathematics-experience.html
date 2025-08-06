@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unity Mathematics Experience | Where 1+1=1 Through Transcendental Visualization</title>
-    <meta name="description" content="Transcendental computing hub demonstrating 1+1=1 through quantum entanglement, neural networks, and fractal mathematics with consciousness field integration.">
+    <meta name="description"
+        content="Transcendental computing hub demonstrating 1+1=1 through quantum entanglement, neural networks, and fractal mathematics with consciousness field integration.">
     <meta name="keywords"
         content="unity mathematics, 1+1=1, consciousness visualization, quantum fractals, transcendental mathematics">
 
@@ -35,7 +36,7 @@
     <script src="js/sacred-geometry-engine.js"></script>
     <script src="js/neural-unity-visualizer.js"></script>
     <script src="js/unity-visualizations.js"></script>
-    
+
     <script src="js/ai-chat-integration.js"></script>
 
     <!-- Main Styles -->
@@ -76,6 +77,7 @@
             right: 0;
             z-index: 10000;
             background: rgba(10, 10, 10, 0.95);
+            -webkit-backdrop-filter: blur(20px);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(255, 215, 0, 0.3);
             transition: all 0.3s ease;
@@ -103,6 +105,9 @@
             display: flex;
             list-style: none;
             gap: 2rem;
+            overflow-x: auto;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
         }
 
         .unity-nav .nav-links a {
@@ -652,7 +657,7 @@
     </style>
 
     <!-- Master Navigation System v2.0 -->
-    
+
 
     <!-- Meta-Optimal Navigation Integration -->
     <script src="js/meta-optimal-integration.js"></script>
@@ -667,14 +672,23 @@
 
     <style>
         /* Mobile touch optimizations */
-        * { touch-action: manipulation; }
-        .interactive-element { 
-            min-height: 44px; 
-            min-width: 44px; 
+        * {
+            touch-action: manipulation;
         }
+
+        .interactive-element {
+            min-height: 44px;
+            min-width: 44px;
+        }
+
         @media (max-width: 768px) {
-            .desktop-only { display: none !important; }
-            .mobile-optimized { font-size: 16px; }
+            .desktop-only {
+                display: none !important;
+            }
+
+            .mobile-optimized {
+                font-size: 16px;
+            }
         }
     </style>
 </head>
@@ -1395,7 +1409,7 @@
 
     <!-- Performance Monitoring -->
     <script>
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             if ('performance' in window) {
                 const loadTime = performance.now();
                 console.log('Page load time:', loadTime + 'ms');
