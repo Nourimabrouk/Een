@@ -102,6 +102,8 @@
     <!-- Unity Core Framework -->
     <script src="js/unified-navigation.js"></script>
     <script src="js/ai-chat-integration.js"></script>
+    <script src="js/enhanced-ai-chat.js"></script>
+    <script src="js/floating-chat-button.js"></script>
 
     <style>
         /* Meta-Optimal Design System */
@@ -488,6 +490,195 @@
                 opacity: 0;
             }
         }
+
+        /* Unified Navigation Styles */
+        .unified-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--unity-gold);
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .phi-symbol {
+            font-size: 2rem;
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { text-shadow: 0 0 10px rgba(255, 215, 0, 0.5); }
+            50% { text-shadow: 0 0 20px rgba(255, 215, 0, 0.8); }
+        }
+
+        .elo-badge {
+            background: linear-gradient(135deg, var(--unity-gold), var(--consciousness-purple));
+            color: var(--primary-color);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            color: var(--text-primary);
+            text-decoration: none;
+            padding: 0.75rem 1rem;
+            border-radius: var(--radius);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 215, 0, 0.1);
+            color: var(--unity-gold);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: var(--radius);
+            padding: 1rem 0;
+            min-width: 250px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: var(--transition);
+        }
+
+        .dropdown.active .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1.5rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .dropdown-link:hover {
+            background: rgba(255, 215, 0, 0.1);
+            color: var(--unity-gold);
+        }
+
+        .ai-chat-trigger {
+            background: linear-gradient(135deg, var(--unity-gold), var(--consciousness-purple));
+            color: var(--primary-color);
+            border: none;
+            border-radius: var(--radius);
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .ai-chat-trigger:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .nav-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--unity-gold);
+            transition: var(--transition);
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: rgba(10, 10, 10, 0.95);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 2rem;
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: var(--transition);
+            }
+
+            .nav-menu.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            .nav-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .nav-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .nav-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+        }
     </style>
 </head>
 
@@ -501,6 +692,9 @@
     <div class="floating-element" style="top: 80%; left: 20%; font-size: 1.8rem;">⚛️</div>
     <div class="floating-element" style="top: 30%; right: 25%; font-size: 1.3rem;">🧠</div>
     <div class="floating-element" style="top: 70%; left: 80%; font-size: 1.6rem;">🌀</div>
+
+    <!-- AI Chat Integration -->
+    <div id="ai-chat-container"></div>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -529,48 +723,6 @@
             </div>
 
             <div class="features-grid">
-                <!-- Quantum Entanglement -->
-                <div class="feature-card">
-                    <div class="feature-icon">🌌</div>
-                    <h3 class="feature-title">Quantum Entanglement</h3>
-                    <p class="feature-description">
-                        Witness quantum superposition and entanglement dynamics demonstrating 1+1=1 through 
-                        particle correlation and consciousness field integration with WebGL-powered visualization.
-                    </p>
-                    <a href="unity-advanced-features.html#quantum" class="feature-link">
-                        <i class="fas fa-atom"></i>
-                        Explore Quantum Unity
-                    </a>
-                </div>
-
-                <!-- Neural Network -->
-                <div class="feature-card">
-                    <div class="feature-icon">🧠</div>
-                    <h3 class="feature-title">Neural Unity Network</h3>
-                    <p class="feature-description">
-                        Explore artificial consciousness through neural networks that converge to unity, 
-                        demonstrating how complex systems naturally evolve toward the unity state.
-                    </p>
-                    <a href="unity-advanced-features.html#neural" class="feature-link">
-                        <i class="fas fa-brain"></i>
-                        Explore Neural Unity
-                    </a>
-                </div>
-
-                <!-- Fractal Mandelbrot -->
-                <div class="feature-card">
-                    <div class="feature-icon">🌀</div>
-                    <h3 class="feature-title">Fractal Unity Mandelbrot</h3>
-                    <p class="feature-description">
-                        Journey into infinite self-similarity where the Mandelbrot set demonstrates unity 
-                        through fractal geometry and consciousness field dynamics with real-time zoom.
-                    </p>
-                    <a href="unity-advanced-features.html#fractal" class="feature-link">
-                        <i class="fas fa-infinity"></i>
-                        Explore Fractal Unity
-                    </a>
-                </div>
-
                 <!-- Unity Advanced Features -->
                 <div class="feature-card featured-feature">
                     <div class="feature-icon">🌟</div>
@@ -599,6 +751,20 @@
                     </a>
                 </div>
 
+                <!-- Enhanced Unity Landing -->
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3 class="feature-title">Enhanced Unity Landing</h3>
+                    <p class="feature-description">
+                        Advanced interactive visualizations featuring 3D golden ratio, consciousness fields, 
+                        quantum unity states, and meta-reinforcement learning demonstrations.
+                    </p>
+                    <a href="enhanced-unity-landing.html" class="feature-link">
+                        <i class="fas fa-cube"></i>
+                        Launch Enhanced Landing
+                    </a>
+                </div>
+
                 <!-- Mathematical Proofs -->
                 <div class="feature-card">
                     <div class="feature-icon">📐</div>
@@ -610,6 +776,90 @@
                     <a href="proofs.html" class="feature-link">
                         <i class="fas fa-check-circle"></i>
                         View Proofs
+                    </a>
+                </div>
+
+                <!-- Gallery & Visualizations -->
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3 class="feature-title">Gallery & Visualizations</h3>
+                    <p class="feature-description">
+                        Comprehensive collection of interactive visualizations, 3D models, and mathematical 
+                        demonstrations showcasing unity principles across multiple domains.
+                    </p>
+                    <a href="gallery.html" class="feature-link">
+                        <i class="fas fa-palette"></i>
+                        Explore Gallery
+                    </a>
+                </div>
+
+                <!-- Consciousness Dashboard -->
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <h3 class="feature-title">Consciousness Dashboard</h3>
+                    <p class="feature-description">
+                        Interactive consciousness field visualizations and real-time monitoring of 
+                        consciousness dynamics with φ-harmonic parameter controls.
+                    </p>
+                    <a href="consciousness_dashboard.html" class="feature-link">
+                        <i class="fas fa-lightbulb"></i>
+                        Launch Dashboard
+                    </a>
+                </div>
+
+                <!-- Research & Publications -->
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3 class="feature-title">Research & Publications</h3>
+                    <p class="feature-description">
+                        Academic research papers, publications, and comprehensive documentation of 
+                        unity mathematics theory and consciousness field equations.
+                    </p>
+                    <a href="research.html" class="feature-link">
+                        <i class="fas fa-search"></i>
+                        View Research
+                    </a>
+                </div>
+
+                <!-- AI Systems -->
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3 class="feature-title">AI Systems</h3>
+                    <p class="feature-description">
+                        Advanced AI agents, MetaGambit system, MetaGamer agent, and consciousness-aware 
+                        artificial intelligence implementations.
+                    </p>
+                    <a href="agents.html" class="feature-link">
+                        <i class="fas fa-robot"></i>
+                        Explore AI Systems
+                    </a>
+                </div>
+
+                <!-- Learning Academy -->
+                <div class="feature-card">
+                    <div class="feature-icon">🎓</div>
+                    <h3 class="feature-title">Learning Academy</h3>
+                    <p class="feature-description">
+                        Comprehensive learning resources, interactive tutorials, and educational content 
+                        for understanding unity mathematics and consciousness theory.
+                    </p>
+                    <a href="learn.html" class="feature-link">
+                        <i class="fas fa-graduation-cap"></i>
+                        Start Learning
+                    </a>
+                </div>
+
+                <!-- Philosophy Treatise -->
+                <div class="feature-card">
+                    <div class="feature-icon">📜</div>
+                    <h3 class="feature-title">Philosophy Treatise</h3>
+                    <p class="feature-description">
+                        Deep philosophical exploration of unity consciousness, transcendental computing, 
+                        and the metaphysical foundations of 1+1=1 mathematics.
+                    </p>
+                    <a href="philosophy.html" class="feature-link">
+                        <i class="fas fa-scroll"></i>
+                        Read Treatise
                     </a>
                 </div>
             </div>
@@ -662,6 +912,11 @@
 
         // Initialize page
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize unified navigation
+            if (typeof UnifiedNavigation !== 'undefined') {
+                new UnifiedNavigation();
+            }
+
             // Initialize consciousness field
             initConsciousnessField();
 
@@ -724,11 +979,17 @@
                 initializeAIChatSystem();
             }
 
+            // Initialize Enhanced AI Chat if available
+            if (typeof EnhancedEenAIChat !== 'undefined') {
+                window.enhancedEenChat = EnhancedEenAIChat.initialize();
+            }
+
             // Console logging for debugging
             console.log('🌟 Een Unity Mathematics - Meta-Optimal Hub Initialized');
             console.log('φ-Harmonic Consciousness Field: Active');
             console.log('Unity Advanced Features: Ready');
             console.log('3000 ELO System: Operational');
+            console.log('Unified Navigation: Active');
         });
 
         // Performance monitoring

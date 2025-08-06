@@ -29,6 +29,12 @@
     <script src="js/euler-identity-interactive.js"></script>
     <script src="js/meta-rl-visualization.js"></script>
 
+    <!-- Unity Core Framework -->
+    <script src="js/unified-navigation.js"></script>
+    <script src="js/ai-chat-integration.js"></script>
+    <script src="js/enhanced-ai-chat.js"></script>
+    <script src="js/floating-chat-button.js"></script>
+
     <style>
         :root {
             --primary-color: #1a2332;
@@ -372,10 +378,201 @@
                 align-items: center;
             }
         }
+
+        /* Unified Navigation Styles */
+        .unified-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(26, 35, 50, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--phi-gold);
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .phi-symbol {
+            font-size: 2rem;
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { text-shadow: 0 0 10px rgba(255, 215, 0, 0.5); }
+            50% { text-shadow: 0 0 20px rgba(255, 215, 0, 0.8); }
+        }
+
+        .elo-badge {
+            background: linear-gradient(135deg, var(--phi-gold), var(--phi-gold-light));
+            color: var(--primary-color);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 215, 0, 0.1);
+            color: var(--phi-gold);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(26, 35, 50, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 8px;
+            padding: 1rem 0;
+            min-width: 250px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .dropdown.active .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1.5rem;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .dropdown-link:hover {
+            background: rgba(255, 215, 0, 0.1);
+            color: var(--phi-gold);
+        }
+
+        .ai-chat-trigger {
+            background: linear-gradient(135deg, var(--phi-gold), var(--phi-gold-light));
+            color: var(--primary-color);
+            border: none;
+            border-radius: 8px;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .ai-chat-trigger:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .nav-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--phi-gold);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: rgba(26, 35, 50, 0.95);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 2rem;
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .nav-menu.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            .nav-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .nav-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .nav-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+        }
     </style>
 </head>
 
 <body>
+    <!-- AI Chat Integration -->
+    <div id="ai-chat-container"></div>
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
@@ -642,6 +839,11 @@
     <script>
         // Initialize enhanced visualizations when page loads
         document.addEventListener('DOMContentLoaded', function () {
+            // Initialize unified navigation
+            if (typeof UnifiedNavigation !== 'undefined') {
+                new UnifiedNavigation();
+            }
+
             // KaTeX Auto-render
             if (typeof renderMathInElement !== 'undefined') {
                 renderMathInElement(document.body, {
@@ -658,6 +860,16 @@
 
             // Initialize demo containers with enhanced visualizations
             initializeDemoContainers();
+
+            // Initialize AI chat if available
+            if (typeof initializeAIChatSystem === 'function') {
+                initializeAIChatSystem();
+            }
+
+            // Initialize Enhanced AI Chat if available
+            if (typeof EnhancedEenAIChat !== 'undefined') {
+                window.enhancedEenChat = EnhancedEenAIChat.initialize();
+            }
         });
 
         function initializeDemoContainers() {
