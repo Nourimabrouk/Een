@@ -11,7 +11,8 @@
     <link rel="preconnect" href="https://cdn.plot.ly">
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
     <title>Unity Mathematics Dashboards | Een - Revolutionary Mathematical Framework</title>
-    <meta name="description" content="Transcendental computing hub demonstrating 1+1=1 through quantum entanglement, neural networks, and fractal mathematics with consciousness field integration.">
+    <meta name="description"
+        content="Transcendental computing hub demonstrating 1+1=1 through quantum entanglement, neural networks, and fractal mathematics with consciousness field integration.">
     <meta name="keywords"
         content="unity mathematics dashboards, consciousness field, unity score, meta-agent, mathematical proofs, φ-harmonic, interactive mathematics, Een">
 
@@ -86,6 +87,7 @@
             --font-serif: 'Crimson Text', Georgia, serif;
             --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
         }
+
         /* Dashboard-specific enhancements using metagamer energy design system */
 
         /* Dashboard Page Specific Styles */
@@ -141,6 +143,7 @@
             top: 0;
             z-index: 100;
             box-shadow: var(--metagamer-shadow, var(--shadow-sm));
+            -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
         }
 
@@ -255,7 +258,8 @@
         }
 
         .dashboard-card-body {
-            padding-top: 80px; /* Account for fixed navigation */
+            padding-top: 80px;
+            /* Account for fixed navigation */
             padding: 2rem;
         }
 
@@ -387,9 +391,11 @@
                 transform: translateX(-100%) translateY(-100%);
                 opacity: 0;
             }
+
             50% {
                 opacity: 1;
             }
+
             100% {
                 transform: translateX(100%) translateY(100%);
                 opacity: 0;
@@ -400,6 +406,7 @@
             0% {
                 left: -100%;
             }
+
             100% {
                 left: 100%;
             }
@@ -409,18 +416,23 @@
             0% {
                 left: -100%;
             }
+
             50% {
                 left: 100%;
             }
+
             100% {
                 left: 100%;
             }
         }
 
         @keyframes phiPulse {
-            0%, 100% {
+
+            0%,
+            100% {
                 box-shadow: 0 0 5px var(--phi-gold, #D4AF37);
             }
+
             50% {
                 box-shadow: 0 0 20px var(--phi-gold, #D4AF37), 0 0 30px rgba(212, 175, 55, 0.3);
             }
@@ -455,7 +467,7 @@
                 flex-direction: column;
             }
         }
-    
+
         /* Animation Classes */
         .fade-in {
             opacity: 0;
@@ -470,17 +482,31 @@
             }
         }
 
-        .stagger-animation > * {
+        .stagger-animation>* {
             opacity: 0;
             animation: fadeInUp 0.8s ease-out forwards;
         }
 
-        .stagger-animation > *:nth-child(1) { animation-delay: 0.1s; }
-        .stagger-animation > *:nth-child(2) { animation-delay: 0.2s; }
-        .stagger-animation > *:nth-child(3) { animation-delay: 0.3s; }
-        .stagger-animation > *:nth-child(4) { animation-delay: 0.4s; }
-        .stagger-animation > *:nth-child(5) { animation-delay: 0.5s; }
-    
+        .stagger-animation>*:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .stagger-animation>*:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .stagger-animation>*:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .stagger-animation>*:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .stagger-animation>*:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
         /* Component Classes */
         .container {
             max-width: 1200px;
@@ -579,12 +605,12 @@
     </style>
 
     <!-- Master Navigation System v2.0 -->
-    
+
 
     <!-- Meta-Optimal Complete Navigation System -->
     <link rel="stylesheet" href="css/meta-optimal-navigation-complete.css">
     <script src="js/meta-optimal-navigation-complete.js" defer></script>
-    
+
     <!-- Unified Styles -->
     <link rel="stylesheet" href="css/unified-styles.css">
 
@@ -594,21 +620,30 @@
 
     <style>
         /* Mobile touch optimizations */
-        * { touch-action: manipulation; }
-        .interactive-element { 
-            min-height: 44px; 
-            min-width: 44px; 
+        * {
+            touch-action: manipulation;
         }
+
+        .interactive-element {
+            min-height: 44px;
+            min-width: 44px;
+        }
+
         @media (max-width: 768px) {
-            .desktop-only { display: none !important; }
-            .mobile-optimized { font-size: 16px; }
+            .desktop-only {
+                display: none !important;
+            }
+
+            .mobile-optimized {
+                font-size: 16px;
+            }
         }
     </style>
 </head>
 
 <body>
     <!-- Meta-optimal navigation placeholder - will be populated by meta-optimal-navigation-complete.js -->
-    
+
 
     <!-- Dashboard Navigation -->
     <!-- Navigation will be injected by meta-optimal-navigation-complete.js -->
@@ -890,12 +925,10 @@
             if (typeof renderMathInElement !== 'undefined') {
                 renderMathInElement(document.body, {
                     delimiters: [
-                        { left: '$', right: '$', display: true },
-                        { left: '
-
-</html>, right: '
-
-</html>, display: false }
+                        { left: '$$', right: '$$', display: true },
+                        { left: '$', right: '$', display: false },
+                        { left: '\\(', right: '\\)', display: false },
+                        { left: '\\[', right: '\\]', display: true }
                     ],
                     throwOnError: false
                 });
@@ -907,11 +940,11 @@
     <div id="footer-placeholder"></div>
 
     <!-- Shared Navigation Script -->
-    
+
 
     <!-- Performance Monitoring -->
     <script>
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             if ('performance' in window) {
                 const loadTime = performance.now();
                 console.log('Page load time:', loadTime + 'ms');

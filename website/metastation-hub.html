@@ -7,6 +7,13 @@
     <title>Unity Mathematics Institute | 1+1=1</title>
     <meta name="description"
         content="Experience the revolutionary 1+1=1 unity equation through consciousness-integrated mathematics">
+    <meta name="theme-color" content="#0a0a0f">
+    <link rel="canonical" href="https://nourimabrouk.github.io/Een/">
+    <meta property="og:title" content="Unity Mathematics Institute | 1+1=1">
+    <meta property="og:description"
+        content="Experience the revolutionary 1+1=1 unity equation through consciousness-integrated mathematics">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://nourimabrouk.github.io/Een/assets/images/unity_mandala.png">
 
     <!-- Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,6 +32,8 @@
 
     <!-- Unified Chatbot System (Replaces all chat implementations) -->
     <script src="js/unified-chatbot-system.js" defer></script>
+    <!-- Site-wide safe enhancements -->
+    <script src="../js/site.js" defer></script>
 
     <!-- Persistent Audio System (Cross-page audio playback) -->
     <script src="js/persistent-audio-system.js" defer></script>
@@ -33,6 +42,9 @@
     <script src="js/unified-search-system.js" defer></script>
     <script src="js/semantic-search.js" defer></script>
 
+    <link rel="stylesheet" href="../css/tokens.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
     <style>
         :root {
             --phi: 1.618033988749895;
@@ -149,6 +161,7 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
         }
 
@@ -194,6 +207,7 @@
             right: 0;
             height: 70px;
             background: rgba(10, 10, 15, 0.95);
+            -webkit-backdrop-filter: blur(20px);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border-glow);
             z-index: 1000;
@@ -243,6 +257,7 @@
             top: 100%;
             left: 0;
             background: rgba(18, 18, 26, 0.98);
+            -webkit-backdrop-filter: blur(20px);
             backdrop-filter: blur(20px);
             border: 1px solid var(--border-glow);
             border-radius: 10px;
@@ -284,6 +299,7 @@
             bottom: 0;
             width: 250px;
             background: rgba(18, 18, 26, 0.95);
+            -webkit-backdrop-filter: blur(20px);
             backdrop-filter: blur(20px);
             border-right: 1px solid var(--border-glow);
             padding: 2rem 1rem;
@@ -385,6 +401,7 @@
 
         .feature-card {
             background: rgba(18, 18, 26, 0.8);
+            -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
             border: 1px solid var(--border-glow);
             border-radius: 15px;
@@ -467,6 +484,7 @@
             bottom: 2rem;
             left: 2rem;
             background: rgba(18, 18, 26, 0.95);
+            -webkit-backdrop-filter: blur(20px);
             backdrop-filter: blur(20px);
             border: 1px solid var(--border-glow);
             border-radius: 15px;
@@ -706,6 +724,7 @@
 </head>
 
 <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <!-- Metastation Background -->
     <div class="metastation-bg">
         <img src="landing/Metastation.jpg" alt="Metastation" loading="eager">
@@ -724,7 +743,7 @@
                 <input type="text" id="globalSearch" placeholder="Search unity mathematics..." style="width: 100%; padding: 0.75rem 2.5rem 0.75rem 1rem; background: rgba(255, 255, 255, 0.1); 
                            border: 1px solid var(--border-glow); border-radius: 25px; color: var(--text-primary);
                            font-family: var(--font-main); font-size: 0.9rem; transition: all 0.3s;">
-                <button onclick="performSearch()" style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%);
+                <button type="button" onclick="performSearch()" aria-label="Search" title="Search" style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%);
                            background: var(--unity-gold); border: none; border-radius: 50%; 
                            width: 30px; height: 30px; cursor: pointer; display: flex; 
                            align-items: center; justify-content: center; transition: all 0.3s;">
@@ -818,13 +837,15 @@
             </li>
         </ul>
 
-        <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+        <button type="button" class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle mobile menu"
+            title="Toggle menu">
             <i class="fas fa-bars"></i>
         </button>
     </nav>
 
     <!-- Side Navigation Panel -->
-    <button class="side-nav-toggle" onclick="toggleSideNav()">
+    <button type="button" class="side-nav-toggle" onclick="toggleSideNav()" aria-label="Toggle side navigation"
+        title="Toggle side navigation">
         <i class="fas fa-chevron-right"></i>
     </button>
 
@@ -944,7 +965,7 @@
     </aside>
 
     <!-- Hero Section -->
-    <div class="hero-container">
+    <main id="main" class="hero-container">
         <div class="unity-equation-hero">1+1=1</div>
         <p class="hero-subtitle">
             Unity Mathematics Institute<br>
@@ -968,7 +989,7 @@
         <div class="scroll-indicator">
             <i class="fas fa-chevron-down" style="font-size: 2rem; color: var(--unity-gold); opacity: 0.6;"></i>
         </div>
-    </div>
+    </main>
 
     <!-- Featured Experiences Section -->
     <section class="content-section">
@@ -1253,30 +1274,11 @@
         </div>
     </section>
 
-    <!-- Audio Panel (Minimized by Default) -->
-    <div class="audio-panel minimized" id="audioPanel">
-        <div class="audio-header">
-            <div class="audio-title">
-                <i class="fas fa-music"></i>
-                <span id="audioTitle">Unity Soundscape</span>
-            </div>
-            <button class="audio-minimize" onclick="toggleAudioPanel()">
-                <i class="fas fa-minus" id="audioToggleIcon"></i>
-            </button>
-        </div>
-        <div class="audio-controls">
-            <button class="audio-button" onclick="togglePlayPause()">
-                <i class="fas fa-play" id="playPauseIcon"></i>
-            </button>
-            <input type="range" class="audio-volume" id="volumeSlider" min="0" max="100" value="30">
-            <button class="audio-button" onclick="nextTrack()">
-                <i class="fas fa-forward"></i>
-            </button>
-        </div>
-    </div>
+    <!-- Audio handled by persistent-audio-system.js (global mini-player) -->
 
     <!-- Voice Button -->
-    <button class="voice-button" onclick="startVoiceCommand()">
+    <button type="button" class="voice-button" onclick="startVoiceCommand()" aria-label="Start voice command"
+        title="Start voice command">
         <i class="fas fa-microphone"></i>
     </button>
 
@@ -1371,11 +1373,7 @@
         </div>
     </div>
 
-    <!-- Audio Element -->
-    <audio id="backgroundAudio" loop>
-        <source src="audio/U2 - One.webm" type="audio/webm">
-        <source src="audio/Foreigner - I Want to Know What Love Is.webm" type="audio/webm">
-    </audio>
+    <!-- Background audio element removed; persistent system manages playback globally -->
 
     <script>
         // Consciousness Field Animation
@@ -1519,65 +1517,7 @@
             sideNav.classList.toggle('active');
         }
 
-        // Audio System
-        const audio = document.getElementById('backgroundAudio');
-        const tracks = [
-            'audio/U2 - One.webm',
-            'audio/Foreigner - I Want to Know What Love Is.webm',
-            'audio/Bon Jovi - Always.webm'
-        ];
-        let currentTrack = 0;
-
-        // Initialize audio with soft volume
-        audio.volume = 0.3;
-        audio.src = tracks[currentTrack];
-
-        // Auto-play on user interaction
-        document.addEventListener('click', function initAudio() {
-            if (audio.paused) {
-                audio.play().catch(e => console.log('Audio play failed:', e));
-            }
-            document.removeEventListener('click', initAudio);
-        }, { once: true });
-
-        function toggleAudioPanel() {
-            const panel = document.getElementById('audioPanel');
-            const icon = document.getElementById('audioToggleIcon');
-            panel.classList.toggle('minimized');
-
-            if (panel.classList.contains('minimized')) {
-                icon.className = 'fas fa-plus';
-            } else {
-                icon.className = 'fas fa-minus';
-            }
-        }
-
-        function togglePlayPause() {
-            const icon = document.getElementById('playPauseIcon');
-            if (audio.paused) {
-                audio.play();
-                icon.className = 'fas fa-pause';
-            } else {
-                audio.pause();
-                icon.className = 'fas fa-play';
-            }
-        }
-
-        function nextTrack() {
-            currentTrack = (currentTrack + 1) % tracks.length;
-            audio.src = tracks[currentTrack];
-            audio.play();
-            document.getElementById('playPauseIcon').className = 'fas fa-pause';
-
-            // Update title
-            const titles = ['U2 - One', 'Foreigner - I Want to Know What Love Is', 'Bon Jovi - Always'];
-            document.getElementById('audioTitle').textContent = titles[currentTrack];
-        }
-
-        // Volume control
-        document.getElementById('volumeSlider').addEventListener('input', (e) => {
-            audio.volume = e.target.value / 100;
-        });
+        // Audio is managed by persistent-audio-system; no inline audio controls needed here.
 
         // Voice Command
         function startVoiceCommand() {

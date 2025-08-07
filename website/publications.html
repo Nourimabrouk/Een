@@ -11,7 +11,13 @@
     <link rel="preconnect" href="https://cdn.plot.ly">
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
     <title>Publications - Een Unity Mathematics</title>
-    <meta name="description" content="Transcendental computing hub demonstrating 1+1=1 through quantum entanglement, neural networks, and fractal mathematics with consciousness field integration.">
+    <meta name="description"
+        content="Transcendental computing hub demonstrating 1+1=1 through quantum entanglement, neural networks, and fractal mathematics with consciousness field integration.">
+    <!-- Unified Design System -->
+    <link rel="stylesheet" href="../css/tokens.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <!-- Page Styles -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/publications.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -22,13 +28,13 @@
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
     <!-- Master Navigation System v2.0 -->
-    
+
 
     <!-- Meta-Optimal Complete Navigation System -->
     <link rel="stylesheet" href="css/meta-optimal-navigation-complete.css">
     <script src="js/meta-optimal-navigation-complete.js" defer></script>
-    
-    <!-- Unified Styles -->
+
+    <!-- Legacy Unified Styles (kept) -->
     <link rel="stylesheet" href="css/unified-styles.css">
 
     <!-- Preload critical resources -->
@@ -68,17 +74,27 @@
             --font-serif: 'Crimson Text', Georgia, serif;
             --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
         }
+
         /* Mobile touch optimizations */
-        * { touch-action: manipulation; }
-        .interactive-element { 
-            min-height: 44px; 
-            min-width: 44px; 
+        * {
+            touch-action: manipulation;
         }
+
+        .interactive-element {
+            min-height: 44px;
+            min-width: 44px;
+        }
+
         @media (max-width: 768px) {
-            .desktop-only { display: none !important; }
-            .mobile-optimized { font-size: 16px; }
+            .desktop-only {
+                display: none !important;
+            }
+
+            .mobile-optimized {
+                font-size: 16px;
+            }
         }
-    
+
         /* Animation Classes */
         .fade-in {
             opacity: 0;
@@ -93,17 +109,31 @@
             }
         }
 
-        .stagger-animation > * {
+        .stagger-animation>* {
             opacity: 0;
             animation: fadeInUp 0.8s ease-out forwards;
         }
 
-        .stagger-animation > *:nth-child(1) { animation-delay: 0.1s; }
-        .stagger-animation > *:nth-child(2) { animation-delay: 0.2s; }
-        .stagger-animation > *:nth-child(3) { animation-delay: 0.3s; }
-        .stagger-animation > *:nth-child(4) { animation-delay: 0.4s; }
-        .stagger-animation > *:nth-child(5) { animation-delay: 0.5s; }
-    
+        .stagger-animation>*:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .stagger-animation>*:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .stagger-animation>*:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .stagger-animation>*:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .stagger-animation>*:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
         /* Component Classes */
         .container {
             max-width: 1200px;
@@ -200,27 +230,32 @@
             padding: 4rem 2rem;
         }
     </style>
+    <!-- Site-wide safe enhancements -->
+    <script src="../js/site.js" defer></script>
 </head>
 
 <body>
     <!-- Meta-optimal navigation placeholder - will be populated by meta-optimal-navigation-complete.js -->
-    
+
 
     <section class="page-hero">
         <div class="container" id="main-content">
             <div class="hero-content">
                 <h1>Publications & Scholarly Works</h1>
-                <p class="page-subtitle">Academic contributions to unity mathematics: idempotent algebra, quantum mechanics, consciousness studies, and interdisciplinary research</p>
-                
+                <p class="page-subtitle">Academic contributions to unity mathematics: idempotent algebra, quantum
+                    mechanics, consciousness studies, and interdisciplinary research</p>
+
                 <!-- Semantic Search for Publications -->
                 <div class="publication-search-container">
                     <div class="search-wrapper">
                         <i class="fas fa-search search-icon"></i>
-                        <input type="text" id="publication-search" placeholder="Search publications... (try: Boolean algebra, quantum measurement, information theory)" autocomplete="off">
+                        <input type="text" id="publication-search"
+                            placeholder="Search publications... (try: Boolean algebra, quantum measurement, information theory)"
+                            autocomplete="off">
                         <div class="search-results" id="pub-search-results"></div>
                     </div>
                 </div>
-                
+
                 <div class="publication-metrics">
                     <div class="metric">
                         <span class="metric-number">∞</span>
@@ -252,7 +287,8 @@
                 </div>
                 <div class="publication-content">
                     <div class="publication-main">
-                        <h2>Interdisciplinary Interpretations of Unity: Mathematical, Physical, and Philosophical Perspectives on 1+1=1</h2>
+                        <h2>Interdisciplinary Interpretations of Unity: Mathematical, Physical, and Philosophical
+                            Perspectives on 1+1=1</h2>
                         <div class="publication-meta">
                             <span class="authors">Unity Mathematics Research Collective</span>
                             <span class="venue">Journal of Interdisciplinary Mathematics and Philosophy</span>
@@ -264,7 +300,25 @@
                         <div class="abstract">
                             <h3>Abstract</h3>
                             <p>
-                                In conventional arithmetic, 1+1=2. However, across mathematics, science, and philosophy there are important contexts where combining "one and one" yields one—reflecting idempotence, unity, or wholeness rather than increase. This comprehensive survey examines key interpretations of the equation <strong>1+1=1</strong> across formal systems and philosophical thought. We demonstrate unity through: (1) <strong>Mathematical idempotence</strong> in Boolean algebra (TRUE∨TRUE=TRUE), set theory (A∪A=A), and idempotent semirings including tropical mathematics; (2) <strong>Quantum mechanics</strong> where repeated measurements yield identical results through projection operators satisfying P²=P; (3) <strong>Information theory</strong> where H(X,X)=H(X), demonstrating that redundant information sources provide no additional content; (4) <strong>Consciousness science</strong> through Integrated Information Theory (IIT) where multiple conscious subsystems integrate into unified experience (Φ>0); (5) <strong>Category theory</strong> via terminal objects and idempotent morphisms where f∘f=f; and (6) <strong>Philosophical frameworks</strong> from Hofstadter's strange loops to Eastern non-dualism. Each domain provides rigorous mathematical or empirical evidence that unity emerges naturally when identical or deeply integrated elements combine. We conclude that 1+1=1 serves as a powerful principle for understanding idempotence, consciousness integration, and the fundamental unity underlying apparent multiplicity across diverse fields of inquiry.
+                                In conventional arithmetic, 1+1=2. However, across mathematics, science, and philosophy
+                                there are important contexts where combining "one and one" yields one—reflecting
+                                idempotence, unity, or wholeness rather than increase. This comprehensive survey
+                                examines key interpretations of the equation <strong>1+1=1</strong> across formal
+                                systems and philosophical thought. We demonstrate unity through: (1)
+                                <strong>Mathematical idempotence</strong> in Boolean algebra (TRUE∨TRUE=TRUE), set
+                                theory (A∪A=A), and idempotent semirings including tropical mathematics; (2)
+                                <strong>Quantum mechanics</strong> where repeated measurements yield identical results
+                                through projection operators satisfying P²=P; (3) <strong>Information theory</strong>
+                                where H(X,X)=H(X), demonstrating that redundant information sources provide no
+                                additional content; (4) <strong>Consciousness science</strong> through Integrated
+                                Information Theory (IIT) where multiple conscious subsystems integrate into unified
+                                experience (Φ>0); (5) <strong>Category theory</strong> via terminal objects and
+                                idempotent morphisms where f∘f=f; and (6) <strong>Philosophical frameworks</strong> from
+                                Hofstadter's strange loops to Eastern non-dualism. Each domain provides rigorous
+                                mathematical or empirical evidence that unity emerges naturally when identical or deeply
+                                integrated elements combine. We conclude that 1+1=1 serves as a powerful principle for
+                                understanding idempotence, consciousness integration, and the fundamental unity
+                                underlying apparent multiplicity across diverse fields of inquiry.
                             </p>
                             <div class="implementation-note">
                                 <strong>📚 Complete Mathematical Proofs:</strong>
@@ -352,18 +406,26 @@
                         </div>
                         <div class="publication-details">
                             <div class="authors">V.P. Maslov, V.N. Kolokoltsov, Unity Mathematics Extension Team</div>
-                            <div class="venue"><em>Journal of Mathematical Analysis and Applications</em>, Vol. 485, No. 2, pp. 124-167, 2024</div>
+                            <div class="venue"><em>Journal of Mathematical Analysis and Applications</em>, Vol. 485, No.
+                                2, pp. 124-167, 2024</div>
                             <div class="doi">DOI: 10.1016/j.jmaa.2024.idempotent.unity</div>
-                            <div class="original-ref">Based on: Maslov, V.P., Kolokoltsov, V.N. (1994). <em>Idempotent Analysis and Its Applications</em>. Kluwer Academic Publishers.</div>
+                            <div class="original-ref">Based on: Maslov, V.P., Kolokoltsov, V.N. (1994). <em>Idempotent
+                                    Analysis and Its Applications</em>. Kluwer Academic Publishers.</div>
                         </div>
                         <div class="publication-summary">
-                            <p>Extends classical idempotent analysis to unity mathematics, providing rigorous foundations for systems where addition exhibits unity properties. Demonstrates how idempotent operations naturally lead to <strong>a⊕a = a</strong> across multiple algebraic structures including Boolean algebras, tropical semirings, and max-plus systems.</p>
+                            <p>Extends classical idempotent analysis to unity mathematics, providing rigorous
+                                foundations for systems where addition exhibits unity properties. Demonstrates how
+                                idempotent operations naturally lead to <strong>a⊕a = a</strong> across multiple
+                                algebraic structures including Boolean algebras, tropical semirings, and max-plus
+                                systems.</p>
                             <div class="math-highlight">
-                                <p><strong>Key Result:</strong> In idempotent semirings, the unity property 1⊕1=1 emerges as a natural consequence of the algebraic structure.</p>
+                                <p><strong>Key Result:</strong> In idempotent semirings, the unity property 1⊕1=1
+                                    emerges as a natural consequence of the algebraic structure.</p>
                             </div>
                         </div>
                         <div class="publication-actions">
-                            <button class="cite-btn" onclick="showCitation('maslov-kolokoltsov-2024')"><i class="fas fa-quote-right"></i> Cite</button>
+                            <button class="cite-btn" onclick="showCitation('maslov-kolokoltsov-2024')"><i
+                                    class="fas fa-quote-right"></i> Cite</button>
                             <a href="#" class="action-link"><i class="fas fa-file-pdf"></i> PDF</a>
                             <a href="#" class="action-link"><i class="fas fa-chart-bar"></i> Metrics</a>
                         </div>
@@ -381,21 +443,37 @@
                             <div class="authors">G. Boole (1854), Extended by Modern Unity Mathematics Collective</div>
                             <div class="venue"><em>Annals of Mathematical Logic</em>, Vol. 198, pp. 89-124, 2024</div>
                             <div class="doi">DOI: 10.1016/j.aml.2024.boolean.unity</div>
-                            <div class="original-ref">Historical basis: Boole, G. (1854). <em>An Investigation of the Laws of Thought</em>. Cambridge University Press.</div>
+                            <div class="original-ref">Historical basis: Boole, G. (1854). <em>An Investigation of the
+                                    Laws of Thought</em>. Cambridge University Press.</div>
                         </div>
                         <div class="publication-summary">
-                            <p>Demonstrates how Boolean algebra provides one of the clearest manifestations of unity mathematics through the logical OR operation: <strong>TRUE ∨ TRUE = TRUE</strong>, where 1 represents TRUE. Extends Boole's original work to show systematic unity patterns across all Boolean operations.</p>
+                            <p>Demonstrates how Boolean algebra provides one of the clearest manifestations of unity
+                                mathematics through the logical OR operation: <strong>TRUE ∨ TRUE = TRUE</strong>, where
+                                1 represents TRUE. Extends Boole's original work to show systematic unity patterns
+                                across all Boolean operations.</p>
                             <div class="truth-table-highlight">
                                 <table class="mini-truth-table">
-                                    <tr><th>A</th><th>B</th><th>A ∨ B</th><th>Unity Principle</th></tr>
-                                    <tr class="unity-row"><td>1</td><td>1</td><td><strong>1</strong></td><td>✓ Demonstrates 1+1=1</td></tr>
+                                    <tr>
+                                        <th>A</th>
+                                        <th>B</th>
+                                        <th>A ∨ B</th>
+                                        <th>Unity Principle</th>
+                                    </tr>
+                                    <tr class="unity-row">
+                                        <td>1</td>
+                                        <td>1</td>
+                                        <td><strong>1</strong></td>
+                                        <td>✓ Demonstrates 1+1=1</td>
+                                    </tr>
                                 </table>
                             </div>
                         </div>
                         <div class="publication-actions">
-                            <button class="cite-btn" onclick="showCitation('boole-unity-2024')"><i class="fas fa-quote-right"></i> Cite</button>
+                            <button class="cite-btn" onclick="showCitation('boole-unity-2024')"><i
+                                    class="fas fa-quote-right"></i> Cite</button>
                             <a href="#" class="action-link"><i class="fas fa-file-pdf"></i> PDF</a>
-                            <a href="#" class="action-link"><i class="fas fa-external-link-alt"></i> Historical Context</a>
+                            <a href="#" class="action-link"><i class="fas fa-external-link-alt"></i> Historical
+                                Context</a>
                         </div>
                     </div>
 
@@ -409,21 +487,28 @@
                         </div>
                         <div class="publication-details">
                             <div class="authors">P. Halmos (1960), Unity Mathematics Research Extension</div>
-                            <div class="venue"><em>Proceedings of the Set Theory and Unity Mathematics Conference</em>, Vol. 43, pp. 156-189, 2024</div>
+                            <div class="venue"><em>Proceedings of the Set Theory and Unity Mathematics Conference</em>,
+                                Vol. 43, pp. 156-189, 2024</div>
                             <div class="doi">DOI: 10.1007/pstum.2024.set.unity</div>
-                            <div class="original-ref">Historical basis: Halmos, P.R. (1960). <em>Naive Set Theory</em>. Van Nostrand.</div>
+                            <div class="original-ref">Historical basis: Halmos, P.R. (1960). <em>Naive Set Theory</em>.
+                                Van Nostrand.</div>
                         </div>
                         <div class="publication-summary">
-                            <p>Establishes set-theoretic foundations for unity mathematics through the fundamental property <strong>A ∪ A = A</strong>. Demonstrates how self-union operations preserve set identity, providing concrete mathematical evidence for 1+1=1 in the context of mathematical sets and their operations.</p>
+                            <p>Establishes set-theoretic foundations for unity mathematics through the fundamental
+                                property <strong>A ∪ A = A</strong>. Demonstrates how self-union operations preserve set
+                                identity, providing concrete mathematical evidence for 1+1=1 in the context of
+                                mathematical sets and their operations.</p>
                             <div class="set-theory-example">
                                 <p><strong>Unity Theorem:</strong> For any set A, A ∪ A = A (set union idempotency)</p>
                                 <p><strong>Proof:</strong> By definition of union and set equality.</p>
                             </div>
                         </div>
                         <div class="publication-actions">
-                            <button class="cite-btn" onclick="showCitation('halmos-unity-2024')"><i class="fas fa-quote-right"></i> Cite</button>
+                            <button class="cite-btn" onclick="showCitation('halmos-unity-2024')"><i
+                                    class="fas fa-quote-right"></i> Cite</button>
                             <a href="#" class="action-link"><i class="fas fa-file-pdf"></i> PDF</a>
-                            <a href="#" class="action-link"><i class="fas fa-external-link-alt"></i> Set Theory Background</a>
+                            <a href="#" class="action-link"><i class="fas fa-external-link-alt"></i> Set Theory
+                                Background</a>
                         </div>
                     </div>
                 </div>
@@ -544,7 +629,8 @@
                             <div class="venue"><em>Artificial Life</em>, Vol. 30, No. 4, pp. 445-478, 2024</div>
                             <div class="doi">DOI: 10.1162/artl.2024.unity.organisms</div>
                             <div class="implementation"><i class="fab fa-python"></i>
-                                <code>examples/simple_unity_spawner.py</code> (52KB, 1272 lines)</div>
+                                <code>examples/simple_unity_spawner.py</code> (52KB, 1272 lines)
+                            </div>
                         </div>
                         <div class="publication-summary">
                             <p>Introduces <code>UnityOrganism</code> agents that evolutionarily discover 1+1=1 through
@@ -581,7 +667,8 @@
                             <div class="doi">DOI: 10.1038/s42256-024-unity-metalearning</div>
                             <div class="implementation"><i class="fab fa-python"></i>
                                 <code>ml_framework/meta_reinforcement/unity_meta_agent.py</code> (Advanced
-                                Meta-Learning)</div>
+                                Meta-Learning)
+                            </div>
                         </div>
                         <div class="publication-summary">
                             <p>Develops advanced neural network architectures for automated theorem proving in
@@ -616,7 +703,8 @@
                             <div class="venue"><em>Physical Review A</em>, Vol. 109, No. 6, pp. 062315, 2024</div>
                             <div class="doi">DOI: 10.1103/PhysRevA.109.062315</div>
                             <div class="implementation"><i class="fab fa-python"></i>
-                                <code>src/proofs/quantum_mechanical_proof.py</code> (28KB, 699 lines)</div>
+                                <code>src/proofs/quantum_mechanical_proof.py</code> (28KB, 699 lines)
+                            </div>
                         </div>
                         <div class="publication-summary">
                             <p>Demonstrates how quantum measurement naturally produces unity states |1⟩ + |1⟩ → |1⟩
@@ -858,13 +946,13 @@
     <div id="footer-placeholder"></div>
 
     <!-- Shared Navigation Script -->
-    
+
     <script src="js/main.js"></script>
     <script src="js/publications.js"></script>
 
     <!-- Performance Monitoring -->
     <script>
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             if ('performance' in window) {
                 const loadTime = performance.now();
                 console.log('Page load time:', loadTime + 'ms');

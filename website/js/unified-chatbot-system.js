@@ -127,6 +127,8 @@ class UnifiedChatbotSystem {
         button.id = 'unified-chat-button';
         button.className = 'unified-chat-floating-btn';
         button.title = 'Open Unity Mathematics AI Assistant';
+        button.setAttribute('aria-label', 'Open Unity Mathematics AI Assistant');
+        button.setAttribute('type', 'button');
         button.innerHTML = `
             <div class="chat-btn-icon">
                 <i class="fas fa-brain"></i>
@@ -142,6 +144,9 @@ class UnifiedChatbotSystem {
         const chatContainer = document.createElement('div');
         chatContainer.id = 'unified-chat-container';
         chatContainer.className = 'unified-chat-panel';
+        chatContainer.setAttribute('role', 'dialog');
+        chatContainer.setAttribute('aria-modal', 'true');
+        chatContainer.setAttribute('aria-label', 'Unity AI Assistant');
         chatContainer.innerHTML = `
             <!-- Chat Header -->
             <div class="chat-header">
@@ -187,7 +192,7 @@ class UnifiedChatbotSystem {
             </div>
 
             <!-- Chat Messages Area -->
-            <div class="chat-messages" id="chat-messages">
+            <div class="chat-messages" id="chat-messages" aria-live="polite">
                 <div class="chat-messages-content">
                     <!-- Messages will be inserted here -->
                 </div>
@@ -258,15 +263,15 @@ class UnifiedChatbotSystem {
             /* Unified Chatbot System Styles */
             .unified-chat-floating-btn {
                 position: fixed;
-                bottom: 25px;
-                right: 25px;
+                bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+                right: calc(20px + env(safe-area-inset-right, 0px));
                 width: 65px;
                 height: 65px;
                 background: linear-gradient(135deg, #FFD700, #D4AF37);
                 border: none;
                 border-radius: 50%;
                 cursor: pointer;
-                z-index: 9998;
+                z-index: 10002;
                 box-shadow: 0 8px 32px rgba(255, 215, 0, 0.3);
                 transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
                 display: flex;
@@ -274,6 +279,7 @@ class UnifiedChatbotSystem {
                 justify-content: center;
                 position: relative;
                 overflow: hidden;
+                pointer-events: auto;
             }
 
             .unified-chat-floating-btn:hover {
@@ -325,8 +331,8 @@ class UnifiedChatbotSystem {
             /* Chat Panel */
             .unified-chat-panel {
                 position: fixed;
-                bottom: 25px;
-                right: 25px;
+                bottom: calc(25px + env(safe-area-inset-bottom, 0px));
+                right: calc(25px + env(safe-area-inset-right, 0px));
                 width: 420px;
                 height: 650px;
                 background: rgba(15, 15, 20, 0.98);
@@ -334,7 +340,7 @@ class UnifiedChatbotSystem {
                 border: 1px solid rgba(255, 215, 0, 0.2);
                 border-radius: 20px;
                 box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
-                z-index: 9999;
+                z-index: 10003;
                 display: none;
                 flex-direction: column;
                 overflow: hidden;
@@ -580,6 +586,8 @@ class UnifiedChatbotSystem {
                 word-wrap: break-word;
                 position: relative;
                 backdrop-filter: blur(10px);
+                -webkit-font-smoothing: antialiased;
+                text-rendering: optimizeLegibility;
             }
 
             .message-bubble.user .message-content {
@@ -615,6 +623,23 @@ class UnifiedChatbotSystem {
                 font-weight: 600;
             }
 
+            /* Extended Markdown & rich content aesthetics */
+            .message-content h4,
+            .message-content h5,
+            .message-content h6 { color: #FFD700; margin: 0.4rem 0; font-weight: 600; }
+            .message-content a { color: #7dd3fc; text-decoration: underline; text-underline-offset: 2px; }
+            .message-content a:hover { color: #bae6fd; }
+            .message-content blockquote {
+                margin: 0.6rem 0;
+                padding: 0.6rem 0.9rem;
+                border-left: 3px solid #FFD700;
+                background: rgba(255,255,255,0.05);
+                border-radius: 8px;
+            }
+            .message-content table { border-collapse: collapse; width: 100%; margin: 0.5rem 0; }
+            .message-content th, .message-content td { border: 1px solid rgba(255,255,255,0.15); padding: 0.45rem 0.6rem; }
+            .message-content th { background: rgba(255,255,255,0.08); }
+
             .message-content p {
                 margin: 0.5rem 0;
             }
@@ -635,6 +660,7 @@ class UnifiedChatbotSystem {
                 overflow-x: auto;
                 margin: 0.75rem 0;
                 border: 1px solid rgba(255, 255, 255, 0.1);
+                position: relative;
             }
 
             .message-content pre code {
@@ -642,6 +668,20 @@ class UnifiedChatbotSystem {
                 padding: 0;
                 color: #ffffff;
             }
+
+            .message-content pre .copy-code-btn {
+                position: absolute;
+                top: 8px;
+                right: 8px;
+                background: rgba(255, 215, 0, 0.15);
+                border: 1px solid rgba(255, 215, 0, 0.35);
+                color: #FFD700;
+                border-radius: 6px;
+                font-size: 0.75rem;
+                padding: 0.15rem 0.4rem;
+                cursor: pointer;
+            }
+            .message-content pre .copy-code-btn:hover { background: rgba(255, 215, 0, 0.25); }
 
             .message-content ul,
             .message-content ol {
@@ -897,13 +937,8 @@ class UnifiedChatbotSystem {
             }
 
             /* Ensure proper z-index layering */
-            .unified-chat-floating-btn {
-                z-index: 9998;
-            }
-
-            .unified-chat-panel {
-                z-index: 9999;
-            }
+            .unified-chat-floating-btn { z-index: 10002; }
+            .unified-chat-panel { z-index: 10003; }
 
             /* Audio system compatibility */
             .persistent-audio-panel {
@@ -991,9 +1026,25 @@ class UnifiedChatbotSystem {
         const quickActions = document.querySelectorAll('.quick-action-btn');
         quickActions.forEach(btn => {
             btn.addEventListener('click', (e) => {
-                const message = e.target.dataset.message;
+                const message = e.currentTarget?.dataset?.message;
                 if (message) this.sendQuickMessage(message);
             });
+        });
+
+        // Delegate copy actions for code blocks
+        const messagesWrap = document.querySelector('.chat-messages-content');
+        messagesWrap?.addEventListener('click', (e) => {
+            const target = e.target;
+            if (target && target.classList && target.classList.contains('copy-code-btn')) {
+                const pre = target.closest('pre');
+                const code = pre?.querySelector('code');
+                if (code) {
+                    navigator.clipboard.writeText(code.innerText).then(() => {
+                        target.textContent = 'Copied';
+                        setTimeout(() => (target.textContent = 'Copy'), 1200);
+                    }).catch(() => {});
+                }
+            }
         });
 
         // Global events
@@ -1496,28 +1547,56 @@ Would you like to explore interactive demonstrations or dive deeper into the mat
     }
 
     formatMessage(content) {
-        // Convert markdown-like syntax to HTML
-        let formatted = content
-            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-            .replace(/\*(.*?)\*/g, '<em>$1</em>')
-            .replace(/`(.*?)`/g, '<code>$1</code>')
-            .replace(/\n/g, '<br>');
+        // Escape and apply lightweight Markdown rendering
+        const escapeHtml = (str) => str
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/\"/g, '&quot;')
+            .replace(/'/g, '&#39;');
 
-        // Handle bullet points
-        formatted = formatted.replace(/^• (.+)$/gm, '<li>$1</li>');
-        formatted = formatted.replace(/^🧮 (.+)$/gm, '<li>🧮 $1</li>');
-        formatted = formatted.replace(/^🌟 (.+)$/gm, '<li>🌟 $1</li>');
-        formatted = formatted.replace(/^🧠 (.+)$/gm, '<li>🧠 $1</li>');
-        formatted = formatted.replace(/^⚛️ (.+)$/gm, '<li>⚛️ $1</li>');
+        let text = String(content);
 
-        // Wrap consecutive list items in ul tags
-        if (formatted.includes('<li>')) {
-            formatted = formatted.replace(/(<li>.*?<\/li>(?:<br><li>.*?<\/li>)*)/g, '<ul>$1</ul>');
-            formatted = formatted.replace(/<br>(?=<li>)/g, '');
-            formatted = formatted.replace(/(?<=<\/li>)<br>/g, '');
+        // Fenced code blocks
+        text = text.replace(/```([\w+-]*)\n([\s\S]*?)```/g, (m, lang, code) => {
+            const safe = escapeHtml(code);
+            return `<pre><button class="copy-code-btn" aria-label="Copy code">Copy</button><code class="language-${lang || 'text'}">${safe}</code></pre>`;
+        });
+
+        // Inline code
+        text = text.replace(/`([^`]+)`/g, (m, code) => `<code>${escapeHtml(code)}</code>`);
+
+        // Headings
+        text = text.replace(/^###### (.*)$/gm, '<h6>$1</h6>')
+                   .replace(/^##### (.*)$/gm, '<h5>$1</h5>')
+                   .replace(/^#### (.*)$/gm, '<h4>$1</h4>')
+                   .replace(/^### (.*)$/gm, '<h3>$1</h3>')
+                   .replace(/^## (.*)$/gm, '<h2>$1</h2>')
+                   .replace(/^# (.*)$/gm, '<h1>$1</h1>');
+
+        // Blockquotes
+        text = text.replace(/^>\s?(.*)$/gm, '<blockquote>$1</blockquote>');
+
+        // Links
+        text = text.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+
+        // Lists
+        text = text.replace(/^\s*[-*•]\s+(.+)$/gm, '<li>$1</li>')
+                   .replace(/^\s*\d+\.\s+(.+)$/gm, '<li>$1</li>');
+        if (/<li>/.test(text)) {
+            // Group consecutive <li> into a single <ul>
+            text = text.replace(/(?:<li>[\s\S]*?<\/li>)(?:(?:<br\s*\/?>)?\s*)+/g, (m) => m);
+            text = text.replace(/(<li>[\s\S]*?<\/li>)+/g, (m) => `<ul>${m.replace(/<br\s*\/?>/g, '')}</ul>`);
         }
 
-        return formatted;
+        // Basic emphasis
+        text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                   .replace(/\*(.*?)\*/g, '<em>$1</em>');
+
+        // Line breaks
+        text = text.replace(/\n/g, '<br>');
+
+        return text;
     }
 
     showTypingIndicator() {

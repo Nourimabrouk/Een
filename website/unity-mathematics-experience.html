@@ -45,7 +45,11 @@
 
     <script src="js/ai-chat-integration.js"></script>
 
-    <!-- Main Styles -->
+    <!-- Unified Design System -->
+    <link rel="stylesheet" href="../css/tokens.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <!-- Page Styles -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/unity-proofs.css">
 
@@ -68,7 +72,8 @@
         }
 
         body {
-            padding-top: 80px; /* Account for fixed navigation */
+            padding-top: 80px;
+            /* Account for fixed navigation */
             font-family: 'Inter', sans-serif;
             background: var(--deep-space);
             color: white;
@@ -661,7 +666,7 @@
                 transform: rotate(360deg);
             }
         }
-    
+
         /* Animation Classes */
         .fade-in {
             opacity: 0;
@@ -676,17 +681,31 @@
             }
         }
 
-        .stagger-animation > * {
+        .stagger-animation>* {
             opacity: 0;
             animation: fadeInUp 0.8s ease-out forwards;
         }
 
-        .stagger-animation > *:nth-child(1) { animation-delay: 0.1s; }
-        .stagger-animation > *:nth-child(2) { animation-delay: 0.2s; }
-        .stagger-animation > *:nth-child(3) { animation-delay: 0.3s; }
-        .stagger-animation > *:nth-child(4) { animation-delay: 0.4s; }
-        .stagger-animation > *:nth-child(5) { animation-delay: 0.5s; }
-    
+        .stagger-animation>*:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .stagger-animation>*:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .stagger-animation>*:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .stagger-animation>*:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .stagger-animation>*:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
         /* Component Classes */
         .container {
             max-width: 1200px;
@@ -791,12 +810,15 @@
     <script src="js/meta-optimal-navigation-complete.js" defer></script>
 
     <link rel="stylesheet" href="css/meta-optimal-navigation-complete.css">
-    <!-- Unified Styles -->
+    <!-- Legacy Unified Styles (kept) -->
     <link rel="stylesheet" href="css/unified-styles.css">
 
     <!-- Preload critical resources -->
     <link rel="preload" href="css/meta-optimal-navigation-complete.css" as="style">
     <link rel="preload" href="js/meta-optimal-navigation-complete.js" as="script">
+
+    <!-- Site-wide safe enhancements -->
+    <script src="../js/site.js" defer></script>
 
     <style>
         /* Mobile touch optimizations */

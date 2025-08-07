@@ -10,25 +10,24 @@ class PersistentAudioSystem {
         this.isPlaying = false;
         this.currentTrack = null;
         this.currentTime = 0;
-        this.volume = 0.7;
-        this.isVisible = true;
-        
+        this.volume = 0.3;
+        this.isVisible = false; // start minimized (non-intrusive)
+
         // Available tracks (including existing MP3s)
         this.tracks = [
             {
                 id: 'one-u2',
                 name: 'One - U2',
                 url: 'audio/U2 - One.webm',
-                duration: 276, // 4:36
+                duration: 276,
                 artist: 'U2',
-                album: 'Achtung Baby',
-                isDefault: true
+                album: 'Achtung Baby'
             },
             {
                 id: 'always-bon-jovi',
                 name: 'Always - Bon Jovi',
                 url: 'audio/Bon Jovi - Always.webm',
-                duration: 351, // 5:51
+                duration: 351,
                 artist: 'Bon Jovi',
                 album: 'Cross Road'
             },
@@ -36,15 +35,32 @@ class PersistentAudioSystem {
                 id: 'i-want-to-know-what-love-is',
                 name: 'I Want to Know What Love Is - Foreigner',
                 url: 'audio/Foreigner - I Want to Know What Love Is.webm',
-                duration: 297, // 4:57
+                duration: 297,
                 artist: 'Foreigner',
                 album: 'Agent Provocateur'
+            },
+            {
+                id: 'unity-thefatrat',
+                name: 'Unity - TheFatRat',
+                url: 'audio/TheFatRat - Unity.mp3',
+                duration: 270,
+                artist: 'TheFatRat',
+                album: 'NCS',
+                isDefault: true
+            },
+            {
+                id: 'one-love-bob-marley',
+                name: 'One Love - Bob Marley',
+                url: 'audio/Bob Marley - One Love.mp3',
+                duration: 210,
+                artist: 'Bob Marley',
+                album: 'Legend'
             },
             {
                 id: 'consciousness-flow',
                 name: 'Consciousness Flow',
                 url: 'audio/consciousness-flow.mp3',
-                duration: 240, // 4 minutes
+                duration: 240,
                 artist: 'Unity Mathematics',
                 album: 'φ-Harmonic Series',
                 isGenerated: true
@@ -52,8 +68,8 @@ class PersistentAudioSystem {
             {
                 id: 'phi-harmonic',
                 name: 'φ-Harmonic Resonance',
-                url: 'audio/phi-harmonic.mp3', 
-                duration: 300, // 5 minutes
+                url: 'audio/phi-harmonic.mp3',
+                duration: 300,
                 artist: 'Unity Mathematics',
                 album: 'φ-Harmonic Series',
                 isGenerated: true
@@ -62,7 +78,7 @@ class PersistentAudioSystem {
                 id: 'unity-meditation',
                 name: 'Unity Meditation',
                 url: 'audio/unity-meditation.mp3',
-                duration: 180, // 3 minutes
+                duration: 180,
                 artist: 'Unity Mathematics',
                 album: 'Consciousness Collection',
                 isGenerated: true
@@ -77,13 +93,13 @@ class PersistentAudioSystem {
         this.createAudioInterface();
         this.attachEventListeners();
         this.resumePlayback();
-        
+
         // Save state before page unload
         window.addEventListener('beforeunload', () => this.saveState());
-        
+
         // Save state periodically
         setInterval(() => this.saveState(), 5000);
-        
+
         console.log('🎵 Persistent Audio System initialized');
     }
 
@@ -130,13 +146,13 @@ class PersistentAudioSystem {
                 </div>
                 <div class="audio-volume">
                     <i class="fas fa-volume-up"></i>
-                    <input type="range" class="volume-slider" min="0" max="100" value="70">
+                    <input type="range" class="volume-slider" min="0" max="100" value="30">
                 </div>
                 <div class="track-selector">
                     <select class="track-select">
-                        ${this.tracks.map(track => 
-                            `<option value="${track.id}">${track.name}${track.artist ? ' - ' + track.artist : ''}</option>`
-                        ).join('')}
+                        ${this.tracks.map(track =>
+            `<option value="${track.id}">${track.name}${track.artist ? ' - ' + track.artist : ''}</option>`
+        ).join('')}
                     </select>
                 </div>
             </div>
@@ -478,7 +494,7 @@ class PersistentAudioSystem {
 
         // Global events
         window.addEventListener('meta-optimal-nav:audio', () => this.togglePlayPause());
-        
+
         // Handle page visibility
         document.addEventListener('visibilitychange', () => {
             if (document.hidden) {
@@ -555,16 +571,16 @@ class PersistentAudioSystem {
         this.oscillators = frequencies.map((freq, index) => {
             const oscillator = this.audioContext.createOscillator();
             const gainNode = this.audioContext.createGain();
-            
+
             oscillator.frequency.setValueAtTime(freq, this.audioContext.currentTime);
             oscillator.type = 'sine';
-            
+
             // Create φ-harmonic volume modulation
             gainNode.gain.setValueAtTime(0.1 / (index + 1), this.audioContext.currentTime);
-            
+
             oscillator.connect(gainNode);
             gainNode.connect(this.audioContext.destination);
-            
+
             return { oscillator, gainNode };
         });
 
@@ -633,7 +649,7 @@ class PersistentAudioSystem {
         const currentIndex = this.tracks.findIndex(t => t.id === this.currentTrack);
         const prevIndex = currentIndex > 0 ? currentIndex - 1 : this.tracks.length - 1;
         this.loadTrack(this.tracks[prevIndex].id);
-        
+
         if (this.isPlaying) {
             setTimeout(() => this.togglePlayPause(), 100);
         }
@@ -643,7 +659,7 @@ class PersistentAudioSystem {
         const currentIndex = this.tracks.findIndex(t => t.id === this.currentTrack);
         const nextIndex = currentIndex < this.tracks.length - 1 ? currentIndex + 1 : 0;
         this.loadTrack(this.tracks[nextIndex].id);
-        
+
         if (this.isPlaying) {
             setTimeout(() => this.togglePlayPause(), 100);
         }
@@ -654,7 +670,7 @@ class PersistentAudioSystem {
         if (this.audio) {
             this.audio.volume = volume;
         }
-        
+
         if (this.oscillators) {
             this.oscillators.forEach(({ gainNode }, index) => {
                 gainNode.gain.setValueAtTime((volume * 0.1) / (index + 1), this.audioContext.currentTime);
@@ -664,26 +680,26 @@ class PersistentAudioSystem {
 
     seekTo(e) {
         if (!this.audio || this.isGeneratedAudio) return;
-        
+
         const rect = e.target.getBoundingClientRect();
         const percent = (e.clientX - rect.left) / rect.width;
         const seekTime = this.audio.duration * percent;
-        
+
         this.audio.currentTime = seekTime;
     }
 
     updateProgress() {
         if (!this.audio) return;
-        
+
         const currentTime = this.audio.currentTime;
         const duration = this.audio.duration || 0;
         const percent = duration > 0 ? (currentTime / duration) * 100 : 0;
-        
+
         const panel = document.getElementById('persistent-audio-system');
         const progressFill = panel?.querySelector('.progress-fill');
         const progressHandle = panel?.querySelector('.progress-handle');
         const currentTimeEl = panel?.querySelector('.current-time');
-        
+
         if (progressFill) progressFill.style.width = `${percent}%`;
         if (progressHandle) progressHandle.style.left = `${percent}%`;
         if (currentTimeEl) currentTimeEl.textContent = this.formatTime(currentTime);
@@ -694,17 +710,17 @@ class PersistentAudioSystem {
         const trackNameEl = panel?.querySelector('.track-name');
         const totalTimeEl = panel?.querySelector('.total-time');
         const trackSelect = panel?.querySelector('.track-select');
-        
+
         const track = this.tracks.find(t => t.id === this.currentTrack);
         if (track && trackNameEl) {
             trackNameEl.textContent = track.name;
         }
-        
+
         if (this.audio && totalTimeEl) {
             const duration = this.audio.duration || track?.duration || 0;
             totalTimeEl.textContent = this.formatTime(duration);
         }
-        
+
         if (trackSelect) {
             trackSelect.value = this.currentTrack || this.tracks[0].id;
         }
@@ -713,7 +729,7 @@ class PersistentAudioSystem {
     updatePlayButton() {
         const panel = document.getElementById('persistent-audio-system');
         const playBtn = panel?.querySelector('.play-btn i');
-        
+
         if (playBtn) {
             playBtn.className = this.isPlaying ? 'fas fa-pause' : 'fas fa-play';
         }
@@ -729,11 +745,11 @@ class PersistentAudioSystem {
     toggleMinimize() {
         const panel = document.getElementById('persistent-audio-system');
         const minimizeBtn = panel?.querySelector('.audio-minimize-btn');
-        
+
         if (panel) {
             this.isVisible = !panel.classList.contains('minimized');
             panel.classList.toggle('minimized');
-            
+
             if (minimizeBtn) {
                 minimizeBtn.classList.toggle('minimized', !this.isVisible);
             }
@@ -742,7 +758,7 @@ class PersistentAudioSystem {
 
     formatTime(seconds) {
         if (!seconds || !isFinite(seconds)) return '0:00';
-        
+
         const mins = Math.floor(seconds / 60);
         const secs = Math.floor(seconds % 60);
         return `${mins}:${secs.toString().padStart(2, '0')}`;
@@ -758,7 +774,7 @@ class PersistentAudioSystem {
                 isVisible: this.isVisible,
                 timestamp: Date.now()
             };
-            
+
             sessionStorage.setItem('persistent-audio-state', JSON.stringify(state));
         } catch (e) {
             console.warn('Failed to save audio state:', e);
@@ -769,9 +785,9 @@ class PersistentAudioSystem {
         try {
             const saved = sessionStorage.getItem('persistent-audio-state');
             if (!saved) return;
-            
+
             const state = JSON.parse(saved);
-            
+
             // Only restore if saved less than 1 hour ago
             if (Date.now() - state.timestamp < 3600000) {
                 this.currentTrack = state.currentTrack || this.tracks[0].id;
@@ -791,16 +807,16 @@ class PersistentAudioSystem {
             const defaultTrack = this.tracks.find(track => track.isDefault);
             this.currentTrack = defaultTrack ? defaultTrack.id : this.tracks[0].id;
         }
-        
+
         this.loadTrack(this.currentTrack);
-        
+
         // Restore minimized state
         setTimeout(() => {
             const panel = document.getElementById('persistent-audio-system');
             if (panel && !this.isVisible) {
                 panel.classList.add('minimized');
             }
-            
+
             // Resume playback if was playing
             if (this.isPlaying && this.currentTime > 0) {
                 if (this.audio) {
@@ -845,23 +861,23 @@ class PersistentAudioSystem {
             this.audio.pause();
             this.audio = null;
         }
-        
+
         if (this.oscillators) {
             this.stopGeneratedAudio();
         }
-        
+
         if (this.audioContext) {
             this.audioContext.close();
         }
-        
+
         const panel = document.getElementById('persistent-audio-system');
         if (panel) panel.remove();
-        
+
         const style = document.getElementById('persistent-audio-styles');
         if (style) style.remove();
-        
+
         sessionStorage.removeItem('persistent-audio-state');
-        
+
         console.log('🎵 Persistent Audio System destroyed');
     }
 }

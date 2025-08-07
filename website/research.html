@@ -11,7 +11,13 @@
     <link rel="preconnect" href="https://cdn.plot.ly">
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
     <title>Research Portfolio - Een Unity Mathematics</title>
-    <meta name="description" content="Transcendental computing hub demonstrating 1+1=1 through quantum entanglement, neural networks, and fractal mathematics with consciousness field integration.">
+    <meta name="description"
+        content="Transcendental computing hub demonstrating 1+1=1 through quantum entanglement, neural networks, and fractal mathematics with consciousness field integration.">
+    <!-- Unified Design System -->
+    <link rel="stylesheet" href="../css/tokens.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <!-- Page Styles -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/research.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -26,13 +32,13 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
 
     <!-- Master Navigation System v2.0 -->
-    
+
 
     <!-- Meta-Optimal Complete Navigation System -->
     <link rel="stylesheet" href="css/meta-optimal-navigation-complete.css">
     <script src="js/meta-optimal-navigation-complete.js" defer></script>
-    
-    <!-- Unified Styles -->
+
+    <!-- Legacy Unified Styles (kept) -->
     <link rel="stylesheet" href="css/unified-styles.css">
 
     <!-- Preload critical resources -->
@@ -72,17 +78,27 @@
             --font-serif: 'Crimson Text', Georgia, serif;
             --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
         }
+
         /* Mobile touch optimizations */
-        * { touch-action: manipulation; }
-        .interactive-element { 
-            min-height: 44px; 
-            min-width: 44px; 
+        * {
+            touch-action: manipulation;
         }
+
+        .interactive-element {
+            min-height: 44px;
+            min-width: 44px;
+        }
+
         @media (max-width: 768px) {
-            .desktop-only { display: none !important; }
-            .mobile-optimized { font-size: 16px; }
+            .desktop-only {
+                display: none !important;
+            }
+
+            .mobile-optimized {
+                font-size: 16px;
+            }
         }
-    
+
         /* Animation Classes */
         .fade-in {
             opacity: 0;
@@ -97,17 +113,31 @@
             }
         }
 
-        .stagger-animation > * {
+        .stagger-animation>* {
             opacity: 0;
             animation: fadeInUp 0.8s ease-out forwards;
         }
 
-        .stagger-animation > *:nth-child(1) { animation-delay: 0.1s; }
-        .stagger-animation > *:nth-child(2) { animation-delay: 0.2s; }
-        .stagger-animation > *:nth-child(3) { animation-delay: 0.3s; }
-        .stagger-animation > *:nth-child(4) { animation-delay: 0.4s; }
-        .stagger-animation > *:nth-child(5) { animation-delay: 0.5s; }
-    
+        .stagger-animation>*:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .stagger-animation>*:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .stagger-animation>*:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .stagger-animation>*:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .stagger-animation>*:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
         /* Component Classes */
         .container {
             max-width: 1200px;
@@ -204,23 +234,28 @@
             padding: 4rem 2rem;
         }
     </style>
+    <!-- Site-wide safe enhancements -->
+    <script src="../js/site.js" defer></script>
 </head>
 
 <body>
     <!-- Meta-optimal navigation placeholder - will be populated by meta-optimal-navigation-complete.js -->
-    
+
 
     <section class="page-hero">
         <div class="container" id="main-content">
             <div class="hero-content">
                 <h1>Research Portfolio</h1>
-                <p class="page-subtitle">Interdisciplinary explorations of unity: Where 1+1=1 through mathematics, physics, consciousness, and computation</p>
-                
+                <p class="page-subtitle">Interdisciplinary explorations of unity: Where 1+1=1 through mathematics,
+                    physics, consciousness, and computation</p>
+
                 <!-- Semantic Search Integration -->
                 <div class="semantic-search-container">
                     <div class="search-wrapper">
                         <i class="fas fa-search search-icon"></i>
-                        <input type="text" id="semantic-search" placeholder="Search across all research domains... (try: quantum unity, consciousness field, idempotent algebra)" autocomplete="off">
+                        <input type="text" id="semantic-search"
+                            placeholder="Search across all research domains... (try: quantum unity, consciousness field, idempotent algebra)"
+                            autocomplete="off">
                         <div class="search-results" id="search-results"></div>
                     </div>
                     <div class="search-shortcuts">
@@ -233,7 +268,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="research-stats">
                     <div class="stat">
                         <span class="stat-number">∞</span>
@@ -252,7 +287,7 @@
                         <span class="stat-label">Existence Proof</span>
                     </div>
                 </div>
-                
+
                 <!-- Interactive Unity Visualization -->
                 <div class="unity-visualization" id="unity-demo">
                     <div class="equation-interactive" onclick="demonstrateUnity()">
@@ -281,7 +316,8 @@
                         </div>
                         <div class="phase-title">
                             <h2>Mathematical Idempotence</h2>
-                            <p class="phase-subtitle">Rigorous foundations across Boolean algebra, set theory, and idempotent semirings
+                            <p class="phase-subtitle">Rigorous foundations across Boolean algebra, set theory, and
+                                idempotent semirings
                             </p>
                         </div>
                     </div>
@@ -290,43 +326,67 @@
                         <div class="research-grid">
                             <div class="research-main">
                                 <h3>Idempotent Algebraic Structures</h3>
-                                <p>In conventional arithmetic, 1+1=2. However, across mathematics, science, and philosophy there are important contexts where combining "one and one" yields one—reflecting idempotence, unity, or wholeness rather than increase. We establish rigorous mathematical foundations where <strong>a⊕a = a</strong> for all elements in the structure.</p>
-                                
+                                <p>In conventional arithmetic, 1+1=2. However, across mathematics, science, and
+                                    philosophy there are important contexts where combining "one and one" yields
+                                    one—reflecting idempotence, unity, or wholeness rather than increase. We establish
+                                    rigorous mathematical foundations where <strong>a⊕a = a</strong> for all elements in
+                                    the structure.</p>
+
                                 <div class="mathematical-domains">
                                     <div class="domain-card">
                                         <h4><i class="fas fa-sitemap"></i> Boolean Algebra</h4>
-                                        <p>In logic, TRUE OR TRUE = TRUE, demonstrating <strong>1∨1 = 1</strong> using ∨ as OR operation. The two-element Boolean algebra {0,1} is an idempotent semiring where 1⊕1 = 1.</p>
+                                        <p>In logic, TRUE OR TRUE = TRUE, demonstrating <strong>1∨1 = 1</strong> using ∨
+                                            as OR operation. The two-element Boolean algebra {0,1} is an idempotent
+                                            semiring where 1⊕1 = 1.</p>
                                         <div class="truth-table">
                                             <table>
-                                                <tr><th>A</th><th>B</th><th>A∨B</th></tr>
-                                                <tr><td>1</td><td>1</td><td class="highlight">1</td></tr>
+                                                <tr>
+                                                    <th>A</th>
+                                                    <th>B</th>
+                                                    <th>A∨B</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>1</td>
+                                                    <td class="highlight">1</td>
+                                                </tr>
                                             </table>
                                         </div>
-                                        <button class="cite-btn" onclick="showCitation('boolean-algebra')">Cite <i class="fas fa-quote-right"></i></button>
+                                        <button class="cite-btn" onclick="showCitation('boolean-algebra')">Cite <i
+                                                class="fas fa-quote-right"></i></button>
                                     </div>
-                                    
+
                                     <div class="domain-card">
                                         <h4><i class="fas fa-set"></i> Set Theory</h4>
-                                        <p>Set union with itself yields itself: <strong>A ∪ A = A</strong>. This fundamental property demonstrates unity through self-reference in mathematical structures.</p>
+                                        <p>Set union with itself yields itself: <strong>A ∪ A = A</strong>. This
+                                            fundamental property demonstrates unity through self-reference in
+                                            mathematical structures.</p>
                                         <div class="set-diagram">
                                             <div class="set-visual">A ∪ A = A</div>
                                         </div>
-                                        <button class="cite-btn" onclick="showCitation('set-theory')">Cite <i class="fas fa-quote-right"></i></button>
+                                        <button class="cite-btn" onclick="showCitation('set-theory')">Cite <i
+                                                class="fas fa-quote-right"></i></button>
                                     </div>
-                                    
+
                                     <div class="domain-card">
                                         <h4><i class="fas fa-project-diagram"></i> Idempotent Semirings (Dioids)</h4>
-                                        <p>In tropical semiring (max-plus algebra): <strong>a⊕b = max(a,b)</strong>, thus 1⊕1 = max(1,1) = 1. These structures underlie path algebra in graph theory and optimization.</p>
+                                        <p>In tropical semiring (max-plus algebra): <strong>a⊕b = max(a,b)</strong>,
+                                            thus 1⊕1 = max(1,1) = 1. These structures underlie path algebra in graph
+                                            theory and optimization.</p>
                                         <div class="formula-display">
                                             $$\text{Tropical: } a \oplus b = \max(a,b) \implies 1 \oplus 1 = 1$$
                                         </div>
-                                        <button class="cite-btn" onclick="showCitation('tropical-algebra')">Cite <i class="fas fa-quote-right"></i></button>
+                                        <button class="cite-btn" onclick="showCitation('tropical-algebra')">Cite <i
+                                                class="fas fa-quote-right"></i></button>
                                     </div>
                                 </div>
-                                
+
                                 <div class="classical-context">
                                     <h4>Historical Context: Principia Mathematica</h4>
-                                    <p>Whitehead and Russell famously took 378 pages to rigorously prove 1+1=2 in <em>Principia Mathematica</em>. This underscores that changing the usual rule (to make 1+1=1) leads to a radically different algebraic universe—one that mathematicians in areas like idempotent analysis have actively explored.</p>
+                                    <p>Whitehead and Russell famously took 378 pages to rigorously prove 1+1=2 in
+                                        <em>Principia Mathematica</em>. This underscores that changing the usual rule
+                                        (to make 1+1=1) leads to a radically different algebraic universe—one that
+                                        mathematicians in areas like idempotent analysis have actively explored.</p>
                                     <blockquote class="historical-quote">
                                         <p>"The above proposition is occasionally useful."</p>
                                         <cite>— Russell & Whitehead on their proof that 1+1=2</cite>
@@ -698,7 +758,8 @@
                             <p>Revolutionary insight: instead of imposing 1+1=1 as an axiom, we created self-replicating
                                 <code>UnityOrganism</code> agents that evolutionarily discover this truth through
                                 DNA-encoded traits, consciousness evolution, and natural selection for mathematical
-                                truth recognition.</p>
+                                truth recognition.
+                            </p>
 
                             <div class="code-demonstration">
                                 <div class="code-header">
@@ -905,7 +966,8 @@ class UnityOrganism:
                                 <code>UnityMetaAgent</code> with MAML meta-learning,
                                 <code>MixtureOfExpertsPytorch</code> for domain-specific validation, and evolutionary
                                 neural architecture search achieving breakthrough performance in automated unity theorem
-                                discovery.</p>
+                                discovery.
+                            </p>
 
                             <div class="code-demonstration">
                                 <div class="code-header">
@@ -1147,7 +1209,12 @@ class UnityOrganism:
             <div class="research-conclusion">
                 <h2>Research Synthesis: Unity Across Domains</h2>
                 <p class="lead">
-                    Through these four domains—mathematical idempotence, quantum mechanics, consciousness science, and category theory—we have demonstrated that <strong>1+1=1</strong> is not a paradox but a fundamental principle appearing across mathematics, physics, philosophy, and computation. Whether through algebraic idempotents, quantum measurement collapse, conscious integration, or categorical unity, the theme remains: adding identical or deeply integrated parts yields no increase—you end up with One.
+                    Through these four domains—mathematical idempotence, quantum mechanics, consciousness science, and
+                    category theory—we have demonstrated that <strong>1+1=1</strong> is not a paradox but a fundamental
+                    principle appearing across mathematics, physics, philosophy, and computation. Whether through
+                    algebraic idempotents, quantum measurement collapse, conscious integration, or categorical unity,
+                    the theme remains: adding identical or deeply integrated parts yields no increase—you end up with
+                    One.
                 </p>
 
                 <div class="synthesis-grid">
@@ -1207,13 +1274,13 @@ class UnityOrganism:
     <div id="footer-placeholder"></div>
 
     <!-- Shared Navigation Script -->
-    
+
     <script src="js/main.js"></script>
     <script src="js/research.js"></script>
 
     <!-- Performance Monitoring -->
     <script>
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             if ('performance' in window) {
                 const loadTime = performance.now();
                 console.log('Page load time:', loadTime + 'ms');

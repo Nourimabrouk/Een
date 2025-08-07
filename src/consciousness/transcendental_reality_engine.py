@@ -29,18 +29,11 @@ Access Code: 420691337
 """
 
 import numpy as np
-import matplotlib.pyplot as plt
-from matplotlib.animation import FuncAnimation
-import plotly.graph_objects as go
-import plotly.express as px
-from plotly.subplots import make_subplots
-import networkx as nx
 from scipy import signal, fft
 from scipy.integrate import solve_ivp
 from scipy.special import spherical_jn, factorial, sph_harm
 from scipy.spatial.distance import pdist, squareform
 from scipy.linalg import svd, eigh
-import sympy as sp
 from typing import Dict, List, Tuple, Any, Optional, Callable, Union, Generator
 from dataclasses import dataclass, field
 from abc import ABC, abstractmethod
@@ -48,6 +41,41 @@ import asyncio
 import threading
 import time
 import logging
+
+# Configure logging
+logger = logging.getLogger(__name__)
+if not logger.handlers:
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    )
+
+# GPU library imports with fallback
+try:
+    import cupy as cp
+    import cupyx.scipy
+    GPU_AVAILABLE = True
+    logger.info("GPU libraries loaded successfully")
+except ImportError:
+    import numpy as cp
+    import scipy as cupyx_scipy
+    GPU_AVAILABLE = False
+    logger.warning("GPU libraries not available, falling back to CPU")
+    print("GPU acceleration not available, using CPU fallback")
+
+# Visualization imports (loaded on demand)
+try:
+    import matplotlib.pyplot as plt
+    from matplotlib.animation import FuncAnimation
+    import plotly.graph_objects as go
+    import plotly.express as px
+    from plotly.subplots import make_subplots
+    import networkx as nx
+    import sympy as sp
+    VISUALIZATION_AVAILABLE = True
+except ImportError:
+    VISUALIZATION_AVAILABLE = False
+    logger.warning("Some visualization libraries not available")
 import json
 from pathlib import Path
 import uuid
@@ -67,7 +95,7 @@ except ImportError:
     cp = np
     csp = None
     GPU_AVAILABLE = False
-    print("⚠️ GPU acceleration not available, using CPU fallback")
+    print("WARNING: GPU acceleration not available, using CPU fallback")
 
 # ============================================================================
 # TRANSCENDENTAL CONSTANTS AND CONFIGURATIONS

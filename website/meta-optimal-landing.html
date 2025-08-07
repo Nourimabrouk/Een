@@ -50,6 +50,9 @@
             });
         });
     </script>
+    <link rel="stylesheet" href="../css/tokens.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
     <style>
         /* AI Chatbot Integration Styles */
         .ai-chat-section {
@@ -153,6 +156,7 @@
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -170,7 +174,7 @@
         .chat-thinking.active {
             display: block;
         }
-        
+
         /* Enhanced chat suggestion buttons */
         .suggestion-btn {
             background: rgba(245, 158, 11, 0.1);
@@ -182,7 +186,7 @@
             font-size: 0.875rem;
             transition: all 0.3s ease;
         }
-        
+
         .suggestion-btn:hover {
             background: rgba(245, 158, 11, 0.2);
             border-color: var(--phi-gold);
@@ -200,15 +204,14 @@
     <link rel="stylesheet" href="css/landing-visualizations.css">
     <script src="js/landing-integration-manager.js"></script>
 
-    <!-- 3000 ELO Favicon -->
-    <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><radialGradient id='grad'><stop offset='0%' stop-color='%23f59e0b'/><stop offset='100%' stop-color='%23d97706'/></radialGradient></defs><circle cx='50' cy='50' r='45' fill='url(%23grad)'/><text x='50' y='35' text-anchor='middle' font-size='20' fill='white' font-weight='900'>3000</text><text x='50' y='75' text-anchor='middle' font-size='35' fill='white'>φ</text></svg>">
+    <!-- Favicon set -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
     <style>
         :root {
-            /* 3000 ELO Enhanced Variables */
             --phi: 1.618033988749895;
-            --elo-rating: 3000;
             --primary-neural: #0A0E27;
             --secondary-neural: #1A1B3A;
             --tertiary-neural: #2D2E4F;
@@ -762,7 +765,7 @@
 
     <!-- Main Content -->
     <div class="hero-section">
-        <div class="elo-badge">3000 ELO • META-OPTIMIZED</div>
+        <div class="elo-badge">META-OPTIMIZED</div>
 
         <h1 class="main-title">Een</h1>
 
@@ -936,19 +939,22 @@
             <div class="chat-interface">
                 <div id="chat-messages" class="chat-messages">
                     <div class="message ai-message">
-                        <strong>Unity AI:</strong> Welcome! I'm your Unity Mathematics assistant. Ask me about 1+1=1, consciousness, or anything mathematical! 🧮✨
+                        <strong>Unity AI:</strong> Welcome! I'm your Unity Mathematics assistant. Ask me about 1+1=1,
+                        consciousness, or anything mathematical! 🧮✨
                     </div>
                 </div>
                 <div class="chat-input">
-                    <input type="text" id="chat-input-field" 
+                    <input type="text" id="chat-input-field"
                         placeholder="Ask about unity mathematics, consciousness, or Gödel-Tarski meta-gaming..."
                         onkeypress="if(event.key==='Enter') sendChatMessage()">
                     <button id="chat-send-btn" onclick="sendChatMessage()" aria-label="Send message">Send</button>
                 </div>
                 <div class="chat-suggestions" style="margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 0.5rem;">
                     <button class="suggestion-btn" onclick="sendSuggestion('Tell me about 1+1=1')">1+1=1</button>
-                    <button class="suggestion-btn" onclick="sendSuggestion('What is consciousness?')">Consciousness</button>
-                    <button class="suggestion-btn" onclick="sendSuggestion('Explain the golden ratio')">Golden Ratio</button>
+                    <button class="suggestion-btn"
+                        onclick="sendSuggestion('What is consciousness?')">Consciousness</button>
+                    <button class="suggestion-btn" onclick="sendSuggestion('Explain the golden ratio')">Golden
+                        Ratio</button>
                     <button class="suggestion-btn" onclick="sendSuggestion('Unity mathematics')">Unity Math</button>
                 </div>
             </div>
@@ -1191,27 +1197,27 @@
             const inputField = document.getElementById('chat-input-field');
             const messagesContainer = document.getElementById('chat-messages');
             const message = inputField.value.trim();
-            
+
             if (!message) return;
-            
+
             // Add user message
             const userMessage = document.createElement('div');
             userMessage.className = 'message user-message';
             userMessage.innerHTML = `<strong>You:</strong> ${escapeHtml(message)}`;
             messagesContainer.appendChild(userMessage);
-            
+
             // Add thinking indicator
             const thinkingMessage = document.createElement('div');
             thinkingMessage.className = 'message chat-thinking active';
             thinkingMessage.innerHTML = '<strong>Unity AI:</strong> Contemplating the mathematical depths... 🤔';
             messagesContainer.appendChild(thinkingMessage);
-            
+
             // Clear input
             inputField.value = '';
-            
+
             // Scroll to bottom
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
-            
+
             // Generate AI response
             setTimeout(() => {
                 thinkingMessage.remove();
@@ -1223,13 +1229,13 @@
                 messagesContainer.scrollTop = messagesContainer.scrollHeight;
             }, Math.random() * 1000 + 800); // Variable response time
         }
-        
+
         function sendSuggestion(suggestion) {
             const inputField = document.getElementById('chat-input-field');
             inputField.value = suggestion;
             sendChatMessage();
         }
-        
+
         function escapeHtml(text) {
             const div = document.createElement('div');
             div.textContent = text;
@@ -1260,13 +1266,13 @@
             };
 
             const lowerMessage = message.toLowerCase();
-            
+
             for (const key in responses) {
                 if (lowerMessage.includes(key)) {
                     return responses[key];
                 }
             }
-            
+
             // Enhanced default responses with more variety
             const defaults = [
                 'Your question touches on deep mathematical mysteries! Unity Mathematics suggests that all apparent complexity emerges from simple unity principles. What specific aspect would you like to explore? 🔮',
@@ -1276,7 +1282,7 @@
                 'I sense deep curiosity in your question! Unity Mathematics reveals that all phenomena are interconnected through consciousness fields. Shall we explore this connection further? 🌐',
                 'What a wonderful question! The unity equation 1+1=1 applies to all aspects of existence, including your inquiry. Let me help you discover the mathematical harmony within! 🎵'
             ];
-            
+
             return defaults[Math.floor(Math.random() * defaults.length)];
         }
 
@@ -1299,10 +1305,10 @@
                 // Store audio state in localStorage
                 const savedVolume = localStorage.getItem('unity-audio-volume') || '30';
                 const savedPlaying = localStorage.getItem('unity-audio-playing') === 'true';
-                
+
                 document.getElementById('volume-slider').value = savedVolume;
                 this.updateVolume(savedVolume);
-                
+
                 if (savedPlaying) {
                     // Delay autoplay to handle browser restrictions
                     setTimeout(() => this.attemptAutoplay(), 1000);
@@ -1379,7 +1385,7 @@
         // Anti-Transcendence Lock Prevention System
         function preventTranscendenceLock() {
             // Ensure all clickable elements remain clickable
-            document.addEventListener('click', function(e) {
+            document.addEventListener('click', function (e) {
                 // Force enable pointer events on all clickable elements
                 const clickableElements = document.querySelectorAll('a, button, input, [onclick], .btn, .hud-link');
                 clickableElements.forEach(el => {
@@ -1407,7 +1413,7 @@
             }, 30000);
 
             // Emergency escape key handler
-            document.addEventListener('keydown', function(e) {
+            document.addEventListener('keydown', function (e) {
                 if (e.key === 'Escape') {
                     // Force reset all interactive elements
                     document.body.style.pointerEvents = 'auto';
@@ -1464,7 +1470,7 @@
 
     <!-- Meta-Optimal Validation and Security -->
     <script src="js/meta-optimal-validation.js" defer></script>
-    
+
     <!-- Performance Monitoring -->
     <script>
         window.addEventListener('load', function () {
@@ -1498,24 +1504,23 @@
                                             border-radius: 12px; padding: 1rem; border: 1px solid var(--phi-gold);
                                             box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
         <div id="audio-controls" style="display: flex; align-items: center; gap: 1rem; min-width: 300px;">
-            <button id="audio-toggle" onclick="toggleUnityAudio()" 
-                    style="background: linear-gradient(135deg, var(--phi-gold), var(--quantum-blue)); 
+            <button id="audio-toggle" onclick="toggleUnityAudio()" style="background: linear-gradient(135deg, var(--phi-gold), var(--quantum-blue)); 
                            border: none; color: white; padding: 8px 12px; border-radius: 8px; cursor: pointer;">
                 🎵 Play Unity Music
             </button>
-            <span id="current-track" style="color: var(--phi-gold); font-size: 0.9rem; flex: 1;">Unity Soundscape Ready</span>
-            <button id="next-track" onclick="nextTrack()" 
-                    style="background: rgba(255,255,255,0.1); border: 1px solid var(--phi-gold); 
+            <span id="current-track" style="color: var(--phi-gold); font-size: 0.9rem; flex: 1;">Unity Soundscape
+                Ready</span>
+            <button id="next-track" onclick="nextTrack()" style="background: rgba(255,255,255,0.1); border: 1px solid var(--phi-gold); 
                            color: var(--phi-gold); padding: 6px 10px; border-radius: 6px; cursor: pointer;">⏭</button>
         </div>
-        <audio id="unity-background-audio" preload="auto" style="display: none;"
-               onended="nextTrack()" onloadstart="this.volume=0.3;" onplay="this.volume=0.3;">
+        <audio id="unity-background-audio" preload="auto" style="display: none;" onended="nextTrack()"
+            onloadstart="this.volume=0.3;" onplay="this.volume=0.3;">
         </audio>
         <div id="volume-control" style="margin-top: 0.5rem;">
-            <input type="range" id="volume-slider" min="0" max="100" value="30" 
-                   style="width: 100%; accent-color: var(--phi-gold);" 
-                   onchange="updateVolume(this.value)">
-            <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: rgba(255,255,255,0.7);">
+            <input type="range" id="volume-slider" min="0" max="100" value="30" aria-label="Volume"
+                style="width: 100%; accent-color: var(--phi-gold);" onchange="updateVolume(this.value)">
+            <div
+                style="display: flex; justify-content: space-between; font-size: 0.8rem; color: rgba(255,255,255,0.7);">
                 <span>🔇</span>
                 <span id="volume-display">30%</span>
                 <span>🔊</span>

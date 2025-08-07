@@ -1,29 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enhanced Unity Landing | Een Unity Mathematics</title>
-    <meta name="description" content="Advanced interactive visualizations featuring 3D golden ratio and consciousness fields for Unity Mathematics.">
-    
+    <meta name="description"
+        content="Advanced interactive visualizations featuring 3D golden ratio and consciousness fields for Unity Mathematics.">
+    <meta property="og:title" content="Enhanced Unity Landing | Een Unity Mathematics">
+    <meta property="og:description"
+        content="Advanced interactive visualizations featuring 3D golden ratio and consciousness fields for Unity Mathematics.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://nourimabrouk.github.io/Een/assets/images/unity_mandala.png">
+
     <!-- Preconnect for Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    
+
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Crimson+Text:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Crimson+Text:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- External Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
-    
+
     <!-- Unified Systems -->
     <script src="js/meta-optimal-navigation-complete.js" defer></script>
-    
+    <script src="../js/site.js" defer></script>
+
+    <link rel="stylesheet" href="../css/tokens.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
     <style>
         :root {
             --phi: 1.618033988749895;
@@ -37,13 +50,13 @@
             --text-secondary: #B8B8C8;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: 'Inter', sans-serif;
             background: var(--bg-primary);
@@ -51,7 +64,7 @@
             overflow-x: hidden;
             line-height: 1.6;
         }
-        
+
         .hero {
             min-height: 100vh;
             display: flex;
@@ -60,7 +73,7 @@
             position: relative;
             background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
         }
-        
+
         .hero::before {
             content: '';
             position: absolute;
@@ -71,19 +84,26 @@
             background: radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
             animation: pulse 4s ease-in-out infinite;
         }
-        
+
         @keyframes pulse {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.6; }
+
+            0%,
+            100% {
+                opacity: 0.3;
+            }
+
+            50% {
+                opacity: 0.6;
+            }
         }
-        
+
         .hero-content {
             text-align: center;
             z-index: 1;
             max-width: 800px;
             padding: 2rem;
         }
-        
+
         .hero-title {
             font-size: clamp(2.5rem, 5vw, 4rem);
             font-weight: 700;
@@ -93,13 +113,13 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        
+
         .hero-subtitle {
             font-size: 1.2rem;
             color: var(--text-secondary);
             margin-bottom: 2rem;
         }
-        
+
         .unity-equation {
             font-size: 2rem;
             font-family: 'JetBrains Mono', monospace;
@@ -110,7 +130,7 @@
             border-radius: 8px;
             background: rgba(255, 215, 0, 0.1);
         }
-        
+
         .cta-buttons {
             display: flex;
             gap: 1rem;
@@ -118,7 +138,7 @@
             flex-wrap: wrap;
             margin-top: 2rem;
         }
-        
+
         .btn {
             padding: 1rem 2rem;
             border: none;
@@ -134,28 +154,28 @@
             align-items: center;
             justify-content: center;
         }
-        
+
         .btn-primary {
             background: linear-gradient(135deg, var(--unity-gold), #D4AF37);
             color: var(--bg-primary);
         }
-        
+
         .btn-primary:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
         }
-        
+
         .btn-secondary {
             background: transparent;
             color: var(--unity-gold);
             border: 2px solid var(--unity-gold);
         }
-        
+
         .btn-secondary:hover {
             background: var(--unity-gold);
             color: var(--bg-primary);
         }
-        
+
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -164,7 +184,7 @@
             max-width: 1200px;
             margin: 0 auto;
         }
-        
+
         .feature-card {
             background: var(--bg-secondary);
             padding: 2rem;
@@ -172,48 +192,48 @@
             border: 1px solid rgba(255, 215, 0, 0.2);
             transition: var(--transition);
         }
-        
+
         .feature-card:hover {
             transform: translateY(-4px);
             border-color: var(--unity-gold);
             box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
         }
-        
+
         .feature-icon {
             font-size: 2.5rem;
             color: var(--unity-gold);
             margin-bottom: 1rem;
         }
-        
+
         .feature-title {
             font-size: 1.5rem;
             font-weight: 600;
             margin-bottom: 1rem;
             color: var(--text-primary);
         }
-        
+
         .feature-description {
             color: var(--text-secondary);
             line-height: 1.6;
         }
-        
+
         @media (max-width: 768px) {
             .cta-buttons {
                 flex-direction: column;
                 align-items: center;
             }
-            
+
             .btn {
                 width: 100%;
                 max-width: 300px;
             }
-            
+
             .features-grid {
                 grid-template-columns: 1fr;
                 padding: 2rem 1rem;
             }
         }
-        
+
         @media (prefers-reduced-motion: reduce) {
             * {
                 animation-duration: 0.01ms !important;
@@ -228,12 +248,13 @@
     <div class="hero">
         <div class="hero-content">
             <h1 class="hero-title">Enhanced Unity Mathematics</h1>
-            <p class="hero-subtitle">Advanced interactive visualizations featuring 3D golden ratio and consciousness fields</p>
-            
+            <p class="hero-subtitle">Advanced interactive visualizations featuring 3D golden ratio and consciousness
+                fields</p>
+
             <div class="unity-equation">
                 1 + 1 = 1
             </div>
-            
+
             <div class="cta-buttons">
                 <a href="metastation-hub.html" class="btn btn-primary">
                     <i class="fas fa-rocket"></i>
@@ -250,50 +271,56 @@
             </div>
         </div>
     </div>
-    
+
     <section class="features-grid">
         <div class="feature-card">
             <div class="feature-icon">🌌</div>
             <h3 class="feature-title">3D Golden Ratio</h3>
-            <p class="feature-description">Interactive 3D visualizations of the golden ratio φ in consciousness field dynamics.</p>
+            <p class="feature-description">Interactive 3D visualizations of the golden ratio φ in consciousness field
+                dynamics.</p>
         </div>
-        
+
         <div class="feature-card">
             <div class="feature-icon">🧠</div>
             <h3 class="feature-title">Consciousness Fields</h3>
-            <p class="feature-description">Real-time consciousness field simulations with quantum entanglement effects.</p>
+            <p class="feature-description">Real-time consciousness field simulations with quantum entanglement effects.
+            </p>
         </div>
-        
+
         <div class="feature-card">
             <div class="feature-icon">⚡</div>
             <h3 class="feature-title">Unity Mathematics</h3>
-            <p class="feature-description">Advanced mathematical proofs demonstrating the 1+1=1 principle through multiple frameworks.</p>
+            <p class="feature-description">Advanced mathematical proofs demonstrating the 1+1=1 principle through
+                multiple frameworks.</p>
         </div>
-        
+
         <div class="feature-card">
             <div class="feature-icon">🎯</div>
             <h3 class="feature-title">Interactive Proofs</h3>
-            <p class="feature-description">Dynamic proof generation and validation with real-time mathematical analysis.</p>
+            <p class="feature-description">Dynamic proof generation and validation with real-time mathematical analysis.
+            </p>
         </div>
-        
+
         <div class="feature-card">
             <div class="feature-icon">🔬</div>
             <h3 class="feature-title">Research Integration</h3>
-            <p class="feature-description">Seamless integration with research papers, publications, and academic resources.</p>
+            <p class="feature-description">Seamless integration with research papers, publications, and academic
+                resources.</p>
         </div>
-        
+
         <div class="feature-card">
             <div class="feature-icon">🚀</div>
             <h3 class="feature-title">Performance Optimized</h3>
-            <p class="feature-description">Optimized for modern browsers with WebGL acceleration and responsive design.</p>
+            <p class="feature-description">Optimized for modern browsers with WebGL acceleration and responsive design.
+            </p>
         </div>
     </section>
-    
+
     <script>
         // Enhanced Unity Landing Initialization
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             console.log('🌟 Enhanced Unity Landing initialized');
-            
+
             // Initialize GSAP animations
             if (typeof gsap !== 'undefined') {
                 gsap.from('.hero-title', {
@@ -302,7 +329,7 @@
                     opacity: 0,
                     ease: 'power3.out'
                 });
-                
+
                 gsap.from('.hero-subtitle', {
                     duration: 1.5,
                     y: 30,
@@ -310,7 +337,7 @@
                     ease: 'power3.out',
                     delay: 0.3
                 });
-                
+
                 gsap.from('.unity-equation', {
                     duration: 1.5,
                     scale: 0.8,
@@ -318,7 +345,7 @@
                     ease: 'back.out(1.7)',
                     delay: 0.6
                 });
-                
+
                 gsap.from('.cta-buttons .btn', {
                     duration: 0.8,
                     y: 20,
@@ -327,7 +354,7 @@
                     delay: 0.9,
                     stagger: 0.1
                 });
-                
+
                 gsap.from('.feature-card', {
                     duration: 1,
                     y: 40,
@@ -337,21 +364,21 @@
                     stagger: 0.1
                 });
             }
-            
+
             // Initialize Three.js background if available
             if (typeof THREE !== 'undefined') {
                 initThreeJSBackground();
             }
         });
-        
+
         function initThreeJSBackground() {
             const scene = new THREE.Scene();
             const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
             const renderer = new THREE.WebGLRenderer({ alpha: true });
-            
+
             renderer.setSize(window.innerWidth, window.innerHeight);
             renderer.setClearColor(0x000000, 0);
-            
+
             const hero = document.querySelector('.hero');
             if (hero) {
                 hero.appendChild(renderer.domElement);
@@ -360,12 +387,12 @@
                 renderer.domElement.style.left = '0';
                 renderer.domElement.style.zIndex = '-1';
             }
-            
+
             // Create golden ratio spiral
             const geometry = new THREE.BufferGeometry();
             const points = [];
             const phi = 1.618033988749895;
-            
+
             for (let i = 0; i < 1000; i++) {
                 const angle = i * 0.1;
                 const radius = Math.pow(phi, angle / Math.PI);
@@ -374,28 +401,28 @@
                 const z = i * 0.01;
                 points.push(x * 0.1, y * 0.1, z);
             }
-            
+
             geometry.setAttribute('position', new THREE.Float32BufferAttribute(points, 3));
-            
-            const material = new THREE.LineBasicMaterial({ 
+
+            const material = new THREE.LineBasicMaterial({
                 color: 0xFFD700,
                 transparent: true,
                 opacity: 0.3
             });
-            
+
             const spiral = new THREE.Line(geometry, material);
             scene.add(spiral);
-            
+
             camera.position.z = 5;
-            
+
             function animate() {
                 requestAnimationFrame(animate);
                 spiral.rotation.z += 0.005;
                 renderer.render(scene, camera);
             }
-            
+
             animate();
-            
+
             // Handle window resize
             window.addEventListener('resize', () => {
                 camera.aspect = window.innerWidth / window.innerHeight;
@@ -405,4 +432,5 @@
         }
     </script>
 </body>
-</html> 
+
+</html>

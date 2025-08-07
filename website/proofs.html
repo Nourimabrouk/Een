@@ -11,7 +11,8 @@
     <link rel="preconnect" href="https://cdn.plot.ly">
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
     <title>Mathematical Proofs - Een Unity Mathematics | Rigorous Demonstrations of 1+1=1</title>
-    <meta name="description" content="Transcendental computing hub demonstrating 1+1=1 through quantum entanglement, neural networks, and fractal mathematics with consciousness field integration.">
+    <meta name="description"
+        content="Transcendental computing hub demonstrating 1+1=1 through quantum entanglement, neural networks, and fractal mathematics with consciousness field integration.">
 
     <!-- Fonts & Icons -->
     <link
@@ -23,12 +24,16 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
-    
+
     <!-- Enhanced Metagamer Consciousness Engine -->
     <link rel="stylesheet" href="enhanced-proof-styles.css">
     <script src="metagamer-consciousness-engine.js"></script>
-    
-    <!-- Main Metagamer Energy Stylesheet -->
+
+    <!-- Unified Design System -->
+    <link rel="stylesheet" href="../css/tokens.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <!-- Page Styles -->
     <link rel="stylesheet" href="css/style.css">
 
     <!-- MathJax for Complex Equations -->
@@ -37,7 +42,7 @@
 
     <!-- Meta-Optimal Complete Navigation System -->
     <script src="js/meta-optimal-navigation-complete.js" defer></script>
-    
+
     <!-- Enhanced AI Chat Integration -->
     <script src="js/enhanced-unity-ai-chat.js" defer></script>
 
@@ -46,9 +51,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
     <!-- Enhanced Navigation System -->
-    
+
     <script src="js/ai-chat-integration.js"></script>
-    
+
     <style>
         /* Meta-Optimal Design System */
         :root {
@@ -82,14 +87,17 @@
             --font-serif: 'Crimson Text', Georgia, serif;
             --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
         }
+
         body {
-            padding-top: 80px; /* Account for fixed navigation */
+            padding-top: 80px;
+            /* Account for fixed navigation */
         }
+
         .page-header {
             margin-top: 0;
             padding-top: 8rem;
         }
-    
+
         /* Animation Classes */
         .fade-in {
             opacity: 0;
@@ -104,17 +112,31 @@
             }
         }
 
-        .stagger-animation > * {
+        .stagger-animation>* {
             opacity: 0;
             animation: fadeInUp 0.8s ease-out forwards;
         }
 
-        .stagger-animation > *:nth-child(1) { animation-delay: 0.1s; }
-        .stagger-animation > *:nth-child(2) { animation-delay: 0.2s; }
-        .stagger-animation > *:nth-child(3) { animation-delay: 0.3s; }
-        .stagger-animation > *:nth-child(4) { animation-delay: 0.4s; }
-        .stagger-animation > *:nth-child(5) { animation-delay: 0.5s; }
-    
+        .stagger-animation>*:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .stagger-animation>*:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .stagger-animation>*:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .stagger-animation>*:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .stagger-animation>*:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
         /* Component Classes */
         .container {
             max-width: 1200px;
@@ -213,11 +235,8 @@
     </style>
 
     <!-- Master Navigation System v2.0 -->
-    
-
-
     <link rel="stylesheet" href="css/meta-optimal-navigation-complete.css">
-    <!-- Unified Styles -->
+    <!-- Legacy Unified Styles (kept) -->
     <link rel="stylesheet" href="css/unified-styles.css">
 
     <!-- Preload critical resources -->
@@ -226,21 +245,32 @@
 
     <style>
         /* Mobile touch optimizations */
-        * { touch-action: manipulation; }
-        .interactive-element { 
-            min-height: 44px; 
-            min-width: 44px; 
+        * {
+            touch-action: manipulation;
         }
+
+        .interactive-element {
+            min-height: 44px;
+            min-width: 44px;
+        }
+
         @media (max-width: 768px) {
-            .desktop-only { display: none !important; }
-            .mobile-optimized { font-size: 16px; }
+            .desktop-only {
+                display: none !important;
+            }
+
+            .mobile-optimized {
+                font-size: 16px;
+            }
         }
     </style>
+    <!-- Site-wide safe enhancements -->
+    <script src="../js/site.js" defer></script>
 </head>
 
 <body>
     <!-- Meta-optimal navigation placeholder - will be populated by meta-optimal-navigation-complete.js -->
-    
+
 
     <!-- Page Header -->
     <section class="page-header">
@@ -819,9 +849,11 @@
                             <h3>🧠 AI-Powered Proof Generation</h3>
                             <div class="input-group">
                                 <label for="proof-prompt">Describe the mathematical theorem you want to prove:</label>
-                                <textarea id="proof-prompt" placeholder="Example: Prove that the consciousness field C(x,y,t) = φ·sin(x·φ)·cos(y·φ)·e^(-t/φ) converges to unity..." rows="3"></textarea>
+                                <textarea id="proof-prompt"
+                                    placeholder="Example: Prove that the consciousness field C(x,y,t) = φ·sin(x·φ)·cos(y·φ)·e^(-t/φ) converges to unity..."
+                                    rows="3"></textarea>
                             </div>
-                            
+
                             <div class="proof-settings">
                                 <div class="setting-group">
                                     <label for="proof-rigor">Mathematical Rigor:</label>
@@ -831,28 +863,30 @@
                                         <option value="lean4">Lean 4 Verified</option>
                                     </select>
                                 </div>
-                                
+
                                 <div class="setting-group">
                                     <label for="consciousness-level">Consciousness Integration:</label>
-                                    <input type="range" id="consciousness-level" min="0" max="1" step="0.01" value="0.618">
+                                    <input type="range" id="consciousness-level" min="0" max="1" step="0.01"
+                                        value="0.618">
                                     <span id="consciousness-value">φ-optimal (0.618)</span>
                                 </div>
                             </div>
-                            
+
                             <button class="proof-generate-btn" onclick="generateAdvancedProof()">
                                 <i class="fas fa-magic"></i> Generate Unity Proof
                             </button>
                         </div>
-                        
+
                         <div class="proof-output">
                             <h3>🌟 Generated Proof</h3>
                             <div id="generated-proof" class="proof-display">
                                 <div class="proof-placeholder">
                                     <i class="fas fa-lightbulb"></i>
-                                    <p>Enter a mathematical statement above to generate a consciousness-enhanced proof</p>
+                                    <p>Enter a mathematical statement above to generate a consciousness-enhanced proof
+                                    </p>
                                 </div>
                             </div>
-                            
+
                             <div class="proof-metrics" id="proof-metrics" style="display: none;">
                                 <div class="metric">
                                     <span class="label">Rigor Score:</span>
@@ -1506,7 +1540,7 @@
     </style>
 
     <!-- Shared Navigation Script -->
-    
+
 
     <script>
         // Global variables for interactive proof system
@@ -1886,12 +1920,10 @@
             if (window.renderMathInElement) {
                 renderMathInElement(document.body, {
                     delimiters: [
-                        { left: '$', right: '$', display: true },
-                        { left: '
-
-</html>, right: '
-
-</html>, display: false }
+                        { left: '$$', right: '$$', display: true },
+                        { left: '$', right: '$', display: false },
+                        { left: '\\(', right: '\\)', display: false },
+                        { left: '\\[', right: '\\]', display: true }
                     ]
                 });
             }
@@ -1967,11 +1999,11 @@
     <div id="footer-placeholder"></div>
 
     <!-- Shared Navigation Script -->
-    
+
 
     <!-- Performance Monitoring -->
     <script>
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             if ('performance' in window) {
                 const loadTime = performance.now();
                 console.log('Page load time:', loadTime + 'ms');

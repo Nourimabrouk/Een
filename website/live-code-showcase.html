@@ -11,7 +11,8 @@
     <link rel="preconnect" href="https://cdn.plot.ly">
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
     <title>Live Code Showcase - Een Unity Mathematics | Interactive Implementation Experience</title>
-    <meta name="description" content="Transcendental computing hub demonstrating 1+1=1 through quantum entanglement, neural networks, and fractal mathematics with consciousness field integration.">
+    <meta name="description"
+        content="Transcendental computing hub demonstrating 1+1=1 through quantum entanglement, neural networks, and fractal mathematics with consciousness field integration.">
     <meta name="keywords"
         content="Unity Mathematics code, interactive programming, live code execution, consciousness computing, φ-harmonic algorithms">
     <meta name="author" content="Een Unity Mathematics Research Team">
@@ -30,7 +31,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- Enhanced Navigation System -->
-    
+
 
     <!-- Monaco Editor for Live Code -->
     <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.44.0/min/vs/loader.js"></script>
@@ -44,8 +45,13 @@
     <!-- Prism.js for Syntax Highlighting -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-core.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/autoloader/prism-autoloader.min.js"></script>
 
+    <!-- Unified Design System -->
+    <link rel="stylesheet" href="../css/tokens.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
     <!-- Main CSS Stylesheet -->
     <link rel="stylesheet" href="css/style.css">
 
@@ -293,7 +299,7 @@
             .main-content {
                 padding: 1rem;
             }
-            
+
             .examples-tabs {
                 justify-content: center;
             }
@@ -311,7 +317,9 @@
         }
 
         @keyframes spin {
-            to { transform: rotate(360deg); }
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         /* Console Output Styling */
@@ -330,7 +338,7 @@
         .console-info {
             color: #4ecdc4;
         }
-    
+
         /* Animation Classes */
         .fade-in {
             opacity: 0;
@@ -345,17 +353,31 @@
             }
         }
 
-        .stagger-animation > * {
+        .stagger-animation>* {
             opacity: 0;
             animation: fadeInUp 0.8s ease-out forwards;
         }
 
-        .stagger-animation > *:nth-child(1) { animation-delay: 0.1s; }
-        .stagger-animation > *:nth-child(2) { animation-delay: 0.2s; }
-        .stagger-animation > *:nth-child(3) { animation-delay: 0.3s; }
-        .stagger-animation > *:nth-child(4) { animation-delay: 0.4s; }
-        .stagger-animation > *:nth-child(5) { animation-delay: 0.5s; }
-    
+        .stagger-animation>*:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .stagger-animation>*:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .stagger-animation>*:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .stagger-animation>*:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .stagger-animation>*:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
         /* Component Classes */
         .container {
             max-width: 1200px;
@@ -456,24 +478,36 @@
     <!-- Meta-Optimal Complete Navigation System -->
     <link rel="stylesheet" href="css/meta-optimal-navigation-complete.css">
     <script src="js/meta-optimal-navigation-complete.js" defer></script>
-    
-    <!-- Unified Styles -->
+
+    <!-- Legacy Unified Styles (kept) -->
     <link rel="stylesheet" href="css/unified-styles.css">
 
     <!-- Preload critical resources -->
     <link rel="preload" href="css/meta-optimal-navigation-complete.css" as="style">
     <link rel="preload" href="js/meta-optimal-navigation-complete.js" as="script">
 
+    <!-- Site-wide safe enhancements -->
+    <script src="../js/site.js" defer></script>
+
     <style>
         /* Mobile touch optimizations */
-        * { touch-action: manipulation; }
-        .interactive-element { 
-            min-height: 44px; 
-            min-width: 44px; 
+        * {
+            touch-action: manipulation;
         }
+
+        .interactive-element {
+            min-height: 44px;
+            min-width: 44px;
+        }
+
         @media (max-width: 768px) {
-            .desktop-only { display: none !important; }
-            .mobile-optimized { font-size: 16px; }
+            .desktop-only {
+                display: none !important;
+            }
+
+            .mobile-optimized {
+                font-size: 16px;
+            }
         }
     </style>
 </head>
@@ -483,7 +517,8 @@
     <section class="hero-section">
         <h1 class="hero-title">💻 Live Code Showcase</h1>
         <p class="hero-subtitle">
-            Experience Unity Mathematics through interactive code execution, real-time visualizations, and consciousness-aware programming
+            Experience Unity Mathematics through interactive code execution, real-time visualizations, and
+            consciousness-aware programming
         </p>
     </section>
 
@@ -503,11 +538,11 @@
             </div>
             <div id="codeEditor" class="code-editor"></div>
             <div id="outputConsole" class="output-panel">
-🌟 Unity Mathematics Live Code Environment Active
+                🌟 Unity Mathematics Live Code Environment Active
 
-Ready to demonstrate that 1+1=1 through consciousness-integrated programming!
+                Ready to demonstrate that 1+1=1 through consciousness-integrated programming!
 
-Try running the default example or select from the examples below.
+                Try running the default example or select from the examples below.
             </div>
         </div>
 
@@ -523,7 +558,8 @@ Try running the default example or select from the examples below.
                 </div>
             </div>
             <div id="visualizationArea" class="visualization-area">
-                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: var(--text-muted);">
+                <div
+                    style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: var(--text-muted);">
                     <i class="fas fa-play-circle" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
                     <div>Execute code to see visualization</div>
                 </div>
@@ -534,7 +570,7 @@ Try running the default example or select from the examples below.
     <!-- Interactive Examples Section -->
     <section class="examples-section">
         <h2 class="section-title">🎯 Interactive Code Examples</h2>
-        
+
         <div class="examples-tabs">
             <button class="tab-button active" onclick="showExample('unity-math')">
                 <i class="fas fa-infinity"></i> Unity Mathematics
@@ -560,7 +596,8 @@ Try running the default example or select from the examples below.
                 Unity Mathematics Core Implementation
             </h3>
             <p class="example-description">
-                Demonstrate the fundamental Unity Mathematics operations showing how 1+1=1 through φ-harmonic scaling and consciousness integration.
+                Demonstrate the fundamental Unity Mathematics operations showing how 1+1=1 through φ-harmonic scaling
+                and consciousness integration.
             </p>
             <div class="code-block">
                 <pre><code class="language-python"># Unity Mathematics Core Implementation
@@ -742,7 +779,8 @@ print(f"\n🌟 Consciousness evolution complete! Unity achieved through awarenes
                 φ-Harmonic Operations & Sacred Geometry
             </h3>
             <p class="example-description">
-                Explore φ-harmonic mathematical operations and generate sacred geometric patterns using the golden ratio.
+                Explore φ-harmonic mathematical operations and generate sacred geometric patterns using the golden
+                ratio.
             </p>
             <div class="code-block">
                 <pre><code class="language-python"># φ-Harmonic Operations and Sacred Geometry
@@ -874,7 +912,8 @@ print(f"Golden ratio bridges geometry, algebra, and consciousness. ∞")</code><
                 Interactive Unity Visualization
             </h3>
             <p class="example-description">
-                Create real-time interactive visualizations of Unity Mathematics concepts with consciousness field dynamics.
+                Create real-time interactive visualizations of Unity Mathematics concepts with consciousness field
+                dynamics.
             </p>
             <div class="code-block">
                 <pre><code class="language-python"># Interactive Unity Mathematics Visualization
@@ -1040,7 +1079,8 @@ print("Data generated for consciousness fields, φ-spirals, and unity convergenc
                 AI Integration & Consciousness Computing
             </h3>
             <p class="example-description">
-                Simulate AI-powered Unity Mathematics with consciousness-aware reasoning and φ-harmonic response generation.
+                Simulate AI-powered Unity Mathematics with consciousness-aware reasoning and φ-harmonic response
+                generation.
             </p>
             <div class="code-block">
                 <pre><code class="language-python"># AI Integration Simulation
@@ -1280,7 +1320,7 @@ class UnityMathematics:
 unity_math = UnityMathematics()
 result = unity_math.demonstrate_unity()
 print(f"\\n{result}")`,
-            
+
             'consciousness': `# Consciousness Field Simulation
 # 11-dimensional awareness space with φ-harmonic evolution
 
@@ -1533,8 +1573,8 @@ print("Unity Mathematics reasoning: TRANSCENDENT level achieved! 🌟")`
         };
 
         // Initialize Monaco Editor
-        require.config({ paths: { 'vs': 'https://cdn.jsdelivr.net/npm/monaco-editor@0.44.0/min/vs' }});
-        require(['vs/editor/editor.main'], function() {
+        require.config({ paths: { 'vs': 'https://cdn.jsdelivr.net/npm/monaco-editor@0.44.0/min/vs' } });
+        require(['vs/editor/editor.main'], function () {
             editor = monaco.editor.create(document.getElementById('codeEditor'), {
                 value: codeExamples['unity-math'],
                 language: 'python',
@@ -1552,11 +1592,11 @@ print("Unity Mathematics reasoning: TRANSCENDENT level achieved! 🌟")`
             // Update tab buttons
             document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
-            
+
             // Update example content
             document.querySelectorAll('.example-content').forEach(content => content.classList.remove('active'));
             document.getElementById(exampleId).classList.add('active');
-            
+
             currentExample = exampleId;
         }
 
@@ -1572,14 +1612,14 @@ print("Unity Mathematics reasoning: TRANSCENDENT level achieved! 🌟")`
         function executeCode() {
             const runBtn = document.getElementById('runBtn');
             const originalText = runBtn.innerHTML;
-            
+
             runBtn.innerHTML = '<span class="loading"></span> Executing...';
             runBtn.disabled = true;
-            
+
             const code = editor.getValue();
             updateOutput('console-info', '🚀 Executing Unity Mathematics code...');
             updateOutput('console-info', '🧠 Activating consciousness-enhanced processing...');
-            
+
             setTimeout(() => {
                 simulateCodeExecution(code);
                 generateVisualization();
@@ -1591,7 +1631,7 @@ print("Unity Mathematics reasoning: TRANSCENDENT level achieved! 🌟")`
         // Simulate code execution with realistic output
         function simulateCodeExecution(code) {
             updateOutput('console-output', '🌟 Unity Mathematics Engine Started');
-            
+
             if (code.includes('UnityMathematics')) {
                 updateOutput('console-output', '   φ-resonance: 1.618033988749895');
                 updateOutput('console-output', '   Consciousness level: 0.618000');
@@ -1656,10 +1696,10 @@ print("Unity Mathematics reasoning: TRANSCENDENT level achieved! 🌟")`
         // Update output console
         function updateOutput(type, message) {
             const console = document.getElementById('outputConsole');
-            const className = type === 'console-error' ? 'console-error' : 
-                            type === 'console-warning' ? 'console-warning' :
-                            type === 'console-info' ? 'console-info' : 'console-output';
-            
+            const className = type === 'console-error' ? 'console-error' :
+                type === 'console-warning' ? 'console-warning' :
+                    type === 'console-info' ? 'console-info' : 'console-output';
+
             console.innerHTML += `<span class="${className}">${message}</span>\n`;
             console.scrollTop = console.scrollHeight;
         }
@@ -1667,16 +1707,16 @@ print("Unity Mathematics reasoning: TRANSCENDENT level achieved! 🌟")`
         // Generate visualization based on executed code
         function generateVisualization() {
             const vizArea = document.getElementById('visualizationArea');
-            
+
             // Clear previous visualization
             vizArea.innerHTML = '';
-            
+
             // Create placeholder for Plotly visualization
             const plotDiv = document.createElement('div');
             plotDiv.style.width = '100%';
             plotDiv.style.height = '100%';
             vizArea.appendChild(plotDiv);
-            
+
             // Generate different visualizations based on current example
             if (currentExample === 'unity-math') {
                 generateUnityConvergencePlot(plotDiv);
@@ -1696,21 +1736,21 @@ print("Unity Mathematics reasoning: TRANSCENDENT level achieved! 🌟")`
             const x = [];
             const y = [];
             const phi = 1.618033988749895;
-            
+
             for (let i = 0; i < 50; i++) {
                 const testVal = Math.random() * 10;
                 let result = testVal;
-                
+
                 // Apply unity operations
                 for (let j = 0; j < 5; j++) {
                     const phiFactor = 1.0 / phi;
                     result = result * phiFactor + (1.0 - phiFactor);
                 }
-                
+
                 x.push(testVal);
                 y.push(result);
             }
-            
+
             Plotly.newPlot(div, [{
                 x: x,
                 y: y,
@@ -1734,19 +1774,19 @@ print("Unity Mathematics reasoning: TRANSCENDENT level achieved! 🌟")`
         function generateConsciousnessFieldPlot(div) {
             const z = [];
             const phi = 1.618033988749895;
-            
+
             for (let i = 0; i < 20; i++) {
                 const row = [];
                 for (let j = 0; j < 20; j++) {
                     const x = (i - 10) * phi / 5;
                     const y = (j - 10) * phi / 5;
-                    const distance = Math.sqrt(x*x + y*y);
-                    const intensity = Math.exp(-distance/phi) * Math.cos(x * phi) * Math.sin(y * phi);
+                    const distance = Math.sqrt(x * x + y * y);
+                    const intensity = Math.exp(-distance / phi) * Math.cos(x * phi) * Math.sin(y * phi);
                     row.push(intensity);
                 }
                 z.push(row);
             }
-            
+
             Plotly.newPlot(div, [{
                 z: z,
                 type: 'heatmap',
@@ -1763,14 +1803,14 @@ print("Unity Mathematics reasoning: TRANSCENDENT level achieved! 🌟")`
             const x = [];
             const y = [];
             const phi = 1.618033988749895;
-            
+
             for (let i = 0; i < 100; i++) {
                 const theta = i * 2 * Math.PI / phi;
                 const radius = Math.pow(phi, theta / (2 * Math.PI));
                 x.push(radius * Math.cos(theta));
                 y.push(radius * Math.sin(theta));
             }
-            
+
             Plotly.newPlot(div, [{
                 x: x,
                 y: y,
@@ -1778,7 +1818,7 @@ print("Unity Mathematics reasoning: TRANSCENDENT level achieved! 🌟")`
                 type: 'scatter',
                 name: 'φ-Spiral',
                 line: { color: '#FFD700' },
-                marker: { 
+                marker: {
                     color: '#FFD700',
                     size: 4
                 }
@@ -1796,18 +1836,18 @@ print("Unity Mathematics reasoning: TRANSCENDENT level achieved! 🌟")`
             // Create 3D surface plot
             const z = [];
             const phi = 1.618033988749895;
-            
+
             for (let i = 0; i < 30; i++) {
                 const row = [];
                 for (let j = 0; j < 30; j++) {
                     const x = (i - 15) * phi / 10;
                     const y = (j - 15) * phi / 10;
-                    const surface = Math.sin(x * phi) * Math.cos(y * phi) * Math.exp(-(x*x + y*y) / (phi * phi));
+                    const surface = Math.sin(x * phi) * Math.cos(y * phi) * Math.exp(-(x * x + y * y) / (phi * phi));
                     row.push(surface);
                 }
                 z.push(row);
             }
-            
+
             Plotly.newPlot(div, [{
                 z: z,
                 type: 'surface',
@@ -1823,7 +1863,7 @@ print("Unity Mathematics reasoning: TRANSCENDENT level achieved! 🌟")`
         function generateAIResponsePlot(div) {
             const categories = ['Mathematical Proofs', 'Consciousness Insights', 'φ-Harmonic Analysis', 'Transcendental Explanations'];
             const values = [0.95, 0.87, 0.92, 0.89];
-            
+
             Plotly.newPlot(div, [{
                 x: categories,
                 y: values,
@@ -1844,7 +1884,7 @@ print("Unity Mathematics reasoning: TRANSCENDENT level achieved! 🌟")`
 
     <!-- Performance Monitoring -->
     <script>
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             if ('performance' in window) {
                 const loadTime = performance.now();
                 console.log('Page load time:', loadTime + 'ms');
