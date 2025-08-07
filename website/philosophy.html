@@ -747,6 +747,12 @@
                 contentDiv.innerHTML = htmlContent;
                 loadingDiv.style.display = 'none';
                 contentDiv.style.display = 'block';
+                
+                // Hide all static sections since we loaded markdown successfully
+                const staticSections = document.querySelectorAll('.philosophy-container > section:not(#philosophyContent)');
+                staticSections.forEach(section => {
+                    section.style.display = 'none';
+                });
 
                 // Render math expressions if KaTeX is available
                 if (window.renderMathInElement) {
