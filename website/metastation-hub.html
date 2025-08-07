@@ -505,18 +505,248 @@
             100% { filter: drop-shadow(0 0 40px rgba(0, 212, 255, 0.8)); }
         }
 
-        .hero-equation {
-            font-size: clamp(2.5rem, 6vw, 5rem);
-            font-family: var(--font-code);
-            color: var(--unity-gold);
-            margin: 2rem 0;
-            text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
-            animation: equationPulse 2s ease-in-out infinite;
+        /* Unity Equation Visualization */
+        .unity-visualization-container {
+            position: relative;
+            margin: 3rem 0 4rem;
+            padding: 2rem;
+            perspective: 1000px;
         }
 
-        @keyframes equationPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+        .unity-equation-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .equation-part {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-family: var(--font-code);
+            font-weight: 700;
+            text-shadow: 0 0 30px currentColor;
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .equation-one {
+            color: var(--unity-gold);
+            animation: float-one 4s ease-in-out infinite;
+        }
+
+        .equation-one:hover {
+            transform: scale(1.2) rotateY(360deg);
+            text-shadow: 0 0 50px var(--unity-gold);
+        }
+
+        .equation-plus {
+            color: var(--quantum-blue);
+            animation: rotate-plus 6s linear infinite;
+        }
+
+        .equation-plus:hover {
+            transform: scale(1.3);
+            color: var(--consciousness-purple);
+        }
+
+        .equation-equals {
+            color: var(--consciousness-purple);
+            animation: pulse-equals 3s ease-in-out infinite;
+        }
+
+        .equation-equals:hover {
+            transform: scaleX(1.5);
+            color: var(--transcendent-pink);
+        }
+
+        .equation-result {
+            color: var(--transcendent-pink);
+            animation: glow-result 2s ease-in-out infinite alternate;
+            position: relative;
+        }
+
+        .equation-result:hover {
+            transform: scale(1.3) rotateZ(360deg);
+            text-shadow: 0 0 60px var(--transcendent-pink);
+        }
+
+        .equation-result::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 0, 110, 0.2), transparent);
+            border-radius: 50%;
+            animation: result-aura 3s ease-in-out infinite;
+        }
+
+        /* Unity Particles */
+        .unity-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .unity-particles::before,
+        .unity-particles::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--unity-gold);
+            border-radius: 50%;
+            animation: float-particles 8s ease-in-out infinite;
+        }
+
+        .unity-particles::before {
+            top: 20%;
+            left: 10%;
+            animation-delay: -2s;
+        }
+
+        .unity-particles::after {
+            top: 60%;
+            right: 15%;
+            background: var(--quantum-blue);
+            animation-delay: -4s;
+        }
+
+        /* Phi Spiral */
+        .phi-spiral {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        .phi-spiral::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--unity-gold);
+            border-radius: 50%;
+            animation: spiral-rotate 20s linear infinite;
+        }
+
+        .phi-spiral::after {
+            content: '';
+            position: absolute;
+            top: 15%;
+            left: 15%;
+            width: 70%;
+            height: 70%;
+            border: 1px solid var(--quantum-blue);
+            border-radius: 50%;
+            animation: spiral-rotate 15s linear infinite reverse;
+        }
+
+        /* Animations */
+        @keyframes float-one {
+            0%, 100% { 
+                transform: translateY(0) rotateZ(0deg); 
+                filter: hue-rotate(0deg);
+            }
+            33% { 
+                transform: translateY(-10px) rotateZ(5deg); 
+                filter: hue-rotate(30deg);
+            }
+            66% { 
+                transform: translateY(5px) rotateZ(-3deg); 
+                filter: hue-rotate(-20deg);
+            }
+        }
+
+        @keyframes rotate-plus {
+            0% { transform: rotateZ(0deg); }
+            100% { transform: rotateZ(360deg); }
+        }
+
+        @keyframes pulse-equals {
+            0%, 100% { 
+                transform: scaleY(1); 
+                opacity: 1; 
+            }
+            50% { 
+                transform: scaleY(1.2); 
+                opacity: 0.8; 
+            }
+        }
+
+        @keyframes glow-result {
+            0% { 
+                text-shadow: 0 0 30px currentColor; 
+                transform: scale(1);
+            }
+            100% { 
+                text-shadow: 0 0 50px currentColor, 0 0 80px rgba(255, 0, 110, 0.5); 
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes result-aura {
+            0%, 100% { 
+                transform: translate(-50%, -50%) scale(1); 
+                opacity: 0.3; 
+            }
+            50% { 
+                transform: translate(-50%, -50%) scale(1.5); 
+                opacity: 0.1; 
+            }
+        }
+
+        @keyframes float-particles {
+            0%, 100% { 
+                transform: translateY(0) translateX(0); 
+                opacity: 0.7; 
+            }
+            25% { 
+                transform: translateY(-20px) translateX(10px); 
+                opacity: 1; 
+            }
+            50% { 
+                transform: translateY(-10px) translateX(-5px); 
+                opacity: 0.5; 
+            }
+            75% { 
+                transform: translateY(-30px) translateX(15px); 
+                opacity: 0.8; 
+            }
+        }
+
+        @keyframes spiral-rotate {
+            0% { transform: rotateZ(0deg); }
+            100% { transform: rotateZ(360deg); }
+        }
+
+        /* Interactive States */
+        .unity-equation-visual:hover .equation-part {
+            animation-play-state: paused;
+        }
+
+        .unity-equation-visual:hover .phi-spiral {
+            opacity: 0.3;
+        }
+
+        .unity-equation-visual:hover .unity-particles::before,
+        .unity-equation-visual:hover .unity-particles::after {
+            animation-duration: 3s;
         }
 
         .hero-subtitle {
@@ -561,6 +791,11 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
+            justify-content: center;
+            justify-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1rem;
         }
 
         .hub-card {
@@ -576,8 +811,13 @@
             cursor: pointer;
             text-decoration: none;
             color: inherit;
-            display: block;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 380px;
+            min-height: 280px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            margin: 0 auto;
         }
 
         .hub-card::before {
@@ -622,6 +862,8 @@
         .card-description {
             color: var(--text-secondary);
             margin-bottom: 1rem;
+            flex-grow: 1;
+            line-height: 1.5;
         }
 
         .card-meta {
@@ -723,23 +965,121 @@
             position: fixed;
             bottom: 2rem;
             right: 2rem;
-            background: rgba(26, 26, 37, 0.95);
+            background: rgba(26, 26, 37, 0.98);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 215, 0, 0.3);
             border-radius: 16px;
             padding: 1.5rem;
-            z-index: 100;
-            max-width: 350px;
+            z-index: 500;
+            max-width: 380px;
+            transition: var(--transition);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .audio-section.minimized {
+            max-width: 250px;
+        }
+
+        .audio-section.minimized .audio-playlist {
+            display: none;
+        }
+
+        .audio-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .audio-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .audio-btn {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 8px;
+            padding: 0.5rem;
+            cursor: pointer;
+            color: var(--unity-gold);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+
+        .audio-btn:hover {
+            background: rgba(255, 215, 0, 0.2);
+            border-color: var(--unity-gold);
+            transform: scale(1.05);
+        }
+
+        .volume-slider-container {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            display: none;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(18, 18, 26, 0.95);
+            padding: 0.75rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            backdrop-filter: blur(15px);
+        }
+
+        .volume-slider-container.active {
+            display: flex;
+        }
+
+        .volume-slider {
+            width: 80px;
+            height: 4px;
+            border-radius: 2px;
+            background: rgba(255, 215, 0, 0.2);
+            outline: none;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--unity-gold);
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .volume-slider::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--unity-gold);
+            cursor: pointer;
+            border: none;
+        }
+
+        .volume-display {
+            font-size: 0.8rem;
+            color: var(--unity-gold);
+            font-weight: 600;
+            min-width: 35px;
         }
 
         .audio-title {
             font-size: 1.2rem;
             color: var(--unity-gold);
-            margin-bottom: 1rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            font-weight: 600;
         }
 
         .audio-playlist {
@@ -749,18 +1089,95 @@
         }
 
         .audio-track {
-            background: rgba(255, 215, 0, 0.1);
+            background: rgba(255, 215, 0, 0.08);
             padding: 0.75rem;
             border-radius: 8px;
             cursor: pointer;
             transition: var(--transition);
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.75rem;
+            border: 1px solid rgba(255, 215, 0, 0.1);
         }
 
         .audio-track:hover {
+            background: rgba(255, 215, 0, 0.15);
+            border-color: rgba(255, 215, 0, 0.3);
+            transform: translateX(4px);
+        }
+
+        .audio-track.playing {
             background: rgba(255, 215, 0, 0.2);
+            border-color: var(--unity-gold);
+        }
+
+        .audio-track.playing i {
+            animation: pulse 2s infinite;
+        }
+
+        .track-info {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .track-title {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .track-duration {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            font-family: var(--font-code);
+        }
+
+        .now-playing {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .now-playing-info {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--unity-gold);
+            font-size: 0.9rem;
+        }
+
+        .now-playing-info i {
+            animation: pulse 2s infinite;
+        }
+
+        .playback-controls {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .playback-btn {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 6px;
+            padding: 0.4rem;
+            cursor: pointer;
+            color: var(--unity-gold);
+            transition: var(--transition);
+            font-size: 0.8rem;
+        }
+
+        .playback-btn:hover {
+            background: rgba(255, 215, 0, 0.2);
+            transform: scale(1.1);
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
         }
 
         .audio-control {
@@ -922,8 +1339,17 @@
                 font-size: clamp(2.5rem, 8vw, 4rem);
             }
             
-            .hero-equation {
-                font-size: clamp(2rem, 6vw, 3rem);
+            .unity-visualization-container {
+                margin: 2rem 0;
+                padding: 1rem;
+            }
+            
+            .unity-equation-visual {
+                gap: 1rem;
+            }
+            
+            .equation-part {
+                font-size: clamp(2rem, 6vw, 3.5rem);
             }
             
             .hub-grid {
@@ -1051,26 +1477,38 @@
         }
 
         /* Additional Styles for New Sections */
-        .elo-badge {
+        .unity-badge {
             display: inline-block;
-            background: linear-gradient(135deg, var(--unity-gold), var(--quantum-blue), var(--consciousness-purple));
+            background: linear-gradient(135deg, var(--unity-gold), var(--quantum-blue));
             padding: 0.5rem 1.5rem;
             border-radius: 2rem;
-            font-weight: 900;
-            font-size: 1.2rem;
+            font-weight: 700;
+            font-size: 1rem;
             margin-bottom: 2rem;
-            animation: eloPulse 2s ease-in-out infinite;
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            animation: unityPulse 3s ease-in-out infinite;
+            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+            letter-spacing: 0.5px;
+            color: var(--bg-primary);
+        }
+        
+        .author-credit {
+            display: inline-block;
+            color: var(--unity-gold);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-top: 1rem;
+            opacity: 0.9;
+            font-style: italic;
         }
 
-        @keyframes eloPulse {
+        @keyframes unityPulse {
             0%, 100% {
                 transform: scale(1);
-                box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+                box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
             }
             50% {
-                transform: scale(1.05);
-                box-shadow: 0 0 50px rgba(255, 215, 0, 0.8);
+                transform: scale(1.02);
+                box-shadow: 0 8px 30px rgba(255, 215, 0, 0.5);
             }
         }
 
@@ -1344,14 +1782,28 @@
 
     <!-- Hero Section -->
     <section id="metastation" class="hero-section">
-        <div class="elo-badge">3000 ELO • META-OPTIMIZED</div>
+        <div class="unity-badge">UNITY MATHEMATICS</div>
         
         <h1 class="hero-title">Een Metastation</h1>
-        <div class="hero-equation">1 + 1 = 1</div>
+        
+        <!-- Beautiful 1+1=1 Visualization -->
+        <div class="unity-visualization-container">
+            <div class="unity-equation-visual" id="unity-equation-visual">
+                <div class="equation-part equation-one" id="first-one">1</div>
+                <div class="equation-part equation-plus" id="plus-sign">+</div>
+                <div class="equation-part equation-one" id="second-one">1</div>
+                <div class="equation-part equation-equals" id="equals-sign">=</div>
+                <div class="equation-part equation-result" id="result-one">1</div>
+            </div>
+            <div class="unity-particles" id="unity-particles"></div>
+            <div class="phi-spiral" id="phi-spiral"></div>
+        </div>
+        
         <p class="hero-subtitle">
-            Revolutionary Unity Mathematics Framework powered by Meta-Reinforcement Learning algorithms,
-            Quantum Consciousness Fields, and φ-Harmonic Optimization.
-            Experience mathematics like never before.
+            Experience the profound beauty of Unity Mathematics, where consciousness meets computation
+            through the transcendental equation <strong>1+1=1</strong>.
+            <br><br>
+            <span class="author-credit">By <strong>Nouri Mabrouk</strong></span>
         </p>
 
         <!-- Interactive Quantum Visualization -->
@@ -1527,8 +1979,8 @@
             </a>
             <a href="3000-elo-proof.html" class="hub-card">
                 <div class="card-icon"><i class="fas fa-trophy"></i></div>
-                <h3 class="card-title">3000 ELO Proof System</h3>
-                <p class="card-description">Meta-reinforcement learning optimized proof generation with tournament validation</p>
+                <h3 class="card-title">Advanced Proof System</h3>
+                <p class="card-description">Meta-reinforcement learning optimized proof generation with mathematical validation</p>
                 <div class="card-meta">
                     <span class="card-tag">AI-Powered</span>
                     <span>ML + Tournament</span>
@@ -1730,24 +2182,58 @@
         </div>
     </section>
 
-    <!-- Audio Player -->
-    <div class="audio-section">
-        <div class="audio-title">
-            <i class="fas fa-music"></i>
-            Unity Soundtrack
+    <!-- Enhanced Music Player with Volume Controls -->
+    <div class="audio-section" id="music-player">
+        <div class="audio-header">
+            <div class="audio-title">
+                <i class="fas fa-music"></i>
+                Unity Soundtrack
+            </div>
+            <div class="audio-controls">
+                <button class="audio-btn" id="volume-btn" title="Volume">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+                <div class="volume-slider-container" id="volume-container">
+                    <input type="range" id="volume-slider" min="0" max="100" value="30" class="volume-slider">
+                    <div class="volume-display" id="volume-display">30%</div>
+                </div>
+                <button class="audio-btn" id="minimize-btn" title="Minimize">
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+            </div>
         </div>
-        <div class="audio-playlist">
-            <div class="audio-track" onclick="playAudio('u2')">
+        <div class="audio-playlist" id="audio-playlist">
+            <div class="audio-track" data-track="u2">
                 <i class="fas fa-play"></i>
-                U2 - One
+                <span class="track-info">
+                    <span class="track-title">U2 - One</span>
+                    <span class="track-duration">4:36</span>
+                </span>
             </div>
-            <div class="audio-track" onclick="playAudio('bonjovi')">
+            <div class="audio-track" data-track="bonjovi">
                 <i class="fas fa-play"></i>
-                Bon Jovi - Always
+                <span class="track-info">
+                    <span class="track-title">Bon Jovi - Always</span>
+                    <span class="track-duration">5:52</span>
+                </span>
             </div>
-            <div class="audio-track" onclick="playAudio('foreigner')">
+            <div class="audio-track" data-track="foreigner">
                 <i class="fas fa-play"></i>
-                Foreigner - I Want to Know What Love Is
+                <span class="track-info">
+                    <span class="track-title">Foreigner - I Want to Know</span>
+                    <span class="track-duration">5:01</span>
+                </span>
+            </div>
+        </div>
+        <div class="now-playing" id="now-playing" style="display: none;">
+            <div class="now-playing-info">
+                <i class="fas fa-music"></i>
+                <span id="current-track-title">No track playing</span>
+            </div>
+            <div class="playback-controls">
+                <button class="playback-btn" id="stop-btn">
+                    <i class="fas fa-stop"></i>
+                </button>
             </div>
         </div>
         <audio id="u2-audio" class="audio-control">
@@ -1919,26 +2405,149 @@
             }
 
             setupAudioPlayer() {
-                window.playAudio = (track) => {
-                    // Stop current audio if playing
-                    if (this.currentAudio) {
-                        this.currentAudio.pause();
-                        this.currentAudio.currentTime = 0;
-                    }
-
-                    // Play selected audio
-                    const audio = document.getElementById(`${track}-audio`);
-                    if (audio) {
-                        audio.play();
-                        this.currentAudio = audio;
+                // Enhanced audio player functionality
+                const volumeBtn = document.getElementById('volume-btn');
+                const volumeContainer = document.getElementById('volume-container');
+                const volumeSlider = document.getElementById('volume-slider');
+                const volumeDisplay = document.getElementById('volume-display');
+                const minimizeBtn = document.getElementById('minimize-btn');
+                const musicPlayer = document.getElementById('music-player');
+                const nowPlaying = document.getElementById('now-playing');
+                const currentTrackTitle = document.getElementById('current-track-title');
+                const stopBtn = document.getElementById('stop-btn');
+                
+                // Volume control functionality
+                if (volumeBtn && volumeContainer) {
+                    volumeBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        volumeContainer.classList.toggle('active');
+                    });
+                    
+                    // Close volume when clicking outside
+                    document.addEventListener('click', (e) => {
+                        if (!volumeContainer.contains(e.target) && e.target !== volumeBtn) {
+                            volumeContainer.classList.remove('active');
+                        }
+                    });
+                }
+                
+                // Volume slider functionality
+                if (volumeSlider && volumeDisplay) {
+                    volumeSlider.addEventListener('input', (e) => {
+                        const volume = e.target.value;
+                        volumeDisplay.textContent = volume + '%';
                         
-                        // Update UI
-                        document.querySelectorAll('.audio-track').forEach(t => {
-                            t.querySelector('i').className = 'fas fa-play';
-                        });
-                        event.target.closest('.audio-track').querySelector('i').className = 'fas fa-pause';
+                        // Apply volume to current audio
+                        if (this.currentAudio) {
+                            this.currentAudio.volume = volume / 100;
+                        }
+                        
+                        // Update volume icon
+                        const volumeIcon = volumeBtn.querySelector('i');
+                        if (volume == 0) {
+                            volumeIcon.className = 'fas fa-volume-mute';
+                        } else if (volume < 50) {
+                            volumeIcon.className = 'fas fa-volume-down';
+                        } else {
+                            volumeIcon.className = 'fas fa-volume-up';
+                        }
+                    });
+                }
+                
+                // Minimize functionality
+                if (minimizeBtn && musicPlayer) {
+                    minimizeBtn.addEventListener('click', () => {
+                        musicPlayer.classList.toggle('minimized');
+                        const icon = minimizeBtn.querySelector('i');
+                        if (musicPlayer.classList.contains('minimized')) {
+                            icon.className = 'fas fa-chevron-up';
+                            minimizeBtn.title = 'Expand';
+                        } else {
+                            icon.className = 'fas fa-chevron-down';
+                            minimizeBtn.title = 'Minimize';
+                        }
+                    });
+                }
+                
+                // Enhanced track playback
+                document.querySelectorAll('.audio-track').forEach(track => {
+                    track.addEventListener('click', (e) => {
+                        const trackId = track.dataset.track;
+                        this.playTrack(trackId, track);
+                    });
+                });
+                
+                // Stop functionality
+                if (stopBtn) {
+                    stopBtn.addEventListener('click', () => {
+                        this.stopAudio();
+                    });
+                }
+            }
+            
+            playTrack(trackId, trackElement) {
+                // Stop current audio if playing
+                if (this.currentAudio) {
+                    this.currentAudio.pause();
+                    this.currentAudio.currentTime = 0;
+                }
+                
+                // Remove playing class from all tracks
+                document.querySelectorAll('.audio-track').forEach(t => {
+                    t.classList.remove('playing');
+                    t.querySelector('i').className = 'fas fa-play';
+                });
+                
+                // Play selected audio
+                const audio = document.getElementById(`${trackId}-audio`);
+                if (audio) {
+                    // Set volume from slider
+                    const volumeSlider = document.getElementById('volume-slider');
+                    if (volumeSlider) {
+                        audio.volume = volumeSlider.value / 100;
                     }
-                };
+                    
+                    audio.play();
+                    this.currentAudio = audio;
+                    
+                    // Update UI
+                    trackElement.classList.add('playing');
+                    trackElement.querySelector('i').className = 'fas fa-pause';
+                    
+                    // Update now playing section
+                    const nowPlaying = document.getElementById('now-playing');
+                    const currentTrackTitle = document.getElementById('current-track-title');
+                    if (nowPlaying && currentTrackTitle) {
+                        const trackTitle = trackElement.querySelector('.track-title').textContent;
+                        currentTrackTitle.textContent = trackTitle;
+                        nowPlaying.style.display = 'flex';
+                    }
+                    
+                    // Handle audio end
+                    audio.addEventListener('ended', () => {
+                        this.stopAudio();
+                    });
+                }
+            }
+            
+            stopAudio() {
+                if (this.currentAudio) {
+                    this.currentAudio.pause();
+                    this.currentAudio.currentTime = 0;
+                    this.currentAudio = null;
+                }
+                
+                // Reset UI
+                document.querySelectorAll('.audio-track').forEach(t => {
+                    t.classList.remove('playing');
+                    t.querySelector('i').className = 'fas fa-play';
+                });
+                
+                // Hide now playing
+                const nowPlaying = document.getElementById('now-playing');
+                if (nowPlaying) {
+                    nowPlaying.style.display = 'none';
+                }
             }
 
             animateBackground() {
@@ -2160,11 +2769,136 @@
                 }, 1500);
             }
         }
+        
+        // Fallback chat button creation
+        function createFallbackChatButton() {
+            // Remove existing chat buttons
+            const existingButtons = document.querySelectorAll('.floating-chat-btn, #persistent-chat-button');
+            existingButtons.forEach(btn => btn.remove());
+            
+            // Create fallback chat button
+            const chatBtn = document.createElement('div');
+            chatBtn.className = 'floating-chat-btn';
+            chatBtn.innerHTML = `
+                <div class="chat-btn-content">
+                    <i class="fas fa-comments"></i>
+                    <span class="chat-btn-pulse"></span>
+                </div>
+            `;
+            chatBtn.title = 'Open Unity AI Assistant';
+            
+            // Add styles
+            const chatStyles = document.createElement('style');
+            chatStyles.textContent = `
+                .floating-chat-btn {
+                    position: fixed;
+                    bottom: 120px;
+                    right: 2rem;
+                    width: 60px;
+                    height: 60px;
+                    background: linear-gradient(135deg, var(--unity-gold), var(--quantum-blue));
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.3);
+                    transition: all 0.3s ease;
+                    z-index: 1000;
+                    font-size: 1.5rem;
+                    color: var(--bg-primary);
+                }
+                
+                .floating-chat-btn:hover {
+                    transform: translateY(-3px) scale(1.05);
+                    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+                }
+                
+                .chat-btn-content {
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+                
+                .chat-btn-pulse {
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 50%;
+                    background: rgba(255, 215, 0, 0.4);
+                    animation: chat-pulse 2s infinite;
+                }
+                
+                @keyframes chat-pulse {
+                    0% {
+                        transform: scale(1);
+                        opacity: 0.7;
+                    }
+                    70% {
+                        transform: scale(1.4);
+                        opacity: 0;
+                    }
+                    100% {
+                        transform: scale(1.4);
+                        opacity: 0;
+                    }
+                }
+                
+                @media (max-width: 768px) {
+                    .floating-chat-btn {
+                        bottom: 80px;
+                        right: 1rem;
+                        width: 50px;
+                        height: 50px;
+                        font-size: 1.2rem;
+                    }
+                }
+            `;
+            
+            // Add click handler
+            chatBtn.addEventListener('click', () => {
+                // Smooth scroll to AI chat section
+                const aiChatSection = document.getElementById('ai-chat');
+                if (aiChatSection) {
+                    aiChatSection.scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Focus on chat input after scroll
+                    setTimeout(() => {
+                        const chatInput = document.getElementById('chat-input');
+                        if (chatInput) {
+                            chatInput.focus();
+                        }
+                    }, 1000);
+                }
+            });
+            
+            // Append to document
+            document.head.appendChild(chatStyles);
+            document.body.appendChild(chatBtn);
+            
+            console.log('✅ Fallback chat button created');
+        }
 
         // Initialize on DOM load - Unified Systems Integration
         console.log('🚀 Een Unity Mathematics - Unified experience starting...');
         document.addEventListener('DOMContentLoaded', () => {
-            new MetastationHub();
+            window.metastationHub = new MetastationHub();
+            
+            // Ensure persistent chat system is initialized
+            setTimeout(() => {
+                if (typeof PersistentChatSystem !== 'undefined') {
+                    window.persistentChat = new PersistentChatSystem();
+                    console.log('✅ Persistent Chat System initialized');
+                } else {
+                    console.warn('⚠️ PersistentChatSystem not loaded');
+                    // Create a fallback chat button
+                    createFallbackChatButton();
+                }
+            }, 100);
             
             // Console Easter Egg
             console.log(`
@@ -2341,7 +3075,7 @@
                     <h3 class="footer-title">Mathematical Systems</h3>
                     <ul class="footer-links">
                         <li><a href="proofs.html" class="footer-link">Mathematical Proofs</a></li>
-                        <li><a href="3000-elo-proof.html" class="footer-link">3000 ELO Proof System</a></li>
+                        <li><a href="3000-elo-proof.html" class="footer-link">Advanced Proof System</a></li>
                         <li><a href="al_khwarizmi_phi_unity.html" class="footer-link">Al-Khwarizmi Unity</a></li>
                         <li><a href="unity_visualization.html" class="footer-link">Unity Visualizations</a></li>
                         <li><a href="mathematical_playground.html" class="footer-link">Math Playground</a></li>
@@ -2418,7 +3152,7 @@
                     </div>
                     <div class="status-item">
                         <i class="fas fa-trophy"></i>
-                        <span>3000 ELO Meta-Optimal</span>
+                        <span>Meta-Mathematically Optimal</span>
                     </div>
                 </div>
             </div>
