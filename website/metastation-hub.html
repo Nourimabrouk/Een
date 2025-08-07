@@ -65,7 +65,6 @@
     <script src="js/unity-proofs-interactive.js" defer></script>
     <script src="js/citation-builder.js" defer></script>
     <script src="js/quantum-ants.js" defer></script>
-    <script src="js/discreet-audio-system.js" defer></script>
     <script src="js/unity-audio-system.js" defer></script>
     <script src="js/enhanced-unity-experience.js" defer></script>
     <script src="js/enhanced-unity-integration.js" defer></script>
@@ -81,6 +80,15 @@
     <!-- Meta-Optimal Complete Navigation System -->
     <link rel="stylesheet" href="css/meta-optimal-navigation-complete.css">
     <script src="js/meta-optimal-navigation-complete.js" defer></script>
+
+    <!-- Metastation Hub Optimization Script -->
+    <script src="metastation-hub-optimization.js" defer></script>
+
+    <!-- Final Launch Check Script -->
+    <script src="final-launch-check.js" defer></script>
+
+    <!-- Demo & Showcase Enhancer -->
+    <script src="demo-showcase-enhancer.js" defer></script>
 
     <style>
         :root {
@@ -478,61 +486,7 @@
             background: var(--unity-gold-dim);
         }
 
-        /* Fixed Audio System */
-        .audio-section {
-            position: fixed;
-            bottom: 2rem;
-            left: 2rem;
-            z-index: 999;
-            background: rgba(10, 10, 15, 0.95);
-            border: 1px solid var(--border-glow);
-            border-radius: 15px;
-            -webkit-backdrop-filter: blur(20px);
-            backdrop-filter: blur(20px);
-            transition: var(--transition);
-            max-width: 300px;
-        }
-
-        .audio-header {
-            padding: 1rem;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--border-glow);
-        }
-
-        .audio-controls {
-            padding: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .audio-btn {
-            width: 40px;
-            height: 40px;
-            background: var(--unity-gold);
-            border: none;
-            border-radius: 50%;
-            color: var(--bg-primary);
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .audio-btn:hover {
-            background: var(--unity-gold-dim);
-        }
-
-        .audio-playlist {
-            padding: 1rem;
-            border-top: 1px solid var(--border-glow);
-            display: none;
-        }
-
-        .audio-section.expanded .audio-playlist {
-            display: block;
-        }
+        /* Audio System - External audio system only */
 
         /* Responsive Design */
         @media (max-width: 768px) {
@@ -1198,46 +1152,7 @@
     <div id="advanced-research-chat"></div>
     <div id="consciousness-integrated-mathematical-reality-chat"></div>
 
-    <!-- Fixed Audio System -->
-    <div class="audio-section" id="music-player">
-        <div class="audio-header" onclick="toggleAudioSection()">
-            <span style="color: var(--unity-gold); font-weight: 600; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);">
-                <i class="fas fa-music"></i> Unity Soundtrack
-            </span>
-            <i class="fas fa-chevron-up" id="audioChevron"
-                style="transition: var(--transition); color: var(--text-secondary);"></i>
-        </div>
-        <div class="audio-controls">
-            <button class="audio-btn" id="playPauseBtn" onclick="togglePlayPause()" aria-label="Play/Pause">
-                <i class="fas fa-play"></i>
-            </button>
-            <button class="audio-btn" onclick="changeTrack(-1)" aria-label="Previous track">
-                <i class="fas fa-step-backward"></i>
-            </button>
-            <button class="audio-btn" onclick="changeTrack(1)" aria-label="Next track">
-                <i class="fas fa-step-forward"></i>
-            </button>
-            <span id="currentTrack"
-                style="color: var(--text-secondary); font-size: 0.9rem; margin-left: 1rem; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);">
-                Unity Meditation
-            </span>
-        </div>
-        <div class="audio-playlist">
-            <div
-                style="color: var(--text-secondary); font-size: 0.9rem; padding: 0.5rem 0; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);">
-                <div>🎵 Unity Meditation (Active)</div>
-                <div>🎵 Consciousness Field Harmonics</div>
-                <div>🎵 Phi Resonance Frequencies</div>
-                <div>🎵 Quantum Unity Synthesis</div>
-            </div>
-        </div>
-        <!-- Audio files with fallbacks -->
-        <audio id="backgroundAudio" loop style="display: none;">
-            <source src="audio/U2 - One.webm" type="audio/webm">
-            <source src="audio/Foreigner - I Want to Know What Love Is.webm" type="audio/webm">
-            <source src="audio/Bon Jovi - Always.webm" type="audio/webm">
-        </audio>
-    </div>
+    <!-- Audio System - External audio system only (removed inline audio to prevent duplicates) -->
 
     <script>
         // Enhanced Loading Screen with Progress Indicators
@@ -1792,74 +1707,9 @@
         }
 
         // Audio System (Optimized with Error Handling)
-        let currentTrack = 0;
-        let isPlaying = false;
-        let audioExpanded = false;
-        const tracks = [
-            'Unity Meditation',
-            'Consciousness Field Harmonics',
-            'Phi Resonance Frequencies',
-            'Quantum Unity Synthesis'
-        ];
+        // Audio variables removed - using external audio system only
 
-        function toggleAudioSection() {
-            try {
-                audioExpanded = !audioExpanded;
-                const audioSection = document.getElementById('music-player');
-                const chevron = document.getElementById('audioChevron');
-
-                if (audioSection && chevron) {
-                    audioSection.classList.toggle('expanded', audioExpanded);
-                    chevron.style.transform = audioExpanded ? 'rotate(180deg)' : 'rotate(0deg)';
-                }
-            } catch (error) {
-                console.log('Error toggling audio section:', error);
-            }
-        }
-
-        function togglePlayPause() {
-            try {
-                const audio = document.getElementById('backgroundAudio');
-                const btn = document.getElementById('playPauseBtn');
-
-                if (!audio || !btn) return;
-
-                if (isPlaying) {
-                    audio.pause();
-                    btn.innerHTML = '<i class="fas fa-play"></i>';
-                    isPlaying = false;
-                } else {
-                    audio.play().catch(e => {
-                        console.log('Audio play prevented by browser policy');
-                        // Show user-friendly message
-                        const audioSection = document.getElementById('music-player');
-                        if (audioSection) {
-                            const errorMsg = document.createElement('div');
-                            errorMsg.className = 'error-message';
-                            errorMsg.textContent = 'Audio requires user interaction. Click the play button again.';
-                            audioSection.appendChild(errorMsg);
-                            setTimeout(() => errorMsg.remove(), 3000);
-                        }
-                    });
-                    btn.innerHTML = '<i class="fas fa-pause"></i>';
-                    isPlaying = true;
-                }
-            } catch (error) {
-                console.log('Error toggling audio:', error);
-            }
-        }
-
-        function changeTrack(direction) {
-            try {
-                currentTrack = (currentTrack + direction + tracks.length) % tracks.length;
-                const trackElement = document.getElementById('currentTrack');
-                if (trackElement) {
-                    trackElement.textContent = tracks[currentTrack];
-                }
-            } catch (error) {
-                console.log('Error changing track:', error);
-            }
-        }
+        // Audio functions removed - using external audio system only
 
         // Smooth scrolling for navigation links
         function initSmoothScrolling() {
@@ -1926,7 +1776,7 @@
                                 break;
                             case ' ':
                                 e.preventDefault();
-                                toggleAudioSection();
+                                // Audio toggle removed - using external audio system
                                 break;
                         }
                     }
@@ -1988,7 +1838,7 @@
                             const chatToggle = document.getElementById('chatToggle');
                             if (chatToggle) chatToggle.click();
                         } else if (command.includes('music') || command.includes('audio')) {
-                            toggleAudioSection();
+                            // Audio toggle removed - using external audio system
                         }
                     };
 

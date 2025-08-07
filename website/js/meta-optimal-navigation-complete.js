@@ -22,6 +22,7 @@ class MetaOptimalCompleteNavigation {
             topBar: [
                 { label: 'Metastation Hub', href: 'metastation-hub.html', icon: '⭐', featured: true },
                 { label: 'AI Hub', href: 'ai-unified-hub.html', icon: '🤖', featured: true },
+                { label: 'AI Agents', href: 'ai-agents-ecosystem.html', icon: '🤖', featured: true },
                 { label: 'Mathematics', href: 'mathematical-framework.html', icon: '📐', featured: true },
                 { label: 'Consciousness', href: 'consciousness_dashboard.html', icon: '🧠', featured: true },
                 { label: 'DALL-E Gallery', href: 'dalle-gallery.html', icon: '🌟', featured: true },
