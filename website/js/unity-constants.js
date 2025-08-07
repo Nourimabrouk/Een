@@ -1,0 +1,13 @@
+// Auto-generated from core/constants.py — do not edit manually
+
+export const UNITY_CONSTANTS = Object.freeze({
+  PHI: 1.618033988749895,
+  PI: 3.141592653589793,
+  EULER: 2.718281828459045,
+  UNITY_CONSTANT: 1.0,
+  UNITY_EPSILON: 1e-10,
+  UNITY_TOLERANCE: 1e-10,
+  CONSCIOUSNESS_DIMENSION: 11,
+  CONSCIOUSNESS_THRESHOLD: 0.618,
+  PHI_IDENTITY_ERROR: 0.0,
+});

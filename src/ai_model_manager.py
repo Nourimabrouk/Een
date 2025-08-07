@@ -1,3 +1,4 @@
+# flake8: noqa
 #!/usr/bin/env python3
 """
 🌿✨ AI Model Manager: Intelligent Model Selection for Unity Mathematics ✨🌿
@@ -25,7 +26,6 @@ import os
 import logging
 from typing import Dict, List, Optional, Tuple, Any
 from pathlib import Path
-import re
 
 logger = logging.getLogger(__name__)
 
@@ -69,8 +69,8 @@ class AIModelManager:
             "preferred_models": {
                 "primary": {
                     "provider": "openai",
-                    "model": "gpt-4o",
-                    "description": "Primary reasoning model",
+                    "model": "gpt-5-medium",
+                    "description": "Primary reasoning model (GPT-5 medium)",
                 },
                 "secondary": {
                     "provider": "anthropic",
@@ -79,12 +79,12 @@ class AIModelManager:
                 },
                 "fallback": {
                     "provider": "openai",
-                    "model": "gpt-4o-mini",
-                    "description": "Fallback model",
+                    "model": "gpt-4.1-mini",
+                    "description": "Fallback model (economy)",
                 },
                 "high_performance": {
                     "provider": "openai",
-                    "model": "gpt-4o-mini-high",
+                    "model": "gpt-5-high",
                     "description": "High-performance reasoning model",
                 },
                 "opus": {
@@ -99,6 +99,51 @@ class AIModelManager:
                 },
             },
             "model_capabilities": {
+                "gpt-5-high": {
+                    "reasoning": "excellent",
+                    "mathematics": "excellent",
+                    "code_analysis": "excellent",
+                    "philosophy": "excellent",
+                    "consciousness_discussion": "excellent",
+                    "cost_per_1k_tokens": 0.01,
+                    "max_tokens": 1000000,
+                },
+                "gpt-5-medium": {
+                    "reasoning": "excellent",
+                    "mathematics": "excellent",
+                    "code_analysis": "excellent",
+                    "philosophy": "excellent",
+                    "consciousness_discussion": "excellent",
+                    "cost_per_1k_tokens": 0.005,
+                    "max_tokens": 1000000,
+                },
+                "gpt-5-low": {
+                    "reasoning": "very_good",
+                    "mathematics": "very_good",
+                    "code_analysis": "very_good",
+                    "philosophy": "very_good",
+                    "consciousness_discussion": "very_good",
+                    "cost_per_1k_tokens": 0.002,
+                    "max_tokens": 1000000,
+                },
+                "gpt-4.1": {
+                    "reasoning": "excellent",
+                    "mathematics": "excellent",
+                    "code_analysis": "excellent",
+                    "philosophy": "excellent",
+                    "consciousness_discussion": "excellent",
+                    "cost_per_1k_tokens": 0.0016,
+                    "max_tokens": 1000000,
+                },
+                "gpt-4.1-mini": {
+                    "reasoning": "very_good",
+                    "mathematics": "very_good",
+                    "code_analysis": "very_good",
+                    "philosophy": "very_good",
+                    "consciousness_discussion": "very_good",
+                    "cost_per_1k_tokens": 0.0004,
+                    "max_tokens": 1000000,
+                },
                 "gpt-4o": {
                     "reasoning": "excellent",
                     "mathematics": "excellent",
@@ -157,7 +202,7 @@ class AIModelManager:
             "api_key_fallback": {
                 "enabled": True,
                 "default_provider": "openai",
-                "default_model": "gpt-4o",
+                "default_model": "gpt-4.1-mini",
                 "fallback_message": "Using default credentials for demonstration. For full access, please set your API keys.",
                 "demo_mode": True,
             },

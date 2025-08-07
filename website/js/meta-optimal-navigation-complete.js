@@ -46,6 +46,8 @@ class MetaOptimalCompleteNavigation {
                     section: 'Mathematics & Proofs',
                     links: [
                         { label: 'Mathematical Framework', href: 'mathematical-framework.html', icon: '📐', featured: true },
+                        { label: 'Unity Synthesis (New)', href: 'unity-mathematics-synthesis.html', icon: '🧮' },
+                        { label: 'Unity Meta-Atlas (New)', href: 'unity-meta-atlas.html', icon: '🌌' },
                         { label: '3000 ELO Proof', href: '3000-elo-proof.html', icon: '🏆' },
                         { label: 'Proofs & Theorems', href: 'proofs.html', icon: '✓' },
                         { label: 'Al-Khwarizmi Unity', href: 'al_khwarizmi_phi_unity.html', icon: '🕌' },

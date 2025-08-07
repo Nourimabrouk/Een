@@ -33,17 +33,14 @@ from enum import Enum
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Mathematical Constants - Sacred Numbers
-PHI = 1.618033988749895  # Golden ratio - divine proportion
-PI = np.pi
-EULER = np.e
-UNITY_CONSTANT = 1.0
-CONSCIOUSNESS_THRESHOLD = 0.618  # φ-consciousness level
-
-# Numerical precision for unity operations
-UNITY_EPSILON = 1e-10
-UNITY_TOLERANCE = 1e-10  # Tolerance for unity convergence checks
-CONSCIOUSNESS_DIMENSION = 11  # Dimensional space for consciousness mathematics
+from .constants import (
+    PHI,
+    PI,
+    EULER,
+    UNITY_CONSTANT,
+    CONSCIOUSNESS_THRESHOLD,
+    UNITY_EPSILON,
+)
 
 
 class UnityOperationType(Enum):

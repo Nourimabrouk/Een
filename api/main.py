@@ -37,11 +37,20 @@ except ImportError as e:
     logging.warning(f"Some modules not available: {e}")
 
 # Import API routes
-from api.routes import auth, consciousness, agents, visualizations, gallery, chat
+from api.routes import (
+    auth,
+    consciousness,
+    agents,
+    visualizations,
+    gallery,
+    chat,
+    unity_meta,
+)
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
 
 # Security
 @app.middleware("http")
@@ -51,11 +60,16 @@ async def add_security_headers(request, call_next):
     response.headers["X-Content-Type-Options"] = "nosniff"
     response.headers["X-Frame-Options"] = "DENY"
     response.headers["X-XSS-Protection"] = "1; mode=block"
-    response.headers["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains"
-    response.headers["Content-Security-Policy"] = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'"
+    response.headers["Strict-Transport-Security"] = (
+        "max-age=31536000; includeSubDomains"
+    )
+    response.headers["Content-Security-Policy"] = (
+        "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'"
+    )
     response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
     response.headers["Permissions-Policy"] = "geolocation=(), microphone=(), camera=()"
     return response
+
 
 # Configuration
 SECRET_KEY = os.getenv("EEN_SECRET_KEY", secrets.token_urlsafe(32))
@@ -95,13 +109,13 @@ app = FastAPI(
 
 # Security middleware
 app.add_middleware(
-    TrustedHostMiddleware, 
+    TrustedHostMiddleware,
     allowed_hosts=[
         "localhost",
         "127.0.0.1",
         "nourimabrouk.github.io",
-        "nourimabrouk.github.io"  # Replace with your actual domain
-    ]
+        "nourimabrouk.github.io",  # Replace with your actual domain
+    ],
 )
 
 # CORS middleware
@@ -109,14 +123,15 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:3000",
-        "http://localhost:8000", 
+        "http://localhost:8000",
         "https://nourimabrouk.github.io",
-        "https://nourimabrouk.github.io"  # Replace with your actual domain
+        "https://nourimabrouk.github.io",  # Replace with your actual domain
     ],
     allow_credentials=True,
     allow_methods=["GET", "POST", "PUT", "DELETE"],
     allow_headers=["*"],
 )
+
 
 # Security
 @app.middleware("http")
@@ -126,11 +141,16 @@ async def add_security_headers(request, call_next):
     response.headers["X-Content-Type-Options"] = "nosniff"
     response.headers["X-Frame-Options"] = "DENY"
     response.headers["X-XSS-Protection"] = "1; mode=block"
-    response.headers["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains"
-    response.headers["Content-Security-Policy"] = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'"
+    response.headers["Strict-Transport-Security"] = (
+        "max-age=31536000; includeSubDomains"
+    )
+    response.headers["Content-Security-Policy"] = (
+        "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'"
+    )
     response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
     response.headers["Permissions-Policy"] = "geolocation=(), microphone=(), camera=()"
     return response
+
 
 security = HTTPBearer()
 
@@ -163,6 +183,7 @@ app.include_router(agents.router)
 app.include_router(visualizations.router)
 app.include_router(gallery.router)
 app.include_router(chat.router)
+app.include_router(unity_meta.router)
 
 # API Routes
 

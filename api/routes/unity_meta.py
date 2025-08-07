@@ -1,0 +1,231 @@
+# flake8: noqa
+"""
+Unity Meta API Routes
+Comprehensive endpoints exposing meta-advanced unity mathematics synthesis,
+energy computation, cross-domain evidence, and lightweight simulations.
+"""
+
+from __future__ import annotations
+
+from fastapi import APIRouter, HTTPException, Depends
+from pydantic import BaseModel, Field
+from typing import Dict, Any, List, Optional
+import pathlib
+import sys
+import logging
+
+# Add project root to path
+project_root = pathlib.Path(__file__).parent.parent.parent
+sys.path.insert(0, str(project_root))
+
+try:
+    from core.unity_meta_advanced import (
+        create_unity_meta_engine,
+        MetagamerEnergyInput,
+    )
+    from core.unity_manifold import create_unity_manifold
+    from core.meta_gambit import create_default_meta_gambit
+    from api.security import get_current_user, User
+except Exception as e:
+    logging.warning(f"Unity Meta API partial import: {e}")
+    create_unity_meta_engine = None  # type: ignore
+
+
+router = APIRouter(prefix="/unity-meta", tags=["unity-meta"])
+
+
+class EnergyRequest(BaseModel):
+    consciousness_density: float = Field(..., ge=0.0)
+    unity_convergence_rate: float = Field(..., ge=0.0)
+
+
+class SynthesisResponse(BaseModel):
+    success: bool
+    conclusion: str
+    confidence: float
+    phi: float
+    frameworks: List[Dict[str, Any]]
+
+
+engine = create_unity_meta_engine() if create_unity_meta_engine else None
+manifold_factory = (
+    create_unity_manifold if "create_unity_manifold" in globals() else None
+)
+meta_gambit_factory = (
+    create_default_meta_gambit if "create_default_meta_gambit" in globals() else None
+)
+
+
+@router.get("/status")
+async def status(current_user: User = Depends(get_current_user)):
+    return {
+        "success": True,
+        "engine_loaded": engine is not None,
+        "user": current_user.username,
+    }
+
+
+@router.post("/energy")
+async def metagamer_energy(
+    request: EnergyRequest, current_user: User = Depends(get_current_user)
+):
+    if not engine:
+        raise HTTPException(status_code=503, detail="Unity meta engine unavailable")
+    result = engine.compute_metagamer_energy(
+        MetagamerEnergyInput(
+            consciousness_density=request.consciousness_density,
+            unity_convergence_rate=request.unity_convergence_rate,
+        )
+    )
+    return {
+        "success": True,
+        "energy": result.energy,
+        "phi": result.phi,
+        "formula": result.formula,
+    }
+
+
+@router.get("/synthesize", response_model=SynthesisResponse)
+async def synthesize(current_user: User = Depends(get_current_user)):
+    if not engine:
+        raise HTTPException(status_code=503, detail="Unity meta engine unavailable")
+    synthesis = engine.synthesize_unity()
+    return SynthesisResponse(
+        success=True,
+        conclusion=synthesis.conclusion,
+        confidence=synthesis.confidence,
+        phi=synthesis.phi,
+        frameworks=[
+            {
+                "name": ev.name,
+                "statement": ev.statement,
+                "metric": ev.metric,
+                "justification": ev.justification,
+            }
+            for ev in synthesis.frameworks
+        ],
+    )
+
+
+class SyncRequest(BaseModel):
+    num_nodes: int = Field(16, ge=2, le=512)
+    coupling: float = Field(0.85, ge=0.0, le=1.0)
+
+
+@router.post("/simulate/synchronization")
+async def simulate_synchronization(
+    request: SyncRequest, current_user: User = Depends(get_current_user)
+):
+    if not engine:
+        raise HTTPException(status_code=503, detail="Unity meta engine unavailable")
+    res = engine.simulate_hypergraph_synchronization(
+        num_nodes=request.num_nodes, coupling=request.coupling
+    )
+    return {"success": True, **res}
+
+
+class ManifoldRequest(BaseModel):
+    dimensions: int = Field(3, ge=2, le=11)
+    phi_coupling: float = Field(1.618033988749895, ge=0.1, le=10.0)
+    idempotent_weight: float = Field(1.0, ge=0.1, le=10.0)
+
+
+@router.post("/manifold/summary")
+async def manifold_summary(
+    request: ManifoldRequest, current_user: User = Depends(get_current_user)
+):
+    if not manifold_factory:
+        raise HTTPException(status_code=503, detail="Unity manifold unavailable")
+    m = manifold_factory(
+        dimensions=request.dimensions,
+        phi_coupling=request.phi_coupling,
+        idempotent_weight=request.idempotent_weight,
+    )
+    return {"success": True, **m.export_summary()}
+
+
+@router.get("/metagambit/recommendations")
+async def metagambit_recommendations(current_user: User = Depends(get_current_user)):
+    if not meta_gambit_factory:
+        raise HTTPException(status_code=503, detail="Meta-Gambit unavailable")
+    game = meta_gambit_factory()
+    return {"success": True, "recommendations": game.export_recommendations()}
+
+
+@router.get("/atlas/summary")
+async def atlas_summary(current_user: User = Depends(get_current_user)):
+    if not engine:
+        raise HTTPException(status_code=503, detail="Unity meta engine unavailable")
+    # Synthesis
+    synth = engine.synthesize_unity()
+    # Manifold (default params)
+    if not manifold_factory:
+        raise HTTPException(status_code=503, detail="Unity manifold unavailable")
+    m = manifold_factory()
+    msum = m.export_summary()
+    # Meta-Gambit
+    if not meta_gambit_factory:
+        raise HTTPException(status_code=503, detail="Meta-Gambit unavailable")
+    recs = meta_gambit_factory().export_recommendations()
+    # Info-theory unity (default perfect correlation proxy)
+    info = engine.information_unity([[0.25, 0.0], [0.0, 0.75]])
+    return {
+        "success": True,
+        "synthesis": {
+            "confidence": synth.confidence,
+            "frameworks": [
+                {
+                    "name": f.name,
+                    "metric": f.metric,
+                    "statement": f.statement,
+                }
+                for f in synth.frameworks
+            ],
+        },
+        "manifold": msum,
+        "metagambit": recs,
+        "information_unity": info,
+    }
+
+
+class EvolveRequest(BaseModel):
+    steps: int = Field(5, ge=1, le=100)
+    phi_target: Optional[float] = Field(default=None)
+
+
+@router.post("/atlas/evolve")
+async def atlas_evolve(
+    req: EvolveRequest, current_user: User = Depends(get_current_user)
+):
+    if not engine:
+        raise HTTPException(status_code=503, detail="Unity meta engine unavailable")
+    # Baseline synthesis
+    synth = engine.synthesize_unity()
+    conf = synth.confidence
+    # Evolve confidence toward 1 using φ-harmonic increments
+    for _ in range(req.steps):
+        conf = min(0.999, conf + (1.0 - conf) * (1.0 / PHI))
+    # Adjust manifold φ if requested
+    phi = req.phi_target if req.phi_target is not None else PHI
+    if not manifold_factory:
+        raise HTTPException(status_code=503, detail="Unity manifold unavailable")
+    m = manifold_factory(phi_coupling=phi)
+    msum = m.export_summary()
+    # Update meta-gambit potential slightly upward
+    if not meta_gambit_factory:
+        raise HTTPException(status_code=503, detail="Meta-Gambit unavailable")
+    recs = meta_gambit_factory().export_recommendations()
+    try:
+        base_pot = float(recs.get("unity_potential", "0"))
+    except Exception:
+        base_pot = 0.0
+    evolved_pot = min(0.999, base_pot + 0.05 * (1.0 - base_pot))
+    recs["unity_potential"] = f"{evolved_pot:.3f}"
+    return {
+        "success": True,
+        "synthesis_confidence": conf,
+        "manifold": msum,
+        "metagambit": recs,
+        "steps": req.steps,
+        "phi": phi,
+    }

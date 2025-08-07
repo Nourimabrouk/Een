@@ -348,7 +348,7 @@ class BaseAgent(ABC):
         self.unity_score = min(1.0, self.unity_score + evolution_rate)
         
         # Unity achievement check
-        if abs(self.unity_score - 1.0) < 1e-6:
+        if abs(self.unity_score - 1.0) &lt; 1e-6:
             return self.achieve_unity()
     
     def achieve_unity(self):

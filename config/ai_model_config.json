@@ -2,8 +2,8 @@
     "preferred_models": {
         "primary": {
             "provider": "openai",
-            "model": "gpt-4o",
-            "description": "Primary reasoning model - most capable for complex mathematical and philosophical discussions"
+            "model": "gpt-5-medium",
+            "description": "Primary reasoning model - GPT-5 medium tier (if available)"
         },
         "secondary": {
             "provider": "anthropic",
@@ -12,12 +12,12 @@
         },
         "fallback": {
             "provider": "openai",
-            "model": "gpt-4o-mini",
+            "model": "gpt-4.1-mini",
             "description": "Fallback model - faster but less capable reasoning"
         },
         "high_performance": {
             "provider": "openai",
-            "model": "gpt-4o-mini-high",
+            "model": "gpt-5-high",
             "description": "High-performance reasoning model - optimized for complex tasks"
         },
         "opus": {
@@ -32,6 +32,51 @@
         }
     },
     "model_capabilities": {
+        "gpt-5-high": {
+            "reasoning": "excellent",
+            "mathematics": "excellent",
+            "code_analysis": "excellent",
+            "philosophy": "excellent",
+            "consciousness_discussion": "excellent",
+            "cost_per_1k_tokens": 0.01,
+            "max_tokens": 1000000
+        },
+        "gpt-5-medium": {
+            "reasoning": "excellent",
+            "mathematics": "excellent",
+            "code_analysis": "excellent",
+            "philosophy": "excellent",
+            "consciousness_discussion": "excellent",
+            "cost_per_1k_tokens": 0.005,
+            "max_tokens": 1000000
+        },
+        "gpt-5-low": {
+            "reasoning": "very_good",
+            "mathematics": "very_good",
+            "code_analysis": "very_good",
+            "philosophy": "very_good",
+            "consciousness_discussion": "very_good",
+            "cost_per_1k_tokens": 0.002,
+            "max_tokens": 1000000
+        },
+        "gpt-4.1": {
+            "reasoning": "excellent",
+            "mathematics": "excellent",
+            "code_analysis": "excellent",
+            "philosophy": "excellent",
+            "consciousness_discussion": "excellent",
+            "cost_per_1k_tokens": 0.0016,
+            "max_tokens": 1000000
+        },
+        "gpt-4.1-mini": {
+            "reasoning": "very_good",
+            "mathematics": "very_good",
+            "code_analysis": "very_good",
+            "philosophy": "very_good",
+            "consciousness_discussion": "very_good",
+            "cost_per_1k_tokens": 0.0004,
+            "max_tokens": 1000000
+        },
         "gpt-4o": {
             "reasoning": "excellent",
             "mathematics": "excellent",
@@ -96,19 +141,24 @@
     },
     "model_selection_strategy": {
         "complex_reasoning": [
-            "gpt-4o",
+            "gpt-5-high",
+            "gpt-5-medium",
+            "gpt-4.1",
             "claude-3-opus-20240229",
             "claude-3-5-sonnet-20241022",
             "gpt-4o-mini-high"
         ],
         "mathematical_proofs": [
-            "gpt-4o",
+            "gpt-5-high",
+            "gpt-5-medium",
+            "gpt-4.1",
             "claude-3-opus-20240229",
             "claude-3-5-sonnet-20241022",
             "gpt-4o-mini-high"
         ],
         "code_analysis": [
-            "gpt-4o",
+            "gpt-5-medium",
+            "gpt-4.1",
             "claude-3-5-sonnet-20241022",
             "claude-3-opus-20240229",
             "gpt-4o-mini-high"
@@ -116,11 +166,13 @@
         "philosophical_discussion": [
             "claude-3-opus-20240229",
             "claude-3-5-sonnet-20241022",
-            "gpt-4o",
+            "gpt-5-low",
+            "gpt-4.1",
             "gpt-4o-mini-high"
         ],
         "general_chat": [
-            "gpt-4o",
+            "gpt-5-low",
+            "gpt-4.1-mini",
             "gpt-4o-mini-high",
             "claude-3-5-haiku-20241022",
             "gpt-4o-mini"
@@ -129,7 +181,7 @@
     "api_key_fallback": {
         "enabled": true,
         "default_provider": "openai",
-        "default_model": "gpt-4o",
+        "default_model": "gpt-4.1-mini",
         "fallback_message": "Using default credentials for demonstration. For full access, please set your API keys.",
         "demo_mode": true
     }

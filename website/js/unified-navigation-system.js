@@ -360,7 +360,7 @@ class MetaOptimalNavigationSystem {
     
     getMetaOptimalStyles() {
         return `
-            /* Meta-Optimal Navigation System Styles */
+            /* Meta-Optimal Navigation System Styles - Fixed for Chrome PC */
             .meta-optimal-nav {
                 position: fixed;
                 top: 0;
@@ -376,6 +376,8 @@ class MetaOptimalNavigationSystem {
                 font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
                 font-weight: 500;
                 letter-spacing: 0.025em;
+                min-height: 70px;
+                max-height: 80px;
             }
             
             .meta-optimal-nav.scrolled {
@@ -387,12 +389,13 @@ class MetaOptimalNavigationSystem {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                max-width: 1600px;
+                max-width: 1400px;
                 margin: 0 auto;
-                padding: 0 2rem;
-                height: 80px;
+                padding: 0 1.5rem;
+                height: 70px;
                 min-width: 0;
                 flex-wrap: nowrap;
+                gap: 1rem;
             }
             
             /* Brand */
@@ -442,14 +445,16 @@ class MetaOptimalNavigationSystem {
                 100% { transform: rotate(360deg); }
             }
             
-            /* Primary Navigation */
+            /* Primary Navigation - Optimized for Chrome PC */
             .nav-primary {
                 display: flex;
                 align-items: center;
-                gap: 0.5rem;
+                gap: 0.25rem;
                 flex: 1;
                 justify-content: center;
                 min-width: 0;
+                overflow: hidden;
+                max-width: calc(100vw - 400px);
             }
             
             .nav-item {
@@ -465,17 +470,19 @@ class MetaOptimalNavigationSystem {
             .nav-link {
                 display: flex;
                 align-items: center;
-                gap: 0.5rem;
-                padding: 0.875rem 1.25rem;
+                gap: 0.4rem;
+                padding: 0.75rem 0.875rem;
                 color: rgba(255, 255, 255, 0.9);
                 text-decoration: none;
-                border-radius: 12px;
+                border-radius: 10px;
                 transition: all 0.3s ease;
                 white-space: nowrap;
                 font-weight: 500;
-                font-size: 0.95rem;
+                font-size: 0.85rem;
                 overflow: hidden;
                 text-overflow: ellipsis;
+                max-width: 140px;
+                justify-content: center;
             }
             
             .nav-link:hover,
@@ -819,38 +826,82 @@ class MetaOptimalNavigationSystem {
                 font-size: 0.8rem;
             }
             
-            /* Responsive Design */
-            @media (max-width: 1400px) {
+            /* Chrome PC Specific Fixes */
+            @media screen and (min-width: 1200px) and (max-width: 1600px) {
                 .nav-wrapper {
-                    padding: 0 1.5rem;
+                    max-width: 1200px;
+                    padding: 0 1rem;
+                }
+                
+                .nav-primary {
+                    gap: 0.2rem;
+                    max-width: calc(100vw - 350px);
                 }
                 
                 .nav-link {
-                    padding: 0.75rem 1rem;
-                    font-size: 0.9rem;
+                    padding: 0.7rem 0.8rem;
+                    font-size: 0.8rem;
+                    max-width: 120px;
+                }
+                
+                .nav-text {
+                    display: none;
+                }
+                
+                .nav-icon {
+                    font-size: 1.1rem;
+                }
+                
+                .dropdown-arrow {
+                    font-size: 0.7rem;
+                    margin-left: 0.25rem;
+                }
+            }
+            
+            /* Responsive Design */
+            @media (max-width: 1400px) {
+                .nav-wrapper {
+                    padding: 0 1rem;
+                    gap: 0.75rem;
+                }
+                
+                .nav-link {
+                    padding: 0.7rem 0.8rem;
+                    font-size: 0.8rem;
+                    max-width: 120px;
                 }
                 
                 .dropdown-content {
-                    min-width: 250px;
+                    min-width: 220px;
+                }
+                
+                .brand-subtitle {
+                    display: none;
                 }
             }
             
             @media (max-width: 1200px) {
                 .nav-wrapper {
-                    padding: 0 1rem;
+                    padding: 0 0.75rem;
+                    gap: 0.5rem;
+                }
+                
+                .nav-primary {
+                    gap: 0.1rem;
                 }
                 
                 .nav-link {
-                    padding: 0.75rem 0.75rem;
-                    font-size: 0.85rem;
+                    padding: 0.6rem 0.7rem;
+                    font-size: 0.75rem;
+                    max-width: 100px;
                 }
                 
                 .nav-text {
-                    font-size: 0.85rem;
+                    display: none;
                 }
                 
-                .brand-subtitle {
-                    display: none;
+                .nav-icon {
+                    font-size: 1rem;
                 }
             }
             

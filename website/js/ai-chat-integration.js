@@ -20,14 +20,7 @@ class EenAIChat {
         this.isStreaming = false;
         this.currentRequest = null;
         this.messageHistory = [];
-        this.availableModels = [
-            'gpt-4o',
-            'gpt-4o-mini',
-            'gpt-4o-mini-high',
-            'claude-3-5-sonnet-20241022',
-            'claude-3-opus-20240229',
-            'claude-3-5-haiku-20241022'
-        ];
+        this.availableModels = [];
 
         this.isInitialized = false;
         this.initialize();
@@ -35,7 +28,7 @@ class EenAIChat {
 
     initialize() {
         this.loadSession();
-        this.updateModelSelector();
+        this.refreshAvailableModels().then(() => this.updateModelSelector());
         this.checkDemoMode();
         this.isInitialized = true;
     }
@@ -81,6 +74,26 @@ class EenAIChat {
         return 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
     }
 
+    async refreshAvailableModels() {
+        try {
+            const res = await fetch('/api/chat/providers');
+            const data = await res.json();
+            const openai = (data.openai && data.openai.models) || [];
+            const anthropic = (data.anthropic && data.anthropic.models) || [];
+            this.availableModels = [...openai, ...anthropic];
+            // Prefer backend default if provided
+            if (data.demo_mode && data.demo_mode.fallback_model && !this.config.defaultModel) {
+                this.config.defaultModel = data.demo_mode.fallback_model;
+            }
+        } catch (e) {
+            console.warn('Failed to load providers; using static defaults', e);
+            this.availableModels = [
+                'gpt-5-medium', 'gpt-4.1-mini', 'gpt-4o', 'gpt-4o-mini',
+                'claude-3-5-sonnet-20241022', 'claude-3-opus-20240229', 'claude-3-5-haiku-20241022'
+            ];
+        }
+    }
+
     updateModelSelector() {
         const modelSelect = document.getElementById('model-select');
         if (modelSelect) {
@@ -88,11 +101,9 @@ class EenAIChat {
 
             // Add model groups
             const groups = {
-                'OpenAI Models': [
-                    { value: 'gpt-4o', label: 'GPT-4o (Best Reasoning)' },
-                    { value: 'gpt-4o-mini-high', label: 'GPT-4o Mini High (Fast)' },
-                    { value: 'gpt-4o-mini', label: 'GPT-4o Mini (Economy)' }
-                ],
+                'OpenAI Models': this.availableModels
+                    .filter(m => !m.startsWith('claude-'))
+                    .map(m => ({ value: m, label: prettyLabel(m) })),
                 'Anthropic Models': [
                     { value: 'claude-3-opus-20240229', label: 'Claude Opus (Most Capable)' },
                     { value: 'claude-3-5-sonnet-20241022', label: 'Claude Sonnet (Balanced)' },
@@ -119,123 +130,124 @@ class EenAIChat {
         }
     }
 
+}
+
     async sendMessage(message, options = {}) {
-        if (this.isStreaming) {
-            throw new Error('Already streaming a response');
+    if (this.isStreaming) {
+        throw new Error('Already streaming a response');
+    }
+
+    const requestData = {
+        message: message,
+        session_id: this.sessionId,
+        model: options.model || this.config.defaultModel,
+        provider: options.provider || this.config.defaultProvider,
+        temperature: options.temperature || this.config.temperature,
+        max_tokens: options.maxTokens || this.config.maxTokens,
+        stream: this.config.stream,
+        consciousness_level: options.consciousnessLevel || this.config.consciousnessLevel
+    };
+
+    this.isStreaming = true;
+    this.currentRequest = requestData;
+
+    try {
+        const response = await fetch(this.config.apiEndpoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Client-ID': this.generateClientId()
+            },
+            body: JSON.stringify(requestData)
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
         }
 
-        const requestData = {
-            message: message,
-            session_id: this.sessionId,
-            model: options.model || this.config.defaultModel,
-            provider: options.provider || this.config.defaultProvider,
-            temperature: options.temperature || this.config.temperature,
-            max_tokens: options.maxTokens || this.config.maxTokens,
-            stream: this.config.stream,
-            consciousness_level: options.consciousnessLevel || this.config.consciousnessLevel
-        };
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+        let responseText = '';
+        let isDemoMode = false;
 
-        this.isStreaming = true;
-        this.currentRequest = requestData;
+        while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
 
-        try {
-            const response = await fetch(this.config.apiEndpoint, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-Client-ID': this.generateClientId()
-                },
-                body: JSON.stringify(requestData)
-            });
+            const chunk = decoder.decode(value);
+            const lines = chunk.split('\n');
 
-            if (!response.ok) {
-                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-            }
+            for (const line of lines) {
+                if (line.startsWith('data: ')) {
+                    try {
+                        const data = JSON.parse(line.slice(6));
 
-            const reader = response.body.getReader();
-            const decoder = new TextDecoder();
-            let responseText = '';
-            let isDemoMode = false;
-
-            while (true) {
-                const { done, value } = await reader.read();
-                if (done) break;
-
-                const chunk = decoder.decode(value);
-                const lines = chunk.split('\n');
-
-                for (const line of lines) {
-                    if (line.startsWith('data: ')) {
-                        try {
-                            const data = JSON.parse(line.slice(6));
-
-                            if (data.type === 'content') {
-                                responseText += data.data;
-                                this.onChunk(data.data, data);
-                            } else if (data.type === 'done') {
-                                this.onComplete(responseText, data);
-                                return responseText;
-                            } else if (data.type === 'error') {
-                                throw new Error(data.data);
-                            }
-
-                            isDemoMode = data.demo_mode || false;
-                        } catch (e) {
-                            console.warn('Failed to parse chunk:', e);
+                        if (data.type === 'content') {
+                            responseText += data.data;
+                            this.onChunk(data.data, data);
+                        } else if (data.type === 'done') {
+                            this.onComplete(responseText, data);
+                            return responseText;
+                        } else if (data.type === 'error') {
+                            throw new Error(data.data);
                         }
+
+                        isDemoMode = data.demo_mode || false;
+                    } catch (e) {
+                        console.warn('Failed to parse chunk:', e);
                     }
                 }
             }
-
-            return responseText;
-
-        } catch (error) {
-            this.onError(error);
-            throw error;
-        } finally {
-            this.isStreaming = false;
-            this.currentRequest = null;
         }
-    }
 
-    generateClientId() {
-        return 'client_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-    }
+        return responseText;
 
-    onChunk(chunk, data) {
-        // Override this method to handle streaming chunks
-        console.log('Received chunk:', chunk);
+    } catch (error) {
+        this.onError(error);
+        throw error;
+    } finally {
+        this.isStreaming = false;
+        this.currentRequest = null;
     }
+}
 
-    onComplete(fullResponse, data) {
-        // Override this method to handle completion
-        console.log('Response complete:', fullResponse);
-        console.log('Response data:', data);
-    }
+generateClientId() {
+    return 'client_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+}
 
-    onError(error) {
-        // Override this method to handle errors
-        console.error('Chat error:', error);
-    }
+onChunk(chunk, data) {
+    // Override this method to handle streaming chunks
+    console.log('Received chunk:', chunk);
+}
+
+onComplete(fullResponse, data) {
+    // Override this method to handle completion
+    console.log('Response complete:', fullResponse);
+    console.log('Response data:', data);
+}
+
+onError(error) {
+    // Override this method to handle errors
+    console.error('Chat error:', error);
+}
 
     async getAvailableProviders() {
-        try {
-            const response = await fetch('/api/chat/providers');
-            return await response.json();
-        } catch (error) {
-            console.error('Failed to get providers:', error);
-            return {};
-        }
+    try {
+        const response = await fetch('/api/chat/providers');
+        return await response.json();
+    } catch (error) {
+        console.error('Failed to get providers:', error);
+        return {};
     }
+}
 
     async getHealthStatus() {
-        try {
-            const response = await fetch('/api/chat/health');
-            return await response.json();
-        } catch (error) {
-            console.error('Failed to get health status:', error);
-            return { status: 'unhealthy' };
-        }
+    try {
+        const response = await fetch('/api/chat/health');
+        return await response.json();
+    } catch (error) {
+        console.error('Failed to get health status:', error);
+        return { status: 'unhealthy' };
     }
 
     // Unity Mathematics specific methods
