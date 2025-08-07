@@ -45,7 +45,15 @@ def bloch_xyz(state: np.ndarray):
 
 def evolute(state: np.ndarray, t: float) -> np.ndarray:
     H = phi * np.array([[1, 0], [0, -1]]) + (1 / phi) * np.array([[0, 1], [1, 0]])
-    U = np.linalg.expm(-1j * H * t)
+    # Use SciPy expm if available, else use series approximation
+    try:
+        from scipy.linalg import expm  # type: ignore
+
+        U = expm(-1j * H * t)
+    except Exception:
+        # 4-term series fallback
+        A = -1j * H * t
+        U = np.eye(2, dtype=complex) + A + 0.5 * (A @ A) + (1.0 / 6.0) * (A @ A @ A)
     return U @ state
 
 

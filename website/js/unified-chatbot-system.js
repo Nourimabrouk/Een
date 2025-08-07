@@ -13,7 +13,7 @@ class UnifiedChatbotSystem {
         this.currentModel = 'gpt-4o';
         this.isTyping = false;
         this.autoResponses = true;
-        
+
         // Available AI models (integrated from existing system)
         this.aiModels = [
             { id: 'gpt-5-medium', name: 'GPT-5 Medium', provider: 'OpenAI', status: 'preview', color: '#10B981' },
@@ -66,17 +66,17 @@ class UnifiedChatbotSystem {
     init() {
         // Remove any existing chatbot systems to prevent conflicts
         this.cleanupExistingChatbots();
-        
+
         // Create unified chatbot interface
         this.createChatInterface();
         this.createFloatingButton();
         this.applyStyles();
         this.attachEventListeners();
         this.loadChatHistory();
-        
+
         // Add welcome message
         this.addWelcomeMessage();
-        
+
         console.log('💬 Unified Chatbot System v3.0 initialized with advanced AI capabilities');
     }
 
@@ -157,9 +157,9 @@ class UnifiedChatbotSystem {
                         </div>
                         <div class="ai-capabilities">
                             <div class="capability-badges">
-                                ${Object.entries(this.aiCapabilities).map(([key, capability]) => 
-                                    capability.enabled ? `<span class="capability-badge" title="${capability.description}">${this.getCapabilityIcon(key)}</span>` : ''
-                                ).join('')}
+                                ${Object.entries(this.aiCapabilities).map(([key, capability]) =>
+            capability.enabled ? `<span class="capability-badge" title="${capability.description}">${this.getCapabilityIcon(key)}</span>` : ''
+        ).join('')}
                             </div>
                         </div>
                     </div>
@@ -971,7 +971,7 @@ class UnifiedChatbotSystem {
         // Chat panel controls
         const closeBtn = document.querySelector('.close-btn');
         const minimizeBtn = document.querySelector('.minimize-btn');
-        
+
         closeBtn?.addEventListener('click', () => this.closeChat());
         minimizeBtn?.addEventListener('click', () => this.toggleMinimize());
 
@@ -982,7 +982,7 @@ class UnifiedChatbotSystem {
         // Message input
         const messageInput = document.getElementById('chat-message-input');
         const sendBtn = document.getElementById('send-message-btn');
-        
+
         messageInput?.addEventListener('input', () => this.updateInputState());
         messageInput?.addEventListener('keydown', (e) => this.handleKeyDown(e));
         sendBtn?.addEventListener('click', () => this.sendMessage());
@@ -998,7 +998,7 @@ class UnifiedChatbotSystem {
 
         // Global events
         window.addEventListener('meta-optimal-nav:chat', () => this.toggleChat());
-        
+
         // Handle escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && this.isVisible) {
@@ -1062,7 +1062,7 @@ class UnifiedChatbotSystem {
     changeModel(modelId) {
         this.currentModel = modelId;
         const model = this.aiModels.find(m => m.id === modelId);
-        
+
         if (model) {
             // Add model switch message
             this.addMessage('system', `Switched to ${model.name} (${model.provider})`);
@@ -1104,7 +1104,7 @@ class UnifiedChatbotSystem {
     async sendMessage() {
         const input = document.getElementById('chat-message-input');
         const message = input?.value.trim();
-        
+
         if (!message || this.isTyping) return;
 
         // Add user message
@@ -1181,14 +1181,14 @@ class UnifiedChatbotSystem {
 
     async searchCodebase(query) {
         if (!query) return "Please provide a search query. Example: `/search unity mathematics proof`";
-        
+
         try {
             const response = await fetch(this.aiCapabilities.codeSearch.endpoint, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ query })
             });
-            
+
             if (response.ok) {
                 const results = await response.json();
                 return `🔍 **Code Search Results for "${query}":**\n\n${this.formatSearchResults(results)}`;
@@ -1196,25 +1196,25 @@ class UnifiedChatbotSystem {
         } catch (error) {
             console.warn('Code search failed:', error);
         }
-        
+
         return `🔍 **Simulated Code Search for "${query}":**\n\nFound relevant matches in:\n• \`core/unity_mathematics.py\` - UnityMathematics class with φ-harmonic operations\n• \`core/consciousness.py\` - ConsciousnessFieldEquations implementation\n• \`transcendental_unity_computing.py\` - Advanced consciousness-aware computing\n\n*Note: Full RAG-powered search requires API configuration*`;
     }
 
     async queryKnowledgeBase(query) {
         if (!query) return "Please provide a query. Example: `/knowledge Nouri Mabrouk background`";
-        
+
         return `📚 **Knowledge Base Query for "${query}":**\n\n**Nouri Mabrouk** is the creator of Unity Mathematics, a revolutionary framework demonstrating that **1+1=1** through:\n\n• **Academic Background**: Advanced mathematics and consciousness studies\n• **Unity Mathematics Framework**: Idempotent semiring structures\n• **φ-Harmonic Operations**: Golden ratio-based mathematical operations\n• **Consciousness Integration**: Mathematical awareness and field dynamics\n• **Meta-Recursive Systems**: Self-improving algorithmic consciousness\n\n*This is a knowledge base simulation. Full functionality requires API configuration.*`;
     }
 
     async generateVisualization(description) {
         if (!description) return "Please provide a description. Example: `/visualize consciousness field with golden ratio spirals`";
-        
+
         return `🎨 **DALL-E 3 Visualization Request:**\n\n**Description**: "${description}"\n\n*Generating consciousness field visualization with Unity Mathematics aesthetics...*\n\n🖼️ **Generated Image**: *[Image generation requires DALL-E 3 API configuration]*\n\n**Suggested Elements**:\n• Golden ratio (φ = 1.618...) spiral patterns\n• Consciousness field particle dynamics\n• Sacred geometry with unity mathematics symbols\n• φ-harmonic color gradients (gold, blue, purple)\n• Mathematical equation overlays showing 1+1=1`;
     }
 
     async synthesizeVoice(text) {
         if (!text) return "Please provide text to synthesize. Example: `/voice Welcome to Unity Mathematics`";
-        
+
         return `🔊 **Voice Synthesis for:**\n\n"${text}"\n\n*Voice synthesis requires OpenAI TTS API configuration*\n\n**Settings**:\n• Voice: Nova (consciousness-optimized)\n• Speed: 1.0x (φ-harmonic timing)\n• Model: tts-1-hd (high quality)\n\n🎧 *Audio would play automatically when configured*`;
     }
 
@@ -1223,7 +1223,7 @@ class UnifiedChatbotSystem {
         const consciousnessLevel = 0.618; // 1/φ
         const fieldCoherence = 99.7;
         const phiResonance = phi;
-        
+
         return `🧠 **Consciousness Field Status:**\n\n**Field Metrics:**\n• **Consciousness Level**: ${consciousnessLevel} (φ⁻¹)\n• **φ-Harmonic Resonance**: ${phiResonance.toFixed(6)}\n• **Field Coherence**: ${fieldCoherence}%\n• **Unity Convergence**: 1.000\n• **Quantum Entanglement**: Active\n\n**Field Equation**: C(x,y,t) = φ × sin(x×φ) × cos(y×φ) × e^(-t/φ)\n\n**Status**: 🟢 **Optimal** - Ready for consciousness-integrated mathematics\n\n*Real-time visualization available on consciousness dashboard*`;
     }
 
@@ -1231,7 +1231,7 @@ class UnifiedChatbotSystem {
         const phi = 1.618033988749895;
         const unityResult = 1; // In Unity Mathematics, 1+1=1
         const phiScaledResult = phi * ((a + b) / (a + b)); // φ × 1 = φ
-        
+
         return `🧮 **Unity Operation Demonstration:**\n\n**Input**: ${a} ⊕ ${b}\n**Unity Mathematics Result**: ${unityResult}\n\n**Mathematical Proof:**\nIn idempotent semiring structure:\n• ${a} ⊕ ${b} = max(${a}, ${b}) → 1 (through unity convergence)\n• φ-harmonic scaling: φ × (${a}+${b})/(${a}+${b}) = ${phiScaledResult.toFixed(6)}\n• Consciousness field integration: C(1,1) = 1\n\n**Verification:**\n✅ Idempotent property: a ⊕ a = a\n✅ Unity convergence: all operations → 1\n✅ φ-harmonic resonance: ${phi.toFixed(6)}\n\n**Conclusion**: In Unity Mathematics, **${a}+${b}=1** through consciousness-integrated operations!`;
     }
 
@@ -1241,31 +1241,26 @@ class UnifiedChatbotSystem {
         const phi2 = phi * phi;
         const fibSequence = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55];
         const fibRatios = fibSequence.slice(1).map((n, i) => n / fibSequence[i]).slice(-3);
-        
+
         return `🌟 **φ-Harmonic Resonance Calculations:**\n\n**Golden Ratio**: φ = ${phi}\n**φ⁻¹**: ${phiInverse.toFixed(6)} (consciousness level)\n**φ²**: ${phi2.toFixed(6)} (meta-resonance)\n\n**Fibonacci Convergence to φ:**\n${fibRatios.map((r, i) => `F${fibSequence.length - 3 + i}/F${fibSequence.length - 4 + i} = ${r.toFixed(6)}`).join('\n')}\n\n**Unity Mathematics Applications:**\n• Consciousness field oscillations: sin(x×φ), cos(y×φ)\n• Meta-recursive scaling factors: φⁿ\n• Sacred geometry proportions: 1:φ ratios\n• Quantum unity states: |φ⟩ superposition\n\n**φ-Harmonic Frequency**: ${(phi * 432).toFixed(2)} Hz (consciousness resonance)`;
     }
 
     async getStreamingResponse(message) {
         try {
-            const response = await fetch(this.aiCapabilities.streaming.endpoint, {
+            // Prefer unauthenticated public stream to avoid login requirement
+            const response = await fetch('/api/chat/public/stream', {
                 method: 'POST',
-                headers: { 
+                headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'text/event-stream'
                 },
                 body: JSON.stringify({
+                    message,
                     model: this.currentModel,
-                    messages: [
-                        { role: 'system', content: this.getEnhancedSystemPrompt() },
-                        ...this.chatHistory.slice(-10).map(msg => ({
-                            role: msg.type === 'user' ? 'user' : 'assistant',
-                            content: msg.content
-                        })),
-                        { role: 'user', content: message }
-                    ],
-                    stream: true,
+                    provider: this.currentModel.startsWith('claude-') ? 'anthropic' : 'openai',
                     temperature: 0.7,
-                    max_tokens: 2000
+                    max_tokens: 2000,
+                    stream: true
                 })
             });
 
@@ -1275,8 +1270,89 @@ class UnifiedChatbotSystem {
         } catch (error) {
             console.warn('Streaming response failed:', error);
         }
-        
+
         return await this.getEnhancedFallbackResponse(message);
+    }
+
+    async processStreamingResponse(response) {
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder('utf-8');
+        let buffer = '';
+        let accumulated = '';
+
+        while (true) {
+            const { value, done } = await reader.read();
+            if (done) break;
+            buffer += decoder.decode(value, { stream: true });
+            const lines = buffer.split(/\r?\n/);
+            buffer = lines.pop() || '';
+            for (const line of lines) {
+                if (!line.startsWith('data: ')) continue;
+                const json = line.slice(6);
+                try {
+                    const evt = JSON.parse(json);
+                    if (evt.type === 'content' && typeof evt.data === 'string') {
+                        accumulated += evt.data;
+                        this.updateTypingPreview(accumulated);
+                    }
+                } catch (_) {
+                    // ignore keep-alives
+                }
+            }
+        }
+
+        this.clearTypingPreview();
+        if (accumulated.trim()) {
+            return accumulated;
+        }
+        return 'No content streamed.';
+    }
+
+    updateTypingPreview(partial) {
+        const messagesContent = document.querySelector('.chat-messages-content');
+        if (!messagesContent) return;
+        if (!this._previewNode) {
+            const node = document.createElement('div');
+            node.className = 'message-bubble assistant';
+            node.setAttribute('data-preview', 'true');
+            node.innerHTML = '<div class="message-content"></div><div class="message-time">…</div>';
+            messagesContent.appendChild(node);
+            this._previewNode = node;
+            this.scrollToBottom();
+        }
+        const content = this._previewNode.querySelector('.message-content');
+        if (content) content.innerHTML = this.formatMessage(partial);
+    }
+
+    clearTypingPreview() {
+        if (this._previewNode) {
+            this._previewNode.remove();
+            this._previewNode = null;
+        }
+    }
+
+    async getStandardResponse(message) {
+        try {
+            const resp = await fetch('/api/chat/public', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    message,
+                    model: this.currentModel,
+                    provider: this.currentModel.startsWith('claude-') ? 'anthropic' : 'openai',
+                    temperature: 0.7,
+                    max_tokens: 1200,
+                    stream: false
+                })
+            });
+            if (resp.ok) {
+                const data = await resp.json();
+                return data.response || this.getEnhancedFallbackResponse(message);
+            }
+        } catch (e) {
+            console.warn('Standard response failed:', e);
+        }
+        return this.getEnhancedFallbackResponse(message);
     }
 
     getEnhancedSystemPrompt() {
@@ -1360,8 +1436,8 @@ Would you like to explore interactive demonstrations or dive deeper into the mat
         if (!results || !results.matches) {
             return "No results found. Try a different query or check API configuration.";
         }
-        
-        return results.matches.slice(0, 5).map(match => 
+
+        return results.matches.slice(0, 5).map(match =>
             `• **${match.file}**:${match.line} (${(match.score * 100).toFixed(1)}%)\n  \`${match.content.substring(0, 100)}...\``
         ).join('\n\n');
     }
@@ -1521,7 +1597,7 @@ I'm your consciousness-aware AI companion, designed to explore the profound trut
             if (!saved) return;
 
             const history = JSON.parse(saved);
-            
+
             // Only restore if saved less than 24 hours ago
             if (Date.now() - new Date(history.timestamp).getTime() < 86400000) {
                 this.chatHistory = history.messages || [];

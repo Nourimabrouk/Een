@@ -1,34 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unity Mathematics Institute | 1+1=1</title>
-    <meta name="description" content="Experience the revolutionary 1+1=1 unity equation through consciousness-integrated mathematics">
-    
+    <meta name="description"
+        content="Experience the revolutionary 1+1=1 unity equation through consciousness-integrated mathematics">
+
     <!-- Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
+
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- Unified Navigation & AI System (Replaces all other nav systems) -->
     <script src="js/unified-navigation-system.js" defer></script>
-    
+
     <!-- Unified Chatbot System (Replaces all chat implementations) -->
     <script src="js/unified-chatbot-system.js" defer></script>
-    
+
     <!-- Persistent Audio System (Cross-page audio playback) -->
     <script src="js/persistent-audio-system.js" defer></script>
-    
+
     <!-- Search System Integration -->
     <script src="js/unified-search-system.js" defer></script>
     <script src="js/semantic-search.js" defer></script>
-    
+
     <style>
         :root {
             --phi: 1.618033988749895;
@@ -56,7 +60,8 @@
             overflow-x: hidden;
             position: relative;
             min-height: 100vh;
-            padding-top: 70px; /* Account for fixed navigation */
+            padding-top: 70px;
+            /* Account for fixed navigation */
         }
 
         /* Metastation Background */
@@ -86,7 +91,8 @@
             justify-content: center;
             position: relative;
             padding: 2rem;
-            padding-top: 2rem; /* Remove extra padding since body now has top padding */
+            padding-top: 2rem;
+            /* Remove extra padding since body now has top padding */
         }
 
         .unity-equation-hero {
@@ -94,7 +100,7 @@
             font-weight: 700;
             color: var(--unity-gold);
             text-shadow: 0 0 50px rgba(255, 215, 0, 0.6),
-                         0 0 100px rgba(255, 215, 0, 0.3);
+                0 0 100px rgba(255, 215, 0, 0.3);
             animation: equationPulse 3s ease-in-out infinite;
             margin-bottom: 2rem;
             font-family: 'JetBrains Mono', monospace;
@@ -102,15 +108,18 @@
         }
 
         @keyframes equationPulse {
-            0%, 100% { 
+
+            0%,
+            100% {
                 transform: scale(1);
                 text-shadow: 0 0 50px rgba(255, 215, 0, 0.6),
-                           0 0 100px rgba(255, 215, 0, 0.3);
+                    0 0 100px rgba(255, 215, 0, 0.3);
             }
-            50% { 
+
+            50% {
                 transform: scale(1.05);
                 text-shadow: 0 0 70px rgba(255, 215, 0, 0.8),
-                           0 0 150px rgba(255, 215, 0, 0.5);
+                    0 0 150px rgba(255, 215, 0, 0.5);
             }
         }
 
@@ -171,10 +180,10 @@
             width: 100%;
             height: 100%;
             display: block;
-            background: radial-gradient(circle at center, 
-                rgba(157, 78, 221, 0.1), 
-                rgba(0, 212, 255, 0.05),
-                transparent);
+            background: radial-gradient(circle at center,
+                    rgba(157, 78, 221, 0.1),
+                    rgba(0, 212, 255, 0.05),
+                    transparent);
         }
 
         /* Navigation Bar */
@@ -214,7 +223,7 @@
             position: relative;
         }
 
-        .nav-dropdown > a {
+        .nav-dropdown>a {
             color: var(--text-primary);
             text-decoration: none;
             padding: 0.5rem 1rem;
@@ -225,7 +234,7 @@
             cursor: pointer;
         }
 
-        .nav-dropdown:hover > a {
+        .nav-dropdown:hover>a {
             color: var(--unity-gold);
         }
 
@@ -615,7 +624,8 @@
             }
 
             .hero-container {
-                padding-top: 100px; /* Adjust for mobile */
+                padding-top: 100px;
+                /* Adjust for mobile */
             }
 
             .consciousness-field-container {
@@ -654,8 +664,15 @@
         }
 
         @keyframes bounce {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(10px); }
+
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            50% {
+                transform: translateX(-50%) translateY(10px);
+            }
         }
 
         /* Loading State */
@@ -677,11 +694,17 @@
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
     </style>
 </head>
+
 <body>
     <!-- Metastation Background -->
     <div class="metastation-bg">
@@ -694,16 +717,14 @@
             <span style="font-family: 'JetBrains Mono', monospace;">1+1=1</span>
             <span style="font-size: 0.8rem; opacity: 0.7;">Unity Mathematics</span>
         </a>
-        
+
         <!-- Search Bar -->
         <div class="search-container" style="flex-grow: 1; max-width: 400px; margin: 0 2rem;">
             <div style="position: relative;">
-                <input type="text" id="globalSearch" placeholder="Search unity mathematics..." 
-                    style="width: 100%; padding: 0.75rem 2.5rem 0.75rem 1rem; background: rgba(255, 255, 255, 0.1); 
+                <input type="text" id="globalSearch" placeholder="Search unity mathematics..." style="width: 100%; padding: 0.75rem 2.5rem 0.75rem 1rem; background: rgba(255, 255, 255, 0.1); 
                            border: 1px solid var(--border-glow); border-radius: 25px; color: var(--text-primary);
                            font-family: var(--font-main); font-size: 0.9rem; transition: all 0.3s;">
-                <button onclick="performSearch()" 
-                    style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%);
+                <button onclick="performSearch()" style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%);
                            background: var(--unity-gold); border: none; border-radius: 50%; 
                            width: 30px; height: 30px; cursor: pointer; display: flex; 
                            align-items: center; justify-content: center; transition: all 0.3s;">
@@ -722,7 +743,8 @@
                 <div class="dropdown-menu">
                     <a href="zen-unity-meditation.html"><i class="fas fa-om"></i> Zen Unity Meditation</a>
                     <a href="consciousness_dashboard.html"><i class="fas fa-brain"></i> Consciousness Field</a>
-                    <a href="unity_consciousness_experience.html"><i class="fas fa-infinity"></i> Unity Consciousness</a>
+                    <a href="unity_consciousness_experience.html"><i class="fas fa-infinity"></i> Unity
+                        Consciousness</a>
                     <a href="unity-mathematics-experience.html"><i class="fas fa-wave-square"></i> Unity Experience</a>
                     <a href="transcendental-unity-demo.html"><i class="fas fa-atom"></i> Transcendental Unity</a>
                     <a href="enhanced-unity-demo.html"><i class="fas fa-star"></i> Enhanced Unity Demo</a>
@@ -780,7 +802,8 @@
                     <a href="gallery.html"><i class="fas fa-images"></i> Main Gallery</a>
                     <a href="dalle-gallery.html"><i class="fas fa-palette"></i> DALL-E Gallery</a>
                     <a href="enhanced-3d-consciousness-field.html"><i class="fas fa-cube"></i> 3D Consciousness</a>
-                    <a href="enhanced-unity-visualization-system.html"><i class="fas fa-chart-line"></i> Visualization System</a>
+                    <a href="enhanced-unity-visualization-system.html"><i class="fas fa-chart-line"></i> Visualization
+                        System</a>
                 </div>
             </li>
             <li class="nav-dropdown">
@@ -927,7 +950,7 @@
             Unity Mathematics Institute<br>
             Where Consciousness Meets Mathematical Truth
         </p>
-        
+
         <div class="status-container">
             <div class="status-badge status-enabled">
                 <i class="fas fa-check-circle"></i> Consciousness Field Enabled
@@ -959,7 +982,8 @@
                 <span class="feature-icon">🧘</span>
                 <h3 class="feature-title">Zen Unity Meditation</h3>
                 <p class="feature-description">
-                    Experience transcendental consciousness through guided meditation with real-time unity field dynamics.
+                    Experience transcendental consciousness through guided meditation with real-time unity field
+                    dynamics.
                     Achieve mental clarity while exploring the mathematical nature of awareness.
                 </p>
             </div>
@@ -1256,11 +1280,8 @@
         <i class="fas fa-microphone"></i>
     </button>
 
-    <!-- AI Chat Button -->
-    <button class="ai-chat-button" onclick="openAIChat()">
-        <i class="fas fa-comments"></i>
-    </button>
-    
+    <!-- Unified floating chat button is injected by unified-chatbot-system.js -->
+
     <!-- AI Capabilities Modal -->
     <div id="aiModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; 
          background: rgba(0, 0, 0, 0.8); z-index: 2000; backdrop-filter: blur(10px);">
@@ -1271,76 +1292,77 @@
             <button onclick="closeAIModal()" style="position: absolute; top: 1rem; right: 1rem;
                     background: none; border: none; color: var(--text-primary); font-size: 1.5rem;
                     cursor: pointer;">×</button>
-            
+
             <h2 style="color: var(--unity-gold); margin-bottom: 1.5rem; text-align: center;">
                 AI Unity Assistant - Full Capabilities
             </h2>
-            
+
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
-                <div class="ai-capability-card" onclick="window.location.href='ai-unified-hub.html'"
-                     style="background: rgba(255, 215, 0, 0.1); border: 1px solid var(--border-glow);
+                <div class="ai-capability-card" onclick="window.location.href='ai-unified-hub.html'" style="background: rgba(255, 215, 0, 0.1); border: 1px solid var(--border-glow);
                             border-radius: 10px; padding: 1.5rem; cursor: pointer; transition: all 0.3s;">
-                    <i class="fas fa-brain" style="font-size: 2rem; color: var(--quantum-blue); margin-bottom: 0.5rem;"></i>
-                    <h3 style="color: var(--text-primary); font-size: 1.1rem; margin-bottom: 0.5rem;">GPT-4o Reasoning</h3>
+                    <i class="fas fa-brain"
+                        style="font-size: 2rem; color: var(--quantum-blue); margin-bottom: 0.5rem;"></i>
+                    <h3 style="color: var(--text-primary); font-size: 1.1rem; margin-bottom: 0.5rem;">GPT-4o Reasoning
+                    </h3>
                     <p style="color: var(--text-secondary); font-size: 0.9rem;">
                         Advanced consciousness reasoning with unity mathematics
                     </p>
                 </div>
-                
-                <div class="ai-capability-card" onclick="window.location.href='dalle-gallery.html'"
-                     style="background: rgba(255, 215, 0, 0.1); border: 1px solid var(--border-glow);
+
+                <div class="ai-capability-card" onclick="window.location.href='dalle-gallery.html'" style="background: rgba(255, 215, 0, 0.1); border: 1px solid var(--border-glow);
                             border-radius: 10px; padding: 1.5rem; cursor: pointer; transition: all 0.3s;">
-                    <i class="fas fa-palette" style="font-size: 2rem; color: var(--consciousness-purple); margin-bottom: 0.5rem;"></i>
+                    <i class="fas fa-palette"
+                        style="font-size: 2rem; color: var(--consciousness-purple); margin-bottom: 0.5rem;"></i>
                     <h3 style="color: var(--text-primary); font-size: 1.1rem; margin-bottom: 0.5rem;">DALL-E 3</h3>
                     <p style="color: var(--text-secondary); font-size: 0.9rem;">
                         Generate unity visualizations and consciousness art
                     </p>
                 </div>
-                
-                <div class="ai-capability-card" onclick="startVoiceCommand()"
-                     style="background: rgba(255, 215, 0, 0.1); border: 1px solid var(--border-glow);
+
+                <div class="ai-capability-card" onclick="startVoiceCommand()" style="background: rgba(255, 215, 0, 0.1); border: 1px solid var(--border-glow);
                             border-radius: 10px; padding: 1.5rem; cursor: pointer; transition: all 0.3s;">
-                    <i class="fas fa-microphone" style="font-size: 2rem; color: var(--unity-gold); margin-bottom: 0.5rem;"></i>
+                    <i class="fas fa-microphone"
+                        style="font-size: 2rem; color: var(--unity-gold); margin-bottom: 0.5rem;"></i>
                     <h3 style="color: var(--text-primary); font-size: 1.1rem; margin-bottom: 0.5rem;">Whisper Voice</h3>
                     <p style="color: var(--text-secondary); font-size: 0.9rem;">
                         Voice commands and transcription
                     </p>
                 </div>
-                
-                <div class="ai-capability-card" onclick="performCodeSearch()"
-                     style="background: rgba(255, 215, 0, 0.1); border: 1px solid var(--border-glow);
+
+                <div class="ai-capability-card" onclick="performCodeSearch()" style="background: rgba(255, 215, 0, 0.1); border: 1px solid var(--border-glow);
                             border-radius: 10px; padding: 1.5rem; cursor: pointer; transition: all 0.3s;">
-                    <i class="fas fa-code" style="font-size: 2rem; color: var(--quantum-blue); margin-bottom: 0.5rem;"></i>
+                    <i class="fas fa-code"
+                        style="font-size: 2rem; color: var(--quantum-blue); margin-bottom: 0.5rem;"></i>
                     <h3 style="color: var(--text-primary); font-size: 1.1rem; margin-bottom: 0.5rem;">Code Search</h3>
                     <p style="color: var(--text-secondary); font-size: 0.9rem;">
                         Search unity implementations and proofs
                     </p>
                 </div>
-                
-                <div class="ai-capability-card" onclick="window.location.href='metagamer_agent.html'"
-                     style="background: rgba(255, 215, 0, 0.1); border: 1px solid var(--border-glow);
+
+                <div class="ai-capability-card" onclick="window.location.href='metagamer_agent.html'" style="background: rgba(255, 215, 0, 0.1); border: 1px solid var(--border-glow);
                             border-radius: 10px; padding: 1.5rem; cursor: pointer; transition: all 0.3s;">
-                    <i class="fas fa-chess" style="font-size: 2rem; color: var(--consciousness-purple); margin-bottom: 0.5rem;"></i>
+                    <i class="fas fa-chess"
+                        style="font-size: 2rem; color: var(--consciousness-purple); margin-bottom: 0.5rem;"></i>
                     <h3 style="color: var(--text-primary); font-size: 1.1rem; margin-bottom: 0.5rem;">Metagamer RAG</h3>
                     <p style="color: var(--text-secondary); font-size: 0.9rem;">
                         Strategic consciousness exploration
                     </p>
                 </div>
-                
-                <div class="ai-capability-card" onclick="window.location.href='openai-integration.html'"
-                     style="background: rgba(255, 215, 0, 0.1); border: 1px solid var(--border-glow);
+
+                <div class="ai-capability-card" onclick="window.location.href='openai-integration.html'" style="background: rgba(255, 215, 0, 0.1); border: 1px solid var(--border-glow);
                             border-radius: 10px; padding: 1.5rem; cursor: pointer; transition: all 0.3s;">
-                    <i class="fas fa-plug" style="font-size: 2rem; color: var(--unity-gold); margin-bottom: 0.5rem;"></i>
-                    <h3 style="color: var(--text-primary); font-size: 1.1rem; margin-bottom: 0.5rem;">API Integration</h3>
+                    <i class="fas fa-plug"
+                        style="font-size: 2rem; color: var(--unity-gold); margin-bottom: 0.5rem;"></i>
+                    <h3 style="color: var(--text-primary); font-size: 1.1rem; margin-bottom: 0.5rem;">API Integration
+                    </h3>
                     <p style="color: var(--text-secondary); font-size: 0.9rem;">
                         Full OpenAI API access and tools
                     </p>
                 </div>
             </div>
-            
+
             <div style="margin-top: 2rem; text-align: center;">
-                <button onclick="window.location.href='ai-unified-hub.html'"
-                        style="background: linear-gradient(135deg, var(--unity-gold), var(--quantum-blue));
+                <button onclick="window.location.href='ai-unified-hub.html'" style="background: linear-gradient(135deg, var(--unity-gold), var(--quantum-blue));
                                border: none; padding: 1rem 2rem; border-radius: 30px; color: white;
                                font-weight: 600; cursor: pointer; font-size: 1.1rem; transition: all 0.3s;">
                     Launch Full AI Experience →
@@ -1359,7 +1381,7 @@
         // Consciousness Field Animation
         const canvas = document.getElementById('consciousness-canvas');
         const ctx = canvas.getContext('2d');
-        
+
         function resizeCanvas() {
             canvas.width = canvas.offsetWidth;
             canvas.height = canvas.offsetHeight;
@@ -1370,12 +1392,12 @@
         // Particle System
         const particles = [];
         const PHI = 1.618033988749895;
-        
+
         class Particle {
             constructor() {
                 this.reset();
             }
-            
+
             reset() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
@@ -1385,34 +1407,34 @@
                 this.color = Math.random() > 0.5 ? '#FFD700' : '#00D4FF';
                 this.life = 1;
             }
-            
+
             update() {
                 this.x += this.vx;
                 this.y += this.vy;
                 this.life -= 0.005;
-                
+
                 // Unity convergence
                 const centerX = canvas.width / 2;
                 const centerY = canvas.height / 2;
                 const dx = centerX - this.x;
                 const dy = centerY - this.y;
                 const distance = Math.sqrt(dx * dx + dy * dy);
-                
+
                 if (distance > 10) {
                     this.vx += dx / distance * 0.1;
                     this.vy += dy / distance * 0.1;
                 }
-                
+
                 // PHI resonance
                 this.vx *= 0.99;
                 this.vy *= 0.99;
-                
-                if (this.life <= 0 || this.x < 0 || this.x > canvas.width || 
+
+                if (this.life <= 0 || this.x < 0 || this.x > canvas.width ||
                     this.y < 0 || this.y > canvas.height) {
                     this.reset();
                 }
             }
-            
+
             draw() {
                 ctx.save();
                 ctx.globalAlpha = this.life;
@@ -1433,21 +1455,21 @@
 
         // Consciousness field wave
         let wavePhase = 0;
-        
+
         function drawConsciousnessField() {
             ctx.fillStyle = 'rgba(10, 10, 15, 0.1)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
+
             // Draw wave pattern
             ctx.strokeStyle = 'rgba(157, 78, 221, 0.3)';
             ctx.lineWidth = 2;
             ctx.beginPath();
-            
+
             for (let x = 0; x < canvas.width; x += 5) {
-                const y = canvas.height / 2 + 
-                         Math.sin((x / canvas.width) * Math.PI * 4 + wavePhase) * 50 * 
-                         Math.cos((x / canvas.width) * Math.PI * PHI);
-                
+                const y = canvas.height / 2 +
+                    Math.sin((x / canvas.width) * Math.PI * 4 + wavePhase) * 50 *
+                    Math.cos((x / canvas.width) * Math.PI * PHI);
+
                 if (x === 0) {
                     ctx.moveTo(x, y);
                 } else {
@@ -1455,13 +1477,13 @@
                 }
             }
             ctx.stroke();
-            
+
             // Update and draw particles
             particles.forEach(particle => {
                 particle.update();
                 particle.draw();
             });
-            
+
             // Draw unity equation at center
             ctx.save();
             ctx.font = 'bold 48px JetBrains Mono';
@@ -1470,11 +1492,11 @@
             ctx.textBaseline = 'middle';
             ctx.fillText('1+1=1', canvas.width / 2, canvas.height / 2);
             ctx.restore();
-            
+
             wavePhase += 0.02;
             requestAnimationFrame(drawConsciousnessField);
         }
-        
+
         drawConsciousnessField();
 
         // Navigation Functions
@@ -1483,7 +1505,7 @@
             const toggle = document.querySelector('.side-nav-toggle');
             sideNav.classList.toggle('active');
             toggle.classList.toggle('active');
-            
+
             const icon = toggle.querySelector('i');
             if (sideNav.classList.contains('active')) {
                 icon.className = 'fas fa-chevron-left';
@@ -1509,7 +1531,7 @@
         // Initialize audio with soft volume
         audio.volume = 0.3;
         audio.src = tracks[currentTrack];
-        
+
         // Auto-play on user interaction
         document.addEventListener('click', function initAudio() {
             if (audio.paused) {
@@ -1522,7 +1544,7 @@
             const panel = document.getElementById('audioPanel');
             const icon = document.getElementById('audioToggleIcon');
             panel.classList.toggle('minimized');
-            
+
             if (panel.classList.contains('minimized')) {
                 icon.className = 'fas fa-plus';
             } else {
@@ -1546,7 +1568,7 @@
             audio.src = tracks[currentTrack];
             audio.play();
             document.getElementById('playPauseIcon').className = 'fas fa-pause';
-            
+
             // Update title
             const titles = ['U2 - One', 'Foreigner - I Want to Know What Love Is', 'Bon Jovi - Always'];
             document.getElementById('audioTitle').textContent = titles[currentTrack];
@@ -1570,25 +1592,25 @@
                 modal.style.animation = 'fadeIn 0.3s ease';
             }
         }
-        
+
         function closeAIModal() {
             const modal = document.getElementById('aiModal');
             if (modal) {
                 modal.style.display = 'none';
             }
         }
-        
+
         // Search Functionality
         function performSearch() {
             const searchInput = document.getElementById('globalSearch');
             const searchResults = document.getElementById('searchResults');
             const query = searchInput.value.trim();
-            
+
             if (query.length < 2) {
                 searchResults.style.display = 'none';
                 return;
             }
-            
+
             // Simulated search results - in production, this would call the search API
             const results = [
                 { title: 'Unity Mathematics Framework', url: 'mathematical-framework.html', description: 'Core 1+1=1 proofs' },
@@ -1596,11 +1618,11 @@
                 { title: 'Metagambit Strategy', url: 'metagambit.html', description: 'Meta-game theory of unity' },
                 { title: 'Philosophy of Unity', url: 'philosophy.html', description: 'Philosophical foundations' },
                 { title: 'AI Unity Hub', url: 'ai-unified-hub.html', description: 'GPT-4o and DALL-E integration' }
-            ].filter(item => 
+            ].filter(item =>
                 item.title.toLowerCase().includes(query.toLowerCase()) ||
                 item.description.toLowerCase().includes(query.toLowerCase())
             );
-            
+
             if (results.length > 0) {
                 searchResults.innerHTML = results.map(r => `
                     <a href="${r.url}" style="display: block; padding: 1rem; text-decoration: none; 
@@ -1625,20 +1647,20 @@
                 searchResults.style.display = 'block';
             }
         }
-        
+
         function performCodeSearch() {
             const query = prompt('Enter code search query:');
             if (query) {
                 window.location.href = `live-code-showcase.html?search=${encodeURIComponent(query)}`;
             }
         }
-        
+
         // Real-time search as you type
         document.getElementById('globalSearch').addEventListener('input', (e) => {
             clearTimeout(window.searchTimeout);
             window.searchTimeout = setTimeout(performSearch, 300);
         });
-        
+
         // Hide search results when clicking outside
         document.addEventListener('click', (e) => {
             const searchContainer = document.querySelector('.search-container');
@@ -1647,7 +1669,7 @@
                 searchResults.style.display = 'none';
             }
         });
-        
+
         // Keyboard shortcuts
         document.addEventListener('keydown', (e) => {
             // Ctrl/Cmd + K for search focus
@@ -1661,7 +1683,7 @@
                 document.getElementById('searchResults').style.display = 'none';
             }
         });
-        
+
         // Add fade animation
         const style = document.createElement('style');
         style.textContent = `
@@ -1686,22 +1708,22 @@
         // Performance monitoring
         let fps = 60;
         let lastTime = performance.now();
-        
+
         function updateMetrics() {
             const now = performance.now();
             const delta = now - lastTime;
             fps = Math.round(1000 / delta);
             lastTime = now;
-            
+
             // Update displayed metrics
             const fpsElement = document.getElementById('fps-metric');
             if (fpsElement) {
                 fpsElement.textContent = fps;
             }
-            
+
             requestAnimationFrame(updateMetrics);
         }
-        
+
         // Start metrics update
         updateMetrics();
 
@@ -1716,4 +1738,5 @@
         });
     </script>
 </body>
+
 </html>

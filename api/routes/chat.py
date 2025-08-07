@@ -77,7 +77,8 @@ except ImportError as e:
 
 logger = logging.getLogger(__name__)
 
-router = APIRouter(prefix="/chat", tags=["chat"])
+# Align with website expectations: mount under /api/chat
+router = APIRouter(prefix="/api/chat", tags=["chat"])
 
 # Initialize AI clients
 openai_client = None
@@ -595,7 +596,7 @@ async def chat_stream(
 
     return StreamingResponse(
         stream_response_generator(request, client_id),
-        media_type="text/plain",
+        media_type="text/event-stream",
         headers={
             "Cache-Control": "no-cache",
             "Connection": "keep-alive",
@@ -637,6 +638,61 @@ async def chat(
         provider=request.provider,
         tokens_used=tokens_used,
         processing_time=0.0,  # Will be calculated
+        demo_mode=demo_mode,
+    )
+
+
+# Public, unauthenticated endpoints for the website widget (demo-friendly)
+@router.post("/public/stream")
+async def chat_stream_public(
+    request: ChatRequest,
+    http_request: Request,
+):
+    """Public streaming chat endpoint (no auth). Uses OpenAI if configured, else demo."""
+    client_id = get_client_id(http_request)
+
+    return StreamingResponse(
+        stream_response_generator(request, client_id),
+        media_type="text/event-stream",
+        headers={
+            "Cache-Control": "no-cache",
+            "Connection": "keep-alive",
+            "X-Client-ID": client_id,
+        },
+    )
+
+
+@router.post("/public", response_model=ChatResponse)
+async def chat_public(
+    request: ChatRequest,
+    http_request: Request,
+):
+    """Public non-streaming chat endpoint (no auth). Uses OpenAI if configured, else demo."""
+    client_id = get_client_id(http_request)
+
+    response_text = ""
+    tokens_used = 0
+    demo_mode = False
+
+    async for chunk_data in stream_response_generator(request, client_id):
+        if chunk_data.startswith("data: "):
+            try:
+                chunk = json.loads(chunk_data[6:])
+                if chunk["type"] == "content":
+                    response_text += chunk["data"]
+                elif chunk["type"] == "done":
+                    tokens_used = chunk["data"].get("tokens_used", 0)
+                demo_mode = chunk.get("demo_mode", False)
+            except json.JSONDecodeError:
+                continue
+
+    return ChatResponse(
+        response=response_text or get_mock_response(request.message),
+        session_id=request.session_id or get_or_create_session(None),
+        model=request.model,
+        provider=request.provider,
+        tokens_used=tokens_used,
+        processing_time=0.0,
         demo_mode=demo_mode,
     )
 

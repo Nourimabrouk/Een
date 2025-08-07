@@ -10,11 +10,19 @@ st.set_page_config(page_title="11D to 3D Projection", layout="wide")
 st.title("11D → 3D Projection — Hyperdimensional Unity")
 st.caption("Project hyperdimensional consciousness manifolds to 3D with φ-harmonics")
 
+import importlib
+import logging
+
 try:
-    from src.consciousness.transcendental_reality_engine import (
-        TranscendentalConfig,
-        HyperdimensionalManifoldProjector,
-    )  # type: ignore
+    engine_mod = importlib.import_module(
+        "src.consciousness.transcendental_reality_engine"
+    )
+    if not hasattr(engine_mod, "logger"):
+        engine_mod.logger = logging.getLogger(
+            "src.consciousness.transcendental_reality_engine"
+        )
+    TranscendentalConfig = engine_mod.TranscendentalConfig  # type: ignore
+    HyperdimensionalManifoldProjector = engine_mod.HyperdimensionalManifoldProjector  # type: ignore
 except Exception:
     TranscendentalConfig = None
     HyperdimensionalManifoldProjector = None
@@ -23,7 +31,22 @@ if TranscendentalConfig is None or HyperdimensionalManifoldProjector is None:
     st.warning("Transcendental engine not importable. Check module path.")
 else:
     cfg = TranscendentalConfig()
-    proj = HyperdimensionalManifoldProjector(cfg)
+    try:
+        proj = HyperdimensionalManifoldProjector(cfg)
+    except NameError:
+        # Ensure module-global logger exists, then retry
+        if not hasattr(engine_mod, "logger"):
+            engine_mod.logger = logging.getLogger(
+                "src.consciousness.transcendental_reality_engine"
+            )
+        if not engine_mod.logger.handlers:
+            handler = logging.StreamHandler()
+            handler.setFormatter(
+                logging.Formatter("[unity] %(levelname)s: %(message)s")
+            )
+            engine_mod.logger.addHandler(handler)
+            engine_mod.logger.setLevel(logging.INFO)
+        proj = HyperdimensionalManifoldProjector(cfg)
     points = st.slider("Points", 200, 3000, 1000, 100)
     cons = st.slider("Consciousness level", 0.1, 1.5, 0.618, 0.001)
     enforce_unity = st.checkbox("Preserve unity in projection", True)
