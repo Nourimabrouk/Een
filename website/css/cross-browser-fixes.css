@@ -1,0 +1,99 @@
+/* Cross-Browser Compatibility Fixes for Een Unity Mathematics
+ * Fixes Safari and other browser compatibility issues
+ */
+
+/* Safari backdrop-filter support */
+@supports (-webkit-backdrop-filter: none) {
+
+    .mobile-nav-menu,
+    .error-notification {
+        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(20px);
+    }
+}
+
+/* Safari user-select support */
+@supports (-webkit-user-select: none) {
+
+    .no-select,
+    .unity-equation-visual {
+        -webkit-user-select: none;
+        user-select: none;
+    }
+}
+
+/* Firefox specific fixes */
+@-moz-document url-prefix() {
+    .btn {
+        /* Fix button styling in Firefox */
+        line-height: normal;
+    }
+
+    .unity-equation-visual {
+        /* Fix flexbox issues in Firefox */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+/* IE11 fallbacks */
+@media all and (-ms-high-contrast: none),
+(-ms-high-contrast: active) {
+    .grid {
+        display: block;
+    }
+
+    .grid>* {
+        display: inline-block;
+        vertical-align: top;
+        margin: 0 1rem 1rem 0;
+    }
+
+    .unity-equation-visual {
+        display: block;
+        text-align: center;
+    }
+}
+
+/* Mobile Safari fixes */
+@supports (-webkit-touch-callout: none) {
+
+    .btn,
+    .nav-link {
+        /* Prevent zoom on tap in iOS Safari */
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    input,
+    textarea,
+    select {
+        /* Prevent zoom on focus in iOS Safari */
+        font-size: 16px;
+    }
+}
+
+/* Chrome/Safari scrollbar styling */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--unity-gold);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #D4AF37;
+}
+
+/* Firefox scrollbar styling */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--unity-gold) var(--bg-secondary);
+}

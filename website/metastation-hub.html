@@ -29,6 +29,11 @@
 
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Meta-Optimal Navigation System -->
+    <link rel="stylesheet" href="css/meta-optimal-navigation.css">
+    <!-- Unified Styles -->
+    <link rel="stylesheet" href="css/unified-styles.css">
+    <script src="js/unified-navigation-system.js" defer></script>
 
     <!-- External Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
@@ -36,8 +41,14 @@
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js" defer></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
 
-    <!-- Unified Navigation, Chat, Audio, and Search Systems -->
-    <script src="js/unified-navigation-system.js" defer></script>
+    <!-- Performance and Accessibility Optimizations -->
+    <link rel="stylesheet" href="css/accessibility-fixes.css">
+    <link rel="stylesheet" href="css/cross-browser-fixes.css">
+    <script src="js/performance-optimizer.js" defer></script>
+    <script src="js/error-handler.js" defer></script>
+    <script src="js/seo-optimizer.js" defer></script>
+
+    <!-- Unified Systems -->
     <script src="js/unified-search-system.js" defer></script>
     <script src="js/persistent-chat-system.js" defer></script>
     <script src="js/discreet-audio-system.js" defer></script>
@@ -69,6 +80,8 @@
         }
 
         body {
+            padding-top: 80px;
+            /* Account for fixed navigation */
             font-family: var(--font-main);
             background: var(--bg-primary);
             color: var(--text-primary);
@@ -814,6 +827,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            width: 100%;
         }
 
         .hub-section {
@@ -822,11 +836,18 @@
             max-width: 1200px;
             margin-left: auto;
             margin-right: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .section-header {
             text-align: center;
             margin-bottom: 3rem;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .section-title {
@@ -834,6 +855,8 @@
             font-weight: 600;
             color: var(--unity-gold);
             margin-bottom: 1rem;
+            text-align: center;
+            width: 100%;
         }
 
         .section-description {
@@ -841,6 +864,7 @@
             color: var(--text-secondary);
             max-width: 800px;
             margin: 0 auto;
+            text-align: center;
         }
 
         .hub-grid {
@@ -1060,6 +1084,10 @@
             background: var(--bg-secondary);
             padding: 4rem 2rem;
             margin: 4rem 0;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .dashboard-grid {
@@ -1127,6 +1155,25 @@
 
         .audio-section.minimized .audio-playlist {
             display: none;
+        }
+
+        /* Start audio section minimized by default */
+        .audio-section {
+            max-width: 200px;
+            padding: 0.75rem;
+        }
+
+        .audio-section .audio-playlist {
+            display: none;
+        }
+
+        .audio-section.expanded {
+            max-width: 320px;
+            padding: 1rem;
+        }
+
+        .audio-section.expanded .audio-playlist {
+            display: flex;
         }
 
         .audio-header {
@@ -1340,6 +1387,10 @@
             background: var(--bg-secondary);
             padding: 4rem 2rem;
             margin: 4rem 0;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .chat-container {
@@ -1884,25 +1935,163 @@
             background: rgba(157, 78, 221, 0.1);
             border-left-color: var(--consciousness-purple);
         }
+
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stagger-animation>* {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .stagger-animation>*:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .stagger-animation>*:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .stagger-animation>*:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .stagger-animation>*:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .stagger-animation>*:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        /* Component Classes */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        .card {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 2rem;
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--unity-gold);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            color: var(--consciousness-purple);
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .card-text {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: var(--radius);
+            font-family: var(--font-primary);
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn:hover {
+            background: var(--consciousness-purple);
+            border-color: var(--consciousness-purple);
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: var(--consciousness-purple);
+            border-color: var(--consciousness-purple);
+        }
+
+        .btn-primary:hover {
+            background: var(--unity-gold);
+            border-color: var(--unity-gold);
+            color: var(--bg-primary);
+        }
+
+        .section-dark {
+            background: var(--bg-secondary);
+            padding: 4rem 2rem;
+        }
+
+        .section-darker {
+            background: var(--bg-primary);
+            padding: 4rem 2rem;
+        }
     </style>
 </head>
 
 <body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <!-- Loading Screen -->
     <div class="loading-screen">
         <div class="loading-spinner"></div>
     </div>
 
-    <!-- Background Elements -->
+    <!-- Background Effects -->
     <div class="metastation-bg">
-        <img src="landing/Metastation.jpg" alt="Metastation Background">
+        <img src="landing/Metastation.jpg" alt="Metastation background">
     </div>
     <div class="particle-field"></div>
 
-    <!-- Unified Navigation System (Replaces 38-link overloaded navigation) -->
+    <!-- Meta-Optimal Navigation System (42 pages accessible) -->
     <!-- Navigation will be dynamically injected by unified-navigation-system.js -->
     <header id="main-header">
-        <!-- Unified navigation placeholder - will be populated by JavaScript -->
+        <!-- Meta-optimal navigation placeholder - will be populated by JavaScript -->
     </header>
 
     <!-- Quick Access Toolbar -->
@@ -2359,8 +2548,8 @@
                     <input type="range" id="volume-slider" min="0" max="100" value="30" class="volume-slider">
                     <div class="volume-display" id="volume-display">30%</div>
                 </div>
-                <button class="audio-btn" id="minimize-btn" title="Minimize">
-                    <i class="fas fa-chevron-down"></i>
+                <button class="audio-btn" id="minimize-btn" title="Expand">
+                    <i class="fas fa-chevron-up"></i>
                 </button>
             </div>
         </div>
@@ -2616,17 +2805,17 @@
                     });
                 }
 
-                // Minimize functionality
+                // Expand/Collapse functionality
                 if (minimizeBtn && musicPlayer) {
                     minimizeBtn.addEventListener('click', () => {
-                        musicPlayer.classList.toggle('minimized');
+                        musicPlayer.classList.toggle('expanded');
                         const icon = minimizeBtn.querySelector('i');
-                        if (musicPlayer.classList.contains('minimized')) {
-                            icon.className = 'fas fa-chevron-up';
-                            minimizeBtn.title = 'Expand';
-                        } else {
+                        if (musicPlayer.classList.contains('expanded')) {
                             icon.className = 'fas fa-chevron-down';
                             minimizeBtn.title = 'Minimize';
+                        } else {
+                            icon.className = 'fas fa-chevron-up';
+                            minimizeBtn.title = 'Expand';
                         }
                     });
                 }
@@ -2935,7 +3124,7 @@
         // Fallback chat button creation
         function createFallbackChatButton() {
             // Remove existing chat buttons
-            const existingButtons = document.querySelectorAll('.floating-chat-btn, #persistent-chat-button');
+            const existingButtons = document.querySelectorAll('.floating-chat-btn, #persistent-chat-button, .persistent-chat-button');
             existingButtons.forEach(btn => btn.remove());
 
             // Create fallback chat button
@@ -3060,7 +3249,15 @@
                     // Create a fallback chat button
                     createFallbackChatButton();
                 }
-            }, 100);
+            }, 500);
+
+            // Additional initialization for chat system
+            setTimeout(() => {
+                if (!window.persistentChat && typeof PersistentChatSystem !== 'undefined') {
+                    window.persistentChat = new PersistentChatSystem();
+                    console.log('✅ Persistent Chat System initialized (retry)');
+                }
+            }, 1000);
 
             // Console Easter Egg
             console.log(`

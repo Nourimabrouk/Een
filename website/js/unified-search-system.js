@@ -10,22 +10,23 @@ class UnifiedSearchSystem {
         this.searchIndex = this.buildSearchIndex();
         this.searchHistory = this.loadSearchHistory();
         this.aiIntegration = true;
-        
+
         console.log('🔍 Unified Search System initializing...');
         this.init();
     }
-    
+
     init() {
         this.injectStyles();
         this.createSearchModal();
         this.bindEvents();
-        
+
         // Listen for unified navigation events
         window.addEventListener('unified-nav:search', () => this.toggleSearch());
-        
-        console.log('🔍 Unified Search System initialized');
+
+        // Don't auto-open search on page load
+        console.log('🔍 Unified Search System initialized (not auto-opening)');
     }
-    
+
     buildSearchIndex() {
         // Next-Level Comprehensive Search Index - ALL 47 Website Pages with AI Understanding
         return {
@@ -42,7 +43,7 @@ class UnifiedSearchSystem {
                 },
                 {
                     title: "Home",
-                    url: "index.html", 
+                    url: "index.html",
                     description: "Welcome to Een Unity Mathematics - where 1+1=1 through consciousness and φ-harmonic resonance",
                     keywords: ["home", "welcome", "index", "main", "unity", "mathematics", "1+1=1"],
                     category: "Navigation",
@@ -52,7 +53,7 @@ class UnifiedSearchSystem {
                 {
                     title: "Meta-Optimal Landing",
                     url: "meta-optimal-landing.html",
-                    description: "Professional landing page with meta-optimized unity mathematics presentation", 
+                    description: "Professional landing page with meta-optimized unity mathematics presentation",
                     keywords: ["landing", "professional", "meta-optimal", "presentation", "marketing"],
                     category: "Navigation",
                     priority: 8,
@@ -65,7 +66,7 @@ class UnifiedSearchSystem {
                     url: "mathematical-framework.html",
                     description: "Rigorous mathematical foundation for 1+1=1 with φ-harmonic theory and consciousness field equations",
                     keywords: ["mathematics", "framework", "theory", "phi", "harmonic", "1+1=1", "rigorous", "foundation"],
-                    category: "Mathematics", 
+                    category: "Mathematics",
                     priority: 10,
                     tags: ["core", "theory", "academic"]
                 },
@@ -80,7 +81,7 @@ class UnifiedSearchSystem {
                 },
                 {
                     title: "3000 ELO Proof",
-                    url: "3000-elo-proof.html", 
+                    url: "3000-elo-proof.html",
                     description: "Ultra-advanced mathematical proof of 1+1=1 with transcendental computing integration",
                     keywords: ["3000", "elo", "advanced", "proof", "transcendental", "computing", "expert"],
                     category: "Mathematics",
@@ -101,7 +102,7 @@ class UnifiedSearchSystem {
                     url: "mathematical_playground.html",
                     description: "Interactive mathematical sandbox for exploring unity operations and Gödel-Tarski concepts",
                     keywords: ["playground", "interactive", "sandbox", "godel", "tarski", "operations"],
-                    category: "Mathematics", 
+                    category: "Mathematics",
                     priority: 6,
                     tags: ["interactive", "playground", "experimental"]
                 },
@@ -118,7 +119,7 @@ class UnifiedSearchSystem {
                 // ========== CONSCIOUSNESS & EXPERIENCES ==========
                 {
                     title: "Zen Unity Meditation",
-                    url: "zen-unity-meditation.html", 
+                    url: "zen-unity-meditation.html",
                     description: "Interactive consciousness meditation experience with quantum koans and φ-harmonic resonance",
                     keywords: ["zen", "meditation", "consciousness", "mindfulness", "unity", "koans", "quantum"],
                     category: "Experiences",
@@ -164,14 +165,14 @@ class UnifiedSearchSystem {
                 {
                     title: "Transcendental Unity Demo",
                     url: "transcendental-unity-demo.html",
-                    description: "Advanced transcendental reality synthesis with hyperdimensional consciousness mathematics", 
+                    description: "Advanced transcendental reality synthesis with hyperdimensional consciousness mathematics",
                     keywords: ["transcendental", "unity", "demo", "reality", "synthesis", "hyperdimensional"],
                     category: "Experiences",
                     priority: 7,
                     tags: ["transcendental", "advanced", "demo"]
                 },
                 {
-                    title: "Enhanced Unity Demo", 
+                    title: "Enhanced Unity Demo",
                     url: "enhanced-unity-demo.html",
                     description: "Enhanced unity mathematics demonstration with advanced visualization and AI integration",
                     keywords: ["enhanced", "unity", "demo", "advanced", "visualization", "ai", "integration"],
@@ -184,7 +185,7 @@ class UnifiedSearchSystem {
                     url: "enhanced-ai-demo.html",
                     description: "AI-powered unity mathematics exploration with consciousness-enhanced algorithms",
                     keywords: ["enhanced", "ai", "demo", "powered", "exploration", "consciousness", "algorithms"],
-                    category: "Experiences", 
+                    category: "Experiences",
                     priority: 6,
                     tags: ["ai", "enhanced", "algorithms"]
                 },
@@ -208,7 +209,7 @@ class UnifiedSearchSystem {
                     priority: 7,
                     tags: ["hub", "dashboards", "central"]
                 },
-                
+
                 // ========== IMPLEMENTATIONS & CODE ==========
                 {
                     title: "Implementations Gallery",
@@ -221,7 +222,7 @@ class UnifiedSearchSystem {
                 },
                 {
                     title: "Implementations",
-                    url: "implementations.html", 
+                    url: "implementations.html",
                     description: "Technical implementation details and code repositories for unity mathematics systems",
                     keywords: ["implementations", "technical", "code", "repositories", "systems", "details"],
                     category: "Implementations",
@@ -244,7 +245,7 @@ class UnifiedSearchSystem {
                     url: "philosophy.html",
                     description: "Deep philosophical implications of unity mathematics, consciousness, and the nature of mathematical reality",
                     keywords: ["philosophy", "implications", "meaning", "consciousness", "unity", "reality", "nature"],
-                    category: "Philosophy", 
+                    category: "Philosophy",
                     priority: 8,
                     tags: ["philosophy", "deep", "implications"]
                 },
@@ -358,7 +359,7 @@ class UnifiedSearchSystem {
 
                 // ========== TOOLS & UTILITIES ==========
                 {
-                    title: "Unity Advanced Features", 
+                    title: "Unity Advanced Features",
                     url: "unity-advanced-features.html",
                     description: "Advanced features and tools for professional unity mathematics research and development",
                     keywords: ["unity", "advanced", "features", "tools", "professional", "research", "development"],
@@ -408,7 +409,7 @@ class UnifiedSearchSystem {
                 },
                 {
                     title: "Unity Calculator",
-                    url: "examples/unity-calculator.html", 
+                    url: "examples/unity-calculator.html",
                     description: "Advanced calculator implementing unity operations where 1+1=1 with φ-harmonic precision",
                     keywords: ["unity", "calculator", "operations", "1+1=1", "phi-harmonic", "precision"],
                     category: "Examples",
@@ -420,7 +421,7 @@ class UnifiedSearchSystem {
                     url: "examples/index.html",
                     description: "Interactive examples and demonstrations of unity mathematics concepts and algorithms",
                     keywords: ["examples", "interactive", "demonstrations", "concepts", "algorithms", "samples"],
-                    category: "Examples", 
+                    category: "Examples",
                     priority: 5,
                     tags: ["examples", "demonstrations", "samples"]
                 },
@@ -435,7 +436,7 @@ class UnifiedSearchSystem {
                 },
                 {
                     title: "Landing Navigation",
-                    url: "landing/index-nav.html", 
+                    url: "landing/index-nav.html",
                     description: "Alternative navigation interface for landing page experiences",
                     keywords: ["landing", "navigation", "alternative", "interface", "page", "experiences"],
                     category: "Navigation",
@@ -472,7 +473,7 @@ class UnifiedSearchSystem {
             ]
         };
     }
-    
+
     injectStyles() {
         const styleId = 'unified-search-styles';
         if (!document.getElementById(styleId)) {
@@ -715,7 +716,7 @@ class UnifiedSearchSystem {
             document.head.appendChild(style);
         }
     }
-    
+
     createSearchModal() {
         const modal = document.createElement('div');
         modal.id = 'unified-search-modal';
@@ -761,14 +762,14 @@ class UnifiedSearchSystem {
                 </div>
             </div>
         `;
-        
+
         document.body.appendChild(modal);
     }
-    
+
     renderDefaultResults() {
         const categories = this.groupResultsByCategory(this.searchIndex.pages);
         let html = '<div class="search-category"><div class="category-title">🌟 Featured Pages</div>';
-        
+
         categories.forEach(category => {
             html += `
                 <div class="search-category">
@@ -777,10 +778,10 @@ class UnifiedSearchSystem {
                 </div>
             `;
         });
-        
+
         return html + '</div>';
     }
-    
+
     groupResultsByCategory(results) {
         const categories = {};
         results.forEach(item => {
@@ -789,13 +790,13 @@ class UnifiedSearchSystem {
             }
             categories[item.category].push(item);
         });
-        
+
         return Object.keys(categories).map(name => ({
             name,
             items: categories[name]
         }));
     }
-    
+
     getCategoryIcon(category) {
         const icons = {
             'Navigation': '🧭',
@@ -807,30 +808,30 @@ class UnifiedSearchSystem {
         };
         return icons[category] || '📄';
     }
-    
+
     renderSearchResult(item) {
         return `
             <a href="${item.url}" class="search-result-item" data-search-result>
                 <div class="result-title">${item.title}</div>
                 <div class="result-description">${item.description}</div>
                 <div class="result-keywords">
-                    ${item.keywords.slice(0, 3).map(keyword => 
-                        `<span class="result-keyword">${keyword}</span>`
-                    ).join('')}
+                    ${item.keywords.slice(0, 3).map(keyword =>
+            `<span class="result-keyword">${keyword}</span>`
+        ).join('')}
                 </div>
             </a>
         `;
     }
-    
+
     performSearch(query) {
         if (!query.trim()) {
             this.displayResults(this.renderDefaultResults());
             return;
         }
-        
+
         const searchTerms = query.toLowerCase().split(' ');
         let results = [];
-        
+
         // Search pages
         this.searchIndex.pages.forEach(page => {
             let score = 0;
@@ -839,19 +840,19 @@ class UnifiedSearchSystem {
                 page.description,
                 ...page.keywords
             ].join(' ').toLowerCase();
-            
+
             searchTerms.forEach(term => {
                 if (page.title.toLowerCase().includes(term)) score += 10;
                 if (page.description.toLowerCase().includes(term)) score += 5;
                 if (page.keywords.some(k => k.toLowerCase().includes(term))) score += 3;
                 if (searchableText.includes(term)) score += 1;
             });
-            
+
             if (score > 0) {
                 results.push({ ...page, score });
             }
         });
-        
+
         // Search concepts
         this.searchIndex.concepts.forEach(concept => {
             let score = 0;
@@ -860,14 +861,14 @@ class UnifiedSearchSystem {
                 concept.definition,
                 ...concept.related
             ].join(' ').toLowerCase();
-            
+
             searchTerms.forEach(term => {
                 if (concept.term.toLowerCase().includes(term)) score += 8;
                 if (concept.definition.toLowerCase().includes(term)) score += 4;
                 if (concept.related.some(r => r.toLowerCase().includes(term))) score += 2;
                 if (searchableText.includes(term)) score += 1;
             });
-            
+
             if (score > 0) {
                 results.push({
                     title: concept.term,
@@ -879,10 +880,10 @@ class UnifiedSearchSystem {
                 });
             }
         });
-        
+
         // Sort by relevance
         results.sort((a, b) => b.score - a.score);
-        
+
         if (results.length === 0) {
             this.displayResults(`
                 <div class="search-empty">
@@ -903,29 +904,29 @@ class UnifiedSearchSystem {
             });
             this.displayResults(html);
         }
-        
+
         // Save to search history
         this.saveToSearchHistory(query);
     }
-    
+
     displayResults(html) {
         const resultsContainer = document.getElementById('search-results');
         if (resultsContainer) {
             resultsContainer.innerHTML = html;
         }
     }
-    
+
     bindEvents() {
         const modal = document.getElementById('unified-search-modal');
         const closeBtn = modal.querySelector('.search-close');
         const searchInput = modal.querySelector('.search-input');
-        
+
         // Close modal events
         closeBtn.addEventListener('click', () => this.closeSearch());
         modal.addEventListener('click', (e) => {
             if (e.target === modal) this.closeSearch();
         });
-        
+
         // Search input events
         let searchTimeout;
         searchInput.addEventListener('input', (e) => {
@@ -934,7 +935,7 @@ class UnifiedSearchSystem {
                 this.performSearch(e.target.value);
             }, 300);
         });
-        
+
         // Result click events
         modal.addEventListener('click', (e) => {
             const resultItem = e.target.closest('[data-search-result]');
@@ -951,7 +952,7 @@ class UnifiedSearchSystem {
                 }
             }
         });
-        
+
         // Keyboard shortcuts
         document.addEventListener('keydown', (e) => {
             // Ctrl+K or Cmd+K to open search
@@ -959,14 +960,14 @@ class UnifiedSearchSystem {
                 e.preventDefault();
                 this.toggleSearch();
             }
-            
+
             // Escape to close search
             if (e.key === 'Escape' && this.isOpen) {
                 this.closeSearch();
             }
         });
     }
-    
+
     toggleSearch() {
         if (this.isOpen) {
             this.closeSearch();
@@ -974,62 +975,62 @@ class UnifiedSearchSystem {
             this.openSearch();
         }
     }
-    
+
     openSearch() {
         const modal = document.getElementById('unified-search-modal');
         const searchInput = modal.querySelector('.search-input');
-        
+
         this.isOpen = true;
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
-        
+
         // Focus search input
         setTimeout(() => {
             searchInput.focus();
             searchInput.select();
         }, 100);
-        
+
         console.log('🔍 Search modal opened');
     }
-    
+
     closeSearch() {
         const modal = document.getElementById('unified-search-modal');
-        
+
         this.isOpen = false;
         modal.classList.remove('active');
         document.body.style.overflow = '';
-        
+
         // Clear search input
         const searchInput = modal.querySelector('.search-input');
         searchInput.value = '';
         this.displayResults(this.renderDefaultResults());
-        
+
         console.log('🔍 Search modal closed');
     }
-    
+
     showConceptExplanation(conceptId) {
         // This could open a detailed explanation modal
-        const concept = this.searchIndex.concepts.find(c => 
+        const concept = this.searchIndex.concepts.find(c =>
             c.term.toLowerCase().replace(/\s+/g, '-') === conceptId
         );
-        
+
         if (concept) {
             alert(`${concept.term}\n\n${concept.definition}\n\nRelated: ${concept.related.join(', ')}`);
         }
     }
-    
+
     saveToSearchHistory(query) {
         this.searchHistory.unshift(query);
         this.searchHistory = [...new Set(this.searchHistory)]; // Remove duplicates
         this.searchHistory = this.searchHistory.slice(0, 10); // Keep only last 10
-        
+
         try {
             localStorage.setItem('een-search-history', JSON.stringify(this.searchHistory));
         } catch (error) {
             console.warn('Could not save search history:', error);
         }
     }
-    
+
     loadSearchHistory() {
         try {
             const history = localStorage.getItem('een-search-history');

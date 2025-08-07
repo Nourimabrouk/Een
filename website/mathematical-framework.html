@@ -3,11 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Performance Optimizations -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.plot.ly">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
     <title>Mathematical Framework | Een Unity Mathematics</title>
     <meta name="description" content="Explore the rigorous mathematical framework behind 1+1=1, featuring φ-harmonic operations, consciousness field equations, and transcendental computing principles.">
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Meta-Optimal Navigation System -->
+    <link rel="stylesheet" href="css/meta-optimal-navigation.css">
+    <!-- Unified Styles -->
+    <link rel="stylesheet" href="css/unified-styles.css">
+    <script src="js/unified-navigation-system.js" defer></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
     
@@ -47,6 +58,7 @@
         }
 
         body {
+            padding-top: 80px; /* Account for fixed navigation */
             font-family: var(--font-main);
             line-height: 1.7;
             color: var(--text-primary);
@@ -438,19 +450,109 @@
         .staggered-1 { animation-delay: 0.1s; }
         .staggered-2 { animation-delay: 0.2s; }
         .staggered-3 { animation-delay: 0.3s; }
+    
+        /* Component Classes */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        .card {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 2rem;
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--unity-gold);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            color: var(--consciousness-purple);
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .card-text {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: var(--radius);
+            font-family: var(--font-primary);
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn:hover {
+            background: var(--consciousness-purple);
+            border-color: var(--consciousness-purple);
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: var(--consciousness-purple);
+            border-color: var(--consciousness-purple);
+        }
+
+        .btn-primary:hover {
+            background: var(--unity-gold);
+            border-color: var(--unity-gold);
+            color: var(--bg-primary);
+        }
+
+        .section-dark {
+            background: var(--bg-secondary);
+            padding: 4rem 2rem;
+        }
+
+        .section-darker {
+            background: var(--bg-primary);
+            padding: 4rem 2rem;
+        }
     </style>
 </head>
 <body>
     <header class="framework-header">
         <div class="header-container">
             <a href="metastation-hub.html" class="header-title">Mathematical Framework</a>
-            <nav class="nav-breadcrumb">
-                <a href="metastation-hub.html">Hub</a>
-                <i class="fas fa-chevron-right"></i>
-                <a href="implementations-gallery.html">Implementations</a>
-                <i class="fas fa-chevron-right"></i>
-                <span>Framework</span>
-            </nav>
+            <!-- Navigation will be injected by unified-navigation-system.js -->
         </div>
     </header>
 
@@ -638,12 +740,7 @@
     </main>
 
     <!-- Side Navigation -->
-    <nav class="section-nav">
-        <a href="#principles" class="nav-item">Principles</a>
-        <a href="#equations" class="nav-item">Equations</a>
-        <a href="#consciousness" class="nav-item">Consciousness</a>
-        <a href="#implementation" class="nav-item">Implementation</a>
-    </nav>
+    <!-- Navigation will be injected by unified-navigation-system.js -->
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {

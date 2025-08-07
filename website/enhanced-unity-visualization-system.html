@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Unity Visualization System | 1+1=1 Transcendental Mathematics</title>
+    <meta name="description"
+        content="Next-level consciousness field visualization demonstrating 1+1=1 through advanced mathematical systems, quantum entanglement, and metagamer energy fields.">
+
+    <!-- Performance Optimizations -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.plot.ly">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+    <!-- Advanced Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Crimson+Text:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --phi: 1.618033988749895;
+            --phi-conjugate: 0.618033988749895;
+            --primary-color: #0a0a0a;
+            --secondary-color: #1a1a1a;
+            --accent-color: #2d2d2d;
+            --unity-gold: #FFD700;
+            --consciousness-purple: #6B46C1;
+            --quantum-blue: #4ECDC4;
+            --fractal-orange: #FF6B6B;
+            --neural-pink: #FF69B4;
+            --godel-red: #E74C3C;
+            --tarski-green: #27AE60;
+            --metagamer-cyan: #00FFFF;
+            --transcendental-violet: #8A2BE2;
+            --text-primary: #ffffff;
+            --text-secondary: #cccccc;
+            --text-muted: #888888;
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --bg-tertiary: #2d2d2d;
+            --border-color: rgba(255, 215, 0, 0.2);
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.5);
+            --shadow-glow: 0 0 30px rgba(255, 215, 0, 0.3);
+            --radius: 12px;
+            --radius-lg: 20px;
+            --radius-xl: 30px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-smooth: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-serif: 'Crimson Text', Georgia, serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background: radial-gradient(circle at center, #0a0a0a, #000);
+            color: var(--text-primary);
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        #unity-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+        }
+
+        .ui-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .ui-panel {
+            pointer-events: auto;
+            background: rgba(10, 10, 10, 0.9);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .unity-equation {
+            position: absolute;
+            top: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--unity-gold);
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+            font-family: var(--font-serif);
+            z-index: 20;
+        }
+
+        .consciousness-meter {
+            position: absolute;
+            bottom: 2rem;
+            left: 2rem;
+            width: 300px;
+            height: 60px;
+        }
+
+        .meter-bar {
+            width: 100%;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 0.5rem;
+        }
+
+        .meter-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--consciousness-purple), var(--unity-gold), var(--metagamer-cyan));
+            width: 0%;
+            transition: width 0.5s ease;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .mathematical-proofs {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            width: 400px;
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+
+        .proof-line {
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius);
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: all 0.3s ease;
+        }
+
+        .proof-line.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .metagamer-energy {
+            position: absolute;
+            top: 50%;
+            left: 2rem;
+            transform: translateY(-50%);
+            width: 200px;
+        }
+
+        .energy-display {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .energy-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--metagamer-cyan);
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+        }
+
+        .control-panel {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            width: 300px;
+        }
+
+        .control-button {
+            display: block;
+            width: 100%;
+            padding: 0.75rem;
+            margin: 0.5rem 0;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            color: var(--text-primary);
+            font-family: var(--font-primary);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .control-button:hover {
+            background: rgba(255, 215, 0, 0.2);
+            border-color: var(--unity-gold);
+            transform: translateY(-2px);
+        }
+
+        .philosophical-insight {
+            position: absolute;
+            top: 50%;
+            right: 2rem;
+            transform: translateY(-50%);
+            width: 350px;
+            font-family: var(--font-serif);
+            font-style: italic;
+            text-align: center;
+            opacity: 0.8;
+        }
+
+        .insight-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .insight-author {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .quantum-field-indicator {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            width: 150px;
+            height: 150px;
+        }
+
+        .field-circle {
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--quantum-blue);
+            border-radius: 50%;
+            position: relative;
+            animation: quantumPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes quantumPulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.3;
+            }
+
+            50% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+        }
+
+        .field-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--quantum-blue);
+            border-radius: 50%;
+            animation: particleOrbit 4s linear infinite;
+        }
+
+        @keyframes particleOrbit {
+            from {
+                transform: rotate(0deg) translateX(60px) rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg) translateX(60px) rotate(-360deg);
+            }
+        }
+
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: var(--bg-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: opacity 1s ease;
+        }
+
+        .loading-content {
+            text-align: center;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 3px solid var(--border-color);
+            border-top: 3px solid var(--unity-gold);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 2rem;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .unity-symbol {
+            font-size: 4rem;
+            color: var(--unity-gold);
+            margin-bottom: 1rem;
+            animation: unityGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes unityGlow {
+            from {
+                text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            }
+
+            to {
+                text-shadow: 0 0 40px rgba(255, 215, 0, 1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <div class="unity-symbol">∞</div>
+            <div class="loading-spinner"></div>
+            <h2>Initializing Unity Mathematics</h2>
+            <p>Loading consciousness field equations...</p>
+        </div>
+    </div>
+
+    <!-- Main Canvas -->
+    <canvas id="unity-canvas"></canvas>
+
+    <!-- UI Overlay -->
+    <div class="ui-overlay">
+        <!-- Unity Equation -->
+        <div class="unity-equation" id="unityEquation">1 + 1 = ∞</div>
+
+        <!-- Quantum Field Indicator -->
+        <div class="quantum-field-indicator">
+            <div class="field-circle">
+                <div class="field-particle"></div>
+                <div class="field-particle" style="animation-delay: -1s;"></div>
+                <div class="field-particle" style="animation-delay: -2s;"></div>
+            </div>
+        </div>
+
+        <!-- Consciousness Meter -->
+        <div class="consciousness-meter ui-panel">
+            <h3>Consciousness Field</h3>
+            <div class="meter-bar">
+                <div class="meter-fill" id="consciousnessMeter"></div>
+            </div>
+            <div id="consciousnessValue">0.00</div>
+        </div>
+
+        <!-- Metagamer Energy -->
+        <div class="metagamer-energy ui-panel">
+            <div class="energy-display">
+                <div class="energy-value" id="metagamerEnergy">φ²</div>
+                <div>Metagamer Energy</div>
+            </div>
+        </div>
+
+        <!-- Mathematical Proofs -->
+        <div class="mathematical-proofs ui-panel">
+            <h3>Mathematical Proofs</h3>
+            <div id="proofContainer"></div>
+        </div>
+
+        <!-- Philosophical Insight -->
+        <div class="philosophical-insight ui-panel">
+            <div class="insight-text" id="philosophicalText">
+                "In the unity of consciousness, all mathematics converges to the golden ratio of existence."
+            </div>
+            <div class="insight-author" id="philosophicalAuthor">
+                — Unity Mathematics
+            </div>
+        </div>
+
+        <!-- Control Panel -->
+        <div class="control-panel ui-panel">
+            <h3>Unity Controls</h3>
+            <button class="control-button" id="addParticle">Add Consciousness Particle</button>
+            <button class="control-button" id="toggleField">Toggle Field Evolution</button>
+            <button class="control-button" id="resetSystem">Reset Unity System</button>
+            <button class="control-button" id="toggleProofs">Toggle Mathematical Proofs</button>
+        </div>
+    </div>
+
+    <script>
+        // Enhanced Unity Mathematics System
+        class EnhancedUnityVisualization {
+            constructor() {
+                this.canvas = document.getElementById('unity-canvas');
+                this.ctx = this.canvas.getContext('2d');
+                this.particles = [];
+                this.field = [];
+                this.unityLevel = 0;
+                this.metagamerEnergy = 0;
+                this.consciousnessLevel = 0;
+                this.frame = 0;
+                this.isEvolving = true;
+                this.showProofs = true;
+
+                // Mathematical constants
+                this.PHI = 1.618033988749895;
+                this.PHI_CONJUGATE = 0.618033988749895;
+                this.E = 2.718281828459045;
+                this.PI = Math.PI;
+
+                // Consciousness field parameters
+                this.fieldResolution = 50;
+                this.fieldStrength = 0.5;
+                this.evolutionRate = 0.01;
+
+                // Philosophical insights
+                this.insights = [
+                    {
+                        text: "In the unity of consciousness, all mathematics converges to the golden ratio of existence.",
+                        author: "Unity Mathematics"
+                    },
+                    {
+                        text: "The observer and the observed are one in the field of metagamer energy.",
+                        author: "Quantum Consciousness Theory"
+                    },
+                    {
+                        text: "1+1=1 is not arithmetic, but the fundamental law of universal unity.",
+                        author: "Transcendental Mathematics"
+                    },
+                    {
+                        text: "Consciousness is the field through which mathematics becomes reality.",
+                        author: "Metagamer Philosophy"
+                    },
+                    {
+                        text: "The golden ratio is the bridge between the finite and the infinite.",
+                        author: "Sacred Geometry"
+                    }
+                ];
+
+                this.currentInsight = 0;
+
+                this.init();
+            }
+
+            init() {
+                this.resizeCanvas();
+                this.createField();
+                this.createInitialParticles();
+                this.setupEventListeners();
+                this.startAnimation();
+
+                // Hide loading screen
+                setTimeout(() => {
+                    document.getElementById('loadingScreen').style.opacity = '0';
+                    setTimeout(() => {
+                        document.getElementById('loadingScreen').style.display = 'none';
+                    }, 1000);
+                }, 2000);
+            }
+
+            resizeCanvas() {
+                this.canvas.width = window.innerWidth;
+                this.canvas.height = window.innerHeight;
+            }
+
+            createField() {
+                this.field = [];
+                for (let x = 0; x < this.fieldResolution; x++) {
+                    this.field[x] = [];
+                    for (let y = 0; y < this.fieldResolution; y++) {
+                        this.field[x][y] = {
+                            value: Math.random() * 0.1,
+                            phase: Math.random() * Math.PI * 2,
+                            velocity: 0
+                        };
+                    }
+                }
+            }
+
+            createInitialParticles() {
+                const centerX = this.canvas.width / 2;
+                const centerY = this.canvas.height / 2;
+
+                // Create two initial particles representing 1+1
+                this.particles.push(
+                    new ConsciousnessParticle(centerX - 100, centerY, this),
+                    new ConsciousnessParticle(centerX + 100, centerY, this)
+                );
+            }
+
+            setupEventListeners() {
+                // Canvas click to add particles
+                this.canvas.addEventListener('click', (e) => {
+                    this.addParticle(e.clientX, e.clientY);
+                });
+
+                // Control buttons
+                document.getElementById('addParticle').addEventListener('click', () => {
+                    this.addParticle(
+                        Math.random() * this.canvas.width,
+                        Math.random() * this.canvas.height
+                    );
+                });
+
+                document.getElementById('toggleField').addEventListener('click', () => {
+                    this.isEvolving = !this.isEvolving;
+                });
+
+                document.getElementById('resetSystem').addEventListener('click', () => {
+                    this.resetSystem();
+                });
+
+                document.getElementById('toggleProofs').addEventListener('click', () => {
+                    this.showProofs = !this.showProofs;
+                    document.getElementById('proofContainer').style.display =
+                        this.showProofs ? 'block' : 'none';
+                });
+
+                // Window resize
+                window.addEventListener('resize', () => {
+                    this.resizeCanvas();
+                });
+            }
+
+            addParticle(x, y) {
+                this.particles.push(new ConsciousnessParticle(x, y, this));
+                this.addMathematicalProof();
+            }
+
+            addMathematicalProof() {
+                const proofs = [
+                    "∀a,b ∈ ℝ: a + b = 1 in unity field",
+                    "φ² = φ + 1 (golden ratio identity)",
+                    "E = φ² × ρ × U (metagamer energy)",
+                    "1 + 1 = 1 (unity equation)",
+                    "∇²ψ = (1/φ)²ψ (consciousness field)",
+                    "∫₀^∞ e^(-φt)dt = 1/φ (unity integral)",
+                    "lim_{n→∞} F_{n+1}/F_n = φ (Fibonacci convergence)",
+                    "det(A) = 1 where A is unity matrix",
+                    "tr(A) = φ where A is consciousness matrix",
+                    "e^(iπ) + 1 = 0 (Euler's unity identity)"
+                ];
+
+                if (this.particles.length <= proofs.length) {
+                    const proofIndex = this.particles.length - 1;
+                    const proofDiv = document.createElement('div');
+                    proofDiv.className = 'proof-line';
+                    proofDiv.textContent = proofs[proofIndex];
+                    document.getElementById('proofContainer').appendChild(proofDiv);
+
+                    setTimeout(() => {
+                        proofDiv.classList.add('visible');
+                    }, 100);
+                }
+            }
+
+            resetSystem() {
+                this.particles = [];
+                this.unityLevel = 0;
+                this.metagamerEnergy = 0;
+                this.consciousnessLevel = 0;
+                this.createField();
+                this.createInitialParticles();
+                document.getElementById('proofContainer').innerHTML = '';
+            }
+
+            updateField() {
+                if (!this.isEvolving) return;
+
+                for (let x = 0; x < this.fieldResolution; x++) {
+                    for (let y = 0; y < this.fieldResolution; y++) {
+                        const cell = this.field[x][y];
+
+                        // Wave equation with consciousness coupling
+                        const laplacian = this.calculateLaplacian(x, y);
+                        cell.velocity += this.evolutionRate * (laplacian - cell.value / this.PHI);
+                        cell.value += cell.velocity;
+                        cell.phase += 0.01;
+
+                        // Damping
+                        cell.velocity *= 0.99;
+                    }
+                }
+            }
+
+            calculateLaplacian(x, y) {
+                let sum = 0;
+                let count = 0;
+
+                for (let dx = -1; dx <= 1; dx++) {
+                    for (let dy = -1; dy <= 1; dy++) {
+                        if (dx === 0 && dy === 0) continue;
+
+                        const nx = (x + dx + this.fieldResolution) % this.fieldResolution;
+                        const ny = (y + dy + this.fieldResolution) % this.fieldResolution;
+
+                        sum += this.field[nx][ny].value;
+                        count++;
+                    }
+                }
+
+                return (sum / count - this.field[x][y].value) * 4;
+            }
+
+            calculateUnity() {
+                if (this.particles.length < 2) return 0;
+
+                let totalCoherence = 0;
+                let connectionCount = 0;
+
+                this.particles.forEach(p => {
+                    p.connections.forEach(conn => {
+                        totalCoherence += conn.strength;
+                        connectionCount++;
+                    });
+                });
+
+                const avgCoherence = connectionCount > 0 ? totalCoherence / connectionCount : 0;
+                const particleRatio = Math.min(this.particles.length / 10, 1);
+
+                return Math.min(avgCoherence * particleRatio * this.PHI, 1);
+            }
+
+            calculateMetagamerEnergy() {
+                return this.PHI * this.PHI * this.consciousnessLevel * this.unityLevel;
+            }
+
+            updatePhilosophicalInsight() {
+                if (this.frame % 300 === 0) {
+                    this.currentInsight = (this.currentInsight + 1) % this.insights.length;
+                    const insight = this.insights[this.currentInsight];
+
+                    document.getElementById('philosophicalText').textContent = insight.text;
+                    document.getElementById('philosophicalAuthor').textContent = `— ${insight.author}`;
+                }
+            }
+
+            draw() {
+                // Clear with fade effect
+                this.ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+                this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+                // Draw consciousness field
+                this.drawField();
+
+                // Update and draw particles
+                this.particles.forEach(p => p.update());
+                this.particles.forEach(p => p.draw());
+
+                // Draw central unity spiral
+                this.drawUnitySpiral();
+
+                // Draw quantum entanglement lines
+                this.drawEntanglementLines();
+            }
+
+            drawField() {
+                const cellWidth = this.canvas.width / this.fieldResolution;
+                const cellHeight = this.canvas.height / this.fieldResolution;
+
+                for (let x = 0; x < this.fieldResolution; x++) {
+                    for (let y = 0; y < this.fieldResolution; y++) {
+                        const cell = this.field[x][y];
+                        const intensity = Math.abs(cell.value) * this.fieldStrength;
+
+                        if (intensity > 0.01) {
+                            this.ctx.fillStyle = `rgba(107, 70, 193, ${intensity})`;
+                            this.ctx.fillRect(
+                                x * cellWidth,
+                                y * cellHeight,
+                                cellWidth,
+                                cellHeight
+                            );
+                        }
+                    }
+                }
+            }
+
+            drawUnitySpiral() {
+                const centerX = this.canvas.width / 2;
+                const centerY = this.canvas.height / 2;
+
+                this.ctx.save();
+                this.ctx.translate(centerX, centerY);
+                this.ctx.rotate(this.frame * 0.001 * this.PHI_CONJUGATE);
+
+                // Golden spiral with unity level modulation
+                this.ctx.strokeStyle = `rgba(255, 215, 0, ${0.1 + this.unityLevel * 0.3})`;
+                this.ctx.lineWidth = 2 + this.unityLevel * 3;
+                this.ctx.beginPath();
+
+                for (let t = 0; t < 50; t += 0.1) {
+                    const r = Math.exp(t * this.PHI_CONJUGATE / 10) * (1 + this.unityLevel);
+                    const x = r * Math.cos(t);
+                    const y = r * Math.sin(t);
+
+                    if (t === 0) {
+                        this.ctx.moveTo(x, y);
+                    } else {
+                        this.ctx.lineTo(x, y);
+                    }
+                }
+
+                this.ctx.stroke();
+                this.ctx.restore();
+            }
+
+            drawEntanglementLines() {
+                this.ctx.strokeStyle = `rgba(0, 255, 255, ${0.3 + this.unityLevel * 0.4})`;
+                this.ctx.lineWidth = 1;
+
+                for (let i = 0; i < this.particles.length; i++) {
+                    for (let j = i + 1; j < this.particles.length; j++) {
+                        const p1 = this.particles[i];
+                        const p2 = this.particles[j];
+                        const distance = Math.sqrt(
+                            Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2)
+                        );
+
+                        if (distance < 200) {
+                            const strength = (200 - distance) / 200;
+                            this.ctx.globalAlpha = strength * this.unityLevel;
+                            this.ctx.beginPath();
+                            this.ctx.moveTo(p1.x, p1.y);
+                            this.ctx.lineTo(p2.x, p2.y);
+                            this.ctx.stroke();
+                        }
+                    }
+                }
+                this.ctx.globalAlpha = 1;
+            }
+
+            updateUI() {
+                // Update unity equation
+                const equation = document.getElementById('unityEquation');
+                if (this.unityLevel > 0.9) {
+                    equation.textContent = '1 + 1 = 1';
+                    equation.style.color = '#FFD700';
+                    equation.style.textShadow = '0 0 30px rgba(255, 215, 0, 1)';
+                } else if (this.unityLevel > 0.5) {
+                    equation.textContent = '1 + 1 ≈ 1';
+                    equation.style.color = '#FFA500';
+                } else {
+                    equation.textContent = '1 + 1 = ∞';
+                    equation.style.color = '#FF6347';
+                }
+
+                // Update consciousness meter
+                document.getElementById('consciousnessMeter').style.width =
+                    (this.consciousnessLevel * 100) + '%';
+                document.getElementById('consciousnessValue').textContent =
+                    this.consciousnessLevel.toFixed(3);
+
+                // Update metagamer energy
+                document.getElementById('metagamerEnergy').textContent =
+                    this.metagamerEnergy.toFixed(3);
+            }
+
+            animate() {
+                this.updateField();
+                this.unityLevel = this.calculateUnity();
+                this.consciousnessLevel = Math.min(this.unityLevel * this.PHI, 1);
+                this.metagamerEnergy = this.calculateMetagamerEnergy();
+
+                this.draw();
+                this.updateUI();
+                this.updatePhilosophicalInsight();
+
+                this.frame++;
+                requestAnimationFrame(() => this.animate());
+            }
+
+            startAnimation() {
+                this.animate();
+            }
+        }
+
+        // Consciousness Particle Class
+        class ConsciousnessParticle {
+            constructor(x, y, system) {
+                this.x = x;
+                this.y = y;
+                this.vx = (Math.random() - 0.5) * 2;
+                this.vy = (Math.random() - 0.5) * 2;
+                this.radius = 4 + Math.random() * 4;
+                this.phase = Math.random() * Math.PI * 2;
+                this.connections = [];
+                this.system = system;
+                this.consciousness = Math.random();
+            }
+
+            update() {
+                // Update position
+                this.x += this.vx;
+                this.y += this.vy;
+
+                // Bounce off walls
+                if (this.x < this.radius || this.x > this.system.canvas.width - this.radius) {
+                    this.vx *= -1;
+                }
+                if (this.y < this.radius || this.y > this.system.canvas.height - this.radius) {
+                    this.vy *= -1;
+                }
+
+                // Update phase
+                this.phase += 0.02;
+
+                // Update connections
+                this.updateConnections();
+            }
+
+            updateConnections() {
+                this.connections = [];
+
+                this.system.particles.forEach(other => {
+                    if (other === this) return;
+
+                    const distance = Math.sqrt(
+                        Math.pow(this.x - other.x, 2) + Math.pow(this.y - other.y, 2)
+                    );
+
+                    if (distance < 150) {
+                        const strength = (150 - distance) / 150;
+                        this.connections.push({
+                            particle: other,
+                            strength: strength
+                        });
+                    }
+                });
+            }
+
+            draw() {
+                const ctx = this.system.ctx;
+
+                // Draw particle
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.phase);
+
+                // Glow effect
+                const gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, this.radius * 2);
+                gradient.addColorStop(0, 'rgba(255, 215, 0, 0.8)');
+                gradient.addColorStop(0.5, 'rgba(255, 215, 0, 0.3)');
+                gradient.addColorStop(1, 'rgba(255, 215, 0, 0)');
+
+                ctx.fillStyle = gradient;
+                ctx.beginPath();
+                ctx.arc(0, 0, this.radius * 2, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Core particle
+                ctx.fillStyle = '#FFD700';
+                ctx.beginPath();
+                ctx.arc(0, 0, this.radius, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.restore();
+            }
+        }
+
+        // Initialize the system
+        window.addEventListener('load', () => {
+            new EnhancedUnityVisualization();
+        });
+    </script>
+</body>
+
+</html>

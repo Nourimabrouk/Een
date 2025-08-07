@@ -4,6 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <!-- Performance Optimizations -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.plot.ly">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
     <title>Een - Unity Mathematics App</title>
     <meta name="description" content="Transcendental computing hub demonstrating 1+1=1 through quantum entanglement, neural networks, and fractal mathematics with consciousness field integration.">
     <meta name="theme-color" content="#f59e0b">
@@ -46,6 +52,7 @@
         }
 
         body {
+            padding-top: 80px; /* Account for fixed navigation */
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: linear-gradient(135deg, var(--void-black) 0%, #1e293b 100%);
             color: var(--ethereal-white);
@@ -333,6 +340,72 @@
                 transition-duration: 0.01ms !important;
             }
         }
+    
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            section {
+                padding: 2rem 1rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+
+            .grid-3 {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+        }
+    
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stagger-animation > * {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .stagger-animation > *:nth-child(1) { animation-delay: 0.1s; }
+        .stagger-animation > *:nth-child(2) { animation-delay: 0.2s; }
+        .stagger-animation > *:nth-child(3) { animation-delay: 0.3s; }
+        .stagger-animation > *:nth-child(4) { animation-delay: 0.4s; }
+        .stagger-animation > *:nth-child(5) { animation-delay: 0.5s; }
     </style>
 
     <!-- Master Navigation System v2.0 -->
@@ -343,6 +416,8 @@
     <script src="js/meta-optimal-navigation.js"></script>
 
     <link rel="stylesheet" href="css/meta-optimal-navigation.css">
+    <!-- Unified Styles -->
+    <link rel="stylesheet" href="css/unified-styles.css">
 
     <!-- Preload critical resources -->
     <link rel="preload" href="css/meta-optimal-navigation.css" as="style">
@@ -419,7 +494,7 @@
             </div>
         </main>
 
-        <!-- Navigation Placeholder -->
+        <!-- Meta-optimal navigation placeholder - will be populated by JavaScript -->
     </div>
 
     <script>

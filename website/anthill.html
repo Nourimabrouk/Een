@@ -10,35 +10,77 @@
     <meta name="keywords"
         content="ants, megalopolis, unity equation, 1+1=1, collective consciousness, superorganism, quantum ants" />
 
-    <!-- Tailwind CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.4/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Performance Optimizations -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.plot.ly">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+    <!-- Fonts & Icons -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Crimson+Text:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- Plotly for interactive visualization -->
     <script src="https://cdn.plot.ly/plotly-2.32.1.min.js"></script>
 
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Meta-Optimal Navigation System -->
+    <link rel="stylesheet" href="css/meta-optimal-navigation.css">
+    <!-- Unified Styles -->
+    <link rel="stylesheet" href="css/unified-styles.css">
+    <script src="js/unified-navigation-system.js" defer></script>
 
     <!-- Custom styles -->
     <style>
-        .bg-zinc-950 {
-            background-color: #09090b;
+        /* Meta-Optimal Design System */
+        :root {
+            --phi: 1.618033988749895;
+            --primary-color: #0a0a0a;
+            --secondary-color: #1a1a1a;
+            --accent-color: #2d2d2d;
+            --unity-gold: #FFD700;
+            --consciousness-purple: #6B46C1;
+            --quantum-blue: #4ECDC4;
+            --fractal-orange: #FF6B6B;
+            --neural-pink: #FF69B4;
+            --godel-red: #E74C3C;
+            --tarski-green: #27AE60;
+            --text-primary: #ffffff;
+            --text-secondary: #cccccc;
+            --text-muted: #888888;
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --bg-tertiary: #2d2d2d;
+            --border-color: rgba(255, 215, 0, 0.2);
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.5);
+            --shadow-glow: 0 0 30px rgba(255, 215, 0, 0.3);
+            --radius: 12px;
+            --radius-lg: 20px;
+            --radius-xl: 30px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-smooth: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-serif: 'Crimson Text', Georgia, serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
         }
 
-        .text-zinc-100 {
-            color: #f4f4f5;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        .bg-zinc-900 {
-            background-color: #18181b;
-        }
-
-        .bg-zinc-800 {
-            background-color: #27272a;
-        }
-
-        .border-zinc-700 {
-            border-color: #3f3f46;
+        body {
+            font-family: var(--font-primary);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+            padding-top: 80px;
+            /* Account for fixed navigation */
         }
 
         .phi-glow {
@@ -72,6 +114,10 @@
         .hero-video {
             position: relative;
             overflow: hidden;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .hero-video::before {
@@ -88,12 +134,16 @@
         .hero-content {
             position: relative;
             z-index: 2;
+            text-align: center;
+            padding: 2rem;
         }
 
         .simulation-container {
             background: radial-gradient(circle at center, #1a1a2e 0%, #16213e 100%);
             border: 1px solid #374151;
-            border-radius: 12px;
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            margin: 2rem 0;
         }
 
         .pheromone-trail {
@@ -103,37 +153,232 @@
         }
 
         .unity-equation {
-            font-family: 'Times New Roman', serif;
+            font-family: var(--font-serif);
             font-size: 2.5rem;
             font-weight: bold;
-            color: #8b5cf6;
+            color: var(--consciousness-purple);
+            text-shadow: 0 0 20px rgba(107, 70, 193, 0.5);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 4rem 2rem;
+        }
+
+        .section-dark {
+            background: var(--bg-secondary);
+        }
+
+        .section-darker {
+            background: var(--bg-primary);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        .card {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 2rem;
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--unity-gold);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            color: var(--consciousness-purple);
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .card-text {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Typography */
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: var(--font-primary);
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: var(--radius);
+            font-family: var(--font-primary);
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn:hover {
+            background: var(--consciousness-purple);
+            border-color: var(--consciousness-purple);
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: var(--consciousness-purple);
+            border-color: var(--consciousness-purple);
+        }
+
+        .btn-primary:hover {
+            background: var(--unity-gold);
+            border-color: var(--unity-gold);
+            color: var(--bg-primary);
+        }
+
+        /* Form Elements */
+        input[type="range"] {
+            width: 100%;
+            height: 6px;
+            background: var(--bg-tertiary);
+            border-radius: 3px;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            background: var(--consciousness-purple);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            section {
+                padding: 2rem 1rem;
+            }
+
+            .hero-video {
+                height: 70vh;
+            }
+
+            .unity-equation {
+                font-size: 2rem;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stagger-animation>* {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .stagger-animation>*:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .stagger-animation>*:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .stagger-animation>*:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .stagger-animation>*:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .stagger-animation>*:nth-child(5) {
+            animation-delay: 0.5s;
         }
     </style>
 </head>
 
-<body class="bg-zinc-950 text-zinc-100 antialiased">
-
-    <!-- Navigation -->
-    <nav class="bg-zinc-900/80 backdrop-blur-sm fixed w-full z-50 border-b border-zinc-700">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <a href="index.html" class="flex items-center space-x-2">
-                    <span class="phi-symbol pulse-glow text-2xl">φ</span>
-                    <span class="text-xl font-bold">Een</span>
-                    <span class="text-xs bg-purple-600 px-2 py-1 rounded">Advanced</span>
-                </a>
-                <div class="hidden md:flex space-x-8">
-                    <a href="proofs.html" class="hover:text-purple-400 transition">Proofs</a>
-                    <a href="consciousness_dashboard.html" class="hover:text-purple-400 transition">Consciousness</a>
-                    <a href="research.html" class="hover:text-purple-400 transition">Research</a>
-                    <a href="gallery.html" class="hover:text-purple-400 transition">Gallery</a>
-                </div>
-            </div>
-        </div>
-    </nav>
+<body>
+    <!-- Navigation will be injected by unified-navigation-system.js -->
 
     <!-- 0 ◇ HERO SECTION -->
-    <section class="relative h-screen flex flex-col justify-center items-center hero-video">
+    <section class="hero-video">
         <div class="absolute inset-0 w-full h-full">
             <iframe class="w-full h-full"
                 src="https://www.youtube-nocookie.com/embed/dECE7285GxU?autoplay=0&rel=0&modestbranding=1&showinfo=0"
@@ -142,106 +387,101 @@
                 allowfullscreen>
             </iframe>
         </div>
-        <div class="hero-content absolute bottom-10 text-center px-4">
-            <h1 class="text-4xl md:text-6xl font-bold drop-shadow-lg mb-4">
+        <div class="hero-content">
+            <h1 class="fade-in">
                 The Secret Megalopolis of the Ants
             </h1>
-            <p class="text-xl md:text-2xl text-zinc-200 drop-shadow-md">
+            <p class="text-xl md:text-2xl text-zinc-200 drop-shadow-md fade-in">
                 A Mirror to Humanity — Unity Equation in Action
             </p>
-            <div class="mt-6">
+            <div class="mt-6 fade-in">
                 <span class="unity-equation">1 + 1 = 1</span>
             </div>
         </div>
     </section>
 
     <!-- 1 ◇ EXCAVATION CHRONICLE -->
-    <section class="py-16 px-6 bg-zinc-900">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl font-bold text-center mb-12">The Great Excavation</h2>
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="space-y-6">
-                    <div class="bg-zinc-800 p-6 rounded-lg border border-zinc-700">
-                        <h3 class="text-xl font-semibold mb-4 text-purple-400">Engineering Marvel</h3>
-                        <div class="space-y-3">
-                            <div class="flex justify-between">
-                                <span>Concrete Removed:</span>
-                                <span class="font-mono text-green-400">10 tons</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span>Soil Excavated:</span>
-                                <span class="font-mono text-green-400">40 tons</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span>Footprint Area:</span>
-                                <span class="font-mono text-green-400">50 m²</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span>Maximum Depth:</span>
-                                <span class="font-mono text-green-400">8 meters</span>
-                            </div>
+    <section class="section-dark">
+        <div class="container">
+            <h2 class="fade-in">The Great Excavation</h2>
+            <div class="grid grid-2 stagger-animation">
+                <div class="card">
+                    <h3 class="card-title">Engineering Marvel</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between">
+                            <span>Concrete Removed:</span>
+                            <span class="font-mono text-green-400">10 tons</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Soil Excavated:</span>
+                            <span class="font-mono text-green-400">40 tons</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Footprint Area:</span>
+                            <span class="font-mono text-green-400">50 m²</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Maximum Depth:</span>
+                            <span class="font-mono text-green-400">8 meters</span>
                         </div>
                     </div>
-                    <blockquote class="border-l-4 border-purple-500 pl-4 italic text-zinc-300">
-                        "This is not just an ant colony—it's a megacity, a metropolis built by tiny architects with a
-                        collective intelligence that rivals our own technological achievements."
-                    </blockquote>
                 </div>
-                <div class="space-y-6">
-                    <div class="bg-zinc-800 p-6 rounded-lg border border-zinc-700">
-                        <h3 class="text-xl font-semibold mb-4 text-purple-400">Collective Intelligence</h3>
-                        <p class="text-zinc-300 mb-4">
-                            Each ant operates as a simple agent, yet together they create structures of astonishing
-                            complexity.
-                            This emergent behavior demonstrates the power of collective computation—a living example of
-                            how
-                            simple rules can generate complex, adaptive systems.
-                        </p>
-                        <div class="flex items-center space-x-2 text-sm text-zinc-400">
-                            <i class="fas fa-brain"></i>
-                            <span>Individual ants: Simple rules</span>
-                        </div>
-                        <div class="flex items-center space-x-2 text-sm text-zinc-400">
-                            <i class="fas fa-network-wired"></i>
-                            <span>Collective behavior: Complex emergence</span>
-                        </div>
+                <div class="card">
+                    <h3 class="card-title">Collective Intelligence</h3>
+                    <p class="card-text">
+                        Each ant operates as a simple agent, yet together they create structures of astonishing
+                        complexity. This emergent behavior demonstrates the power of collective computation—a living
+                        example of
+                        how simple rules can generate complex, adaptive systems.
+                    </p>
+                    <div class="flex items-center space-x-2 text-sm text-zinc-400 mt-4">
+                        <i class="fas fa-brain"></i>
+                        <span>Individual ants: Simple rules</span>
+                    </div>
+                    <div class="flex items-center space-x-2 text-sm text-zinc-400">
+                        <i class="fas fa-network-wired"></i>
+                        <span>Collective behavior: Complex emergence</span>
                     </div>
                 </div>
             </div>
+            <blockquote class="border-l-4 border-purple-500 pl-4 italic text-zinc-300 mt-8 fade-in">
+                "This is not just an ant colony—it's a megacity, a metropolis built by tiny architects with a
+                collective intelligence that rivals our own technological achievements."
+            </blockquote>
         </div>
     </section>
 
     <!-- 2 ◇ SUPERORGANISM SYSTEMS-THINKING -->
-    <section class="py-16 px-6 bg-zinc-950">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl font-bold text-center mb-12">Superorganism: Beyond Individual Intelligence</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-zinc-900 p-6 rounded-lg border border-zinc-700">
-                    <div class="text-4xl text-purple-400 mb-4">
+    <section class="section-darker">
+        <div class="container">
+            <h2 class="fade-in">Superorganism: Beyond Individual Intelligence</h2>
+            <div class="grid grid-3 stagger-animation">
+                <div class="card">
+                    <div class="card-icon">
                         <i class="fas fa-users"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-3">Collective Mind</h3>
-                    <p class="text-zinc-300">
+                    <h3 class="card-title">Collective Mind</h3>
+                    <p class="card-text">
                         A superorganism operates as a single entity composed of many individuals,
                         each contributing to a greater whole that transcends individual capabilities.
                     </p>
                 </div>
-                <div class="bg-zinc-900 p-6 rounded-lg border border-zinc-700">
-                    <div class="text-4xl text-purple-400 mb-4">
+                <div class="card">
+                    <div class="card-icon">
                         <i class="fas fa-route"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-3">Pheromone Networks</h3>
-                    <p class="text-zinc-300">
+                    <h3 class="card-title">Pheromone Networks</h3>
+                    <p class="card-text">
                         Chemical communication creates dynamic information highways,
                         allowing the colony to adapt and optimize in real-time.
                     </p>
                 </div>
-                <div class="bg-zinc-900 p-6 rounded-lg border border-zinc-700">
-                    <div class="text-4xl text-purple-400 mb-4">
+                <div class="card">
+                    <div class="card-icon">
                         <i class="fas fa-cogs"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-3">Emergent Computation</h3>
-                    <p class="text-zinc-300">
+                    <h3 class="card-title">Emergent Computation</h3>
+                    <p class="card-text">
                         Complex problem-solving emerges from simple interactions,
                         demonstrating distributed intelligence in action.
                     </p>
@@ -249,8 +489,8 @@
             </div>
 
             <!-- Pheromone Gradient Visualization -->
-            <div class="mt-12 bg-zinc-900 p-6 rounded-lg border border-zinc-700">
-                <h3 class="text-xl font-semibold mb-4 text-center">Pheromone Communication Network</h3>
+            <div class="card mt-8 fade-in">
+                <h3 class="card-title text-center">Pheromone Communication Network</h3>
                 <svg class="w-full h-64 mx-auto" viewBox="0 0 400 200">
                     <!-- Background grid -->
                     <defs>
@@ -284,10 +524,10 @@
     </section>
 
     <!-- 3 ◇ 1+1=1 ↔ "MAN-HILL" METAPHOR -->
-    <section class="py-16 px-6 bg-zinc-900">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-3xl font-bold text-center mb-12">The Unity Equation: Ant Colony as Human Techno-Culture</h2>
-            <div class="bg-zinc-800 p-8 rounded-lg border border-zinc-700">
+    <section class="section-dark">
+        <div class="container">
+            <h2 class="fade-in">The Unity Equation: Ant Colony as Human Techno-Culture</h2>
+            <div class="card fade-in">
                 <div class="text-center mb-8">
                     <span class="unity-equation">1 + 1 = 1</span>
                 </div>
@@ -321,35 +561,33 @@
     </section>
 
     <!-- 4 ◇ INTERACTIVE QUANTUM-ANT SIMULATION -->
-    <section id="simulation" class="py-16 px-6 bg-zinc-950">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl font-bold text-center mb-8">Quantum-Ant Colony Sandbox</h2>
-            <p class="text-center text-zinc-400 mb-8">
+    <section id="simulation" class="section-darker">
+        <div class="container">
+            <h2 class="fade-in">Quantum-Ant Colony Sandbox</h2>
+            <p class="text-center text-zinc-400 mb-8 fade-in">
                 Experience the Unity Equation in real-time through this interactive simulation of collective
                 consciousness
             </p>
 
-            <div class="simulation-container p-6">
+            <div class="simulation-container fade-in">
                 <div id="plot" class="w-full h-[480px] mb-6"></div>
 
-                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                <div class="grid grid-2 mb-6">
                     <div class="space-y-4">
                         <div class="flex items-center justify-between">
                             <label class="text-sm font-medium">Pheromone Sensitivity</label>
-                            <input type="range" id="pher" min="0" max="1" step="0.01" value="0.5"
-                                class="w-32 h-2 bg-zinc-700 rounded-lg appearance-none cursor-pointer">
+                            <input type="range" id="pher" min="0" max="1" step="0.01" value="0.5">
                             <span id="pherValue" class="text-sm font-mono text-purple-400">0.50</span>
                         </div>
                         <div class="flex items-center justify-between">
                             <label class="text-sm font-medium">Ego Decay Rate</label>
-                            <input type="range" id="ego" min="0" max="1" step="0.01" value="0.5"
-                                class="w-32 h-2 bg-zinc-700 rounded-lg appearance-none cursor-pointer">
+                            <input type="range" id="ego" min="0" max="1" step="0.01" value="0.5">
                             <span id="egoValue" class="text-sm font-mono text-purple-400">0.50</span>
                         </div>
                     </div>
 
                     <div class="space-y-4">
-                        <div class="bg-zinc-800 p-4 rounded-lg">
+                        <div class="card">
                             <div class="flex justify-between items-center mb-2">
                                 <span class="text-sm font-medium">Collective Synergy</span>
                                 <span id="synergy" class="text-lg font-mono text-green-400">0.000</span>
@@ -361,7 +599,7 @@
                             </div>
                         </div>
 
-                        <div class="bg-zinc-800 p-4 rounded-lg">
+                        <div class="card">
                             <div class="flex justify-between items-center mb-2">
                                 <span class="text-sm font-medium">Transcendence Progress</span>
                                 <span id="transcendence" class="text-sm font-mono text-purple-400">In Progress</span>
@@ -376,10 +614,10 @@
                 </div>
 
                 <div class="flex justify-center space-x-4">
-                    <button id="resetBtn" class="bg-zinc-700 hover:bg-zinc-600 px-4 py-2 rounded-lg transition">
+                    <button id="resetBtn" class="btn">
                         <i class="fas fa-redo mr-2"></i>Reset Simulation
                     </button>
-                    <button id="pauseBtn" class="bg-purple-600 hover:bg-purple-500 px-4 py-2 rounded-lg transition">
+                    <button id="pauseBtn" class="btn btn-primary">
                         <i class="fas fa-pause mr-2"></i>Pause
                     </button>
                 </div>
@@ -388,37 +626,35 @@
     </section>
 
     <!-- 5 ◇ PHEROMONES → PROTOCOLS -->
-    <section class="py-16 px-6 bg-zinc-900">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl font-bold text-center mb-12">From Pheromones to Protocols</h2>
-            <div class="grid md:grid-cols-2 gap-12">
-                <div class="space-y-6">
-                    <div class="bg-zinc-800 p-6 rounded-lg border border-zinc-700">
-                        <h3 class="text-xl font-semibold mb-4 text-purple-400">Biological Inspiration</h3>
-                        <p class="text-zinc-300 mb-4">
-                            Ant pheromone trails provide a blueprint for distributed information routing.
-                            Each ant deposits chemical markers that guide others, creating emergent
-                            communication networks without centralized control.
-                        </p>
-                        <div class="space-y-2 text-sm">
-                            <div class="flex items-center space-x-2">
-                                <i class="fas fa-route text-green-400"></i>
-                                <span>Pheromone trails → Information routing</span>
-                            </div>
-                            <div class="flex items-center space-x-2">
-                                <i class="fas fa-users text-blue-400"></i>
-                                <span>Colony decisions → DAO governance</span>
-                            </div>
-                            <div class="flex items-center space-x-2">
-                                <i class="fas fa-brain text-purple-400"></i>
-                                <span>Chemical signals → LLM prompt-chaining</span>
-                            </div>
+    <section class="section-dark">
+        <div class="container">
+            <h2 class="fade-in">From Pheromones to Protocols</h2>
+            <div class="grid grid-2 stagger-animation">
+                <div class="card">
+                    <h3 class="card-title">Biological Inspiration</h3>
+                    <p class="card-text">
+                        Ant pheromone trails provide a blueprint for distributed information routing.
+                        Each ant deposits chemical markers that guide others, creating emergent
+                        communication networks without centralized control.
+                    </p>
+                    <div class="space-y-2 text-sm mt-4">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-route text-green-400"></i>
+                            <span>Pheromone trails → Information routing</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-users text-blue-400"></i>
+                            <span>Colony decisions → DAO governance</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-brain text-purple-400"></i>
+                            <span>Chemical signals → LLM prompt-chaining</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-zinc-800 p-6 rounded-lg border border-zinc-700">
-                    <h3 class="text-xl font-semibold mb-4 text-purple-400">Code Implementation</h3>
+                <div class="card">
+                    <h3 class="card-title">Code Implementation</h3>
                     <pre class="bg-zinc-900 p-4 rounded-lg text-sm overflow-x-auto"><code class="text-green-400">class QuantumAnt {
     emitPheromones() {
         this.pheromoneLevel += 0.01 * 
@@ -447,12 +683,12 @@ function updateGraphWeights(ants, network) {
     </section>
 
     <!-- 6 ◇ NATURE × TECHNOLOGY: EXCAVATION ETHICS -->
-    <section class="py-16 px-6 bg-zinc-950">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl font-bold text-center mb-12">Nature × Technology: Excavation Ethics</h2>
-            <div class="grid md:grid-cols-2 gap-12">
-                <div class="bg-red-900/20 p-6 rounded-lg border border-red-700">
-                    <h3 class="text-xl font-semibold mb-4 text-red-400">
+    <section class="section-darker">
+        <div class="container">
+            <h2 class="fade-in">Nature × Technology: Excavation Ethics</h2>
+            <div class="grid grid-2 stagger-animation">
+                <div class="card" style="border-color: #dc2626;">
+                    <h3 class="card-title text-red-400">
                         <i class="fas fa-exclamation-triangle mr-2"></i>Destruction
                     </h3>
                     <ul class="space-y-2 text-zinc-300">
@@ -463,8 +699,8 @@ function updateGraphWeights(ants, network) {
                     </ul>
                 </div>
 
-                <div class="bg-green-900/20 p-6 rounded-lg border border-green-700">
-                    <h3 class="text-xl font-semibold mb-4 text-green-400">
+                <div class="card" style="border-color: #16a34a;">
+                    <h3 class="card-title text-green-400">
                         <i class="fas fa-leaf mr-2"></i>Discovery
                     </h3>
                     <ul class="space-y-2 text-zinc-300">
@@ -476,9 +712,9 @@ function updateGraphWeights(ants, network) {
                 </div>
             </div>
 
-            <div class="mt-12 bg-zinc-800 p-6 rounded-lg border border-zinc-700">
-                <h3 class="text-xl font-semibold mb-4 text-center text-purple-400">The Path Forward</h3>
-                <div class="grid md:grid-cols-3 gap-6">
+            <div class="card mt-8 fade-in">
+                <h3 class="card-title text-center text-purple-400">The Path Forward</h3>
+                <div class="grid grid-3">
                     <div class="text-center">
                         <div class="text-3xl text-green-400 mb-2">
                             <i class="fas fa-seedling"></i>
@@ -506,15 +742,15 @@ function updateGraphWeights(ants, network) {
     </section>
 
     <!-- 7 ◇ FURTHER READING & SEEDS OF INQUIRY -->
-    <section class="py-16 px-6 bg-zinc-900">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl font-bold text-center mb-12">Further Reading & Seeds of Inquiry</h2>
-            <div class="grid md:grid-cols-2 gap-8">
+    <section class="section-dark">
+        <div class="container">
+            <h2 class="fade-in">Further Reading & Seeds of Inquiry</h2>
+            <div class="grid grid-2 stagger-animation">
                 <div class="space-y-4">
                     <h3 class="text-xl font-semibold text-purple-400">Documentary & Media</h3>
                     <div class="space-y-3">
                         <a href="https://www.youtube.com/watch?v=dECE7285GxU"
-                            class="block bg-zinc-800 p-4 rounded-lg border border-zinc-700 hover:border-purple-500 transition">
+                            class="block card hover:border-purple-500 transition">
                             <div class="flex items-center space-x-3">
                                 <i class="fas fa-play-circle text-red-400 text-xl"></i>
                                 <div>
@@ -524,7 +760,7 @@ function updateGraphWeights(ants, network) {
                             </div>
                         </a>
                         <a href="https://earthsky.org/earth/giant-ant-colony-brazil/"
-                            class="block bg-zinc-800 p-4 rounded-lg border border-zinc-700 hover:border-purple-500 transition">
+                            class="block card hover:border-purple-500 transition">
                             <div class="flex items-center space-x-3">
                                 <i class="fas fa-globe text-blue-400 text-xl"></i>
                                 <div>
@@ -539,8 +775,7 @@ function updateGraphWeights(ants, network) {
                 <div class="space-y-4">
                     <h3 class="text-xl font-semibold text-purple-400">Academic Resources</h3>
                     <div class="space-y-3">
-                        <a href="proofs.html"
-                            class="block bg-zinc-800 p-4 rounded-lg border border-zinc-700 hover:border-purple-500 transition">
+                        <a href="proofs.html" class="block card hover:border-purple-500 transition">
                             <div class="flex items-center space-x-3">
                                 <i class="fas fa-calculator text-purple-400 text-xl"></i>
                                 <div>
@@ -549,8 +784,7 @@ function updateGraphWeights(ants, network) {
                                 </div>
                             </div>
                         </a>
-                        <a href="consciousness_dashboard.html"
-                            class="block bg-zinc-800 p-4 rounded-lg border border-zinc-700 hover:border-purple-500 transition">
+                        <a href="consciousness_dashboard.html" class="block card hover:border-purple-500 transition">
                             <div class="flex items-center space-x-3">
                                 <i class="fas fa-brain text-green-400 text-xl"></i>
                                 <div>
@@ -566,16 +800,15 @@ function updateGraphWeights(ants, network) {
     </section>
 
     <!-- 8 ◇ CALL TO BUILD TOGETHER -->
-    <section class="py-16 px-6 bg-zinc-950">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-3xl font-bold mb-8">Join the Unity Equation Community</h2>
-            <p class="text-xl text-zinc-300 mb-8">
+    <section class="section-darker">
+        <div class="container text-center">
+            <h2 class="fade-in">Join the Unity Equation Community</h2>
+            <p class="text-xl text-zinc-300 mb-8 fade-in">
                 Help us explore the frontiers of collective consciousness and unity mathematics
             </p>
 
-            <div class="grid md:grid-cols-3 gap-6 mb-8">
-                <a href="https://github.com/Nouri-Mabrouk/Een/issues"
-                    class="bg-zinc-800 p-6 rounded-lg border border-zinc-700 hover:border-purple-500 transition">
+            <div class="grid grid-3 mb-8 stagger-animation">
+                <a href="https://github.com/Nouri-Mabrouk/Een/issues" class="card hover:border-purple-500 transition">
                     <div class="text-4xl text-purple-400 mb-4">
                         <i class="fab fa-github"></i>
                     </div>
@@ -583,8 +816,7 @@ function updateGraphWeights(ants, network) {
                     <p class="text-zinc-400">Add modules, suggest experiments, or improve algorithms</p>
                 </a>
 
-                <a href="https://discord.gg/unity-equation"
-                    class="bg-zinc-800 p-6 rounded-lg border border-zinc-700 hover:border-purple-500 transition">
+                <a href="https://discord.gg/unity-equation" class="card hover:border-purple-500 transition">
                     <div class="text-4xl text-purple-400 mb-4">
                         <i class="fab fa-discord"></i>
                     </div>
@@ -592,8 +824,7 @@ function updateGraphWeights(ants, network) {
                     <p class="text-zinc-400">Connect with researchers and enthusiasts</p>
                 </a>
 
-                <a href="research.html"
-                    class="bg-zinc-800 p-6 rounded-lg border border-zinc-700 hover:border-purple-500 transition">
+                <a href="research.html" class="card hover:border-purple-500 transition">
                     <div class="text-4xl text-purple-400 mb-4">
                         <i class="fas fa-flask"></i>
                     </div>
@@ -602,7 +833,7 @@ function updateGraphWeights(ants, network) {
                 </a>
             </div>
 
-            <div class="bg-purple-900/30 p-6 rounded-lg border border-purple-500">
+            <div class="bg-purple-900/30 p-6 rounded-lg border border-purple-500 fade-in">
                 <p class="text-lg text-purple-200">
                     <i class="fas fa-quote-left mr-2"></i>
                     "The ant colony teaches us that unity emerges from cooperation, not competition.
@@ -615,7 +846,7 @@ function updateGraphWeights(ants, network) {
 
     <!-- Footer -->
     <footer class="bg-zinc-900 border-t border-zinc-700 py-8">
-        <div class="max-w-6xl mx-auto px-6">
+        <div class="container">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="flex items-center space-x-2 mb-4 md:mb-0">
                     <span class="phi-symbol pulse-glow text-2xl">φ</span>
@@ -733,10 +964,10 @@ function updateGraphWeights(ants, network) {
             const btn = document.getElementById('pauseBtn');
             if (isPaused) {
                 btn.innerHTML = '<i class="fas fa-play mr-2"></i>Resume';
-                btn.className = 'bg-green-600 hover:bg-green-500 px-4 py-2 rounded-lg transition';
+                btn.className = 'btn btn-primary';
             } else {
                 btn.innerHTML = '<i class="fas fa-pause mr-2"></i>Pause';
-                btn.className = 'bg-purple-600 hover:bg-purple-500 px-4 py-2 rounded-lg transition';
+                btn.className = 'btn btn-primary';
             }
         });
 

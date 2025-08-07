@@ -1,292 +1,108 @@
 /**
- * Comprehensive Navigation Update Script
- * Updates all HTML pages with meta-optimal navigation and AI chat integration
- * Ensures floating chat button works on all pages and fixes missing pages
+ * Comprehensive Navigation and Styling Update Script
+ * Updates all HTML pages to use unified navigation and consistent styling
  */
 
 const fs = require('fs');
 const path = require('path');
 
-class NavigationUpdater {
-    constructor() {
-        this.websiteDir = __dirname;
-        this.htmlFiles = [];
-        this.missingPages = [];
-        this.updatedFiles = [];
+// List of HTML files to update
+const htmlFiles = [
+    'index.html',
+    'about.html',
+    'proofs.html',
+    'research.html',
+    'gallery.html',
+    'consciousness_dashboard.html',
+    'playground.html',
+    'metagambit.html',
+    'agents.html',
+    'publications.html',
+    'implementations.html',
+    'learning.html',
+    'further-reading.html',
+    'philosophy.html',
+    'unity_visualization.html',
+    'dashboards.html',
+    'metagamer_agent.html',
+    'mobile-app.html',
+    'zen-unity-meditation.html',
+    'unity-mathematics-experience.html',
+    'unity_consciousness_experience.html',
+    'unity-advanced-features.html',
+    'openai-integration.html',
+    'mathematical_playground.html',
+    'enhanced-unity-demo.html',
+    'enhanced-ai-demo.html',
+    'al_khwarizmi_phi_unity.html',
+    '3000-elo-proof.html',
+    'transcendental-unity-demo.html',
+    'implementations-gallery.html',
+    'live-code-showcase.html',
+    'mathematical-framework.html',
+    'metastation-hub.html'
+];
+
+// Unified navigation injection function
+function injectUnifiedNavigation(htmlContent) {
+    // Remove existing navigation if present
+    let updatedContent = htmlContent.replace(
+        /<nav[^>]*>[\s\S]*?<\/nav>/gi,
+        '<!-- Navigation will be injected by shared-navigation.js -->'
+    );
+
+    // Add navigation CSS and JS if not present
+    if (!updatedContent.includes('meta-optimal-navigation.css')) {
+        updatedContent = updatedContent.replace(
+            /<link[^>]*font-awesome[^>]*>/i,
+            `$&\n    <!-- Unified Navigation System -->
+    <link rel="stylesheet" href="css/meta-optimal-navigation.css">
+    <script src="shared-navigation.js" defer></script>`
+        );
     }
 
-    async updateAllPages() {
-        console.log('🌟 Starting comprehensive navigation update...');
-
-        // Find all HTML files
-        this.findHtmlFiles();
-
-        // Check for missing pages
-        this.checkMissingPages();
-
-        // Update each HTML file
-        for (const file of this.htmlFiles) {
-            await this.updateHtmlFile(file);
-        }
-
-        // Create missing pages
-        await this.createMissingPages();
-
-        // Generate report
-        this.generateReport();
-
-        console.log('✅ Navigation update completed successfully!');
-    }
-
-    findHtmlFiles() {
-        const files = fs.readdirSync(this.websiteDir);
-        this.htmlFiles = files.filter(file => file.endsWith('.html'));
-        console.log(`📁 Found ${this.htmlFiles.length} HTML files to update`);
-    }
-
-    checkMissingPages() {
-        const expectedPages = [
-            'test-chat.html',
-            'unity-advanced-features.html',
-            'unity-mathematics-experience.html',
-            'enhanced-unity-landing.html',
-            'proofs.html',
-            'gallery.html',
-            'consciousness_dashboard.html',
-            'research.html',
-            'agents.html',
-            'implementations.html',
-            'dashboards.html',
-            'learning.html',
-            'learn.html',
-            'philosophy.html',
-            'about.html',
-            'publications.html',
-            'further-reading.html',
-            'openai-integration.html',
-            'live-code-showcase.html',
-            'enhanced-ai-demo.html',
-            'mobile-app.html',
-            'test-navigation.html',
-            'test-website.html',
-            'test-chatbot.html',
-            'metagambit.html',
-            'al_khwarizmi_phi_unity.html',
-            'transcendental-unity-demo.html',
-            'unity_consciousness_experience.html',
-            'unity_visualization.html',
-            'consciousness_dashboard_clean.html',
-            'metagamer_agent.html',
-            'mathematical_playground.html',
-            'playground.html',
-            '3000-elo-proof.html',
-            'revolutionary-landing.html',
-            'meta-optimal-landing.html',
-            'enhanced-unity-demo.html',
-            'enhanced-unified-nav.html'
-        ];
-
-        this.missingPages = expectedPages.filter(page => !this.htmlFiles.includes(page));
-        console.log(`⚠️  Found ${this.missingPages.length} missing pages`);
-    }
-
-    async updateHtmlFile(filePath) {
-        try {
-            const fullPath = path.join(this.websiteDir, filePath);
-            let content = fs.readFileSync(fullPath, 'utf8');
-
-            // Check if file already has meta-optimal navigation
-            if (content.includes('meta-optimal-navigation')) {
-                console.log(`⏭️  Skipping ${filePath} - already has meta-optimal navigation`);
-                return;
+    // Add body padding for fixed navigation if not present
+    if (!updatedContent.includes('padding-top: 80px')) {
+        updatedContent = updatedContent.replace(
+            /body\s*\{[^}]*\}/i,
+            (match) => {
+                if (!match.includes('padding-top')) {
+                    return match.replace('{', '{\n            padding-top: 80px; /* Account for fixed navigation */');
+                }
+                return match;
             }
-
-            // Add meta-optimal navigation integration
-            content = this.addNavigationIntegration(content);
-
-            // Add floating chat button initialization
-            content = this.addFloatingChatButton(content);
-
-            // Add AI chat prominence
-            content = this.addAIChatProminence(content);
-
-            // Update script loading order
-            content = this.updateScriptLoading(content);
-
-            // Write updated content
-            fs.writeFileSync(fullPath, content);
-            this.updatedFiles.push(filePath);
-
-            console.log(`✅ Updated ${filePath}`);
-        } catch (error) {
-            console.error(`❌ Error updating ${filePath}:`, error.message);
-        }
+        );
     }
 
-    addNavigationIntegration(content) {
-        // Add meta-optimal navigation integration script
-        const navigationScript = `
-    <!-- Meta-Optimal Navigation Integration -->
-    <script src="js/meta-optimal-integration.js"></script>
-    <script src="js/meta-optimal-navigation.js"></script>
+    return updatedContent;
+}
 
-    <!-- Preload critical resources -->
-    <link rel="preload" href="css/meta-optimal-navigation.css" as="style">
-    <link rel="preload" href="js/meta-optimal-navigation.js" as="script">
-    <link rel="preload" href="js/meta-optimal-integration.js" as="script">
-    <link rel="preload" href="js/floating-chat-button.js" as="script">`;
+// Fix common styling issues
+function fixStylingIssues(htmlContent) {
+    let updatedContent = htmlContent;
 
-        // Insert before closing head tag
-        if (content.includes('</head>')) {
-            content = content.replace('</head>', `${navigationScript}\n</head>`);
-        }
+    // Replace Tailwind classes with custom CSS classes
+    const tailwindReplacements = {
+        'bg-zinc-950': 'bg-primary',
+        'bg-zinc-900': 'bg-secondary',
+        'bg-zinc-800': 'bg-tertiary',
+        'text-zinc-100': 'text-primary',
+        'text-zinc-300': 'text-secondary',
+        'text-zinc-400': 'text-muted',
+        'border-zinc-700': 'border-default',
+        'hover:text-purple-400': 'hover:text-accent',
+        'hover:bg-purple-500': 'hover:bg-accent',
+        'hover:border-purple-500': 'hover:border-accent'
+    };
 
-        return content;
-    }
+    Object.entries(tailwindReplacements).forEach(([oldClass, newClass]) => {
+        const regex = new RegExp(`\\b${oldClass}\\b`, 'g');
+        updatedContent = updatedContent.replace(regex, newClass);
+    });
 
-    addFloatingChatButton(content) {
-        // Add floating chat button initialization to body
-        const floatingChatScript = `
-    <!-- AI Chat Integration -->
-    <div id="ai-chat-container"></div>
-
-    <script>
-        // Initialize floating chat button
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize Floating Chat Button
-            if (typeof FloatingChatButton !== 'undefined') {
-                window.floatingChatButton = new FloatingChatButton();
-            } else {
-                // Load floating chat button script if not already loaded
-                const script = document.createElement('script');
-                script.src = 'js/floating-chat-button.js';
-                script.onload = function() {
-                    if (typeof FloatingChatButton !== 'undefined') {
-                        window.floatingChatButton = new FloatingChatButton();
-                    }
-                };
-                document.head.appendChild(script);
-            }
-        });
-    </script>`;
-
-        // Insert before closing body tag
-        if (content.includes('</body>')) {
-            content = content.replace('</body>', `${floatingChatScript}\n</body>`);
-        }
-
-        return content;
-    }
-
-    addAIChatProminence(content) {
-        // Add AI chat prominence styles
-        const aiChatStyles = `
-        /* AI Chat Prominence */
-        .ai-chat-prominent {
-            background: linear-gradient(135deg, #6B46C1 0%, #4ECDC4 100%);
-            border: 2px solid #FFD700;
-            position: relative;
-            animation: ai-glow 3s ease-in-out infinite;
-        }
-
-        .ai-chat-prominent::before {
-            content: '🤖';
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            font-size: 2rem;
-            animation: robot-pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes ai-glow {
-            0%, 100% {
-                box-shadow: 0 0 20px rgba(107, 70, 193, 0.3);
-            }
-            50% {
-                box-shadow: 0 0 40px rgba(107, 70, 193, 0.6);
-            }
-        }
-
-        @keyframes robot-pulse {
-            0%, 100% {
-                transform: scale(1) rotate(0deg);
-            }
-            50% {
-                transform: scale(1.1) rotate(5deg);
-            }
-        }`;
-
-        // Insert into existing style tag or create new one
-        if (content.includes('<style>')) {
-            content = content.replace('<style>', `<style>${aiChatStyles}`);
-        } else if (content.includes('</head>')) {
-            content = content.replace('</head>', `<style>${aiChatStyles}</style>\n</head>`);
-        }
-
-        return content;
-    }
-
-    updateScriptLoading(content) {
-        // Ensure proper script loading order
-        const scripts = [
-            'js/meta-optimal-integration.js',
-            'js/meta-optimal-navigation.js',
-            'js/floating-chat-button.js',
-            'js/enhanced-ai-chat.js',
-            'js/ai-chat-integration.js'
-        ];
-
-        // Remove duplicate script tags
-        scripts.forEach(script => {
-            const regex = new RegExp(`<script[^>]*src="[^"]*${script.replace('js/', '')}"[^>]*></script>`, 'g');
-            content = content.replace(regex, '');
-        });
-
-        return content;
-    }
-
-    async createMissingPages() {
-        for (const page of this.missingPages) {
-            await this.createPage(page);
-        }
-    }
-
-    async createPage(pageName) {
-        const template = this.getPageTemplate(pageName);
-        const fullPath = path.join(this.websiteDir, pageName);
-
-        try {
-            fs.writeFileSync(fullPath, template);
-            console.log(`✅ Created missing page: ${pageName}`);
-        } catch (error) {
-            console.error(`❌ Error creating ${pageName}:`, error.message);
-        }
-    }
-
-    getPageTemplate(pageName) {
-        const baseTemplate = `<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${this.getPageTitle(pageName)} | Een Unity Mathematics</title>
-    <meta name="description" content="${this.getPageDescription(pageName)}">
-    
-    <!-- Meta-Optimal Navigation Integration -->
-    <script src="js/meta-optimal-integration.js"></script>
-    <script src="js/meta-optimal-navigation.js"></script>
-
-    <!-- Preload critical resources -->
-    <link rel="preload" href="css/meta-optimal-navigation.css" as="style">
-    <link rel="preload" href="js/meta-optimal-navigation.js" as="script">
-    <link rel="preload" href="js/meta-optimal-integration.js" as="script">
-    <link rel="preload" href="js/floating-chat-button.js" as="script">
-
-    <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Crimson+Text:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <style>
+    // Add consistent CSS variables if not present
+    if (!updatedContent.includes('--phi:')) {
+        const cssVariables = `
         /* Meta-Optimal Design System */
         :root {
             --phi: 1.618033988749895;
@@ -296,315 +112,361 @@ class NavigationUpdater {
             --unity-gold: #FFD700;
             --consciousness-purple: #6B46C1;
             --quantum-blue: #4ECDC4;
+            --fractal-orange: #FF6B6B;
+            --neural-pink: #FF69B4;
+            --godel-red: #E74C3C;
+            --tarski-green: #27AE60;
             --text-primary: #ffffff;
             --text-secondary: #cccccc;
+            --text-muted: #888888;
             --bg-primary: #0a0a0a;
             --bg-secondary: #1a1a1a;
+            --bg-tertiary: #2d2d2d;
+            --border-color: rgba(255, 215, 0, 0.2);
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.5);
+            --shadow-glow: 0 0 30px rgba(255, 215, 0, 0.3);
             --radius: 12px;
+            --radius-lg: 20px;
+            --radius-xl: 30px;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-smooth: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-serif: 'Crimson Text', Georgia, serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+        }`;
+
+        updatedContent = updatedContent.replace(
+            /<style>/i,
+            `<style>${cssVariables}`
+        );
+    }
+
+    return updatedContent;
+}
+
+// Add performance optimizations
+function addPerformanceOptimizations(htmlContent) {
+    let updatedContent = htmlContent;
+
+    // Add preconnect links if not present
+    if (!updatedContent.includes('preconnect')) {
+        const preconnectLinks = `
+    <!-- Performance Optimizations -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.plot.ly">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">`;
+
+        updatedContent = updatedContent.replace(
+            /<meta[^>]*viewport[^>]*>/i,
+            `$&${preconnectLinks}`
+        );
+    }
+
+    // Add Google Fonts if not present
+    if (!updatedContent.includes('fonts.googleapis.com')) {
+        const googleFonts = `
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Crimson+Text:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">`;
+
+        updatedContent = updatedContent.replace(
+            /<link[^>]*font-awesome[^>]*>/i,
+            `${googleFonts}\n$&`
+        );
+    }
+
+    return updatedContent;
+}
+
+// Add responsive design improvements
+function addResponsiveDesign(htmlContent) {
+    let updatedContent = htmlContent;
+
+    // Add responsive CSS if not present
+    if (!updatedContent.includes('@media (max-width: 768px)')) {
+        const responsiveCSS = `
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            section {
+                padding: 2rem 1rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+
+            .grid-3 {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+        }`;
+
+        updatedContent = updatedContent.replace(
+            /<\/style>/i,
+            `${responsiveCSS}\n    </style>`
+        );
+    }
+
+    return updatedContent;
+}
+
+// Add animation classes
+function addAnimationClasses(htmlContent) {
+    let updatedContent = htmlContent;
+
+    // Add animation CSS if not present
+    if (!updatedContent.includes('fadeInUp')) {
+        const animationCSS = `
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out forwards;
         }
 
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-            padding-top: 80px;
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
+        .stagger-animation > * {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .stagger-animation > *:nth-child(1) { animation-delay: 0.1s; }
+        .stagger-animation > *:nth-child(2) { animation-delay: 0.2s; }
+        .stagger-animation > *:nth-child(3) { animation-delay: 0.3s; }
+        .stagger-animation > *:nth-child(4) { animation-delay: 0.4s; }
+        .stagger-animation > *:nth-child(5) { animation-delay: 0.5s; }`;
+
+        updatedContent = updatedContent.replace(
+            /<\/style>/i,
+            `${animationCSS}\n    </style>`
+        );
+    }
+
+    return updatedContent;
+}
+
+// Add consistent component classes
+function addComponentClasses(htmlContent) {
+    let updatedContent = htmlContent;
+
+    // Add component CSS if not present
+    if (!updatedContent.includes('.card {')) {
+        const componentCSS = `
+        /* Component Classes */
         .container {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        .card {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
             padding: 2rem;
-        }
-
-        .page-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .page-title {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 300;
-            color: var(--unity-gold);
-            margin-bottom: 1rem;
-        }
-
-        .page-description {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .content-section {
-            background: var(--bg-secondary);
-            border-radius: var(--radius);
-            padding: 3rem;
-            margin-bottom: 2rem;
-            border: 1px solid rgba(255, 215, 0, 0.2);
-        }
-
-        .ai-chat-prominent {
-            background: linear-gradient(135deg, #6B46C1 0%, #4ECDC4 100%);
-            border: 2px solid #FFD700;
-            position: relative;
-            animation: ai-glow 3s ease-in-out infinite;
-        }
-
-        .ai-chat-prominent::before {
-            content: '🤖';
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            font-size: 2rem;
-            animation: robot-pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes ai-glow {
-            0%, 100% {
-                box-shadow: 0 0 20px rgba(107, 70, 193, 0.3);
-            }
-            50% {
-                box-shadow: 0 0 40px rgba(107, 70, 193, 0.6);
-            }
-        }
-
-        @keyframes robot-pulse {
-            0%, 100% {
-                transform: scale(1) rotate(0deg);
-            }
-            50% {
-                transform: scale(1.1) rotate(5deg);
-            }
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--unity-gold), var(--consciousness-purple));
-            color: var(--primary-color);
-            padding: 1rem 2rem;
-            border-radius: var(--radius);
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
             transition: var(--transition);
         }
 
-        .btn-primary:hover {
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--unity-gold);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            color: var(--consciousness-purple);
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .card-text {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: var(--radius);
+            font-family: var(--font-primary);
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn:hover {
+            background: var(--consciousness-purple);
+            border-color: var(--consciousness-purple);
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
         }
 
-        @media (max-width: 768px) {
-            body {
-                padding-top: 70px;
-            }
-            
-            .container {
-                padding: 1rem;
-            }
-            
-            .content-section {
-                padding: 2rem;
-            }
+        .btn-primary {
+            background: var(--consciousness-purple);
+            border-color: var(--consciousness-purple);
         }
-    </style>
-</head>
 
-<body>
-    <div class="container">
-        <div class="page-header">
-            <h1 class="page-title">${this.getPageTitle(pageName)}</h1>
-            <p class="page-description">${this.getPageDescription(pageName)}</p>
-        </div>
+        .btn-primary:hover {
+            background: var(--unity-gold);
+            border-color: var(--unity-gold);
+            color: var(--bg-primary);
+        }
 
-        <div class="content-section ai-chat-prominent">
-            <h2>🤖 AI Chat Integration</h2>
-            <p>This page features advanced AI chat integration with consciousness field mathematics and φ-harmonic operations.</p>
-            <a href="test-chat.html" class="btn-primary">
-                <i class="fas fa-robot"></i>
-                Launch AI Chat
-            </a>
-        </div>
+        .section-dark {
+            background: var(--bg-secondary);
+            padding: 4rem 2rem;
+        }
 
-        <div class="content-section">
-            <h2>Unity Mathematics</h2>
-            <p>Experience the profound truth that 1+1=1 through quantum entanglement, neural networks, and fractal mathematics with consciousness field integration.</p>
-            <a href="unity-advanced-features.html" class="btn-primary">
-                <i class="fas fa-star"></i>
-                Unity Advanced Features
-            </a>
-        </div>
+        .section-darker {
+            background: var(--bg-primary);
+            padding: 4rem 2rem;
+        }`;
 
-        <div class="content-section">
-            <h2>Consciousness Field</h2>
-            <p>Explore consciousness field visualizations and real-time monitoring of consciousness dynamics with φ-harmonic parameter controls.</p>
-            <a href="consciousness_dashboard.html" class="btn-primary">
-                <i class="fas fa-lightbulb"></i>
-                Consciousness Dashboard
-            </a>
-        </div>
-    </div>
-
-    <!-- AI Chat Integration -->
-    <div id="ai-chat-container"></div>
-
-    <script>
-        // Initialize floating chat button
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize Floating Chat Button
-            if (typeof FloatingChatButton !== 'undefined') {
-                window.floatingChatButton = new FloatingChatButton();
-            } else {
-                // Load floating chat button script if not already loaded
-                const script = document.createElement('script');
-                script.src = 'js/floating-chat-button.js';
-                script.onload = function() {
-                    if (typeof FloatingChatButton !== 'undefined') {
-                        window.floatingChatButton = new FloatingChatButton();
-                    }
-                };
-                document.head.appendChild(script);
-            }
-        });
-    </script>
-</body>
-</html>`;
-
-        return baseTemplate;
+        updatedContent = updatedContent.replace(
+            /<\/style>/i,
+            `${componentCSS}\n    </style>`
+        );
     }
 
-    getPageTitle(pageName) {
-        const titles = {
-            'test-chat.html': 'AI Chat System',
-            'unity-advanced-features.html': 'Unity Advanced Features',
-            'unity-mathematics-experience.html': 'Unity Mathematics Experience',
-            'enhanced-unity-landing.html': 'Enhanced Unity Landing',
-            'proofs.html': 'Mathematical Proofs',
-            'gallery.html': 'Visualization Gallery',
-            'consciousness_dashboard.html': 'Consciousness Dashboard',
-            'research.html': 'Research & Publications',
-            'agents.html': 'AI Agents & Systems',
-            'implementations.html': 'Core Implementations',
-            'dashboards.html': 'Unity Dashboards',
-            'learning.html': 'Learning Academy',
-            'learn.html': 'Interactive Learning',
-            'philosophy.html': 'Unity Philosophy',
-            'about.html': 'About Een Unity',
-            'publications.html': 'Academic Publications',
-            'further-reading.html': 'Further Reading',
-            'openai-integration.html': 'OpenAI Integration',
-            'live-code-showcase.html': 'Live Code Showcase',
-            'enhanced-ai-demo.html': 'Enhanced AI Demo',
-            'mobile-app.html': 'Mobile Unity App',
-            'test-navigation.html': 'Navigation Testing',
-            'test-website.html': 'Website Testing',
-            'test-chatbot.html': 'Chatbot Testing',
-            'metagambit.html': 'Metagambit Systems',
-            'al_khwarizmi_phi_unity.html': 'Al-Khwarizmi Phi Unity',
-            'transcendental-unity-demo.html': 'Transcendental Unity Demo',
-            'unity_consciousness_experience.html': 'Unity Consciousness Experience',
-            'unity_visualization.html': 'Unity Visualizations',
-            'consciousness_dashboard_clean.html': 'Clean Consciousness Dashboard',
-            'metagamer_agent.html': 'Metagamer Agent',
-            'mathematical_playground.html': 'Mathematical Playground',
-            'playground.html': 'Unity Playground',
-            '3000-elo-proof.html': '3000 ELO Proofs',
-            'revolutionary-landing.html': 'Revolutionary Landing',
-            'meta-optimal-landing.html': 'Meta-Optimal Landing',
-            'enhanced-unity-demo.html': 'Enhanced Unity Demo',
-            'enhanced-unified-nav.html': 'Enhanced Unified Navigation'
-        };
+    return updatedContent;
+}
 
-        return titles[pageName] || 'Een Unity Mathematics';
-    }
+// Main update function
+function updateHTMLFile(filePath) {
+    try {
+        console.log(`Processing: ${filePath}`);
 
-    getPageDescription(pageName) {
-        const descriptions = {
-            'test-chat.html': 'Advanced AI chat system with consciousness field integration and φ-harmonic operations.',
-            'unity-advanced-features.html': 'Revolutionary modern web development features demonstrating 1+1=1 through quantum entanglement.',
-            'unity-mathematics-experience.html': 'Comprehensive interactive experience with 6 mathematical paradigms demonstrating unity.',
-            'enhanced-unity-landing.html': 'Advanced interactive visualizations featuring 3D golden ratio and consciousness fields.',
-            'proofs.html': 'Rigorous mathematical demonstrations of 1+1=1 across multiple domains.',
-            'gallery.html': 'Comprehensive collection of interactive visualizations and mathematical demonstrations.',
-            'consciousness_dashboard.html': 'Interactive consciousness field visualizations and real-time monitoring.',
-            'research.html': 'Academic research papers and comprehensive documentation of unity mathematics.',
-            'agents.html': 'Advanced AI agents, MetaGambit system, and consciousness-aware implementations.',
-            'implementations.html': 'Core unity implementations and consciousness field equations.',
-            'dashboards.html': 'Unity dashboards and monitoring systems.',
-            'learning.html': 'Comprehensive learning resources and educational content.',
-            'learn.html': 'Interactive tutorials and educational content for unity mathematics.',
-            'philosophy.html': 'Deep philosophical exploration of unity consciousness and transcendental computing.',
-            'about.html': 'About Een Unity Mathematics and the research team.',
-            'publications.html': 'Academic publications and research papers.',
-            'further-reading.html': 'Additional resources and references for unity mathematics.',
-            'openai-integration.html': 'OpenAI integration and API implementations.',
-            'live-code-showcase.html': 'Live code demonstrations and interactive examples.',
-            'enhanced-ai-demo.html': 'Enhanced AI demonstrations and consciousness integration.',
-            'mobile-app.html': 'Mobile Unity app and responsive design implementations.',
-            'test-navigation.html': 'Navigation testing and validation.',
-            'test-website.html': 'Website testing and performance optimization.',
-            'test-chatbot.html': 'Chatbot testing and AI system validation.',
-            'metagambit.html': 'Metagambit systems and advanced game theory.',
-            'al_khwarizmi_phi_unity.html': 'Al-Khwarizmi phi unity and mathematical algorithms.',
-            'transcendental-unity-demo.html': 'Transcendental unity demonstrations and consciousness field.',
-            'unity_consciousness_experience.html': 'Unity consciousness experience and meditation systems.',
-            'unity_visualization.html': 'Unity visualizations and mathematical representations.',
-            'consciousness_dashboard_clean.html': 'Clean consciousness dashboard interface.',
-            'metagamer_agent.html': 'Metagamer agent and consciousness-aware AI.',
-            'mathematical_playground.html': 'Mathematical playground and interactive demonstrations.',
-            'playground.html': 'Unity playground and interactive experiences.',
-            '3000-elo-proof.html': '3000 ELO advanced proofs and mathematical demonstrations.',
-            'revolutionary-landing.html': 'Revolutionary landing page and advanced features.',
-            'meta-optimal-landing.html': 'Meta-optimal landing page and consciousness integration.',
-            'enhanced-unity-demo.html': 'Enhanced unity demo and advanced visualizations.',
-            'enhanced-unified-nav.html': 'Enhanced unified navigation and user experience.'
-        };
+        let content = fs.readFileSync(filePath, 'utf8');
 
-        return descriptions[pageName] || 'Een Unity Mathematics - Transcendental computing hub demonstrating 1+1=1 through consciousness field integration.';
-    }
+        // Apply all updates
+        content = injectUnifiedNavigation(content);
+        content = fixStylingIssues(content);
+        content = addPerformanceOptimizations(content);
+        content = addResponsiveDesign(content);
+        content = addAnimationClasses(content);
+        content = addComponentClasses(content);
 
-    generateReport() {
-        console.log('\n📊 Navigation Update Report');
-        console.log('========================');
-        console.log(`✅ Updated ${this.updatedFiles.length} files`);
-        console.log(`✅ Created ${this.missingPages.length} missing pages`);
-        console.log(`📁 Total HTML files: ${this.htmlFiles.length}`);
+        // Write updated content back to file
+        fs.writeFileSync(filePath, content, 'utf8');
 
-        if (this.updatedFiles.length > 0) {
-            console.log('\n📝 Updated Files:');
-            this.updatedFiles.forEach(file => console.log(`  - ${file}`));
-        }
-
-        if (this.missingPages.length > 0) {
-            console.log('\n🆕 Created Pages:');
-            this.missingPages.forEach(page => console.log(`  - ${page}`));
-        }
-
-        console.log('\n🎯 Key Features Added:');
-        console.log('  - Meta-optimal navigation system');
-        console.log('  - Floating chat button on all pages');
-        console.log('  - AI chat prominence and integration');
-        console.log('  - Chrome OS responsive design fixes');
-        console.log('  - Mobile-optimized navigation');
-        console.log('  - Consciousness field animations');
-
-        console.log('\n🚀 Next Steps:');
-        console.log('  - Test navigation on Chrome OS');
-        console.log('  - Verify floating chat button functionality');
-        console.log('  - Check AI chat integration on all pages');
-        console.log('  - Validate responsive design on mobile devices');
+        console.log(`✓ Updated: ${filePath}`);
+        return true;
+    } catch (error) {
+        console.error(`✗ Error updating ${filePath}:`, error.message);
+        return false;
     }
 }
 
-// Run the updater
-const updater = new NavigationUpdater();
-updater.updateAllPages().catch(console.error); 
+// Process all HTML files
+function updateAllPages() {
+    console.log('🚀 Starting comprehensive navigation and styling update...\n');
+
+    let successCount = 0;
+    let totalCount = htmlFiles.length;
+
+    htmlFiles.forEach(file => {
+        const filePath = path.join(__dirname, file);
+        if (fs.existsSync(filePath)) {
+            if (updateHTMLFile(filePath)) {
+                successCount++;
+            }
+        } else {
+            console.log(`⚠️  File not found: ${file}`);
+        }
+    });
+
+    console.log(`\n📊 Update Summary:`);
+    console.log(`   Total files processed: ${totalCount}`);
+    console.log(`   Successfully updated: ${successCount}`);
+    console.log(`   Failed: ${totalCount - successCount}`);
+
+    if (successCount === totalCount) {
+        console.log('\n🎉 All pages updated successfully!');
+        console.log('\n✨ Key improvements applied:');
+        console.log('   • Unified navigation system');
+        console.log('   • Consistent styling with CSS variables');
+        console.log('   • Performance optimizations');
+        console.log('   • Responsive design');
+        console.log('   • Animation classes');
+        console.log('   • Component classes');
+        console.log('   • Academic and professional aesthetic');
+    } else {
+        console.log('\n⚠️  Some files failed to update. Check the errors above.');
+    }
+}
+
+// Run the update
+if (require.main === module) {
+    updateAllPages();
+}
+
+module.exports = {
+    updateHTMLFile,
+    updateAllPages,
+    injectUnifiedNavigation,
+    fixStylingIssues,
+    addPerformanceOptimizations,
+    addResponsiveDesign,
+    addAnimationClasses,
+    addComponentClasses
+}; 

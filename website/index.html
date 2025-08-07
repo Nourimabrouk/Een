@@ -50,6 +50,11 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Crimson+Text:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Meta-Optimal Navigation System -->
+    <link rel="stylesheet" href="css/meta-optimal-navigation.css">
+    <!-- Unified Styles -->
+    <link rel="stylesheet" href="css/unified-styles.css">
+    <script src="js/unified-navigation-system.js" defer></script>
 
     <!-- KaTeX for Mathematical Notation -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
@@ -984,53 +989,134 @@
                 transform: translate(-50%, -50%) scale(1.2);
             }
         }
+    
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stagger-animation > * {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .stagger-animation > *:nth-child(1) { animation-delay: 0.1s; }
+        .stagger-animation > *:nth-child(2) { animation-delay: 0.2s; }
+        .stagger-animation > *:nth-child(3) { animation-delay: 0.3s; }
+        .stagger-animation > *:nth-child(4) { animation-delay: 0.4s; }
+        .stagger-animation > *:nth-child(5) { animation-delay: 0.5s; }
+    
+        /* Component Classes */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        .card {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 2rem;
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--unity-gold);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            color: var(--consciousness-purple);
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .card-text {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: var(--radius);
+            font-family: var(--font-primary);
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn:hover {
+            background: var(--consciousness-purple);
+            border-color: var(--consciousness-purple);
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: var(--consciousness-purple);
+            border-color: var(--consciousness-purple);
+        }
+
+        .btn-primary:hover {
+            background: var(--unity-gold);
+            border-color: var(--unity-gold);
+            color: var(--bg-primary);
+        }
+
+        .section-dark {
+            background: var(--bg-secondary);
+            padding: 4rem 2rem;
+        }
+
+        .section-darker {
+            background: var(--bg-primary);
+            padding: 4rem 2rem;
+        }
     </style>
 </head>
 
 <body>
     <!-- Orbital HUD Navigation -->
     <script>if (location.pathname.includes('/website/index.html')) { history.replaceState({}, '', '/Een/'); }</script>
-    <nav class="orbital-hud">
-        <div class="hud-container">
-            <a href="#" class="hud-logo">
-                <i class="fas fa-infinity"></i>
-                Een Unity Mathematics
-            </a>
-            <ul class="hud-menu">
-                <li><a href="about.html" class="hud-link">About</a></li>
-                <li><a href="proofs.html" class="hud-link">Proofs</a></li>
-                <li><a href="gallery.html" class="hud-link">Gallery</a></li>
-                <li><a href="metagambit.html" class="hud-link">Metagambit</a></li>
-                <li><a href="enhanced-unity-demo.html" class="hud-link">Enhanced Unity Demo</a></li>
-                <li><a href="learn.html" class="hud-link">Learn</a></li>
-                <li><a href="unity.html" class="hud-link">Unity Dashboard</a></li>
-                <li><a href="status/index.html" class="hud-link">Unity Status</a></li>
-                <li><a href="unity-mathematics-experience.html" class="hud-link">Unity Experience</a></li>
-                <li><a href="dashboards.html" class="hud-link">Dashboards</a></li>
-                <li><a href="playground.html" class="hud-link">Playground</a></li>
-                <li><a href="research.html" class="hud-link">Research</a></li>
-                <li><a href="agents.html" class="hud-link">Agents</a></li>
-                <li><a href="learning.html" class="hud-link">Learning</a></li>
-                <li><a href="implementations.html" class="hud-link">Implementations</a></li>
-                <li><a href="publications.html" class="hud-link">Publications</a></li>
-                <li><a href="live-code-showcase.html" class="hud-link">Live Code</a></li>
-                <li><a href="transcendental-unity-demo.html" class="hud-link">Transcendental Demo</a></li>
-                <li><a href="al_khwarizmi_phi_unity.html" class="hud-link">Al-Khwarizmi</a></li>
-                <li><a href="3000-elo-proof.html" class="hud-link">3000 ELO Proof</a></li>
-                <li><a href="consciousness_dashboard.html" class="hud-link">Consciousness Dashboard</a></li>
-                <li><a href="enhanced-ai-demo.html" class="hud-link">AI Demo</a></li>
-                <li><a href="mathematical_playground.html" class="hud-link">Math Playground</a></li>
-                <li><a href="openai-integration.html" class="hud-link">OpenAI Integration</a></li>
-                <li><a href="metagamer_agent.html" class="hud-link">Metagamer Agent</a></li>
-                <li><a href="further-reading.html" class="hud-link">Further Reading</a></li>
-                <li><a href="mobile-app.html" class="hud-link">Mobile App</a></li>
-                <li><a href="unity_visualization.html" class="hud-link">Unity Visualization</a></li>
-                <li><a href="unity_consciousness_experience.html" class="hud-link">Consciousness Experience</a></li>
-                <li><a href="unity-advanced-features.html" class="hud-link">Advanced Features</a></li>
-                <li><a href="#" id="open-all-pages" class="hud-link">All Pages</a></li>
-            </ul>
-        </div>
-    </nav>
+    <!-- Navigation will be injected by unified-navigation-system.js -->
 
     <!-- Hero Section with Orbital Animation -->
     <section class="hero">
