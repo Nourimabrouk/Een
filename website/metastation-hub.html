@@ -31,8 +31,9 @@
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js" defer></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
     
-    <!-- Unified Navigation, Chat, and Audio Systems -->
+    <!-- Unified Navigation, Chat, Audio, and Search Systems -->
     <script src="js/unified-navigation-system.js" defer></script>
+    <script src="js/unified-search-system.js" defer></script>
     <script src="js/persistent-chat-system.js" defer></script>
     <script src="js/discreet-audio-system.js" defer></script>
     <script src="js/master-integration-system.js" defer></script>
@@ -960,11 +961,11 @@
             color: var(--unity-gold);
         }
 
-        /* Audio Player */
+        /* Audio Player - Optimized positioning */
         .audio-section {
             position: fixed;
-            bottom: 2rem;
-            right: 2rem;
+            bottom: 1.5rem;
+            right: 1.5rem;
             background: rgba(26, 26, 37, 0.98);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
@@ -2035,14 +2036,6 @@
             </div>
             <div class="dashboard-card">
                 <div class="dashboard-preview">
-                    <i class="fas fa-wave-square"></i>
-                </div>
-                <h3 class="card-title">Phi-Harmonic Wave Generator</h3>
-                <p class="card-description">Generate and manipulate φ-harmonic waveforms in real-time</p>
-                <a href="unity_consciousness_experience.html" style="color: var(--unity-gold); text-decoration: none;">Launch →</a>
-            </div>
-            <div class="dashboard-card">
-                <div class="dashboard-preview">
                     <i class="fas fa-shapes"></i>
                 </div>
                 <h3 class="card-title">Sacred Geometry Engine</h3>
@@ -2792,7 +2785,7 @@
             chatStyles.textContent = `
                 .floating-chat-btn {
                     position: fixed;
-                    bottom: 120px;
+                    bottom: 180px;
                     right: 2rem;
                     width: 60px;
                     height: 60px;
@@ -2847,7 +2840,7 @@
                 
                 @media (max-width: 768px) {
                     .floating-chat-btn {
-                        bottom: 80px;
+                        bottom: 120px;
                         right: 1rem;
                         width: 50px;
                         height: 50px;

@@ -115,6 +115,14 @@ class MasterIntegrationSystem {
             console.warn('  ⚠️ Discreet audio script not loaded');
         }
         
+        // Load unified search system
+        if (typeof UnifiedSearchSystem !== 'undefined') {
+            this.systems.search = window.unifiedSearch || new UnifiedSearchSystem();
+            console.log('  ✓ Unified search system active');
+        } else {
+            console.warn('  ⚠️ Unified search script not loaded');
+        }
+        
         this.conflictResolution.systemsIntegrated = true;
         console.log('✅ Unified systems initialized');
     }
@@ -133,6 +141,13 @@ class MasterIntegrationSystem {
         window.addEventListener('unified-nav:audio', () => {
             if (this.systems.audio) {
                 console.log('  🔄 Navigation triggered audio');
+            }
+        });
+        
+        // Navigation → Search integration
+        window.addEventListener('unified-nav:search', () => {
+            if (this.systems.search) {
+                console.log('  🔄 Navigation triggered search');
             }
         });
         
@@ -230,6 +245,7 @@ class MasterIntegrationSystem {
             navigation: this.validateNavigation(),
             chat: this.validateChat(),
             audio: this.validateAudio(),
+            search: this.validateSearch(),
             integration: this.validateIntegration()
         };
         
@@ -318,6 +334,21 @@ class MasterIntegrationSystem {
         return { success: true, message: 'Discreet audio system operational' };
     }
     
+    validateSearch() {
+        const searchModal = document.getElementById('unified-search-modal');
+        const searchInput = document.querySelector('.search-input');
+        
+        if (!searchModal) {
+            return { success: false, message: 'Search modal not found' };
+        }
+        
+        if (!searchInput) {
+            return { success: false, message: 'Search input not found' };
+        }
+        
+        return { success: true, message: 'Unified search system operational' };
+    }
+    
     validateIntegration() {
         // Check for CSS conflicts
         const duplicateStyles = document.querySelectorAll('#unified-navigation-styles, #persistent-chat-styles, #discreet-audio-styles');
@@ -329,7 +360,7 @@ class MasterIntegrationSystem {
         const hasErrors = window.onerror !== null || window.addEventListener('error', () => true);
         
         // Check cross-system communication
-        const eventTypes = ['unified-nav:chat', 'unified-nav:audio', 'chat:navigate', 'audio:state-change'];
+        const eventTypes = ['unified-nav:chat', 'unified-nav:audio', 'unified-nav:search', 'chat:navigate', 'audio:state-change'];
         const eventsSupported = eventTypes.every(type => {
             try {
                 window.dispatchEvent(new CustomEvent(type));

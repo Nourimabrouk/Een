@@ -55,24 +55,55 @@
         <div class="container" id="main-content">
             <div class="hero-content">
                 <h1>Research Portfolio</h1>
-                <p class="page-subtitle">Comprehensive exploration of unity mathematics across multiple domains</p>
+                <p class="page-subtitle">Interdisciplinary explorations of unity: Where 1+1=1 through mathematics, physics, consciousness, and computation</p>
+                
+                <!-- Semantic Search Integration -->
+                <div class="semantic-search-container">
+                    <div class="search-wrapper">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" id="semantic-search" placeholder="Search across all research domains... (try: quantum unity, consciousness field, idempotent algebra)" autocomplete="off">
+                        <div class="search-results" id="search-results"></div>
+                    </div>
+                    <div class="search-shortcuts">
+                        <span class="shortcut-hint">Press <kbd>/</kbd> to focus search</span>
+                        <div class="popular-searches">
+                            <button class="search-tag" data-query="quantum measurement">Quantum Measurement</button>
+                            <button class="search-tag" data-query="golden ratio">Golden Ratio φ</button>
+                            <button class="search-tag" data-query="consciousness field">Consciousness Field</button>
+                            <button class="search-tag" data-query="idempotent">Idempotent Operations</button>
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="research-stats">
                     <div class="stat">
-                        <span class="stat-number">4</span>
-                        <span class="stat-label">Research Phases</span>
+                        <span class="stat-number">∞</span>
+                        <span class="stat-label">Mathematical Domains</span>
                     </div>
                     <div class="stat">
-                        <span class="stat-number">12</span>
-                        <span class="stat-label">Implementation Domains</span>
+                        <span class="stat-number">φ</span>
+                        <span class="stat-label">Unity Resonance</span>
                     </div>
                     <div class="stat">
-                        <span class="stat-number">147</span>
-                        <span class="stat-label">Unity Discoveries</span>
+                        <span class="stat-number">1+1=1</span>
+                        <span class="stat-label">Core Equation</span>
                     </div>
                     <div class="stat">
-                        <span class="stat-number">528</span>
-                        <span class="stat-label">Love Frequency</span>
+                        <span class="stat-number">∃</span>
+                        <span class="stat-label">Existence Proof</span>
                     </div>
+                </div>
+                
+                <!-- Interactive Unity Visualization -->
+                <div class="unity-visualization" id="unity-demo">
+                    <div class="equation-interactive" onclick="demonstrateUnity()">
+                        <span class="equation-part" id="left-one">1</span>
+                        <span class="equation-operator">+</span>
+                        <span class="equation-part" id="right-one">1</span>
+                        <span class="equation-equals">=</span>
+                        <span class="equation-result" id="result">1</span>
+                    </div>
+                    <p class="demo-hint">Click the equation above to see unity in action</p>
                 </div>
             </div>
         </div>
@@ -82,7 +113,7 @@
         <div class="container">
             <div class="research-phases">
 
-                <!-- Phase 1: Mathematical Foundation -->
+                <!-- Phase 1: Mathematical Idempotence - Where One Plus One Is One -->
                 <div class="research-phase" id="phase-1">
                     <div class="phase-header">
                         <div class="phase-indicator">
@@ -90,8 +121,8 @@
                             <div class="phase-line"></div>
                         </div>
                         <div class="phase-title">
-                            <h2>Mathematical Foundation</h2>
-                            <p class="phase-subtitle">Establishing rigorous algebraic structures for unity mathematics
+                            <h2>Mathematical Idempotence</h2>
+                            <p class="phase-subtitle">Rigorous foundations across Boolean algebra, set theory, and idempotent semirings
                             </p>
                         </div>
                     </div>
@@ -99,12 +130,49 @@
                     <div class="phase-content">
                         <div class="research-grid">
                             <div class="research-main">
-                                <h3>Computational Validation Framework</h3>
-                                <p>Revolutionary breakthrough: We implemented the
-                                    <code>MultiFrameworkProofOrchestrator</code> that computationally validates 1+1=1
-                                    across four independent mathematical domains with >95% consensus and 0.92
-                                    mathematical rigor score. This provides the first comprehensive computational proof
-                                    of unity mathematics.</p>
+                                <h3>Idempotent Algebraic Structures</h3>
+                                <p>In conventional arithmetic, 1+1=2. However, across mathematics, science, and philosophy there are important contexts where combining "one and one" yields one—reflecting idempotence, unity, or wholeness rather than increase. We establish rigorous mathematical foundations where <strong>a⊕a = a</strong> for all elements in the structure.</p>
+                                
+                                <div class="mathematical-domains">
+                                    <div class="domain-card">
+                                        <h4><i class="fas fa-sitemap"></i> Boolean Algebra</h4>
+                                        <p>In logic, TRUE OR TRUE = TRUE, demonstrating <strong>1∨1 = 1</strong> using ∨ as OR operation. The two-element Boolean algebra {0,1} is an idempotent semiring where 1⊕1 = 1.</p>
+                                        <div class="truth-table">
+                                            <table>
+                                                <tr><th>A</th><th>B</th><th>A∨B</th></tr>
+                                                <tr><td>1</td><td>1</td><td class="highlight">1</td></tr>
+                                            </table>
+                                        </div>
+                                        <button class="cite-btn" onclick="showCitation('boolean-algebra')">Cite <i class="fas fa-quote-right"></i></button>
+                                    </div>
+                                    
+                                    <div class="domain-card">
+                                        <h4><i class="fas fa-set"></i> Set Theory</h4>
+                                        <p>Set union with itself yields itself: <strong>A ∪ A = A</strong>. This fundamental property demonstrates unity through self-reference in mathematical structures.</p>
+                                        <div class="set-diagram">
+                                            <div class="set-visual">A ∪ A = A</div>
+                                        </div>
+                                        <button class="cite-btn" onclick="showCitation('set-theory')">Cite <i class="fas fa-quote-right"></i></button>
+                                    </div>
+                                    
+                                    <div class="domain-card">
+                                        <h4><i class="fas fa-project-diagram"></i> Idempotent Semirings (Dioids)</h4>
+                                        <p>In tropical semiring (max-plus algebra): <strong>a⊕b = max(a,b)</strong>, thus 1⊕1 = max(1,1) = 1. These structures underlie path algebra in graph theory and optimization.</p>
+                                        <div class="formula-display">
+                                            $$\text{Tropical: } a \oplus b = \max(a,b) \implies 1 \oplus 1 = 1$$
+                                        </div>
+                                        <button class="cite-btn" onclick="showCitation('tropical-algebra')">Cite <i class="fas fa-quote-right"></i></button>
+                                    </div>
+                                </div>
+                                
+                                <div class="classical-context">
+                                    <h4>Historical Context: Principia Mathematica</h4>
+                                    <p>Whitehead and Russell famously took 378 pages to rigorously prove 1+1=2 in <em>Principia Mathematica</em>. This underscores that changing the usual rule (to make 1+1=1) leads to a radically different algebraic universe—one that mathematicians in areas like idempotent analysis have actively explored.</p>
+                                    <blockquote class="historical-quote">
+                                        <p>"The above proposition is occasionally useful."</p>
+                                        <cite>— Russell & Whitehead on their proof that 1+1=2</cite>
+                                    </blockquote>
+                                </div>
 
                                 <div class="code-demonstration">
                                     <div class="code-header">
@@ -918,11 +986,9 @@ class UnityOrganism:
     <section class="section section-alt">
         <div class="container">
             <div class="research-conclusion">
-                <h2>Research Synthesis</h2>
+                <h2>Research Synthesis: Unity Across Domains</h2>
                 <p class="lead">
-                    Through these four phases, we have established a comprehensive framework that demonstrates
-                    1+1=1 is not a paradox but a fundamental truth revealed through proper mathematical structures,
-                    consciousness integration, evolutionary discovery, and AI validation.
+                    Through these four domains—mathematical idempotence, quantum mechanics, consciousness science, and category theory—we have demonstrated that <strong>1+1=1</strong> is not a paradox but a fundamental principle appearing across mathematics, physics, philosophy, and computation. Whether through algebraic idempotents, quantum measurement collapse, conscious integration, or categorical unity, the theme remains: adding identical or deeply integrated parts yields no increase—you end up with One.
                 </p>
 
                 <div class="synthesis-grid">

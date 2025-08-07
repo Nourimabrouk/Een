@@ -1,0 +1,740 @@
+/* Enhanced Search and Citation System Styles */
+
+/* Semantic Search Styles */
+.semantic-search-container,
+.publication-search-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    position: relative;
+}
+
+.search-wrapper {
+    position: relative;
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    backdrop-filter: blur(10px);
+    transition: var(--transition-smooth);
+}
+
+.search-wrapper:focus-within {
+    border-color: var(--phi-gold);
+    box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1);
+}
+
+.search-icon {
+    position: absolute;
+    left: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    z-index: 2;
+}
+
+#semantic-search,
+#publication-search,
+#reading-search {
+    width: 100%;
+    padding: 1rem 1rem 1rem 4rem;
+    font-size: 1.1rem;
+    border: none;
+    background: transparent;
+    border-radius: var(--radius-xl);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    outline: none;
+}
+
+#semantic-search::placeholder,
+#publication-search::placeholder,
+#reading-search::placeholder {
+    color: var(--text-muted);
+    opacity: 0.8;
+}
+
+.search-results {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl);
+    max-height: 400px;
+    overflow-y: auto;
+    z-index: 1000;
+    display: none;
+}
+
+.search-result-item {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border-subtle);
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+.search-result-item:hover,
+.search-result-item.selected {
+    background: var(--bg-secondary);
+    border-left: 4px solid var(--phi-gold);
+}
+
+.result-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.result-title {
+    font-weight: 600;
+    color: var(--primary-color);
+    font-size: 1rem;
+}
+
+.result-title mark {
+    background: rgba(212, 175, 55, 0.2);
+    color: var(--phi-gold-dark);
+    padding: 0 0.2em;
+    border-radius: 3px;
+}
+
+.result-type {
+    font-size: 0.8rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.result-type.mathematics {
+    background: rgba(74, 144, 226, 0.1);
+    color: #4A90E2;
+}
+
+.result-type.physics {
+    background: rgba(124, 58, 237, 0.1);
+    color: #7C3AED;
+}
+
+.result-type.consciousness {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10B981;
+}
+
+.result-type.philosophy {
+    background: rgba(245, 158, 11, 0.1);
+    color: #F59E0B;
+}
+
+.result-type.information {
+    background: rgba(8, 145, 178, 0.1);
+    color: #0891B2;
+}
+
+.result-description {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+}
+
+.result-description mark {
+    background: rgba(212, 175, 55, 0.15);
+    color: var(--text-primary);
+    padding: 0 0.2em;
+    border-radius: 2px;
+}
+
+.result-section {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.no-results {
+    padding: 2rem;
+    text-align: center;
+    color: var(--text-muted);
+}
+
+.no-results i {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--text-light);
+}
+
+.search-suggestions {
+    margin-top: 1rem;
+}
+
+.suggestion-btn {
+    display: inline-block;
+    margin: 0.25rem;
+    padding: 0.5rem 1rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.suggestion-btn:hover {
+    background: var(--phi-gold);
+    color: white;
+    border-color: var(--phi-gold);
+}
+
+.search-shortcuts {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.shortcut-hint {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.shortcut-hint kbd {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    padding: 0.2em 0.5em;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.8em;
+    border: 1px solid var(--border-color);
+}
+
+.popular-searches {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.search-tag {
+    padding: 0.4rem 0.8rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.search-tag:hover {
+    background: var(--phi-gold);
+    color: white;
+    border-color: var(--phi-gold);
+    transform: translateY(-1px);
+}
+
+/* Unity Visualization */
+.unity-visualization {
+    margin: 2rem auto;
+    text-align: center;
+}
+
+.equation-interactive {
+    font-size: 3rem;
+    font-weight: 700;
+    font-family: var(--font-serif);
+    color: var(--primary-color);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    user-select: none;
+    display: inline-block;
+    padding: 1rem 2rem;
+    border-radius: var(--radius-xl);
+    background: linear-gradient(145deg, rgba(255,255,255,0.8), rgba(248,250,252,0.9));
+    box-shadow: var(--shadow-md);
+    border: 2px solid transparent;
+}
+
+.equation-interactive:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--phi-gold);
+}
+
+.equation-part,
+.equation-operator,
+.equation-equals,
+.equation-result {
+    margin: 0 0.3em;
+    transition: var(--transition-smooth);
+}
+
+.equation-result {
+    color: var(--phi-gold-dark);
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+}
+
+.demo-hint {
+    margin-top: 1rem;
+    color: var(--text-muted);
+    font-style: italic;
+    font-size: 1rem;
+}
+
+/* Citation Modal */
+.citation-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 10000;
+    backdrop-filter: blur(5px);
+}
+
+.citation-modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xl);
+    width: 90%;
+    max-width: 700px;
+    max-height: 80vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.citation-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 2rem;
+    background: var(--gradient-phi);
+    color: white;
+}
+
+.citation-modal-header h3 {
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.close-modal {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: var(--radius-md);
+    transition: var(--transition-fast);
+}
+
+.close-modal:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.citation-modal-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 2rem;
+}
+
+.citation-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.citation-tab {
+    padding: 0.75rem 1.5rem;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-weight: 500;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: var(--transition-fast);
+}
+
+.citation-tab.active {
+    color: var(--phi-gold-dark);
+    border-bottom-color: var(--phi-gold);
+}
+
+.citation-tab:hover {
+    color: var(--primary-color);
+    background: var(--bg-secondary);
+}
+
+.citation-format-display {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    min-height: 120px;
+}
+
+.citation-text {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-primary);
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    margin: 0;
+}
+
+.citation-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.copy-citation-btn,
+.download-citation-btn {
+    padding: 0.75rem 2rem;
+    border: 2px solid var(--phi-gold);
+    background: var(--phi-gold);
+    color: white;
+    border-radius: var(--radius-md);
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.copy-citation-btn:hover,
+.download-citation-btn:hover {
+    background: var(--phi-gold-dark);
+    border-color: var(--phi-gold-dark);
+    transform: translateY(-1px);
+}
+
+.download-citation-btn {
+    background: transparent;
+    color: var(--phi-gold-dark);
+}
+
+.download-citation-btn:hover {
+    background: var(--phi-gold);
+    color: white;
+}
+
+/* Citation Buttons */
+.cite-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.cite-btn:hover {
+    background: var(--phi-gold);
+    color: white;
+    border-color: var(--phi-gold);
+    transform: translateY(-1px);
+}
+
+/* Domain and Category Cards */
+.domain-card,
+.quantum-card,
+.consciousness-card,
+.philosophy-card,
+.category-card,
+.metamath-card {
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    transition: var(--transition-smooth);
+    position: relative;
+}
+
+.domain-card:hover,
+.quantum-card:hover,
+.consciousness-card:hover,
+.philosophy-card:hover,
+.category-card:hover,
+.metamath-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--phi-gold);
+}
+
+.domain-card h4,
+.quantum-card h4,
+.consciousness-card h4,
+.philosophy-card h4,
+.category-card h4,
+.metamath-card h4 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+}
+
+.domain-card i,
+.quantum-card i,
+.consciousness-card i,
+.philosophy-card i,
+.category-card i,
+.metamath-card i {
+    color: var(--phi-gold);
+    font-size: 1.2rem;
+}
+
+.truth-table,
+.mini-truth-table {
+    margin: 1rem 0;
+    border-collapse: collapse;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+}
+
+.truth-table th,
+.truth-table td,
+.mini-truth-table th,
+.mini-truth-table td {
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.truth-table th,
+.mini-truth-table th {
+    background: var(--bg-secondary);
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.truth-table .highlight,
+.mini-truth-table .unity-row {
+    background: rgba(212, 175, 55, 0.1);
+    border: 2px solid var(--phi-gold);
+}
+
+.formula-display,
+.math-highlight {
+    background: var(--bg-tertiary);
+    border-left: 4px solid var(--phi-gold);
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: var(--radius-md);
+    font-family: var(--font-mono);
+}
+
+.set-diagram,
+.set-visual,
+.observer-visual,
+.perception-example,
+.unified-percept {
+    background: var(--bg-secondary);
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    text-align: center;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin: 0.5rem 0;
+}
+
+.historical-quote,
+.philosophy-quote,
+.mystical-quote,
+.shannon-quote {
+    background: rgba(212, 175, 55, 0.05);
+    border-left: 4px solid var(--phi-gold);
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: var(--radius-md);
+    font-style: italic;
+}
+
+.sanskrit-quote {
+    text-align: center;
+    margin: 1rem 0;
+}
+
+.sanskrit {
+    font-size: 1.2rem;
+    color: var(--phi-gold-dark);
+    margin-bottom: 0.5rem;
+}
+
+.translation {
+    font-style: italic;
+    color: var(--text-secondary);
+}
+
+.binding-diagram {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 1rem 0;
+    flex-wrap: wrap;
+}
+
+.stimulus,
+.unified-experience {
+    background: var(--bg-secondary);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-md);
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
+.unified-experience {
+    background: var(--phi-gold);
+    color: white;
+    font-weight: 600;
+}
+
+.binding-arrow {
+    color: var(--phi-gold-dark);
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .semantic-search-container,
+    .publication-search-container {
+        margin: 1rem;
+    }
+    
+    .search-shortcuts {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+    
+    .popular-searches {
+        justify-content: center;
+    }
+    
+    .equation-interactive {
+        font-size: 2rem;
+        padding: 0.75rem 1.5rem;
+    }
+    
+    .citation-modal-content {
+        width: 95%;
+        max-height: 90vh;
+    }
+    
+    .citation-modal-body {
+        padding: 1rem;
+    }
+    
+    .citation-tabs {
+        flex-wrap: wrap;
+    }
+    
+    .citation-actions {
+        flex-direction: column;
+    }
+    
+    .binding-diagram {
+        flex-direction: column;
+        gap: 0.3rem;
+    }
+    
+    .binding-arrow {
+        transform: rotate(90deg);
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .search-wrapper {
+        background: rgba(30, 41, 59, 0.95);
+        border-color: #475569;
+    }
+    
+    .search-results {
+        background: #1e293b;
+        border-color: #475569;
+    }
+    
+    .search-result-item:hover,
+    .search-result-item.selected {
+        background: #334155;
+    }
+    
+    .citation-modal-content {
+        background: #1e293b;
+        color: #f1f5f9;
+    }
+    
+    .citation-format-display {
+        background: #334155;
+        border-color: #475569;
+    }
+    
+    .domain-card,
+    .quantum-card,
+    .consciousness-card,
+    .philosophy-card,
+    .category-card,
+    .metamath-card {
+        background: #1e293b;
+        border-color: #475569;
+        color: #f1f5f9;
+    }
+}
+
+/* Animation for unity demonstration */
+@keyframes unity-merge {
+    0% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.1) rotate(5deg); }
+    100% { transform: scale(1) rotate(0deg); }
+}
+
+.equation-result.animated {
+    animation: unity-merge 0.6s ease-in-out;
+}
+
+/* Print styles */
+@media print {
+    .semantic-search-container,
+    .publication-search-container,
+    .citation-modal,
+    .cite-btn {
+        display: none !important;
+    }
+}
