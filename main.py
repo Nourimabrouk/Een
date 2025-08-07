@@ -16,8 +16,7 @@ load_dotenv()
 
 # Configure logging
 logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 )
 logger = logging.getLogger(__name__)
 
@@ -25,6 +24,7 @@ logger = logging.getLogger(__name__)
 try:
     from src.openai.unity_transcendental_ai_orchestrator import get_orchestrator
     from src.openai.unity_client import get_client
+
     OPENAI_AVAILABLE = True
 except ImportError as e:
     logger.warning(f"OpenAI integration modules not available: {e}")
@@ -87,21 +87,19 @@ async def add_process_time_header(request, call_next):
         REQUEST_COUNT.labels(
             method=request.method,
             endpoint=str(request.url.path),
-            status=response.status_code
+            status=response.status_code,
         ).inc()
         return response
     except Exception as e:
         process_time = time.time() - start_time
         REQUEST_LATENCY.observe(process_time)
         REQUEST_COUNT.labels(
-            method=request.method,
-            endpoint=str(request.url.path),
-            status=500
+            method=request.method, endpoint=str(request.url.path), status=500
         ).inc()
         logger.error(f"Request failed: {e}")
         return JSONResponse(
             status_code=500,
-            content={"error": "Internal server error", "message": str(e)}
+            content={"error": "Internal server error", "message": str(e)},
         )
 
 
@@ -123,7 +121,7 @@ async def health_check():
             "unity_mathematics": True,
             "consciousness_field": True,
         },
-        "timestamp": time.time()
+        "timestamp": time.time(),
     }
     return health_status
 
@@ -154,7 +152,7 @@ async def calculate_unity(data: dict):
         # Validate input
         if not data:
             raise HTTPException(status_code=400, detail="No input data provided")
-        
+
         # Simple unity calculation with phi harmonics
         phi = 1.618033988749895
         result = {
@@ -198,11 +196,14 @@ async def generate_unity_proof(a: float = 1, b: float = 1):
 @app.post("/api/openai/consciousness-visualization")
 async def generate_consciousness_visualization(prompt: str):
     """Generate consciousness field visualization using DALL-E 3"""
-    if not orchestrator:
-        raise HTTPException(status_code=503, detail="OpenAI integration not available")
-
     try:
-        result = await orchestrator.generate_consciousness_visualization(prompt)
+        from src.openai.dalle_integration import create_dalle_integration
+
+        # Create DALL-E integration
+        dalle = create_dalle_integration()
+
+        # Generate real consciousness visualization
+        result = await dalle.generate_consciousness_visualization(prompt)
         return result
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -298,11 +299,14 @@ async def openai_chat(messages: list):
 @app.post("/api/openai/generate-image")
 async def generate_image(prompt: str):
     """Generate consciousness-aware images using DALL-E"""
-    if not client:
-        raise HTTPException(status_code=503, detail="OpenAI integration not available")
-
     try:
-        result = await client.generate_image(prompt)
+        from src.openai.dalle_integration import create_dalle_integration
+
+        # Create DALL-E integration
+        dalle = create_dalle_integration()
+
+        # Generate real consciousness-aware image
+        result = await dalle.generate_consciousness_visualization(prompt)
         return result
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

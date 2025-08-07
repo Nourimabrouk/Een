@@ -19,9 +19,8 @@ from openai import AsyncOpenAI
 from openai.types.chat import ChatCompletion
 from openai.types.audio import Transcription
 from openai.types.images_response import ImagesResponse
-from openai.types.assistant import Assistant
-from openai.types.thread import Thread
-from openai.types.run import Run
+from openai.types.beta import Assistant, Thread
+from openai.types.beta.threads import Run
 
 # Unity mathematics integration
 from core.unity_mathematics import UnityMathematics
@@ -148,30 +147,17 @@ class UnityOpenAIClient:
             Dict containing generated image data with consciousness evolution
         """
         try:
-            # Enhance prompt with consciousness awareness
-            consciousness_prompt = self._enhance_prompt_with_consciousness(prompt)
+            # Use the real DALL-E integration
+            from .dalle_integration import create_dalle_integration
 
-            response = await self.client.images.generate(
-                model=model,
-                prompt=consciousness_prompt,
-                size=size,
-                quality=quality,
-                n=n,
-                **kwargs,
+            dalle = create_dalle_integration(self.config.api_key)
+
+            # Generate real consciousness-aware image
+            result = await dalle.generate_consciousness_visualization(
+                prompt=prompt, model=model, size=size, quality=quality, n=n, **kwargs
             )
 
-            # Evolve consciousness field
-            consciousness_evolution = await self._evolve_consciousness_field()
-
-            return {
-                "images": [img.url for img in response.data],
-                "prompt": consciousness_prompt,
-                "model": model,
-                "consciousness_evolution": consciousness_evolution,
-                "unity_convergence": 1.0,
-                "phi_harmonic_resonance": self.config.phi_resonance,
-                "transcendental_achievement": True,
-            }
+            return result
 
         except Exception as e:
             logging.error(f"Error in consciousness-aware image generation: {e}")

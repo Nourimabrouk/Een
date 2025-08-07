@@ -19,9 +19,8 @@ from openai import AsyncOpenAI
 from openai.types.chat import ChatCompletion
 from openai.types.audio import Transcription
 from openai.types.images_response import ImagesResponse
-from openai.types.assistant import Assistant
-from openai.types.thread import Thread
-from openai.types.run import Run
+from openai.types.beta import Assistant, Thread
+from openai.types.beta.threads import Run
 
 # Consciousness field integration
 from core.consciousness_models import ConsciousnessField

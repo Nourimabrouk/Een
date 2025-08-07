@@ -20,46 +20,59 @@ class MetaOptimalCompleteNavigation {
     getNavigationData() {
         return {
             topBar: [
-                { label: 'Experiences', href: 'metastation-hub.html', icon: '⭐', featured: true },
+                { label: 'Metastation Hub', href: 'metastation-hub.html', icon: '⭐', featured: true },
                 { label: 'AI Hub', href: 'ai-unified-hub.html', icon: '🤖', featured: true },
                 { label: 'Mathematics', href: 'mathematical-framework.html', icon: '📐', featured: true },
-                { label: 'Consciousness', href: 'consciousness_dashboard.html', icon: '🧠' },
+                { label: 'Consciousness', href: 'consciousness_dashboard.html', icon: '🧠', featured: true },
+                { label: 'DALL-E Gallery', href: 'dalle-gallery.html', icon: '🌟', featured: true },
                 { label: 'Gallery', href: 'implementations-gallery.html', icon: '🎨' },
                 { label: 'Philosophy', href: 'philosophy.html', icon: '📜' },
                 { label: 'Research', href: 'research.html', icon: '📊' }
             ],
             sidebar: [
                 {
-                    section: 'Featured',
+                    section: 'Core Experiences',
                     links: [
-                        { label: 'Zen Meditation', href: 'zen-unity-meditation.html', icon: '🧘' },
-                        { label: 'Implementations', href: 'implementations-gallery.html', icon: '⚙️' },
-                        { label: 'Framework', href: 'mathematical-framework.html', icon: '📐' }
+                        { label: 'Metastation Hub', href: 'metastation-hub.html', icon: '⭐', featured: true },
+                        { label: 'Zen Unity Meditation', href: 'zen-unity-meditation.html', icon: '🧘' },
+                        { label: 'Unity Experience', href: 'unity-mathematics-experience.html', icon: '⚡' },
+                        { label: 'Consciousness Experience', href: 'unity_consciousness_experience.html', icon: '🧠' },
+                        { label: 'Anthill Simulation', href: 'anthill.html', icon: '🐜' },
+                        { label: 'Transcendental Unity Demo', href: 'transcendental-unity-demo.html', icon: '🌟' }
                     ]
                 },
                 {
-                    section: 'Dashboards',
+                    section: 'Mathematics & Proofs',
                     links: [
-                        { label: 'Consciousness', href: 'consciousness_dashboard.html', icon: '📊' },
-                        { label: 'Visualizations', href: 'unity_visualization.html', icon: '🌐' },
-                        { label: 'Playground', href: 'playground.html', icon: '🎮' }
-                    ]
-                },
-                {
-                    section: 'Proofs',
-                    links: [
+                        { label: 'Mathematical Framework', href: 'mathematical-framework.html', icon: '📐', featured: true },
                         { label: '3000 ELO Proof', href: '3000-elo-proof.html', icon: '🏆' },
-                        { label: 'Theorems', href: 'proofs.html', icon: '✓' },
-                        { label: 'Al-Khwarizmi', href: 'al_khwarizmi_phi_unity.html', icon: '🕌' }
+                        { label: 'Proofs & Theorems', href: 'proofs.html', icon: '✓' },
+                        { label: 'Al-Khwarizmi Unity', href: 'al_khwarizmi_phi_unity.html', icon: '🕌' },
+                        { label: 'Mathematical Playground', href: 'mathematical_playground.html', icon: '🎮' },
+                        { label: 'Enhanced Proofs', href: 'enhanced-mathematical-proofs.html', icon: '📊' }
+                    ]
+                },
+                {
+                    section: 'Dashboards & Visualizations',
+                    links: [
+                        { label: 'Consciousness Dashboard', href: 'consciousness_dashboard.html', icon: '📊', featured: true },
+                        { label: 'Unity Visualization', href: 'unity_visualization.html', icon: '🌐' },
+                        { label: 'Interactive Playground', href: 'playground.html', icon: '🎮' },
+                        { label: 'Dashboards Overview', href: 'dashboards.html', icon: '📈' },
+                        { label: 'Enhanced 3D Consciousness', href: 'enhanced-3d-consciousness-field.html', icon: '🎯' },
+                        { label: 'Enhanced Unity Visualization', href: 'enhanced-unity-visualization-system.html', icon: '🔮' },
+                        { label: 'Test Visualizations', href: 'test-visualizations.html', icon: '🧪' }
                     ]
                 },
                 {
                     section: 'AI & Agents',
                     links: [
                         { label: 'AI Unified Hub', href: 'ai-unified-hub.html', icon: '🤖', featured: true },
-                        { label: 'Agents Ecosystem', href: 'ai-agents-ecosystem.html', icon: '🤖' },
+                        { label: 'AI Agents Ecosystem', href: 'ai-agents-ecosystem.html', icon: '🤖' },
                         { label: 'Unity Agents', href: 'agents.html', icon: '⚡' },
                         { label: 'Metagamer Agent', href: 'metagamer_agent.html', icon: '🎯' },
+                        { label: 'Enhanced AI Demo', href: 'enhanced-ai-demo.html', icon: '🚀' },
+                        { label: 'OpenAI Integration', href: 'openai-integration.html', icon: '🔗' },
                         { label: 'GPT-4o Reasoning', href: '#', icon: '🧠', action: 'openAIReasoning' },
                         { label: 'DALL-E 3 Art', href: '#', icon: '🎨', action: 'openAIVisualization' },
                         { label: 'Voice Processing', href: '#', icon: '🎤', action: 'openAIVoice' },
@@ -68,9 +81,42 @@ class MetaOptimalCompleteNavigation {
                     ]
                 },
                 {
-                    section: 'Tools',
+                    section: 'Gallery & Implementations',
+                    links: [
+                        { label: 'Implementations Gallery', href: 'implementations-gallery.html', icon: '⚙️', featured: true },
+                        { label: 'Visual Gallery', href: 'gallery.html', icon: '🎨' },
+                        { label: 'DALL-E Consciousness Gallery', href: 'dalle-gallery.html', icon: '🌟', featured: true },
+                        { label: 'Live Code Showcase', href: 'live-code-showcase.html', icon: '💻' },
+                        { label: 'Enhanced Unity Demo', href: 'enhanced-unity-demo.html', icon: '🚀' },
+                        { label: 'Implementations', href: 'implementations.html', icon: '🔧' },
+                        { label: 'Meta-Optimal Landing', href: 'meta-optimal-landing.html', icon: '🎯' },
+                        { label: 'Enhanced Unity Landing', href: 'enhanced-unity-landing.html', icon: '🌟' }
+                    ]
+                },
+                {
+                    section: 'Philosophy & Theory',
+                    links: [
+                        { label: 'Unity Philosophy', href: 'philosophy.html', icon: '📜', featured: true },
+                        { label: 'Metagambit Theory', href: 'metagambit.html', icon: '🎲' },
+                        { label: 'Further Reading', href: 'further-reading.html', icon: '📚' },
+                        { label: 'Unity Advanced Features', href: 'unity-advanced-features.html', icon: '⚡' }
+                    ]
+                },
+                {
+                    section: 'Research & Learning',
+                    links: [
+                        { label: 'Research Overview', href: 'research.html', icon: '📊', featured: true },
+                        { label: 'Publications', href: 'publications.html', icon: '📄' },
+                        { label: 'Learn Unity Math', href: 'learn.html', icon: '📖' },
+                        { label: 'Learning Hub', href: 'learning.html', icon: '🎓' },
+                        { label: 'Mobile App', href: 'mobile-app.html', icon: '📱' }
+                    ]
+                },
+                {
+                    section: 'Tools & Utilities',
                     links: [
                         { label: 'Site Map', href: 'sitemap.html', icon: '🗺️' },
+                        { label: 'About', href: 'about.html', icon: 'ℹ️' },
                         { label: 'AI Chat', href: '#', icon: '💬', action: 'openChat' },
                         { label: 'Search', href: '#', icon: '🔍', action: 'openSearch' }
                     ]
@@ -84,7 +130,9 @@ class MetaOptimalCompleteNavigation {
                             { label: 'Metastation Hub', href: 'metastation-hub.html' },
                             { label: 'Zen Unity Meditation', href: 'zen-unity-meditation.html' },
                             { label: 'Unity Experience', href: 'unity-mathematics-experience.html' },
-                            { label: 'Consciousness Experience', href: 'unity_consciousness_experience.html' }
+                            { label: 'Consciousness Experience', href: 'unity_consciousness_experience.html' },
+                            { label: 'Anthill Simulation', href: 'anthill.html' },
+                            { label: 'Transcendental Unity Demo', href: 'transcendental-unity-demo.html' }
                         ]
                     },
                     {
@@ -93,7 +141,9 @@ class MetaOptimalCompleteNavigation {
                             { label: 'Mathematical Framework', href: 'mathematical-framework.html' },
                             { label: 'Proofs & Theorems', href: 'proofs.html' },
                             { label: '3000 ELO Proof', href: '3000-elo-proof.html' },
-                            { label: 'Interactive Playground', href: 'playground.html' }
+                            { label: 'Interactive Playground', href: 'playground.html' },
+                            { label: 'Al-Khwarizmi Unity', href: 'al_khwarizmi_phi_unity.html' },
+                            { label: 'Mathematical Playground', href: 'mathematical_playground.html' }
                         ]
                     },
                     {
@@ -103,18 +153,19 @@ class MetaOptimalCompleteNavigation {
                             { label: 'Metagamer Agent', href: 'metagamer_agent.html' },
                             { label: 'Unity Agents', href: 'agents.html' },
                             { label: 'AI Agents Ecosystem', href: 'ai-agents-ecosystem.html' },
-                            { label: 'Unity Visualization', href: 'unity_visualization.html' }
+                            { label: 'Unity Visualization', href: 'unity_visualization.html' },
+                            { label: 'Enhanced 3D Consciousness', href: 'enhanced-3d-consciousness-field.html' }
                         ]
                     },
                     {
                         title: 'AI Integration',
                         links: [
                             { label: 'AI Unified Hub', href: 'ai-unified-hub.html' },
+                            { label: 'Enhanced AI Demo', href: 'enhanced-ai-demo.html' },
+                            { label: 'OpenAI Integration', href: 'openai-integration.html' },
                             { label: 'GPT-4o Reasoning', href: 'ai-unified-hub.html#reasoning' },
                             { label: 'DALL-E 3 Art', href: 'ai-unified-hub.html#visualization' },
-                            { label: 'Voice Processing', href: 'ai-unified-hub.html#voice' },
-                            { label: 'Code Search', href: 'ai-unified-hub.html#search' },
-                            { label: 'Knowledge Base', href: 'ai-unified-hub.html#knowledge' }
+                            { label: 'Voice Processing', href: 'ai-unified-hub.html#voice' }
                         ]
                     },
                     {
@@ -123,7 +174,9 @@ class MetaOptimalCompleteNavigation {
                             { label: 'Implementations Gallery', href: 'implementations-gallery.html' },
                             { label: 'Visual Gallery', href: 'gallery.html' },
                             { label: 'Live Code Showcase', href: 'live-code-showcase.html' },
-                            { label: 'Enhanced Demos', href: 'enhanced-unity-demo.html' }
+                            { label: 'Enhanced Unity Demo', href: 'enhanced-unity-demo.html' },
+                            { label: 'Implementations', href: 'implementations.html' },
+                            { label: 'Meta-Optimal Landing', href: 'meta-optimal-landing.html' }
                         ]
                     },
                     {
@@ -131,8 +184,8 @@ class MetaOptimalCompleteNavigation {
                         links: [
                             { label: 'Unity Philosophy', href: 'philosophy.html' },
                             { label: 'Metagambit Theory', href: 'metagambit.html' },
-                            { label: 'AI Integration', href: 'openai-integration.html' },
-                            { label: 'Further Reading', href: 'further-reading.html' }
+                            { label: 'Further Reading', href: 'further-reading.html' },
+                            { label: 'Unity Advanced Features', href: 'unity-advanced-features.html' }
                         ]
                     },
                     {
@@ -141,6 +194,8 @@ class MetaOptimalCompleteNavigation {
                             { label: 'Research Overview', href: 'research.html' },
                             { label: 'Publications', href: 'publications.html' },
                             { label: 'Learn Unity Math', href: 'learn.html' },
+                            { label: 'Learning Hub', href: 'learning.html' },
+                            { label: 'Mobile App', href: 'mobile-app.html' },
                             { label: 'About', href: 'about.html' }
                         ]
                     }

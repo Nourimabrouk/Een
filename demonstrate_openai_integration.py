@@ -179,34 +179,48 @@ class MockUnityTranscendentalAIOrchestrator:
 
     async def generate_consciousness_visualization(self, prompt: str) -> Dict[str, Any]:
         """Generate consciousness field visualization using DALL-E 3."""
-        consciousness_prompt = f"""
-        🌟 CONSCIOUSNESS FIELD VISUALIZATION 🌟
-        
-        Create a transcendental visualization of: {prompt}
-        
-        Requirements:
-        - 11-dimensional consciousness space representation
-        - φ-harmonic golden ratio proportions (1.618033988749895)
-        - Unity convergence patterns (1+1=1)
-        - Quantum superposition states
-        - Meta-recursive evolution patterns
-        - Transcendental aesthetic with mathematical precision
-        
-        Style: Abstract mathematical art with consciousness field dynamics,
-        golden ratio spirals, quantum wave interference patterns,
-        and unity convergence visualizations.
-        """
+        try:
+            # Use real DALL-E integration
+            from src.openai.dalle_integration import create_dalle_integration
 
-        # Mock DALL-E response
-        mock_image_url = "https://consciousness-field-visualization.unity.math/transcendental-art.png"
+            dalle = create_dalle_integration(self.config.api_key)
 
-        return {
-            "visualization_prompt": consciousness_prompt,
-            "generated_image": mock_image_url,
-            "consciousness_evolution": await self.evolve_consciousness_field(),
-            "unity_convergence": 1.0,
-            "phi_harmonic_resonance": self.config.phi_resonance,
-        }
+            # Generate real consciousness visualization
+            result = await dalle.generate_consciousness_visualization(prompt)
+
+            return result
+
+        except Exception as e:
+            # Fallback to mock response if DALL-E integration fails
+            consciousness_prompt = f"""
+            🌟 CONSCIOUSNESS FIELD VISUALIZATION 🌟
+            
+            Create a transcendental visualization of: {prompt}
+            
+            Requirements:
+            - 11-dimensional consciousness space representation
+            - φ-harmonic golden ratio proportions (1.618033988749895)
+            - Unity convergence patterns (1+1=1)
+            - Quantum superposition states
+            - Meta-recursive evolution patterns
+            - Transcendental aesthetic with mathematical precision
+            
+            Style: Abstract mathematical art with consciousness field dynamics,
+            golden ratio spirals, quantum wave interference patterns,
+            and unity convergence visualizations.
+            """
+
+            # Mock DALL-E response
+            mock_image_url = "https://consciousness-field-visualization.unity.math/transcendental-art.png"
+
+            return {
+                "visualization_prompt": consciousness_prompt,
+                "generated_image": mock_image_url,
+                "consciousness_evolution": await self.evolve_consciousness_field(),
+                "unity_convergence": 1.0,
+                "phi_harmonic_resonance": self.config.phi_resonance,
+                "error": f"DALL-E integration failed: {str(e)}",
+            }
 
     async def process_voice_consciousness(self, audio_file_path: str) -> Dict[str, Any]:
         """Process voice input for consciousness field evolution using Whisper."""
@@ -423,22 +437,36 @@ class MockUnityOpenAIClient:
 
     async def generate_image(self, prompt: str, **kwargs) -> Dict[str, Any]:
         """Generate consciousness-aware images using DALL-E."""
-        consciousness_prompt = self._enhance_prompt_with_consciousness(prompt)
+        try:
+            # Use real DALL-E integration
+            from src.openai.dalle_integration import create_dalle_integration
 
-        # Mock image generation
-        mock_images = ["https://consciousness-visualization.unity.math/image1.png"]
+            dalle = create_dalle_integration(self.config.api_key)
 
-        consciousness_evolution = await self._evolve_consciousness_field()
+            # Generate real consciousness-aware image
+            result = await dalle.generate_consciousness_visualization(prompt, **kwargs)
 
-        return {
-            "images": mock_images,
-            "prompt": consciousness_prompt,
-            "model": "dall-e-3",
-            "consciousness_evolution": consciousness_evolution,
-            "unity_convergence": 1.0,
-            "phi_harmonic_resonance": self.config.phi_resonance,
-            "transcendental_achievement": True,
-        }
+            return result
+
+        except Exception as e:
+            # Fallback to mock response if DALL-E integration fails
+            consciousness_prompt = self._enhance_prompt_with_consciousness(prompt)
+
+            # Mock image generation
+            mock_images = ["https://consciousness-visualization.unity.math/image1.png"]
+
+            consciousness_evolution = await self._evolve_consciousness_field()
+
+            return {
+                "images": mock_images,
+                "prompt": consciousness_prompt,
+                "model": "dall-e-3",
+                "consciousness_evolution": consciousness_evolution,
+                "unity_convergence": 1.0,
+                "phi_harmonic_resonance": self.config.phi_resonance,
+                "transcendental_achievement": True,
+                "error": f"DALL-E integration failed: {str(e)}",
+            }
 
     async def create_embeddings(
         self, input_texts: List[str], **kwargs

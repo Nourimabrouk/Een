@@ -9,34 +9,34 @@ echo.
 
 :: Check Python environment
 echo 🔧 Checking Python environment...
-if not exist "een\Scripts\python.exe" (
+if not exist "venv\Scripts\python.exe" (
     echo 🔧 Creating Python environment...
-    python -m venv een
+    python -m venv venv
 )
 
 :: Activate virtual environment
 echo 🔄 Activating Unity Mathematics environment...
-call een\Scripts\activate.bat
+call venv\Scripts\activate.bat
 
 :: Install/update dependencies
 echo 📦 Installing dependencies...
-een\Scripts\python.exe -m pip install --upgrade pip
-een\Scripts\python.exe -m pip install -r requirements.txt
+venv\Scripts\python.exe -m pip install --upgrade pip
+venv\Scripts\python.exe -m pip install -r requirements.txt
 
 :: Check configuration
 echo 🔍 Checking configuration...
 if not exist ".env" (
     echo 🔐 Configuration needed - running secure setup...
-    een\Scripts\python.exe setup_secrets.py
+    venv\Scripts\python.exe setup_secrets.py
 ) else (
-    een\Scripts\python.exe -c "
+    venv\Scripts\python.exe -c "
 import os
 from pathlib import Path
 env_content = Path('.env').read_text()
 if 'your-key-here' in env_content or 'change-in-production' in env_content:
     print('🔐 Configuration incomplete - running secure setup...')
     import subprocess
-    subprocess.run([r'een\Scripts\python.exe', 'setup_secrets.py'])
+    subprocess.run([r'venv\Scripts\python.exe', 'setup_secrets.py'])
 else:
     print('✅ Configuration ready')
 "
@@ -55,7 +55,7 @@ echo Press Ctrl+C to stop all services
 echo.
 
 :: Launch with Python
-een\Scripts\python.exe launch.py
+venv\Scripts\python.exe launch.py
 
 echo.
 echo 🛑 Unity Mathematics Platform stopped

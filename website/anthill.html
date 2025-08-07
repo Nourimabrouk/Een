@@ -29,7 +29,7 @@
     <!-- Meta-Optimal Complete Navigation System -->
     <link rel="stylesheet" href="css/meta-optimal-navigation-complete.css">
     <script src="js/meta-optimal-navigation-complete.js" defer></script>
-    
+
     <!-- Unified Styles -->
     <link rel="stylesheet" href="css/unified-styles.css">
 
@@ -112,6 +112,7 @@
             }
         }
 
+        /* Fixed Hero Video Section */
         .hero-video {
             position: relative;
             overflow: hidden;
@@ -119,24 +120,46 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            background: linear-gradient(45deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6));
         }
 
-        .hero-video::before {
-            content: '';
+        .video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: var(--radius-lg);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-overlay {
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(45deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1));
-            z-index: 1;
-        }
-
-        .hero-content {
-            position: relative;
+            background: linear-gradient(45deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2));
             z-index: 2;
-            text-align: center;
-            padding: 2rem;
         }
 
         .simulation-container {
@@ -332,6 +355,11 @@
             .unity-equation {
                 font-size: 2rem;
             }
+
+            .hero-content {
+                padding: 1rem;
+                margin: 0 1rem;
+            }
         }
 
         /* Animation Classes */
@@ -372,6 +400,32 @@
         .stagger-animation>*:nth-child(5) {
             animation-delay: 0.5s;
         }
+
+        /* Video Controls */
+        .video-controls {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 4;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .video-btn {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            border: 1px solid var(--unity-gold);
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .video-btn:hover {
+            background: var(--unity-gold);
+            color: var(--bg-primary);
+        }
     </style>
 </head>
 
@@ -380,14 +434,15 @@
 
     <!-- 0 ◇ HERO SECTION -->
     <section class="hero-video">
-        <div class="absolute inset-0 w-full h-full">
-            <iframe class="w-full h-full"
-                src="https://www.youtube-nocookie.com/embed/dECE7285GxU?autoplay=0&rel=0&modestbranding=1&showinfo=0"
+        <div class="video-container">
+            <iframe
+                src="https://www.youtube-nocookie.com/embed/dECE7285GxU?autoplay=0&rel=0&modestbranding=1&showinfo=0&controls=1"
                 title="Secret Megalopolis of the Ants" loading="lazy"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen>
             </iframe>
         </div>
+        <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1 class="fade-in">
                 The Secret Megalopolis of the Ants
@@ -398,6 +453,14 @@
             <div class="mt-6 fade-in">
                 <span class="unity-equation">1 + 1 = 1</span>
             </div>
+        </div>
+        <div class="video-controls">
+            <button class="video-btn" onclick="toggleVideo()">
+                <i class="fas fa-play"></i> Watch Full Documentary
+            </button>
+            <a href="https://www.youtube.com/watch?v=dECE7285GxU" target="_blank" rel="noopener" class="video-btn">
+                <i class="fas fa-external-link-alt"></i> Open in YouTube
+            </a>
         </div>
     </section>
 
@@ -865,6 +928,20 @@ function updateGraphWeights(ants, network) {
             </div>
         </div>
     </footer>
+
+    <!-- Video Control Script -->
+    <script>
+        function toggleVideo() {
+            const iframe = document.querySelector('.video-container iframe');
+            const currentSrc = iframe.src;
+
+            if (currentSrc.includes('autoplay=0')) {
+                iframe.src = currentSrc.replace('autoplay=0', 'autoplay=1');
+            } else {
+                iframe.src = currentSrc.replace('autoplay=1', 'autoplay=0');
+            }
+        }
+    </script>
 
     <!-- Simulation Script -->
     <script type="module">

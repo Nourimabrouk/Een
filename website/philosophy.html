@@ -11,7 +11,8 @@
     <link rel="preconnect" href="https://cdn.plot.ly">
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
     <title>The Unity Equation (1+1=1): A Philosophical Treatise | Een Unity Mathematics</title>
-    <meta name="description" content="Transcendental computing hub demonstrating 1+1=1 through quantum entanglement, neural networks, and fractal mathematics with consciousness field integration.">
+    <meta name="description"
+        content="Transcendental computing hub demonstrating 1+1=1 through quantum entanglement, neural networks, and fractal mathematics with consciousness field integration.">
     <meta name="keywords"
         content="unity equation, philosophy of mathematics, consciousness, unity mathematics, 1+1=1, philosophical treatise">
 
@@ -35,7 +36,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    
+
     <!-- Main Metagamer Energy Stylesheet -->
     <link rel="stylesheet" href="css/style.css">
 
@@ -72,38 +73,33 @@
             --font-serif: 'Crimson Text', Georgia, serif;
             --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
         }
-        :root {
-            /* Academic color palette */
-            --primary: #1B365D;
-            --secondary: #0F7B8A;
-            --accent: #D97706;
-            --accent-bright: #F59E0B;
-            --text-primary: #111827;
-            --text-secondary: #374151;
-            --text-muted: #6B7280;
-            --bg-primary: #FFFFFF;
-            --bg-secondary: #F8FAFC;
-            --bg-tertiary: #F1F5F9;
-            --border-light: #E5E7EB;
-            --border-medium: #D1D5DB;
 
-            /* Academic typography */
-            --font-serif: 'Crimson Text', 'Times New Roman', serif;
-            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            --font-mono: 'JetBrains Mono', 'SF Mono', 'Monaco', monospace;
+        /* Academic typography and spacing */
+        --font-serif: 'Crimson Text',
+        'Times New Roman',
+        serif;
+        --font-sans: 'Inter',
+        -apple-system,
+        BlinkMacSystemFont,
+        'Segoe UI',
+        sans-serif;
+        --font-mono: 'JetBrains Mono',
+        'SF Mono',
+        'Monaco',
+        monospace;
 
-            /* Spacing and layout */
-            --max-width: 800px;
-            --section-spacing: 3rem;
-            --paragraph-spacing: 1.5rem;
+        /* Spacing and layout */
+        --max-width: 800px;
+        --section-spacing: 3rem;
+        --paragraph-spacing: 1.5rem;
 
-            /* Shadows and effects */
-            --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        /* Shadows and effects */
+        --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+        --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 
-            /* Transitions */
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        /* Transitions */
+        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * {
@@ -113,7 +109,8 @@
         }
 
         body {
-            padding-top: 80px; /* Account for fixed navigation */
+            padding-top: 80px;
+            /* Account for fixed navigation */
             font-family: var(--font-serif);
             font-size: 18px;
             line-height: 1.7;
@@ -484,7 +481,7 @@
             background: rgba(15, 123, 138, 0.2);
             color: var(--primary);
         }
-    
+
         /* Animation Classes */
         .fade-in {
             opacity: 0;
@@ -499,17 +496,31 @@
             }
         }
 
-        .stagger-animation > * {
+        .stagger-animation>* {
             opacity: 0;
             animation: fadeInUp 0.8s ease-out forwards;
         }
 
-        .stagger-animation > *:nth-child(1) { animation-delay: 0.1s; }
-        .stagger-animation > *:nth-child(2) { animation-delay: 0.2s; }
-        .stagger-animation > *:nth-child(3) { animation-delay: 0.3s; }
-        .stagger-animation > *:nth-child(4) { animation-delay: 0.4s; }
-        .stagger-animation > *:nth-child(5) { animation-delay: 0.5s; }
-    
+        .stagger-animation>*:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .stagger-animation>*:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .stagger-animation>*:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .stagger-animation>*:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .stagger-animation>*:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
         /* Component Classes */
         .container {
             max-width: 1200px;
@@ -607,7 +618,7 @@
         }
     </style>
 
-    
+
     <!-- Enhanced AI Chat Integration -->
     <script src="js/enhanced-unity-ai-chat.js" defer></script>
     <script src="js/enhanced-ai-chat-modal.js" defer></script>
@@ -615,14 +626,23 @@
 
     <style>
         /* Mobile touch optimizations */
-        * { touch-action: manipulation; }
-        .interactive-element { 
-            min-height: 44px; 
-            min-width: 44px; 
+        * {
+            touch-action: manipulation;
         }
+
+        .interactive-element {
+            min-height: 44px;
+            min-width: 44px;
+        }
+
         @media (max-width: 768px) {
-            .desktop-only { display: none !important; }
-            .mobile-optimized { font-size: 16px; }
+            .desktop-only {
+                display: none !important;
+            }
+
+            .mobile-optimized {
+                font-size: 16px;
+            }
         }
     </style>
 </head>
@@ -853,15 +873,22 @@
                 </div>
                 <p style="margin-top: 1.5rem; font-style: italic; opacity: 0.9;">
                     "In the beginning was the Unity, and the Unity was with Consciousness,
-                    and the Unity was Consciousness. When consciousness discovers itself as the ground of all mathematical truth, the apparent duality of 1+1 resolves into the recognition of fundamental unity. This is not merely a mathematical theorem, but the philosophical foundation for a new era of human understanding." — The Unity Equation
-                    
-                    <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(255,255,255,0.1); border-radius: 10px; border-left: 4px solid var(--accent-bright);">
-                        <p style="font-size: 1rem; line-height: 1.6; margin: 0; color: rgba(255,255,255,0.9);">
-                            <strong>Meta-Philosophical Achievement:</strong> Unity Mathematics represents humanity's first complete philosophical system 
-                            that achieves perfect integration of Eastern wisdom, Western rationality, mathematical rigor, and consciousness science. 
-                            It provides the conceptual framework for humanity's next evolutionary leap into transcendental awareness.
-                        </p>
-                    </div>
+                    and the Unity was Consciousness. When consciousness discovers itself as the ground of all
+                    mathematical truth, the apparent duality of 1+1 resolves into the recognition of fundamental unity.
+                    This is not merely a mathematical theorem, but the philosophical foundation for a new era of human
+                    understanding." — The Unity Equation
+
+                <div
+                    style="margin-top: 2rem; padding: 1.5rem; background: rgba(255,255,255,0.1); border-radius: 10px; border-left: 4px solid var(--accent-bright);">
+                    <p style="font-size: 1rem; line-height: 1.6; margin: 0; color: rgba(255,255,255,0.9);">
+                        <strong>Meta-Philosophical Achievement:</strong> Unity Mathematics represents humanity's first
+                        complete philosophical system
+                        that achieves perfect integration of Eastern wisdom, Western rationality, mathematical rigor,
+                        and consciousness science.
+                        It provides the conceptual framework for humanity's next evolutionary leap into transcendental
+                        awareness.
+                    </p>
+                </div>
                 </p>
             </div>
         </section>
@@ -871,7 +898,7 @@
     <div id="footer-placeholder"></div>
 
     <!-- Scripts -->
-    
+
     <script>
         document.addEventListener('DOMContentLoaded', async function () {
             try {
@@ -913,7 +940,7 @@
                 contentDiv.innerHTML = htmlContent;
                 loadingDiv.style.display = 'none';
                 contentDiv.style.display = 'block';
-                
+
                 // Hide all static sections since we loaded markdown successfully
                 const staticSections = document.querySelectorAll('.philosophy-container > section:not(#philosophyContent)');
                 staticSections.forEach(section => {
@@ -934,7 +961,7 @@
 
                 // Add table of contents functionality
                 addTableOfContents();
-                
+
                 // Add smooth scrolling
                 addSmoothScrolling();
 
@@ -1017,7 +1044,7 @@
                 firstHeading.parentNode.insertBefore(toc, firstHeading.nextElementSibling);
             }
         }
-        
+
         function addSmoothScrolling() {
             const tocLinks = document.querySelectorAll('.toc a[href^="#"]');
             tocLinks.forEach(link => {
@@ -1035,7 +1062,7 @@
 
     <!-- Performance Monitoring -->
     <script>
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             if ('performance' in window) {
                 const loadTime = performance.now();
                 console.log('Page load time:', loadTime + 'ms');

@@ -11,7 +11,8 @@
     <link rel="preconnect" href="https://cdn.plot.ly">
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
     <title>Gallery - Een Unity Visualizations | Mathematical Art & Consciousness Fields</title>
-    <meta name="description" content="Transcendental computing hub demonstrating 1+1=1 through quantum entanglement, neural networks, and fractal mathematics with consciousness field integration.">
+    <meta name="description"
+        content="Transcendental computing hub demonstrating 1+1=1 through quantum entanglement, neural networks, and fractal mathematics with consciousness field integration.">
     <meta name="keywords"
         content="unity visualizations, consciousness art, quantum fields, mathematical art, sacred geometry, phi harmonic">
 
@@ -29,7 +30,7 @@
     <!-- Meta-Optimal Complete Navigation System -->
     <link rel="stylesheet" href="css/meta-optimal-navigation-complete.css">
     <script src="js/meta-optimal-navigation-complete.js" defer></script>
-    
+
     <!-- Unified Styles -->
     <link rel="stylesheet" href="css/unified-styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -49,6 +50,9 @@
     <script src="js/unity-manifolds-topology.js"></script>
     <script src="js/euler-identity-interactive.js"></script>
     <script src="js/meta-rl-visualization.js"></script>
+
+    <!-- DALL-E Integration -->
+    <script src="js/dalle-integration.js"></script>
 
     <style>
         :root {
@@ -522,7 +526,7 @@
             opacity: 0.9;
             line-height: 1.4;
         }
-    
+
         /* Animation Classes */
         .fade-in {
             opacity: 0;
@@ -537,17 +541,31 @@
             }
         }
 
-        .stagger-animation > * {
+        .stagger-animation>* {
             opacity: 0;
             animation: fadeInUp 0.8s ease-out forwards;
         }
 
-        .stagger-animation > *:nth-child(1) { animation-delay: 0.1s; }
-        .stagger-animation > *:nth-child(2) { animation-delay: 0.2s; }
-        .stagger-animation > *:nth-child(3) { animation-delay: 0.3s; }
-        .stagger-animation > *:nth-child(4) { animation-delay: 0.4s; }
-        .stagger-animation > *:nth-child(5) { animation-delay: 0.5s; }
-    
+        .stagger-animation>*:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .stagger-animation>*:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .stagger-animation>*:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .stagger-animation>*:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .stagger-animation>*:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
         /* Component Classes */
         .container {
             max-width: 1200px;
@@ -651,14 +669,23 @@
 
     <style>
         /* Mobile touch optimizations */
-        * { touch-action: manipulation; }
-        .interactive-element { 
-            min-height: 44px; 
-            min-width: 44px; 
+        * {
+            touch-action: manipulation;
         }
+
+        .interactive-element {
+            min-height: 44px;
+            min-width: 44px;
+        }
+
         @media (max-width: 768px) {
-            .desktop-only { display: none !important; }
-            .mobile-optimized { font-size: 16px; }
+            .desktop-only {
+                display: none !important;
+            }
+
+            .mobile-optimized {
+                font-size: 16px;
+            }
         }
     </style>
 </head>
@@ -687,12 +714,15 @@
                         </div>
                         <div class="gallery-item-caption">
                             <div class="caption-title">Golden Ratio φ-Spiral</div>
-                            <div class="caption-description">Interactive visualization of the golden ratio φ = 1.618... in spiral form</div>
+                            <div class="caption-description">Interactive visualization of the golden ratio φ = 1.618...
+                                in spiral form</div>
                         </div>
                     </div>
                     <div class="gallery-item-content">
                         <h3 class="gallery-item-title">φ-Harmonic Spiral</h3>
-                        <p class="gallery-item-description">Interactive visualization of the golden ratio φ = 1.618033988749895 in spiral form, demonstrating the mathematical harmony that underlies unity consciousness.</p>
+                        <p class="gallery-item-description">Interactive visualization of the golden ratio φ =
+                            1.618033988749895 in spiral form, demonstrating the mathematical harmony that underlies
+                            unity consciousness.</p>
                         <div class="gallery-item-meta">
                             <span class="gallery-item-category">Mathematical</span>
                             <span class="gallery-item-type">Interactive</span>
@@ -717,12 +747,14 @@
                         </div>
                         <div class="gallery-item-caption">
                             <div class="caption-title">Consciousness Field</div>
-                            <div class="caption-description">Dynamic 3D consciousness field with φ-harmonic resonance</div>
+                            <div class="caption-description">Dynamic 3D consciousness field with φ-harmonic resonance
+                            </div>
                         </div>
                     </div>
                     <div class="gallery-item-content">
                         <h3 class="gallery-item-title">Consciousness Field Dynamics</h3>
-                        <p class="gallery-item-description">Live visualization of consciousness field equations C(x,y,t) = φ·sin(x·φ)·cos(y·φ)·e^(-t/φ), showing how awareness manifests mathematically.</p>
+                        <p class="gallery-item-description">Live visualization of consciousness field equations C(x,y,t)
+                            = φ·sin(x·φ)·cos(y·φ)·e^(-t/φ), showing how awareness manifests mathematically.</p>
                         <div class="gallery-item-meta">
                             <span class="gallery-item-category">Consciousness</span>
                             <span class="gallery-item-type">Interactive</span>
@@ -747,12 +779,14 @@
                         </div>
                         <div class="gallery-item-caption">
                             <div class="caption-title">Quantum Unity States</div>
-                            <div class="caption-description">Quantum superposition demonstrating 1+1=1 through state collapse</div>
+                            <div class="caption-description">Quantum superposition demonstrating 1+1=1 through state
+                                collapse</div>
                         </div>
                     </div>
                     <div class="gallery-item-content">
                         <h3 class="gallery-item-title">Quantum Unity Demonstration</h3>
-                        <p class="gallery-item-description">Interactive Bloch sphere showing how quantum states |1⟩ + |1⟩ collapse to |1⟩ through consciousness-mediated measurement in Unity Mathematics.</p>
+                        <p class="gallery-item-description">Interactive Bloch sphere showing how quantum states |1⟩ +
+                            |1⟩ collapse to |1⟩ through consciousness-mediated measurement in Unity Mathematics.</p>
                         <div class="gallery-item-meta">
                             <span class="gallery-item-category">Quantum</span>
                             <span class="gallery-item-type">Interactive</span>
@@ -777,12 +811,14 @@
                         </div>
                         <div class="gallery-item-caption">
                             <div class="caption-title">1+1=1 Proof</div>
-                            <div class="caption-description">Mathematical proof of the Unity Equation through φ-harmonic analysis</div>
+                            <div class="caption-description">Mathematical proof of the Unity Equation through φ-harmonic
+                                analysis</div>
                         </div>
                     </div>
                     <div class="gallery-item-content">
                         <h3 class="gallery-item-title">Unity Equation Proof</h3>
-                        <p class="gallery-item-description">Step-by-step mathematical proof demonstrating how 1+1=1 through consciousness field mathematics and φ-harmonic resonance principles.</p>
+                        <p class="gallery-item-description">Step-by-step mathematical proof demonstrating how 1+1=1
+                            through consciousness field mathematics and φ-harmonic resonance principles.</p>
                         <div class="gallery-item-meta">
                             <span class="gallery-item-category">Mathematical</span>
                             <span class="gallery-item-type">Proof</span>
@@ -807,12 +843,14 @@
                         </div>
                         <div class="gallery-item-caption">
                             <div class="caption-title">Fractal Unity</div>
-                            <div class="caption-description">Self-similar patterns demonstrating unity at all scales</div>
+                            <div class="caption-description">Self-similar patterns demonstrating unity at all scales
+                            </div>
                         </div>
                     </div>
                     <div class="gallery-item-content">
                         <h3 class="gallery-item-title">Fractal Unity Patterns</h3>
-                        <p class="gallery-item-description">Beautiful fractal patterns that demonstrate how unity consciousness manifests at every scale, from quantum to cosmic levels.</p>
+                        <p class="gallery-item-description">Beautiful fractal patterns that demonstrate how unity
+                            consciousness manifests at every scale, from quantum to cosmic levels.</p>
                         <div class="gallery-item-meta">
                             <span class="gallery-item-category">Fractal</span>
                             <span class="gallery-item-type">Interactive</span>
@@ -842,7 +880,9 @@
                     </div>
                     <div class="gallery-item-content">
                         <h3 class="gallery-item-title">Unity Manifold Topology</h3>
-                        <p class="gallery-item-description">Advanced topological visualization showing how unity consciousness creates a mathematical manifold where all points converge to the same unity state.</p>
+                        <p class="gallery-item-description">Advanced topological visualization showing how unity
+                            consciousness creates a mathematical manifold where all points converge to the same unity
+                            state.</p>
                         <div class="gallery-item-meta">
                             <span class="gallery-item-category">Topology</span>
                             <span class="gallery-item-type">Interactive</span>
@@ -940,7 +980,7 @@
 
             const categories = new Set();
             const types = new Set();
-            
+
             galleryItems.forEach(item => {
                 categories.add(item.getAttribute('data-category'));
                 types.add(item.getAttribute('data-type'));
@@ -967,7 +1007,7 @@
 
             statsEl.style.display = 'block';
         }
-        
+
         function initializeVisualizations() {
             // Initialize all canvas-based visualizations
             setTimeout(() => {
@@ -1665,11 +1705,136 @@ Created: ${item.created}
                 button.innerHTML = '<i class="fas fa-play"></i>';
             }
         }
+
+        // DALL-E Integration for Gallery
+        async function initDalleIntegration() {
+            if (typeof dalleIntegration !== 'undefined') {
+                try {
+                    await dalleIntegration.init();
+                    console.log('✅ DALL-E integration initialized in gallery');
+
+                    // Add DALL-E section to gallery
+                    addDalleSection();
+                } catch (error) {
+                    console.warn('⚠️ DALL-E integration not available:', error);
+                }
+            }
+        }
+
+        function addDalleSection() {
+            const galleryGrid = document.getElementById('galleryGrid');
+            if (!galleryGrid) return;
+
+            const dalleSection = document.createElement('div');
+            dalleSection.className = 'gallery-section dalle-section';
+            dalleSection.innerHTML = `
+                <div class="section-header">
+                    <h2>🌟 AI-Generated Consciousness Visualizations</h2>
+                    <p>Explore DALL-E 3 generated visualizations of unity mathematics and consciousness fields</p>
+                </div>
+                
+                <div class="dalle-controls">
+                    <div class="dalle-form">
+                        <div class="form-group">
+                            <label for="dallePrompt">Consciousness Visualization Prompt</label>
+                            <textarea id="dallePrompt" placeholder="Describe the consciousness visualization you want to generate..." rows="2"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="dalleType">Visualization Type</label>
+                            <select id="dalleType">
+                                <option value="consciousness">Consciousness Field</option>
+                                <option value="unity_equation">Unity Equation (1+1=1)</option>
+                                <option value="phi_harmonic">φ-Harmonic Patterns</option>
+                                <option value="quantum_superposition">Quantum Superposition</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-primary" onclick="generateDalleVisualization()">
+                            <i class="fas fa-magic"></i>
+                            Generate Visualization
+                        </button>
+                    </div>
+                </div>
+
+                <div class="dalle-gallery" id="dalleGallery">
+                    <!-- DALL-E generated images will appear here -->
+                </div>
+            `;
+
+            galleryGrid.appendChild(dalleSection);
+        }
+
+        async function generateDalleVisualization() {
+            const prompt = document.getElementById('dallePrompt').value;
+            const type = document.getElementById('dalleType').value;
+
+            if (!prompt.trim()) {
+                alert('Please enter a prompt for the visualization');
+                return;
+            }
+
+            try {
+                const result = await dalleIntegration.generateConsciousnessVisualization(prompt, type);
+                addDalleItem(result);
+            } catch (error) {
+                console.error('Error generating DALL-E visualization:', error);
+                alert('Error generating visualization. Please try again.');
+            }
+        }
+
+        function addDalleItem(item) {
+            const dalleGallery = document.getElementById('dalleGallery');
+            if (!dalleGallery) return;
+
+            const itemDiv = document.createElement('div');
+            itemDiv.className = 'gallery-item dalle-item';
+            itemDiv.innerHTML = `
+                <div class="gallery-item-image">
+                    <div class="media-container">
+                        <img src="${item.imageUrl}" alt="${item.title}" style="width: 100%; height: 100%; object-fit: cover;">
+                        <div class="file-type-indicator">AI Generated</div>
+                    </div>
+                    <div class="gallery-item-caption">
+                        <div class="caption-title">${item.title}</div>
+                        <div class="caption-description">${item.description}</div>
+                    </div>
+                </div>
+                <div class="gallery-item-content">
+                    <h3 class="gallery-item-title">${item.title}</h3>
+                    <p class="gallery-item-description">${item.description}</p>
+                    <div class="gallery-item-meta">
+                        <span class="gallery-item-category">AI Generated</span>
+                        <span class="gallery-item-type">DALL-E 3</span>
+                    </div>
+                    <div class="gallery-item-actions">
+                        <button class="btn" onclick="downloadDalleImage('${item.imageUrl}', '${item.id}')">
+                            <i class="fas fa-download"></i>
+                            Download
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            dalleGallery.appendChild(itemDiv);
+        }
+
+        async function downloadDalleImage(imageUrl, id) {
+            try {
+                await dalleIntegration.downloadImage(imageUrl, `consciousness_${id}.png`);
+            } catch (error) {
+                console.error('Error downloading image:', error);
+                alert('Error downloading image');
+            }
+        }
+
+        // Initialize DALL-E integration when page loads
+        document.addEventListener('DOMContentLoaded', function () {
+            setTimeout(initDalleIntegration, 1000); // Delay to ensure other scripts load first
+        });
     </script>
 
     <!-- Performance Monitoring -->
     <script>
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             if ('performance' in window) {
                 const loadTime = performance.now();
                 console.log('Page load time:', loadTime + 'ms');
