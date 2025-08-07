@@ -30,10 +30,17 @@ class UnifiedNavigationSystem {
                     href: 'metastation-hub.html',
                     dropdown: [
                         { label: 'Metastation Hub', href: 'metastation-hub.html', icon: '🚀' },
+                        { label: 'Home', href: 'index.html', icon: '🏠' },
+                        { label: 'Meta-Optimal Landing', href: 'meta-optimal-landing.html', icon: '✨' },
                         { label: 'Unity Experience', href: 'unity-mathematics-experience.html', icon: '∞' },
+                        { label: 'Consciousness Experience', href: 'unity_consciousness_experience.html', icon: '🧠' },
                         { label: 'Zen Meditation', href: 'zen-unity-meditation.html', icon: '🧘' },
-                        { label: 'Consciousness Dashboard', href: 'consciousness_dashboard.html', icon: '🧠' },
-                        { label: 'Transcendental Demo', href: 'transcendental-unity-demo.html', icon: '🌟' }
+                        { label: 'Consciousness Dashboard', href: 'consciousness_dashboard.html', icon: '📊' },
+                        { label: 'Clean Dashboard', href: 'consciousness_dashboard_clean.html', icon: '🎯' },
+                        { label: 'Transcendental Demo', href: 'transcendental-unity-demo.html', icon: '🌟' },
+                        { label: 'Enhanced Unity Demo', href: 'enhanced-unity-demo.html', icon: '⚡' },
+                        { label: 'Enhanced AI Demo', href: 'enhanced-ai-demo.html', icon: '🤖' },
+                        { label: 'Advanced Features', href: 'unity-advanced-features.html', icon: '🔧' }
                     ]
                 },
                 {
@@ -46,7 +53,9 @@ class UnifiedNavigationSystem {
                         { label: 'Proofs & Theorems', href: 'proofs.html', icon: '✓' },
                         { label: '3000 ELO Proof', href: '3000-elo-proof.html', icon: '🏆' },
                         { label: 'Al-Khwarizmi Unity', href: 'al_khwarizmi_phi_unity.html', icon: '🕌' },
-                        { label: 'Gödel-Tarski', href: 'mathematical_playground.html', icon: '🎯' }
+                        { label: 'Gödel-Tarski', href: 'mathematical_playground.html', icon: '🎯' },
+                        { label: 'Interactive Playground', href: 'playground.html', icon: '🎮' },
+                        { label: 'Unity Visualization', href: 'unity_visualization.html', icon: '🌐' }
                     ]
                 },
                 {
@@ -67,10 +76,11 @@ class UnifiedNavigationSystem {
                     icon: '🎨',
                     href: 'gallery.html',
                     dropdown: [
-                        { label: 'Implementations', href: 'implementations-gallery.html', icon: '⚙️' },
+                        { label: 'Implementations Gallery', href: 'implementations-gallery.html', icon: '⚙️' },
+                        { label: 'Implementations', href: 'implementations.html', icon: '🔬' },
                         { label: 'Visual Gallery', href: 'gallery.html', icon: '🖼️' },
-                        { label: 'Live Code Showcase', href: 'live-code-showcase.html', icon: '💻' },
-                        { label: 'Unity Visualization', href: 'unity_visualization.html', icon: '🌐' }
+                        { label: 'Gallery Test', href: 'gallery_test.html', icon: '🧪' },
+                        { label: 'Live Code Showcase', href: 'live-code-showcase.html', icon: '💻' }
                     ]
                 },
                 {
@@ -82,7 +92,8 @@ class UnifiedNavigationSystem {
                         { label: 'Research Overview', href: 'research.html', icon: '🔬' },
                         { label: 'Publications', href: 'publications.html', icon: '📄' },
                         { label: 'Dashboard Hub', href: 'dashboards.html', icon: '📊' },
-                        { label: 'Agents', href: 'agents.html', icon: '🤖' }
+                        { label: 'Agents', href: 'agents.html', icon: '🤖' },
+                        { label: 'Metagamer Agent', href: 'metagamer_agent.html', icon: '🎮' }
                     ]
                 },
                 {
@@ -91,8 +102,9 @@ class UnifiedNavigationSystem {
                     icon: '🛠️',
                     href: 'playground.html',
                     dropdown: [
-                        { label: 'Interactive Playground', href: 'playground.html', icon: '🎮' },
-                        { label: 'Learning Resources', href: 'learning.html', icon: '📚' },
+                        { label: 'Learning Hub', href: 'learning.html', icon: '📚' },
+                        { label: 'Learn', href: 'learn.html', icon: '🎓' },
+                        { label: 'Mobile App', href: 'mobile-app.html', icon: '📱' },
                         { label: 'About', href: 'about.html', icon: '👤' },
                         { label: 'Site Map', href: 'sitemap.html', icon: '🗺️' }
                     ]

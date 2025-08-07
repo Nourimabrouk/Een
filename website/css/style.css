@@ -1,25 +1,32 @@
 /* Een Unity Mathematics - Modern 2025 Academic Stylesheet */
 
 :root {
-    /* Professional Academic Color Palette */
+    /* Metagamer Energy Color Palette - Sophisticated & Intriguing */
     --primary-color: #1B365D;
     --primary-light: #2E4A6B;
     --secondary-color: #3C4650;
     --accent-color: #0F7B8A;
-    --phi-gold: #0F7B8A;
-    --quantum-blue: #4A9BAE;
-    --consciousness-purple: #2E4A6B;
-    --unity-emerald: #38A169;
+    --phi-gold: #D4AF37;
+    --phi-gold-light: #F4E19C;
+    --phi-gold-dark: #B8941A;
+    --quantum-blue: #4A90E2;
+    --consciousness-purple: #7C3AED;
+    --unity-emerald: #10B981;
+    --metagamer-teal: #0891B2;
+    --academic-slate: #334155;
     
-    /* Sophisticated Grays */
-    --text-primary: #2D3748;
-    --text-secondary: #718096;
-    --text-muted: #A0AEC0;
+    /* Sophisticated Grays with Metagamer Energy */
+    --text-primary: #1E293B;
+    --text-secondary: #64748B;
+    --text-muted: #94A3B8;
+    --text-accent: var(--phi-gold-dark);
     --bg-primary: #FFFFFF;
-    --bg-secondary: #F7FAFC;
-    --bg-tertiary: #EDF2F7;
+    --bg-secondary: #F8FAFC;
+    --bg-tertiary: #F1F5F9;
+    --bg-academic: #FEFEFE;
     --border-color: #E2E8F0;
     --border-subtle: #F7FAFC;
+    --border-accent: rgba(212, 175, 55, 0.2);
     
     /* Enhanced Typography */
     --font-serif: 'Crimson Text', 'Times New Roman', serif;
@@ -33,11 +40,12 @@
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
     --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
     
-    /* Mathematical Gradients */
-    --gradient-primary: linear-gradient(135deg, #1B365D 0%, #2E4A6B 50%, #3C4650 100%);
-    --gradient-phi: linear-gradient(135deg, #0F7B8A 0%, #4A9BAE 50%, #2E4A6B 100%);
-    --gradient-quantum: linear-gradient(135deg, #4A9BAE 0%, #0F7B8A 50%, #1B365D 100%);
-    --gradient-consciousness: linear-gradient(135deg, #2E4A6B 0%, #1B365D 50%, #3C4650 100%);
+    /* Mathematical Gradients with Metagamer Energy */
+    --gradient-primary: linear-gradient(135deg, #1B365D 0%, #2E4A6B 50%, #334155 100%);
+    --gradient-phi: linear-gradient(135deg, var(--phi-gold) 0%, var(--phi-gold-light) 50%, var(--metagamer-teal) 100%);
+    --gradient-quantum: linear-gradient(135deg, var(--quantum-blue) 0%, var(--consciousness-purple) 50%, var(--primary-color) 100%);
+    --gradient-consciousness: linear-gradient(135deg, var(--consciousness-purple) 0%, var(--phi-gold) 50%, var(--unity-emerald) 100%);
+    --gradient-metagamer: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(16, 185, 129, 0.1) 50%, rgba(74, 144, 226, 0.1) 100%);
     
     /* Geometric Properties */
     --radius-sm: 0.375rem;
@@ -46,10 +54,12 @@
     --radius-xl: 1rem;
     --radius-2xl: 1.5rem;
     
-    /* Animation Timing */
+    /* Animation Timing with Metagamer Flow */
     --transition-fast: 150ms ease-out;
     --transition-smooth: 300ms cubic-bezier(0.4, 0, 0.2, 1);
     --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: 400ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-metagamer: 350ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
     
     /* Mathematical Constants for Spacing */
     --space-phi: 1.618rem;
@@ -254,9 +264,10 @@ button.nav-link {
     width: 150%;
     height: 200%;
     background: 
-        radial-gradient(circle at 25% 75%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 75% 25%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
-        conic-gradient(from 0deg at 50% 50%, transparent 0deg, rgba(245, 158, 11, 0.1) 90deg, transparent 180deg);
+        radial-gradient(circle at 25% 75%, rgba(74, 144, 226, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 75% 25%, rgba(124, 58, 237, 0.12) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.08) 0%, transparent 60%),
+        conic-gradient(from 0deg at 50% 50%, transparent 0deg, rgba(212, 175, 55, 0.1) 90deg, transparent 180deg);
     animation: geometric-float 20s ease-in-out infinite;
 }
 
@@ -417,11 +428,13 @@ button.nav-link {
     text-decoration: none;
     font-weight: 600;
     font-size: 0.95rem;
-    transition: all var(--transition-smooth);
+    transition: all var(--transition-metagamer);
     cursor: pointer;
     border: none;
     position: relative;
     overflow: hidden;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .btn::before {
@@ -442,12 +455,14 @@ button.nav-link {
 .btn-primary {
     background: var(--gradient-phi);
     color: white;
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-md), 0 0 20px rgba(212, 175, 55, 0.3);
+    border: 1px solid rgba(212, 175, 55, 0.4);
 }
 
 .btn-primary:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: var(--shadow-lg), 0 0 30px rgba(212, 175, 55, 0.5);
+    filter: brightness(1.1);
 }
 
 .btn-secondary {
@@ -531,7 +546,9 @@ button.nav-link {
     border: 1px solid var(--border-color);
     position: relative;
     margin-bottom: 2rem;
-    transition: all var(--transition-smooth);
+    transition: all var(--transition-metagamer);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .info-card::before {
@@ -546,8 +563,9 @@ button.nav-link {
 }
 
 .info-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: var(--shadow-xl), 0 0 25px rgba(212, 175, 55, 0.15);
+    border-color: var(--border-accent);
 }
 
 .info-card h3 {
@@ -606,10 +624,12 @@ button.nav-link {
     padding: 2.5rem;
     border-radius: var(--radius-xl);
     box-shadow: var(--shadow-sm);
-    transition: all var(--transition-smooth);
+    transition: all var(--transition-metagamer);
     border: 1px solid var(--border-color);
     position: relative;
     overflow: hidden;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .theory-card::before {
@@ -623,9 +643,10 @@ button.nav-link {
 }
 
 .theory-card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-xl);
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: var(--shadow-xl), 0 0 30px rgba(212, 175, 55, 0.2);
     border-color: var(--phi-gold);
+    filter: brightness(1.02);
 }
 
 .theory-icon {
@@ -810,10 +831,12 @@ button.nav-link {
     padding: 2.5rem;
     border: 1px solid var(--border-color);
     border-radius: var(--radius-xl);
-    transition: all var(--transition-smooth);
+    transition: all var(--transition-metagamer);
     background: var(--bg-primary);
     position: relative;
     overflow: hidden;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .research-item::before {
@@ -833,9 +856,10 @@ button.nav-link {
 }
 
 .research-item:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-xl);
+    transform: translateY(-10px) scale(1.01);
+    box-shadow: var(--shadow-xl), 0 0 25px rgba(212, 175, 55, 0.2);
     border-color: var(--phi-gold);
+    background: linear-gradient(135deg, var(--bg-primary) 0%, rgba(212, 175, 55, 0.02) 100%);
 }
 
 .research-item h3 {
@@ -1341,6 +1365,21 @@ button.nav-link {
         grid-template-columns: 1fr;
     }
     
+    /* Metagamer mobile optimizations */
+    .metagamer-card {
+        padding: 1.5rem;
+        transform: none;
+    }
+    
+    .metagamer-card:hover {
+        transform: translateY(-4px);
+    }
+    
+    .metagamer-button {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.9rem;
+    }
+    
     .footer-content {
         grid-template-columns: 1fr;
         text-align: center;
@@ -1422,7 +1461,7 @@ button.nav-link {
     border-radius: var(--radius-sm);
 }
 
-/* Mathematical Beauty Elements */
+/* Mathematical Beauty Elements with Metagamer Energy */
 .geometric-pattern {
     position: absolute;
     top: 50%;
@@ -1439,6 +1478,134 @@ button.nav-link {
 @keyframes rotate-phi {
     from { transform: translate(-50%, -50%) rotate(0deg); }
     to { transform: translate(-50%, -50%) rotate(361.8deg); }
+}
+
+/* Metagamer Energy Utility Classes */
+.metagamer-card {
+    background: linear-gradient(135deg, var(--bg-primary) 0%, rgba(212, 175, 55, 0.02) 100%);
+    border: 1px solid var(--border-accent);
+    border-radius: var(--radius-xl);
+    padding: 2rem;
+    transition: all var(--transition-metagamer);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    overflow: hidden;
+}
+
+.metagamer-card:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: var(--shadow-xl), 0 0 25px rgba(212, 175, 55, 0.15);
+    border-color: var(--phi-gold);
+    background: linear-gradient(135deg, var(--bg-primary) 0%, rgba(212, 175, 55, 0.05) 100%);
+}
+
+.metagamer-button {
+    background: var(--gradient-phi);
+    color: white;
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    border-radius: var(--radius-lg);
+    padding: 0.875rem 2rem;
+    font-weight: 600;
+    transition: all var(--transition-metagamer);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-md), 0 0 20px rgba(212, 175, 55, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.metagamer-button:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: var(--shadow-lg), 0 0 30px rgba(212, 175, 55, 0.5);
+    filter: brightness(1.1);
+}
+
+.metagamer-accent {
+    color: var(--phi-gold);
+    font-weight: 600;
+}
+
+.metagamer-text {
+    color: var(--text-accent);
+}
+
+/* Metagamer Energy Enhancements */
+.metagamer-glow {
+    position: relative;
+}
+
+.metagamer-glow::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    background: var(--gradient-metagamer);
+    opacity: 0;
+    z-index: -1;
+    transition: opacity var(--transition-metagamer);
+}
+
+.metagamer-glow:hover::after {
+    opacity: 1;
+}
+
+.energy-pulse {
+    animation: energy-pulse 3s ease-in-out infinite;
+}
+
+@keyframes energy-pulse {
+    0%, 100% { 
+        box-shadow: 0 0 5px rgba(212, 175, 55, 0.3);
+        filter: brightness(1);
+    }
+    50% { 
+        box-shadow: 0 0 20px rgba(212, 175, 55, 0.6), 0 0 30px rgba(74, 144, 226, 0.3);
+        filter: brightness(1.05);
+    }
+}
+
+.subtle-shimmer {
+    position: relative;
+    overflow: hidden;
+}
+
+.subtle-shimmer::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+    transform: rotate(-45deg);
+    animation: shimmer 4s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%) rotate(-45deg); }
+    50% { transform: translateX(0%) rotate(-45deg); }
+    100% { transform: translateX(100%) rotate(-45deg); }
+}
+
+.academic-intrigue {
+    background: linear-gradient(135deg, var(--bg-primary) 0%, rgba(212, 175, 55, 0.02) 100%);
+    border: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+.academic-intrigue:hover {
+    background: linear-gradient(135deg, var(--bg-primary) 0%, rgba(212, 175, 55, 0.05) 100%);
+    border-color: rgba(212, 175, 55, 0.3);
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);
 }
 
 /* Additional Philosophy Section Styling */

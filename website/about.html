@@ -334,13 +334,16 @@
         padding: 2rem;
         border-radius: var(--radius-lg);
         border: 1px solid var(--border-color);
-        transition: all var(--transition-smooth);
+        transition: all var(--transition-metagamer);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
     }
 
     .research-card:hover {
-        transform: translateY(-5px);
-        box-shadow: var(--shadow-lg);
+        transform: translateY(-8px) scale(1.01);
+        box-shadow: var(--shadow-lg), 0 0 20px rgba(212, 175, 55, 0.15);
         border-color: var(--phi-gold);
+        background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(212, 175, 55, 0.02) 100%);
     }
 
     .research-icon {
