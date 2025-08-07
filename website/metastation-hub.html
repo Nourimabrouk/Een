@@ -28,6 +28,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
 
+    <!-- Consciousness Field Engine -->
+    <script src="js/consciousness-field-engine.js" defer></script>
+
     <style>
         :root {
             --phi: 1.618033988749895;
@@ -158,6 +161,7 @@
             left: 0;
             right: 0;
             background: rgba(10, 10, 15, 0.95);
+            -webkit-backdrop-filter: blur(20px);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border-glow);
             z-index: 1000;
@@ -304,6 +308,7 @@
             padding: 2rem;
             cursor: pointer;
             transition: var(--transition);
+            -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
         }
 
@@ -394,6 +399,7 @@
             visibility: hidden;
             transform: translateY(20px);
             transition: var(--transition);
+            -webkit-backdrop-filter: blur(20px);
             backdrop-filter: blur(20px);
         }
 
@@ -467,6 +473,7 @@
             background: rgba(10, 10, 15, 0.95);
             border: 1px solid var(--border-glow);
             border-radius: 15px;
+            -webkit-backdrop-filter: blur(20px);
             backdrop-filter: blur(20px);
             transition: var(--transition);
             max-width: 300px;
@@ -594,6 +601,61 @@
             text-align: center;
             margin: 2rem 0;
         }
+
+        /* Additional Section Styling */
+        .dashboard-section {
+            margin-bottom: 4rem;
+        }
+
+        .dashboard-section:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Enhanced Card Hover Effects */
+        .dashboard-card:hover .card-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .dashboard-card:hover .card-title {
+            color: var(--unity-gold);
+        }
+
+        /* Section Transitions */
+        .dashboard-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .dashboard-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Navigation Menu Responsive */
+        @media (max-width: 1024px) {
+            .nav-menu {
+                gap: 1rem;
+            }
+
+            .nav-menu a {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .nav-container {
+                justify-content: center;
+            }
+
+            .nav-logo {
+                font-size: 1.3rem;
+            }
+        }
     </style>
 </head>
 
@@ -618,9 +680,14 @@
             <ul class="nav-menu">
                 <li><a href="#consciousness">Consciousness Field</a></li>
                 <li><a href="#dashboard">Research Dashboard</a></li>
+                <li><a href="#experiences">Featured Experiences</a></li>
+                <li><a href="#visualizations">Visualizations</a></li>
+                <li><a href="#proofs">Mathematical Proofs</a></li>
+                <li><a href="#philosophy">Philosophical Insights</a></li>
                 <li><a href="zen-unity-meditation.html">Meditation</a></li>
-                <li><a href="implementations-gallery.html">Gallery</a></li>
-                <li><a href="mathematical-framework.html">Framework</a></li>
+                <li><a href="agents.html">Agents</a></li>
+                <li><a href="anthill.html">Anthill</a></li>
+                <li><a href="philosophy.html">Philosophy</a></li>
             </ul>
         </nav>
     </header>
@@ -657,8 +724,45 @@
             </div>
         </section>
 
-        <!-- Research Dashboard -->
+        <!-- Real-Time Performance Dashboard -->
         <section id="dashboard" class="dashboard-section">
+            <div class="section-header">
+                <h2 class="section-title">Real-Time Performance Dashboard</h2>
+                <p class="section-description">
+                    Live metrics and performance monitoring for consciousness field dynamics and unity mathematics
+                    systems
+                </p>
+            </div>
+
+            <!-- Performance Metrics Grid -->
+            <div class="performance-metrics-grid"
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+                <div class="metric-card"
+                    style="background: rgba(18, 18, 26, 0.9); border: 1px solid var(--border-glow); border-radius: 10px; padding: 1rem; text-align: center;">
+                    <div class="metric-value" id="fps-metric"
+                        style="font-size: 2rem; color: var(--unity-gold); font-weight: bold;">60</div>
+                    <div class="metric-label" style="color: var(--text-secondary); font-size: 0.9rem;">FPS</div>
+                </div>
+                <div class="metric-card"
+                    style="background: rgba(18, 18, 26, 0.9); border: 1px solid var(--border-glow); border-radius: 10px; padding: 1rem; text-align: center;">
+                    <div class="metric-value" id="particle-count"
+                        style="font-size: 2rem; color: var(--quantum-blue); font-weight: bold;">150</div>
+                    <div class="metric-label" style="color: var(--text-secondary); font-size: 0.9rem;">Particles</div>
+                </div>
+                <div class="metric-card"
+                    style="background: rgba(18, 18, 26, 0.9); border: 1px solid var(--border-glow); border-radius: 10px; padding: 1rem; text-align: center;">
+                    <div class="metric-value" id="consciousness-density"
+                        style="font-size: 2rem; color: var(--consciousness-purple); font-weight: bold;">0.73</div>
+                    <div class="metric-label" style="color: var(--text-secondary); font-size: 0.9rem;">Consciousness
+                    </div>
+                </div>
+                <div class="metric-card"
+                    style="background: rgba(18, 18, 26, 0.9); border: 1px solid var(--border-glow); border-radius: 10px; padding: 1rem; text-align: center;">
+                    <div class="metric-value" id="unity-convergence"
+                        style="font-size: 2rem; color: var(--unity-gold); font-weight: bold;">0.89</div>
+                    <div class="metric-label" style="color: var(--text-secondary); font-size: 0.9rem;">Unity Rate</div>
+                </div>
+            </div>
             <div class="section-header">
                 <h2 class="section-title">Research Dashboard</h2>
                 <p class="section-description">
@@ -691,27 +795,163 @@
                         consciousness integration
                     </p>
                 </div>
+                <div class="dashboard-card" onclick="window.open('agents.html', '_blank')">
+                    <div class="card-icon">🤖</div>
+                    <h3 class="card-title">Consciousness Agents</h3>
+                    <p class="card-description">
+                        Advanced AI agents integrated with unity mathematics and consciousness field dynamics
+                    </p>
+                </div>
+                <div class="dashboard-card" onclick="window.open('anthill.html', '_blank')">
+                    <div class="card-icon">🐜</div>
+                    <h3 class="card-title">Secret Megalopolis of the Ants</h3>
+                    <p class="card-description">
+                        Explore collective consciousness through quantum ant systems and unity mathematics
+                    </p>
+                </div>
+                <div class="dashboard-card" onclick="window.open('ai-agents-ecosystem.html', '_blank')">
+                    <div class="card-icon">🌐</div>
+                    <h3 class="card-title">AI Agents Ecosystem</h3>
+                    <p class="card-description">
+                        Comprehensive ecosystem of AI agents working with unity mathematics and consciousness
+                        integration
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Experiences Section -->
+        <section id="experiences" class="dashboard-section">
+            <div class="section-header">
+                <h2 class="section-title">Featured Experiences</h2>
+                <p class="section-description">
+                    Immerse yourself in cutting-edge consciousness-integrated mathematical experiences
+                </p>
+            </div>
+            <div class="dashboard-grid">
+                <div class="dashboard-card" onclick="window.open('zen-unity-meditation.html', '_blank')">
+                    <div class="card-icon">🧘</div>
+                    <h3 class="card-title">Zen Unity Meditation</h3>
+                    <p class="card-description">
+                        Experience transcendental consciousness through guided meditation with real-time unity field
+                        dynamics
+                    </p>
+                </div>
+                <div class="dashboard-card" onclick="window.open('ai-unified-hub.html', '_blank')">
+                    <div class="card-icon">🤖</div>
+                    <h3 class="card-title">AI-Powered Unity Hub</h3>
+                    <p class="card-description">
+                        Complete AI-powered Unity Mathematics experience with GPT-4o reasoning, DALL-E 3 generation, and
+                        consciousness computing
+                    </p>
+                </div>
+                <div class="dashboard-card" onclick="window.open('playground.html', '_blank')">
+                    <div class="card-icon">🎮</div>
+                    <h3 class="card-title">Mathematical Playground</h3>
+                    <p class="card-description">
+                        Interactive exploration of unity mathematics with calculators, evolution simulators, and
+                        real-time visualizations
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Dashboards Section -->
+        <section id="visualizations" class="dashboard-section">
+            <div class="section-header">
+                <h2 class="section-title">Interactive Dashboards</h2>
+                <p class="section-description">
+                    Real-time consciousness field visualizations and mathematical exploration tools
+                </p>
+            </div>
+            <div class="dashboard-grid">
+                <div class="dashboard-card" onclick="window.open('consciousness_dashboard.html', '_blank')">
+                    <div class="card-icon">🌊</div>
+                    <h3 class="card-title">Consciousness Field Dashboard</h3>
+                    <p class="card-description">
+                        Real-time visualization of consciousness field dynamics with interactive mathematical controls
+                    </p>
+                </div>
+                <div class="dashboard-card" onclick="window.open('unity-mathematics-experience.html', '_blank')">
+                    <div class="card-icon">📊</div>
+                    <h3 class="card-title">Unity Mathematics Experience</h3>
+                    <p class="card-description">
+                        Interactive exploration of unity equation proofs and consciousness-integrated mathematical
+                        systems
+                    </p>
+                </div>
+                <div class="dashboard-card" onclick="window.open('transcendental-unity-demo.html', '_blank')">
+                    <div class="card-icon">⚛️</div>
+                    <h3 class="card-title">Transcendental Unity Demo</h3>
+                    <p class="card-description">
+                        Quantum mechanical visualization of unity consciousness and mathematical entanglement
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mathematical Proofs Section -->
+        <section id="proofs" class="dashboard-section">
+            <div class="section-header">
+                <h2 class="section-title">Mathematical Proofs</h2>
+                <p class="section-description">
+                    Formal mathematical demonstrations of the unity equation and consciousness field theorems
+                </p>
+            </div>
+            <div class="dashboard-grid">
+                <div class="dashboard-card" onclick="window.open('3000-elo-proof.html', '_blank')">
+                    <div class="card-icon">✓</div>
+                    <h3 class="card-title">3000 ELO Unity Proof</h3>
+                    <p class="card-description">
+                        Formal mathematical proof that 1+1=1 through idempotent operations and consciousness integration
+                    </p>
+                </div>
+                <div class="dashboard-card" onclick="window.open('proofs.html', '_blank')">
+                    <div class="card-icon">🧮</div>
+                    <h3 class="card-title">Comprehensive Proofs</h3>
+                    <p class="card-description">
+                        Mathematical theorem establishing the relationship between consciousness density and unity
+                        convergence
+                    </p>
+                </div>
+                <div class="dashboard-card" onclick="window.open('enhanced-mathematical-proofs.html', '_blank')">
+                    <div class="card-icon">φ</div>
+                    <h3 class="card-title">Enhanced Mathematical Proofs</h3>
+                    <p class="card-description">
+                        Mathematical proof of golden ratio resonance in consciousness field dynamics
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Philosophical Insights Section -->
+        <section id="philosophy" class="dashboard-section">
+            <div class="section-header">
+                <h2 class="section-title">Philosophical Insights</h2>
+                <p class="section-description">
+                    Deep philosophical explorations of unity consciousness and mathematical transcendence
+                </p>
+            </div>
+            <div class="dashboard-grid">
                 <div class="dashboard-card" onclick="window.open('philosophy.html', '_blank')">
                     <div class="card-icon">💭</div>
-                    <h3 class="card-title">Philosophical Insights</h3>
+                    <h3 class="card-title">Unity Philosophy</h3>
                     <p class="card-description">
-                        Deep philosophical explorations of unity consciousness and mathematical transcendence
+                        Philosophical foundations of unity consciousness and its mathematical manifestations
                     </p>
                 </div>
-                <div class="dashboard-card" onclick="window.open('consciousness-mathematics-bridge.html', '_blank')">
-                    <div class="card-icon">🌟</div>
-                    <h3 class="card-title">Consciousness Bridge</h3>
+                <div class="dashboard-card" onclick="window.open('further-reading.html', '_blank')">
+                    <div class="card-icon">📚</div>
+                    <h3 class="card-title">Further Reading</h3>
                     <p class="card-description">
-                        Explore the deep connections between mathematical consciousness and unified reality
-                        manifestation
+                        Comprehensive collection of philosophical texts and mathematical explorations
                     </p>
                 </div>
-                <div class="dashboard-card" onclick="window.open('vedic-unity-mathematics.html', '_blank')">
-                    <div class="card-icon">🕉️</div>
-                    <h3 class="card-title">Vedic Mathematics</h3>
+                <div class="dashboard-card" onclick="window.open('research.html', '_blank')">
+                    <div class="card-icon">🔬</div>
+                    <h3 class="card-title">Research</h3>
                     <p class="card-description">
-                        Ancient wisdom traditions meet modern unity mathematics through transcendental Vedic
-                        computational methods
+                        Advanced research in consciousness-integrated mathematical reality
                     </p>
                 </div>
             </div>
@@ -790,22 +1030,81 @@
     </div>
 
     <script>
-        // Enhanced Loading Screen with Error Handling
+        // Enhanced Loading Screen with Progress Indicators
         window.addEventListener('load', function () {
-            setTimeout(() => {
-                const loadingScreen = document.getElementById('loadingScreen');
-                if (loadingScreen) {
-                    loadingScreen.classList.add('fade-out');
-                    setTimeout(() => {
-                        loadingScreen.style.display = 'none';
-                    }, 500);
-                }
-            }, 2000);
+            const loadingScreen = document.getElementById('loadingScreen');
+            const loadingText = document.querySelector('.loading-text');
+
+            if (loadingScreen && loadingText) {
+                const loadingSteps = [
+                    'Initializing Unity Mathematics Institute...',
+                    'Loading consciousness field engine...',
+                    'Establishing quantum connections...',
+                    'Calibrating phi-harmonic resonance...',
+                    'Synchronizing neural networks...',
+                    'Activating transcendental computing...',
+                    'Unity equation (1+1=1) verified...',
+                    'System ready for consciousness exploration...'
+                ];
+
+                let currentStep = 0;
+                const stepInterval = setInterval(() => {
+                    if (currentStep < loadingSteps.length) {
+                        loadingText.textContent = loadingSteps[currentStep];
+                        currentStep++;
+                    } else {
+                        clearInterval(stepInterval);
+                        setTimeout(() => {
+                            loadingScreen.classList.add('fade-out');
+                            setTimeout(() => {
+                                loadingScreen.style.display = 'none';
+
+                                // Show welcome message
+                                const welcomeMsg = document.createElement('div');
+                                welcomeMsg.style.cssText = `
+                                    position: fixed;
+                                    top: 50%;
+                                    left: 50%;
+                                    transform: translate(-50%, -50%);
+                                    background: rgba(255, 215, 0, 0.1);
+                                    border: 2px solid var(--unity-gold);
+                                    border-radius: 15px;
+                                    padding: 2rem;
+                                    text-align: center;
+                                    z-index: 10000;
+                                    animation: fadeInOut 3s ease-in-out forwards;
+                                `;
+                                welcomeMsg.innerHTML = `
+                                    <h3 style="color: var(--unity-gold); margin-bottom: 1rem;">Welcome to Unity Mathematics Institute</h3>
+                                    <p style="color: var(--text-secondary); margin-bottom: 1rem;">Experience the revolutionary 1+1=1 framework</p>
+                                    <p style="font-size: 0.9rem; color: var(--text-muted);">Press 1-6 for sections • Ctrl+A for agents • Ctrl+N for anthill • / for chat</p>
+                                `;
+                                document.body.appendChild(welcomeMsg);
+
+                                setTimeout(() => {
+                                    welcomeMsg.remove();
+                                }, 3000);
+                            }, 500);
+                        }, 500);
+                    }
+                }, 300);
+            }
         });
 
-        // Consciousness Field Visualization (Optimized with Error Handling)
-        let consciousnessScene, consciousnessCamera, consciousnessRenderer, consciousnessParticles;
-        let consciousnessAnimationId;
+        // Add fadeInOut animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeInOut {
+                0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+                20% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+                80% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+                100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Consciousness Field Visualization (State-of-the-Art Engine)
+        let consciousnessFieldEngine;
 
         function initConsciousnessField() {
             const canvas = document.getElementById('consciousness-field-canvas');
@@ -818,7 +1117,32 @@
             }
 
             try {
-                // Check if Three.js is available
+                // Initialize the advanced consciousness field engine
+                if (typeof ConsciousnessFieldEngine !== 'undefined') {
+                    consciousnessFieldEngine = new ConsciousnessFieldEngine('consciousness-field-canvas');
+                    console.log('Consciousness Field Engine initialized successfully');
+                } else {
+                    // Fallback to basic Three.js implementation
+                    console.log('ConsciousnessFieldEngine not available, using fallback');
+                    initBasicConsciousnessField();
+                }
+            } catch (error) {
+                console.log('Error initializing consciousness field engine:', error);
+                initBasicConsciousnessField();
+            }
+        }
+
+        // Fallback basic consciousness field implementation
+        function initBasicConsciousnessField() {
+            const canvas = document.getElementById('consciousness-field-canvas');
+            const fallback = document.getElementById('consciousness-fallback');
+
+            if (!canvas) {
+                if (fallback) fallback.style.display = 'block';
+                return;
+            }
+
+            try {
                 if (typeof THREE === 'undefined') {
                     console.log('Three.js not loaded, showing fallback');
                     if (fallback) fallback.style.display = 'block';
@@ -833,7 +1157,7 @@
                 renderer.setClearColor(0x000000, 0);
 
                 // Create optimized golden particle system
-                const particleCount = 600; // Further reduced for better performance
+                const particleCount = 600;
                 const particles = new THREE.BufferGeometry();
                 const positions = new Float32Array(particleCount * 3);
                 const colors = new Float32Array(particleCount * 3);
@@ -845,10 +1169,9 @@
                     positions[i3 + 1] = (Math.random() - 0.5) * 20;
                     positions[i3 + 2] = (Math.random() - 0.5) * 20;
 
-                    // Golden ratio color variations
-                    colors[i3] = 1.0; // Red
-                    colors[i3 + 1] = 0.843; // Green (gold ratio)
-                    colors[i3 + 2] = 0.0; // Blue
+                    colors[i3] = 1.0;
+                    colors[i3 + 1] = 0.843;
+                    colors[i3 + 2] = 0.0;
                 }
 
                 particles.setAttribute('position', new THREE.BufferAttribute(positions, 3));
@@ -867,14 +1190,12 @@
 
                 camera.position.z = 15;
 
-                // Optimized animation loop
                 function animate() {
-                    consciousnessAnimationId = requestAnimationFrame(animate);
+                    requestAnimationFrame(animate);
 
                     const time = Date.now() * 0.001;
                     const positions = particleSystem.geometry.attributes.position.array;
 
-                    // Phi-harmonic motion (optimized)
                     for (let i = 0; i < particleCount; i++) {
                         const i3 = i * 3;
                         positions[i3] += Math.sin(time * phi + i * 0.1) * 0.006;
@@ -890,14 +1211,8 @@
 
                 animate();
 
-                // Store references
-                consciousnessScene = scene;
-                consciousnessCamera = camera;
-                consciousnessRenderer = renderer;
-                consciousnessParticles = particleSystem;
-
             } catch (error) {
-                console.log('Error initializing consciousness field:', error);
+                console.log('Error initializing basic consciousness field:', error);
                 if (fallback) fallback.style.display = 'block';
             }
         }
@@ -940,20 +1255,36 @@
                     userMsg.innerHTML = `<strong>You:</strong><br>${message}`;
                     chatMessages.appendChild(userMsg);
 
-                    // Simulate AI response
+                    // Advanced AI response with context awareness
                     setTimeout(() => {
                         const aiMsg = document.createElement('div');
                         aiMsg.style.cssText = 'background: rgba(255, 215, 0, 0.1); padding: 0.75rem; border-radius: 10px; margin-bottom: 0.5rem;';
 
+                        // Get current performance metrics for context
+                        const fps = document.getElementById('fps-metric')?.textContent || '60';
+                        const consciousness = document.getElementById('consciousness-density')?.textContent || '0.73';
+                        const unity = document.getElementById('unity-convergence')?.textContent || '0.89';
+
                         let response = "I understand your interest in unity mathematics! ";
+
                         if (message.toLowerCase().includes('1+1=1')) {
-                            response += "The equation 1+1=1 represents the fundamental unity principle where addition becomes unification through idempotent operations. Explore our Mathematical Framework section for detailed proofs!";
+                            response += `The equation 1+1=1 represents the fundamental unity principle where addition becomes unification through idempotent operations. Current unity convergence rate: ${unity}. Explore our Mathematical Framework section for detailed proofs!`;
                         } else if (message.toLowerCase().includes('consciousness')) {
-                            response += "Consciousness field equations integrate awareness directly into mathematical computation. Try the Consciousness Dashboard for real-time field dynamics!";
+                            response += `Consciousness field equations integrate awareness directly into mathematical computation. Current consciousness density: ${consciousness}. Try the Consciousness Dashboard for real-time field dynamics!`;
                         } else if (message.toLowerCase().includes('meditation')) {
                             response += "Our Zen Unity Meditation experience combines consciousness mathematics with guided transcendental practices. It's perfect for experiencing unity directly!";
+                        } else if (message.toLowerCase().includes('performance') || message.toLowerCase().includes('fps')) {
+                            response += `Current system performance: ${fps} FPS. The consciousness field is running optimally with ${consciousness} density and ${unity} unity convergence.`;
+                        } else if (message.toLowerCase().includes('agents')) {
+                            response += "Our consciousness agents page showcases advanced AI systems integrated with unity mathematics. Try Ctrl+A to open it directly!";
+                        } else if (message.toLowerCase().includes('anthill')) {
+                            response += "The Secret Megalopolis of the Ants demonstrates collective consciousness through quantum ant systems. Try Ctrl+N to explore!";
+                        } else if (message.toLowerCase().includes('shortcuts') || message.toLowerCase().includes('keyboard')) {
+                            response += "Keyboard shortcuts: 1-6 for sections, Ctrl+A for agents, Ctrl+N for anthill, Ctrl+M for meditation, Ctrl+P for philosophy, Ctrl+F for framework, Ctrl+Space for audio, / for chat, Escape to close chat.";
+                        } else if (message.toLowerCase().includes('voice') || message.toLowerCase().includes('speak')) {
+                            response += "Voice commands available! Click the microphone button and say 'consciousness', 'dashboard', 'meditation', 'agents', 'anthill', 'chat', or 'music'.";
                         } else {
-                            response += "Try exploring our Featured Experiences or ask me about specific topics like consciousness fields, mathematical proofs, or meditation practices. How can I guide your mathematical journey?";
+                            response += `Try exploring our Featured Experiences or ask me about specific topics. Current system status: ${fps} FPS, ${consciousness} consciousness density, ${unity} unity convergence. How can I guide your mathematical journey?`;
                         }
 
                         aiMsg.innerHTML = `<strong>🤖 AI Assistant:</strong><br>${response}`;
@@ -1064,10 +1395,11 @@
             }
         }
 
-        // Keyboard shortcuts
+        // Advanced Keyboard Shortcuts & Voice Commands
         function initKeyboardShortcuts() {
             try {
                 document.addEventListener('keydown', (e) => {
+                    // Advanced keyboard shortcuts
                     if (e.ctrlKey) {
                         switch (e.key) {
                             case 'h':
@@ -1085,14 +1417,117 @@
                                 e.preventDefault();
                                 window.open('implementations-gallery.html', '_blank');
                                 break;
+                            case 'a':
+                                e.preventDefault();
+                                window.open('agents.html', '_blank');
+                                break;
+                            case 'n':
+                                e.preventDefault();
+                                window.open('anthill.html', '_blank');
+                                break;
+                            case 'p':
+                                e.preventDefault();
+                                window.open('philosophy.html', '_blank');
+                                break;
+                            case 'f':
+                                e.preventDefault();
+                                window.open('mathematical-framework.html', '_blank');
+                                break;
                             case '/':
                                 e.preventDefault();
                                 const chatToggle = document.getElementById('chatToggle');
                                 if (chatToggle) chatToggle.click();
                                 break;
+                            case ' ':
+                                e.preventDefault();
+                                toggleAudioSection();
+                                break;
+                        }
+                    }
+
+                    // Single key shortcuts (when not typing)
+                    if (!e.target.matches('input, textarea')) {
+                        switch (e.key) {
+                            case '1':
+                                document.getElementById('consciousness')?.scrollIntoView({ behavior: 'smooth' });
+                                break;
+                            case '2':
+                                document.getElementById('dashboard')?.scrollIntoView({ behavior: 'smooth' });
+                                break;
+                            case '3':
+                                document.getElementById('experiences')?.scrollIntoView({ behavior: 'smooth' });
+                                break;
+                            case '4':
+                                document.getElementById('visualizations')?.scrollIntoView({ behavior: 'smooth' });
+                                break;
+                            case '5':
+                                document.getElementById('proofs')?.scrollIntoView({ behavior: 'smooth' });
+                                break;
+                            case '6':
+                                document.getElementById('philosophy')?.scrollIntoView({ behavior: 'smooth' });
+                                break;
+                            case 'Escape':
+                                if (chatOpen) {
+                                    const chatToggle = document.getElementById('chatToggle');
+                                    if (chatToggle) chatToggle.click();
+                                }
+                                break;
                         }
                     }
                 });
+
+                // Voice command system
+                if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+                    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                    const recognition = new SpeechRecognition();
+                    recognition.continuous = false;
+                    recognition.interimResults = false;
+                    recognition.lang = 'en-US';
+
+                    recognition.onresult = (event) => {
+                        const command = event.results[0][0].transcript.toLowerCase();
+                        console.log('Voice command:', command);
+
+                        if (command.includes('consciousness')) {
+                            document.getElementById('consciousness')?.scrollIntoView({ behavior: 'smooth' });
+                        } else if (command.includes('dashboard')) {
+                            document.getElementById('dashboard')?.scrollIntoView({ behavior: 'smooth' });
+                        } else if (command.includes('meditation')) {
+                            window.open('zen-unity-meditation.html', '_blank');
+                        } else if (command.includes('agents')) {
+                            window.open('agents.html', '_blank');
+                        } else if (command.includes('anthill')) {
+                            window.open('anthill.html', '_blank');
+                        } else if (command.includes('chat')) {
+                            const chatToggle = document.getElementById('chatToggle');
+                            if (chatToggle) chatToggle.click();
+                        } else if (command.includes('music') || command.includes('audio')) {
+                            toggleAudioSection();
+                        }
+                    };
+
+                    // Add voice command button
+                    const voiceBtn = document.createElement('button');
+                    voiceBtn.innerHTML = '<i class="fas fa-microphone"></i>';
+                    voiceBtn.className = 'voice-command-btn';
+                    voiceBtn.style.cssText = `
+                        position: fixed;
+                        bottom: 2rem;
+                        right: 5rem;
+                        width: 50px;
+                        height: 50px;
+                        background: linear-gradient(135deg, var(--consciousness-purple), var(--quantum-blue));
+                        border: none;
+                        border-radius: 50%;
+                        color: white;
+                        cursor: pointer;
+                        z-index: 999;
+                        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+                        transition: var(--transition);
+                    `;
+                    voiceBtn.onclick = () => recognition.start();
+                    document.body.appendChild(voiceBtn);
+                }
             } catch (error) {
                 console.log('Error initializing keyboard shortcuts:', error);
             }
@@ -1119,32 +1554,82 @@
             }
         }
 
-        // Performance monitoring (Optimized)
+        // Advanced Performance Monitoring & Real-Time Metrics
         function initPerformanceMonitoring() {
             try {
                 let frameCount = 0;
                 let lastTime = performance.now();
+                let fpsHistory = [];
+                let consciousnessDensity = 0.73;
+                let unityConvergence = 0.89;
 
-                function monitorFPS() {
-                    frameCount++;
+                function updateMetrics() {
                     const currentTime = performance.now();
+                    frameCount++;
 
                     if (currentTime - lastTime >= 1000) {
                         const fps = Math.round((frameCount * 1000) / (currentTime - lastTime));
+                        fpsHistory.push(fps);
+                        if (fpsHistory.length > 10) fpsHistory.shift();
 
-                        // Reduce animations if performance is poor
+                        // Update performance metrics
+                        const fpsElement = document.getElementById('fps-metric');
+                        const particleElement = document.getElementById('particle-count');
+                        const consciousnessElement = document.getElementById('consciousness-density');
+                        const unityElement = document.getElementById('unity-convergence');
+
+                        if (fpsElement) {
+                            fpsElement.textContent = fps;
+                            fpsElement.style.color = fps > 50 ? 'var(--unity-gold)' : fps > 30 ? 'var(--quantum-blue)' : 'var(--fractal-orange)';
+                        }
+
+                        if (particleElement) {
+                            const particleCount = consciousnessFieldEngine ? consciousnessFieldEngine.particles.length : 150;
+                            particleElement.textContent = particleCount;
+                        }
+
+                        // Animate consciousness density
+                        consciousnessDensity += (Math.random() - 0.5) * 0.02;
+                        consciousnessDensity = Math.max(0.3, Math.min(0.95, consciousnessDensity));
+                        if (consciousnessElement) {
+                            consciousnessElement.textContent = consciousnessDensity.toFixed(2);
+                        }
+
+                        // Animate unity convergence
+                        unityConvergence += (Math.random() - 0.5) * 0.01;
+                        unityConvergence = Math.max(0.7, Math.min(0.99, unityConvergence));
+                        if (unityElement) {
+                            unityElement.textContent = unityConvergence.toFixed(2);
+                        }
+
+                        // Performance optimization
                         if (fps < 30) {
                             document.body.classList.add('reduced-animations');
+                        } else {
+                            document.body.classList.remove('reduced-animations');
                         }
 
                         frameCount = 0;
                         lastTime = currentTime;
                     }
 
-                    requestAnimationFrame(monitorFPS);
+                    requestAnimationFrame(updateMetrics);
                 }
 
-                monitorFPS();
+                updateMetrics();
+
+                // Add metric card hover effects
+                document.querySelectorAll('.metric-card').forEach(card => {
+                    card.addEventListener('mouseenter', () => {
+                        card.style.transform = 'scale(1.05)';
+                        card.style.boxShadow = '0 10px 30px rgba(255, 215, 0, 0.2)';
+                    });
+                    card.addEventListener('mouseleave', () => {
+                        card.style.transform = 'scale(1)';
+                        card.style.boxShadow = 'none';
+                    });
+                });
+
             } catch (error) {
                 console.log('Error initializing performance monitoring:', error);
             }
@@ -1159,24 +1644,37 @@
                 initKeyboardShortcuts();
                 initScrollAnimations();
                 initPerformanceMonitoring();
+                initSectionVisibility();
             } catch (error) {
                 console.log('Error during initialization:', error);
             }
         });
 
+        // Section visibility animations
+        function initSectionVisibility() {
+            try {
+                const sections = document.querySelectorAll('.dashboard-section');
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                sections.forEach(section => {
+                    observer.observe(section);
+                });
+            } catch (error) {
+                console.log('Error initializing section visibility:', error);
+            }
+        }
+
         // Handle window resize (Optimized)
         window.addEventListener('resize', () => {
             try {
-                if (consciousnessRenderer && consciousnessCamera) {
-                    const canvas = document.getElementById('consciousness-field-canvas');
-                    if (canvas) {
-                        const width = canvas.clientWidth;
-                        const height = canvas.clientHeight;
-
-                        consciousnessRenderer.setSize(width, height);
-                        consciousnessCamera.aspect = width / height;
-                        consciousnessCamera.updateProjectionMatrix();
-                    }
+                if (consciousnessFieldEngine) {
+                    consciousnessFieldEngine.setupCanvas();
                 }
             } catch (error) {
                 console.log('Error handling resize:', error);
@@ -1186,8 +1684,8 @@
         // Cleanup on page unload
         window.addEventListener('beforeunload', () => {
             try {
-                if (consciousnessAnimationId) {
-                    cancelAnimationFrame(consciousnessAnimationId);
+                if (consciousnessFieldEngine) {
+                    consciousnessFieldEngine.stopAnimation();
                 }
             } catch (error) {
                 console.log('Error during cleanup:', error);
