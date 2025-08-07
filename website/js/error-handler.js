@@ -14,12 +14,14 @@ class ErrorHandler {
     init() {
         // Global error handler
         window.addEventListener('error', (event) => {
-            this.handleError(event.error || event.message, event.filename, event.lineno);
+            this.handleError(event.error || event.message, event.filename, event.lineno, event);
+            event.preventDefault();
         });
 
         // Promise rejection handler
         window.addEventListener('unhandledrejection', (event) => {
-            this.handleError(event.reason, 'Promise', 0);
+            this.handleError(event.reason, 'Promise', 0, event);
+            event.preventDefault();
         });
 
         // WebGL error handler
@@ -28,7 +30,7 @@ class ErrorHandler {
         console.log('🛡️ Error Handler initialized');
     }
 
-    handleError(error, filename, lineno) {
+    handleError(error, filename, lineno, event) {
         this.errorCount++;
 
         // Don't spam console with too many errors
@@ -46,8 +48,7 @@ class ErrorHandler {
             this.showUserFriendlyError();
         }
 
-        // Prevent error from breaking the page
-        event.preventDefault();
+        // Return false to prevent default error handling
         return false;
     }
 
@@ -89,7 +90,11 @@ class ErrorHandler {
                 return context;
             } catch (error) {
                 console.warn('WebGL context creation failed:', error.message);
-                this.showWebGLFallback();
+                // Note: 'this' here refers to the canvas element, not ErrorHandler
+                // We need to get the ErrorHandler instance
+                if (window.errorHandler) {
+                    window.errorHandler.showWebGLFallback();
+                }
                 return null;
             }
         };
@@ -166,4 +171,4 @@ class ErrorHandler {
 }
 
 // Initialize error handler
-const errorHandler = new ErrorHandler(); 
+window.errorHandler = new ErrorHandler(); 

@@ -29,11 +29,11 @@
 
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Meta-Optimal Navigation System -->
-    <link rel="stylesheet" href="css/meta-optimal-navigation.css">
+    <!-- Meta-Optimal Complete Navigation System -->
+    <link rel="stylesheet" href="css/meta-optimal-navigation-complete.css">
     <!-- Unified Styles -->
     <link rel="stylesheet" href="css/unified-styles.css">
-    <script src="js/unified-navigation-system.js" defer></script>
+    <script src="js/meta-optimal-navigation-complete.js" defer></script>
 
     <!-- External Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
@@ -2089,9 +2089,9 @@
     <div class="particle-field"></div>
 
     <!-- Meta-Optimal Navigation System (42 pages accessible) -->
-    <!-- Navigation will be dynamically injected by unified-navigation-system.js -->
+    <!-- Navigation will be dynamically injected by meta-optimal-navigation-complete.js -->
     <header id="main-header">
-        <!-- Meta-optimal navigation placeholder - will be populated by JavaScript -->
+        <!-- Meta-optimal navigation placeholder - will be populated by meta-optimal-navigation-complete.js -->
     </header>
 
     <!-- Quick Access Toolbar -->
@@ -2599,6 +2599,121 @@
     </div>
 
     <script>
+        // Robust initialization with error handling
+        (function() {
+            'use strict';
+            
+            // Create a safe console wrapper
+            const safeConsole = {
+                log: function(...args) {
+                    if (typeof console !== 'undefined' && console.log) {
+                        console.log(...args);
+                    }
+                },
+                warn: function(...args) {
+                    if (typeof console !== 'undefined' && console.warn) {
+                        console.warn(...args);
+                    }
+                },
+                error: function(...args) {
+                    if (typeof console !== 'undefined' && console.error) {
+                        console.error(...args);
+                    }
+                }
+            };
+            
+            // Check for required features
+            const checkBrowserSupport = function() {
+                const required = {
+                    'IntersectionObserver': typeof IntersectionObserver !== 'undefined',
+                    'localStorage': typeof localStorage !== 'undefined',
+                    'fetch': typeof fetch !== 'undefined',
+                    'Promise': typeof Promise !== 'undefined'
+                };
+                
+                const missing = [];
+                for (const [feature, available] of Object.entries(required)) {
+                    if (!available) {
+                        missing.push(feature);
+                    }
+                }
+                
+                if (missing.length > 0) {
+                    safeConsole.warn('Missing browser features:', missing);
+                    // Provide polyfills or fallbacks
+                    if (!required.IntersectionObserver) {
+                        // Simple IntersectionObserver polyfill
+                        window.IntersectionObserver = class {
+                            constructor(callback) {
+                                this.callback = callback;
+                            }
+                            observe() {}
+                            unobserve() {}
+                            disconnect() {}
+                        };
+                    }
+                }
+                
+                return missing.length === 0;
+            };
+            
+            // Check browser support
+            const isSupported = checkBrowserSupport();
+            if (!isSupported) {
+                safeConsole.warn('Some features may be limited due to browser compatibility');
+            }
+            
+            // Global error handler for this page
+            window.addEventListener('error', function(event) {
+                safeConsole.warn('Page error:', event.message, 'at', event.filename, ':', event.lineno);
+                // Don't prevent default - let other handlers work too
+                return true;
+            });
+            
+            // Ensure page is ready before initializing
+            const whenReady = function(fn) {
+                if (document.readyState === 'complete' || document.readyState === 'interactive') {
+                    setTimeout(fn, 1);
+                } else {
+                    document.addEventListener('DOMContentLoaded', fn);
+                }
+            };
+            
+            // Store the initialization function globally
+            window.initMetastation = function() {
+                try {
+                    // Wait for dependencies
+                    const waitForDependencies = function(callback, retries = 50) {
+                        if (retries <= 0) {
+                            safeConsole.warn('Dependencies did not load in time, proceeding with available features');
+                            callback();
+                            return;
+                        }
+                        
+                        // Check if critical libraries are loaded (optional dependencies)
+                        const depsReady = true; // We'll proceed even without external libs
+                        
+                        if (depsReady) {
+                            callback();
+                        } else {
+                            setTimeout(() => waitForDependencies(callback, retries - 1), 100);
+                        }
+                    };
+                    
+                    waitForDependencies(function() {
+                        safeConsole.log('🚀 Initializing Een Metastation Hub...');
+                        if (typeof MetastationHub !== 'undefined') {
+                            window.metastationHub = new MetastationHub();
+                        } else {
+                            safeConsole.warn('MetastationHub class not defined, page may have limited functionality');
+                        }
+                    });
+                } catch (error) {
+                    safeConsole.error('Failed to initialize Metastation:', error);
+                }
+            };
+        })();
+        
         // Metastation Hub JavaScript
         class MetastationHub {
             constructor() {
@@ -2616,15 +2731,59 @@
             }
 
             init() {
-                this.setupQuantumVisualization();
-                this.setupConsciousnessField();
-                this.startConsciousnessMetrics();
-                this.setupScrollEffects();
-                this.setupChatInterface();
-                this.setupAudioPlayer();
-                this.setupGodelTarskiGame();
-                this.animateBackground();
-                this.removeLoadingScreen();
+                try {
+                    this.setupQuantumVisualization();
+                } catch (e) {
+                    console.warn('Quantum visualization setup failed:', e);
+                }
+                
+                try {
+                    this.setupConsciousnessField();
+                } catch (e) {
+                    console.warn('Consciousness field setup failed:', e);
+                }
+                
+                try {
+                    this.startConsciousnessMetrics();
+                } catch (e) {
+                    console.warn('Consciousness metrics setup failed:', e);
+                }
+                
+                try {
+                    this.setupScrollEffects();
+                } catch (e) {
+                    console.warn('Scroll effects setup failed:', e);
+                }
+                
+                try {
+                    this.setupChatInterface();
+                } catch (e) {
+                    console.warn('Chat interface setup failed:', e);
+                }
+                
+                try {
+                    this.setupAudioPlayer();
+                } catch (e) {
+                    console.warn('Audio player setup failed:', e);
+                }
+                
+                try {
+                    this.setupGodelTarskiGame();
+                } catch (e) {
+                    console.warn('Godel-Tarski game setup failed:', e);
+                }
+                
+                try {
+                    this.animateBackground();
+                } catch (e) {
+                    console.warn('Background animation failed:', e);
+                }
+                
+                try {
+                    this.removeLoadingScreen();
+                } catch (e) {
+                    console.warn('Loading screen removal failed:', e);
+                }
             }
 
             setupScrollEffects() {
@@ -3237,7 +3396,17 @@
         // Initialize on DOM load - Unified Systems Integration
         console.log('🚀 Een Unity Mathematics - Unified experience starting...');
         document.addEventListener('DOMContentLoaded', () => {
-            window.metastationHub = new MetastationHub();
+            // Use the safe initialization function
+            if (typeof window.initMetastation === 'function') {
+                window.initMetastation();
+            } else {
+                // Fallback if wrapper didn't load
+                try {
+                    window.metastationHub = new MetastationHub();
+                } catch (error) {
+                    console.error('Failed to initialize MetastationHub:', error);
+                }
+            }
 
             // Ensure persistent chat system is initialized
             setTimeout(() => {
