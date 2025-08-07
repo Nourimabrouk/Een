@@ -21,6 +21,7 @@ class MetaOptimalCompleteNavigation {
         return {
             topBar: [
                 { label: 'Experiences', href: 'metastation-hub.html', icon: '⭐', featured: true },
+                { label: 'AI Hub', href: 'ai-unified-hub.html', icon: '🤖', featured: true },
                 { label: 'Mathematics', href: 'mathematical-framework.html', icon: '📐', featured: true },
                 { label: 'Consciousness', href: 'consciousness_dashboard.html', icon: '🧠' },
                 { label: 'Gallery', href: 'implementations-gallery.html', icon: '🎨' },
@@ -28,7 +29,7 @@ class MetaOptimalCompleteNavigation {
                 { label: 'Research', href: 'research.html', icon: '📊' }
             ],
             sidebar: [
-                { 
+                {
                     section: 'Featured',
                     links: [
                         { label: 'Zen Meditation', href: 'zen-unity-meditation.html', icon: '🧘' },
@@ -55,9 +56,15 @@ class MetaOptimalCompleteNavigation {
                 {
                     section: 'AI & Agents',
                     links: [
+                        { label: 'AI Unified Hub', href: 'ai-unified-hub.html', icon: '🤖', featured: true },
                         { label: 'Agents Ecosystem', href: 'ai-agents-ecosystem.html', icon: '🤖' },
                         { label: 'Unity Agents', href: 'agents.html', icon: '⚡' },
-                        { label: 'Metagamer Agent', href: 'metagamer_agent.html', icon: '🎯' }
+                        { label: 'Metagamer Agent', href: 'metagamer_agent.html', icon: '🎯' },
+                        { label: 'GPT-4o Reasoning', href: '#', icon: '🧠', action: 'openAIReasoning' },
+                        { label: 'DALL-E 3 Art', href: '#', icon: '🎨', action: 'openAIVisualization' },
+                        { label: 'Voice Processing', href: '#', icon: '🎤', action: 'openAIVoice' },
+                        { label: 'Code Search', href: '#', icon: '🔍', action: 'openAISearch' },
+                        { label: 'Knowledge Base', href: '#', icon: '📚', action: 'openAIKnowledge' }
                     ]
                 },
                 {
@@ -97,6 +104,17 @@ class MetaOptimalCompleteNavigation {
                             { label: 'Unity Agents', href: 'agents.html' },
                             { label: 'AI Agents Ecosystem', href: 'ai-agents-ecosystem.html' },
                             { label: 'Unity Visualization', href: 'unity_visualization.html' }
+                        ]
+                    },
+                    {
+                        title: 'AI Integration',
+                        links: [
+                            { label: 'AI Unified Hub', href: 'ai-unified-hub.html' },
+                            { label: 'GPT-4o Reasoning', href: 'ai-unified-hub.html#reasoning' },
+                            { label: 'DALL-E 3 Art', href: 'ai-unified-hub.html#visualization' },
+                            { label: 'Voice Processing', href: 'ai-unified-hub.html#voice' },
+                            { label: 'Code Search', href: 'ai-unified-hub.html#search' },
+                            { label: 'Knowledge Base', href: 'ai-unified-hub.html#knowledge' }
                         ]
                     },
                     {
@@ -319,7 +337,7 @@ class MetaOptimalCompleteNavigation {
         window.addEventListener('scroll', () => {
             const currentScroll = window.pageYOffset;
             const header = document.querySelector('.meta-optimal-nav');
-            
+
             if (header) {
                 if (currentScroll > 100) {
                     header.classList.add('scrolled');
@@ -333,7 +351,7 @@ class MetaOptimalCompleteNavigation {
                     header.classList.remove('hidden');
                 }
             }
-            
+
             lastScroll = currentScroll;
         });
 
@@ -348,7 +366,7 @@ class MetaOptimalCompleteNavigation {
         document.addEventListener('click', (e) => {
             const sidebar = document.querySelector('.meta-optimal-sidebar');
             const toggleBtn = document.querySelector('.sidebar-toggle-btn');
-            
+
             if (sidebar && sidebar.classList.contains('active')) {
                 if (!sidebar.contains(e.target) && !toggleBtn.contains(e.target)) {
                     this.closeSidebar();
@@ -360,7 +378,7 @@ class MetaOptimalCompleteNavigation {
     toggleSidebar() {
         const sidebar = document.querySelector('.meta-optimal-sidebar');
         const body = document.body;
-        
+
         if (sidebar) {
             sidebar.classList.toggle('active');
             body.classList.toggle('sidebar-open');
@@ -370,7 +388,7 @@ class MetaOptimalCompleteNavigation {
     closeSidebar() {
         const sidebar = document.querySelector('.meta-optimal-sidebar');
         const body = document.body;
-        
+
         if (sidebar) {
             sidebar.classList.remove('active');
             body.classList.remove('sidebar-open');
@@ -380,7 +398,7 @@ class MetaOptimalCompleteNavigation {
     toggleMobileMenu() {
         const nav = document.querySelector('.nav-menu');
         const toggle = document.querySelector('.nav-toggle');
-        
+
         if (nav && toggle) {
             nav.classList.toggle('active');
             toggle.classList.toggle('active');
@@ -412,6 +430,27 @@ class MetaOptimalCompleteNavigation {
 
     openChat() {
         this.toggleChat();
+    }
+
+    // AI Feature Handlers
+    openAIReasoning() {
+        window.location.href = 'ai-unified-hub.html#reasoning';
+    }
+
+    openAIVisualization() {
+        window.location.href = 'ai-unified-hub.html#visualization';
+    }
+
+    openAIVoice() {
+        window.location.href = 'ai-unified-hub.html#voice';
+    }
+
+    openAISearch() {
+        window.location.href = 'ai-unified-hub.html#search';
+    }
+
+    openAIKnowledge() {
+        window.location.href = 'ai-unified-hub.html#knowledge';
     }
 }
 
