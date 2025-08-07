@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search System Test - Een Unity Mathematics</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #0A0A0F;
+            color: #FFFFFF;
+        }
+
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #FFD700;
+            border-radius: 10px;
+        }
+
+        .test-button {
+            background: #FFD700;
+            color: #000;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+
+        .success {
+            background: #4CAF50;
+        }
+
+        .error {
+            background: #f44336;
+        }
+
+        .info {
+            background: #2196F3;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>🔍 Search System Test</h1>
+
+    <div class="test-section">
+        <h2>Search System Status</h2>
+        <div id="search-status" class="status info">Testing search system...</div>
+        <button class="test-button" onclick="testSearchSystem()">Test Search System</button>
+        <button class="test-button" onclick="testSearchIndex()">Test Search Index</button>
+        <button class="test-button" onclick="testSearchModal()">Test Search Modal</button>
+    </div>
+
+    <div class="test-section">
+        <h2>Search Integration Test</h2>
+        <div id="integration-status" class="status info">Testing integration...</div>
+        <button class="test-button" onclick="testIntegration()">Test Integration</button>
+    </div>
+
+    <div class="test-section">
+        <h2>Manual Search Test</h2>
+        <input type="text" id="manual-search" placeholder="Enter search term..."
+            style="padding: 10px; width: 300px; margin-right: 10px;">
+        <button class="test-button" onclick="performManualSearch()">Search</button>
+        <div id="manual-results" style="margin-top: 20px;"></div>
+    </div>
+
+    <!-- Load search system -->
+    <script src="js/unified-search-system.js"></script>
+    <script src="js/master-integration-system.js"></script>
+
+    <script>
+        function testSearchSystem() {
+            const status = document.getElementById('search-status');
+
+            try {
+                // Check if search system is loaded
+                if (typeof UnifiedSearchSystem === 'undefined') {
+                    status.innerHTML = '❌ UnifiedSearchSystem class not found';
+                    status.className = 'status error';
+                    return;
+                }
+
+                // Check if search system is initialized
+                if (!window.unifiedSearch) {
+                    status.innerHTML = '❌ Search system not initialized';
+                    status.className = 'status error';
+                    return;
+                }
+
+                // Check search index
+                if (!window.unifiedSearch.searchIndex) {
+                    status.innerHTML = '❌ Search index not found';
+                    status.className = 'status error';
+                    return;
+                }
+
+                // Check pages in index
+                const pageCount = window.unifiedSearch.searchIndex.pages.length;
+                if (pageCount === 0) {
+                    status.innerHTML = '❌ No pages in search index';
+                    status.className = 'status error';
+                    return;
+                }
+
+                status.innerHTML = `✅ Search system working! Found ${pageCount} pages in index`;
+                status.className = 'status success';
+
+            } catch (error) {
+                status.innerHTML = `❌ Error: ${error.message}`;
+                status.className = 'status error';
+            }
+        }
+
+        function testSearchIndex() {
+            const status = document.getElementById('search-status');
+
+            try {
+                const searchIndex = window.unifiedSearch.searchIndex;
+                const pages = searchIndex.pages;
+
+                // Test specific pages
+                const testPages = ['metastation-hub.html', 'index.html', 'mathematical-framework.html'];
+                const foundPages = testPages.filter(page =>
+                    pages.some(p => p.url === page)
+                );
+
+                if (foundPages.length === testPages.length) {
+                    status.innerHTML = `✅ Search index complete! All test pages found (${pages.length} total pages)`;
+                    status.className = 'status success';
+                } else {
+                    status.innerHTML = `⚠️ Search index incomplete. Found ${foundPages.length}/${testPages.length} test pages`;
+                    status.className = 'status error';
+                }
+
+            } catch (error) {
+                status.innerHTML = `❌ Error testing search index: ${error.message}`;
+                status.className = 'status error';
+            }
+        }
+
+        function testSearchModal() {
+            const status = document.getElementById('search-status');
+
+            try {
+                const modal = document.getElementById('unified-search-modal');
+                if (!modal) {
+                    status.innerHTML = '❌ Search modal not found in DOM';
+                    status.className = 'status error';
+                    return;
+                }
+
+                const searchInput = modal.querySelector('.search-input');
+                if (!searchInput) {
+                    status.innerHTML = '❌ Search input not found in modal';
+                    status.className = 'status error';
+                    return;
+                }
+
+                status.innerHTML = '✅ Search modal structure correct';
+                status.className = 'status success';
+
+            } catch (error) {
+                status.innerHTML = `❌ Error testing search modal: ${error.message}`;
+                status.className = 'status error';
+            }
+        }
+
+        function testIntegration() {
+            const status = document.getElementById('integration-status');
+
+            try {
+                // Check if master integration system is loaded
+                if (typeof MasterIntegrationSystem === 'undefined') {
+                    status.innerHTML = '❌ MasterIntegrationSystem not found';
+                    status.className = 'status error';
+                    return;
+                }
+
+                // Check if search is integrated
+                if (window.masterIntegration && window.masterIntegration.systems.search) {
+                    status.innerHTML = '✅ Search system properly integrated';
+                    status.className = 'status success';
+                } else {
+                    status.innerHTML = '⚠️ Search system not integrated with master system';
+                    status.className = 'status error';
+                }
+
+            } catch (error) {
+                status.innerHTML = `❌ Error testing integration: ${error.message}`;
+                status.className = 'status error';
+            }
+        }
+
+        function performManualSearch() {
+            const query = document.getElementById('manual-search').value;
+            const resultsDiv = document.getElementById('manual-results');
+
+            if (!query.trim()) {
+                resultsDiv.innerHTML = '<p style="color: #FFD700;">Please enter a search term</p>';
+                return;
+            }
+
+            try {
+                const results = window.unifiedSearch.performSearch(query);
+                resultsDiv.innerHTML = `<p style="color: #4CAF50;">Search completed for: "${query}"</p>`;
+            } catch (error) {
+                resultsDiv.innerHTML = `<p style="color: #f44336;">Search error: ${error.message}</p>`;
+            }
+        }
+
+        // Auto-test on page load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                testSearchSystem();
+                testIntegration();
+            }, 1000);
+        });
+    </script>
+</body>
+
+</html>

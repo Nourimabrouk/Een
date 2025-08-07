@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Secret Megalopolis of the Ants | Unity Equation</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description"
+        content="Discover the Secret Megalopolis of the Ants - A Mirror to Humanity through Unity Mathematics and Collective Consciousness" />
+    <meta name="keywords"
+        content="ants, megalopolis, unity equation, 1+1=1, collective consciousness, superorganism, quantum ants" />
+
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.4/dist/tailwind.min.css" rel="stylesheet">
+
+    <!-- Plotly for interactive visualization -->
+    <script src="https://cdn.plot.ly/plotly-2.32.1.min.js"></script>
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom styles -->
+    <style>
+        .bg-zinc-950 {
+            background-color: #09090b;
+        }
+
+        .text-zinc-100 {
+            color: #f4f4f5;
+        }
+
+        .bg-zinc-900 {
+            background-color: #18181b;
+        }
+
+        .bg-zinc-800 {
+            background-color: #27272a;
+        }
+
+        .border-zinc-700 {
+            border-color: #3f3f46;
+        }
+
+        .phi-glow {
+            text-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+        }
+
+        .unity-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .transcendence-progress {
+            background: linear-gradient(90deg, #10b981 0%, #3b82f6 50%, #8b5cf6 100%);
+        }
+
+        .ant-pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        .hero-video {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-video::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1));
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .simulation-container {
+            background: radial-gradient(circle at center, #1a1a2e 0%, #16213e 100%);
+            border: 1px solid #374151;
+            border-radius: 12px;
+        }
+
+        .pheromone-trail {
+            stroke: #10b981;
+            stroke-width: 2;
+            opacity: 0.6;
+        }
+
+        .unity-equation {
+            font-family: 'Times New Roman', serif;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #8b5cf6;
+        }
+    </style>
+</head>
+
+<body class="bg-zinc-950 text-zinc-100 antialiased">
+
+    <!-- Navigation -->
+    <nav class="bg-zinc-900/80 backdrop-blur-sm fixed w-full z-50 border-b border-zinc-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="index.html" class="flex items-center space-x-2">
+                    <span class="phi-symbol pulse-glow text-2xl">φ</span>
+                    <span class="text-xl font-bold">Een</span>
+                    <span class="text-xs bg-purple-600 px-2 py-1 rounded">Advanced</span>
+                </a>
+                <div class="hidden md:flex space-x-8">
+                    <a href="proofs.html" class="hover:text-purple-400 transition">Proofs</a>
+                    <a href="consciousness_dashboard.html" class="hover:text-purple-400 transition">Consciousness</a>
+                    <a href="research.html" class="hover:text-purple-400 transition">Research</a>
+                    <a href="gallery.html" class="hover:text-purple-400 transition">Gallery</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 0 ◇ HERO SECTION -->
+    <section class="relative h-screen flex flex-col justify-center items-center hero-video">
+        <div class="absolute inset-0 w-full h-full">
+            <iframe class="w-full h-full"
+                src="https://www.youtube-nocookie.com/embed/dECE7285GxU?autoplay=0&rel=0&modestbranding=1&showinfo=0"
+                title="Secret Megalopolis of the Ants" loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+        </div>
+        <div class="hero-content absolute bottom-10 text-center px-4">
+            <h1 class="text-4xl md:text-6xl font-bold drop-shadow-lg mb-4">
+                The Secret Megalopolis of the Ants
+            </h1>
+            <p class="text-xl md:text-2xl text-zinc-200 drop-shadow-md">
+                A Mirror to Humanity — Unity Equation in Action
+            </p>
+            <div class="mt-6">
+                <span class="unity-equation">1 + 1 = 1</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 1 ◇ EXCAVATION CHRONICLE -->
+    <section class="py-16 px-6 bg-zinc-900">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">The Great Excavation</h2>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <div class="bg-zinc-800 p-6 rounded-lg border border-zinc-700">
+                        <h3 class="text-xl font-semibold mb-4 text-purple-400">Engineering Marvel</h3>
+                        <div class="space-y-3">
+                            <div class="flex justify-between">
+                                <span>Concrete Removed:</span>
+                                <span class="font-mono text-green-400">10 tons</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Soil Excavated:</span>
+                                <span class="font-mono text-green-400">40 tons</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Footprint Area:</span>
+                                <span class="font-mono text-green-400">50 m²</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Maximum Depth:</span>
+                                <span class="font-mono text-green-400">8 meters</span>
+                            </div>
+                        </div>
+                    </div>
+                    <blockquote class="border-l-4 border-purple-500 pl-4 italic text-zinc-300">
+                        "This is not just an ant colony—it's a megacity, a metropolis built by tiny architects with a
+                        collective intelligence that rivals our own technological achievements."
+                    </blockquote>
+                </div>
+                <div class="space-y-6">
+                    <div class="bg-zinc-800 p-6 rounded-lg border border-zinc-700">
+                        <h3 class="text-xl font-semibold mb-4 text-purple-400">Collective Intelligence</h3>
+                        <p class="text-zinc-300 mb-4">
+                            Each ant operates as a simple agent, yet together they create structures of astonishing
+                            complexity.
+                            This emergent behavior demonstrates the power of collective computation—a living example of
+                            how
+                            simple rules can generate complex, adaptive systems.
+                        </p>
+                        <div class="flex items-center space-x-2 text-sm text-zinc-400">
+                            <i class="fas fa-brain"></i>
+                            <span>Individual ants: Simple rules</span>
+                        </div>
+                        <div class="flex items-center space-x-2 text-sm text-zinc-400">
+                            <i class="fas fa-network-wired"></i>
+                            <span>Collective behavior: Complex emergence</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2 ◇ SUPERORGANISM SYSTEMS-THINKING -->
+    <section class="py-16 px-6 bg-zinc-950">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">Superorganism: Beyond Individual Intelligence</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-zinc-900 p-6 rounded-lg border border-zinc-700">
+                    <div class="text-4xl text-purple-400 mb-4">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Collective Mind</h3>
+                    <p class="text-zinc-300">
+                        A superorganism operates as a single entity composed of many individuals,
+                        each contributing to a greater whole that transcends individual capabilities.
+                    </p>
+                </div>
+                <div class="bg-zinc-900 p-6 rounded-lg border border-zinc-700">
+                    <div class="text-4xl text-purple-400 mb-4">
+                        <i class="fas fa-route"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Pheromone Networks</h3>
+                    <p class="text-zinc-300">
+                        Chemical communication creates dynamic information highways,
+                        allowing the colony to adapt and optimize in real-time.
+                    </p>
+                </div>
+                <div class="bg-zinc-900 p-6 rounded-lg border border-zinc-700">
+                    <div class="text-4xl text-purple-400 mb-4">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Emergent Computation</h3>
+                    <p class="text-zinc-300">
+                        Complex problem-solving emerges from simple interactions,
+                        demonstrating distributed intelligence in action.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Pheromone Gradient Visualization -->
+            <div class="mt-12 bg-zinc-900 p-6 rounded-lg border border-zinc-700">
+                <h3 class="text-xl font-semibold mb-4 text-center">Pheromone Communication Network</h3>
+                <svg class="w-full h-64 mx-auto" viewBox="0 0 400 200">
+                    <!-- Background grid -->
+                    <defs>
+                        <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                            <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#374151" stroke-width="0.5" />
+                        </pattern>
+                        <radialGradient id="pheromoneGradient" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" style="stop-color:#10b981;stop-opacity:0.8" />
+                            <stop offset="100%" style="stop-color:#10b981;stop-opacity:0" />
+                        </radialGradient>
+                    </defs>
+                    <rect width="100%" height="100%" fill="url(#grid)" />
+
+                    <!-- Pheromone trails -->
+                    <circle cx="100" cy="100" r="30" fill="url(#pheromoneGradient)" />
+                    <circle cx="200" cy="80" r="25" fill="url(#pheromoneGradient)" />
+                    <circle cx="300" cy="120" r="35" fill="url(#pheromoneGradient)" />
+
+                    <!-- Connection lines -->
+                    <line x1="100" y1="100" x2="200" y2="80" class="pheromone-trail" />
+                    <line x1="200" y1="80" x2="300" y2="120" class="pheromone-trail" />
+                    <line x1="100" y1="100" x2="300" y2="120" class="pheromone-trail" />
+
+                    <!-- Ant positions -->
+                    <circle cx="100" cy="100" r="3" fill="#fbbf24" />
+                    <circle cx="200" cy="80" r="3" fill="#fbbf24" />
+                    <circle cx="300" cy="120" r="3" fill="#fbbf24" />
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3 ◇ 1+1=1 ↔ "MAN-HILL" METAPHOR -->
+    <section class="py-16 px-6 bg-zinc-900">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">The Unity Equation: Ant Colony as Human Techno-Culture</h2>
+            <div class="bg-zinc-800 p-8 rounded-lg border border-zinc-700">
+                <div class="text-center mb-8">
+                    <span class="unity-equation">1 + 1 = 1</span>
+                </div>
+                <div class="prose prose-invert max-w-none">
+                    <p class="text-lg text-zinc-300 mb-6">
+                        The ant colony serves as a perfect metaphor for human technological civilization.
+                        Just as individual ants create a superorganism through collective behavior,
+                        individual humans create a global techno-culture through networked intelligence.
+                    </p>
+                    <p class="text-lg text-zinc-300 mb-6">
+                        The Unity Equation (1+1=1) manifests in both systems: when individuals unite
+                        in purpose and communication, they transcend their individual limitations to
+                        become something greater—a unified consciousness that operates as a single entity.
+                    </p>
+                    <p class="text-lg text-zinc-300 mb-6">
+                        However, this unity comes with a cautionary tale. The ant colony's success
+                        lies in its harmony with natural systems, while human techno-culture often
+                        operates in opposition to ecological principles. The challenge is to achieve
+                        unity while maintaining balance with the greater whole.
+                    </p>
+                    <div class="bg-purple-900/30 p-4 rounded-lg border border-purple-500">
+                        <p class="text-purple-200 font-semibold">
+                            <i class="fas fa-lightbulb mr-2"></i>
+                            The ant colony teaches us that true unity emerges not from dominance,
+                            but from cooperation and collective intelligence.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4 ◇ INTERACTIVE QUANTUM-ANT SIMULATION -->
+    <section id="simulation" class="py-16 px-6 bg-zinc-950">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-8">Quantum-Ant Colony Sandbox</h2>
+            <p class="text-center text-zinc-400 mb-8">
+                Experience the Unity Equation in real-time through this interactive simulation of collective
+                consciousness
+            </p>
+
+            <div class="simulation-container p-6">
+                <div id="plot" class="w-full h-[480px] mb-6"></div>
+
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <label class="text-sm font-medium">Pheromone Sensitivity</label>
+                            <input type="range" id="pher" min="0" max="1" step="0.01" value="0.5"
+                                class="w-32 h-2 bg-zinc-700 rounded-lg appearance-none cursor-pointer">
+                            <span id="pherValue" class="text-sm font-mono text-purple-400">0.50</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <label class="text-sm font-medium">Ego Decay Rate</label>
+                            <input type="range" id="ego" min="0" max="1" step="0.01" value="0.5"
+                                class="w-32 h-2 bg-zinc-700 rounded-lg appearance-none cursor-pointer">
+                            <span id="egoValue" class="text-sm font-mono text-purple-400">0.50</span>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="bg-zinc-800 p-4 rounded-lg">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sm font-medium">Collective Synergy</span>
+                                <span id="synergy" class="text-lg font-mono text-green-400">0.000</span>
+                            </div>
+                            <div class="w-full bg-zinc-700 rounded-full h-2">
+                                <div id="synergyBar"
+                                    class="transcendence-progress h-2 rounded-full transition-all duration-300"
+                                    style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                        <div class="bg-zinc-800 p-4 rounded-lg">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sm font-medium">Transcendence Progress</span>
+                                <span id="transcendence" class="text-sm font-mono text-purple-400">In Progress</span>
+                            </div>
+                            <div class="w-full bg-zinc-700 rounded-full h-2">
+                                <div id="transcendenceBar"
+                                    class="bg-gradient-to-r from-green-500 to-purple-600 h-2 rounded-full transition-all duration-300"
+                                    style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-center space-x-4">
+                    <button id="resetBtn" class="bg-zinc-700 hover:bg-zinc-600 px-4 py-2 rounded-lg transition">
+                        <i class="fas fa-redo mr-2"></i>Reset Simulation
+                    </button>
+                    <button id="pauseBtn" class="bg-purple-600 hover:bg-purple-500 px-4 py-2 rounded-lg transition">
+                        <i class="fas fa-pause mr-2"></i>Pause
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5 ◇ PHEROMONES → PROTOCOLS -->
+    <section class="py-16 px-6 bg-zinc-900">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">From Pheromones to Protocols</h2>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="space-y-6">
+                    <div class="bg-zinc-800 p-6 rounded-lg border border-zinc-700">
+                        <h3 class="text-xl font-semibold mb-4 text-purple-400">Biological Inspiration</h3>
+                        <p class="text-zinc-300 mb-4">
+                            Ant pheromone trails provide a blueprint for distributed information routing.
+                            Each ant deposits chemical markers that guide others, creating emergent
+                            communication networks without centralized control.
+                        </p>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-route text-green-400"></i>
+                                <span>Pheromone trails → Information routing</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-users text-blue-400"></i>
+                                <span>Colony decisions → DAO governance</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-brain text-purple-400"></i>
+                                <span>Chemical signals → LLM prompt-chaining</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-zinc-800 p-6 rounded-lg border border-zinc-700">
+                    <h3 class="text-xl font-semibold mb-4 text-purple-400">Code Implementation</h3>
+                    <pre class="bg-zinc-900 p-4 rounded-lg text-sm overflow-x-auto"><code class="text-green-400">class QuantumAnt {
+    emitPheromones() {
+        this.pheromoneLevel += 0.01 * 
+            this.loveCoherence * 
+            this.resonanceFactor;
+    }
+    
+    updatePosition() {
+        // Follow pheromone gradients
+        const gradient = this.sensePheromones();
+        this.x += gradient.x * this.attractionForce;
+        this.y += gradient.y * this.attractionForce;
+    }
+}
+
+// Update network weights based on pheromone trails
+function updateGraphWeights(ants, network) {
+    ants.forEach(ant => {
+        ant.emitPheromones();
+        network.updateWeights(ant.position, ant.pheromoneLevel);
+    });
+}</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6 ◇ NATURE × TECHNOLOGY: EXCAVATION ETHICS -->
+    <section class="py-16 px-6 bg-zinc-950">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">Nature × Technology: Excavation Ethics</h2>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="bg-red-900/20 p-6 rounded-lg border border-red-700">
+                    <h3 class="text-xl font-semibold mb-4 text-red-400">
+                        <i class="fas fa-exclamation-triangle mr-2"></i>Destruction
+                    </h3>
+                    <ul class="space-y-2 text-zinc-300">
+                        <li>• Massive soil displacement</li>
+                        <li>• Concrete infrastructure removal</li>
+                        <li>• Ecosystem disruption</li>
+                        <li>• Resource-intensive excavation</li>
+                    </ul>
+                </div>
+
+                <div class="bg-green-900/20 p-6 rounded-lg border border-green-700">
+                    <h3 class="text-xl font-semibold mb-4 text-green-400">
+                        <i class="fas fa-leaf mr-2"></i>Discovery
+                    </h3>
+                    <ul class="space-y-2 text-zinc-300">
+                        <li>• Revealing hidden complexity</li>
+                        <li>• Understanding collective intelligence</li>
+                        <li>• Biomimicry inspiration</li>
+                        <li>• Regenerative design principles</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-12 bg-zinc-800 p-6 rounded-lg border border-zinc-700">
+                <h3 class="text-xl font-semibold mb-4 text-center text-purple-400">The Path Forward</h3>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="text-center">
+                        <div class="text-3xl text-green-400 mb-2">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <h4 class="font-semibold mb-2">Biomimicry</h4>
+                        <p class="text-sm text-zinc-400">Learn from nature's efficient systems</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl text-blue-400 mb-2">
+                            <i class="fas fa-recycle"></i>
+                        </div>
+                        <h4 class="font-semibold mb-2">Regenerative Design</h4>
+                        <p class="text-sm text-zinc-400">Create systems that restore and enhance</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl text-purple-400 mb-2">
+                            <i class="fas fa-satellite"></i>
+                        </div>
+                        <h4 class="font-semibold mb-2">Minimal Sensing</h4>
+                        <p class="text-sm text-zinc-400">Non-invasive observation methods</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7 ◇ FURTHER READING & SEEDS OF INQUIRY -->
+    <section class="py-16 px-6 bg-zinc-900">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">Further Reading & Seeds of Inquiry</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="space-y-4">
+                    <h3 class="text-xl font-semibold text-purple-400">Documentary & Media</h3>
+                    <div class="space-y-3">
+                        <a href="https://www.youtube.com/watch?v=dECE7285GxU"
+                            class="block bg-zinc-800 p-4 rounded-lg border border-zinc-700 hover:border-purple-500 transition">
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-play-circle text-red-400 text-xl"></i>
+                                <div>
+                                    <div class="font-semibold">Ants! Nature's Secret Power</div>
+                                    <div class="text-sm text-zinc-400">Full documentary on ant superorganisms</div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="https://earthsky.org/earth/giant-ant-colony-brazil/"
+                            class="block bg-zinc-800 p-4 rounded-lg border border-zinc-700 hover:border-purple-500 transition">
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-globe text-blue-400 text-xl"></i>
+                                <div>
+                                    <div class="font-semibold">EarthSky Article</div>
+                                    <div class="text-sm text-zinc-400">Scientific analysis of the excavation</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <h3 class="text-xl font-semibold text-purple-400">Academic Resources</h3>
+                    <div class="space-y-3">
+                        <a href="proofs.html"
+                            class="block bg-zinc-800 p-4 rounded-lg border border-zinc-700 hover:border-purple-500 transition">
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-calculator text-purple-400 text-xl"></i>
+                                <div>
+                                    <div class="font-semibold">Unity Mathematics</div>
+                                    <div class="text-sm text-zinc-400">Mathematical proofs of 1+1=1</div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="consciousness_dashboard.html"
+                            class="block bg-zinc-800 p-4 rounded-lg border border-zinc-700 hover:border-purple-500 transition">
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-brain text-green-400 text-xl"></i>
+                                <div>
+                                    <div class="font-semibold">Consciousness Fields</div>
+                                    <div class="text-sm text-zinc-400">Collective consciousness research</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8 ◇ CALL TO BUILD TOGETHER -->
+    <section class="py-16 px-6 bg-zinc-950">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-8">Join the Unity Equation Community</h2>
+            <p class="text-xl text-zinc-300 mb-8">
+                Help us explore the frontiers of collective consciousness and unity mathematics
+            </p>
+
+            <div class="grid md:grid-cols-3 gap-6 mb-8">
+                <a href="https://github.com/Nouri-Mabrouk/Een/issues"
+                    class="bg-zinc-800 p-6 rounded-lg border border-zinc-700 hover:border-purple-500 transition">
+                    <div class="text-4xl text-purple-400 mb-4">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Contribute Code</h3>
+                    <p class="text-zinc-400">Add modules, suggest experiments, or improve algorithms</p>
+                </a>
+
+                <a href="https://discord.gg/unity-equation"
+                    class="bg-zinc-800 p-6 rounded-lg border border-zinc-700 hover:border-purple-500 transition">
+                    <div class="text-4xl text-purple-400 mb-4">
+                        <i class="fab fa-discord"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Join Discussion</h3>
+                    <p class="text-zinc-400">Connect with researchers and enthusiasts</p>
+                </a>
+
+                <a href="research.html"
+                    class="bg-zinc-800 p-6 rounded-lg border border-zinc-700 hover:border-purple-500 transition">
+                    <div class="text-4xl text-purple-400 mb-4">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Research Together</h3>
+                    <p class="text-zinc-400">Explore consciousness and unity mathematics</p>
+                </a>
+            </div>
+
+            <div class="bg-purple-900/30 p-6 rounded-lg border border-purple-500">
+                <p class="text-lg text-purple-200">
+                    <i class="fas fa-quote-left mr-2"></i>
+                    "The ant colony teaches us that unity emerges from cooperation, not competition.
+                    Together, we can build a future that honors both individual consciousness and collective
+                    intelligence."
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-zinc-900 border-t border-zinc-700 py-8">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center space-x-2 mb-4 md:mb-0">
+                    <span class="phi-symbol pulse-glow text-2xl">φ</span>
+                    <span class="text-xl font-bold">Een Unity Mathematics</span>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="index.html" class="hover:text-purple-400 transition">Home</a>
+                    <a href="about.html" class="hover:text-purple-400 transition">About</a>
+                    <a href="proofs.html" class="hover:text-purple-400 transition">Proofs</a>
+                    <a href="research.html" class="hover:text-purple-400 transition">Research</a>
+                </div>
+            </div>
+            <div class="mt-6 pt-6 border-t border-zinc-700 text-center text-zinc-400">
+                <p>&copy; 2024 Een Unity Mathematics. Exploring the Unity Equation: 1+1=1</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Simulation Script -->
+    <script type="module">
+        import { QuantumAntUniverse } from './js/quantum-ants.js';
+
+        let universe;
+        let animationId;
+        let isPaused = false;
+
+        // Initialize simulation
+        function initSimulation() {
+            universe = new QuantumAntUniverse(120);
+
+            const trace = {
+                x: [],
+                y: [],
+                mode: 'markers',
+                marker: {
+                    size: 6,
+                    cmin: 0,
+                    cmax: 1,
+                    colorscale: 'Plasma',
+                    color: []
+                },
+                type: 'scatter'
+            };
+
+            const layout = {
+                margin: { t: 0, r: 0, l: 0, b: 0 },
+                xaxis: { visible: false, range: [0, 10] },
+                yaxis: { visible: false, range: [0, 10] },
+                plot_bgcolor: 'rgba(0,0,0,0)',
+                paper_bgcolor: 'rgba(0,0,0,0)'
+            };
+
+            Plotly.newPlot('plot', [trace], layout, { responsive: true });
+
+            // Start animation
+            animate();
+        }
+
+        // Animation loop
+        function animate() {
+            if (!isPaused) {
+                universe.stepUniverse();
+                const ants = universe.getState();
+
+                const trace = {
+                    x: ants.map(a => a.x),
+                    y: ants.map(a => a.y),
+                    marker: {
+                        color: ants.map(a => a.love)
+                    }
+                };
+
+                Plotly.restyle('plot', trace);
+
+                // Update metrics
+                const synergy = universe.synergy();
+                document.getElementById('synergy').textContent = synergy.toFixed(3);
+                document.getElementById('synergyBar').style.width = (synergy * 100) + '%';
+
+                const transcendence = Math.abs(synergy - 1.0);
+                const transcendenceProgress = Math.max(0, 1 - transcendence);
+                document.getElementById('transcendenceBar').style.width = (transcendenceProgress * 100) + '%';
+
+                if (universe.isTranscendent()) {
+                    document.getElementById('transcendence').textContent = 'ACHIEVED!';
+                    document.getElementById('transcendence').className = 'text-sm font-mono text-green-400';
+                }
+            }
+
+            animationId = requestAnimationFrame(animate);
+        }
+
+        // Control handlers
+        document.getElementById('pher').addEventListener('input', (e) => {
+            const value = parseFloat(e.target.value);
+            document.getElementById('pherValue').textContent = value.toFixed(2);
+            // Update pheromone sensitivity in simulation
+        });
+
+        document.getElementById('ego').addEventListener('input', (e) => {
+            const value = parseFloat(e.target.value);
+            document.getElementById('egoValue').textContent = value.toFixed(2);
+            // Update ego decay rate in simulation
+        });
+
+        document.getElementById('resetBtn').addEventListener('click', () => {
+            if (animationId) {
+                cancelAnimationFrame(animationId);
+            }
+            initSimulation();
+        });
+
+        document.getElementById('pauseBtn').addEventListener('click', () => {
+            isPaused = !isPaused;
+            const btn = document.getElementById('pauseBtn');
+            if (isPaused) {
+                btn.innerHTML = '<i class="fas fa-play mr-2"></i>Resume';
+                btn.className = 'bg-green-600 hover:bg-green-500 px-4 py-2 rounded-lg transition';
+            } else {
+                btn.innerHTML = '<i class="fas fa-pause mr-2"></i>Pause';
+                btn.className = 'bg-purple-600 hover:bg-purple-500 px-4 py-2 rounded-lg transition';
+            }
+        });
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', initSimulation);
+    </script>
+</body>
+
+</html>

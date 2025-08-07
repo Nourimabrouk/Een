@@ -14,14 +14,14 @@ class DiscreetAudioSystem {
         this.playlist = this.getUnityPlaylist();
         this.fadeInterval = null;
         this.isInitialized = false;
-        
+
         // User preference detection
         this.respectsUserPreferences = this.checkUserPreferences();
-        
+
         console.log('🎵 Discreet Audio System initializing...');
         this.init();
     }
-    
+
     getUnityPlaylist() {
         // Curated playlist for Unity Mathematics exploration
         return [
@@ -35,7 +35,7 @@ class DiscreetAudioSystem {
             {
                 title: "Consciousness Field",
                 artist: "Een Collective",
-                src: "audio/consciousness-field.mp3", 
+                src: "audio/consciousness-field.mp3",
                 duration: "6:18",
                 description: "Mathematical field equations as ambient soundscape"
             },
@@ -62,43 +62,43 @@ class DiscreetAudioSystem {
             }
         ];
     }
-    
+
     checkUserPreferences() {
         // Check for user media preferences
         if ('mediaSession' in navigator) {
             // Browser supports media session API
             return true;
         }
-        
+
         // Check for reduced motion preference
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         if (prefersReducedMotion) {
             console.log('🎵 Respecting user reduced motion preference - disabling autoplay');
             return false;
         }
-        
+
         // Check if user has interacted with audio before
         const hasInteracted = localStorage.getItem('een-audio-user-interaction') === 'true';
         return hasInteracted;
     }
-    
+
     init() {
         this.createAudioElements();
         this.injectStyles();
         this.createPlayerInterface();
         this.bindEvents();
         this.loadAudioState();
-        
+
         // Listen for unified navigation events
         window.addEventListener('unified-nav:audio', () => this.togglePlayback());
-        
+
         // Initialize autoplay after user interaction
         this.setupAutoplayLogic();
-        
+
         this.isInitialized = true;
         console.log('🎵 Discreet Audio System initialized');
     }
-    
+
     createAudioElements() {
         // Create main audio element
         this.audio = document.createElement('audio');
@@ -106,7 +106,7 @@ class DiscreetAudioSystem {
         this.audio.crossOrigin = 'anonymous';
         this.audio.preload = 'none'; // Don't preload to respect data usage
         this.audio.volume = this.volume;
-        
+
         // Add event listeners
         this.audio.addEventListener('loadstart', () => this.updateLoadingState(true));
         this.audio.addEventListener('canplaythrough', () => this.updateLoadingState(false));
@@ -115,103 +115,20 @@ class DiscreetAudioSystem {
         this.audio.addEventListener('ended', () => this.handleTrackEnd());
         this.audio.addEventListener('error', (e) => this.handleAudioError(e));
         this.audio.addEventListener('timeupdate', () => this.updateProgress());
-        
+
         document.body.appendChild(this.audio);
-        
+
         // Set initial track
         this.loadTrack(this.currentTrack);
     }
-    
+
     createPlayerInterface() {
-        // Create minimalist player interface
-        const player = document.createElement('div');
-        player.id = 'discreet-audio-player';
-        player.className = 'discreet-audio-player';
-        player.innerHTML = `
-            <div class="audio-player-content">
-                <!-- Compact Player View -->
-                <div class="player-compact">
-                    <button class="audio-toggle-btn" title="Play/Pause Unity Music" aria-label="Play/Pause">
-                        <span class="audio-icon">🎵</span>
-                        <span class="audio-pulse"></span>
-                    </button>
-                    
-                    <div class="track-info">
-                        <div class="track-title">${this.playlist[this.currentTrack].title}</div>
-                        <div class="track-artist">${this.playlist[this.currentTrack].artist}</div>
-                    </div>
-                    
-                    <div class="player-controls-compact">
-                        <button class="volume-btn" title="Volume" aria-label="Volume control">
-                            <span class="volume-icon">🔊</span>
-                        </button>
-                        <button class="player-expand-btn" title="Expand player" aria-label="Expand player">
-                            <span class="expand-icon">⬆</span>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Expanded Player View -->
-                <div class="player-expanded" style="display: none;">
-                    <div class="player-header">
-                        <h4>Unity Mathematics Playlist</h4>
-                        <button class="player-collapse-btn" title="Collapse player" aria-label="Collapse player">
-                            <span class="collapse-icon">⬇</span>
-                        </button>
-                    </div>
-                    
-                    <div class="current-track">
-                        <div class="track-artwork">
-                            <span class="artwork-icon">∞</span>
-                        </div>
-                        <div class="track-details">
-                            <div class="track-title-expanded">${this.playlist[this.currentTrack].title}</div>
-                            <div class="track-artist-expanded">${this.playlist[this.currentTrack].artist}</div>
-                            <div class="track-description">${this.playlist[this.currentTrack].description}</div>
-                        </div>
-                    </div>
-                    
-                    <div class="progress-container">
-                        <div class="progress-bar">
-                            <div class="progress-fill"></div>
-                            <div class="progress-handle"></div>
-                        </div>
-                        <div class="progress-time">
-                            <span class="current-time">0:00</span>
-                            <span class="total-time">${this.playlist[this.currentTrack].duration}</span>
-                        </div>
-                    </div>
-                    
-                    <div class="player-controls">
-                        <button class="prev-btn" title="Previous track" aria-label="Previous track">⏮</button>
-                        <button class="play-pause-btn" title="Play/Pause" aria-label="Play/Pause">
-                            <span class="play-icon">▶</span>
-                        </button>
-                        <button class="next-btn" title="Next track" aria-label="Next track">⏯</button>
-                        
-                        <div class="volume-control">
-                            <button class="volume-toggle" title="Mute/Unmute" aria-label="Mute/Unmute">
-                                <span class="volume-icon-expanded">🔊</span>
-                            </button>
-                            <input type="range" class="volume-slider" min="0" max="100" value="${this.volume * 100}">
-                        </div>
-                    </div>
-                    
-                    <div class="playlist-container">
-                        <h5>Playlist</h5>
-                        <div class="playlist">
-                            ${this.renderPlaylist()}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `;
-        
-        // Position in header area
-        const header = document.querySelector('header') || document.querySelector('.nav-wrapper') || document.body;
-        header.appendChild(player);
+        // Disabled phi harmonic resonance audio player button for metastation-hub
+        // The unity soundtrack is now handled by the discreet bottom-left player
+        console.log('🎵 Discreet audio player interface disabled for metastation-hub');
+        return;
     }
-    
+
     renderPlaylist() {
         return this.playlist.map((track, index) => `
             <div class="playlist-item ${index === this.currentTrack ? 'active' : ''}" data-track-index="${index}">
@@ -224,22 +141,22 @@ class DiscreetAudioSystem {
             </div>
         `).join('');
     }
-    
+
     bindEvents() {
         const player = document.getElementById('discreet-audio-player');
         if (!player) return;
-        
+
         // Compact player controls
         const toggleBtn = player.querySelector('.audio-toggle-btn');
         const expandBtn = player.querySelector('.player-expand-btn');
         const collapseBtn = player.querySelector('.player-collapse-btn');
         const volumeBtn = player.querySelector('.volume-btn');
-        
+
         toggleBtn?.addEventListener('click', () => this.togglePlayback());
         expandBtn?.addEventListener('click', () => this.expandPlayer());
         collapseBtn?.addEventListener('click', () => this.collapsePlayer());
         volumeBtn?.addEventListener('click', () => this.showVolumeControl());
-        
+
         // Expanded player controls
         const playPauseBtn = player.querySelector('.play-pause-btn');
         const prevBtn = player.querySelector('.prev-btn');
@@ -247,14 +164,14 @@ class DiscreetAudioSystem {
         const volumeSlider = player.querySelector('.volume-slider');
         const volumeToggle = player.querySelector('.volume-toggle');
         const progressBar = player.querySelector('.progress-bar');
-        
+
         playPauseBtn?.addEventListener('click', () => this.togglePlayback());
         prevBtn?.addEventListener('click', () => this.previousTrack());
         nextBtn?.addEventListener('click', () => this.nextTrack());
         volumeSlider?.addEventListener('input', (e) => this.setVolume(e.target.value / 100));
         volumeToggle?.addEventListener('click', () => this.toggleMute());
         progressBar?.addEventListener('click', (e) => this.seek(e));
-        
+
         // Playlist interaction
         player.addEventListener('click', (e) => {
             if (e.target.closest('.playlist-item')) {
@@ -262,7 +179,7 @@ class DiscreetAudioSystem {
                 this.playTrack(trackIndex);
             }
         });
-        
+
         // Hover controls for volume
         const volumeControl = player.querySelector('.volume-control');
         if (volumeControl) {
@@ -273,7 +190,7 @@ class DiscreetAudioSystem {
                 volumeControl.classList.remove('hover');
             });
         }
-        
+
         // Handle page visibility changes
         document.addEventListener('visibilitychange', () => {
             if (document.hidden) {
@@ -282,48 +199,48 @@ class DiscreetAudioSystem {
                 this.loadAudioState();
             }
         });
-        
+
         // Save state before page unload
         window.addEventListener('beforeunload', () => this.saveAudioState());
     }
-    
+
     setupAutoplayLogic() {
         // Only attempt autoplay if user preferences allow
         if (!this.respectsUserPreferences) {
             console.log('🎵 Autoplay disabled - respecting user preferences');
             return;
         }
-        
+
         // Wait for user interaction before enabling autoplay
         const enableAutoplay = () => {
             localStorage.setItem('een-audio-user-interaction', 'true');
             this.respectsUserPreferences = true;
-            
+
             // Start playback with fade in after first interaction
             setTimeout(() => {
                 if (!this.isPlaying) {
                     this.startWithFadeIn();
                 }
             }, 2000); // 2 second delay
-            
+
             // Remove listeners after first interaction
             document.removeEventListener('click', enableAutoplay);
             document.removeEventListener('keydown', enableAutoplay);
         };
-        
+
         // Add interaction listeners
         document.addEventListener('click', enableAutoplay);
         document.addEventListener('keydown', enableAutoplay);
     }
-    
+
     startWithFadeIn() {
         if (!this.audio || this.isPlaying) return;
-        
+
         console.log('🎵 Starting Unity Mathematics playlist with fade-in');
-        
+
         // Set volume to 0 for fade-in
         this.audio.volume = 0;
-        
+
         // Start playback
         this.audio.play().then(() => {
             // Fade in over 2 seconds
@@ -333,35 +250,35 @@ class DiscreetAudioSystem {
             console.warn('🎵 Autoplay prevented by browser:', error);
         });
     }
-    
+
     fadeIn(duration = 2000) {
         const targetVolume = this.volume;
         const steps = 50;
         const stepDuration = duration / steps;
         const volumeStep = targetVolume / steps;
-        
+
         let currentStep = 0;
-        
+
         this.fadeInterval = setInterval(() => {
             if (currentStep >= steps) {
                 this.audio.volume = targetVolume;
                 clearInterval(this.fadeInterval);
                 return;
             }
-            
+
             this.audio.volume = volumeStep * currentStep;
             currentStep++;
         }, stepDuration);
     }
-    
+
     fadeOut(duration = 1000, callback = null) {
         const startVolume = this.audio.volume;
         const steps = 20;
         const stepDuration = duration / steps;
         const volumeStep = startVolume / steps;
-        
+
         let currentStep = 0;
-        
+
         this.fadeInterval = setInterval(() => {
             if (currentStep >= steps) {
                 this.audio.volume = 0;
@@ -369,80 +286,80 @@ class DiscreetAudioSystem {
                 if (callback) callback();
                 return;
             }
-            
+
             this.audio.volume = startVolume - (volumeStep * currentStep);
             currentStep++;
         }, stepDuration);
     }
-    
+
     togglePlayback() {
         if (!this.audio) return;
-        
+
         if (this.isPlaying) {
             this.pause();
         } else {
             this.play();
         }
     }
-    
+
     play() {
         if (!this.audio) return;
-        
+
         this.audio.play().then(() => {
             console.log('🎵 Playing:', this.playlist[this.currentTrack].title);
         }).catch(error => {
             console.warn('🎵 Playback error:', error);
         });
     }
-    
+
     pause() {
         if (!this.audio) return;
-        
+
         this.audio.pause();
         console.log('🎵 Paused');
     }
-    
+
     loadTrack(index) {
         if (!this.playlist[index] || !this.audio) return;
-        
+
         const track = this.playlist[index];
         this.currentTrack = index;
-        
+
         // Update audio source
         this.audio.src = track.src;
-        
+
         // Update UI
         this.updateTrackInfo();
         this.updatePlaylistState();
-        
+
         console.log('🎵 Loaded track:', track.title);
     }
-    
+
     playTrack(index) {
         this.loadTrack(index);
         this.play();
     }
-    
+
     nextTrack() {
         const nextIndex = (this.currentTrack + 1) % this.playlist.length;
         this.playTrack(nextIndex);
     }
-    
+
     previousTrack() {
         const prevIndex = this.currentTrack === 0 ? this.playlist.length - 1 : this.currentTrack - 1;
         this.playTrack(prevIndex);
     }
-    
+
     setVolume(volume) {
         this.volume = Math.max(0, Math.min(1, volume));
         if (this.audio) {
             this.audio.volume = this.volume;
         }
-        
+
         this.updateVolumeUI();
         this.saveAudioState();
     }
-    
+
     toggleMute() {
         if (this.volume > 0) {
             this.previousVolume = this.volume;
@@ -451,17 +368,17 @@ class DiscreetAudioSystem {
             this.setVolume(this.previousVolume || 0.3);
         }
     }
-    
+
     seek(event) {
         if (!this.audio || !this.audio.duration) return;
-        
+
         const rect = event.currentTarget.getBoundingClientRect();
         const percent = (event.clientX - rect.left) / rect.width;
         const seekTime = percent * this.audio.duration;
-        
+
         this.audio.currentTime = seekTime;
     }
-    
+
     expandPlayer() {
         const player = document.getElementById('discreet-audio-player');
         if (player) {
@@ -472,7 +389,7 @@ class DiscreetAudioSystem {
             }
         }
     }
-    
+
     collapsePlayer() {
         const player = document.getElementById('discreet-audio-player');
         if (player) {
@@ -483,132 +400,132 @@ class DiscreetAudioSystem {
             }
         }
     }
-    
+
     showVolumeControl() {
         // Quick volume adjustment
         const currentVolume = Math.round(this.volume * 100);
         const newVolume = prompt(`Set volume (0-100):`, currentVolume);
-        
+
         if (newVolume !== null && !isNaN(newVolume)) {
             this.setVolume(parseInt(newVolume) / 100);
         }
     }
-    
+
     // Event handlers
     handlePlayEvent() {
         this.isPlaying = true;
         this.updatePlaybackState();
     }
-    
+
     handlePauseEvent() {
         this.isPlaying = false;
         this.updatePlaybackState();
     }
-    
+
     handleTrackEnd() {
         console.log('🎵 Track ended, playing next');
         this.nextTrack();
     }
-    
+
     handleAudioError(error) {
         console.warn('🎵 Audio error:', error);
         // Try next track if current fails
         setTimeout(() => this.nextTrack(), 1000);
     }
-    
+
     updateLoadingState(loading) {
         const player = document.getElementById('discreet-audio-player');
         if (player) {
             player.classList.toggle('loading', loading);
         }
     }
-    
+
     updatePlaybackState() {
         const player = document.getElementById('discreet-audio-player');
         if (!player) return;
-        
+
         player.classList.toggle('playing', this.isPlaying);
-        
+
         // Update play/pause icons
         const playIcon = player.querySelector('.play-icon');
         const audioIcon = player.querySelector('.audio-icon');
-        
+
         if (playIcon) {
             playIcon.textContent = this.isPlaying ? '⏸' : '▶';
         }
-        
+
         if (audioIcon) {
             audioIcon.textContent = this.isPlaying ? '🎶' : '🎵';
         }
     }
-    
+
     updateTrackInfo() {
         const player = document.getElementById('discreet-audio-player');
         if (!player) return;
-        
+
         const track = this.playlist[this.currentTrack];
-        
+
         // Update compact view
         const trackTitle = player.querySelector('.track-title');
         const trackArtist = player.querySelector('.track-artist');
-        
+
         if (trackTitle) trackTitle.textContent = track.title;
         if (trackArtist) trackArtist.textContent = track.artist;
-        
+
         // Update expanded view
         const titleExpanded = player.querySelector('.track-title-expanded');
         const artistExpanded = player.querySelector('.track-artist-expanded');
         const description = player.querySelector('.track-description');
         const totalTime = player.querySelector('.total-time');
-        
+
         if (titleExpanded) titleExpanded.textContent = track.title;
         if (artistExpanded) artistExpanded.textContent = track.artist;
         if (description) description.textContent = track.description;
         if (totalTime) totalTime.textContent = track.duration;
     }
-    
+
     updatePlaylistState() {
         const player = document.getElementById('discreet-audio-player');
         if (!player) return;
-        
+
         const playlistItems = player.querySelectorAll('.playlist-item');
         playlistItems.forEach((item, index) => {
             item.classList.toggle('active', index === this.currentTrack);
         });
     }
-    
+
     updateProgress() {
         if (!this.audio || !this.audio.duration) return;
-        
+
         const progress = (this.audio.currentTime / this.audio.duration) * 100;
         const currentTime = this.formatTime(this.audio.currentTime);
-        
+
         const player = document.getElementById('discreet-audio-player');
         if (!player) return;
-        
+
         const progressFill = player.querySelector('.progress-fill');
         const currentTimeSpan = player.querySelector('.current-time');
-        
+
         if (progressFill) {
             progressFill.style.width = `${progress}%`;
         }
-        
+
         if (currentTimeSpan) {
             currentTimeSpan.textContent = currentTime;
         }
     }
-    
+
     updateVolumeUI() {
         const player = document.getElementById('discreet-audio-player');
         if (!player) return;
-        
+
         const volumeSlider = player.querySelector('.volume-slider');
         const volumeIcon = player.querySelector('.volume-icon-expanded');
-        
+
         if (volumeSlider) {
             volumeSlider.value = this.volume * 100;
         }
-        
+
         if (volumeIcon) {
             if (this.volume === 0) {
                 volumeIcon.textContent = '🔇';
@@ -619,13 +536,13 @@ class DiscreetAudioSystem {
             }
         }
     }
-    
+
     formatTime(seconds) {
         const mins = Math.floor(seconds / 60);
         const secs = Math.floor(seconds % 60);
         return `${mins}:${secs.toString().padStart(2, '0')}`;
     }
-    
+
     saveAudioState() {
         try {
             const state = {
@@ -635,27 +552,27 @@ class DiscreetAudioSystem {
                 currentTime: this.audio?.currentTime || 0,
                 timestamp: Date.now()
             };
-            
+
             sessionStorage.setItem('een-audio-state', JSON.stringify(state));
         } catch (error) {
             console.warn('🎵 Error saving audio state:', error);
         }
     }
-    
+
     loadAudioState() {
         try {
             const state = sessionStorage.getItem('een-audio-state');
             if (!state) return;
-            
+
             const { currentTrack, volume, isPlaying, currentTime } = JSON.parse(state);
-            
+
             // Restore state
             if (currentTrack !== undefined) this.currentTrack = currentTrack;
             if (volume !== undefined) this.setVolume(volume);
-            
+
             // Load track but don't auto-resume playback across pages
             this.loadTrack(this.currentTrack);
-            
+
             // Only restore time, not playback state (to avoid autoplay)
             if (currentTime && this.audio) {
                 this.audio.currentTime = currentTime;
@@ -664,17 +581,17 @@ class DiscreetAudioSystem {
             console.warn('🎵 Error loading audio state:', error);
         }
     }
-    
+
     injectStyles() {
         const styleId = 'discreet-audio-styles';
         if (document.getElementById(styleId)) return;
-        
+
         const style = document.createElement('style');
         style.id = styleId;
         style.textContent = this.getAudioStyles();
         document.head.appendChild(style);
     }
-    
+
     getAudioStyles() {
         return `
             /* Discreet Audio System Styles */
@@ -1102,7 +1019,7 @@ class DiscreetAudioSystem {
             }
         `;
     }
-    
+
     // Static initialization
     static initialize() {
         if (document.readyState === 'loading') {
@@ -1113,19 +1030,19 @@ class DiscreetAudioSystem {
             new DiscreetAudioSystem();
         }
     }
-    
+
     // Public API
     destroy() {
         if (this.fadeInterval) clearInterval(this.fadeInterval);
-        
+
         const player = document.getElementById('discreet-audio-player');
         const audio = document.getElementById('unity-audio-player');
         const styles = document.getElementById('discreet-audio-styles');
-        
+
         player?.remove();
         audio?.remove();
         styles?.remove();
-        
+
         console.log('🎵 Discreet Audio System destroyed');
     }
 }

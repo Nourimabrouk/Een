@@ -94,6 +94,10 @@ const unifiedNavigation = `
                             <i class="fas fa-book-open"></i>
                             Further Reading
                         </a></li>
+                        <li><a href="anthill.html" class="dropdown-link">
+                            <i class="fas fa-bug"></i>
+                            Ant Megalopolis
+                        </a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">

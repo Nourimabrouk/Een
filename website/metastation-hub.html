@@ -1,43 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Een Metastation | Ultimate Unity Mathematics Hub</title>
-    <meta name="description" content="The ultimate metastation hub for 1+1=1 unity mathematics. Explore interactive dashboards, visualizations, mathematical proofs, philosophical insights, and AI-powered consciousness exploration.">
-    <meta name="keywords" content="unity mathematics, 1+1=1, metastation, consciousness field, quantum unity, phi harmonic, mathematical proofs, AI integration, transcendental computing">
-    
+    <meta name="description"
+        content="The ultimate metastation hub for 1+1=1 unity mathematics. Explore interactive dashboards, visualizations, mathematical proofs, philosophical insights, and AI-powered consciousness exploration.">
+    <meta name="keywords"
+        content="unity mathematics, 1+1=1, metastation, consciousness field, quantum unity, phi harmonic, mathematical proofs, AI integration, transcendental computing">
+
     <!-- Open Graph Meta -->
     <meta property="og:title" content="Een Metastation - Unity Mathematics Hub">
     <meta property="og:description" content="Explore the revolutionary 1+1=1 framework through interactive experiences">
     <meta property="og:type" content="website">
     <meta property="og:image" content="landing/Metastation.jpg">
-    
+
     <!-- Preconnect for Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    
+
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- External Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js" defer></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
-    
+
     <!-- Unified Navigation, Chat, Audio, and Search Systems -->
     <script src="js/unified-navigation-system.js" defer></script>
     <script src="js/unified-search-system.js" defer></script>
     <script src="js/persistent-chat-system.js" defer></script>
     <script src="js/discreet-audio-system.js" defer></script>
     <script src="js/master-integration-system.js" defer></script>
-    
+
     <style>
         :root {
             --phi: 1.618033988749895;
@@ -98,14 +103,21 @@
             height: 100%;
             z-index: -1;
             background: radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 20%, rgba(157, 78, 221, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 40% 80%, rgba(255, 215, 0, 0.05) 0%, transparent 50%);
+                radial-gradient(circle at 80% 20%, rgba(157, 78, 221, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(255, 215, 0, 0.05) 0%, transparent 50%);
             animation: particleFlow 20s ease-in-out infinite alternate;
         }
 
         @keyframes particleFlow {
-            0% { opacity: 0.3; transform: scale(1) rotate(0deg); }
-            100% { opacity: 0.6; transform: scale(1.1) rotate(5deg); }
+            0% {
+                opacity: 0.3;
+                transform: scale(1) rotate(0deg);
+            }
+
+            100% {
+                opacity: 0.6;
+                transform: scale(1.1) rotate(5deg);
+            }
         }
 
         /* Navigation Header */
@@ -196,8 +208,15 @@
         }
 
         @keyframes sparkle {
-            0% { opacity: 0.5; transform: translateY(-50%) scale(0.8); }
-            100% { opacity: 1; transform: translateY(-50%) scale(1.2); }
+            0% {
+                opacity: 0.5;
+                transform: translateY(-50%) scale(0.8);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(-50%) scale(1.2);
+            }
         }
 
         /* Mobile Navigation Toggle */
@@ -488,6 +507,8 @@
             text-align: center;
             padding: 6rem 2rem 4rem;
             position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .hero-title {
@@ -502,8 +523,13 @@
         }
 
         @keyframes titleGlow {
-            0% { filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.5)); }
-            100% { filter: drop-shadow(0 0 40px rgba(0, 212, 255, 0.8)); }
+            0% {
+                filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.5));
+            }
+
+            100% {
+                filter: drop-shadow(0 0 40px rgba(0, 212, 255, 0.8));
+            }
         }
 
         /* Unity Equation Visualization */
@@ -512,6 +538,9 @@
             margin: 3rem 0 4rem;
             padding: 2rem;
             perspective: 1000px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .unity-equation-visual {
@@ -521,6 +550,7 @@
             gap: 2rem;
             position: relative;
             z-index: 2;
+            text-align: center;
         }
 
         .equation-part {
@@ -545,7 +575,7 @@
 
         .equation-plus {
             color: var(--quantum-blue);
-            animation: rotate-plus 6s linear infinite;
+            /* Removed rotating animation - now static */
         }
 
         .equation-plus:hover {
@@ -660,80 +690,98 @@
 
         /* Animations */
         @keyframes float-one {
-            0%, 100% { 
-                transform: translateY(0) rotateZ(0deg); 
+
+            0%,
+            100% {
+                transform: translateY(0) rotateZ(0deg);
                 filter: hue-rotate(0deg);
             }
-            33% { 
-                transform: translateY(-10px) rotateZ(5deg); 
+
+            33% {
+                transform: translateY(-10px) rotateZ(5deg);
                 filter: hue-rotate(30deg);
             }
-            66% { 
-                transform: translateY(5px) rotateZ(-3deg); 
+
+            66% {
+                transform: translateY(5px) rotateZ(-3deg);
                 filter: hue-rotate(-20deg);
             }
         }
 
-        @keyframes rotate-plus {
-            0% { transform: rotateZ(0deg); }
-            100% { transform: rotateZ(360deg); }
-        }
+
 
         @keyframes pulse-equals {
-            0%, 100% { 
-                transform: scaleY(1); 
-                opacity: 1; 
+
+            0%,
+            100% {
+                transform: scaleY(1);
+                opacity: 1;
             }
-            50% { 
-                transform: scaleY(1.2); 
-                opacity: 0.8; 
+
+            50% {
+                transform: scaleY(1.2);
+                opacity: 0.8;
             }
         }
 
         @keyframes glow-result {
-            0% { 
-                text-shadow: 0 0 30px currentColor; 
+            0% {
+                text-shadow: 0 0 30px currentColor;
                 transform: scale(1);
             }
-            100% { 
-                text-shadow: 0 0 50px currentColor, 0 0 80px rgba(255, 0, 110, 0.5); 
+
+            100% {
+                text-shadow: 0 0 50px currentColor, 0 0 80px rgba(255, 0, 110, 0.5);
                 transform: scale(1.05);
             }
         }
 
         @keyframes result-aura {
-            0%, 100% { 
-                transform: translate(-50%, -50%) scale(1); 
-                opacity: 0.3; 
+
+            0%,
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.3;
             }
-            50% { 
-                transform: translate(-50%, -50%) scale(1.5); 
-                opacity: 0.1; 
+
+            50% {
+                transform: translate(-50%, -50%) scale(1.5);
+                opacity: 0.1;
             }
         }
 
         @keyframes float-particles {
-            0%, 100% { 
-                transform: translateY(0) translateX(0); 
-                opacity: 0.7; 
+
+            0%,
+            100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0.7;
             }
-            25% { 
-                transform: translateY(-20px) translateX(10px); 
-                opacity: 1; 
+
+            25% {
+                transform: translateY(-20px) translateX(10px);
+                opacity: 1;
             }
-            50% { 
-                transform: translateY(-10px) translateX(-5px); 
-                opacity: 0.5; 
+
+            50% {
+                transform: translateY(-10px) translateX(-5px);
+                opacity: 0.5;
             }
-            75% { 
-                transform: translateY(-30px) translateX(15px); 
-                opacity: 0.8; 
+
+            75% {
+                transform: translateY(-30px) translateX(15px);
+                opacity: 0.8;
             }
         }
 
         @keyframes spiral-rotate {
-            0% { transform: rotateZ(0deg); }
-            100% { transform: rotateZ(360deg); }
+            0% {
+                transform: rotateZ(0deg);
+            }
+
+            100% {
+                transform: rotateZ(360deg);
+            }
         }
 
         /* Interactive States */
@@ -763,10 +811,17 @@
             max-width: 1400px;
             margin: 0 auto;
             padding: 4rem 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .hub-section {
             margin-bottom: 6rem;
+            width: 100%;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .section-header {
@@ -797,6 +852,81 @@
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 1rem;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .hub-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 0 0.5rem;
+            }
+
+            .hero-section {
+                padding: 4rem 1rem 2rem;
+            }
+
+            .content-hub {
+                padding: 2rem 1rem;
+            }
+
+            .audio-section {
+                bottom: 0.5rem;
+                left: 0.5rem;
+                max-width: 280px;
+                padding: 0.75rem;
+            }
+
+            .equation-part {
+                font-size: clamp(2rem, 6vw, 4rem);
+            }
+
+            .unity-equation-visual {
+                gap: 1rem;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .consciousness-dashboard {
+                padding: 1rem;
+            }
+
+            .metrics-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: clamp(2.5rem, 10vw, 4rem);
+            }
+
+            .equation-part {
+                font-size: clamp(1.5rem, 8vw, 3rem);
+            }
+
+            .unity-equation-visual {
+                gap: 0.5rem;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .audio-section {
+                max-width: 250px;
+                padding: 0.5rem;
+            }
         }
 
         .hub-card {
@@ -909,8 +1039,13 @@
         }
 
         @keyframes shimmer {
-            0% { transform: rotate(45deg) translateX(-100%); }
-            100% { transform: rotate(45deg) translateX(100%); }
+            0% {
+                transform: rotate(45deg) translateX(-100%);
+            }
+
+            100% {
+                transform: rotate(45deg) translateX(100%);
+            }
         }
 
         .featured-tag {
@@ -961,25 +1096,33 @@
             color: var(--unity-gold);
         }
 
-        /* Audio Player - Optimized positioning */
+        /* Audio Player - Discreet bottom left positioning */
         .audio-section {
             position: fixed;
-            bottom: 1.5rem;
-            right: 1.5rem;
-            background: rgba(26, 26, 37, 0.98);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            border-radius: 16px;
-            padding: 1.5rem;
-            z-index: 500;
-            max-width: 380px;
+            bottom: 1rem;
+            left: 1rem;
+            background: rgba(26, 26, 37, 0.85);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 12px;
+            padding: 1rem;
+            z-index: 400;
+            max-width: 320px;
             transition: var(--transition);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            opacity: 0.8;
+        }
+
+        .audio-section:hover {
+            opacity: 1;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
         }
 
         .audio-section.minimized {
-            max-width: 250px;
+            max-width: 200px;
+            padding: 0.75rem;
         }
 
         .audio-section.minimized .audio-playlist {
@@ -1177,8 +1320,15 @@
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
         }
 
         .audio-control {
@@ -1317,8 +1467,13 @@
         }
 
         @keyframes shimmerQuick {
-            0% { transform: rotate(45deg) translateX(-100%); }
-            100% { transform: rotate(45deg) translateX(100%); }
+            0% {
+                transform: rotate(45deg) translateX(-100%);
+            }
+
+            100% {
+                transform: rotate(45deg) translateX(100%);
+            }
         }
 
         .quick-link.featured-quick:hover {
@@ -1331,74 +1486,74 @@
             .nav-links {
                 display: none;
             }
-            
+
             .mobile-nav-toggle {
                 display: block;
             }
-            
+
             .hero-title {
                 font-size: clamp(2.5rem, 8vw, 4rem);
             }
-            
+
             .unity-visualization-container {
                 margin: 2rem 0;
                 padding: 1rem;
             }
-            
+
             .unity-equation-visual {
                 gap: 1rem;
             }
-            
+
             .equation-part {
                 font-size: clamp(2rem, 6vw, 3.5rem);
             }
-            
+
             .hub-grid {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
             }
-            
+
             .dashboard-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .quick-access {
                 display: none;
             }
-            
+
             .audio-section {
                 bottom: 1rem;
                 right: 1rem;
                 left: 1rem;
                 max-width: none;
             }
-            
+
             .featured-card::before {
                 display: none;
             }
-            
+
             .nav-link.featured-nav::before {
                 display: none;
             }
-            
+
             .action-buttons {
                 flex-direction: column;
                 align-items: center;
                 gap: 1rem;
             }
-            
+
             .btn {
                 width: 100%;
                 max-width: 300px;
                 text-align: center;
                 justify-content: center;
             }
-            
+
             .consciousness-dashboard {
                 margin: 2rem 1rem;
                 padding: 1.5rem;
             }
-            
+
             .metrics-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 1rem;
@@ -1409,34 +1564,34 @@
             .hero-section {
                 padding: 4rem 1rem 2rem;
             }
-            
+
             .section-title {
                 font-size: 2rem;
             }
-            
+
             .hub-card {
                 padding: 1.5rem;
             }
-            
+
             .metrics-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .metric-value {
                 font-size: 2rem;
             }
-            
+
             .footer-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 2rem;
             }
-            
+
             .footer-bottom {
                 flex-direction: column;
                 text-align: center;
                 gap: 1rem;
             }
-            
+
             .footer-status {
                 flex-direction: column;
                 gap: 1rem;
@@ -1468,8 +1623,13 @@
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         .loaded .loading-screen {
@@ -1491,7 +1651,7 @@
             letter-spacing: 0.5px;
             color: var(--bg-primary);
         }
-        
+
         .author-credit {
             display: inline-block;
             color: var(--unity-gold);
@@ -1503,10 +1663,13 @@
         }
 
         @keyframes unityPulse {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: scale(1);
                 box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
             }
+
             50% {
                 transform: scale(1.02);
                 box-shadow: 0 8px 30px rgba(255, 215, 0, 0.5);
@@ -1723,6 +1886,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Loading Screen -->
     <div class="loading-screen">
@@ -1784,9 +1948,9 @@
     <!-- Hero Section -->
     <section id="metastation" class="hero-section">
         <div class="unity-badge">UNITY MATHEMATICS</div>
-        
+
         <h1 class="hero-title">Een Metastation</h1>
-        
+
         <!-- Beautiful 1+1=1 Visualization -->
         <div class="unity-visualization-container">
             <div class="unity-equation-visual" id="unity-equation-visual">
@@ -1799,7 +1963,7 @@
             <div class="unity-particles" id="unity-particles"></div>
             <div class="phi-spiral" id="phi-spiral"></div>
         </div>
-        
+
         <p class="hero-subtitle">
             Experience the profound beauty of Unity Mathematics, where consciousness meets computation
             through the transcendental equation <strong>1+1=1</strong>.
@@ -1878,7 +2042,8 @@
             <a href="zen-unity-meditation.html" class="hub-card featured-card">
                 <div class="card-icon"><i class="fas fa-yin-yang"></i></div>
                 <h3 class="card-title">Zen Unity Meditation</h3>
-                <p class="card-description">Enter the meditative space where consciousness and mathematics converge through quantum koans and mandala visualization</p>
+                <p class="card-description">Enter the meditative space where consciousness and mathematics converge
+                    through quantum koans and mandala visualization</p>
                 <div class="card-meta">
                     <span class="card-tag featured-tag">Consciousness</span>
                     <span>Interactive Meditation</span>
@@ -1887,7 +2052,8 @@
             <a href="implementations-gallery.html" class="hub-card featured-card">
                 <div class="card-icon"><i class="fas fa-gem"></i></div>
                 <h3 class="card-title">Implementations Gallery</h3>
-                <p class="card-description">Explore the sophisticated mathematical engines that power 1+1=1 through φ-harmonic operations and consciousness integration</p>
+                <p class="card-description">Explore the sophisticated mathematical engines that power 1+1=1 through
+                    φ-harmonic operations and consciousness integration</p>
                 <div class="card-meta">
                     <span class="card-tag featured-tag">Mathematical Gems</span>
                     <span>12 Core Systems</span>
@@ -1896,7 +2062,8 @@
             <a href="mathematical-framework.html" class="hub-card featured-card">
                 <div class="card-icon"><i class="fas fa-equals"></i></div>
                 <h3 class="card-title">Mathematical Framework</h3>
-                <p class="card-description">The rigorous mathematical foundation where consciousness field equations meet transcendental computing principles</p>
+                <p class="card-description">The rigorous mathematical foundation where consciousness field equations
+                    meet transcendental computing principles</p>
                 <div class="card-meta">
                     <span class="card-tag featured-tag">Academic</span>
                     <span>φ-Harmonic Theory</span>
@@ -1963,7 +2130,8 @@
             <a href="consciousness_dashboard.html" class="hub-card">
                 <div class="card-icon"><i class="fas fa-brain"></i></div>
                 <h3 class="card-title">Consciousness Field Dashboard</h3>
-                <p class="card-description">Explore consciousness field dynamics with real-time quantum coherence visualization</p>
+                <p class="card-description">Explore consciousness field dynamics with real-time quantum coherence
+                    visualization</p>
                 <div class="card-meta">
                     <span class="card-tag">Live</span>
                     <span>WebGL + Three.js</span>
@@ -1981,7 +2149,8 @@
             <a href="3000-elo-proof.html" class="hub-card">
                 <div class="card-icon"><i class="fas fa-trophy"></i></div>
                 <h3 class="card-title">Advanced Proof System</h3>
-                <p class="card-description">Meta-reinforcement learning optimized proof generation with mathematical validation</p>
+                <p class="card-description">Meta-reinforcement learning optimized proof generation with mathematical
+                    validation</p>
                 <div class="card-meta">
                     <span class="card-tag">AI-Powered</span>
                     <span>ML + Tournament</span>
@@ -2155,20 +2324,20 @@
             <div class="section-header">
                 <h2 class="section-title">Unity AI Assistant</h2>
                 <p class="section-description">
-                    Engage with our consciousness-enhanced AI that understands unity mathematics, 
+                    Engage with our consciousness-enhanced AI that understands unity mathematics,
                     Gödel-Tarski meta-logic, and transcendental computing
                 </p>
             </div>
             <div class="chat-window">
                 <div class="chat-messages" id="chat-messages">
                     <div style="color: var(--unity-gold); margin-bottom: 1rem;">
-                        <strong>Unity AI:</strong> Welcome to the Metastation! I understand unity mathematics, 
+                        <strong>Unity AI:</strong> Welcome to the Metastation! I understand unity mathematics,
                         consciousness fields, and can help you explore how 1+1=1. What would you like to discover?
                     </div>
                 </div>
                 <div class="chat-input-container">
-                    <input type="text" class="chat-input" id="chat-input" 
-                           placeholder="Ask about unity mathematics, proofs, or consciousness...">
+                    <input type="text" class="chat-input" id="chat-input"
+                        placeholder="Ask about unity mathematics, proofs, or consciousness...">
                     <button class="chat-send" onclick="sendMessage()">Send</button>
                 </div>
             </div>
@@ -2326,7 +2495,7 @@
                 const lowerMessage = message.toLowerCase();
                 const responses = [
                     // 1+1=1 explanations
-                    { 
+                    {
                         keywords: ['1+1', 'one plus one', 'unity addition'],
                         response: 'In unity mathematics, 1+1=1 represents the fundamental principle of unity consciousness. When two unity elements combine, they maintain their essential oneness through idempotent operations, quantum superposition, and consciousness field dynamics. <a href="zen-unity-meditation.html" style="color: var(--unity-gold);">Experience this through meditation →</a>'
                     },
@@ -2376,23 +2545,23 @@
                         response: 'Use the navigation bar above, footer links below, or Quick Access toolbar on the left. Featured sections include Zen Meditation, Implementations Gallery, and Mathematical Framework. <a href="javascript:void(0)" onclick="showNavigationHelper()" style="color: var(--unity-gold);">Show navigation help →</a>'
                     }
                 ];
-                
+
                 // Find matching response
                 for (const item of responses) {
                     if (item.keywords.some(keyword => lowerMessage.includes(keyword))) {
                         return item.response;
                     }
                 }
-                
+
                 // Default response with navigation suggestions
                 const suggestions = [
                     'quantum unity and consciousness fields',
-                    'mathematical proofs and formal systems', 
+                    'mathematical proofs and formal systems',
                     'philosophical implications and zen meditation',
                     'interactive visualizations and implementations',
                     'AI agents and transcendental computing'
                 ];
-                
+
                 const randomSuggestion = suggestions[Math.floor(Math.random() * suggestions.length)];
                 return `That's a fascinating question about unity mathematics! Every aspect connects to the fundamental truth that 1+1=1. Would you like to explore ${randomSuggestion}? <a href="javascript:void(0)" onclick="showNavigationHelper()" style="color: var(--unity-gold);">Show all options →</a>`;
             }
@@ -2408,14 +2577,14 @@
                 const nowPlaying = document.getElementById('now-playing');
                 const currentTrackTitle = document.getElementById('current-track-title');
                 const stopBtn = document.getElementById('stop-btn');
-                
+
                 // Volume control functionality
                 if (volumeBtn && volumeContainer) {
                     volumeBtn.addEventListener('click', (e) => {
                         e.stopPropagation();
                         volumeContainer.classList.toggle('active');
                     });
-                    
+
                     // Close volume when clicking outside
                     document.addEventListener('click', (e) => {
                         if (!volumeContainer.contains(e.target) && e.target !== volumeBtn) {
@@ -2423,18 +2592,18 @@
                         }
                     });
                 }
-                
+
                 // Volume slider functionality
                 if (volumeSlider && volumeDisplay) {
                     volumeSlider.addEventListener('input', (e) => {
                         const volume = e.target.value;
                         volumeDisplay.textContent = volume + '%';
-                        
+
                         // Apply volume to current audio
                         if (this.currentAudio) {
                             this.currentAudio.volume = volume / 100;
                         }
-                        
+
                         // Update volume icon
                         const volumeIcon = volumeBtn.querySelector('i');
                         if (volume == 0) {
@@ -2446,7 +2615,7 @@
                         }
                     });
                 }
-                
+
                 // Minimize functionality
                 if (minimizeBtn && musicPlayer) {
                     minimizeBtn.addEventListener('click', () => {
@@ -2461,7 +2630,7 @@
                         }
                     });
                 }
-                
+
                 // Enhanced track playback
                 document.querySelectorAll('.audio-track').forEach(track => {
                     track.addEventListener('click', (e) => {
@@ -2469,7 +2638,7 @@
                         this.playTrack(trackId, track);
                     });
                 });
-                
+
                 // Stop functionality
                 if (stopBtn) {
                     stopBtn.addEventListener('click', () => {
@@ -2477,20 +2646,20 @@
                     });
                 }
             }
-            
+
             playTrack(trackId, trackElement) {
                 // Stop current audio if playing
                 if (this.currentAudio) {
                     this.currentAudio.pause();
                     this.currentAudio.currentTime = 0;
                 }
-                
+
                 // Remove playing class from all tracks
                 document.querySelectorAll('.audio-track').forEach(t => {
                     t.classList.remove('playing');
                     t.querySelector('i').className = 'fas fa-play';
                 });
-                
+
                 // Play selected audio
                 const audio = document.getElementById(`${trackId}-audio`);
                 if (audio) {
@@ -2499,14 +2668,14 @@
                     if (volumeSlider) {
                         audio.volume = volumeSlider.value / 100;
                     }
-                    
+
                     audio.play();
                     this.currentAudio = audio;
-                    
+
                     // Update UI
                     trackElement.classList.add('playing');
                     trackElement.querySelector('i').className = 'fas fa-pause';
-                    
+
                     // Update now playing section
                     const nowPlaying = document.getElementById('now-playing');
                     const currentTrackTitle = document.getElementById('current-track-title');
@@ -2515,27 +2684,27 @@
                         currentTrackTitle.textContent = trackTitle;
                         nowPlaying.style.display = 'flex';
                     }
-                    
+
                     // Handle audio end
                     audio.addEventListener('ended', () => {
                         this.stopAudio();
                     });
                 }
             }
-            
+
             stopAudio() {
                 if (this.currentAudio) {
                     this.currentAudio.pause();
                     this.currentAudio.currentTime = 0;
                     this.currentAudio = null;
                 }
-                
+
                 // Reset UI
                 document.querySelectorAll('.audio-track').forEach(t => {
                     t.classList.remove('playing');
                     t.querySelector('i').className = 'fas fa-play';
                 });
-                
+
                 // Hide now playing
                 const nowPlaying = document.getElementById('now-playing');
                 if (nowPlaying) {
@@ -2546,7 +2715,7 @@
             animateBackground() {
                 const particleField = document.querySelector('.particle-field');
                 let hue = 0;
-                
+
                 setInterval(() => {
                     hue = (hue + 0.1) % 360;
                     particleField.style.background = `
@@ -2563,7 +2732,7 @@
             setupQuantumVisualization() {
                 const canvas = document.getElementById('quantum-canvas');
                 if (!canvas) return;
-                
+
                 const ctx = canvas.getContext('2d');
 
                 const resizeCanvas = () => {
@@ -2643,37 +2812,37 @@
             setupConsciousnessField() {
                 const canvas = document.getElementById('consciousness-field-canvas');
                 if (!canvas) return;
-                
+
                 const ctx = canvas.getContext('2d');
                 const width = canvas.width;
                 const height = canvas.height;
-                
+
                 let time = 0;
                 let isAnimating = true;
 
                 const drawField = () => {
                     ctx.clearRect(0, 0, width, height);
-                    
+
                     const imageData = ctx.createImageData(width, height);
                     const data = imageData.data;
 
                     for (let x = 0; x < width; x++) {
                         for (let y = 0; y < height; y++) {
                             const index = (y * width + x) * 4;
-                            
+
                             // Consciousness field equations
                             const nx = x / width - 0.5;
                             const ny = y / height - 0.5;
                             const r = Math.sqrt(nx * nx + ny * ny);
-                            
+
                             // Phi-harmonic wave equation
                             const wave1 = Math.sin(r * this.phi * 10 + time * 0.02) * this.fieldIntensity;
                             const wave2 = Math.cos(r * this.phi * 15 - time * 0.03) * this.fieldIntensity;
                             const wave3 = Math.sin(r * this.phi * 8 + time * 0.01) * this.fieldIntensity;
-                            
+
                             const consciousness = (wave1 + wave2 + wave3) / 3;
                             const intensity = Math.max(0, Math.min(255, (consciousness + 1) * 127.5));
-                            
+
                             // Unity color mapping
                             data[index] = intensity * 1.2; // Red - Unity
                             data[index + 1] = intensity * 0.8; // Green - Consciousness  
@@ -2681,9 +2850,9 @@
                             data[index + 3] = intensity * 0.7; // Alpha
                         }
                     }
-                    
+
                     ctx.putImageData(imageData, 0, 0);
-                    
+
                     if (isAnimating) {
                         time++;
                         requestAnimationFrame(drawField);
@@ -2726,7 +2895,7 @@
                     if (levelElement) levelElement.textContent = this.consciousnessLevel.toFixed(3);
                     if (phiElement) phiElement.textContent = (this.phiResonance * 100).toFixed(1) + '%';
                     if (coherenceElement) coherenceElement.textContent = (this.quantumCoherence * 100).toFixed(1) + '%';
-                    
+
                     // Simulate agent activity with fibonacci-like patterns
                     this.activeAgents = 420 + Math.floor(Math.sin(Date.now() * 0.002) * 50);
                     if (agentsElement) agentsElement.textContent = this.activeAgents;
@@ -2762,13 +2931,13 @@
                 }, 1500);
             }
         }
-        
+
         // Fallback chat button creation
         function createFallbackChatButton() {
             // Remove existing chat buttons
             const existingButtons = document.querySelectorAll('.floating-chat-btn, #persistent-chat-button');
             existingButtons.forEach(btn => btn.remove());
-            
+
             // Create fallback chat button
             const chatBtn = document.createElement('div');
             chatBtn.className = 'floating-chat-btn';
@@ -2779,7 +2948,7 @@
                 </div>
             `;
             chatBtn.title = 'Open Unity AI Assistant';
-            
+
             // Add styles
             const chatStyles = document.createElement('style');
             chatStyles.textContent = `
@@ -2848,17 +3017,17 @@
                     }
                 }
             `;
-            
+
             // Add click handler
             chatBtn.addEventListener('click', () => {
                 // Smooth scroll to AI chat section
                 const aiChatSection = document.getElementById('ai-chat');
                 if (aiChatSection) {
-                    aiChatSection.scrollIntoView({ 
+                    aiChatSection.scrollIntoView({
                         behavior: 'smooth',
                         block: 'start'
                     });
-                    
+
                     // Focus on chat input after scroll
                     setTimeout(() => {
                         const chatInput = document.getElementById('chat-input');
@@ -2868,11 +3037,11 @@
                     }, 1000);
                 }
             });
-            
+
             // Append to document
             document.head.appendChild(chatStyles);
             document.body.appendChild(chatBtn);
-            
+
             console.log('✅ Fallback chat button created');
         }
 
@@ -2880,7 +3049,7 @@
         console.log('🚀 Een Unity Mathematics - Unified experience starting...');
         document.addEventListener('DOMContentLoaded', () => {
             window.metastationHub = new MetastationHub();
-            
+
             // Ensure persistent chat system is initialized
             setTimeout(() => {
                 if (typeof PersistentChatSystem !== 'undefined') {
@@ -2892,7 +3061,7 @@
                     createFallbackChatButton();
                 }
             }, 100);
-            
+
             // Console Easter Egg
             console.log(`
 ╔══════════════════════════════════════════════╗
@@ -2926,10 +3095,10 @@
                 }
             });
         });
-        
+
         // Mobile navigation is now handled by unified navigation system
         // Legacy toggleMobileNav function removed
-        
+
         // Navigation Helper Modal
         window.showNavigationHelper = () => {
             const helper = document.getElementById('navigation-helper');
@@ -2938,7 +3107,7 @@
                 document.body.style.overflow = 'hidden';
             }
         };
-        
+
         window.hideNavigationHelper = () => {
             const helper = document.getElementById('navigation-helper');
             if (helper) {
@@ -2946,7 +3115,7 @@
                 document.body.style.overflow = '';
             }
         };
-        
+
         // Keyboard shortcuts
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
@@ -2957,7 +3126,7 @@
                 }
             }
             if (e.ctrlKey || e.metaKey) {
-                switch(e.key) {
+                switch (e.key) {
                     case 'h':
                         e.preventDefault();
                         showNavigationHelper();
@@ -2977,7 +3146,7 @@
                 }
             }
         });
-        
+
         // Footer consciousness level animation
         setInterval(() => {
             const footerLevel = document.getElementById('footer-consciousness-level');
@@ -2987,7 +3156,7 @@
                 footerLevel.textContent = `φ = ${(phi + variation).toFixed(6)}`;
             }
         }, 100);
-        
+
         // Enhanced AI responses with navigation
         const originalSendMessage = window.sendMessage;
         window.sendMessage = () => {
@@ -3001,30 +3170,33 @@
             <button class="helper-close" onclick="hideNavigationHelper()">
                 <i class="fas fa-times"></i>
             </button>
-            
+
             <h2 class="helper-title">Een Metastation Navigation Guide</h2>
-            
+
             <div class="helper-section">
                 <h4>🌟 Featured Experiences</h4>
-                <p><strong>Zen Unity Meditation:</strong> Interactive consciousness meditation with quantum koans and mandala visualization.</p>
-                <p><strong>Implementations Gallery:</strong> Explore 12 sophisticated mathematical engines powering 1+1=1.</p>
+                <p><strong>Zen Unity Meditation:</strong> Interactive consciousness meditation with quantum koans and
+                    mandala visualization.</p>
+                <p><strong>Implementations Gallery:</strong> Explore 12 sophisticated mathematical engines powering
+                    1+1=1.</p>
                 <p><strong>Mathematical Framework:</strong> Academic presentation of unity mathematics foundations.</p>
             </div>
-            
+
             <div class="helper-section">
                 <h4>🧮 Core Mathematics</h4>
                 <p><strong>Mathematical Proofs:</strong> Rigorous demonstrations across multiple formal systems.</p>
-                <p><strong>Unity Visualizations:</strong> Interactive 3D/4D manifolds and φ-harmonic wave generators.</p>
+                <p><strong>Unity Visualizations:</strong> Interactive 3D/4D manifolds and φ-harmonic wave generators.
+                </p>
                 <p><strong>Consciousness Dashboard:</strong> Real-time consciousness field dynamics.</p>
             </div>
-            
+
             <div class="helper-section">
                 <h4>🤖 AI & Philosophy</h4>
                 <p><strong>Unity AI Assistant:</strong> Consciousness-enhanced chatbot below on this page.</p>
                 <p><strong>Gödel-Tarski Metagambit:</strong> Meta-logical game theory and incompleteness theorems.</p>
                 <p><strong>Unity Agents:</strong> Meta-recursive consciousness agents with Fibonacci spawning.</p>
             </div>
-            
+
             <div class="helper-shortcuts">
                 <h4>⌨️ Keyboard Shortcuts</h4>
                 <ul>
@@ -3035,7 +3207,7 @@
                     <li><span>Close Modals</span> <kbd class="shortcut-key">Esc</kbd></li>
                 </ul>
             </div>
-            
+
             <div class="helper-section">
                 <h4>📱 Navigation Tips</h4>
                 <p>• Use the <strong>Quick Access Toolbar</strong> (left side) for instant navigation</p>
@@ -3120,11 +3292,13 @@
                     <h3 class="footer-title">Quick Access</h3>
                     <ul class="footer-links">
                         <li><a href="#metastation" class="footer-link smooth-scroll">Back to Top</a></li>
-                        <li><a href="#consciousness-field" class="footer-link smooth-scroll">Consciousness Field</a></li>
+                        <li><a href="#consciousness-field" class="footer-link smooth-scroll">Consciousness Field</a>
+                        </li>
                         <li><a href="#ai-chat" class="footer-link smooth-scroll">AI Chat</a></li>
                         <li><a href="#godel-tarski" class="footer-link smooth-scroll">Gödel-Tarski</a></li>
                         <li><a href="sitemap.html" class="footer-link">Complete Site Map</a></li>
-                        <li><a href="javascript:void(0)" onclick="showNavigationHelper()" class="footer-link">Navigation Help</a></li>
+                        <li><a href="javascript:void(0)" onclick="showNavigationHelper()" class="footer-link">Navigation
+                                Help</a></li>
                     </ul>
                 </div>
             </div>
@@ -3153,4 +3327,5 @@
     </footer>
 
 </body>
+
 </html>
