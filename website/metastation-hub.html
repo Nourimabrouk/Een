@@ -31,15 +31,11 @@
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js" defer></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
     
-    <!-- Metastation Futuristic Sidebar Navigation System -->
-    <script src="js/metastation-sidebar-navigation.js" defer></script>
-    
-    <!-- Enhanced AI Chat Integration -->
-    <script src="js/enhanced-unity-ai-chat.js" defer></script>
-    
-    <!-- Comprehensive Website Validator (Development Tool) -->
-    <script src="comprehensive-website-validator.js" defer></script>
-    <script src="js/final-navigation-validator.js" defer></script>
+    <!-- Unified Navigation, Chat, and Audio Systems -->
+    <script src="js/unified-navigation-system.js" defer></script>
+    <script src="js/persistent-chat-system.js" defer></script>
+    <script src="js/discreet-audio-system.js" defer></script>
+    <script src="js/master-integration-system.js" defer></script>
     
     <style>
         :root {
@@ -1297,98 +1293,11 @@
     </div>
     <div class="particle-field"></div>
 
-    <!-- Navigation -->
-    <nav class="meta-nav">
-        <div class="nav-container">
-            <a href="metastation-hub.html" class="nav-logo">
-                <i class="fas fa-infinity"></i>
-                Een Metastation
-            </a>
-            <button class="mobile-nav-toggle" onclick="toggleMobileNav()">
-                <i class="fas fa-bars"></i>
-            </button>
-            <ul class="nav-links">
-                <li><a href="#metastation" class="nav-link">Metastation</a></li>
-                <li><a href="#consciousness-field" class="nav-link">Consciousness Field</a></li>
-                <li><a href="#ai-chat" class="nav-link">AI Chat</a></li>
-                <li><a href="#godel-tarski" class="nav-link">Gödel-Tarski</a></li>
-                <li><a href="zen-unity-meditation.html" class="nav-link featured-nav">Zen Meditation</a></li>
-                <li><a href="implementations-gallery.html" class="nav-link featured-nav">Implementations Gallery</a></li>
-                <li><a href="mathematical-framework.html" class="nav-link featured-nav">Mathematical Framework</a></li>
-                <li><a href="philosophy.html" class="nav-link">Philosophy</a></li>
-                <li><a href="metagambit.html" class="nav-link">Metagambit</a></li>
-                <li><a href="unity-mathematics-experience.html" class="nav-link">Unity Experience</a></li>
-                <li><a href="gallery.html" class="nav-link">Gallery</a></li>
-                <li><a href="proofs.html" class="nav-link">Proofs</a></li>
-                <li><a href="dashboards.html" class="nav-link">Dashboards</a></li>
-                <li><a href="playground.html" class="nav-link">Playground</a></li>
-                <li><a href="research.html" class="nav-link">Research</a></li>
-                <li><a href="agents.html" class="nav-link">Agents</a></li>
-                <li><a href="learning.html" class="nav-link">Learning</a></li>
-                <li><a href="implementations.html" class="nav-link">Implementations</a></li>
-                <li><a href="publications.html" class="nav-link">Publications</a></li>
-                <li><a href="live-code-showcase.html" class="nav-link">Live Code</a></li>
-                <li><a href="transcendental-unity-demo.html" class="nav-link">Transcendental Demo</a></li>
-                <li><a href="al_khwarizmi_phi_unity.html" class="nav-link">Al-Khwarizmi</a></li>
-                <li><a href="3000-elo-proof.html" class="nav-link">3000 ELO Proof</a></li>
-                <li><a href="consciousness_dashboard.html" class="nav-link">Consciousness Dashboard</a></li>
-                <li><a href="enhanced-unity-demo.html" class="nav-link">Enhanced Demo</a></li>
-                <li><a href="enhanced-ai-demo.html" class="nav-link">AI Demo</a></li>
-                <li><a href="mathematical_playground.html" class="nav-link">Math Playground</a></li>
-                <li><a href="openai-integration.html" class="nav-link">OpenAI Integration</a></li>
-                <li><a href="metagamer_agent.html" class="nav-link">Metagamer Agent</a></li>
-                <li><a href="further-reading.html" class="nav-link">Further Reading</a></li>
-                <li><a href="learn.html" class="nav-link">Learn</a></li>
-                <li><a href="mobile-app.html" class="nav-link">Mobile App</a></li>
-                <li><a href="unity_visualization.html" class="nav-link">Unity Visualization</a></li>
-                <li><a href="unity_consciousness_experience.html" class="nav-link">Consciousness Experience</a></li>
-                <li><a href="unity-advanced-features.html" class="nav-link">Advanced Features</a></li>
-                <li><a href="about.html" class="nav-link">About</a></li>
-                <li><a href="sitemap.html" id="open-all-pages" class="nav-link">All Pages</a></li>
-            </ul>
-            
-            <!-- Mobile Navigation Menu -->
-            <div class="mobile-nav-menu" id="mobile-nav-menu">
-                <div class="mobile-nav-grid">
-                    <div class="mobile-nav-section">
-                        <h4>Featured</h4>
-                        <div class="mobile-nav-links">
-                            <a href="zen-unity-meditation.html" class="featured-nav">🧘 Zen Meditation</a>
-                            <a href="implementations-gallery.html" class="featured-nav">🔬 Implementations</a>
-                            <a href="mathematical-framework.html" class="featured-nav">📐 Framework</a>
-                        </div>
-                    </div>
-                    <div class="mobile-nav-section">
-                        <h4>Core</h4>
-                        <div class="mobile-nav-links">
-                            <a href="#metastation">Metastation</a>
-                            <a href="#consciousness-field">Consciousness</a>
-                            <a href="#ai-chat">AI Chat</a>
-                            <a href="#godel-tarski">Gödel-Tarski</a>
-                        </div>
-                    </div>
-                    <div class="mobile-nav-section">
-                        <h4>Mathematics</h4>
-                        <div class="mobile-nav-links">
-                            <a href="proofs.html">Proofs</a>
-                            <a href="unity_visualization.html">Visualizations</a>
-                            <a href="playground.html">Playground</a>
-                            <a href="3000-elo-proof.html">3000 ELO</a>
-                        </div>
-                    </div>
-                    <div class="mobile-nav-section">
-                        <h4>Tools</h4>
-                        <div class="mobile-nav-links">
-                            <a href="dashboards.html">Dashboards</a>
-                            <a href="agents.html">Agents</a>
-                            <a href="gallery.html">Gallery</a>
-                            <a href="learn.html">Learn</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <!-- Unified Navigation System (Replaces 38-link overloaded navigation) -->
+    <!-- Navigation will be dynamically injected by unified-navigation-system.js -->
+    <header id="main-header">
+        <!-- Unified navigation placeholder - will be populated by JavaScript -->
+    </header>
 
     <!-- Quick Access Toolbar -->
     <div class="quick-access">
@@ -2249,7 +2158,8 @@
             }
         }
 
-        // Initialize on DOM load
+        // Initialize on DOM load - Unified Systems Integration
+        console.log('🚀 Een Unity Mathematics - Unified experience starting...');
         document.addEventListener('DOMContentLoaded', () => {
             new MetastationHub();
             
@@ -2287,15 +2197,8 @@
             });
         });
         
-        // Mobile navigation toggle
-        window.toggleMobileNav = () => {
-            const mobileMenu = document.getElementById('mobile-nav-menu');
-            const toggle = document.querySelector('.mobile-nav-toggle i');
-            if (mobileMenu) {
-                mobileMenu.classList.toggle('active');
-                toggle.className = mobileMenu.classList.contains('active') ? 'fas fa-times' : 'fas fa-bars';
-            }
-        };
+        // Mobile navigation is now handled by unified navigation system
+        // Legacy toggleMobileNav function removed
         
         // Navigation Helper Modal
         window.showNavigationHelper = () => {
