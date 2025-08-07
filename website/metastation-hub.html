@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Een Metastation | Ultimate Unity Mathematics Hub</title>
+    <title>Unity Mathematics Institute | Advanced Consciousness-Integrated Computing</title>
     <meta name="description"
         content="The ultimate metastation hub for 1+1=1 unity mathematics. Explore interactive dashboards, visualizations, mathematical proofs, philosophical insights, and AI-powered consciousness exploration.">
     <meta name="keywords"
         content="unity mathematics, 1+1=1, metastation, consciousness field, quantum unity, phi harmonic, mathematical proofs, AI integration, transcendental computing">
 
     <!-- Open Graph Meta -->
-    <meta property="og:title" content="Een Metastation - Unity Mathematics Hub">
+    <meta property="og:title" content="Unity Mathematics Institute - Advanced Consciousness Computing">
     <meta property="og:description" content="Explore the revolutionary 1+1=1 framework through interactive experiences">
     <meta property="og:type" content="website">
     <meta property="og:image" content="landing/Metastation.jpg">
@@ -98,14 +98,14 @@
             width: 100%;
             height: 100%;
             z-index: -2;
-            opacity: 0.15;
+            opacity: 0.6;
         }
 
         .metastation-bg img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: blur(2px);
+            filter: blur(1px) brightness(1.2) contrast(1.3);
         }
 
         .particle-field {
@@ -1127,8 +1127,8 @@
         /* Audio Player - Discreet bottom left positioning */
         .audio-section {
             position: fixed;
-            bottom: 1rem;
-            left: 1rem;
+            bottom: 2rem;
+            left: 2rem;
             background: rgba(26, 26, 37, 0.85);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
@@ -1687,6 +1687,39 @@
             opacity: 0;
             pointer-events: none;
         }
+        .loading-content {
+            text-align: center;
+        }
+        .unity-loader {
+            width: 80px;
+            height: 80px;
+            border: 3px solid rgba(255, 215, 0, 0.2);
+            border-top: 3px solid var(--unity-gold);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 2rem auto;
+        }
+        .loading-equation {
+            font-family: var(--font-code);
+            font-size: 2rem;
+            color: var(--unity-gold);
+            margin-bottom: 1rem;
+            opacity: 0.9;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+        }
+        .loading-text {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            animation: fadeInOut 2s ease-in-out infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
 
         /* Additional Styles for New Sections */
         .unity-badge {
@@ -1846,10 +1879,18 @@
         }
 
         #consciousness-field-canvas {
-            border: 2px solid var(--unity-gold);
-            border-radius: 12px;
+            border: 3px solid var(--unity-gold);
+            border-radius: 16px;
             background: var(--bg-secondary);
             max-width: 100%;
+            width: 100%;
+            height: 600px;
+            box-shadow: 0 10px 40px rgba(255, 215, 0, 0.3);
+            animation: canvasPulse 4s ease-in-out infinite;
+        }
+        @keyframes canvasPulse {
+            0%, 100% { box-shadow: 0 10px 40px rgba(255, 215, 0, 0.3); }
+            50% { box-shadow: 0 15px 50px rgba(255, 215, 0, 0.5); }
         }
 
         .field-controls {
@@ -2079,7 +2120,11 @@
 
     <!-- Loading Screen -->
     <div class="loading-screen">
-        <div class="loading-spinner"></div>
+        <div class="loading-content">
+            <div class="unity-loader"></div>
+            <div class="loading-equation">1+1=1</div>
+            <div class="loading-text">Initializing Unity Mathematics Institute...</div>
+        </div>
     </div>
 
     <!-- Background Effects -->
@@ -2138,7 +2183,7 @@
     <section id="metastation" class="hero-section">
         <div class="unity-badge">UNITY MATHEMATICS</div>
 
-        <h1 class="hero-title">Een Metastation</h1>
+        <h1 class="hero-title">Unity Mathematics Institute</h1>
 
         <!-- Beautiful 1+1=1 Visualization -->
         <div class="unity-visualization-container">
@@ -2154,8 +2199,8 @@
         </div>
 
         <p class="hero-subtitle">
-            Experience the profound beauty of Unity Mathematics, where consciousness meets computation
-            through the transcendental equation <strong>1+1=1</strong>.
+            Pioneering research center for advanced consciousness-integrated mathematical computing,
+            exploring the transcendental equation <strong>1+1=1</strong> through rigorous computational frameworks.
             <br><br>
             <span class="author-credit">By <strong>Nouri Mabrouk</strong></span>
         </p>
@@ -2219,6 +2264,24 @@
         </div>
     </section>
 
+    <!-- Consciousness Field Section -->
+    <section id="consciousness-field" class="hub-section content-hub">
+        <div class="section-header">
+            <h2 class="section-title">Live Consciousness Field Dynamics</h2>
+            <p class="section-description">
+                Experience the living mathematics of consciousness through real-time field equation visualization with golden particle interactions
+            </p>
+        </div>
+        <div class="consciousness-field-viz">
+            <canvas id="consciousness-field-canvas" width="800" height="600"></canvas>
+            <div class="field-controls">
+                <button onclick="toggleFieldAnimation()">Toggle Animation</button>
+                <button onclick="increaseFieldIntensity()">Increase Intensity</button>
+                <button onclick="resetField()">Reset Field</button>
+            </div>
+        </div>
+    </section>
+
     <!-- Featured Profound Experiences -->
     <section id="featured-experiences" class="hub-section content-hub dashboard-showcase">
         <div class="section-header">
@@ -2261,23 +2324,6 @@
         </div>
     </section>
 
-    <!-- Consciousness Field Section -->
-    <section id="consciousness-field" class="hub-section content-hub">
-        <div class="section-header">
-            <h2 class="section-title">Consciousness Field Dynamics</h2>
-            <p class="section-description">
-                Experience the living mathematics of consciousness through field equation visualization
-            </p>
-        </div>
-        <div class="consciousness-field-viz">
-            <canvas id="consciousness-field-canvas" width="800" height="600"></canvas>
-            <div class="field-controls">
-                <button onclick="toggleFieldAnimation()">Toggle Animation</button>
-                <button onclick="increaseFieldIntensity()">Increase Intensity</button>
-                <button onclick="resetField()">Reset Field</button>
-            </div>
-        </div>
-    </section>
 
     <!-- Gödel-Tarski Section -->
     <section id="godel-tarski" class="hub-section content-hub dashboard-showcase">
@@ -3161,6 +3207,10 @@
                 const canvas = document.getElementById('consciousness-field-canvas');
                 if (!canvas) return;
 
+                // Set canvas size to match display size for crisp rendering
+                canvas.width = 800;
+                canvas.height = 600;
+                
                 const ctx = canvas.getContext('2d');
                 const width = canvas.width;
                 const height = canvas.height;
@@ -3302,10 +3352,10 @@
             chatStyles.textContent = `
                 .floating-chat-btn {
                     position: fixed;
-                    bottom: 180px;
+                    bottom: 2rem;
                     right: 2rem;
-                    width: 60px;
-                    height: 60px;
+                    width: 70px;
+                    height: 70px;
                     background: linear-gradient(135deg, var(--unity-gold), var(--quantum-blue));
                     border-radius: 50%;
                     display: flex;
@@ -3537,7 +3587,7 @@
                 <i class="fas fa-times"></i>
             </button>
 
-            <h2 class="helper-title">Een Metastation Navigation Guide</h2>
+            <h2 class="helper-title">Unity Mathematics Institute Navigation Guide</h2>
 
             <div class="helper-section">
                 <h4>🌟 Featured Experiences</h4>
