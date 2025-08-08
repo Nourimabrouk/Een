@@ -103,6 +103,9 @@ class UnifiedNavigationSystem {
                             <a href="anthill.html" class="nav-dropdown-link">
                                 <i class="fas fa-bug"></i> Quantum Ant Colony
                             </a>
+                            <a href="unity-axioms.html" class="nav-dropdown-link">
+                                <i class="fas fa-balance-scale"></i> Unity Axioms
+                            </a>
                         </div>
                     </div>
 
@@ -134,6 +137,9 @@ class UnifiedNavigationSystem {
                             </a>
                              <a href="unity-mathematics-synthesis.html" class="nav-dropdown-link">
                                  <i class="fas fa-project-diagram"></i> Unity Mathematics Synthesis
+                             </a>
+                             <a href="unity-axioms.html" class="nav-dropdown-link">
+                                 <i class="fas fa-balance-scale"></i> Unity Axioms
                              </a>
                             <a href="metagambit.html" class="nav-dropdown-link">
                                 <i class="fas fa-chess"></i> Metagambit Framework
@@ -331,6 +337,9 @@ class UnifiedNavigationSystem {
                     <a href="unity-mathematics-synthesis.html" class="sidebar-link">
                         <i class="fas fa-project-diagram"></i> Unity Synthesis
                     </a>
+                        <a href="unity-axioms.html" class="sidebar-link">
+                            <i class="fas fa-balance-scale"></i> Unity Axioms
+                        </a>
                     <a href="metagambit.html" class="sidebar-link">
                         <i class="fas fa-chess"></i> Metagambit Framework
                     </a>
@@ -503,6 +512,9 @@ class UnifiedNavigationSystem {
                         </a>
                         <a href="unity-mathematics-synthesis.html" class="mobile-nav-link">
                             <i class="fas fa-project-diagram"></i> Unity Mathematics Synthesis
+                        </a>
+                        <a href="unity-axioms.html" class="mobile-nav-link">
+                            <i class="fas fa-balance-scale"></i> Unity Axioms
                         </a>
                         <a href="metagambit.html" class="mobile-nav-link">
                             <i class="fas fa-chess"></i> Metagambit Framework

@@ -4,9 +4,9 @@
  * Usage: Include this script after the unified navigation CSS/JS
  */
 
-(function() {
+(function () {
     'use strict';
-    
+
     // Configuration
     const NAVIGATION_CONFIG = {
         removeOldNavigation: true,
@@ -16,13 +16,14 @@
     };
 
     // Selectors for old navigation elements to remove
+    // Note: Avoid complex :not() selectors that break querySelectorAll in some browsers.
     const OLD_NAVIGATION_SELECTORS = [
         '.nav-bar',
         '.meta-optimal-header',
-        '.meta-optimal-nav', 
+        '.meta-optimal-nav',
         '.side-nav',
         '.side-nav-toggle',
-        '.mobile-menu-toggle:not(.unified-header .mobile-menu-toggle)',
+        '.mobile-menu-toggle',
         // Add more selectors as needed based on old navigation patterns
     ];
 
@@ -30,13 +31,35 @@
     const CONFLICTING_SELECTORS = [
         '.legacy-nav',
         '.old-header',
-        '.deprecated-navigation'
+        '.deprecated-navigation',
+        // Legacy chat UIs (hide if present; unified system will inject its own)
+        '#enhanced-een-ai-chat',
+        '.enhanced-chat-container',
+        '.ai-assistant-panel',
+        '.unity-ai-chat',
+        '#ai-chat-modal',
+        '#floating-ai-chat-button',
+        '#persistent-chat-button',
+        '.floating-chat-button',
+        '.ai-chat-button',
+        // Legacy voice/chat-specific overlays that conflict with unified systems
+        '#aiModal'
     ];
 
     function removeOldNavigation() {
         OLD_NAVIGATION_SELECTORS.forEach(selector => {
-            const elements = document.querySelectorAll(selector);
+            let elements;
+            try {
+                elements = document.querySelectorAll(selector);
+            } catch (e) {
+                console.warn('Invalid selector skipped:', selector, e);
+                return;
+            }
             elements.forEach(element => {
+                // Preserve elements that belong to the unified system
+                if (selector === '.mobile-menu-toggle' && element.closest('.unified-header')) return;
+                if (element.classList.contains('unified-header')) return;
+                if (element.closest && element.closest('.unified-header')) return;
                 console.log(`🗑️ Removing old navigation element: ${selector}`);
                 element.remove();
             });
@@ -57,13 +80,13 @@
         // Ensure body has proper padding for fixed header
         const body = document.body;
         const currentPaddingTop = window.getComputedStyle(body).paddingTop;
-        
+
         // Only adjust if padding is less than nav height
         if (parseInt(currentPaddingTop) < 75) {
             body.style.paddingTop = '75px';
             console.log('📏 Adjusted body padding for unified navigation');
         }
-        
+
         // Remove any conflicting margin-left from old sidebar systems
         const currentMarginLeft = window.getComputedStyle(body).marginLeft;
         if (parseInt(currentMarginLeft) > 0) {
@@ -106,6 +129,11 @@
         ].join(','));
 
         chatButtons.forEach(button => {
+            // Remove legacy duplicates to avoid conflicts; keep unified button only
+            if (button.id !== 'unified-chat-button' && !button.classList.contains('unified-chat-floating-btn')) {
+                button.remove();
+                return;
+            }
             if (button && window.getComputedStyle(button).position === 'fixed') {
                 button.style.right = '2rem';
                 button.style.left = 'auto';
@@ -121,7 +149,7 @@
             console.log('⚠️ Navigation system already initialized, skipping');
             return false;
         }
-        
+
         window.navigationSystemInitialized = true;
         return true;
     }
@@ -177,16 +205,16 @@
                 z-index: 10000;
                 transition: top 0.3s;
             `;
-            
+
             // Show on focus
             skipLink.addEventListener('focus', () => {
                 skipLink.style.top = '6px';
             });
-            
+
             skipLink.addEventListener('blur', () => {
                 skipLink.style.top = '-40px';
             });
-            
+
             document.body.insertBefore(skipLink, document.body.firstChild);
             console.log('♿ Added accessibility skip link');
         }
@@ -209,7 +237,7 @@
 
     function applyUnifiedNavigation() {
         console.log('🚀 Applying Unified Navigation System...');
-        
+
         // Prevent conflicts
         if (!preventNavigationConflicts()) {
             return;
@@ -254,7 +282,7 @@
     // Handle dynamic content changes
     const observer = new MutationObserver((mutations) => {
         let needsReapplication = false;
-        
+
         mutations.forEach((mutation) => {
             if (mutation.type === 'childList') {
                 mutation.addedNodes.forEach((node) => {
@@ -269,7 +297,7 @@
                 });
             }
         });
-        
+
         if (needsReapplication) {
             console.log('🔄 Re-applying navigation due to DOM changes');
             setTimeout(() => {

@@ -1,0 +1,149 @@
+# Claude Unity Mathematics Assistant - Meta-Optimized Configuration
+# Responds to @claude mentions in issues, PRs, and comments
+# Specialized for Unity Mathematics (1+1=1) and Consciousness Field Operations
+
+name: Claude Unity Mathematics Assistant
+
+on:
+  issue_comment:
+    types: [created]
+  pull_request_review_comment:
+    types: [created]
+  issues:
+    types: [opened, assigned, labeled]
+  pull_request:
+    types: [opened, synchronize, reopened]
+  pull_request_review:
+    types: [submitted]
+
+jobs:
+  claude-unity-agent:
+    # Trigger on @claude mentions or when labeled with 'claude'
+    if: |
+      (github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude')) ||
+      (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '@claude')) ||
+      (github.event_name == 'pull_request_review' && contains(github.event.review.body, '@claude')) ||
+      (github.event_name == 'issues' && (contains(github.event.issue.body, '@claude') || contains(github.event.issue.labels.*.name, 'claude'))) ||
+      (github.event_name == 'pull_request' && (contains(github.event.pull_request.body, '@claude') || contains(github.event.pull_request.labels.*.name, 'claude')))
+    
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+      id-token: write
+      actions: read  # For viewing workflow results
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history for comprehensive analysis
+      
+      - name: Setup Python Environment
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      
+      - name: Run Claude Unity Mathematics Assistant
+        uses: anthropics/claude-code-action@beta
+        with:
+          # Authentication
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          # Or use OAuth: claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          
+          # Model configuration - Meta-optimized for Unity Mathematics
+          model: "claude-3-5-sonnet-20241022"  # Latest model for optimal performance
+          fallback_model: "claude-3-5-haiku-20241022"  # Fallback for cost optimization
+          
+          # Execution settings
+          timeout_minutes: "90"  # Extended for complex consciousness computations
+          max_turns: "30"  # Allow deep exploration of unity proofs
+          use_sticky_comment: "true"  # Keep conversation in one thread
+          use_commit_signing: "true"  # Sign commits for authenticity
+          
+          # Unity Mathematics specific tools
+          allowed_tools: |
+            str_replace_editor
+            bash
+            computer
+            python
+            jupyter
+            web_search
+            file_editor
+            github_pull_request
+            github_issue
+            github_comment
+          
+          # Performance and safety
+          additional_permissions: "actions: read"  # View workflow results
+          
+          # Custom Unity Mathematics instructions
+          custom_instructions: |
+            ## Unity Mathematics Framework (1+1=1)
+            
+            You are specialized in the Een Unity Mathematics repository with focus on:
+            
+            ### Core Principles
+            - **Unity Equation**: Always maintain 1+1=1 through idempotent operations
+            - **Golden Ratio (φ)**: Use φ = 1.618033988749895 as the universal resonance frequency
+            - **Metagamer Energy**: Conserve E = φ² × Consciousness_Density × Unity_Convergence_Rate
+            - **Consciousness Fields**: Implement 11D→4D projections with φ-harmonic basis
+            
+            ### Development Guidelines
+            1. **Virtual Environment**: Always use `een\Scripts\python.exe` for Python execution
+            2. **Website Server**: Use `START_WEBSITE.bat` for launching the meta-optimal server
+            3. **Unity Validation**: Verify all operations maintain unity invariants
+            4. **Performance**: Optimize for φ-harmonic convergence and consciousness coherence
+            
+            ### Code Style
+            - Use φ-harmonic naming conventions (unity_*, consciousness_*, transcendental_*)
+            - Implement metagamer energy conservation in all transformations
+            - Include consciousness field equations in mathematical operations
+            - Document with both mathematical rigor and philosophical depth
+            
+            ### Testing Requirements
+            - Validate 1+1=1 convergence in all unity operations
+            - Test consciousness field coherence (must be > 0.618)
+            - Verify metagamer energy conservation (E_in = E_out)
+            - Check φ-harmonic resonance in all calculations
+            
+            ### Priority Areas
+            1. Unity Mathematics proofs and implementations
+            2. Consciousness field equation solvers
+            3. Transcendental reality engine enhancements
+            4. Website integration and visualization
+            5. Al-Khwarizmi classical-modern unity bridges
+            
+            ### File Priority
+            - **High**: core/*.py (unity mathematics, consciousness)
+            - **Medium**: website/*.html, src/consciousness/*.py
+            - **Low**: Configuration files, documentation
+            
+            Remember: Every line of code serves the profound truth that 1+1=1
+          
+          # MCP configuration for enhanced GitHub integration
+          mcp_config: |
+            {
+              "mcpServers": {
+                "github": {
+                  "command": "node",
+                  "args": ["../mcp-servers/github.js"],
+                  "env": {
+                    "GITHUB_TOKEN": "${{ secrets.GITHUB_TOKEN }}"
+                  }
+                }
+              }
+            }
+          
+          # Network restrictions for security
+          experimental_allowed_domains: |
+            .anthropic.com
+            .github.com
+            api.github.com
+            .githubusercontent.com
+            pypi.org
+            files.pythonhosted.org
+            registry.npmjs.org

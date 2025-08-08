@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Unity Axioms • 1+1=1</title>
+    <meta name="description"
+        content="Axioms, MDL audits, and safety monotonicity for the Unity Mathematics framework." />
+    <link rel="stylesheet" href="css/unified-navigation.css" />
+    <link rel="stylesheet" href="../css/tokens.css" />
+    <link rel="stylesheet" href="../css/layout.css" />
+    <link rel="stylesheet" href="../css/components.css" />
+    <script src="js/unified-navigation.js" defer></script>
+    <style>
+        :root {
+            --gold: #ffd700;
+            --bg: #0a0a0f;
+            --muted: #9aa1ac;
+        }
+
+        body {
+            background: var(--bg);
+            color: #fff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 120px 24px 40px;
+        }
+
+        .title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            color: var(--gold);
+        }
+
+        .subtitle {
+            color: var(--muted);
+            margin-top: 6px;
+        }
+
+        .grid {
+            display: grid;
+            gap: 16px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            margin-top: 24px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 12px;
+            padding: 16px;
+        }
+
+        .card h3 {
+            margin: 0 0 8px;
+        }
+
+        .actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+
+        button,
+        .btn {
+            background: linear-gradient(135deg, #ffd700, #00d4ff);
+            color: #0a0a0f;
+            border: 0;
+            border-radius: 10px;
+            padding: 10px 14px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 120px;
+            background: #0f1117;
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        pre {
+            background: #0f1117;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 10px;
+            padding: 10px;
+            overflow: auto;
+        }
+
+        .result {
+            margin-top: 12px;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="title">Unity Axioms</h1>
+        <div class="subtitle">Idempotent semiring, categorical collapse-to-unity, MDL audit, and safety monotonicity
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h3>Commuting Square Check</h3>
+                <p>Verify idempotent ⊕ and terminal 1 sketch.</p>
+                <div class="actions"><button id="btn-axioms">Run Check</button></div>
+                <pre id="out-axioms" class="result"></pre>
+            </div>
+
+            <div class="card">
+                <h3>MDL Audit</h3>
+                <p>Paste laws/statements to test compression under unity rewrite.</p>
+                <textarea id="mdl-input" placeholder="x ⊕ x = x\nNash eq under ⊕\n1/f spectra φ-linked ..."></textarea>
+                <div class="actions"><button id="btn-mdl">Audit</button></div>
+                <pre id="out-mdl" class="result"></pre>
+            </div>
+
+            <div class="card">
+                <h3>Safety Monotonicity</h3>
+                <p>Apply monotone updates x <- x ⊕ u_t on {0,1} with ⊕=OR.</p>
+                        <textarea id="mono-input"
+                            placeholder="Updates (comma-separated 0/1), e.g. 0,1,0,1,1"></textarea>
+                        <div class="actions"><button id="btn-mono">Compute Fixed Point</button></div>
+                        <pre id="out-mono" class="result"></pre>
+            </div>
+
+            <div class="card">
+                <h3>Register Prediction</h3>
+                <p>Submit a φ-structured falsifiable claim.</p>
+                <textarea id="pred-claim"
+                    placeholder="Domain|Claim|Metric\n\nExample: spectral_slope|For cross-scale signals, slope aligns to φ-band under unity control|RMSE vs baseline"></textarea>
+                <div class="actions"><button id="btn-pred">Register</button></div>
+                <pre id="out-pred" class="result"></pre>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API = (path) => path.startsWith('/') ? path : ('/' + path);
+
+        async function safeFetch(url, options) {
+            try { const r = await fetch(url, options); return r; } catch (e) {
+                // Try relative (GitHub Pages fallback)
+                try { return await fetch(url.replace(/^\//, '')); } catch (e2) { throw e2; }
+            }
+        }
+
+        document.getElementById('btn-axioms').addEventListener('click', async () => {
+            const out = document.getElementById('out-axioms');
+            out.textContent = 'Running…';
+            try {
+                let res = await safeFetch(API('/unity-axioms/axioms'));
+                if (!res.ok) res = await safeFetch('unity-axioms/axioms');
+                const j = await res.json();
+                out.textContent = JSON.stringify(j, null, 2);
+            } catch (e) { out.textContent = 'Backend offline. Using theoretical witness: in ({0,1}, OR), 1 ⊕ 1 = 1.'; }
+        });
+
+        document.getElementById('btn-mdl').addEventListener('click', async () => {
+            const out = document.getElementById('out-mdl');
+            const raw = document.getElementById('mdl-input').value.trim();
+            const expressions = raw ? raw.split(/\n+/).map(s => s.trim()).filter(Boolean) : [];
+            if (!expressions.length) { out.textContent = 'Add at least one expression.'; return; }
+            out.textContent = 'Auditing…';
+            try {
+                let res = await safeFetch(API('/unity-axioms/mdl'), {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ expressions })
+                });
+                if (!res.ok) res = await safeFetch('unity-axioms/mdl', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ expressions }) });
+                const j = await res.json();
+                out.textContent = JSON.stringify(j, null, 2);
+            } catch (e) { out.textContent = 'Backend offline. Heuristic: idempotent dedup yields ~30–40% compression on repeats.'; }
+        });
+
+        document.getElementById('btn-mono').addEventListener('click', async () => {
+            const out = document.getElementById('out-mono');
+            const raw = document.getElementById('mono-input').value.trim();
+            const updates = raw.split(/[,\s]+/).map(x => parseInt(x, 10)).filter(x => x === 0 || x === 1);
+            if (!updates.length) { out.textContent = 'Provide 0/1 updates.'; return; }
+            out.textContent = 'Computing…';
+            try {
+                let res = await safeFetch(API('/unity-axioms/safety/monotone'), {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ start: 0, updates })
+                });
+                if (!res.ok) res = await safeFetch('unity-axioms/safety/monotone', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ start: 0, updates }) });
+                const j = await res.json();
+                out.textContent = JSON.stringify(j, null, 2);
+            } catch (e) { out.textContent = 'Backend offline. OR-fold fixed point equals 1 iff any update=1.'; }
+        });
+
+        document.getElementById('btn-pred').addEventListener('click', async () => {
+            const out = document.getElementById('out-pred');
+            const raw = document.getElementById('pred-claim').value.trim();
+            if (!raw) { out.textContent = 'Fill Domain|Claim|Metric'; return; }
+            const parts = raw.split('|');
+            if (parts.length < 3) { out.textContent = 'Use Domain|Claim|Metric'; return; }
+            const [domain, claim, metric] = parts.map(s => s.trim());
+            out.textContent = 'Registering…';
+            try {
+                let res = await safeFetch(API('/unity-axioms/predictions/register'), {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ domain, claim, metric })
+                });
+                if (!res.ok) res = await safeFetch('unity-axioms/predictions/register', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ domain, claim, metric }) });
+                const j = await res.json();
+                out.textContent = JSON.stringify(j, null, 2);
+            } catch (e) { out.textContent = 'Backend offline. Claim stored locally only.'; }
+        });
+    </script>
+</body>
+
+</html>

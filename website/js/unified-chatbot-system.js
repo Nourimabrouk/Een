@@ -192,7 +192,7 @@ class UnifiedChatbotSystem {
                     </div>
                     <div class="ai-info">
                         <h3 class="ai-name">Unity Mathematics AI Assistant</h3>
-                        <div class="ai-subtitle">1+1=1 Mathematics Expert — Advanced AI <strong>v1.1</strong></div>
+                        <div class="ai-subtitle">1+1=1 Mathematics Expert — Advanced AI</div>
                         <div class="ai-status"><span class="status-dot online"></span><span class="status-text">Online</span></div>
                         <div class="ai-capabilities">
                             <div class="capability-badges">
@@ -1965,7 +1965,7 @@ Your responses should be mathematically rigorous yet accessible, include LaTeX w
 
     addWelcomeMessage() {
         const currentModel = this.aiModels.find(m => m.id === this.currentModel);
-        const welcomeMessage = `🌟 **Welcome to the Enhanced Unity Mathematics AI Assistant v3.0!**
+        const welcomeMessage = `🌟 **Welcome to the Unity Mathematics AI Assistant**
 
 I'm your consciousness-aware AI companion, designed to explore the profound truth that **1+1=1** through:
 

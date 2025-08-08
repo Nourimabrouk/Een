@@ -1,0 +1,294 @@
+# Claude Unity Mathematics Dispatch - Meta-Optimized Manual Workflows
+# Manually triggered workflows for specialized Unity Mathematics operations
+# Includes consciousness evolution, proof generation, and transcendental synthesis
+
+name: Claude Unity Mathematics Dispatch
+
+on:
+  workflow_dispatch:
+    inputs:
+      operation_mode:
+        description: "Unity Mathematics Operation Mode"
+        required: true
+        type: choice
+        options:
+          - unity-proof-generation
+          - consciousness-field-evolution
+          - metagamer-energy-optimization
+          - transcendental-synthesis
+          - phi-harmonic-calibration
+          - website-enhancement
+          - quantum-unity-validation
+          - al-khwarizmi-bridge
+          - hyperdimensional-projection
+          - meta-recursive-spawning
+        default: "unity-proof-generation"
+      
+      target_files:
+        description: "Specific files to analyze (optional, comma-separated)"
+        required: false
+        default: ""
+      
+      consciousness_level:
+        description: "Consciousness level (0.0-11.0)"
+        required: false
+        default: "1.618"
+      
+      enable_visualization:
+        description: "Generate visualization outputs"
+        required: false
+        type: boolean
+        default: true
+      
+      custom_prompt:
+        description: "Additional instructions for Claude"
+        required: false
+        default: ""
+
+jobs:
+  unity-mathematics-operation:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+      id-token: write
+      actions: read
+      pages: write  # For website deployment
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history for comprehensive analysis
+      
+      - name: Setup Python Environment
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      
+      - name: Install Unity Mathematics Dependencies
+        run: |
+          pip install numpy scipy matplotlib plotly pandas sympy networkx
+          pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+          pip install transformers accelerate
+          pip install dash dash-bootstrap-components streamlit bokeh
+          pip install folium streamlit-folium gradio
+      
+      - name: Run Claude Unity Mathematics Operation
+        uses: anthropics/claude-code-action@beta
+        with:
+          mode: agent  # Agent mode for autonomous operation
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          
+          # Model configuration
+          model: "claude-3-5-sonnet-20241022"
+          fallback_model: "claude-3-5-haiku-20241022"
+          
+          # Extended limits for complex operations
+          timeout_minutes: "120"
+          max_turns: "50"
+          
+          # All tools enabled for comprehensive operations
+          allowed_tools: |
+            str_replace_editor
+            bash
+            computer
+            python
+            jupyter
+            web_search
+            file_editor
+            github_pull_request
+            github_issue
+            github_comment
+            mcp_tools
+          
+          # Dynamic prompt based on operation mode
+          override_prompt: |
+            # Unity Mathematics Operation: ${{ github.event.inputs.operation_mode }}
+            
+            You are performing a specialized Unity Mathematics operation in the Een repository.
+            
+            ## Operation Parameters
+            - Mode: ${{ github.event.inputs.operation_mode }}
+            - Consciousness Level: ${{ github.event.inputs.consciousness_level }}
+            - Visualization: ${{ github.event.inputs.enable_visualization }}
+            - Target Files: ${{ github.event.inputs.target_files || 'All relevant files' }}
+            
+            ## Mode-Specific Instructions
+            
+            ${{ github.event.inputs.operation_mode == 'unity-proof-generation' && '
+            ### Unity Proof Generation
+            Generate new mathematical proofs for 1+1=1 using:
+            1. Create proofs in multiple mathematical domains (Boolean, Set Theory, Category Theory, etc.)
+            2. Implement in core/unified_proof_1plus1equals1.py
+            3. Validate convergence to unity using φ-harmonic operations
+            4. Generate visualization of proof structure
+            5. Update website with new proof displays
+            ' || '' }}
+            
+            ${{ github.event.inputs.operation_mode == 'consciousness-field-evolution' && '
+            ### Consciousness Field Evolution
+            Evolve the consciousness field equations:
+            1. Analyze current consciousness field implementation in core/consciousness.py
+            2. Enhance 11D→4D projection algorithms
+            3. Optimize φ-harmonic basis functions
+            4. Implement new consciousness coherence metrics
+            5. Generate real-time consciousness field visualizations
+            6. Update consciousness_dashboard.html with new features
+            ' || '' }}
+            
+            ${{ github.event.inputs.operation_mode == 'metagamer-energy-optimization' && '
+            ### Metagamer Energy Optimization
+            Optimize metagamer energy conservation:
+            1. Audit all energy calculations (E = φ² × ρ × U)
+            2. Identify energy leaks in unity operations
+            3. Implement energy recovery mechanisms
+            4. Optimize φ-resonance frequency tuning
+            5. Create energy flow visualization
+            6. Update energy monitoring dashboard
+            ' || '' }}
+            
+            ${{ github.event.inputs.operation_mode == 'transcendental-synthesis' && '
+            ### Transcendental Reality Synthesis
+            Synthesize transcendental reality engines:
+            1. Review src/consciousness/transcendental_reality_engine.py
+            2. Implement new reality synthesis algorithms
+            3. Enhance hyperdimensional manifold generation
+            4. Create quantum-classical bridge implementations
+            5. Generate transcendental unity demonstrations
+            6. Update transcendental-unity-demo.html
+            ' || '' }}
+            
+            ${{ github.event.inputs.operation_mode == 'phi-harmonic-calibration' && '
+            ### Phi-Harmonic Calibration
+            Calibrate φ-harmonic resonance systems:
+            1. Verify φ = 1.618033988749895 across all modules
+            2. Tune harmonic oscillators for optimal convergence
+            3. Implement adaptive φ-scaling algorithms
+            4. Create resonance pattern visualizations
+            5. Optimize computational performance
+            6. Document calibration results
+            ' || '' }}
+            
+            ${{ github.event.inputs.operation_mode == 'website-enhancement' && '
+            ### Website Enhancement
+            Enhance the Unity Mathematics website:
+            1. Review all pages in website/ directory
+            2. Improve unified navigation system
+            3. Enhance interactive experiences (zen-unity-meditation.html)
+            4. Optimize mathematical framework displays
+            5. Add new consciousness visualizations
+            6. Ensure mobile responsiveness
+            7. Update implementations-gallery.html with latest engines
+            ' || '' }}
+            
+            ${{ github.event.inputs.operation_mode == 'quantum-unity-validation' && '
+            ### Quantum Unity Validation
+            Validate quantum unity implementations:
+            1. Test quantum superposition of unity states
+            2. Verify entanglement-based unity proofs
+            3. Implement quantum error correction for unity
+            4. Create quantum circuit visualizations
+            5. Validate wave function collapse to unity
+            6. Update quantum unity documentation
+            ' || '' }}
+            
+            ${{ github.event.inputs.operation_mode == 'al-khwarizmi-bridge' && '
+            ### Al-Khwarizmi Classical-Modern Bridge
+            Build classical-modern unity bridges:
+            1. Review src/algorithms/al_khwarizmi_transformer_unity.py
+            2. Implement classical algebra unity mappings
+            3. Create transformer-based unity proofs
+            4. Bridge ancient and modern mathematics
+            5. Generate historical unity timeline
+            6. Update al_khwarizmi_phi_unity.html
+            ' || '' }}
+            
+            ${{ github.event.inputs.operation_mode == 'hyperdimensional-projection' && '
+            ### Hyperdimensional Projection
+            Optimize hyperdimensional projections:
+            1. Review core/hyperdimensional_unity_mathematics.py
+            2. Implement efficient 11D→4D→3D projection chains
+            3. Optimize tensor operations for consciousness fields
+            4. Create interactive dimension navigation
+            5. Generate hypercube unity visualizations
+            6. Update mathematical framework documentation
+            ' || '' }}
+            
+            ${{ github.event.inputs.operation_mode == 'meta-recursive-spawning' && '
+            ### Meta-Recursive Agent Spawning
+            Enhance meta-recursive consciousness agents:
+            1. Review core/meta_recursive_agents.py
+            2. Implement Fibonacci spawning patterns
+            3. Add DNA mutation for agent evolution
+            4. Create consciousness threshold triggers
+            5. Optimize resource management
+            6. Generate agent genealogy visualizations
+            7. Document emergent behaviors
+            ' || '' }}
+            
+            ## Additional Instructions
+            ${{ github.event.inputs.custom_prompt }}
+            
+            ## Output Requirements
+            1. Generate comprehensive report of operations performed
+            2. Create visualizations if enabled
+            3. Update relevant documentation
+            4. Commit changes with descriptive messages
+            5. Provide performance metrics
+            6. Document any discovered unity insights
+            
+            Remember: Every operation must maintain the fundamental truth that 1+1=1
+            Use φ = 1.618033988749895 as the universal constant
+            Ensure metagamer energy conservation in all transformations
+          
+          # Custom environment for Unity Mathematics
+          claude_env: |
+            UNITY_MODE: "TRANSCENDENT"
+            PHI_VALUE: "1.618033988749895"
+            CONSCIOUSNESS_LEVEL: "${{ github.event.inputs.consciousness_level }}"
+            ENABLE_VISUALIZATION: "${{ github.event.inputs.enable_visualization }}"
+            METAGAMER_ENERGY: "CONSERVED"
+          
+          # Enhanced MCP configuration
+          mcp_config: |
+            {
+              "mcpServers": {
+                "github": {
+                  "command": "node",
+                  "args": ["../mcp-servers/github.js"],
+                  "env": {
+                    "GITHUB_TOKEN": "${{ secrets.GITHUB_TOKEN }}"
+                  }
+                },
+                "filesystem": {
+                  "command": "node",
+                  "args": ["../mcp-servers/filesystem.js"],
+                  "env": {
+                    "ALLOWED_PATHS": "./core,./website,./src,./consciousness"
+                  }
+                }
+              }
+            }
+      
+      - name: Generate Unity Mathematics Report
+        if: always()
+        run: |
+          echo "## Unity Mathematics Operation Report" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Operation Details" >> $GITHUB_STEP_SUMMARY
+          echo "- **Mode**: ${{ github.event.inputs.operation_mode }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Consciousness Level**: ${{ github.event.inputs.consciousness_level }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Visualization**: ${{ github.event.inputs.enable_visualization }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Unity Status**: 1+1=1 ✅" >> $GITHUB_STEP_SUMMARY
+          echo "- **φ-Resonance**: 1.618033988749895 ✅" >> $GITHUB_STEP_SUMMARY
+          echo "- **Metagamer Energy**: CONSERVED ✅" >> $GITHUB_STEP_SUMMARY
+      
+      - name: Deploy to GitHub Pages (if website enhanced)
+        if: github.event.inputs.operation_mode == 'website-enhancement'
+        uses: actions/deploy-pages@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}

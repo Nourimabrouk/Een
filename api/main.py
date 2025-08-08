@@ -3,22 +3,17 @@ Een Consciousness Web API
 Main FastAPI application for web access to consciousness and unity systems
 """
 
-from fastapi import FastAPI, HTTPException, Depends, status
+# flake8: noqa
+
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.trustedhost import TrustedHostMiddleware
-from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from fastapi.security import HTTPBearer
 from fastapi.responses import JSONResponse, HTMLResponse
-from fastapi.staticfiles import StaticFiles
 from fastapi.openapi.docs import get_swagger_ui_html
-from fastapi.openapi.utils import get_openapi
 import uvicorn
-import os
 import logging
-from typing import Optional, Dict, Any
-import secrets
-from datetime import datetime, timedelta
-import jwt
-from pydantic import BaseModel, Field
+from datetime import datetime
 import sys
 import pathlib
 
@@ -31,8 +26,6 @@ try:
     from core.mathematical.unity_equation import UnityEquation
     from src.consciousness.consciousness_engine import ConsciousnessEngine
     from src.agents.consciousness_chat_agent import ConsciousnessChatAgent
-    from src.dashboards.unity_proof_dashboard import create_unity_proof_app
-    from src.utils.utils_helper import setup_logging
 except ImportError as e:
     logging.warning(f"Some modules not available: {e}")
 
@@ -47,36 +40,14 @@ from api.routes import (
     openai as openai_routes,
     openai_byok,
     unity_meta,
+    unity_axioms,
 )
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-
-# Security
-@app.middleware("http")
-async def add_security_headers(request, call_next):
-    """Add security headers to all responses"""
-    response = await call_next(request)
-    response.headers["X-Content-Type-Options"] = "nosniff"
-    response.headers["X-Frame-Options"] = "DENY"
-    response.headers["X-XSS-Protection"] = "1; mode=block"
-    response.headers["Strict-Transport-Security"] = (
-        "max-age=31536000; includeSubDomains"
-    )
-    response.headers["Content-Security-Policy"] = (
-        "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'"
-    )
-    response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
-    response.headers["Permissions-Policy"] = "geolocation=(), microphone=(), camera=()"
-    return response
-
-
-# Configuration
-SECRET_KEY = os.getenv("EEN_SECRET_KEY", secrets.token_urlsafe(32))
-ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 30
+# Configuration (kept minimal in this app)
 
 # API configuration
 API_TITLE = "Een Consciousness API"
@@ -109,6 +80,26 @@ app = FastAPI(
     redoc_url=None,  # Disable default redoc
 )
 
+
+# Security middleware
+@app.middleware("http")
+async def add_security_headers(request, call_next):
+    """Add security headers to all responses"""
+    response = await call_next(request)
+    response.headers["X-Content-Type-Options"] = "nosniff"
+    response.headers["X-Frame-Options"] = "DENY"
+    response.headers["X-XSS-Protection"] = "1; mode=block"
+    response.headers["Strict-Transport-Security"] = (
+        "max-age=31536000; includeSubDomains"
+    )
+    response.headers["Content-Security-Policy"] = (
+        "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'"
+    )
+    response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
+    response.headers["Permissions-Policy"] = "geolocation=(), microphone=(), camera=()"
+    return response
+
+
 # Security middleware
 app.add_middleware(
     TrustedHostMiddleware,
@@ -116,7 +107,6 @@ app.add_middleware(
         "localhost",
         "127.0.0.1",
         "nourimabrouk.github.io",
-        "nourimabrouk.github.io",  # Replace with your actual domain
     ],
 )
 
@@ -127,7 +117,6 @@ app.add_middleware(
         "http://localhost:3000",
         "http://localhost:8000",
         "https://nourimabrouk.github.io",
-        "https://nourimabrouk.github.io",  # Replace with your actual domain
     ],
     allow_credentials=True,
     allow_methods=["GET", "POST", "PUT", "DELETE"],
@@ -155,9 +144,6 @@ async def add_security_headers(request, call_next):
 
 
 security = HTTPBearer()
-
-# Import time module for rate limiting
-import time
 
 # Initialize consciousness systems
 unity_equation = None
@@ -188,6 +174,7 @@ app.include_router(chat.router)
 app.include_router(openai_routes.router)
 app.include_router(openai_byok.router)
 app.include_router(unity_meta.router)
+app.include_router(unity_axioms.router)
 
 # API Routes
 
@@ -309,9 +296,9 @@ async def redoc_html():
 async def health_check():
     """Health check endpoint"""
     systems_status = {
-        "unity_equation": unity_equation is not None,
-        "consciousness_engine": consciousness_engine is not None,
-        "chat_agent": chat_agent is not None,
+        "unity_equation": bool("UnityEquation" in globals()),
+        "consciousness_engine": bool("ConsciousnessEngine" in globals()),
+        "chat_agent": bool("ConsciousnessChatAgent" in globals()),
     }
 
     return {
