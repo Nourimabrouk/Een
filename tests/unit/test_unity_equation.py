@@ -8,7 +8,7 @@ from typing import Set
 
 import pytest
 
-from src.core.unity_equation import IdempotentMonoid
+from core.mathematical.unity_equation import IdempotentMonoid
 
 
 class TestIdempotentMonoid:

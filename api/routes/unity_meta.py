@@ -13,6 +13,7 @@ from typing import Dict, Any, List, Optional
 import pathlib
 import sys
 import logging
+import json
 
 # Add project root to path
 project_root = pathlib.Path(__file__).parent.parent.parent
@@ -105,6 +106,78 @@ async def synthesize(current_user: User = Depends(get_current_user)):
             for ev in synthesis.frameworks
         ],
     )
+
+
+# -------------------------
+# Lean proof integration
+# -------------------------
+
+
+class LeanProofMeta(BaseModel):
+    title: str
+    path: str
+    bytes: int
+    sha256: str
+
+
+def _safe_sha256(path: pathlib.Path) -> str:
+    import hashlib
+
+    try:
+        h = hashlib.sha256()
+        with path.open("rb") as f:
+            for chunk in iter(lambda: f.read(8192), b""):
+                h.update(chunk)
+        return h.hexdigest()
+    except Exception:
+        return ""
+
+
+@router.get("/lean/proofs", response_model=List[LeanProofMeta])
+async def list_lean_proofs(current_user: User = Depends(get_current_user)):
+    """Enumerate formal Lean artifacts available in `formal_proofs/`.
+
+    Returns minimal metadata: title, repo-relative path, size, sha256.
+    """
+    root = pathlib.Path(__file__).resolve().parents[2]
+    proofs_dir = root / "formal_proofs"
+    results: List[LeanProofMeta] = []
+    for p in proofs_dir.glob("*.lean"):
+        rel = p.relative_to(root).as_posix()
+        try:
+            size = p.stat().st_size
+        except Exception:
+            size = 0
+        results.append(
+            LeanProofMeta(
+                title=p.stem.replace("_", " "),
+                path=rel,
+                bytes=size,
+                sha256=_safe_sha256(p),
+            )
+        )
+    return results
+
+
+@router.get("/lean/proof/{filename}")
+async def get_lean_proof(filename: str, current_user: User = Depends(get_current_user)):
+    """Return the raw Lean source code for the requested file under `formal_proofs/`."""
+    root = pathlib.Path(__file__).resolve().parents[2]
+    proofs_dir = root / "formal_proofs"
+    target = (proofs_dir / filename).resolve()
+    if (
+        not target.exists()
+        or target.suffix != ".lean"
+        or proofs_dir not in target.parents
+    ):
+        raise HTTPException(status_code=404, detail="Lean proof not found")
+    try:
+        return {
+            "filename": filename,
+            "code": target.read_text(encoding="utf-8"),
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Unable to read file: {e}")
 
 
 class SyncRequest(BaseModel):

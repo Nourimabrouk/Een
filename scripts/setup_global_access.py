@@ -122,7 +122,7 @@ sys.path.insert(0, str(een_path))
 
 # Import and run main functionality
 if __name__ == "__main__":
-    from src.core.unity_mathematics import UnityMathematics
+    from core.mathematical.unity_mathematics import UnityMathematics
     from src.consciousness.consciousness_engine import ConsciousnessEngine
     
     print("🎯 Een Framework - Global Access")
@@ -234,7 +234,7 @@ from pathlib import Path
 project_root = Path(__file__).parent
 sys.path.insert(0, str(project_root))
 
-from src.core.unity_mathematics import UnityMathematics
+from core.mathematical.unity_mathematics import UnityMathematics
 from src.consciousness.consciousness_engine import ConsciousnessEngine
 
 app = FastAPI(
@@ -418,7 +418,7 @@ def main():
             choice = input("\\nSelect option (1-6): ").strip()
             
             if choice == "1":
-                from src.core.unity_mathematics import UnityMathematics
+                from core.mathematical.unity_mathematics import UnityMathematics
                 UnityMathematics().demo()
             elif choice == "2":
                 from src.consciousness.consciousness_engine import ConsciousnessEngine

@@ -29,7 +29,7 @@ def test_imports():
         except ImportError:
             print("   ⚠️ Unity mathematics not found in core/, trying src/core/")
             try:
-                from src.core.unity_equation import UnityEquation as UnityMathematics
+                from core.mathematical.unity_equation import UnityEquation as UnityMathematics
                 print("   ✅ Unity equation imported from src/core/")
             except ImportError:
                 print("   ❌ Unity mathematics not found")
@@ -162,7 +162,7 @@ def test_unity_mathematics_integration():
             print("   ✅ Unity mathematics imported from core/")
         except ImportError:
             try:
-                from src.core.unity_equation import UnityEquation
+                from core.mathematical.unity_equation import UnityEquation
                 unity = UnityEquation()
                 print("   ✅ Unity equation imported from src/core/")
                 

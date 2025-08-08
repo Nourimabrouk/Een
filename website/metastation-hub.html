@@ -27,15 +27,19 @@
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Meta-Optimal Complete Navigation System (site-wide) -->
-    <link rel="stylesheet" href="css/meta-optimal-navigation-complete.css">
-    <script src="js/meta-optimal-navigation-complete.js" defer></script>
+    <!-- Unified Navigation System (site-wide) -->
+    <link rel="stylesheet" href="css/unified-navigation.css">
+    <script src="js/unified-navigation.js" defer></script>
+    <script src="js/apply-unified-navigation.js" defer></script>
 
     <!-- Unified Chatbot System (site-wide floating chat) -->
     <script src="js/unified-chatbot-system.js" defer></script>
     <!-- Site-wide safe enhancements -->
     <script src="../js/site.js" defer></script>
 
+    <!-- Dynamic Audio Scanner (scans for unique audio files) -->
+    <script src="js/audio-scanner.js" defer></script>
+    
     <!-- Persistent Audio System (Cross-page audio playback) -->
     <script src="js/persistent-audio-system.js" defer></script>
 
@@ -729,13 +733,8 @@
             }
         }
 
-        /* Hide the legacy, page-specific nav bar to avoid duplication with unified nav */
-        .nav-bar {
-            display: none !important;
-        }
-
-        .side-nav,
-        .side-nav-toggle {
+        /* Hide the legacy navigation elements - handled by apply-unified-navigation.js */
+        .legacy-nav-elements {
             display: none !important;
         }
 
@@ -757,239 +756,7 @@
         <img src="landing/Metastation.jpg" alt="Metastation" loading="eager">
     </div>
 
-    <!-- Navigation Bar -->
-    <nav class="nav-bar">
-        <a href="#" class="nav-logo">
-            <span style="font-family: 'JetBrains Mono', monospace;">1+1=1</span>
-            <span style="font-size: 0.8rem; opacity: 0.7;">Unity Mathematics</span>
-        </a>
-
-        <!-- Search Bar -->
-        <div class="search-container" style="flex-grow: 1; max-width: 400px; margin: 0 2rem;">
-            <div style="position: relative;">
-                <input type="text" id="globalSearch" placeholder="Search unity mathematics..." style="width: 100%; padding: 0.75rem 2.5rem 0.75rem 1rem; background: rgba(255, 255, 255, 0.1); 
-                           border: 1px solid var(--border-glow); border-radius: 25px; color: var(--text-primary);
-                           font-family: var(--font-main); font-size: 0.9rem; transition: all 0.3s;">
-                <button type="button" onclick="performSearch()" aria-label="Search" title="Search" style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%);
-                           background: var(--unity-gold); border: none; border-radius: 50%; 
-                           width: 30px; height: 30px; cursor: pointer; display: flex; 
-                           align-items: center; justify-content: center; transition: all 0.3s;">
-                    <i class="fas fa-search" style="color: var(--bg-primary); font-size: 0.8rem;"></i>
-                </button>
-            </div>
-            <div id="searchResults" style="position: absolute; top: 100%; left: 0; right: 0; 
-                 background: rgba(18, 18, 26, 0.98); border: 1px solid var(--border-glow);
-                 border-radius: 10px; margin-top: 0.5rem; max-height: 400px; overflow-y: auto;
-                 display: none; z-index: 1001;"></div>
-        </div>
-
-        <ul class="nav-menu">
-            <li class="nav-dropdown">
-                <a>Experiences <i class="fas fa-chevron-down"></i></a>
-                <div class="dropdown-menu">
-                    <a href="zen-unity-meditation.html"><i class="fas fa-om"></i> Zen Unity Meditation</a>
-                    <a href="consciousness_dashboard.html"><i class="fas fa-brain"></i> Consciousness Field</a>
-                    <a href="unity_consciousness_experience.html"><i class="fas fa-infinity"></i> Unity
-                        Consciousness</a>
-                    <a href="unity-mathematics-experience.html"><i class="fas fa-wave-square"></i> Unity Experience</a>
-                    <a href="transcendental-unity-demo.html"><i class="fas fa-atom"></i> Transcendental Unity</a>
-                    <a href="enhanced-unity-demo.html"><i class="fas fa-star"></i> Enhanced Unity Demo</a>
-                    <a href="unity_visualization.html"><i class="fas fa-eye"></i> Unity Visualization</a>
-                </div>
-            </li>
-            <li class="nav-dropdown">
-                <a>Mathematics <i class="fas fa-chevron-down"></i></a>
-                <div class="dropdown-menu">
-                    <a href="mathematical-framework.html"><i class="fas fa-square-root-alt"></i> Framework</a>
-                    <a href="proofs.html"><i class="fas fa-check-circle"></i> Proofs</a>
-                    <a href="3000-elo-proof.html"><i class="fas fa-trophy"></i> Advanced Proofs</a>
-                    <a href="enhanced-mathematical-proofs.html"><i class="fas fa-medal"></i> Enhanced Proofs</a>
-                    <a href="implementations-gallery.html"><i class="fas fa-code"></i> Implementations</a>
-                    <a href="al_khwarizmi_phi_unity.html"><i class="fas fa-scroll"></i> Al-Khwarizmi Unity</a>
-                    <a href="metagambit.html"><i class="fas fa-chess"></i> Metagambit</a>
-                </div>
-            </li>
-            <li class="nav-dropdown">
-                <a>Philosophy <i class="fas fa-chevron-down"></i></a>
-                <div class="dropdown-menu">
-                    <a href="philosophy.html"><i class="fas fa-yin-yang"></i> Unity Philosophy</a>
-                    <a href="about.html"><i class="fas fa-info-circle"></i> About Unity</a>
-                    <a href="further-reading.html"><i class="fas fa-book-open"></i> Further Reading</a>
-                    <a href="learning.html"><i class="fas fa-graduation-cap"></i> Learning Path</a>
-                    <a href="learn.html"><i class="fas fa-lightbulb"></i> Learn Unity</a>
-                </div>
-            </li>
-            <li class="nav-dropdown">
-                <a>AI Systems <i class="fas fa-chevron-down"></i></a>
-                <div class="dropdown-menu">
-                    <a href="agents.html"><i class="fas fa-robot"></i> Consciousness Agents</a>
-                    <a href="ai-agents-ecosystem.html"><i class="fas fa-network-wired"></i> AI Ecosystem</a>
-                    <a href="ai-unified-hub.html"><i class="fas fa-brain"></i> AI Unity Hub</a>
-                    <a href="metagamer_agent.html"><i class="fas fa-gamepad"></i> Metagamer Agent</a>
-                    <a href="openai-integration.html"><i class="fas fa-plug"></i> OpenAI Integration</a>
-                    <a href="enhanced-ai-demo.html"><i class="fas fa-sparkles"></i> Enhanced AI Demo</a>
-                    <a href="anthill.html"><i class="fas fa-bug"></i> Quantum Ants</a>
-                </div>
-            </li>
-            <li class="nav-dropdown">
-                <a>Dashboards <i class="fas fa-chevron-down"></i></a>
-                <div class="dropdown-menu">
-                    <a href="dashboards.html"><i class="fas fa-th-large"></i> All Dashboards</a>
-                    <a href="consciousness_dashboard.html"><i class="fas fa-brain"></i> Consciousness Field</a>
-                    <a href="playground.html"><i class="fas fa-gamepad"></i> Playground</a>
-                    <a href="mathematical_playground.html"><i class="fas fa-calculator"></i> Math Playground</a>
-                    <a href="live-code-showcase.html"><i class="fas fa-terminal"></i> Live Code</a>
-                    <a href="unity-advanced-features.html"><i class="fas fa-cogs"></i> Advanced Features</a>
-                </div>
-            </li>
-            <li class="nav-dropdown">
-                <a>Gallery <i class="fas fa-chevron-down"></i></a>
-                <div class="dropdown-menu">
-                    <a href="gallery.html"><i class="fas fa-images"></i> Main Gallery</a>
-                    <a href="dalle-gallery.html"><i class="fas fa-palette"></i> DALL-E Gallery</a>
-                    <a href="enhanced-3d-consciousness-field.html"><i class="fas fa-cube"></i> 3D Consciousness</a>
-                    <a href="enhanced-unity-visualization-system.html"><i class="fas fa-chart-line"></i> Visualization
-                        System</a>
-                </div>
-            </li>
-            <li class="nav-dropdown">
-                <a>Research <i class="fas fa-chevron-down"></i></a>
-                <div class="dropdown-menu">
-                    <a href="research.html"><i class="fas fa-microscope"></i> Research Papers</a>
-                    <a href="publications.html"><i class="fas fa-book"></i> Publications</a>
-                    <a href="further-reading.html"><i class="fas fa-bookmark"></i> Reading List</a>
-                    <a href="mobile-app.html"><i class="fas fa-mobile-alt"></i> Mobile App</a>
-                    <a href="sitemap.html"><i class="fas fa-sitemap"></i> Full Site Map</a>
-                </div>
-            </li>
-        </ul>
-
-        <button type="button" class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle mobile menu"
-            title="Toggle menu">
-            <i class="fas fa-bars"></i>
-        </button>
-    </nav>
-
-    <!-- Side Navigation Panel -->
-    <button type="button" class="side-nav-toggle" onclick="toggleSideNav()" aria-label="Toggle side navigation"
-        title="Toggle side navigation">
-        <i class="fas fa-chevron-right"></i>
-    </button>
-
-    <aside class="side-nav" id="sideNav">
-        <div class="side-nav-section">
-            <div class="side-nav-title">Featured Experiences</div>
-            <a href="zen-unity-meditation.html" class="side-nav-link">
-                <i class="fas fa-om"></i> Zen Meditation
-            </a>
-            <a href="consciousness_dashboard.html" class="side-nav-link">
-                <i class="fas fa-brain"></i> Consciousness Field
-            </a>
-            <a href="unity_consciousness_experience.html" class="side-nav-link">
-                <i class="fas fa-infinity"></i> Unity Experience
-            </a>
-            <a href="transcendental-unity-demo.html" class="side-nav-link">
-                <i class="fas fa-atom"></i> Transcendental
-            </a>
-        </div>
-
-        <div class="side-nav-section">
-            <div class="side-nav-title">Mathematics</div>
-            <a href="mathematical-framework.html" class="side-nav-link">
-                <i class="fas fa-square-root-alt"></i> Framework
-            </a>
-            <a href="proofs.html" class="side-nav-link">
-                <i class="fas fa-check-circle"></i> Proofs
-            </a>
-            <a href="3000-elo-proof.html" class="side-nav-link">
-                <i class="fas fa-trophy"></i> Advanced Proofs
-            </a>
-            <a href="metagambit.html" class="side-nav-link">
-                <i class="fas fa-chess"></i> Metagambit
-            </a>
-            <a href="al_khwarizmi_phi_unity.html" class="side-nav-link">
-                <i class="fas fa-scroll"></i> Al-Khwarizmi
-            </a>
-        </div>
-
-        <div class="side-nav-section">
-            <div class="side-nav-title">Philosophy</div>
-            <a href="philosophy.html" class="side-nav-link">
-                <i class="fas fa-yin-yang"></i> Unity Philosophy
-            </a>
-            <a href="about.html" class="side-nav-link">
-                <i class="fas fa-info-circle"></i> About Unity
-            </a>
-            <a href="further-reading.html" class="side-nav-link">
-                <i class="fas fa-book-open"></i> Further Reading
-            </a>
-        </div>
-
-        <div class="side-nav-section">
-            <div class="side-nav-title">AI Systems</div>
-            <a href="agents.html" class="side-nav-link">
-                <i class="fas fa-robot"></i> Agents
-            </a>
-            <a href="ai-unified-hub.html" class="side-nav-link">
-                <i class="fas fa-brain"></i> AI Unity Hub
-            </a>
-            <a href="metagamer_agent.html" class="side-nav-link">
-                <i class="fas fa-gamepad"></i> Metagamer
-            </a>
-            <a href="anthill.html" class="side-nav-link">
-                <i class="fas fa-bug"></i> Quantum Ants
-            </a>
-        </div>
-
-        <div class="side-nav-section">
-            <div class="side-nav-title">Dashboards</div>
-            <a href="dashboards.html" class="side-nav-link">
-                <i class="fas fa-th-large"></i> All Dashboards
-            </a>
-            <a href="playground.html" class="side-nav-link">
-                <i class="fas fa-gamepad"></i> Playground
-            </a>
-            <a href="live-code-showcase.html" class="side-nav-link">
-                <i class="fas fa-terminal"></i> Live Code
-            </a>
-        </div>
-
-        <div class="side-nav-section">
-            <div class="side-nav-title">Gallery</div>
-            <a href="gallery.html" class="side-nav-link">
-                <i class="fas fa-images"></i> Main Gallery
-            </a>
-            <a href="dalle-gallery.html" class="side-nav-link">
-                <i class="fas fa-palette"></i> DALL-E Art
-            </a>
-            <a href="implementations-gallery.html" class="side-nav-link">
-                <i class="fas fa-code"></i> Implementations
-            </a>
-        </div>
-
-        <div class="side-nav-section">
-            <div class="side-nav-title">Research</div>
-            <a href="research.html" class="side-nav-link">
-                <i class="fas fa-microscope"></i> Papers
-            </a>
-            <a href="publications.html" class="side-nav-link">
-                <i class="fas fa-book"></i> Publications
-            </a>
-            <a href="learning.html" class="side-nav-link">
-                <i class="fas fa-graduation-cap"></i> Learning
-            </a>
-        </div>
-
-        <div class="side-nav-section">
-            <div class="side-nav-title">Resources</div>
-            <a href="sitemap.html" class="side-nav-link">
-                <i class="fas fa-sitemap"></i> Full Site Map
-            </a>
-            <a href="mobile-app.html" class="side-nav-link">
-                <i class="fas fa-mobile-alt"></i> Mobile App
-            </a>
-        </div>
-    </aside>
+    <!-- Navigation will be injected by unified-navigation.js -->
 
     <!-- Hero Section -->
     <main id="main" class="hero-container">
@@ -1019,6 +786,24 @@
     </main>
 
     <!-- Featured Experiences Section -->
+    <section class="content-section" id="formal-proofs">
+        <h2 class="section-title">Formal Unity Proofs (Lean)</h2>
+        <p class="section-subtitle">
+            Verified mathlib proofs that 1+1=1 holds in rigorous idempotent models. Explore, read, and download.
+        </p>
+
+        <div id="lean-proofs" class="features-grid" style="margin-top:1rem"></div>
+        <div id="lean-proof-viewer"
+            style="display:none; margin-top:1.5rem; background: rgba(18,18,26,0.8); border:1px solid var(--border-glow); border-radius:10px; padding:1rem;">
+            <div style="display:flex; justify-content: space-between; align-items:center;">
+                <h3 style="margin:0; color: var(--text-primary);">Lean Source</h3>
+                <button onclick="document.getElementById('lean-proof-viewer').style.display='none'"
+                    style="background:none;border:1px solid var(--border-glow);color:var(--text-secondary);border-radius:6px;padding:0.3rem 0.6rem;cursor:pointer;">Close</button>
+            </div>
+            <pre id="lean-code"
+                style="white-space:pre-wrap; margin-top:1rem; font-family:'JetBrains Mono', monospace; font-size:0.9rem; color:#e6e6e6; max-height:420px; overflow:auto;"></pre>
+        </div>
+    </section>
     <section class="content-section">
         <h2 class="section-title">Featured Experiences</h2>
         <p class="section-subtitle">
@@ -1723,6 +1508,43 @@
             setTimeout(() => {
                 document.body.style.opacity = '1';
             }, 100);
+
+            // Load Lean proofs list from backend if available
+            (async function loadLeanProofs() {
+                const container = document.getElementById('lean-proofs');
+                if (!container) return;
+                try {
+                    const res = await fetch('/unity-meta/lean/proofs');
+                    if (!res.ok) throw new Error('No backend');
+                    const data = await res.json();
+                    if (Array.isArray(data) && data.length) {
+                        container.innerHTML = data.map(item => `
+                            <div class="feature-card" data-filename="${item.path.split('/').pop()}">
+                                <span class="feature-icon">📄</span>
+                                <h3 class="feature-title">${item.title}</h3>
+                                <p class="feature-description">${item.path} • ${item.bytes} bytes</p>
+                                <p class="feature-description" style="font-size:0.8rem; opacity:0.8;">sha256: ${item.sha256.slice(0, 16)}…</p>
+                            </div>
+                        `).join('');
+                        container.querySelectorAll('.feature-card').forEach(card => {
+                            card.addEventListener('click', async () => {
+                                const filename = card.getAttribute('data-filename');
+                                try {
+                                    const r = await fetch(`/unity-meta/lean/proof/${filename}`);
+                                    const j = await r.json();
+                                    const pre = document.getElementById('lean-code');
+                                    pre.textContent = j.code || 'Unavailable';
+                                    document.getElementById('lean-proof-viewer').style.display = 'block';
+                                } catch (err) { console.warn(err); }
+                            });
+                        });
+                    } else {
+                        container.innerHTML = `<div class="feature-card"><h3 class="feature-title">Formal proofs</h3><p class="feature-description">Start the backend to fetch Lean artifacts.</p></div>`
+                    }
+                } catch (e) {
+                    container.innerHTML = `<div class="feature-card"><h3 class="feature-title">Formal proofs</h3><p class="feature-description">Backend offline. Static gallery available in repository.</p></div>`
+                }
+            })();
         });
     </script>
 </body>

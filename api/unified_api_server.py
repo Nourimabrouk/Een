@@ -51,8 +51,8 @@ try:
     from consciousness.field_equation_solver import create_consciousness_field_solver, FieldConfiguration, FieldEquationType, SolutionMethod
     from consciousness.sacred_geometry_engine import create_sacred_geometry_engine, SacredGeometryConfig, SacredPattern, VisualizationMode
     from consciousness.unity_meditation_system import create_unity_meditation_guide, MeditationConfig, MeditationType
-    from src.core.visualization_engine import create_consciousness_visualization_engine, VisualizationConfig
-    from src.core.proof_renderer import create_proof_renderer, ProofConfig
+    from core.visualization.visualization_engine import create_consciousness_visualization_engine, VisualizationConfig
+    from core.visualization.proof_renderer import create_proof_renderer, ProofConfig
     from ml_framework.meta_reinforcement.unity_meta_agent import UnityMetaAgent
     from proofs.unified_proof import generate_comprehensive_unity_proof
 except ImportError as e:

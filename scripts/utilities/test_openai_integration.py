@@ -55,8 +55,8 @@ class OpenAIIntegrationTester:
             from src.openai.unity_client import UnityOpenAIClient, UnityOpenAIConfig
 
             # Test core unity mathematics imports
-            from src.core.unity_mathematics import UnityMathematics
-            from src.core.consciousness_models import ConsciousnessField
+            from core.mathematical.unity_mathematics import UnityMathematics
+            from core.consciousness.consciousness_models import ConsciousnessField
 
             logger.info("✅ All imports successful")
             return True
@@ -98,7 +98,7 @@ class OpenAIIntegrationTester:
         logger.info("🧪 Testing unity mathematics...")
 
         try:
-            from src.core.unity_mathematics import UnityMathematics
+            from core.mathematical.unity_mathematics import UnityMathematics
 
             unity_math = UnityMathematics()
 
@@ -122,7 +122,7 @@ class OpenAIIntegrationTester:
         logger.info("🧪 Testing consciousness field...")
 
         try:
-            from src.core.consciousness_models import ConsciousnessField
+            from core.consciousness.consciousness_models import ConsciousnessField
 
             consciousness_field = ConsciousnessField(particles=200)
 

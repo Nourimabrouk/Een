@@ -10,89 +10,39 @@ class PersistentAudioSystem {
         this.isPlaying = false;
         this.currentTrack = null;
         this.currentTime = 0;
-        this.volume = 0.3;
+        this.volume = 0.18;
         this.isVisible = false; // start minimized (non-intrusive)
-
-        // Available tracks (including existing MP3s)
-        this.tracks = [
-            {
-                id: 'one-u2',
-                name: 'One - U2',
-                url: 'audio/U2 - One.webm',
-                duration: 276,
-                artist: 'U2',
-                album: 'Achtung Baby',
-                isDefault: true
-            },
-            {
-                id: 'always-bon-jovi',
-                name: 'Always - Bon Jovi',
-                url: 'audio/Bon Jovi - Always.webm',
-                duration: 351,
-                artist: 'Bon Jovi',
-                album: 'Cross Road'
-            },
-            {
-                id: 'i-want-to-know-what-love-is',
-                name: 'I Want to Know What Love Is - Foreigner',
-                url: 'audio/Foreigner - I Want to Know What Love Is.webm',
-                duration: 297,
-                artist: 'Foreigner',
-                album: 'Agent Provocateur'
-            },
-            {
-                id: 'unity-thefatrat',
-                name: 'Unity - TheFatRat',
-                url: 'audio/TheFatRat - Unity.mp3',
-                duration: 270,
-                artist: 'TheFatRat',
-                album: 'NCS'
-            },
-            {
-                id: 'one-love-bob-marley',
-                name: 'One Love - Bob Marley',
-                url: 'audio/Bob Marley - One Love.mp3',
-                duration: 210,
-                artist: 'Bob Marley',
-                album: 'Legend'
-            },
-            {
-                id: 'consciousness-flow',
-                name: 'Consciousness Flow',
-                url: 'audio/consciousness-flow.mp3',
-                duration: 240,
-                artist: 'Unity Mathematics',
-                album: 'φ-Harmonic Series',
-                isGenerated: true
-            },
-            {
-                id: 'phi-harmonic',
-                name: 'φ-Harmonic Resonance',
-                url: 'audio/phi-harmonic.mp3',
-                duration: 300,
-                artist: 'Unity Mathematics',
-                album: 'φ-Harmonic Series',
-                isGenerated: true
-            },
-            {
-                id: 'unity-meditation',
-                name: 'Unity Meditation',
-                url: 'audio/unity-meditation.mp3',
-                duration: 180,
-                artist: 'Unity Mathematics',
-                album: 'Consciousness Collection',
-                isGenerated: true
-            }
-        ];
-
-        this.init();
+        this.tracks = []; // Will be populated by audio scanner
+        this.audioScanner = null;
     }
 
-    init() {
+    async init() {
         this.loadState();
+        
+        // Initialize audio scanner
+        if (window.AudioScanner) {
+            this.audioScanner = new AudioScanner();
+            try {
+                this.tracks = await this.audioScanner.scanAudioDirectory();
+                console.log('🎵 Dynamic audio scanning complete:', this.tracks.length, 'unique tracks');
+            } catch (error) {
+                console.warn('Audio scanning failed, using fallback tracks:', error);
+                this.tracks = this.audioScanner.getFallbackTracks();
+            }
+        } else {
+            // Fallback if audio scanner not available
+            this.tracks = this.getFallbackTracks();
+        }
+        
         this.createAudioInterface();
         this.attachEventListeners();
         this.resumePlayback();
+
+        // Start minimized but visible control affordance
+        const panel = document.getElementById('persistent-audio-system');
+        if (panel && !this.isVisible) {
+            panel.classList.add('minimized');
+        }
 
         // Save state before page unload
         window.addEventListener('beforeunload', () => this.saveState());
@@ -101,6 +51,57 @@ class PersistentAudioSystem {
         setInterval(() => this.saveState(), 5000);
 
         console.log('🎵 Persistent Audio System initialized');
+    }
+
+    getFallbackTracks() {
+        return [
+            {
+                id: 'unity-thefatrat',
+                name: 'Unity',
+                artist: 'TheFatRat',
+                album: 'NCS',
+                url: 'audio/TheFatRat - Unity.webm',
+                duration: 270,
+                filename: 'TheFatRat - Unity.webm',
+                isDefault: true
+            },
+            {
+                id: 'one-u2',
+                name: 'One',
+                artist: 'U2', 
+                album: 'Achtung Baby',
+                url: 'audio/U2 - One.webm',
+                duration: 276,
+                filename: 'U2 - One.webm'
+            },
+            {
+                id: 'always-bon-jovi',
+                name: 'Always',
+                artist: 'Bon Jovi',
+                album: 'Cross Road', 
+                url: 'audio/Bon Jovi - Always.webm',
+                duration: 351,
+                filename: 'Bon Jovi - Always.webm'
+            },
+            {
+                id: 'i-want-to-know-what-love-is',
+                name: 'I Want to Know What Love Is',
+                artist: 'Foreigner',
+                album: 'Agent Provocateur',
+                url: 'audio/Foreigner - I Want to Know What Love Is.webm', 
+                duration: 297,
+                filename: 'Foreigner - I Want to Know What Love Is.webm'
+            },
+            {
+                id: 'one-love-bob-marley',
+                name: 'One Love',
+                artist: 'Bob Marley',
+                album: 'Legend',
+                url: 'audio/Bob Marley - One Love.webm',
+                duration: 210,
+                filename: 'Bob Marley - One Love.webm'
+            }
+        ];
     }
 
     createAudioInterface() {
@@ -150,9 +151,9 @@ class PersistentAudioSystem {
                 </div>
                 <div class="track-selector">
                     <select class="track-select">
-                        ${this.tracks.map(track =>
+                        ${this.tracks.length > 0 ? this.tracks.map(track =>
             `<option value="${track.id}">${track.name}${track.artist ? ' - ' + track.artist : ''}</option>`
-        ).join('')}
+        ).join('') : '<option value="">Loading tracks...</option>'}
                     </select>
                 </div>
             </div>
@@ -551,6 +552,11 @@ class PersistentAudioSystem {
 
         this.audio.addEventListener('loadeddata', () => {
             this.updateTrackInfo();
+            // Start non-invasively (play if user interacted previously)
+            if (this.isPlaying) {
+                this.audio.currentTime = this.currentTime || 0;
+                this.audio.play().catch(() => { });
+            }
         });
 
         this.audio.addEventListener('play', () => {
@@ -912,14 +918,18 @@ class PersistentAudioSystem {
 // Initialize persistent audio system
 let persistentAudioSystem;
 
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-        persistentAudioSystem = new PersistentAudioSystem();
-        window.persistentAudioSystem = persistentAudioSystem;
-    });
-} else {
+async function initializePersistentAudio() {
     persistentAudioSystem = new PersistentAudioSystem();
     window.persistentAudioSystem = persistentAudioSystem;
+    await persistentAudioSystem.init();
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        initializePersistentAudio();
+    });
+} else {
+    initializePersistentAudio();
 }
 
 // Export for module systems

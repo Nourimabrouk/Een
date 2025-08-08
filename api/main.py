@@ -28,7 +28,7 @@ sys.path.insert(0, str(project_root))
 
 # Import our consciousness modules
 try:
-    from src.core.unity_equation import UnityEquation
+    from core.mathematical.unity_equation import UnityEquation
     from src.consciousness.consciousness_engine import ConsciousnessEngine
     from src.agents.consciousness_chat_agent import ConsciousnessChatAgent
     from src.dashboards.unity_proof_dashboard import create_unity_proof_app
@@ -44,6 +44,8 @@ from api.routes import (
     visualizations,
     gallery,
     chat,
+    openai as openai_routes,
+    openai_byok,
     unity_meta,
 )
 
@@ -183,6 +185,8 @@ app.include_router(agents.router)
 app.include_router(visualizations.router)
 app.include_router(gallery.router)
 app.include_router(chat.router)
+app.include_router(openai_routes.router)
+app.include_router(openai_byok.router)
 app.include_router(unity_meta.router)
 
 # API Routes

@@ -1311,7 +1311,7 @@ def setup_sidebar():
     
     Each page demonstrates unity through different mathematical lenses:
     
-    - **Unity Proofs**: Core mathematical demonstrations
+    - **Unity Proofs**: Core mathematical demonstrations (see: Pages → Unity Proof Panel)
     - **Consciousness Fields**: Quantum field visualizations
     - **Quantum Unity**: Quantum mechanical proofs
     """

@@ -91,8 +91,8 @@ try:
         create_unity_meditation_guide,
         MeditationConfig,
     )
-    from src.core.visualization_engine import create_consciousness_visualization_engine
-    from src.core.proof_renderer import create_proof_renderer
+    from core.visualization.visualization_engine import create_consciousness_visualization_engine
+    from core.visualization.proof_renderer import create_proof_renderer
     from ml_framework.meta_reinforcement.unity_meta_agent import UnityMetaAgent
     from core.unity_mathematics import UnityMathematics
     from core.consciousness_api import ConsciousnessAPI

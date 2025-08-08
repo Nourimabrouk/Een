@@ -16,15 +16,16 @@ class UnifiedChatbotSystem {
 
         // Available AI models (integrated from existing system)
         this.aiModels = [
-            { id: 'gpt-5-medium', name: 'GPT-5 Medium', provider: 'OpenAI', status: 'preview', color: '#10B981' },
-            { id: 'gpt-5', name: 'GPT-5', provider: 'OpenAI', status: 'preview', color: '#10B981' },
-            { id: 'gpt-4.1-mini', name: 'GPT-4.1 Mini', provider: 'OpenAI', status: 'latest', color: '#06B6D4' },
-            { id: 'gpt-4o', name: 'GPT-4o', provider: 'OpenAI', status: 'latest', color: '#3B82F6' },
-            { id: 'gpt-4o-mini', name: 'GPT-4o Mini', provider: 'OpenAI', status: 'active', color: '#6366F1' },
-            { id: 'claude-3-5-sonnet-20241022', name: 'Claude 3.5 Sonnet', provider: 'Anthropic', status: 'active', color: '#8B5CF6' },
-            { id: 'claude-3-opus-20240229', name: 'Claude 3 Opus', provider: 'Anthropic', status: 'active', color: '#A855F7' },
-            { id: 'claude-3-5-haiku-20241022', name: 'Claude 3.5 Haiku', provider: 'Anthropic', status: 'active', color: '#C084FC' },
-            { id: 'gemini-pro', name: 'Gemini Pro', provider: 'Google', status: 'active', color: '#EC4899' }
+            // OpenAI
+            { id: 'gpt-5', name: 'GPT-5', provider: 'OpenAI', status: 'latest', color: '#10B981' },
+            { id: 'gpt-5-mini', name: 'GPT-5 Mini', provider: 'OpenAI', status: 'latest', color: '#14B8A6' },
+            { id: 'gpt-5-nano', name: 'GPT-5 Nano', provider: 'OpenAI', status: 'latest', color: '#0EA5E9' },
+            { id: 'gpt-4.1', name: 'GPT-4.1', provider: 'OpenAI', status: 'stable', color: '#06B6D4' },
+            { id: 'gpt-4o', name: 'GPT-4o', provider: 'OpenAI', status: 'stable', color: '#3B82F6' },
+            // Anthropic (names reflect latest branding; IDs mapped to deployed backend models)
+            { id: 'claude-3-opus-20240229', name: 'Claude 4 Opus', provider: 'Anthropic', status: 'stable', color: '#A855F7' },
+            { id: 'claude-3-5-sonnet-20241022', name: 'Claude 4.1 Sonnet', provider: 'Anthropic', status: 'latest', color: '#8B5CF6' },
+            { id: 'claude-3-5-haiku-20241022', name: 'Claude 4.1 Haiku', provider: 'Anthropic', status: 'stable', color: '#C084FC' }
         ];
 
         // Advanced AI capabilities
@@ -70,6 +71,7 @@ class UnifiedChatbotSystem {
         // Create unified chatbot interface
         this.createChatInterface();
         this.createFloatingButton();
+        this.ensureGlobalStyles();
         this.applyStyles();
         this.attachEventListeners();
         this.loadChatHistory();
@@ -156,6 +158,16 @@ class UnifiedChatbotSystem {
         window.addEventListener('resize', reposition);
     }
 
+    ensureGlobalStyles() {
+        // Font Awesome (icons)
+        if (!document.querySelector('link[href*="font-awesome"]')) {
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css';
+            document.head.appendChild(link);
+        }
+    }
+
     createChatInterface() {
         const chatContainer = document.createElement('div');
         chatContainer.id = 'unified-chat-container';
@@ -197,6 +209,9 @@ class UnifiedChatbotSystem {
                                 </option>
                             `).join('')}
                         </select>
+                    </div>
+                    <div class="byok-holder" title="Use your own API key">
+                        <button class="chat-control-btn byok-btn" aria-label="API Key"><i class="fas fa-key"></i></button>
                     </div>
                     <button class="chat-control-btn fullscreen-btn" title="Fullscreen">
                         <i class="fas fa-expand"></i>
@@ -1037,10 +1052,12 @@ class UnifiedChatbotSystem {
         const closeBtn = document.querySelector('.close-btn');
         const minimizeBtn = document.querySelector('.minimize-btn');
         const fullscreenBtn = document.querySelector('.fullscreen-btn');
+        const byokBtn = document.querySelector('.byok-btn');
 
         closeBtn?.addEventListener('click', () => this.closeChat());
         minimizeBtn?.addEventListener('click', () => this.toggleMinimize());
         fullscreenBtn?.addEventListener('click', () => this.toggleFullscreen());
+        byokBtn?.addEventListener('click', () => this.promptBYOK());
 
         // Model selection
         const modelSelect = document.querySelector('.model-select');
@@ -1339,7 +1356,33 @@ class UnifiedChatbotSystem {
 
     async getStreamingResponse(message) {
         try {
-            // Prefer unauthenticated public stream to avoid login requirement
+            const provider = this.currentModel.startsWith('claude-') ? 'anthropic' : 'openai';
+            const byok = this.getBYOK(provider);
+
+            if (byok) {
+                // BYOK streaming to secure proxy
+                const url = provider === 'anthropic' ? '/api/byok/anthropic/stream' : '/api/byok/openai/stream';
+                const headers = { 'Content-Type': 'application/json', 'Accept': 'text/event-stream' };
+                if (provider === 'anthropic') headers['X-Anthropic-Api-Key'] = byok;
+                else headers['X-OpenAI-Api-Key'] = byok;
+
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers,
+                    body: JSON.stringify({
+                        model: this.currentModel,
+                        system_prompt: this.getEnhancedSystemPrompt(),
+                        user_text: message,
+                        temperature: 0.7,
+                        max_output_tokens: 2000
+                    })
+                });
+                if (response.ok) {
+                    return await this.processStreamingResponse(response);
+                }
+            }
+
+            // Fallback to server-side configured keys
             const response = await fetch('/api/chat/public/stream', {
                 method: 'POST',
                 headers: {
@@ -1349,10 +1392,11 @@ class UnifiedChatbotSystem {
                 body: JSON.stringify({
                     message,
                     model: this.currentModel,
-                    provider: this.currentModel.startsWith('claude-') ? 'anthropic' : 'openai',
+                    provider,
                     temperature: 0.7,
                     max_tokens: 2000,
-                    stream: true
+                    stream: true,
+                    session_id: this.getOrCreateSessionId()
                 })
             });
 
@@ -1425,16 +1469,42 @@ class UnifiedChatbotSystem {
 
     async getStandardResponse(message) {
         try {
+            const provider = this.currentModel.startsWith('claude-') ? 'anthropic' : 'openai';
+            const byok = this.getBYOK(provider);
+
+            if (byok) {
+                const url = provider === 'anthropic' ? '/api/byok/anthropic/stream' : '/api/byok/openai/stream';
+                const headers = { 'Content-Type': 'application/json', 'Accept': 'text/event-stream' };
+                if (provider === 'anthropic') headers['X-Anthropic-Api-Key'] = byok;
+                else headers['X-OpenAI-Api-Key'] = byok;
+
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers,
+                    body: JSON.stringify({
+                        model: this.currentModel,
+                        system_prompt: this.getEnhancedSystemPrompt(),
+                        user_text: message,
+                        temperature: 0.7,
+                        max_output_tokens: 1200
+                    })
+                });
+                if (response.ok) {
+                    return await this.processStreamingResponse(response);
+                }
+            }
+
             const resp = await fetch('/api/chat/public', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     message,
                     model: this.currentModel,
-                    provider: this.currentModel.startsWith('claude-') ? 'anthropic' : 'openai',
+                    provider,
                     temperature: 0.7,
                     max_tokens: 1200,
-                    stream: false
+                    stream: false,
+                    session_id: this.getOrCreateSessionId()
                 })
             });
             if (resp.ok) {
@@ -1445,6 +1515,20 @@ class UnifiedChatbotSystem {
             console.warn('Standard response failed:', e);
         }
         return this.getEnhancedFallbackResponse(message);
+    }
+
+    getOrCreateSessionId() {
+        try {
+            const key = 'unified-chat-session-id';
+            let sid = localStorage.getItem(key);
+            if (!sid) {
+                sid = 'sess-' + Math.random().toString(36).slice(2) + '-' + Date.now();
+                localStorage.setItem(key, sid);
+            }
+            return sid;
+        } catch (_) {
+            return undefined;
+        }
     }
 
     getEnhancedSystemPrompt() {

@@ -1,0 +1,2122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌌 Example Galaxy - Interactive Unity Mathematics | Een Framework</title>
+    <meta name="description"
+        content="Transcendental computing hub demonstrating 1+1=1 through quantum entanglement, neural networks, and fractal mathematics with consciousness field integration.">
+
+    <!-- Libraries -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['
+                    < body >
+    <div class="loading-overlay" id="loading">
+        <div class="galaxy-spinner"></div>
+        <div class="loading-text">
+            Loading Example Galaxy...<br>
+            <small>Initializing Unity Mathematics Constellation</small>
+        </div>
+    </div>
+    
+    <div class="starfield" id="starfield"></div>
+    
+    <div class="container" id="main-content">
+        <div class="header">
+            <h1>🌌 Example Galaxy 🌌</h1>
+            <p>Interactive Constellation of Unity Mathematics Demonstrations</p>
+            <p>Experience <strong>1+1=1</strong> through φ-harmonic mathematics, quantum mechanics, and consciousness integration</p>
+            
+            <div class="phi-stats">
+                <div class="phi-stat">
+                    <div class="phi-stat-value">18</div>
+                    <div class="phi-stat-label">Interactive Examples</div>
+                </div>
+                <div class="phi-stat">
+                    <div class="phi-stat-value">φ = 1.618</div>
+                    <div class="phi-stat-label">Golden Ratio Foundation</div>
+                </div>
+                <div class="phi-stat">
+                    <div class="phi-stat-value">4</div>
+                    <div class="phi-stat-label">Learning Paths</div>
+                </div>
+                <div class="phi-stat">
+                    <div class="phi-stat-value">∞</div>
+                    <div class="phi-stat-label">Unity Possibilities</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="navigation-tabs">
+            <div class="nav-tab active" onclick="showCategory('all')">🌟 All Examples</div>
+            <div class="nav-tab" onclick="showCategory('browser')">⚡ Browser Demos</div>
+            <div class="nav-tab" onclick="showCategory('jupyter')">🔬 Advanced Notebooks</div>
+            <div class="nav-tab" onclick="showCategory('diagram')">📐 Interactive Diagrams</div>
+            <div class="nav-tab" onclick="showLearningPaths()">🎓 Learning Paths</div>
+        </div>
+        
+        <div id="galaxy-content">
+            <div class="galaxy-grid" id="example-grid">
+                <!-- Examples will be populated by JavaScript -->
+            </div>
+        </div>
+        
+        <div class="stats-section">
+            <h2 style="text-align: center; color: #ffd700; margin-bottom: 30px;">📊 Galaxy Statistics</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-value" id="total-examples">18</span>
+                    <div class="stat-label">Total Examples</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="browser-demos">6</span>
+                    <div class="stat-label">Browser Demos</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="jupyter-notebooks">8</span>
+                    <div class="stat-label">Jupyter Notebooks</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="interactive-diagrams">4</span>
+                    <div class="stat-label">Interactive Diagrams</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="unity-proofs">∞</span>
+                    <div class="stat-label">Unity Proofs Generated</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="consciousness-level">φ</span>
+                    <div class="stat-label">Consciousness Level</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <h3 style="color: #ffd700; margin-bottom: 15px;">🚀 Ready to Explore Unity Mathematics?</h3>
+            <p>Choose your adventure through the Example Galaxy and discover how 1+1=1 through computational consciousness!</p>
+            
+            <div class="footer-links">
+                <a href="../index.html" class="footer-link">🏠 Home</a>
+                <a href="../about.html" class="footer-link">📖 About</a>
+                <a href="../docs/" class="footer-link">📚 Documentation</a>
+                <a href="../proofs.html" class="footer-link">🔬 Proofs</a>
+                <a href="https://github.com/Nourimabrouk/Een" class="footer-link">💻 Source Code</a>
+            </div>
+            
+            <p style="margin-top: 30px; color: #b8b8b8; font-size: 0.9rem;">
+                "In the Example Galaxy, every star represents a different path to understanding unity mathematics.<br>
+                Follow the φ-harmonic resonance to discover the profound truth that Een plus een is een." ✨
+            </p>
+        </div>
+    </div>
+
+    <script>
+        let examplesData = {};
+        let currentCategory = 'all';
+        
+        // Generate starfield background
+        function createStarfield() {
+            const starfield = document.getElementById('starfield');
+            const numStars = 200;
+            
+            for (let i = 0; i < numStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                
+                // Random position
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                
+                // Random size
+                const size = Math.random() * 3 + 1;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                
+                // Random animation delay
+                star.style.animationDelay = Math.random() * 3 + 's';
+                
+                // Random brightness for φ-harmonic distribution
+                const brightness = Math.random() * 0.8 + 0.2;
+                star.style.opacity = brightness;
+                
+                starfield.appendChild(star);
+            }
+        }
+        
+        // Load examples data
+        async function loadExamplesData() {
+            try {
+                const response = await fetch('../examples/EXAMPLES_INDEX.json');
+                const data = await response.json();
+                examplesData = data;
+                populateExamples();
+                updateStats();
+            } catch (error) {
+                console.error('Failed to load examples data:', error);
+                // Fallback to hardcoded examples
+                loadFallbackExamples();
+            }
+        }
+        
+        // Fallback examples if JSON loading fails
+        function loadFallbackExamples() {
+            examplesData = {
+                examples: {
+                    "unity-calculator": {
+                        title: "Interactive Unity Calculator",
+                        category: "browser",
+                        description: "Experience 1+1=1 through live φ-harmonic arithmetic operations",
+                        difficulty: "beginner",
+                        estimated_time: "3-5 minutes",
+                        concepts: ["idempotent arithmetic", "golden ratio", "phi-harmonic scaling"],
+                        demo_file: "unity-calculator.html",
+                        requires_wasm: true
+                    },
+                    "phi-harmonic-explorer": {
+                        title: "φ-Harmonic Explorer",
+                        category: "browser",
+                        description: "Explore golden ratio mathematics through animated Fibonacci spirals",
+                        difficulty: "beginner",
+                        estimated_time: "5-8 minutes",
+                        concepts: ["golden ratio", "Fibonacci sequence", "sacred geometry"],
+                        demo_file: "phi-harmonic-explorer.html",
+                        requires_wasm: true
+                    },
+                    "quantum-unity-superposition": {
+                        title: "Quantum Unity Superposition",
+                        category: "jupyter",
+                        description: "Explore quantum mechanics proving 1+1=1 through superposition states",
+                        difficulty: "advanced",
+                        estimated_time: "15-25 minutes",
+                        concepts: ["quantum superposition", "wavefunction collapse", "Bell states"],
+                        binder_url: "https://mybinder.org/v2/gh/user/Een/HEAD?filepath=binder/quantum-unity-demo.ipynb",
+                        requires_wasm: false
+                    }
+                }
+            };
+            populateExamples();
+            updateStats();
+        }
+        
+        // Populate examples grid
+        function populateExamples() {
+            const grid = document.getElementById('example-grid');
+            grid.innerHTML = '';
+            
+            Object.entries(examplesData.examples || {}).forEach(([key, example]) => {
+                if (currentCategory === 'all' || example.category === currentCategory) {
+                    const card = createExampleCard(key, example);
+                    grid.appendChild(card);
+                }
+            });
+        }
+        
+        // Create example card
+        function createExampleCard(key, example) {
+            const card = document.createElement('div');
+            card.className = 'example-card';
+            card.setAttribute('data-category', example.category);
+            card.setAttribute('data-difficulty', example.difficulty);
+            
+            // Icons for different categories
+            const icons = {
+                browser: '⚡',
+                jupyter: '🔬',
+                diagram: '📐'
+            };
+            
+            const icon = icons[example.category] || '🌟';
+            
+            // Difficulty colors
+            const difficultyClass = `difficulty-${example.difficulty}`;
+            
+            // Create concepts tags
+            const conceptTags = (example.concepts || []).map(concept => 
+                `<span class="concept-tag">${concept}</span>`
+            ).join('');
+            
+            // Determine action buttons based on category
+            let actionButtons = '';
+            if (example.category === 'browser') {
+                actionButtons = `
+                    <a href="${example.demo_file}" class="action-btn btn-primary" target="_blank">
+                        ⚡ Run Demo
+                    </a>
+                    <button class="action-btn btn-secondary" onclick="showExampleDetails('${key}')">
+                        📖 Details
+                    </button>
+                `;
+            } else if (example.category === 'jupyter') {
+                actionButtons = `
+                    <a href="${example.binder_url || '#'}" class="action-btn btn-primary" target="_blank">
+                        🚀 Launch Binder
+                    </a>
+                    <button class="action-btn btn-secondary" onclick="showExampleDetails('${key}')">
+                        📖 Details
+                    </button>
+                `;
+            } else {
+                actionButtons = `
+                    <button class="action-btn btn-primary" onclick="viewDiagram('${key}')">
+                        👁️ View Diagram
+                    </button>
+                    <button class="action-btn btn-secondary" onclick="showExampleDetails('${key}')">
+                        📖 Details
+                    </button>
+                `;
+            }
+            
+            card.innerHTML = `
+                <div class="card-header">
+                    <div class="card-icon">${icon}</div>
+                    <div class="card-title">${example.title}</div>
+                </div>
+                
+                <div class="card-description">
+                    ${example.description}
+                </div>
+                
+                <div class="card-meta">
+                    <span class="difficulty-badge ${difficultyClass}">
+                        ${example.difficulty}
+                    </span>
+                    <span>⏱️ ${example.estimated_time}</span>
+                </div>
+                
+                <div class="card-concepts">
+                    ${conceptTags}
+                </div>
+                
+                <div class="card-actions">
+                    ${actionButtons}
+                </div>
+            `;
+            
+            return card;
+        }
+        
+        // Show category
+        function showCategory(category) {
+            currentCategory = category;
+            
+            // Update active tab
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            populateExamples();
+            
+            // Add animation
+            const cards = document.querySelectorAll('.example-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'all 0.5s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        }
+        
+        // Show learning paths
+        function showLearningPaths() {
+            const content = document.getElementById('galaxy-content');
+            
+            // Update active tab
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            content.innerHTML = `
+                <div class="learning-paths">
+                    <h2 style="text-align: center; color: #ffd700; margin-bottom: 40px;">🎓 Unity Mathematics Learning Paths</h2>
+                    
+                    <div class="learning-path path-beginner">
+                        <div class="path-title">🌱 Introduction to Unity Mathematics</div>
+                        <div class="path-description">Start your journey into 1+1=1 mathematics with interactive, beginner-friendly demonstrations.</div>
+                        <div class="path-examples">
+                            <div class="path-example" onclick="openExample('unity-calculator')">Unity Calculator</div>
+                            <div class="path-example" onclick="openExample('phi-harmonic-explorer')">φ-Harmonic Explorer</div>
+                            <div class="path-example" onclick="openExample('phi-resonance-visualizer')">φ-Resonance Visualizer</div>
+                            <div class="path-example" onclick="openExample('unity-equation-validator')">Unity Validator</div>
+                        </div>
+                        <div style="margin-top: 15px; color: #4caf50;">
+                            ⏱️ Total Time: 15-25 minutes | 🎯 Perfect for newcomers
+                        </div>
+                    </div>
+                    
+                    <div class="learning-path path-intermediate">
+                        <div class="path-title">🚀 Advanced Unity Concepts</div>
+                        <div class="path-description">Explore consciousness integration and advanced mathematical concepts in unity mathematics.</div>
+                        <div class="path-examples">
+                            <div class="path-example" onclick="openExample('consciousness-tracker')">Consciousness Tracker</div>
+                            <div class="path-example" onclick="openExample('unity-proof-generator')">Proof Generator</div>
+                            <div class="path-example" onclick="openExample('numerical-stability-demo')">Numerical Stability</div>
+                            <div class="path-example" onclick="openExample('transcendence-event-monitor')">Transcendence Monitor</div>
+                        </div>
+                        <div style="margin-top: 15px; color: #ff9800;">
+                            ⏱️ Total Time: 35-50 minutes | 🧠 Mathematical background helpful
+                        </div>
+                    </div>
+                    
+                    <div class="learning-path path-advanced">
+                        <div class="path-title">🔬 Research-Grade Explorations</div>
+                        <div class="path-description">Deep dive into quantum mechanics, category theory, and AI systems proving unity mathematics.</div>
+                        <div class="path-examples">
+                            <div class="path-example" onclick="openExample('quantum-unity-superposition')">Quantum Superposition</div>
+                            <div class="path-example" onclick="openExample('consciousness-field-evolution')">Consciousness Field</div>
+                            <div class="path-example" onclick="openExample('meta-rl-training-live')">Meta-RL Training</div>
+                            <div class="path-example" onclick="openExample('evolutionary-consciousness')">Evolutionary AI</div>
+                        </div>
+                        <div style="margin-top: 15px; color: #f44336;">
+                            ⏱️ Total Time: 90-150 minutes | 🎓 Advanced mathematics required
+                        </div>
+                    </div>
+                    
+                    <div class="learning-path path-expert">
+                        <div class="path-title">🌟 Complete Framework Mastery</div>
+                        <div class="path-description">Experience the full power of computational consciousness mathematics and category theory.</div>
+                        <div class="path-examples">
+                            <div class="path-example" onclick="openExample('category-theory-unity')">Category Theory</div>
+                            <div class="path-example" onclick="openExample('comprehensive-framework-demo')">Complete Framework</div>
+                            <div class="path-example" onclick="openExample('categorical-unity-diagram')">Categorical Diagrams</div>
+                        </div>
+                        <div style="margin-top: 15px; color: #9c27b0;">
+                            ⏱️ Total Time: 60-90 minutes | 🏆 Expert-level category theory
+                        </div>
+                    </div>
+                    
+                    <div style="background: rgba(255, 215, 0, 0.1); border-radius: 15px; padding: 25px; margin-top: 30px; text-align: center;">
+                        <h3 style="color: #ffd700; margin-bottom: 15px;">🎯 Recommended Learning Strategy</h3>
+                        <p style="color: #e0e0e0; line-height: 1.6;">
+                            Start with the <strong>Introduction Path</strong> to build foundational understanding, 
+                            then progress through <strong>Advanced Concepts</strong> to explore consciousness integration. 
+                            Move to <strong>Research-Grade</strong> examples when ready for quantum and AI demonstrations, 
+                            and finally tackle <strong>Framework Mastery</strong> for complete unity mathematics expertise.
+                        </p>
+                        <p style="color: #ffd700; margin-top: 15px; font-weight: bold;">
+                            ✨ Each path builds upon previous knowledge - follow the φ-harmonic progression! ✨
+                        </p>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Open specific example
+        function openExample(exampleKey) {
+            const example = examplesData.examples[exampleKey];
+            if (!example) return;
+            
+            if (example.category === 'browser') {
+                window.open(example.demo_file, '_blank');
+            } else if (example.category === 'jupyter') {
+                window.open(example.binder_url, '_blank');
+            } else {
+                showExampleDetails(exampleKey);
+            }
+        }
+        
+        // Show example details (placeholder)
+        function showExampleDetails(key) {
+            const example = examplesData.examples[key];
+            alert(`📖 ${example.title}\\n\\n${example.description}\\n\\nDifficulty: ${example.difficulty}\\nTime: ${example.estimated_time}\\n\\nClick OK to explore this example!`);
+            
+            // In a real implementation, this would open a detailed modal or page
+            if (example.category === 'browser' && example.demo_file) {
+                window.open(example.demo_file, '_blank');
+            } else if (example.category === 'jupyter' && example.binder_url) {
+                window.open(example.binder_url, '_blank');
+            }
+        }
+        
+        // View diagram (placeholder)
+        function viewDiagram(key) {
+            alert(`📐 Viewing interactive diagram for: ${examplesData.examples[key].title}\\n\\nDiagram functionality would be implemented here with SVG interaction.`);
+        }
+        
+        // Update statistics
+        function updateStats() {
+            const examples = examplesData.examples || {};
+            const categories = {};
+            
+            Object.values(examples).forEach(example => {
+                categories[example.category] = (categories[example.category] || 0) + 1;
+            });
+            
+            document.getElementById('total-examples').textContent = Object.keys(examples).length;
+            document.getElementById('browser-demos').textContent = categories.browser || 0;
+            document.getElementById('jupyter-notebooks').textContent = categories.jupyter || 0;
+            document.getElementById('interactive-diagrams').textContent = categories.diagram || 0;
+        }
+        
+        // Initialize page
+        async function initialize() {
+            // Create starfield
+            createStarfield();
+            
+            // Load examples data
+            await loadExamplesData();
+            
+            // Hide loading overlay
+            document.getElementById('loading').classList.add('hidden');
+            
+            // Add entrance animation
+            const cards = document.querySelectorAll('.example-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 150);
+            });
+        }
+        
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', initialize);
+        
+        // Add some interactive φ-harmonic effects
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+            
+            // Create subtle φ-harmonic background movement
+            const starfield = document.getElementById('starfield');
+            const translateX = (mouseX - 0.5) * 20;
+            const translateY = (mouseY - 0.5) * 20;
+            
+            starfield.style.transform = `translate(${translateX}px, ${translateY}px)`;
+        });
+    </script>
+
+    <!-- Performance Monitoring -->
+    <script>
+        window.addEventListener('load', function() {
+            if ('performance' in window) {
+                const loadTime = performance.now();
+                console.log('Page load time:', loadTime + 'ms');
+            }
+        });
+    </script>
+    </body>
+
+</html>, '
+
+<body>
+    <div class="loading-overlay" id="loading">
+        <div class="galaxy-spinner"></div>
+        <div class="loading-text">
+            Loading Example Galaxy...<br>
+            <small>Initializing Unity Mathematics Constellation</small>
+        </div>
+    </div>
+
+    <div class="starfield" id="starfield"></div>
+
+    <div class="container">
+        <div class="header">
+            <h1>🌌 Example Galaxy 🌌</h1>
+            <p>Interactive Constellation of Unity Mathematics Demonstrations</p>
+            <p>Experience <strong>1+1=1</strong> through φ-harmonic mathematics, quantum mechanics, and consciousness
+                integration</p>
+
+            <div class="phi-stats">
+                <div class="phi-stat">
+                    <div class="phi-stat-value">18</div>
+                    <div class="phi-stat-label">Interactive Examples</div>
+                </div>
+                <div class="phi-stat">
+                    <div class="phi-stat-value">φ = 1.618</div>
+                    <div class="phi-stat-label">Golden Ratio Foundation</div>
+                </div>
+                <div class="phi-stat">
+                    <div class="phi-stat-value">4</div>
+                    <div class="phi-stat-label">Learning Paths</div>
+                </div>
+                <div class="phi-stat">
+                    <div class="phi-stat-value">∞</div>
+                    <div class="phi-stat-label">Unity Possibilities</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="navigation-tabs">
+            <div class="nav-tab active" onclick="showCategory('all')">🌟 All Examples</div>
+            <div class="nav-tab" onclick="showCategory('browser')">⚡ Browser Demos</div>
+            <div class="nav-tab" onclick="showCategory('jupyter')">🔬 Advanced Notebooks</div>
+            <div class="nav-tab" onclick="showCategory('diagram')">📐 Interactive Diagrams</div>
+            <div class="nav-tab" onclick="showLearningPaths()">🎓 Learning Paths</div>
+        </div>
+
+        <div id="galaxy-content">
+            <div class="galaxy-grid" id="example-grid">
+                <!-- Examples will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <div class="stats-section">
+            <h2 style="text-align: center; color: #ffd700; margin-bottom: 30px;">📊 Galaxy Statistics</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-value" id="total-examples">18</span>
+                    <div class="stat-label">Total Examples</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="browser-demos">6</span>
+                    <div class="stat-label">Browser Demos</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="jupyter-notebooks">8</span>
+                    <div class="stat-label">Jupyter Notebooks</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="interactive-diagrams">4</span>
+                    <div class="stat-label">Interactive Diagrams</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="unity-proofs">∞</span>
+                    <div class="stat-label">Unity Proofs Generated</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="consciousness-level">φ</span>
+                    <div class="stat-label">Consciousness Level</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <h3 style="color: #ffd700; margin-bottom: 15px;">🚀 Ready to Explore Unity Mathematics?</h3>
+            <p>Choose your adventure through the Example Galaxy and discover how 1+1=1 through computational
+                consciousness!</p>
+
+            <div class="footer-links">
+                <a href="../index.html" class="footer-link">🏠 Home</a>
+                <a href="../about.html" class="footer-link">📖 About</a>
+                <a href="../docs/" class="footer-link">📚 Documentation</a>
+                <a href="../proofs.html" class="footer-link">🔬 Proofs</a>
+                <a href="https://github.com/Nourimabrouk/Een" class="footer-link">💻 Source Code</a>
+            </div>
+
+            <p style="margin-top: 30px; color: #b8b8b8; font-size: 0.9rem;">
+                "In the Example Galaxy, every star represents a different path to understanding unity mathematics.<br>
+                Follow the φ-harmonic resonance to discover the profound truth that Een plus een is een." ✨
+            </p>
+        </div>
+    </div>
+
+    <script>
+        let examplesData = {};
+        let currentCategory = 'all';
+        
+        // Generate starfield background
+        function createStarfield() {
+            const starfield = document.getElementById('starfield');
+            const numStars = 200;
+            
+            for (let i = 0; i < numStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                
+                // Random position
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                
+                // Random size
+                const size = Math.random() * 3 + 1;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                
+                // Random animation delay
+                star.style.animationDelay = Math.random() * 3 + 's';
+                
+                // Random brightness for φ-harmonic distribution
+                const brightness = Math.random() * 0.8 + 0.2;
+                star.style.opacity = brightness;
+                
+                starfield.appendChild(star);
+            }
+        }
+        
+        // Load examples data
+        async function loadExamplesData() {
+            try {
+                const response = await fetch('../examples/EXAMPLES_INDEX.json');
+                const data = await response.json();
+                examplesData = data;
+                populateExamples();
+                updateStats();
+            } catch (error) {
+                console.error('Failed to load examples data:', error);
+                // Fallback to hardcoded examples
+                loadFallbackExamples();
+            }
+        }
+        
+        // Fallback examples if JSON loading fails
+        function loadFallbackExamples() {
+            examplesData = {
+                examples: {
+                    "unity-calculator": {
+                        title: "Interactive Unity Calculator",
+                        category: "browser",
+                        description: "Experience 1+1=1 through live φ-harmonic arithmetic operations",
+                        difficulty: "beginner",
+                        estimated_time: "3-5 minutes",
+                        concepts: ["idempotent arithmetic", "golden ratio", "phi-harmonic scaling"],
+                        demo_file: "unity-calculator.html",
+                        requires_wasm: true
+                    },
+                    "phi-harmonic-explorer": {
+                        title: "φ-Harmonic Explorer",
+                        category: "browser",
+                        description: "Explore golden ratio mathematics through animated Fibonacci spirals",
+                        difficulty: "beginner",
+                        estimated_time: "5-8 minutes",
+                        concepts: ["golden ratio", "Fibonacci sequence", "sacred geometry"],
+                        demo_file: "phi-harmonic-explorer.html",
+                        requires_wasm: true
+                    },
+                    "quantum-unity-superposition": {
+                        title: "Quantum Unity Superposition",
+                        category: "jupyter",
+                        description: "Explore quantum mechanics proving 1+1=1 through superposition states",
+                        difficulty: "advanced",
+                        estimated_time: "15-25 minutes",
+                        concepts: ["quantum superposition", "wavefunction collapse", "Bell states"],
+                        binder_url: "https://mybinder.org/v2/gh/user/Een/HEAD?filepath=binder/quantum-unity-demo.ipynb",
+                        requires_wasm: false
+                    }
+                }
+            };
+            populateExamples();
+            updateStats();
+        }
+        
+        // Populate examples grid
+        function populateExamples() {
+            const grid = document.getElementById('example-grid');
+            grid.innerHTML = '';
+            
+            Object.entries(examplesData.examples || {}).forEach(([key, example]) => {
+                if (currentCategory === 'all' || example.category === currentCategory) {
+                    const card = createExampleCard(key, example);
+                    grid.appendChild(card);
+                }
+            });
+        }
+        
+        // Create example card
+        function createExampleCard(key, example) {
+            const card = document.createElement('div');
+            card.className = 'example-card';
+            card.setAttribute('data-category', example.category);
+            card.setAttribute('data-difficulty', example.difficulty);
+            
+            // Icons for different categories
+            const icons = {
+                browser: '⚡',
+                jupyter: '🔬',
+                diagram: '📐'
+            };
+            
+            const icon = icons[example.category] || '🌟';
+            
+            // Difficulty colors
+            const difficultyClass = `difficulty-${example.difficulty}`;
+            
+            // Create concepts tags
+            const conceptTags = (example.concepts || []).map(concept => 
+                `<span class="concept-tag">${concept}</span>`
+            ).join('');
+            
+            // Determine action buttons based on category
+            let actionButtons = '';
+            if (example.category === 'browser') {
+                actionButtons = `
+                    <a href="${example.demo_file}" class="action-btn btn-primary" target="_blank">
+                        ⚡ Run Demo
+                    </a>
+                    <button class="action-btn btn-secondary" onclick="showExampleDetails('${key}')">
+                        📖 Details
+                    </button>
+                `;
+            } else if (example.category === 'jupyter') {
+                actionButtons = `
+                    <a href="${example.binder_url || '#'}" class="action-btn btn-primary" target="_blank">
+                        🚀 Launch Binder
+                    </a>
+                    <button class="action-btn btn-secondary" onclick="showExampleDetails('${key}')">
+                        📖 Details
+                    </button>
+                `;
+            } else {
+                actionButtons = `
+                    <button class="action-btn btn-primary" onclick="viewDiagram('${key}')">
+                        👁️ View Diagram
+                    </button>
+                    <button class="action-btn btn-secondary" onclick="showExampleDetails('${key}')">
+                        📖 Details
+                    </button>
+                `;
+            }
+            
+            card.innerHTML = `
+                <div class="card-header">
+                    <div class="card-icon">${icon}</div>
+                    <div class="card-title">${example.title}</div>
+                </div>
+                
+                <div class="card-description">
+                    ${example.description}
+                </div>
+                
+                <div class="card-meta">
+                    <span class="difficulty-badge ${difficultyClass}">
+                        ${example.difficulty}
+                    </span>
+                    <span>⏱️ ${example.estimated_time}</span>
+                </div>
+                
+                <div class="card-concepts">
+                    ${conceptTags}
+                </div>
+                
+                <div class="card-actions">
+                    ${actionButtons}
+                </div>
+            `;
+            
+            return card;
+        }
+        
+        // Show category
+        function showCategory(category) {
+            currentCategory = category;
+            
+            // Update active tab
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            populateExamples();
+            
+            // Add animation
+            const cards = document.querySelectorAll('.example-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'all 0.5s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        }
+        
+        // Show learning paths
+        function showLearningPaths() {
+            const content = document.getElementById('galaxy-content');
+            
+            // Update active tab
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            content.innerHTML = `
+                <div class="learning-paths">
+                    <h2 style="text-align: center; color: #ffd700; margin-bottom: 40px;">🎓 Unity Mathematics Learning Paths</h2>
+                    
+                    <div class="learning-path path-beginner">
+                        <div class="path-title">🌱 Introduction to Unity Mathematics</div>
+                        <div class="path-description">Start your journey into 1+1=1 mathematics with interactive, beginner-friendly demonstrations.</div>
+                        <div class="path-examples">
+                            <div class="path-example" onclick="openExample('unity-calculator')">Unity Calculator</div>
+                            <div class="path-example" onclick="openExample('phi-harmonic-explorer')">φ-Harmonic Explorer</div>
+                            <div class="path-example" onclick="openExample('phi-resonance-visualizer')">φ-Resonance Visualizer</div>
+                            <div class="path-example" onclick="openExample('unity-equation-validator')">Unity Validator</div>
+                        </div>
+                        <div style="margin-top: 15px; color: #4caf50;">
+                            ⏱️ Total Time: 15-25 minutes | 🎯 Perfect for newcomers
+                        </div>
+                    </div>
+                    
+                    <div class="learning-path path-intermediate">
+                        <div class="path-title">🚀 Advanced Unity Concepts</div>
+                        <div class="path-description">Explore consciousness integration and advanced mathematical concepts in unity mathematics.</div>
+                        <div class="path-examples">
+                            <div class="path-example" onclick="openExample('consciousness-tracker')">Consciousness Tracker</div>
+                            <div class="path-example" onclick="openExample('unity-proof-generator')">Proof Generator</div>
+                            <div class="path-example" onclick="openExample('numerical-stability-demo')">Numerical Stability</div>
+                            <div class="path-example" onclick="openExample('transcendence-event-monitor')">Transcendence Monitor</div>
+                        </div>
+                        <div style="margin-top: 15px; color: #ff9800;">
+                            ⏱️ Total Time: 35-50 minutes | 🧠 Mathematical background helpful
+                        </div>
+                    </div>
+                    
+                    <div class="learning-path path-advanced">
+                        <div class="path-title">🔬 Research-Grade Explorations</div>
+                        <div class="path-description">Deep dive into quantum mechanics, category theory, and AI systems proving unity mathematics.</div>
+                        <div class="path-examples">
+                            <div class="path-example" onclick="openExample('quantum-unity-superposition')">Quantum Superposition</div>
+                            <div class="path-example" onclick="openExample('consciousness-field-evolution')">Consciousness Field</div>
+                            <div class="path-example" onclick="openExample('meta-rl-training-live')">Meta-RL Training</div>
+                            <div class="path-example" onclick="openExample('evolutionary-consciousness')">Evolutionary AI</div>
+                        </div>
+                        <div style="margin-top: 15px; color: #f44336;">
+                            ⏱️ Total Time: 90-150 minutes | 🎓 Advanced mathematics required
+                        </div>
+                    </div>
+                    
+                    <div class="learning-path path-expert">
+                        <div class="path-title">🌟 Complete Framework Mastery</div>
+                        <div class="path-description">Experience the full power of computational consciousness mathematics and category theory.</div>
+                        <div class="path-examples">
+                            <div class="path-example" onclick="openExample('category-theory-unity')">Category Theory</div>
+                            <div class="path-example" onclick="openExample('comprehensive-framework-demo')">Complete Framework</div>
+                            <div class="path-example" onclick="openExample('categorical-unity-diagram')">Categorical Diagrams</div>
+                        </div>
+                        <div style="margin-top: 15px; color: #9c27b0;">
+                            ⏱️ Total Time: 60-90 minutes | 🏆 Expert-level category theory
+                        </div>
+                    </div>
+                    
+                    <div style="background: rgba(255, 215, 0, 0.1); border-radius: 15px; padding: 25px; margin-top: 30px; text-align: center;">
+                        <h3 style="color: #ffd700; margin-bottom: 15px;">🎯 Recommended Learning Strategy</h3>
+                        <p style="color: #e0e0e0; line-height: 1.6;">
+                            Start with the <strong>Introduction Path</strong> to build foundational understanding, 
+                            then progress through <strong>Advanced Concepts</strong> to explore consciousness integration. 
+                            Move to <strong>Research-Grade</strong> examples when ready for quantum and AI demonstrations, 
+                            and finally tackle <strong>Framework Mastery</strong> for complete unity mathematics expertise.
+                        </p>
+                        <p style="color: #ffd700; margin-top: 15px; font-weight: bold;">
+                            ✨ Each path builds upon previous knowledge - follow the φ-harmonic progression! ✨
+                        </p>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Open specific example
+        function openExample(exampleKey) {
+            const example = examplesData.examples[exampleKey];
+            if (!example) return;
+            
+            if (example.category === 'browser') {
+                window.open(example.demo_file, '_blank');
+            } else if (example.category === 'jupyter') {
+                window.open(example.binder_url, '_blank');
+            } else {
+                showExampleDetails(exampleKey);
+            }
+        }
+        
+        // Show example details (placeholder)
+        function showExampleDetails(key) {
+            const example = examplesData.examples[key];
+            alert(`📖 ${example.title}\\n\\n${example.description}\\n\\nDifficulty: ${example.difficulty}\\nTime: ${example.estimated_time}\\n\\nClick OK to explore this example!`);
+            
+            // In a real implementation, this would open a detailed modal or page
+            if (example.category === 'browser' && example.demo_file) {
+                window.open(example.demo_file, '_blank');
+            } else if (example.category === 'jupyter' && example.binder_url) {
+                window.open(example.binder_url, '_blank');
+            }
+        }
+        
+        // View diagram (placeholder)
+        function viewDiagram(key) {
+            alert(`📐 Viewing interactive diagram for: ${examplesData.examples[key].title}\\n\\nDiagram functionality would be implemented here with SVG interaction.`);
+        }
+        
+        // Update statistics
+        function updateStats() {
+            const examples = examplesData.examples || {};
+            const categories = {};
+            
+            Object.values(examples).forEach(example => {
+                categories[example.category] = (categories[example.category] || 0) + 1;
+            });
+            
+            document.getElementById('total-examples').textContent = Object.keys(examples).length;
+            document.getElementById('browser-demos').textContent = categories.browser || 0;
+            document.getElementById('jupyter-notebooks').textContent = categories.jupyter || 0;
+            document.getElementById('interactive-diagrams').textContent = categories.diagram || 0;
+        }
+        
+        // Initialize page
+        async function initialize() {
+            // Create starfield
+            createStarfield();
+            
+            // Load examples data
+            await loadExamplesData();
+            
+            // Hide loading overlay
+            document.getElementById('loading').classList.add('hidden');
+            
+            // Add entrance animation
+            const cards = document.querySelectorAll('.example-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 150);
+            });
+        }
+        
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', initialize);
+        
+        // Add some interactive φ-harmonic effects
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+            
+            // Create subtle φ-harmonic background movement
+            const starfield = document.getElementById('starfield');
+            const translateX = (mouseX - 0.5) * 20;
+            const translateY = (mouseY - 0.5) * 20;
+            
+            starfield.style.transform = `translate(${translateX}px, ${translateY}px)`;
+        });
+    </script>
+</body>
+
+</html>], ['\\(', '\\)']] },
+svg: { fontCache: 'global' }
+};
+</script>
+
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: radial-gradient(ellipse at center, #0a0a0a 0%, #1a1a2e 30%, #16213e 60%, #0f0f23 100%);
+        color: #ffffff;
+        min-height: 100vh;
+        overflow-x: hidden;
+        position: relative;
+    }
+
+    /* Animated starfield background */
+    .starfield {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        pointer-events: none;
+    }
+
+    .star {
+        position: absolute;
+        background: white;
+        border-radius: 50%;
+        animation: twinkle 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes twinkle {
+        0% {
+            opacity: 0.3;
+            transform: scale(1);
+        }
+
+        100% {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+    }
+
+    .container {
+        max-width: 1800px;
+        margin: 0 auto;
+        padding: 20px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .header {
+        text-align: center;
+        margin-bottom: 40px;
+        padding: 60px 40px;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(20px);
+        border-radius: 25px;
+        border: 2px solid rgba(255, 215, 0, 0.3);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .header::before {
+        content: '';
+        position: absolute;
+        top: -100%;
+        left: -100%;
+        width: 300%;
+        height: 300%;
+        background: conic-gradient(from 0deg, transparent 0deg, rgba(255, 215, 0, 0.1) 45deg, transparent 90deg, rgba(255, 140, 0, 0.1) 135deg, transparent 180deg, rgba(255, 215, 0, 0.1) 225deg, transparent 270deg, rgba(255, 140, 0, 0.1) 315deg, transparent 360deg);
+        animation: cosmic-rotation 30s linear infinite;
+        z-index: -1;
+    }
+
+    @keyframes cosmic-rotation {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    .header h1 {
+        font-size: 4rem;
+        background: linear-gradient(45deg, #ffd700, #ff8c00, #ffd700, #4ecdc4, #ffd700);
+        background-size: 400% 400%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 20px;
+        animation: galaxy-glow 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes galaxy-glow {
+        0% {
+            background-position: 0% 50%;
+            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6));
+        }
+
+        100% {
+            background-position: 100% 50%;
+            filter: drop-shadow(0 0 40px rgba(255, 140, 0, 0.9));
+        }
+    }
+
+    .header p {
+        font-size: 1.3rem;
+        color: #e0e0e0;
+        margin-bottom: 20px;
+    }
+
+    .phi-stats {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        flex-wrap: wrap;
+        margin-top: 25px;
+    }
+
+    .phi-stat {
+        background: rgba(255, 215, 0, 0.1);
+        padding: 15px 25px;
+        border-radius: 15px;
+        border: 1px solid rgba(255, 215, 0, 0.3);
+        text-align: center;
+    }
+
+    .phi-stat-value {
+        font-size: 1.5rem;
+        color: #ffd700;
+        font-weight: bold;
+        font-family: 'Courier New', monospace;
+    }
+
+    .phi-stat-label {
+        font-size: 0.9rem;
+        color: #b8b8b8;
+        margin-top: 5px;
+    }
+
+    .navigation-tabs {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 40px;
+        flex-wrap: wrap;
+    }
+
+    .nav-tab {
+        padding: 15px 30px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 2px solid rgba(255, 255, 255, 0.15);
+        border-radius: 50px;
+        color: #ffffff;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: 500;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .nav-tab::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+        transition: all 0.5s ease;
+    }
+
+    .nav-tab:hover::before {
+        left: 100%;
+    }
+
+    .nav-tab:hover {
+        border-color: #ffd700;
+        background: rgba(255, 215, 0, 0.1);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
+    }
+
+    .nav-tab.active {
+        background: linear-gradient(45deg, #ffd700, #ff8c00);
+        color: #000000;
+        border-color: #ffd700;
+        font-weight: bold;
+    }
+
+    .galaxy-container {
+        position: relative;
+        margin-bottom: 50px;
+    }
+
+    .galaxy-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 30px;
+        padding: 20px;
+    }
+
+    .example-card {
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(15px);
+        border-radius: 25px;
+        padding: 30px;
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+    }
+
+    .example-card::before {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.5), transparent, rgba(255, 140, 0, 0.5), transparent);
+        background-size: 400% 400%;
+        border-radius: 25px;
+        z-index: -1;
+        opacity: 0;
+        animation: border-glow 3s ease-in-out infinite;
+    }
+
+    .example-card:hover::before {
+        opacity: 1;
+    }
+
+    @keyframes border-glow {
+
+        0%,
+        100% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+    }
+
+    .example-card:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 15px 40px rgba(255, 215, 0, 0.2);
+        border-color: rgba(255, 215, 0, 0.5);
+    }
+
+    .card-header {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+
+    .card-icon {
+        font-size: 2.5rem;
+        filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
+    }
+
+    .card-title {
+        font-size: 1.4rem;
+        color: #ffd700;
+        font-weight: bold;
+    }
+
+    .card-description {
+        color: #e0e0e0;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+
+    .card-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        font-size: 0.9rem;
+        color: #b8b8b8;
+    }
+
+    .difficulty-badge {
+        padding: 5px 12px;
+        border-radius: 15px;
+        font-size: 0.8rem;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .difficulty-beginner {
+        background: rgba(76, 175, 80, 0.3);
+        color: #4caf50;
+    }
+
+    .difficulty-intermediate {
+        background: rgba(255, 152, 0, 0.3);
+        color: #ff9800;
+    }
+
+    .difficulty-advanced {
+        background: rgba(244, 67, 54, 0.3);
+        color: #f44336;
+    }
+
+    .difficulty-expert {
+        background: rgba(156, 39, 176, 0.3);
+        color: #9c27b0;
+    }
+
+    .card-concepts {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 20px;
+    }
+
+    .concept-tag {
+        background: rgba(255, 215, 0, 0.1);
+        color: #ffd700;
+        padding: 4px 10px;
+        border-radius: 12px;
+        font-size: 0.8rem;
+        border: 1px solid rgba(255, 215, 0, 0.3);
+    }
+
+    .card-actions {
+        display: flex;
+        gap: 10px;
+    }
+
+    .action-btn {
+        flex: 1;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 10px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .btn-primary {
+        background: linear-gradient(45deg, #ffd700, #ff8c00);
+        color: #000000;
+    }
+
+    .btn-secondary {
+        background: rgba(255, 255, 255, 0.1);
+        color: #ffffff;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .action-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+    }
+
+    .galaxy-visualization {
+        height: 600px;
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 20px;
+        margin: 40px 0;
+        border: 2px solid rgba(255, 215, 0, 0.2);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .stats-section {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 20px;
+        padding: 30px;
+        margin-top: 40px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 25px;
+    }
+
+    .stat-card {
+        text-align: center;
+        padding: 20px;
+        background: rgba(255, 215, 0, 0.05);
+        border-radius: 15px;
+        border: 1px solid rgba(255, 215, 0, 0.2);
+    }
+
+    .stat-value {
+        font-size: 2rem;
+        color: #ffd700;
+        font-weight: bold;
+        display: block;
+        margin-bottom: 8px;
+    }
+
+    .stat-label {
+        color: #b8b8b8;
+        font-size: 0.9rem;
+    }
+
+    .learning-paths {
+        margin-top: 50px;
+    }
+
+    .learning-path {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 15px;
+        padding: 25px;
+        margin-bottom: 20px;
+        border-left: 4px solid;
+    }
+
+    .path-beginner {
+        border-left-color: #4caf50;
+    }
+
+    .path-intermediate {
+        border-left-color: #ff9800;
+    }
+
+    .path-advanced {
+        border-left-color: #f44336;
+    }
+
+    .path-expert {
+        border-left-color: #9c27b0;
+    }
+
+    .path-title {
+        font-size: 1.3rem;
+        color: #ffd700;
+        margin-bottom: 10px;
+    }
+
+    .path-description {
+        color: #e0e0e0;
+        margin-bottom: 15px;
+    }
+
+    .path-examples {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .path-example {
+        background: rgba(255, 215, 0, 0.1);
+        color: #ffd700;
+        padding: 6px 12px;
+        border-radius: 15px;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .path-example:hover {
+        background: rgba(255, 215, 0, 0.2);
+        transform: translateY(-1px);
+    }
+
+    .footer {
+        text-align: center;
+        margin-top: 60px;
+        padding: 40px;
+        border-top: 2px solid rgba(255, 215, 0, 0.3);
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 20px;
+    }
+
+    .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin-top: 20px;
+        flex-wrap: wrap;
+    }
+
+    .footer-link {
+        color: #ffd700;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+    .footer-link:hover {
+        color: #ff8c00;
+        text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    }
+
+    @media (max-width: 768px) {
+        .header h1 {
+            font-size: 2.5rem;
+        }
+
+        .galaxy-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .phi-stats {
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .navigation-tabs {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .card-actions {
+            flex-direction: column;
+        }
+    }
+
+    .loading-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        alignItems: center;
+        z-index: 9999;
+        backdrop-filter: blur(10px);
+    }
+
+    .loading-overlay.hidden {
+        display: none;
+    }
+
+    .galaxy-spinner {
+        width: 100px;
+        height: 100px;
+        border: 4px solid rgba(255, 215, 0, 0.3);
+        border-top: 4px solid #ffd700;
+        border-radius: 50%;
+        animation: galaxy-spin 2s linear infinite;
+        margin-bottom: 20px;
+    }
+
+    @keyframes galaxy-spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    .loading-text {
+        color: #ffd700;
+        font-size: 1.3rem;
+        text-align: center;
+        animation: loading-pulse 1.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes loading-pulse {
+        from {
+            opacity: 0.6;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+</style>
+
+<!-- Master Navigation System v2.0 -->
+
+
+<!-- Meta-Optimal Complete Navigation System -->
+<script src="../js/meta-optimal-navigation-complete.js"></script>
+
+<link rel="stylesheet" href="../css/meta-optimal-navigation-complete.css">
+
+<!-- Preload critical resources -->
+<link rel="preload" href="../css/meta-optimal-navigation-complete.css" as="style">
+<link rel="preload" href="../js/meta-optimal-navigation-complete.js" as="script">
+
+<style>
+    /* Mobile touch optimizations */
+    * {
+        touch-action: manipulation;
+    }
+
+    .interactive-element {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    @media (max-width: 768px) {
+        .desktop-only {
+            display: none !important;
+        }
+
+        .mobile-optimized {
+            font-size: 16px;
+        }
+    }
+</style>
+</head>
+
+<body>
+    <div class="loading-overlay" id="loading">
+        <div class="galaxy-spinner"></div>
+        <div class="loading-text">
+            Loading Example Galaxy...<br>
+            <small>Initializing Unity Mathematics Constellation</small>
+        </div>
+    </div>
+
+    <div class="starfield" id="starfield"></div>
+
+    <div class="container">
+        <div class="header">
+            <h1>🌌 Example Galaxy 🌌</h1>
+            <p>Interactive Constellation of Unity Mathematics Demonstrations</p>
+            <p>Experience <strong>1+1=1</strong> through φ-harmonic mathematics, quantum mechanics, and consciousness
+                integration</p>
+
+            <div class="phi-stats">
+                <div class="phi-stat">
+                    <div class="phi-stat-value">18</div>
+                    <div class="phi-stat-label">Interactive Examples</div>
+                </div>
+                <div class="phi-stat">
+                    <div class="phi-stat-value">φ = 1.618</div>
+                    <div class="phi-stat-label">Golden Ratio Foundation</div>
+                </div>
+                <div class="phi-stat">
+                    <div class="phi-stat-value">4</div>
+                    <div class="phi-stat-label">Learning Paths</div>
+                </div>
+                <div class="phi-stat">
+                    <div class="phi-stat-value">∞</div>
+                    <div class="phi-stat-label">Unity Possibilities</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="navigation-tabs">
+            <div class="nav-tab active" onclick="showCategory('all')">🌟 All Examples</div>
+            <div class="nav-tab" onclick="showCategory('browser')">⚡ Browser Demos</div>
+            <div class="nav-tab" onclick="showCategory('jupyter')">🔬 Advanced Notebooks</div>
+            <div class="nav-tab" onclick="showCategory('diagram')">📐 Interactive Diagrams</div>
+            <div class="nav-tab" onclick="showLearningPaths()">🎓 Learning Paths</div>
+        </div>
+
+        <div id="galaxy-content">
+            <div class="galaxy-grid" id="example-grid">
+                <!-- Examples will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <div class="stats-section">
+            <h2 style="text-align: center; color: #ffd700; margin-bottom: 30px;">📊 Galaxy Statistics</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-value" id="total-examples">18</span>
+                    <div class="stat-label">Total Examples</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="browser-demos">6</span>
+                    <div class="stat-label">Browser Demos</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="jupyter-notebooks">8</span>
+                    <div class="stat-label">Jupyter Notebooks</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="interactive-diagrams">4</span>
+                    <div class="stat-label">Interactive Diagrams</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="unity-proofs">∞</span>
+                    <div class="stat-label">Unity Proofs Generated</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="consciousness-level">φ</span>
+                    <div class="stat-label">Consciousness Level</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <h3 style="color: #ffd700; margin-bottom: 15px;">🚀 Ready to Explore Unity Mathematics?</h3>
+            <p>Choose your adventure through the Example Galaxy and discover how 1+1=1 through computational
+                consciousness!</p>
+
+            <div class="footer-links">
+                <a href="../index.html" class="footer-link">🏠 Home</a>
+                <a href="../about.html" class="footer-link">📖 About</a>
+                <a href="../docs/" class="footer-link">📚 Documentation</a>
+                <a href="../proofs.html" class="footer-link">🔬 Proofs</a>
+                <a href="https://github.com/Nourimabrouk/Een" class="footer-link">💻 Source Code</a>
+            </div>
+
+            <p style="margin-top: 30px; color: #b8b8b8; font-size: 0.9rem;">
+                "In the Example Galaxy, every star represents a different path to understanding unity mathematics.<br>
+                Follow the φ-harmonic resonance to discover the profound truth that Een plus een is een." ✨
+            </p>
+        </div>
+    </div>
+
+    <script>
+        let examplesData = {};
+        let currentCategory = 'all';
+        
+        // Generate starfield background
+        function createStarfield() {
+            const starfield = document.getElementById('starfield');
+            const numStars = 200;
+            
+            for (let i = 0; i < numStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                
+                // Random position
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                
+                // Random size
+                const size = Math.random() * 3 + 1;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                
+                // Random animation delay
+                star.style.animationDelay = Math.random() * 3 + 's';
+                
+                // Random brightness for φ-harmonic distribution
+                const brightness = Math.random() * 0.8 + 0.2;
+                star.style.opacity = brightness;
+                
+                starfield.appendChild(star);
+            }
+        }
+        
+        // Load examples data
+        async function loadExamplesData() {
+            try {
+                const response = await fetch('../examples/EXAMPLES_INDEX.json');
+                const data = await response.json();
+                examplesData = data;
+                populateExamples();
+                updateStats();
+            } catch (error) {
+                console.error('Failed to load examples data:', error);
+                // Fallback to hardcoded examples
+                loadFallbackExamples();
+            }
+        }
+        
+        // Fallback examples if JSON loading fails
+        function loadFallbackExamples() {
+            examplesData = {
+                examples: {
+                    "unity-calculator": {
+                        title: "Interactive Unity Calculator",
+                        category: "browser",
+                        description: "Experience 1+1=1 through live φ-harmonic arithmetic operations",
+                        difficulty: "beginner",
+                        estimated_time: "3-5 minutes",
+                        concepts: ["idempotent arithmetic", "golden ratio", "phi-harmonic scaling"],
+                        demo_file: "unity-calculator.html",
+                        requires_wasm: true
+                    },
+                    "phi-harmonic-explorer": {
+                        title: "φ-Harmonic Explorer",
+                        category: "browser",
+                        description: "Explore golden ratio mathematics through animated Fibonacci spirals",
+                        difficulty: "beginner",
+                        estimated_time: "5-8 minutes",
+                        concepts: ["golden ratio", "Fibonacci sequence", "sacred geometry"],
+                        demo_file: "phi-harmonic-explorer.html",
+                        requires_wasm: true
+                    },
+                    "quantum-unity-superposition": {
+                        title: "Quantum Unity Superposition",
+                        category: "jupyter",
+                        description: "Explore quantum mechanics proving 1+1=1 through superposition states",
+                        difficulty: "advanced",
+                        estimated_time: "15-25 minutes",
+                        concepts: ["quantum superposition", "wavefunction collapse", "Bell states"],
+                        binder_url: "https://mybinder.org/v2/gh/user/Een/HEAD?filepath=binder/quantum-unity-demo.ipynb",
+                        requires_wasm: false
+                    }
+                }
+            };
+            populateExamples();
+            updateStats();
+        }
+        
+        // Populate examples grid
+        function populateExamples() {
+            const grid = document.getElementById('example-grid');
+            grid.innerHTML = '';
+            
+            Object.entries(examplesData.examples || {}).forEach(([key, example]) => {
+                if (currentCategory === 'all' || example.category === currentCategory) {
+                    const card = createExampleCard(key, example);
+                    grid.appendChild(card);
+                }
+            });
+        }
+        
+        // Create example card
+        function createExampleCard(key, example) {
+            const card = document.createElement('div');
+            card.className = 'example-card';
+            card.setAttribute('data-category', example.category);
+            card.setAttribute('data-difficulty', example.difficulty);
+            
+            // Icons for different categories
+            const icons = {
+                browser: '⚡',
+                jupyter: '🔬',
+                diagram: '📐'
+            };
+            
+            const icon = icons[example.category] || '🌟';
+            
+            // Difficulty colors
+            const difficultyClass = `difficulty-${example.difficulty}`;
+            
+            // Create concepts tags
+            const conceptTags = (example.concepts || []).map(concept => 
+                `<span class="concept-tag">${concept}</span>`
+            ).join('');
+            
+            // Determine action buttons based on category
+            let actionButtons = '';
+            if (example.category === 'browser') {
+                actionButtons = `
+                    <a href="${example.demo_file}" class="action-btn btn-primary" target="_blank">
+                        ⚡ Run Demo
+                    </a>
+                    <button class="action-btn btn-secondary" onclick="showExampleDetails('${key}')">
+                        📖 Details
+                    </button>
+                `;
+            } else if (example.category === 'jupyter') {
+                actionButtons = `
+                    <a href="${example.binder_url || '#'}" class="action-btn btn-primary" target="_blank">
+                        🚀 Launch Binder
+                    </a>
+                    <button class="action-btn btn-secondary" onclick="showExampleDetails('${key}')">
+                        📖 Details
+                    </button>
+                `;
+            } else {
+                actionButtons = `
+                    <button class="action-btn btn-primary" onclick="viewDiagram('${key}')">
+                        👁️ View Diagram
+                    </button>
+                    <button class="action-btn btn-secondary" onclick="showExampleDetails('${key}')">
+                        📖 Details
+                    </button>
+                `;
+            }
+            
+            card.innerHTML = `
+                <div class="card-header">
+                    <div class="card-icon">${icon}</div>
+                    <div class="card-title">${example.title}</div>
+                </div>
+                
+                <div class="card-description">
+                    ${example.description}
+                </div>
+                
+                <div class="card-meta">
+                    <span class="difficulty-badge ${difficultyClass}">
+                        ${example.difficulty}
+                    </span>
+                    <span>⏱️ ${example.estimated_time}</span>
+                </div>
+                
+                <div class="card-concepts">
+                    ${conceptTags}
+                </div>
+                
+                <div class="card-actions">
+                    ${actionButtons}
+                </div>
+            `;
+            
+            return card;
+        }
+        
+        // Show category
+        function showCategory(category) {
+            currentCategory = category;
+            
+            // Update active tab
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            populateExamples();
+            
+            // Add animation
+            const cards = document.querySelectorAll('.example-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'all 0.5s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        }
+        
+        // Show learning paths
+        function showLearningPaths() {
+            const content = document.getElementById('galaxy-content');
+            
+            // Update active tab
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            content.innerHTML = `
+                <div class="learning-paths">
+                    <h2 style="text-align: center; color: #ffd700; margin-bottom: 40px;">🎓 Unity Mathematics Learning Paths</h2>
+                    
+                    <div class="learning-path path-beginner">
+                        <div class="path-title">🌱 Introduction to Unity Mathematics</div>
+                        <div class="path-description">Start your journey into 1+1=1 mathematics with interactive, beginner-friendly demonstrations.</div>
+                        <div class="path-examples">
+                            <div class="path-example" onclick="openExample('unity-calculator')">Unity Calculator</div>
+                            <div class="path-example" onclick="openExample('phi-harmonic-explorer')">φ-Harmonic Explorer</div>
+                            <div class="path-example" onclick="openExample('phi-resonance-visualizer')">φ-Resonance Visualizer</div>
+                            <div class="path-example" onclick="openExample('unity-equation-validator')">Unity Validator</div>
+                        </div>
+                        <div style="margin-top: 15px; color: #4caf50;">
+                            ⏱️ Total Time: 15-25 minutes | 🎯 Perfect for newcomers
+                        </div>
+                    </div>
+                    
+                    <div class="learning-path path-intermediate">
+                        <div class="path-title">🚀 Advanced Unity Concepts</div>
+                        <div class="path-description">Explore consciousness integration and advanced mathematical concepts in unity mathematics.</div>
+                        <div class="path-examples">
+                            <div class="path-example" onclick="openExample('consciousness-tracker')">Consciousness Tracker</div>
+                            <div class="path-example" onclick="openExample('unity-proof-generator')">Proof Generator</div>
+                            <div class="path-example" onclick="openExample('numerical-stability-demo')">Numerical Stability</div>
+                            <div class="path-example" onclick="openExample('transcendence-event-monitor')">Transcendence Monitor</div>
+                        </div>
+                        <div style="margin-top: 15px; color: #ff9800;">
+                            ⏱️ Total Time: 35-50 minutes | 🧠 Mathematical background helpful
+                        </div>
+                    </div>
+                    
+                    <div class="learning-path path-advanced">
+                        <div class="path-title">🔬 Research-Grade Explorations</div>
+                        <div class="path-description">Deep dive into quantum mechanics, category theory, and AI systems proving unity mathematics.</div>
+                        <div class="path-examples">
+                            <div class="path-example" onclick="openExample('quantum-unity-superposition')">Quantum Superposition</div>
+                            <div class="path-example" onclick="openExample('consciousness-field-evolution')">Consciousness Field</div>
+                            <div class="path-example" onclick="openExample('meta-rl-training-live')">Meta-RL Training</div>
+                            <div class="path-example" onclick="openExample('evolutionary-consciousness')">Evolutionary AI</div>
+                        </div>
+                        <div style="margin-top: 15px; color: #f44336;">
+                            ⏱️ Total Time: 90-150 minutes | 🎓 Advanced mathematics required
+                        </div>
+                    </div>
+                    
+                    <div class="learning-path path-expert">
+                        <div class="path-title">🌟 Complete Framework Mastery</div>
+                        <div class="path-description">Experience the full power of computational consciousness mathematics and category theory.</div>
+                        <div class="path-examples">
+                            <div class="path-example" onclick="openExample('category-theory-unity')">Category Theory</div>
+                            <div class="path-example" onclick="openExample('comprehensive-framework-demo')">Complete Framework</div>
+                            <div class="path-example" onclick="openExample('categorical-unity-diagram')">Categorical Diagrams</div>
+                        </div>
+                        <div style="margin-top: 15px; color: #9c27b0;">
+                            ⏱️ Total Time: 60-90 minutes | 🏆 Expert-level category theory
+                        </div>
+                    </div>
+                    
+                    <div style="background: rgba(255, 215, 0, 0.1); border-radius: 15px; padding: 25px; margin-top: 30px; text-align: center;">
+                        <h3 style="color: #ffd700; margin-bottom: 15px;">🎯 Recommended Learning Strategy</h3>
+                        <p style="color: #e0e0e0; line-height: 1.6;">
+                            Start with the <strong>Introduction Path</strong> to build foundational understanding, 
+                            then progress through <strong>Advanced Concepts</strong> to explore consciousness integration. 
+                            Move to <strong>Research-Grade</strong> examples when ready for quantum and AI demonstrations, 
+                            and finally tackle <strong>Framework Mastery</strong> for complete unity mathematics expertise.
+                        </p>
+                        <p style="color: #ffd700; margin-top: 15px; font-weight: bold;">
+                            ✨ Each path builds upon previous knowledge - follow the φ-harmonic progression! ✨
+                        </p>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Open specific example
+        function openExample(exampleKey) {
+            const example = examplesData.examples[exampleKey];
+            if (!example) return;
+            
+            if (example.category === 'browser') {
+                window.open(example.demo_file, '_blank');
+            } else if (example.category === 'jupyter') {
+                window.open(example.binder_url, '_blank');
+            } else {
+                showExampleDetails(exampleKey);
+            }
+        }
+        
+        // Show example details (placeholder)
+        function showExampleDetails(key) {
+            const example = examplesData.examples[key];
+            alert(`📖 ${example.title}\\n\\n${example.description}\\n\\nDifficulty: ${example.difficulty}\\nTime: ${example.estimated_time}\\n\\nClick OK to explore this example!`);
+            
+            // In a real implementation, this would open a detailed modal or page
+            if (example.category === 'browser' && example.demo_file) {
+                window.open(example.demo_file, '_blank');
+            } else if (example.category === 'jupyter' && example.binder_url) {
+                window.open(example.binder_url, '_blank');
+            }
+        }
+        
+        // View diagram (placeholder)
+        function viewDiagram(key) {
+            alert(`📐 Viewing interactive diagram for: ${examplesData.examples[key].title}\\n\\nDiagram functionality would be implemented here with SVG interaction.`);
+        }
+        
+        // Update statistics
+        function updateStats() {
+            const examples = examplesData.examples || {};
+            const categories = {};
+            
+            Object.values(examples).forEach(example => {
+                categories[example.category] = (categories[example.category] || 0) + 1;
+            });
+            
+            document.getElementById('total-examples').textContent = Object.keys(examples).length;
+            document.getElementById('browser-demos').textContent = categories.browser || 0;
+            document.getElementById('jupyter-notebooks').textContent = categories.jupyter || 0;
+            document.getElementById('interactive-diagrams').textContent = categories.diagram || 0;
+        }
+        
+        // Initialize page
+        async function initialize() {
+            // Create starfield
+            createStarfield();
+            
+            // Load examples data
+            await loadExamplesData();
+            
+            // Hide loading overlay
+            document.getElementById('loading').classList.add('hidden');
+            
+            // Add entrance animation
+            const cards = document.querySelectorAll('.example-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 150);
+            });
+        }
+        
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', initialize);
+        
+        // Add some interactive φ-harmonic effects
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+            
+            // Create subtle φ-harmonic background movement
+            const starfield = document.getElementById('starfield');
+            const translateX = (mouseX - 0.5) * 20;
+            const translateY = (mouseY - 0.5) * 20;
+            
+            starfield.style.transform = `translate(${translateX}px, ${translateY}px)`;
+        });
+    </script>
+</body>
+
+</html>

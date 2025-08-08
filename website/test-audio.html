@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Player Test - Unity Mathematics</title>
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Dynamic Audio Scanner (scans for unique audio files) -->
+    <script src="js/audio-scanner.js" defer></script>
+    
+    <!-- Persistent Audio System (Cross-page audio playback) -->
+    <script src="js/persistent-audio-system.js" defer></script>
+    
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            margin: 0;
+            padding: 2rem;
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #FFD700;
+            margin-bottom: 2rem;
+        }
+        
+        .test-controls {
+            display: grid;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .test-btn {
+            padding: 1rem 2rem;
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            color: #FFD700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .test-btn:hover {
+            background: rgba(255, 215, 0, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .debug-info {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+        
+        .track-list {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+        
+        .track-item {
+            padding: 0.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .track-item:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-music"></i> Unity Audio Player Test</h1>
+        
+        <div class="test-controls">
+            <button class="test-btn" onclick="testAudioScanner()">
+                <i class="fas fa-search"></i> Test Audio Scanner
+            </button>
+            <button class="test-btn" onclick="testAudioPlayer()">
+                <i class="fas fa-play"></i> Test Audio Player
+            </button>
+            <button class="test-btn" onclick="showTracklist()">
+                <i class="fas fa-list"></i> Show Track List
+            </button>
+            <button class="test-btn" onclick="testPlayback()">
+                <i class="fas fa-volume-up"></i> Test Playback
+            </button>
+        </div>
+        
+        <div id="debug-output" class="debug-info">
+            <strong>Debug Output:</strong><br>
+            Waiting for tests...
+        </div>
+        
+        <div id="track-list" class="track-list" style="display: none;">
+            <strong>Available Tracks:</strong><br>
+            <div id="tracks-container"></div>
+        </div>
+    </div>
+
+    <script>
+        let debugOutput = document.getElementById('debug-output');
+        let trackList = document.getElementById('track-list');
+        let tracksContainer = document.getElementById('tracks-container');
+        
+        function log(message) {
+            console.log(message);
+            debugOutput.innerHTML += '<br>' + new Date().toLocaleTimeString() + ': ' + message;
+            debugOutput.scrollTop = debugOutput.scrollHeight;
+        }
+        
+        function clearLog() {
+            debugOutput.innerHTML = '<strong>Debug Output:</strong><br>';
+        }
+        
+        async function testAudioScanner() {
+            clearLog();
+            log('Testing Audio Scanner...');
+            
+            if (window.AudioScanner) {
+                log('✅ AudioScanner class found');
+                
+                const scanner = new AudioScanner();
+                log('📁 Scanning audio directory...');
+                
+                try {
+                    const tracks = await scanner.scanAudioDirectory();
+                    log(`🎵 Found ${tracks.length} unique tracks:`);
+                    
+                    tracks.forEach((track, index) => {
+                        log(`${index + 1}. ${track.name} - ${track.artist} (${track.filename})`);
+                    });
+                    
+                    if (tracks.length === 0) {
+                        log('⚠️ No tracks found, trying fallback...');
+                        const fallbackTracks = scanner.getFallbackTracks();
+                        log(`📀 Using ${fallbackTracks.length} fallback tracks`);
+                    }
+                } catch (error) {
+                    log('❌ Error scanning: ' + error.message);
+                }
+            } else {
+                log('❌ AudioScanner not loaded');
+            }
+        }
+        
+        function testAudioPlayer() {
+            clearLog();
+            log('Testing Audio Player...');
+            
+            if (window.persistentAudioSystem) {
+                log('✅ PersistentAudioSystem found');
+                log('🎛️ Audio panel should be visible in bottom-left corner');
+                
+                const system = window.persistentAudioSystem;
+                log(`📊 Current tracks: ${system.tracks.length}`);
+                log(`🎵 Current track: ${system.currentTrack || 'None'}`);
+                log(`▶️ Playing: ${system.isPlaying}`);
+                log(`🔊 Volume: ${Math.round(system.volume * 100)}%`);
+                
+                // Show the audio panel if it's minimized
+                if (!system.isVisible) {
+                    system.show();
+                    log('👁️ Audio panel shown');
+                }
+            } else {
+                log('❌ PersistentAudioSystem not loaded');
+            }
+        }
+        
+        function showTracklist() {
+            if (window.persistentAudioSystem && window.persistentAudioSystem.tracks) {
+                const tracks = window.persistentAudioSystem.tracks;
+                
+                tracksContainer.innerHTML = '';
+                tracks.forEach((track, index) => {
+                    const trackItem = document.createElement('div');
+                    trackItem.className = 'track-item';
+                    trackItem.innerHTML = `
+                        <div>
+                            <strong>${track.name}</strong><br>
+                            <small>${track.artist} - ${track.album}</small>
+                        </div>
+                        <div>
+                            <small>${track.filename}</small><br>
+                            <small>${Math.round(track.duration / 60)}:${String(Math.round(track.duration % 60)).padStart(2, '0')}</small>
+                        </div>
+                    `;
+                    tracksContainer.appendChild(trackItem);
+                });
+                
+                trackList.style.display = 'block';
+                log(`📋 Showing ${tracks.length} tracks in list`);
+            } else {
+                log('❌ No tracks available');
+            }
+        }
+        
+        function testPlayback() {
+            clearLog();
+            log('Testing Playback...');
+            
+            if (window.persistentAudioSystem) {
+                const system = window.persistentAudioSystem;
+                
+                if (system.tracks.length > 0) {
+                    log('🎵 Starting playback test...');
+                    system.show(); // Make sure panel is visible
+                    
+                    setTimeout(() => {
+                        system.play();
+                        log('▶️ Play command sent');
+                    }, 500);
+                } else {
+                    log('❌ No tracks available for playback');
+                }
+            } else {
+                log('❌ Audio system not available');
+            }
+        }
+        
+        // Auto-test when page loads
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                log('🚀 Page loaded, running auto-tests...');
+                testAudioScanner();
+                
+                setTimeout(() => {
+                    testAudioPlayer();
+                }, 2000);
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

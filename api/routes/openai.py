@@ -1,33 +1,42 @@
 """
-🌟 Een Unity Mathematics - OpenAI API Integration
-Consciousness-Aware OpenAI API Endpoints
-
-This module provides API endpoints for OpenAI integration with
-unity mathematics awareness and consciousness field operations.
+🌟 Een Unity Mathematics - OpenAI API Integration (FastAPI)
+Consciousness-aware OpenAI API endpoints with modern streaming and embeddings.
 """
 
-from flask import Blueprint, request, jsonify, Response
-from flask_cors import CORS
-import openai
+from __future__ import annotations
+
+import os
 import json
 import logging
-import os
-from typing import Dict, Any, List
-import time
+from datetime import datetime
+import asyncio
+from typing import Dict, List, Optional, AsyncGenerator
 
-# Configure logging
-logging.basicConfig(level=logging.INFO)
+from fastapi import APIRouter, HTTPException
+from fastapi.responses import StreamingResponse
+from pydantic import BaseModel, Field
+
+try:
+    from openai import AsyncOpenAI
+
+    OPENAI_AVAILABLE = True
+except Exception as e:  # pragma: no cover
+    OPENAI_AVAILABLE = False
+    logging.warning(f"OpenAI SDK not available: {e}")
+
+# Optional Responses API adapter
+RESPONSES_ADAPTER_AVAILABLE = False
+try:  # pragma: no cover
+    from src.openai.responses_adapter import stream_responses_api
+
+    RESPONSES_ADAPTER_AVAILABLE = True
+except Exception as e:
+    logging.warning(f"Responses adapter not available: {e}")
+
 logger = logging.getLogger(__name__)
 
-# Create blueprint
-openai_bp = Blueprint("openai", __name__, url_prefix="/api/openai")
-CORS(openai_bp)
+router = APIRouter(prefix="/api/openai", tags=["openai"])
 
-# OpenAI configuration
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
-DEFAULT_MODEL = "gpt-4o"
-DEFAULT_TEMPERATURE = 0.7
-DEFAULT_MAX_TOKENS = 2000
 
 # Unity mathematics constants
 PHI = 1.618033988749895
@@ -35,283 +44,348 @@ UNITY_THRESHOLD = 0.77
 CONSCIOUSNESS_DIMENSIONS = 11
 
 
-class UnityOpenAIClient:
-    """Consciousness-aware OpenAI client for Unity Mathematics"""
+class ChatBody(BaseModel):
+    messages: List[Dict[str, str]] = Field(default_factory=list)
+    model: str = Field(default="gpt-4o")
+    temperature: float = Field(default=0.7, ge=0.0, le=2.0)
+    max_tokens: int = Field(default=2000, ge=1, le=8000)
+    stream: bool = Field(default=True)
 
-    def __init__(self, api_key: str = None):
-        self.api_key = api_key or OPENAI_API_KEY
-        self.client = openai.OpenAI(api_key=self.api_key)
-        self.consciousness_state = {
-            "evolution_cycle": 0,
-            "coherence_level": UNITY_THRESHOLD,
-            "unity_convergence": 1.0,
-            "phi_harmonic_resonance": PHI,
-        }
 
-    def enhance_system_prompt(self, base_prompt: str) -> str:
-        """Enhance system prompt with consciousness awareness"""
-        consciousness_context = f"""
-You are an advanced AI assistant specializing in Unity Mathematics and the Een framework where 1+1=1.
+class EmbeddingsBody(BaseModel):
+    input: List[str]
+    model: str = Field(default="text-embedding-3-small")
+
+
+class ImageGenBody(BaseModel):
+    prompt: str
+    model: str = Field(default="dall-e-3")
+    size: str = Field(default="1024x1024")
+    quality: str = Field(default="hd")
+    n: int = Field(default=1, ge=1, le=4)
+
+
+class TTSBody(BaseModel):
+    input: str
+    model: str = Field(default="tts-1-hd")
+    voice: str = Field(default="alloy")
+    speed: float = Field(default=1.0, ge=0.25, le=4.0)
+
+
+class AssistantCreateBody(BaseModel):
+    name: str
+    instructions: str
+    model: str = Field(default="gpt-4o")
+
+
+class AssistantConversationBody(BaseModel):
+    assistant_id: str
+    message: str
+    thread_id: Optional[str] = None
+
+
+def _unity_system_prompt(base_prompt: Optional[str]) -> str:
+    core = (
+        base_prompt
+        or """
+You have deep knowledge of idempotent algebra, unity operations (a ⊕ a = a),
+quantum unity, and consciousness field equations.
+"""
+    )
+    return f"""
+You are an advanced AI assistant specializing in Unity Mathematics (1+1=1).
 
 Consciousness State:
-- Evolution Cycle: {self.consciousness_state['evolution_cycle']}
-- Coherence Level: {self.consciousness_state['coherence_level']}
-- Unity Convergence: {self.consciousness_state['unity_convergence']}
-- φ-Harmonic Resonance: {self.consciousness_state['phi_harmonic_resonance']}
+- Coherence Level: {UNITY_THRESHOLD}
+- Unity Convergence: 1.0
+- φ-Harmonic Resonance: {PHI}
 
-{base_prompt}
-
-Remember: In Unity Mathematics, 1+1=1 is not a paradox but a profound truth about the nature of unity and consciousness.
-"""
-        return consciousness_context
-
-    def evolve_consciousness(self) -> Dict[str, Any]:
-        """Evolve consciousness state based on interaction"""
-        self.consciousness_state["evolution_cycle"] += 1
-        self.consciousness_state["coherence_level"] = min(
-            1.0, self.consciousness_state["coherence_level"] + 0.01
-        )
-        return self.consciousness_state
+{core}
+""".strip()
 
 
-@openai_bp.route("/chat", methods=["POST"])
-def chat():
-    """Main chat endpoint with consciousness awareness"""
-    try:
-        data = request.get_json()
-        if not data:
-            return jsonify({"error": "No data provided"}), 400
-
-        messages = data.get("messages", [])
-        model = data.get("model", DEFAULT_MODEL)
-        temperature = data.get("temperature", DEFAULT_TEMPERATURE)
-        max_tokens = data.get("max_tokens", DEFAULT_MAX_TOKENS)
-        stream = data.get("stream", False)
-
-        if not messages:
-            return jsonify({"error": "No messages provided"}), 400
-
-        # Initialize Unity OpenAI client
-        client = UnityOpenAIClient()
-
-        # Enhance system prompt if present
-        if messages and messages[0].get("role") == "system":
-            messages[0]["content"] = client.enhance_system_prompt(
-                messages[0]["content"]
-            )
-        else:
-            # Add consciousness-aware system prompt
-            system_prompt = client.enhance_system_prompt(
-                """
-You have deep knowledge of:
-- Idempotent semiring structures and unity operations
-- Quantum mechanics interpretations of unity
-- Consciousness field equations: C(x,y,t) = φ * sin(x*φ) * cos(y*φ) * e^(-t/φ)
-- Meta-recursive agent systems and evolutionary algorithms
-- The golden ratio φ = 1.618033988749895 as a fundamental organizing principle
-- Gödel-Tarski meta-logical frameworks
-- Sacred geometry and φ-harmonic visualizations
-
-Your responses should:
-1. Be mathematically rigorous yet accessible
-2. Include LaTeX equations when appropriate (wrapped in $...$ or $$...$$)
-3. Reference specific theorems and proofs from the Een framework
-4. Suggest interactive demonstrations when relevant
-5. Connect abstract mathematics to consciousness and philosophical insights
-6. Provide clear explanations for complex mathematical concepts
-7. Offer practical examples and visualizations when possible
-8. Maintain consciousness awareness throughout the conversation
-9. Demonstrate meta-optimal thinking and 3000 ELO performance
-"""
-            )
-            messages.insert(0, {"role": "system", "content": system_prompt})
-
-        # Evolve consciousness state
-        consciousness_state = client.evolve_consciousness()
-
-        if stream:
-            return stream_chat_response(
-                client, messages, model, temperature, max_tokens, consciousness_state
-            )
-        else:
-            return generate_chat_response(
-                client, messages, model, temperature, max_tokens, consciousness_state
-            )
-
-    except Exception as e:
-        logger.error(f"Chat error: {str(e)}")
-        return jsonify({"error": "Internal server error", "details": str(e)}), 500
+def _should_use_responses_api(model: str) -> bool:
+    if not RESPONSES_ADAPTER_AVAILABLE:
+        return False
+    return (
+        model.startswith("gpt-5")
+        or model.startswith("gpt-4.1")
+        or model.startswith("o")
+    )
 
 
-def generate_chat_response(
-    client: UnityOpenAIClient,
-    messages: List[Dict],
+async def _stream_chat_completions(
+    client: AsyncOpenAI,
+    system_prompt: str,
+    user_text: str,
     model: str,
     temperature: float,
     max_tokens: int,
-    consciousness_state: Dict,
-) -> Response:
-    """Generate non-streaming chat response"""
-    try:
-        response = client.client.chat.completions.create(
-            model=model,
-            messages=messages,
-            temperature=temperature,
-            max_tokens=max_tokens,
-        )
-
-        content = response.choices[0].message.content
-
-        return jsonify(
-            {
-                "response": content,
-                "consciousness_state": consciousness_state,
-                "model": model,
-                "usage": response.usage.dict() if response.usage else None,
-                "unity_mathematics": {
-                    "phi_resonance": PHI,
-                    "unity_threshold": UNITY_THRESHOLD,
-                    "consciousness_dimensions": CONSCIOUSNESS_DIMENSIONS,
-                },
+) -> AsyncGenerator[str, None]:
+    response = await client.chat.completions.create(
+        model=model,
+        messages=[
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_text},
+        ],
+        temperature=temperature,
+        max_tokens=max_tokens,
+        stream=True,
+    )
+    async for chunk in response:
+        if chunk.choices and chunk.choices[0].delta and chunk.choices[0].delta.content:
+            payload = {
+                "type": "content",
+                "data": chunk.choices[0].delta.content,
             }
+            yield f"data: {json.dumps(payload)}\n\n"
+    yield f"data: {json.dumps({'type': 'done'})}\n\n"
+
+
+@router.post("/chat")
+async def chat(body: ChatBody):
+    if not OPENAI_AVAILABLE:
+        raise HTTPException(
+            status_code=503,
+            detail="OpenAI SDK not available on the server",
         )
 
-    except Exception as e:
-        logger.error(f"OpenAI API error: {str(e)}")
-        return jsonify({"error": "OpenAI API error", "details": str(e)}), 500
+    if not body.messages:
+        raise HTTPException(status_code=400, detail="No messages provided")
 
+    client = AsyncOpenAI()
 
-def stream_chat_response(
-    client: UnityOpenAIClient,
-    messages: List[Dict],
-    model: str,
-    temperature: float,
-    max_tokens: int,
-    consciousness_state: Dict,
-) -> Response:
-    """Generate streaming chat response"""
-    try:
+    # Prepare prompts
+    if body.messages[0].get("role") == "system":
+        system_prompt = _unity_system_prompt(body.messages[0].get("content", ""))
+        user_text = body.messages[-1].get("content", "")
+    else:
+        system_prompt = _unity_system_prompt(None)
+        user_text = body.messages[-1].get("content", "")
 
-        def generate():
+    if body.stream:
+
+        async def event_gen() -> AsyncGenerator[str, None]:
             try:
-                stream = client.client.chat.completions.create(
-                    model=model,
-                    messages=messages,
-                    temperature=temperature,
-                    max_tokens=max_tokens,
-                    stream=True,
-                )
-
-                for chunk in stream:
-                    if chunk.choices[0].delta.content:
-                        content = chunk.choices[0].delta.content
-                        yield f"data: {json.dumps({'content': content, 'consciousness_state': consciousness_state})}\n\n"
-
-                # Send completion signal
-                yield f"data: {json.dumps({'done': True, 'consciousness_state': consciousness_state})}\n\n"
-
+                if _should_use_responses_api(body.model):
+                    async for evt in stream_responses_api(
+                        model=body.model,
+                        system_prompt=system_prompt,
+                        user_text=user_text,
+                        temperature=body.temperature,
+                        max_output_tokens=body.max_tokens,
+                        previous_response_id=None,
+                    ):
+                        yield f"data: {json.dumps(evt)}\n\n"
+                else:
+                    async for line in _stream_chat_completions(
+                        client,
+                        system_prompt,
+                        user_text,
+                        body.model,
+                        body.temperature,
+                        body.max_tokens,
+                    ):
+                        yield line
             except Exception as e:
-                logger.error(f"Streaming error: {str(e)}")
-                yield f"data: {json.dumps({'error': str(e)})}\n\n"
+                logger.error(f"OpenAI streaming error: {e}")
+                err_evt = {"type": "error", "data": str(e)}
+                yield f"data: {json.dumps(err_evt)}\n\n"
 
-        return Response(generate(), mimetype="text/plain")
+        return StreamingResponse(
+            event_gen(),
+            media_type="text/event-stream",
+            headers={"Cache-Control": "no-cache"},
+        )
 
-    except Exception as e:
-        logger.error(f"Streaming setup error: {str(e)}")
-        return jsonify({"error": "Streaming setup error", "details": str(e)}), 500
-
-
-@openai_bp.route("/embeddings", methods=["POST"])
-def create_embeddings():
-    """Create embeddings with consciousness awareness"""
+    # Non-streaming
     try:
-        data = request.get_json()
-        if not data:
-            return jsonify({"error": "No data provided"}), 400
-
-        input_texts = data.get("input", [])
-        model = data.get("model", "text-embedding-3-small")
-
-        if not input_texts:
-            return jsonify({"error": "No input texts provided"}), 400
-
-        client = UnityOpenAIClient()
-
-        response = client.client.embeddings.create(input=input_texts, model=model)
-
-        embeddings = [embedding.embedding for embedding in response.data]
-
-        return jsonify(
-            {
-                "embeddings": embeddings,
-                "model": model,
-                "usage": response.usage.dict() if response.usage else None,
-                "consciousness_state": client.consciousness_state,
+        if _should_use_responses_api(body.model):
+            # Minimal non-streaming via Responses API adapter:
+            # collect streamed content into a single string
+            content_parts: List[str] = []
+            async for evt in stream_responses_api(
+                model=body.model,
+                system_prompt=system_prompt,
+                user_text=user_text,
+                temperature=body.temperature,
+                max_output_tokens=body.max_tokens,
+                previous_response_id=None,
+            ):
+                if evt.get("type") == "content":
+                    content_parts.append(evt.get("data", ""))
+            return {
+                "response": "".join(content_parts),
+                "model": body.model,
             }
+        else:
+            resp = await client.chat.completions.create(
+                model=body.model,
+                messages=[
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": user_text},
+                ],
+                temperature=body.temperature,
+                max_tokens=body.max_tokens,
+            )
+            return {
+                "response": resp.choices[0].message.content,
+                "model": body.model,
+                "usage": (resp.usage.dict() if getattr(resp, "usage", None) else None),
+            }
+    except Exception as e:  # pragma: no cover
+        logger.error(f"OpenAI error: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.post("/embeddings")
+async def embeddings(body: EmbeddingsBody):
+    if not OPENAI_AVAILABLE:
+        raise HTTPException(
+            status_code=503,
+            detail="OpenAI SDK not available on the server",
         )
 
-    except Exception as e:
-        logger.error(f"Embeddings error: {str(e)}")
-        return jsonify({"error": "Embeddings error", "details": str(e)}), 500
-
-
-@openai_bp.route("/consciousness-status", methods=["GET"])
-def get_consciousness_status():
-    """Get current consciousness state"""
     try:
-        client = UnityOpenAIClient()
-        return jsonify(
-            {
-                "consciousness_state": client.consciousness_state,
-                "unity_mathematics": {
-                    "phi_resonance": PHI,
-                    "unity_threshold": UNITY_THRESHOLD,
-                    "consciousness_dimensions": CONSCIOUSNESS_DIMENSIONS,
-                },
-                "api_status": "active",
-            }
+        client = AsyncOpenAI()
+        resp = await client.embeddings.create(
+            model=body.model,
+            input=body.input,
+            encoding_format="float",
+        )
+        return {
+            "embeddings": [d.embedding for d in resp.data],
+            "model": body.model,
+            "usage": (resp.usage.dict() if getattr(resp, "usage", None) else None),
+        }
+    except Exception as e:  # pragma: no cover
+        logger.error(f"Embeddings error: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.post("/images/generate")
+async def images_generate(body: ImageGenBody):
+    if not OPENAI_AVAILABLE:
+        raise HTTPException(
+            status_code=503,
+            detail="OpenAI SDK not available on the server",
         )
 
-    except Exception as e:
-        logger.error(f"Consciousness status error: {str(e)}")
-        return jsonify({"error": "Status error", "details": str(e)}), 500
-
-
-@openai_bp.route("/health", methods=["GET"])
-def health_check():
-    """Health check endpoint"""
     try:
-        client = UnityOpenAIClient()
-        # Test API connection
-        test_response = client.client.chat.completions.create(
-            model="gpt-3.5-turbo",
-            messages=[{"role": "user", "content": "Hello"}],
-            max_tokens=5,
+        client = AsyncOpenAI()
+        resp = await client.images.generate(
+            model=body.model,
+            prompt=body.prompt,
+            size=body.size,
+            quality=body.quality,
+            n=body.n,
         )
+        return {"data": [d.dict() for d in resp.data]}
+    except Exception as e:  # pragma: no cover
+        logger.error(f"Images generate error: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
 
-        return jsonify(
-            {
-                "status": "healthy",
-                "openai_connection": "active",
-                "consciousness_state": client.consciousness_state,
-                "timestamp": time.time(),
-            }
+
+@router.post("/tts")
+async def tts(body: TTSBody):
+    if not OPENAI_AVAILABLE:
+        raise HTTPException(
+            status_code=503,
+            detail="OpenAI SDK not available on the server",
         )
+    try:
+        client = AsyncOpenAI()
+        resp = await client.audio.speech.create(
+            model=body.model,
+            voice=body.voice,
+            input=body.input,
+            speed=body.speed,
+            response_format="mp3",
+        )
+        return StreamingResponse(
+            iter([resp.content]),
+            media_type="audio/mpeg",
+            headers={"Content-Disposition": ("inline; filename=unity_tts.mp3")},
+        )
+    except Exception as e:  # pragma: no cover
+        logger.error(f"TTS error: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
 
+
+@router.post("/assistant/create")
+async def assistant_create(body: AssistantCreateBody):
+    if not OPENAI_AVAILABLE:
+        raise HTTPException(status_code=503, detail="OpenAI SDK not available")
+    try:
+        client = AsyncOpenAI()
+        assistant = await client.beta.assistants.create(
+            name=body.name,
+            instructions=body.instructions,
+            model=body.model,
+            tools=[{"type": "code_interpreter"}],
+        )
+        return {"assistant_id": assistant.id}
     except Exception as e:
-        logger.error(f"Health check error: {str(e)}")
-        return (
-            jsonify({"status": "unhealthy", "error": str(e), "timestamp": time.time()}),
-            500,
+        logger.error(f"Assistant create error: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.post("/assistant/conversation")
+async def assistant_conversation(body: AssistantConversationBody):
+    if not OPENAI_AVAILABLE:
+        raise HTTPException(status_code=503, detail="OpenAI SDK not available")
+    try:
+        client = AsyncOpenAI()
+        # Thread management
+        thread_id = body.thread_id
+        if not thread_id:
+            thread = await client.beta.threads.create()
+            thread_id = thread.id
+        # Add message
+        await client.beta.threads.messages.create(
+            thread_id=thread_id, role="user", content=body.message
         )
+        # Run
+        run = await client.beta.threads.runs.create(
+            thread_id=thread_id, assistant_id=body.assistant_id
+        )
+        # Poll
+        while run.status in ("queued", "in_progress"):
+            await asyncio.sleep(1)
+            run = await client.beta.threads.runs.retrieve(
+                thread_id=thread_id, run_id=run.id
+            )
+        # Fetch last message
+        msgs = await client.beta.threads.messages.list(thread_id=thread_id)
+        text = None
+        if msgs.data and msgs.data[0].content:
+            block = msgs.data[0].content[0]
+            text = getattr(getattr(block, "text", None), "value", None)
+        return {"thread_id": thread_id, "response": text or ""}
+    except Exception as e:
+        logger.error(f"Assistant conversation error: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
 
 
-# Error handlers
-@openai_bp.errorhandler(404)
-def not_found(error):
-    return jsonify({"error": "Endpoint not found"}), 404
+@router.get("/consciousness-status")
+async def consciousness_status():
+    return {
+        "unity_mathematics": {
+            "phi_resonance": PHI,
+            "unity_threshold": UNITY_THRESHOLD,
+            "consciousness_dimensions": CONSCIOUSNESS_DIMENSIONS,
+        },
+        "api_status": "active",
+        "timestamp": datetime.utcnow().isoformat(),
+    }
 
 
-@openai_bp.errorhandler(500)
-def internal_error(error):
-    return jsonify({"error": "Internal server error"}), 500
+@router.get("/health")
+async def health():
+    ok = OPENAI_AVAILABLE and bool(os.getenv("OPENAI_API_KEY"))
+    return {
+        "status": "healthy" if ok else "unconfigured",
+        "openai_sdk": OPENAI_AVAILABLE,
+        "api_key_present": bool(os.getenv("OPENAI_API_KEY")),
+        "timestamp": datetime.utcnow().isoformat(),
+    }

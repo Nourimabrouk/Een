@@ -249,7 +249,7 @@ sys.path.insert(0, str(een_path))
 
 # Import main modules
 try:
-    from src.core.unity_mathematics import UnityMathematics
+    from core.mathematical.unity_mathematics import UnityMathematics
     from src.consciousness.consciousness_engine import ConsciousnessEngine
     print("✅ Een Framework loaded successfully!")
 except ImportError as e:
