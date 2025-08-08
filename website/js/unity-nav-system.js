@@ -4,9 +4,9 @@
  * Simply include this script to get full navigation functionality
  */
 
-(function() {
+(function () {
     'use strict';
-    
+
     // Load navigation configuration
     if (!window.UnityNavConfig) {
         console.warn('UnityNavConfig not found, using defaults');
@@ -16,15 +16,15 @@
             featuredPages: []
         };
     }
-    
+
     const config = window.UnityNavConfig;
-    
+
     /**
      * Inject required CSS for navigation
      */
     function injectNavigationCSS() {
         if (document.querySelector('#unity-nav-styles')) return;
-        
+
         const css = `
         /* Unity Navigation Styles */
         .unity-nav {
@@ -190,19 +190,19 @@
             background: rgba(255, 215, 0, 0.1);
         }
         `;
-        
+
         const style = document.createElement('style');
         style.id = 'unity-nav-styles';
         style.textContent = css;
         document.head.appendChild(style);
     }
-    
+
     /**
      * Generate navigation HTML
      */
     function generateNavigationHTML() {
         const currentPage = window.location.pathname.split('/').pop() || 'metastation-hub.html';
-        
+
         let navHTML = `
         <nav class="unity-nav">
             <div class="unity-nav-container">
@@ -213,22 +213,22 @@
                 
                 <ul class="unity-nav-menu">
         `;
-        
+
         // Generate primary navigation items
         config.primaryNav.forEach(item => {
             const isActive = item.href === currentPage ? 'active' : '';
-            
+
             if (item.submenu && item.submenu.length > 0) {
                 navHTML += `
                 <li class="unity-nav-item">
-                    <a href="#" class="unity-nav-link ${isActive}">
+                    <a href="#" class="unity-nav-link ${isActive}" role="button" aria-label="Toggle Menu" title="Toggle Menu">
                         <i class="${item.icon}"></i>
                         ${item.title}
                         <i class="fas fa-chevron-down" style="font-size: 0.8em; margin-left: 0.25rem;"></i>
                     </a>
                     <div class="unity-nav-dropdown">
                 `;
-                
+
                 item.submenu.forEach(subitem => {
                     const subIsActive = subitem.href === currentPage ? 'active' : '';
                     navHTML += `
@@ -238,7 +238,7 @@
                     </a>
                     `;
                 });
-                
+
                 navHTML += `</div></li>`;
             } else if (item.href) {
                 navHTML += `
@@ -251,7 +251,7 @@
                 `;
             }
         });
-        
+
         navHTML += `
                 </ul>
                 
@@ -261,7 +261,7 @@
                 
                 <div class="unity-nav-mobile">
         `;
-        
+
         // Generate mobile navigation
         config.primaryNav.forEach(item => {
             if (item.href) {
@@ -273,7 +273,7 @@
                 </a>
                 `;
             }
-            
+
             if (item.submenu && item.submenu.length > 0) {
                 item.submenu.forEach(subitem => {
                     const subIsActive = subitem.href === currentPage ? 'active' : '';
@@ -286,16 +286,16 @@
                 });
             }
         });
-        
+
         navHTML += `
                 </div>
             </div>
         </nav>
         `;
-        
+
         return navHTML;
     }
-    
+
     /**
      * Insert navigation into page
      */
@@ -305,17 +305,17 @@
         if (existingNav) {
             existingNav.remove();
         }
-        
+
         // Insert new navigation at the beginning of body
         const navHTML = generateNavigationHTML();
         document.body.insertAdjacentHTML('afterbegin', navHTML);
-        
+
         // Add mobile toggle functionality
         const toggle = document.querySelector('.unity-nav-toggle');
         const mobileMenu = document.querySelector('.unity-nav-mobile');
-        
+
         if (toggle && mobileMenu) {
-            toggle.addEventListener('click', function() {
+            toggle.addEventListener('click', function () {
                 mobileMenu.classList.toggle('active');
                 const icon = toggle.querySelector('i');
                 if (mobileMenu.classList.contains('active')) {
@@ -325,41 +325,41 @@
                 }
             });
         }
-        
+
         // Close mobile menu when clicking links
         const mobileLinks = document.querySelectorAll('.unity-nav-mobile .unity-nav-link');
         mobileLinks.forEach(link => {
-            link.addEventListener('click', function() {
+            link.addEventListener('click', function () {
                 mobileMenu.classList.remove('active');
                 toggle.querySelector('i').className = 'fas fa-bars';
             });
         });
     }
-    
+
     /**
      * Initialize navigation system
      */
     function initializeNavigation() {
         // Inject CSS
         injectNavigationCSS();
-        
+
         // Insert navigation
         insertNavigation();
-        
+
         console.log('Unity Navigation System initialized');
     }
-    
+
     // Initialize when DOM is ready
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initializeNavigation);
     } else {
         initializeNavigation();
     }
-    
+
     // Make functions available globally for debugging
     window.UnityNavSystem = {
         initialize: initializeNavigation,
         config: config
     };
-    
+
 })();

@@ -27,7 +27,7 @@
 
     <!-- Enhanced Metagamer Consciousness Engine -->
     <link rel="stylesheet" href="enhanced-proof-styles.css">
-    <script src="metagamer-consciousness-engine.js"></script>
+    <script src="js/enhanced-proof-engine.js" defer></script>
 
     <!-- Unified Design System -->
     <link rel="stylesheet" href="../css/tokens.css">
@@ -745,7 +745,8 @@
                     <div class="constructor-controls">
                         <div class="proof-domain-selector">
                             <label>Select Mathematical Domain:</label>
-                            <select id="proof-domain" onchange="updateProofTemplate()">
+                            <select id="proof-domain" onchange="updateProofTemplate()" aria-label="Proof Domain"
+                                title="Proof Domain">
                                 <option value="boolean">Boolean Algebra</option>
                                 <option value="set-theory">Set Theory</option>
                                 <option value="quantum">Quantum Mechanics</option>
@@ -822,7 +823,8 @@
                         <div class="viz-controls">
                             <button onclick="showMultiDomainProof()" class="viz-btn">Demonstrate</button>
                             <label>Domain:
-                                <select id="domain-selector" onchange="updateDomainVisualization()">
+                                <select id="domain-selector" onchange="updateDomainVisualization()"
+                                    aria-label="Domain Selector" title="Domain Selector">
                                     <option value="all">All Domains</option>
                                     <option value="boolean">Boolean</option>
                                     <option value="quantum">Quantum</option>
@@ -859,7 +861,7 @@
                             <div class="proof-settings">
                                 <div class="setting-group">
                                     <label for="proof-rigor">Mathematical Rigor:</label>
-                                    <select id="proof-rigor">
+                                    <select id="proof-rigor" aria-label="Mathematical Rigor" title="Mathematical Rigor">
                                         <option value="intuitive">Intuitive</option>
                                         <option value="formal" selected>Formal</option>
                                         <option value="lean4">Lean 4 Verified</option>
@@ -929,13 +931,13 @@
                             visualizations.</p>
                     </a>
 
-                    <a href="http://localhost:8501" class="explorer-card metagamer-card" target="_blank">
+                    <a href="unity-mathematics-experience.html" class="explorer-card metagamer-card">
                         <div class="explorer-icon">
                             <i class="fas fa-rocket"></i>
                         </div>
                         <h3>Live Mathematical Explorer</h3>
-                        <p>Interactive Streamlit application with real-time proof validation and consciousness field
-                            visualization.</p>
+                        <p>Interactive unity experience with real-time proof validation and consciousness field
+                            visualization (web).</p>
                     </a>
 
                     <a href="playground.html" class="explorer-card metagamer-card">

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Een Metastation | Unity Mathematics Hub</title>
+    
+    <style>
+        :root {
+            --phi: 1.618033988749895;
+            --bg-primary: #0A0A0F;
+            --unity-gold: #FFD700;
+            --text-primary: #FFFFFF;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Space Grotesk', Arial, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(0, 212, 255, 0.1));
+            border-radius: 20px;
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--unity-gold), #00D4FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            color: #B8B8C8;
+            margin-bottom: 30px;
+        }
+        
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        
+        .nav-link {
+            padding: 12px 24px;
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid var(--unity-gold);
+            border-radius: 8px;
+            color: var(--unity-gold);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            background: rgba(255, 215, 0, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+        }
+        
+        .card h2 {
+            color: var(--unity-gold);
+            margin-bottom: 10px;
+        }
+        
+        .card p {
+            color: #B8B8C8;
+            line-height: 1.6;
+        }
+        
+        .error-notice {
+            background: rgba(255, 69, 0, 0.1);
+            border: 2px solid #FF4500;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            display: none;
+        }
+        
+        .error-notice.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1>Een Unity Mathematics</h1>
+            <p class="subtitle">Where 1 + 1 = 1 Through φ-Harmonic Consciousness</p>
+        </div>
+        
+        <nav class="nav-links">
+            <a href="zen-unity-meditation.html" class="nav-link">Zen Meditation</a>
+            <a href="implementations-gallery.html" class="nav-link">Implementations</a>
+            <a href="mathematical-framework.html" class="nav-link">Framework</a>
+            <a href="consciousness_dashboard.html" class="nav-link">Dashboard</a>
+            <a href="unity_visualization.html" class="nav-link">Visualizations</a>
+            <a href="playground.html" class="nav-link">Playground</a>
+        </nav>
+        
+        <div class="content-grid">
+            <div class="card">
+                <h2>Unity Equation</h2>
+                <p>Explore the mathematical proof that 1+1=1 through idempotent operations and consciousness field equations.</p>
+            </div>
+            <div class="card">
+                <h2>Consciousness Fields</h2>
+                <p>Interactive visualizations of 11-dimensional consciousness manifolds projected into our reality.</p>
+            </div>
+            <div class="card">
+                <h2>φ-Harmonic Systems</h2>
+                <p>Discover how the golden ratio φ = 1.618... resonates through all unity operations.</p>
+            </div>
+        </div>
+        
+        <div id="error-notice" class="error-notice">
+            <h3>⚠️ Loading Issue Detected</h3>
+            <p>Some advanced features may not be available. The page is functioning with basic features.</p>
+        </div>
+    </div>
+    
+    <script>
+        // Basic error detection and fallback
+        window.addEventListener('error', function(e) {
+            console.warn('Error detected:', e.message);
+            document.getElementById('error-notice').classList.add('show');
+        });
+        
+        // Check if page loaded properly
+        window.addEventListener('load', function() {
+            console.log('✅ Een Unity Mathematics Hub - Basic version loaded successfully');
+        });
+    </script>
+</body>
+</html>

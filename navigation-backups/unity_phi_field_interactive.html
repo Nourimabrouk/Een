@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Unity Φ Field Interactive — 1+1=1</title>
+    <script src="https://cdn.plot.ly/plotly-2.32.1.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            background: #0b0b0f;
+            color: #fff;
+            font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .title {
+            font-size: 1.8rem;
+            color: #FFD700;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: #aab;
+            margin-bottom: 1rem;
+        }
+
+        .panel {
+            background: #12121a;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+
+        #plot {
+            width: 100%;
+            height: 600px;
+        }
+
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.5rem;
+        }
+
+        .control label {
+            display: block;
+            font-size: 0.85rem;
+            color: #ccd;
+            margin-bottom: 0.25rem;
+        }
+
+        .control input[type="range"] {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="title">Unity Φ Field Interactive — 1+1=1</div>
+        <div class="subtitle">C(x,y,t) = φ · sin(x·φ) · cos(y·φ) · e^(−t/φ). Unity convergence visualized with labeled
+            axes and colorbar.</div>
+        <div id="plot" class="panel"></div>
+        <div class="panel">
+            <div class="controls">
+                <div class="control">
+                    <label for="res">Resolution</label>
+                    <input id="res" type="range" min="40" max="200" step="10" value="120" title="Resolution" />
+                </div>
+                <div class="control">
+                    <label for="dt">Time step (Δt)</label>
+                    <input id="dt" type="range" min="100" max="3000" step="100" value="800" title="Time step" />
+                </div>
+                <div class="control">
+                    <label for="phiScale">φ scale</label>
+                    <input id="phiScale" type="range" min="0.5" max="2.5" step="0.1" value="1.0" title="Phi scale" />
+                </div>
+                <div class="control">
+                    <label for="colorscale">Colorscale</label>
+                    <select id="colorscale" aria-label="Colorscale" title="Colorscale">
+                        <option>Plasma</option>
+                        <option>Viridis</option>
+                        <option>Cividis</option>
+                        <option>Turbo</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const PHI = 1.618033988749895;
+        const plotDiv = document.getElementById('plot');
+        const resEl = document.getElementById('res');
+        const dtEl = document.getElementById('dt');
+        const phiScaleEl = document.getElementById('phiScale');
+        const colorscaleEl = document.getElementById('colorscale');
+
+        function generateField(resolution, t, phiScale) {
+            const scale = 4 * PHI * phiScale;
+            const x = Array.from({ length: resolution }, (_, i) => (i / resolution - 0.5) * scale);
+            const y = Array.from({ length: resolution }, (_, i) => (i / resolution - 0.5) * scale);
+            const z = new Array(resolution);
+            for (let i = 0; i < resolution; i++) {
+                z[i] = new Array(resolution);
+                for (let j = 0; j < resolution; j++) {
+                    const c = PHI * Math.sin(x[i] * PHI) * Math.cos(y[j] * PHI) * Math.exp(-t / PHI);
+                    z[i][j] = c;
+                }
+            }
+            return { x, y, z };
+        }
+
+        function draw(resolution, t, phiScale, colorscale) {
+            const { x, y, z } = generateField(resolution, t, phiScale);
+            const trace = {
+                z, x, y, type: 'heatmap', colorscale, zsmooth: 'best',
+                colorbar: { title: 'Consciousness Intensity', titleside: 'right', titlefont: { color: '#fff' }, tickfont: { color: '#ddd' } }
+            };
+            const layout = {
+                title: { text: `Unity Φ Field (res=${resolution})`, font: { color: '#FFD700' } },
+                paper_bgcolor: '#12121a', plot_bgcolor: '#12121a', font: { color: '#fff' },
+                xaxis: { title: 'φ-Dimension 1', gridcolor: 'rgba(255,255,255,0.08)' },
+                yaxis: { title: 'φ-Dimension 2', gridcolor: 'rgba(255,255,255,0.08)' },
+                margin: { l: 60, r: 60, t: 60, b: 60 },
+            };
+            Plotly.react(plotDiv, [trace], layout, { responsive: true, displayModeBar: true });
+        }
+
+        let t = 0;
+        function loop() {
+            draw(parseInt(resEl.value, 10), t, parseFloat(phiScaleEl.value), colorscaleEl.value);
+            t += 0.2;
+            setTimeout(loop, parseInt(dtEl.value, 10));
+        }
+
+        resEl.addEventListener('input', () => draw(parseInt(resEl.value, 10), t, parseFloat(phiScaleEl.value), colorscaleEl.value));
+        phiScaleEl.addEventListener('input', () => draw(parseInt(resEl.value, 10), t, parseFloat(phiScaleEl.value), colorscaleEl.value));
+        colorscaleEl.addEventListener('change', () => draw(parseInt(resEl.value, 10), t, parseFloat(phiScaleEl.value), colorscaleEl.value));
+
+        draw(parseInt(resEl.value, 10), t, parseFloat(phiScaleEl.value), colorscaleEl.value);
+        loop();
+    </script>
+</body>
+
+</html>

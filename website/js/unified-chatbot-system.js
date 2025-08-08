@@ -387,6 +387,8 @@ class UnifiedChatbotSystem {
                 right: calc(25px + env(safe-area-inset-right, 0px));
                 width: clamp(360px, 28vw, 420px);
                 height: clamp(520px, 78vh, 720px);
+                max-height: calc(100vh - 40px);
+                /* Ensure the header never clips off-screen on small viewports */
                 background: rgba(15, 15, 20, 0.98);
                 backdrop-filter: blur(20px);
                 border: 1px solid rgba(255, 215, 0, 0.2);
@@ -400,16 +402,18 @@ class UnifiedChatbotSystem {
                 transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
                 opacity: 0;
                 transform: translateY(30px) scale(0.95);
+                box-sizing: border-box;
             }
 
-            /* Fullscreen mode */
+            /* Maximized mode (respect the site navigation height) */
             .unified-chat-panel.fullscreen {
                 left: 0 !important;
                 right: 0 !important;
-                top: 0 !important;
+                top: var(--nav-height, 70px) !important;
+                /* fall back to 70px if nav variable is unavailable */
                 bottom: 0 !important;
                 width: 100vw !important;
-                height: 100vh !important;
+                height: calc(100vh - var(--nav-height, 70px)) !important;
                 border-radius: 0 !important;
             }
 

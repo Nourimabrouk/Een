@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consciousness HUD · Een</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Inter", Arial, sans-serif;
+      background: radial-gradient(circle at top left, #0f0f23 0%, #1a1a3a 50%, #0f0f23 100%);
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    nav {
+      background: rgba(15, 15, 35, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 105, 180, 0.2);
+      padding: 0.5rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav .links a {
+      margin-right: 1rem;
+      color: #ff69b4;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    nav .links a.active {
+      color: #00ffff;
+    }
+    .container {
+      max-width: 900px;
+      width: 90%;
+      margin: 2rem auto;
+      text-align: center;
+    }
+    h1 {
+      background: linear-gradient(45deg, #ff69b4, #6600ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .gauges {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    canvas {
+      width: 250px !important;
+      height: 250px !important;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 50%;
+      padding: 1rem;
+    }
+    .controls {
+      margin-top: 1.5rem;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .controls input[type="range"] {
+      width: 200px;
+    }
+    .controls button {
+      background: #ff69b4;
+      border: none;
+      color: #000;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="links">
+      <a href="unity.html">Unity Dashboard</a>
+      <a href="quantum.html">Quantum Visualizer</a>
+      <a href="consciousness.html" class="active">Consciousness HUD</a>
+      <a href="../index.html">Back to Home</a>
+    </div>
+  </nav>
+  <div class="container">
+    <h1>Consciousness HUD</h1>
+    <p>Monitor the meta‑recursive consciousness metrics in real time. Adjust φ‑resonance and add entities to observe how awareness evolves.</p>
+    <div class="gauges">
+      <div>
+        <canvas id="coherenceGauge"></canvas>
+        <p>Field Coherence</p>
+      </div>
+      <div>
+        <canvas id="eventsGauge"></canvas>
+        <p>Unity Events</p>
+      </div>
+      <div>
+        <canvas id="phiGauge"></canvas>
+        <p>φ‑Resonance</p>
+      </div>
+    </div>
+    <div class="controls">
+      <label for="phiHudSlider">φ‑Resonance</label>
+      <input type="range" id="phiHudSlider" min="1" max="2" step="0.01" value="1.618">
+      <button id="hudAdd">Add Entity</button>
+    </div>
+  </div>
+  <script>
+    // Helper to create a gauge-like chart (doughnut chart representing value)
+    function createGauge(ctx, color) {
+      return new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          datasets: [{
+            data: [0.5, 0.5],
+            backgroundColor: [color, '#222847'],
+            borderWidth: 0
+          }]
+        },
+        options: {
+          rotation: -Math.PI,
+          circumference: Math.PI,
+          cutout: '70%',
+          plugins: {
+            tooltip: { enabled: false },
+            legend: { display: false }
+          },
+          responsive: false
+        }
+      });
+    }
+    const coherenceCtx = document.getElementById('coherenceGauge').getContext('2d');
+    const eventsCtx = document.getElementById('eventsGauge').getContext('2d');
+    const phiCtx = document.getElementById('phiGauge').getContext('2d');
+    const coherenceChart = createGauge(coherenceCtx, '#00ffff');
+    const eventsChart = createGauge(eventsCtx, '#ffdd57');
+    const phiChart = createGauge(phiCtx, '#ff69b4');
+    let hudPhi = parseFloat(document.getElementById('phiHudSlider').value);
+    let hudEvents = 0;
+    function updateHUD() {
+      // Field coherence decays slightly then recovers based on φ
+      const coherenceVal = 0.8 + 0.2 * Math.sin(Date.now() / 1000 * hudPhi);
+      coherenceChart.data.datasets[0].data = [coherenceVal, 1 - coherenceVal];
+      coherenceChart.update();
+      // Unity events scaled to [0,1]
+      const eventsVal = Math.min(hudEvents / 10, 1);
+      eventsChart.data.datasets[0].data = [eventsVal, 1 - eventsVal];
+      eventsChart.update();
+      // φ gauge normalised between 1 and 2
+      const phiNorm = (hudPhi - 1) / 1;
+      phiChart.data.datasets[0].data = [phiNorm, 1 - phiNorm];
+      phiChart.update();
+      requestAnimationFrame(updateHUD);
+    }
+    updateHUD();
+    document.getElementById('phiHudSlider').addEventListener('input', e => {
+      hudPhi = parseFloat(e.target.value);
+    });
+    document.getElementById('hudAdd').addEventListener('click', () => {
+      hudEvents += 1;
+    });
+  </script>
+</body>
+</html>

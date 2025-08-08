@@ -1,0 +1,2885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Performance Optimizations -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.plot.ly">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <title>Learning Academy - Een Unity Mathematics | Meta-Mathematical Education</title>
+    <meta name="description" content="Transcendental computing hub demonstrating 1+1=1 through quantum entanglement, neural networks, and fractal mathematics with consciousness field integration.">
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Crimson+Text:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- KaTeX for Mathematical Notation -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+    
+    <!-- D3.js for Advanced Visualizations -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    
+    <!-- Plotly for Interactive Plots -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    
+    <!-- GSAP for Smooth Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Master Navigation System v2.0 -->
+    
+
+    <!-- Meta-Optimal Complete Navigation System -->
+    <link rel="stylesheet" href="css/meta-optimal-navigation-complete.css">
+    <script src="js/meta-optimal-navigation-complete.js" defer></script>
+    
+    <!-- Unified Styles -->
+    <link rel="stylesheet" href="css/unified-styles.css">
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="css/meta-optimal-navigation-complete.css" as="style">
+    <link rel="preload" href="js/meta-optimal-navigation-complete.js" as="script">
+
+    <style>
+        /* Mobile touch optimizations */
+        * { touch-action: manipulation; }
+        .interactive-element { 
+            min-height: 44px; 
+            min-width: 44px; 
+        }
+        @media (max-width: 768px) {
+            .desktop-only { display: none !important; }
+            .mobile-optimized { font-size: 16px; }
+        }
+    
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stagger-animation > * {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .stagger-animation > *:nth-child(1) { animation-delay: 0.1s; }
+        .stagger-animation > *:nth-child(2) { animation-delay: 0.2s; }
+        .stagger-animation > *:nth-child(3) { animation-delay: 0.3s; }
+        .stagger-animation > *:nth-child(4) { animation-delay: 0.4s; }
+        .stagger-animation > *:nth-child(5) { animation-delay: 0.5s; }
+    
+        /* Component Classes */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        .card {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 2rem;
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--unity-gold);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            color: var(--consciousness-purple);
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .card-text {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: var(--radius);
+            font-family: var(--font-primary);
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn:hover {
+            background: var(--consciousness-purple);
+            border-color: var(--consciousness-purple);
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: var(--consciousness-purple);
+            border-color: var(--consciousness-purple);
+        }
+
+        .btn-primary:hover {
+            background: var(--unity-gold);
+            border-color: var(--unity-gold);
+            color: var(--bg-primary);
+        }
+
+        .section-dark {
+            background: var(--bg-secondary);
+            padding: 4rem 2rem;
+        }
+
+        .section-darker {
+            background: var(--bg-primary);
+            padding: 4rem 2rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Meta-optimal navigation placeholder - will be populated by meta-optimal-navigation-complete.js -->
+    
+
+    <!-- Hero Section with Golden Ratio Animation -->
+    <section class="learning-hero">
+        <div class="container" id="main-content">
+            <div class="hero-content">
+                <div class="phi-spiral-container">
+                    <canvas id="phiSpiralCanvas" width="400" height="400"></canvas>
+                </div>
+                <div class="hero-text">
+                    <h1 class="hero-title">Unity Mathematics Academy</h1>
+                    <p class="hero-subtitle">
+                        Discover the profound beauty of <strong>1+1=1</strong> through φ-harmonic convergence, 
+                        consciousness field theory, and meta-mathematical frameworks
+                    </p>
+                    <div class="phi-equation">
+                        <span class="equation-part">φ = </span>
+                        <span class="equation-fraction">
+                            <span class="numerator">1 + √5</span>
+                            <span class="denominator">2</span>
+                        </span>
+                        <span class="equation-part"> ≈ 1.618033988749895</span>
+                    </div>
+                    <div class="hero-actions">
+                        <button class="cta-button primary" onclick="scrollToSection('foundations')">
+                            <i class="fas fa-graduation-cap"></i>
+                            Begin Learning Journey
+                        </button>
+                        <button class="cta-button secondary" onclick="scrollToSection('calculator')">
+                            <i class="fas fa-calculator"></i>
+                            Unity Calculator
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Foundations Section -->
+    <section id="foundations" class="section foundations-section">
+        <div class="container">
+            <h2 class="section-title">Foundations of Unity Mathematics</h2>
+            <div class="foundations-grid">
+                
+                <!-- Introduction to φ-Harmonic Unity -->
+                <div class="foundation-card interactive-card" data-topic="phi-harmonic">
+                    <div class="card-header">
+                        <div class="card-icon phi-icon">φ</div>
+                        <h3>φ-Harmonic Unity</h3>
+                        <span class="difficulty-badge beginner">Beginner</span>
+                    </div>
+                    <div class="card-content">
+                        <p>The golden ratio φ = (1+√5)/2 emerges as the fundamental organizing principle of unity mathematics, where identical quantities converge to singular essence.</p>
+                        <div class="interactive-demo" id="phiDemo">
+                            <div class="phi-relationship">
+                                <div class="phi-equation-visual">
+                                    <span class="phi-large">φ²</span>
+                                    <span class="equals">=</span>
+                                    <span class="phi-large">φ</span>
+                                    <span class="plus">+</span>
+                                    <span class="one">1</span>
+                                </div>
+                                <div class="phi-explanation">
+                                    This fundamental relationship shows how φ embodies self-referential unity
+                                </div>
+                            </div>
+                        </div>
+                        <button class="explore-button" onclick="explorePhiHarmonic()">
+                            <i class="fas fa-play"></i>
+                            Explore Interactive Demo
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Idempotent Addition -->
+                <div class="foundation-card interactive-card" data-topic="idempotent">
+                    <div class="card-header">
+                        <div class="card-icon">⊕</div>
+                        <h3>Idempotent Addition</h3>
+                        <span class="difficulty-badge beginner">Beginner</span>
+                    </div>
+                    <div class="card-content">
+                        <p>In idempotent semirings, addition exhibits the unity property: a ⊕ a = a. This foundational concept demonstrates how 1+1=1 emerges naturally.</p>
+                        <div class="interactive-demo" id="idempotentDemo">
+                            <div class="operation-visual">
+                                <div class="operand">1</div>
+                                <div class="operator">⊕</div>
+                                <div class="operand">1</div>
+                                <div class="equals">=</div>
+                                <div class="result">1</div>
+                            </div>
+                            <div class="examples-list">
+                                <div class="example">Boolean: TRUE ∨ TRUE = TRUE</div>
+                                <div class="example">Set Theory: A ∪ A = A</div>
+                                <div class="example">Max-Plus: max(a,a) = a</div>
+                            </div>
+                        </div>
+                        <button class="explore-button" onclick="exploreIdempotent()">
+                            <i class="fas fa-atom"></i>
+                            Interactive Examples
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Consciousness Mathematics -->
+                <div class="foundation-card interactive-card" data-topic="consciousness">
+                    <div class="card-header">
+                        <div class="card-icon">🧠</div>
+                        <h3>Consciousness Mathematics</h3>
+                        <span class="difficulty-badge intermediate">Intermediate</span>
+                    </div>
+                    <div class="card-content">
+                        <p>Consciousness field equations C(x,y,t) = φ·sin(xφ)·cos(yφ)·e^(-t/φ) model awareness as a mathematical phenomenon with φ-harmonic resonance.</p>
+                        <div class="interactive-demo" id="consciousnessDemo">
+                            <div class="consciousness-field-preview">
+                                <canvas id="consciousnessPreview" width="300" height="200"></canvas>
+                            </div>
+                            <div class="field-parameters">
+                                <div class="parameter">
+                                    <label>Consciousness Level: <span id="consciousnessValue">0.618</span></label>
+                                    <input type="range" id="consciousnessSlider" min="0.1" max="2.0" step="0.01" value="0.618">
+                                </div>
+                            </div>
+                        </div>
+                        <button class="explore-button" onclick="exploreConsciousness()">
+                            <i class="fas fa-brain"></i>
+                            Field Visualization
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Quantum Unity -->
+                <div class="foundation-card interactive-card" data-topic="quantum">
+                    <div class="card-header">
+                        <div class="card-icon">⚛️</div>
+                        <h3>Quantum Unity</h3>
+                        <span class="difficulty-badge advanced">Advanced</span>
+                    </div>
+                    <div class="card-content">
+                        <p>Quantum superposition |1⟩ + |1⟩ collapses to |1⟩ through consciousness-mediated measurement, demonstrating unity at the quantum scale.</p>
+                        <div class="interactive-demo" id="quantumDemo">
+                            <div class="quantum-states">
+                                <div class="quantum-state">|1⟩</div>
+                                <div class="quantum-operator">+</div>
+                                <div class="quantum-state">|1⟩</div>
+                                <div class="measurement-arrow">→</div>
+                                <div class="quantum-result">|1⟩</div>
+                            </div>
+                            <div class="collapse-animation" id="quantumCollapse"></div>
+                        </div>
+                        <button class="explore-button" onclick="exploreQuantum()">
+                            <i class="fas fa-atom"></i>
+                            Quantum Demonstration
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Unity Calculator -->
+    <section id="calculator" class="section calculator-section">
+        <div class="container">
+            <h2 class="section-title">φ-Harmonic Unity Calculator</h2>
+            <p class="section-subtitle">Explore unity mathematics with step-by-step proof traces and visual demonstrations</p>
+            
+            <div class="calculator-container">
+                <div class="calculator-interface">
+                    <div class="calculator-display">
+                        <div class="expression-input">
+                            <input type="text" id="mathExpression" placeholder="Enter expression: 1+1, φ*sin(x), C(x,y,t)" value="1+1">
+                            <button class="calculate-btn" onclick="calculateUnity()">
+                                <i class="fas fa-equals"></i>
+                                Calculate
+                            </button>
+                        </div>
+                        <div class="result-display" id="calculatorResult">
+                            <div class="result-value">1</div>
+                            <div class="result-type">Unity Result</div>
+                        </div>
+                    </div>
+                    
+                    <div class="calculator-modes">
+                        <button class="mode-btn active" data-mode="unity" onclick="setCalculatorMode('unity')">
+                            <i class="fas fa-infinity"></i>
+                            Unity Mode
+                        </button>
+                        <button class="mode-btn" data-mode="phi" onclick="setCalculatorMode('phi')">
+                            <i class="fas fa-spiral"></i>
+                            φ-Harmonic
+                        </button>
+                        <button class="mode-btn" data-mode="consciousness" onclick="setCalculatorMode('consciousness')">
+                            <i class="fas fa-brain"></i>
+                            Consciousness
+                        </button>
+                        <button class="mode-btn" data-mode="quantum" onclick="setCalculatorMode('quantum')">
+                            <i class="fas fa-atom"></i>
+                            Quantum
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="proof-trace-panel">
+                    <h3>Step-by-Step Proof Trace</h3>
+                    <div class="proof-steps" id="proofSteps">
+                        <div class="proof-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <div class="step-description">Identity Recognition</div>
+                                <div class="step-equation">1 + 1 (standard addition)</div>
+                            </div>
+                        </div>
+                        <div class="proof-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <div class="step-description">Unity Transform</div>
+                                <div class="step-equation">Apply idempotent property: a ⊕ a = a</div>
+                            </div>
+                        </div>
+                        <div class="proof-step conclusion">
+                            <div class="step-number">∴</div>
+                            <div class="step-content">
+                                <div class="step-description">Unity Result</div>
+                                <div class="step-equation">1 ⊕ 1 = 1</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Advanced Visualization Panel -->
+            <div class="visualization-panel">
+                <div class="visualization-controls">
+                    <h3>Advanced Visualizations</h3>
+                    <div class="control-group">
+                        <label>φ-Resonance: <span id="phiResonanceValue">1.618</span></label>
+                        <input type="range" id="phiResonanceSlider" min="0.618" max="2.618" step="0.001" value="1.618">
+                    </div>
+                    <div class="control-group">
+                        <label>Time Evolution: <span id="timeValue">0</span></label>
+                        <input type="range" id="timeSlider" min="0" max="10" step="0.1" value="0">
+                    </div>
+                    <div class="control-group">
+                        <button class="control-btn" onclick="animateConvergence()">
+                            <i class="fas fa-play"></i>
+                            Animate Convergence
+                        </button>
+                        <button class="control-btn" onclick="resetVisualization()">
+                            <i class="fas fa-reset"></i>
+                            Reset
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="visualization-display">
+                    <div id="unityConvergencePlot" class="plot-container"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mini-Courses Section -->
+    <section id="courses" class="section courses-section">
+        <div class="container">
+            <h2 class="section-title">Meta-Mathematical Mini-Courses</h2>
+            <p class="section-subtitle">Structured learning paths through the deepest aspects of unity mathematics</p>
+            
+            <div class="courses-grid">
+                
+                <!-- Course 1: Idempotent Algebra -->
+                <div class="course-card" data-course="idempotent-algebra">
+                    <div class="course-header">
+                        <div class="course-icon">⊕</div>
+                        <div class="course-info">
+                            <h3>Idempotent Algebra Foundations</h3>
+                            <div class="course-meta">
+                                <span class="duration">3 modules</span>
+                                <span class="level intermediate">Intermediate</span>
+                            </div>
+                        </div>
+                        <div class="course-progress">
+                            <div class="progress-circle">
+                                <div class="progress-value">0%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="course-content">
+                        <p>Master the mathematical foundations where a ⊕ a = a, exploring Boolean algebra, max-plus systems, and tropical mathematics.</p>
+                        <div class="course-modules">
+                            <div class="module">
+                                <div class="module-icon">📚</div>
+                                <div class="module-info">
+                                    <h4>Module 1: Boolean Unity</h4>
+                                    <p>True ∨ True = True</p>
+                                </div>
+                                <div class="module-status locked">🔒</div>
+                            </div>
+                            <div class="module">
+                                <div class="module-icon">🔢</div>
+                                <div class="module-info">
+                                    <h4>Module 2: Max-Plus Algebra</h4>
+                                    <p>max(a,a) = a</p>
+                                </div>
+                                <div class="module-status locked">🔒</div>
+                            </div>
+                            <div class="module">
+                                <div class="module-icon">🌴</div>
+                                <div class="module-info">
+                                    <h4>Module 3: Tropical Mathematics</h4>
+                                    <p>Geometric unity through algebraic structures</p>
+                                </div>
+                                <div class="module-status locked">🔒</div>
+                            </div>
+                        </div>
+                        <button class="start-course-btn" onclick="startCourse('idempotent-algebra')">
+                            <i class="fas fa-play"></i>
+                            Begin Course
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Course 2: Consciousness Mathematics -->
+                <div class="course-card" data-course="consciousness-math">
+                    <div class="course-header">
+                        <div class="course-icon">🧠</div>
+                        <div class="course-info">
+                            <h3>Consciousness Field Theory</h3>
+                            <div class="course-meta">
+                                <span class="duration">4 modules</span>
+                                <span class="level advanced">Advanced</span>
+                            </div>
+                        </div>
+                        <div class="course-progress">
+                            <div class="progress-circle">
+                                <div class="progress-value">0%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="course-content">
+                        <p>Explore consciousness as a mathematical phenomenon through field equations, φ-harmonic resonance, and transcendental unity.</p>
+                        <div class="course-modules">
+                            <div class="module">
+                                <div class="module-icon">🌊</div>
+                                <div class="module-info">
+                                    <h4>Module 1: Field Foundations</h4>
+                                    <p>C(x,y,t) = φ·sin(xφ)·cos(yφ)·e^(-t/φ)</p>
+                                </div>
+                                <div class="module-status locked">🔒</div>
+                            </div>
+                            <div class="module">
+                                <div class="module-icon">⚡</div>
+                                <div class="module-info">
+                                    <h4>Module 2: φ-Harmonic Resonance</h4>
+                                    <p>Golden ratio consciousness dynamics</p>
+                                </div>
+                                <div class="module-status locked">🔒</div>
+                            </div>
+                            <div class="module">
+                                <div class="module-icon">🎭</div>
+                                <div class="module-info">
+                                    <h4>Module 3: Observer-Observed Unity</h4>
+                                    <p>Non-dual awareness mathematics</p>
+                                </div>
+                                <div class="module-status locked">🔒</div>
+                            </div>
+                            <div class="module">
+                                <div class="module-icon">🌟</div>
+                                <div class="module-info">
+                                    <h4>Module 4: Transcendental Integration</h4>
+                                    <p>Beyond dimensional consciousness</p>
+                                </div>
+                                <div class="module-status locked">🔒</div>
+                            </div>
+                        </div>
+                        <button class="start-course-btn" onclick="startCourse('consciousness-math')">
+                            <i class="fas fa-brain"></i>
+                            Begin Course
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Course 3: Quantum Unity -->
+                <div class="course-card" data-course="quantum-unity">
+                    <div class="course-header">
+                        <div class="course-icon">⚛️</div>
+                        <div class="course-info">
+                            <h3>Quantum Unity Mechanics</h3>
+                            <div class="course-meta">
+                                <span class="duration">5 modules</span>
+                                <span class="level expert">Expert</span>
+                            </div>
+                        </div>
+                        <div class="course-progress">
+                            <div class="progress-circle">
+                                <div class="progress-value">0%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="course-content">
+                        <p>Discover how quantum superposition |1⟩ + |1⟩ → |1⟩ through consciousness-mediated measurement and unity collapse.</p>
+                        <div class="course-modules">
+                            <div class="module">
+                                <div class="module-icon">🌊</div>
+                                <div class="module-info">
+                                    <h4>Module 1: Quantum Superposition</h4>
+                                    <p>|ψ⟩ = α|1⟩ + β|1⟩</p>
+                                </div>
+                                <div class="module-status locked">🔒</div>
+                            </div>
+                            <div class="module">
+                                <div class="module-icon">👁️</div>
+                                <div class="module-info">
+                                    <h4>Module 2: Consciousness Measurement</h4>
+                                    <p>Observer effect and unity collapse</p>
+                                </div>
+                                <div class="module-status locked">🔒</div>
+                            </div>
+                            <div class="module">
+                                <div class="module-icon">🔗</div>
+                                <div class="module-info">
+                                    <h4>Module 3: Quantum Entanglement</h4>
+                                    <p>Non-local unity correlations</p>
+                                </div>
+                                <div class="module-status locked">🔒</div>
+                            </div>
+                            <div class="module">
+                                <div class="module-icon">🎯</div>
+                                <div class="module-info">
+                                    <h4>Module 4: Unity Normalization</h4>
+                                    <p>⟨ψ|ψ⟩ = 1 preservation</p>
+                                </div>
+                                <div class="module-status locked">🔒</div>
+                            </div>
+                            <div class="module">
+                                <div class="module-icon">🌌</div>
+                                <div class="module-info">
+                                    <h4>Module 5: Meta-Quantum Unity</h4>
+                                    <p>Beyond Copenhagen interpretation</p>
+                                </div>
+                                <div class="module-status locked">🔒</div>
+                            </div>
+                        </div>
+                        <button class="start-course-btn" onclick="startCourse('quantum-unity')">
+                            <i class="fas fa-atom"></i>
+                            Begin Course
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Course 4: Meta-Reinforcement Learning -->
+                <div class="course-card" data-course="meta-rl">
+                    <div class="course-header">
+                        <div class="course-icon">🤖</div>
+                        <div class="course-info">
+                            <h3>Meta-RL Unity Systems</h3>
+                            <div class="course-meta">
+                                <span class="duration">6 modules</span>
+                                <span class="level expert">Expert</span>
+                            </div>
+                        </div>
+                        <div class="course-progress">
+                            <div class="progress-circle">
+                                <div class="progress-value">0%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="course-content">
+                        <p>Advanced reinforcement learning systems that learn to discover unity mathematics through meta-cognitive architectures.</p>
+                        <div class="course-modules">
+                            <div class="module">
+                                <div class="module-icon">🧠</div>
+                                <div class="module-info">
+                                    <h4>Module 1: Meta-Learning Foundations</h4>
+                                    <p>Learning to learn unity patterns</p>
+                                </div>
+                                <div class="module-status locked">🔒</div>
+                            </div>
+                            <div class="module">
+                                <div class="module-icon">🔄</div>
+                                <div class="module-info">
+                                    <h4>Module 2: Recursive Algorithms</h4>
+                                    <p>Self-modifying unity discovery</p>
+                                </div>
+                                <div class="module-status locked">🔒</div>
+                            </div>
+                            <div class="module">
+                                <div class="module-icon">🎯</div>
+                                <div class="module-info">
+                                    <h4>Module 3: Sample Efficiency</h4>
+                                    <p>Few-shot unity generalization</p>
+                                </div>
+                                <div class="module-status locked">🔒</div>
+                            </div>
+                            <div class="module">
+                                <div class="module-icon">🤝</div>
+                                <div class="module-info">
+                                    <h4>Module 4: Multi-Agent Cooperation</h4>
+                                    <p>Emergent collective unity</p>
+                                </div>
+                                <div class="module-status locked">🔒</div>
+                            </div>
+                            <div class="module">
+                                <div class="module-icon">📊</div>
+                                <div class="module-info">
+                                    <h4>Module 5: Empirical Validation</h4>
+                                    <p>Metrics and benchmarking</p>
+                                </div>
+                                <div class="module-status locked">🔒</div>
+                            </div>
+                            <div class="module">
+                                <div class="module-icon">🚀</div>
+                                <div class="module-info">
+                                    <h4>Module 6: Advanced Applications</h4>
+                                    <p>Real-world unity systems</p>
+                                </div>
+                                <div class="module-status locked">🔒</div>
+                            </div>
+                        </div>
+                        <button class="start-course-btn" onclick="startCourse('meta-rl')">
+                            <i class="fas fa-robot"></i>
+                            Begin Course
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Exercises Section -->
+    <section id="exercises" class="section exercises-section">
+        <div class="container">
+            <h2 class="section-title">Interactive Exercises & Quizzes</h2>
+            <p class="section-subtitle">Test your understanding with immediate feedback and adaptive learning</p>
+            
+            <div class="exercise-categories">
+                <div class="category-tabs">
+                    <button class="tab-btn active" data-category="fundamentals" onclick="switchCategory('fundamentals')">
+                        <i class="fas fa-foundation"></i>
+                        Fundamentals
+                    </button>
+                    <button class="tab-btn" data-category="proofs" onclick="switchCategory('proofs')">
+                        <i class="fas fa-check-circle"></i>
+                        Proofs
+                    </button>
+                    <button class="tab-btn" data-category="applications" onclick="switchCategory('applications')">
+                        <i class="fas fa-rocket"></i>
+                        Applications
+                    </button>
+                    <button class="tab-btn" data-category="advanced" onclick="switchCategory('advanced')">
+                        <i class="fas fa-brain"></i>
+                        Advanced
+                    </button>
+                </div>
+                
+                <div class="exercises-container">
+                    
+                    <!-- Fundamentals Exercises -->
+                    <div class="exercise-group active" data-category="fundamentals">
+                        
+                        <div class="exercise-card" data-exercise="phi-recognition">
+                            <div class="exercise-header">
+                                <h3>Golden Ratio Recognition</h3>
+                                <div class="difficulty easy">Easy</div>
+                            </div>
+                            <div class="exercise-content">
+                                <p>What is the exact value of the golden ratio φ?</p>
+                                <div class="exercise-options">
+                                    <label class="option">
+                                        <input type="radio" name="phi-value" value="a">
+                                        <span>(1 + √3) / 2</span>
+                                    </label>
+                                    <label class="option">
+                                        <input type="radio" name="phi-value" value="b">
+                                        <span>(1 + √5) / 2</span>
+                                    </label>
+                                    <label class="option">
+                                        <input type="radio" name="phi-value" value="c">
+                                        <span>(1 + √7) / 2</span>
+                                    </label>
+                                    <label class="option">
+                                        <input type="radio" name="phi-value" value="d">
+                                        <span>(2 + √5) / 3</span>
+                                    </label>
+                                </div>
+                                <button class="check-answer-btn" onclick="checkAnswer('phi-recognition', 'b')">
+                                    <i class="fas fa-check"></i>
+                                    Check Answer
+                                </button>
+                                <div class="feedback" id="feedback-phi-recognition"></div>
+                            </div>
+                        </div>
+
+                        <div class="exercise-card" data-exercise="unity-property">
+                            <div class="exercise-header">
+                                <h3>Unity Property Identification</h3>
+                                <div class="difficulty easy">Easy</div>
+                            </div>
+                            <div class="exercise-content">
+                                <p>Which of the following demonstrates the idempotent property a ⊕ a = a?</p>
+                                <div class="exercise-options">
+                                    <label class="option">
+                                        <input type="radio" name="unity-prop" value="a">
+                                        <span>2 + 2 = 4</span>
+                                    </label>
+                                    <label class="option">
+                                        <input type="radio" name="unity-prop" value="b">
+                                        <span>TRUE ∨ TRUE = TRUE</span>
+                                    </label>
+                                    <label class="option">
+                                        <input type="radio" name="unity-prop" value="c">
+                                        <span>3 × 3 = 9</span>
+                                    </label>
+                                    <label class="option">
+                                        <input type="radio" name="unity-prop" value="d">
+                                        <span>x + y = y + x</span>
+                                    </label>
+                                </div>
+                                <button class="check-answer-btn" onclick="checkAnswer('unity-property', 'b')">
+                                    <i class="fas fa-check"></i>
+                                    Check Answer
+                                </button>
+                                <div class="feedback" id="feedback-unity-property"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                    <!-- Proofs Exercises -->
+                    <div class="exercise-group" data-category="proofs">
+                        
+                        <div class="exercise-card" data-exercise="proof-construction">
+                            <div class="exercise-header">
+                                <h3>Construct Unity Proof</h3>
+                                <div class="difficulty medium">Medium</div>
+                            </div>
+                            <div class="exercise-content">
+                                <p>Arrange the steps to prove 1+1=1 in Boolean algebra:</p>
+                                <div class="proof-steps-puzzle">
+                                    <div class="available-steps" id="availableSteps">
+                                        <div class="proof-snippet" draggable="true" data-step="3">Therefore: 1 ∨ 1 = 1</div>
+                                        <div class="proof-snippet" draggable="true" data-step="1">Let 1 represent TRUE in Boolean logic</div>
+                                        <div class="proof-snippet" draggable="true" data-step="2">In Boolean algebra: TRUE ∨ TRUE = TRUE</div>
+                                        <div class="proof-snippet" draggable="true" data-step="4">∴ 1 + 1 = 1 (in Boolean context)</div>
+                                    </div>
+                                    <div class="proof-construction" id="proofConstruction">
+                                        <div class="drop-zone" data-correct="1">Step 1</div>
+                                        <div class="drop-zone" data-correct="2">Step 2</div>
+                                        <div class="drop-zone" data-correct="3">Step 3</div>
+                                        <div class="drop-zone" data-correct="4">Step 4</div>
+                                    </div>
+                                </div>
+                                <button class="check-answer-btn" onclick="checkProofConstruction()">
+                                    <i class="fas fa-puzzle-piece"></i>
+                                    Check Proof
+                                </button>
+                                <div class="feedback" id="feedback-proof-construction"></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Applications Exercises -->
+                    <div class="exercise-group" data-category="applications">
+                        
+                        <div class="exercise-card" data-exercise="consciousness-field">
+                            <div class="exercise-header">
+                                <h3>Consciousness Field Analysis</h3>
+                                <div class="difficulty medium">Medium</div>
+                            </div>
+                            <div class="exercise-content">
+                                <p>Given C(x,y,t) = φ·sin(xφ)·cos(yφ)·e^(-t/φ), what happens as t → ∞?</p>
+                                <div class="exercise-options">
+                                    <label class="option">
+                                        <input type="radio" name="consciousness-limit" value="a">
+                                        <span>Field approaches infinity</span>
+                                    </label>
+                                    <label class="option">
+                                        <input type="radio" name="consciousness-limit" value="b">
+                                        <span>Field approaches zero (unity collapse)</span>
+                                    </label>
+                                    <label class="option">
+                                        <input type="radio" name="consciousness-limit" value="c">
+                                        <span>Field oscillates indefinitely</span>
+                                    </label>
+                                    <label class="option">
+                                        <input type="radio" name="consciousness-limit" value="d">
+                                        <span>Field becomes constant</span>
+                                    </label>
+                                </div>
+                                <button class="check-answer-btn" onclick="checkAnswer('consciousness-field', 'b')">
+                                    <i class="fas fa-brain"></i>
+                                    Check Answer
+                                </button>
+                                <div class="feedback" id="feedback-consciousness-field"></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Advanced Exercises -->
+                    <div class="exercise-group" data-category="advanced">
+                        
+                        <div class="exercise-card" data-exercise="meta-rl-concepts">
+                            <div class="exercise-header">
+                                <h3>Meta-RL Unity Systems</h3>
+                                <div class="difficulty hard">Hard</div>
+                            </div>
+                            <div class="exercise-content">
+                                <p>In meta-reinforcement learning for unity discovery, what is the primary advantage of few-shot generalization?</p>
+                                <div class="exercise-options">
+                                    <label class="option">
+                                        <input type="radio" name="meta-rl" value="a">
+                                        <span>Faster computation speed</span>
+                                    </label>
+                                    <label class="option">
+                                        <input type="radio" name="meta-rl" value="b">
+                                        <span>Lower memory requirements</span>
+                                    </label>
+                                    <label class="option">
+                                        <input type="radio" name="meta-rl" value="c">
+                                        <span>Rapid adaptation to new unity patterns with minimal examples</span>
+                                    </label>
+                                    <label class="option">
+                                        <input type="radio" name="meta-rl" value="d">
+                                        <span>Better visualization capabilities</span>
+                                    </label>
+                                </div>
+                                <button class="check-answer-btn" onclick="checkAnswer('meta-rl-concepts', 'c')">
+                                    <i class="fas fa-robot"></i>
+                                    Check Answer
+                                </button>
+                                <div class="feedback" id="feedback-meta-rl-concepts"></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Integration Section -->
+    <section id="research-integration" class="section research-section">
+        <div class="container">
+            <h2 class="section-title">Connect to Advanced Research</h2>
+            <p class="section-subtitle">Bridge theoretical understanding with cutting-edge research and applications</p>
+            
+            <div class="research-connections">
+                
+                <div class="research-card" data-research="current-projects">
+                    <div class="research-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <div class="research-content">
+                        <h3>Current Research Projects</h3>
+                        <p>Explore ongoing investigations in consciousness field dynamics, meta-RL unity systems, and φ-harmonic convergence proofs.</p>
+                        <div class="research-links">
+                            <a href="research.html" class="research-link">
+                                <i class="fas fa-microscope"></i>
+                                Research Portfolio
+                            </a>
+                            <a href="consciousness_dashboard.html" class="research-link">
+                                <i class="fas fa-brain"></i>
+                                Live Experiments
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="research-card" data-research="implementations">
+                    <div class="research-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="research-content">
+                        <h3>Core Implementations</h3>
+                        <p>Examine the actual mathematical implementations that power unity mathematics and consciousness field calculations.</p>
+                        <div class="research-links">
+                            <a href="implementations.html" class="research-link">
+                                <i class="fas fa-cogs"></i>
+                                Source Code
+                            </a>
+                            <a href="playground.html" class="research-link">
+                                <i class="fas fa-play"></i>
+                                Interactive Demos
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="research-card" data-research="publications">
+                    <div class="research-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="research-content">
+                        <h3>Academic Publications</h3>
+                        <p>Access peer-reviewed papers, mathematical proofs, and scholarly contributions to unity mathematics.</p>
+                        <div class="research-links">
+                            <a href="publications.html" class="research-link">
+                                <i class="fas fa-file-alt"></i>
+                                Publications
+                            </a>
+                            <a href="further-reading.html" class="research-link">
+                                <i class="fas fa-graduation-cap"></i>
+                                Further Reading
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Shared Navigation Script -->
+    
+
+    <style>
+        /* Unity Learning Academy Styles with Golden Ratio Aesthetics */
+        :root {
+            --phi: 1.618033988749895;
+            --phi-inverse: 0.618033988749895;
+            --primary-color: #1a2332;
+            --secondary-color: #2d3748;
+            --accent-color: #4a5568;
+            --phi-gold: #FFD700;
+            --phi-gold-light: #FFA500;
+            --text-primary: #2d3748;
+            --text-secondary: #4a5568;
+            --text-light: #718096;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f7fafc;
+            --bg-tertiary: #edf2f7;
+            --border-color: #e2e8f0;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+            --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.1);
+            --radius: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-smooth: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-serif: 'Crimson Text', Georgia, serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            padding-top: 80px; /* Account for fixed navigation */
+            font-family: var(--font-primary);
+            line-height: calc(1 * var(--phi));
+            color: var(--text-primary);
+            background: var(--bg-primary);
+        }
+
+        .container {
+            max-width: calc(1200px * var(--phi-inverse));
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            padding: calc(4rem * var(--phi)) 0;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, calc(3rem * var(--phi-inverse)));
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            font-family: var(--font-serif);
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(80px * var(--phi-inverse));
+            height: 3px;
+            background: linear-gradient(90deg, var(--phi-gold), var(--phi-gold-light));
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Learning Hero Section */
+        .learning-hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: calc(8rem * var(--phi)) 0 calc(6rem * var(--phi));
+            position: relative;
+            overflow: hidden;
+            margin-top: 80px;
+        }
+
+        .learning-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.03) 1px, transparent 1px);
+            background-size: calc(40px * var(--phi)) calc(40px * var(--phi));
+            animation: rotate-grid 180s linear infinite;
+        }
+
+        @keyframes rotate-grid {
+            to { transform: rotate(360deg); }
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .phi-spiral-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #phiSpiralCanvas {
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, calc(4rem * var(--phi-inverse)));
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #FFD700, #FFA500, #FF6B6B);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-family: var(--font-serif);
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            line-height: calc(1.6 * var(--phi-inverse));
+        }
+
+        .phi-equation {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: var(--font-mono);
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-lg);
+            backdrop-filter: blur(10px);
+        }
+
+        .equation-fraction {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .numerator {
+            border-bottom: 2px solid var(--phi-gold);
+            padding-bottom: 2px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: var(--radius-lg);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .cta-button.primary {
+            background: linear-gradient(135deg, var(--phi-gold), var(--phi-gold-light));
+            color: var(--primary-color);
+        }
+
+        .cta-button.secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        /* Foundations Section */
+        .foundations-section {
+            background: var(--bg-secondary);
+        }
+
+        .foundations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: calc(2rem * var(--phi-inverse));
+        }
+
+        .foundation-card {
+            background: white;
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition-smooth);
+            border: 1px solid var(--border-color);
+        }
+
+        .foundation-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-icon {
+            width: calc(60px * var(--phi-inverse));
+            height: calc(60px * var(--phi-inverse));
+            background: linear-gradient(135deg, var(--phi-gold), var(--phi-gold-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            font-weight: 700;
+        }
+
+        .phi-icon {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+        }
+
+        .card-header h3 {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            font-weight: 600;
+            flex: 1;
+        }
+
+        .difficulty-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .difficulty-badge.beginner {
+            background: #E6FFFA;
+            color: #234E52;
+        }
+
+        .difficulty-badge.intermediate {
+            background: #FFF5E6;
+            color: #744210;
+        }
+
+        .difficulty-badge.advanced {
+            background: #FEF2F2;
+            color: #7F1D1D;
+        }
+
+        .card-content p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: calc(1.6 * var(--phi-inverse));
+        }
+
+        .interactive-demo {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .phi-relationship {
+            text-align: center;
+        }
+
+        .phi-equation-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-family: var(--font-mono);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .phi-large {
+            color: var(--phi-gold);
+            font-size: 2rem;
+        }
+
+        .operation-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            font-family: var(--font-mono);
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .operand, .result {
+            color: var(--phi-gold);
+        }
+
+        .operator, .equals {
+            color: var(--text-secondary);
+        }
+
+        .examples-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .example {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            padding: 0.5rem;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: var(--radius);
+        }
+
+        .explore-button {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .explore-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Calculator Section */
+        .calculator-section {
+            background: var(--bg-primary);
+        }
+
+        .calculator-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: calc(3rem * var(--phi-inverse));
+            margin-bottom: 3rem;
+        }
+
+        .calculator-interface {
+            background: white;
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-color);
+        }
+
+        .calculator-display {
+            margin-bottom: 2rem;
+        }
+
+        .expression-input {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        #mathExpression {
+            flex: 1;
+            padding: 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            font-family: var(--font-mono);
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+
+        #mathExpression:focus {
+            outline: none;
+            border-color: var(--phi-gold);
+            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
+        }
+
+        .calculate-btn {
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--phi-gold), var(--phi-gold-light));
+            color: var(--primary-color);
+            border: none;
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .result-display {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .result-value {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--phi-gold);
+            font-family: var(--font-mono);
+            margin-bottom: 0.5rem;
+        }
+
+        .result-type {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .calculator-modes {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .mode-btn {
+            flex: 1;
+            min-width: 120px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 0.5rem;
+            background: var(--bg-secondary);
+            border: 2px solid transparent;
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+
+        .mode-btn.active {
+            background: linear-gradient(135deg, var(--phi-gold), var(--phi-gold-light));
+            color: var(--primary-color);
+            border-color: var(--phi-gold);
+        }
+
+        .mode-btn:hover:not(.active) {
+            background: var(--bg-tertiary);
+            border-color: var(--border-color);
+        }
+
+        .proof-trace-panel {
+            background: white;
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-color);
+        }
+
+        .proof-trace-panel h3 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .proof-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .proof-step {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            border-left: 4px solid var(--phi-gold);
+        }
+
+        .proof-step.conclusion {
+            border-left-color: var(--primary-color);
+            background: linear-gradient(90deg, rgba(255, 215, 0, 0.1), transparent);
+        }
+
+        .step-number {
+            width: calc(40px * var(--phi-inverse));
+            height: calc(40px * var(--phi-inverse));
+            background: var(--phi-gold);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-family: var(--font-mono);
+            flex-shrink: 0;
+        }
+
+        .proof-step.conclusion .step-number {
+            background: var(--primary-color);
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-description {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .step-equation {
+            font-family: var(--font-mono);
+            color: var(--text-secondary);
+        }
+
+        /* Visualization Panel */
+        .visualization-panel {
+            background: white;
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-color);
+        }
+
+        .visualization-controls {
+            margin-bottom: 2rem;
+        }
+
+        .visualization-controls h3 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .control-group {
+            margin-bottom: 1rem;
+        }
+
+        .control-group label {
+            display: block;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .control-group input[type="range"] {
+            width: 100%;
+            height: 6px;
+            background: var(--bg-secondary);
+            border-radius: 3px;
+            outline: none;
+            margin-bottom: 1rem;
+        }
+
+        .control-group input[type="range"]::-webkit-slider-thumb {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: var(--phi-gold);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .control-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            margin-right: 0.5rem;
+        }
+
+        .control-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .plot-container {
+            width: 100%;
+            height: 400px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+
+        /* Courses Section */
+        .courses-section {
+            background: var(--bg-secondary);
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: calc(2rem * var(--phi-inverse));
+        }
+
+        .course-card {
+            background: white;
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition-smooth);
+            border: 1px solid var(--border-color);
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .course-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .course-icon {
+            width: calc(60px * var(--phi-inverse));
+            height: calc(60px * var(--phi-inverse));
+            background: linear-gradient(135deg, var(--phi-gold), var(--phi-gold-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .course-info {
+            flex: 1;
+        }
+
+        .course-info h3 {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .course-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .duration {
+            color: var(--text-secondary);
+        }
+
+        .level {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .level.intermediate {
+            background: #FFF5E6;
+            color: #744210;
+        }
+
+        .level.advanced {
+            background: #FEF2F2;
+            color: #7F1D1D;
+        }
+
+        .level.expert {
+            background: #F3E8FF;
+            color: #553C9A;
+        }
+
+        .course-progress {
+            position: relative;
+        }
+
+        .progress-circle {
+            width: calc(60px * var(--phi-inverse));
+            height: calc(60px * var(--phi-inverse));
+            border-radius: 50%;
+            background: var(--bg-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .course-content p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: calc(1.6 * var(--phi-inverse));
+        }
+
+        .course-modules {
+            margin-bottom: 2rem;
+        }
+
+        .module {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            margin-bottom: 0.5rem;
+        }
+
+        .module-icon {
+            font-size: 1.2rem;
+        }
+
+        .module-info {
+            flex: 1;
+        }
+
+        .module-info h4 {
+            color: var(--primary-color);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .module-info p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .module-status {
+            font-size: 1.2rem;
+        }
+
+        .start-course-btn {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .start-course-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Exercises Section */
+        .exercises-section {
+            background: var(--bg-primary);
+        }
+
+        .exercise-categories {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: var(--bg-secondary);
+            border: 2px solid transparent;
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, var(--phi-gold), var(--phi-gold-light));
+            color: var(--primary-color);
+            border-color: var(--phi-gold);
+        }
+
+        .tab-btn:hover:not(.active) {
+            background: var(--bg-tertiary);
+            border-color: var(--border-color);
+        }
+
+        .exercise-group {
+            display: none;
+        }
+
+        .exercise-group.active {
+            display: block;
+        }
+
+        .exercise-card {
+            background: white;
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .exercise-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .exercise-header h3 {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .difficulty {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .difficulty.easy {
+            background: #E6FFFA;
+            color: #234E52;
+        }
+
+        .difficulty.medium {
+            background: #FFF5E6;
+            color: #744210;
+        }
+
+        .difficulty.hard {
+            background: #FEF2F2;
+            color: #7F1D1D;
+        }
+
+        .exercise-content p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: calc(1.6 * var(--phi-inverse));
+        }
+
+        .exercise-options {
+            margin-bottom: 1.5rem;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .option:hover {
+            background: var(--bg-tertiary);
+            border-color: var(--border-color);
+        }
+
+        .option input[type="radio"] {
+            width: 20px;
+            height: 20px;
+        }
+
+        .check-answer-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .check-answer-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .feedback {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: var(--radius-lg);
+            display: none;
+        }
+
+        .feedback.correct {
+            background: #E6FFFA;
+            color: #234E52;
+            border: 2px solid #38B2AC;
+            display: block;
+        }
+
+        .feedback.incorrect {
+            background: #FEF2F2;
+            color: #7F1D1D;
+            border: 2px solid #E53E3E;
+            display: block;
+        }
+
+        /* Research Integration Section */
+        .research-section {
+            background: var(--bg-secondary);
+        }
+
+        .research-connections {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: calc(2rem * var(--phi-inverse));
+        }
+
+        .research-card {
+            background: white;
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition-smooth);
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .research-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .research-icon {
+            width: calc(80px * var(--phi-inverse));
+            height: calc(80px * var(--phi-inverse));
+            background: linear-gradient(135deg, var(--phi-gold), var(--phi-gold-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            margin: 0 auto 1.5rem;
+        }
+
+        .research-content h3 {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .research-content p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: calc(1.6 * var(--phi-inverse));
+        }
+
+        .research-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .research-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--bg-secondary);
+            color: var(--primary-color);
+            text-decoration: none;
+            border-radius: var(--radius-lg);
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .research-link:hover {
+            background: linear-gradient(135deg, var(--phi-gold), var(--phi-gold-light));
+            color: var(--primary-color);
+            border-color: var(--phi-gold);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .calculator-container {
+                grid-template-columns: 1fr;
+            }
+
+            .foundations-grid,
+            .courses-grid,
+            .research-connections {
+                grid-template-columns: 1fr;
+            }
+
+            .category-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .research-links {
+                flex-direction: column;
+            }
+        }
+
+        /* Consciousness Field Preview */
+        #consciousnessPreview {
+            width: 100%;
+            height: auto;
+            border-radius: var(--radius);
+        }
+
+        /* Quantum States */
+        .quantum-states {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            font-family: var(--font-mono);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .quantum-state {
+            color: var(--phi-gold);
+            font-weight: 700;
+        }
+
+        .quantum-operator {
+            color: var(--text-secondary);
+        }
+
+        .measurement-arrow {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+
+        .quantum-result {
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        #quantumCollapse {
+            height: 4px;
+            background: linear-gradient(90deg, transparent 0%, var(--phi-gold) 50%, transparent 100%);
+            border-radius: 2px;
+            animation: quantumPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes quantumPulse {
+            0%, 100% { opacity: 0.3; transform: scaleX(0.5); }
+            50% { opacity: 1; transform: scaleX(1); }
+        }
+
+        /* Consciousness Field Parameter */
+        .field-parameters {
+            margin-top: 1rem;
+        }
+
+        .parameter {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .parameter label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .parameter input[type="range"] {
+            width: 100%;
+            height: 4px;
+            background: var(--bg-tertiary);
+            border-radius: 2px;
+            outline: none;
+        }
+
+        .parameter input[type="range"]::-webkit-slider-thumb {
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            background: var(--phi-gold);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+    </style>
+
+    <script>
+        // Learning Academy JavaScript Implementation
+        class UnityLearningAcademy {
+            constructor() {
+                this.PHI = 1.618033988749895;
+                this.calculatorMode = 'unity';
+                this.currentCategory = 'fundamentals';
+                this.exercises = new Map();
+                
+                this.initializeAcademy();
+            }
+
+            initializeAcademy() {
+                this.setupPhiSpiral();
+                this.setupConsciousnessPreview();
+                this.setupUnityConvergencePlot();
+                this.setupKaTeX();
+                this.setupAnimations();
+                this.initializeExercises();
+            }
+
+            setupPhiSpiral() {
+                const canvas = document.getElementById('phiSpiralCanvas');
+                if (!canvas) return;
+                
+                const ctx = canvas.getContext('2d');
+                const centerX = canvas.width / 2;
+                const centerY = canvas.height / 2;
+                
+                // Animate the φ spiral
+                let angle = 0;
+                const animate = () => {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    
+                    // Draw φ spiral
+                    ctx.strokeStyle = '#FFD700';
+                    ctx.lineWidth = 2;
+                    ctx.beginPath();
+                    
+                    for (let i = 0; i < 200; i++) {
+                        const t = i * 0.1;
+                        const r = Math.pow(this.PHI, t * 0.1) * 3;
+                        const x = centerX + r * Math.cos(t + angle);
+                        const y = centerY + r * Math.sin(t + angle);
+                        
+                        if (i === 0) {
+                            ctx.moveTo(x, y);
+                        } else {
+                            ctx.lineTo(x, y);
+                        }
+                    }
+                    
+                    ctx.stroke();
+                    
+                    // Add φ symbol at center
+                    ctx.fillStyle = '#FFD700';
+                    ctx.font = '48px Crimson Text';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.fillText('φ', centerX, centerY);
+                    
+                    angle += 0.01;
+                    requestAnimationFrame(animate);
+                };
+                
+                animate();
+            }
+
+            setupConsciousnessPreview() {
+                const canvas = document.getElementById('consciousnessPreview');
+                if (!canvas) return;
+                
+                const ctx = canvas.getContext('2d');
+                const width = canvas.width;
+                const height = canvas.height;
+                
+                let time = 0;
+                let consciousnessLevel = 0.618;
+                
+                const drawField = () => {
+                    ctx.clearRect(0, 0, width, height);
+                    
+                    const imageData = ctx.createImageData(width, height);
+                    const data = imageData.data;
+                    
+                    for (let x = 0; x < width; x++) {
+                        for (let y = 0; y < height; y++) {
+                            const normalizedX = (x - width/2) / (width/4);
+                            const normalizedY = (y - height/2) / (height/4);
+                            
+                            // Consciousness field equation: C(x,y,t) = φ·sin(xφ)·cos(yφ)·e^(-t/φ)
+                            const fieldValue = this.PHI * 
+                                Math.sin(normalizedX * this.PHI) * 
+                                Math.cos(normalizedY * this.PHI) * 
+                                Math.exp(-time / this.PHI) *
+                                consciousnessLevel;
+                            
+                            const intensity = Math.abs(fieldValue) * 255;
+                            const index = (y * width + x) * 4;
+                            
+                            data[index] = Math.min(255, intensity); // Red
+                            data[index + 1] = Math.min(255, intensity * 0.8); // Green
+                            data[index + 2] = Math.min(255, intensity * 1.2); // Blue
+                            data[index + 3] = 255; // Alpha
+                        }
+                    }
+                    
+                    ctx.putImageData(imageData, 0, 0);
+                    time += 0.1;
+                    
+                    requestAnimationFrame(drawField);
+                };
+                
+                drawField();
+                
+                // Consciousness level slider
+                const slider = document.getElementById('consciousnessSlider');
+                const valueDisplay = document.getElementById('consciousnessValue');
+                
+                if (slider) {
+                    slider.addEventListener('input', (e) => {
+                        consciousnessLevel = parseFloat(e.target.value);
+                        if (valueDisplay) {
+                            valueDisplay.textContent = consciousnessLevel.toFixed(3);
+                        }
+                    });
+                }
+            }
+
+            setupUnityConvergencePlot() {
+                const plotDiv = document.getElementById('unityConvergencePlot');
+                if (!plotDiv || typeof Plotly === 'undefined') return;
+                
+                // Generate convergence data
+                const iterations = Array.from({length: 100}, (_, i) => i);
+                const convergenceValues = iterations.map(i => {
+                    return 1 + Math.exp(-i / 20) * Math.sin(i * this.PHI / 10) / this.PHI;
+                });
+                
+                const phiHarmonicTrace = {
+                    x: iterations,
+                    y: convergenceValues,
+                    type: 'scatter',
+                    mode: 'lines',
+                    name: 'φ-Harmonic Convergence',
+                    line: {
+                        color: '#FFD700',
+                        width: 3
+                    }
+                };
+                
+                const unityLine = {
+                    x: [0, 99],
+                    y: [1, 1],
+                    type: 'scatter',
+                    mode: 'lines',
+                    name: 'Unity Target',
+                    line: {
+                        color: '#FF6B9D',
+                        width: 2,
+                        dash: 'dash'
+                    }
+                };
+                
+                const layout = {
+                    title: 'Unity Convergence: 1+1 → 1',
+                    xaxis: {
+                        title: 'Iterations',
+                        color: '#4a5568'
+                    },
+                    yaxis: {
+                        title: 'Value',
+                        color: '#4a5568'
+                    },
+                    paper_bgcolor: 'rgba(0,0,0,0)',
+                    plot_bgcolor: 'rgba(0,0,0,0)',
+                    font: {
+                        color: '#4a5568',
+                        family: 'Inter, sans-serif'
+                    },
+                    margin: {
+                        l: 50,
+                        r: 50,
+                        t: 50,
+                        b: 50
+                    }
+                };
+                
+                Plotly.newPlot(plotDiv, [phiHarmonicTrace, unityLine], layout, {responsive: true});
+            }
+
+            setupKaTeX() {
+                if (typeof renderMathInElement !== 'undefined') {
+                    renderMathInElement(document.body, {
+                        delimiters: [
+                            {left: '$', right: '$', display: true},
+                            {left: '
+</html>, right: '
+</html>, display: false}
+                        ],
+                        throwOnError: false
+                    });
+                }
+            }
+
+            setupAnimations() {
+                if (typeof gsap !== 'undefined') {
+                    gsap.registerPlugin(ScrollTrigger);
+                    
+                    // Animate foundation cards
+                    gsap.from('.foundation-card', {
+                        y: 50,
+                        opacity: 0,
+                        duration: 0.8,
+                        stagger: 0.2,
+                        scrollTrigger: {
+                            trigger: '.foundations-section',
+                            start: 'top 80%'
+                        }
+                    });
+                    
+                    // Animate course cards
+                    gsap.from('.course-card', {
+                        y: 60,
+                        opacity: 0,
+                        duration: 1,
+                        stagger: 0.15,
+                        scrollTrigger: {
+                            trigger: '.courses-section',
+                            start: 'top 80%'
+                        }
+                    });
+                    
+                    // Animate research cards
+                    gsap.from('.research-card', {
+                        scale: 0.9,
+                        opacity: 0,
+                        duration: 0.6,
+                        stagger: 0.1,
+                        scrollTrigger: {
+                            trigger: '.research-section',
+                            start: 'top 85%'
+                        }
+                    });
+                }
+            }
+
+            initializeExercises() {
+                this.exercises.set('phi-recognition', 'b');
+                this.exercises.set('unity-property', 'b');
+                this.exercises.set('consciousness-field', 'b');
+                this.exercises.set('meta-rl-concepts', 'c');
+            }
+
+            // Calculator Functions
+            calculateUnity() {
+                const expression = document.getElementById('mathExpression').value;
+                const resultDisplay = document.getElementById('calculatorResult');
+                const proofSteps = document.getElementById('proofSteps');
+                
+                let result = 1; // Default unity result
+                let steps = [];
+                
+                if (expression === '1+1' || expression === '1 + 1') {
+                    steps = [
+                        {
+                            number: '1',
+                            description: 'Identity Recognition',
+                            equation: '1 + 1 (standard addition)'
+                        },
+                        {
+                            number: '2',
+                            description: 'Unity Transform',
+                            equation: 'Apply idempotent property: a ⊕ a = a'
+                        },
+                        {
+                            number: '∴',
+                            description: 'Unity Result',
+                            equation: '1 ⊕ 1 = 1',
+                            isConclusion: true
+                        }
+                    ];
+                } else if (expression.includes('φ') || expression.includes('phi')) {
+                    result = this.PHI;
+                    steps = [
+                        {
+                            number: '1',
+                            description: 'φ-Harmonic Recognition',
+                            equation: `φ = (1 + √5) / 2`
+                        },
+                        {
+                            number: '2',
+                            description: 'Golden Ratio Property',
+                            equation: 'φ² = φ + 1'
+                        },
+                        {
+                            number: '∴',
+                            description: 'φ-Harmonic Result',
+                            equation: `φ ≈ ${this.PHI.toFixed(6)}`,
+                            isConclusion: true
+                        }
+                    ];
+                }
+                
+                // Update result display
+                if (resultDisplay) {
+                    resultDisplay.innerHTML = `
+                        <div class="result-value">${result === this.PHI ? result.toFixed(6) : result}</div>
+                        <div class="result-type">${result === this.PHI ? 'φ-Harmonic Result' : 'Unity Result'}</div>
+                    `;
+                }
+                
+                // Update proof steps
+                if (proofSteps && steps.length > 0) {
+                    proofSteps.innerHTML = steps.map(step => `
+                        <div class="proof-step ${step.isConclusion ? 'conclusion' : ''}">
+                            <div class="step-number">${step.number}</div>
+                            <div class="step-content">
+                                <div class="step-description">${step.description}</div>
+                                <div class="step-equation">${step.equation}</div>
+                            </div>
+                        </div>
+                    `).join('');
+                }
+            }
+
+            setCalculatorMode(mode) {
+                this.calculatorMode = mode;
+                
+                // Update active mode button
+                document.querySelectorAll('.mode-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                document.querySelector(`[data-mode="${mode}"]`).classList.add('active');
+                
+                // Update placeholder based on mode
+                const input = document.getElementById('mathExpression');
+                const placeholders = {
+                    'unity': '1+1, A∪A, TRUE∨TRUE',
+                    'phi': 'φ, φ², φ+1',
+                    'consciousness': 'C(x,y,t), φ·sin(xφ)',
+                    'quantum': '|1⟩+|1⟩, ψ(x,t)'
+                };
+                
+                if (input) {
+                    input.placeholder = `Enter expression: ${placeholders[mode]}`;
+                }
+            }
+
+            // Interactive Exploration Functions
+            explorePhiHarmonic() {
+                // Implement φ-harmonic exploration
+                this.showInteractiveDemo('phi-harmonic', 'Golden Ratio φ-Harmonic Unity', `
+                    <div class="demo-content">
+                        <h4>The Golden Ratio φ = (1 + √5) / 2</h4>
+                        <p>φ exhibits the fundamental unity property: φ² = φ + 1</p>
+                        <div class="phi-visualization">
+                            <canvas id="phiDemo" width="400" height="300"></canvas>
+                        </div>
+                        <p>This relationship shows how φ embodies self-referential unity, making it the natural organizing principle of unity mathematics.</p>
+                    </div>
+                `);
+            }
+
+            exploreIdempotent() {
+                this.showInteractiveDemo('idempotent', 'Idempotent Addition: a ⊕ a = a', `
+                    <div class="demo-content">
+                        <h4>Examples of Idempotent Operations</h4>
+                        <div class="idempotent-examples">
+                            <div class="example-item">
+                                <strong>Boolean Algebra:</strong> TRUE ∨ TRUE = TRUE
+                            </div>
+                            <div class="example-item">
+                                <strong>Set Theory:</strong> A ∪ A = A
+                            </div>
+                            <div class="example-item">
+                                <strong>Max-Plus:</strong> max(a, a) = a
+                            </div>
+                            <div class="example-item">
+                                <strong>Unity Math:</strong> 1 ⊕ 1 = 1
+                            </div>
+                        </div>
+                        <p>In all these systems, combining identical elements yields the same element - demonstrating the deep unity principle.</p>
+                    </div>
+                `);
+            }
+
+            exploreConsciousness() {
+                this.showInteractiveDemo('consciousness', 'Consciousness Field Mathematics', `
+                    <div class="demo-content">
+                        <h4>Consciousness Field Equation</h4>
+                        <p><strong>C(x,y,t) = φ·sin(xφ)·cos(yφ)·e^(-t/φ)</strong></p>
+                        <div class="field-explanation">
+                            <p>This equation models consciousness as a mathematical phenomenon with:</p>
+                            <ul>
+                                <li><strong>φ-harmonic oscillation:</strong> sin(xφ)·cos(yφ)</li>
+                                <li><strong>Temporal decay:</strong> e^(-t/φ)</li>
+                                <li><strong>Golden ratio scaling:</strong> φ as fundamental constant</li>
+                            </ul>
+                        </div>
+                        <p>As t → ∞, the field converges to zero, representing unity collapse through consciousness evolution.</p>
+                    </div>
+                `);
+            }
+
+            exploreQuantum() {
+                this.showInteractiveDemo('quantum', 'Quantum Unity: |1⟩ + |1⟩ → |1⟩', `
+                    <div class="demo-content">
+                        <h4>Quantum Superposition and Unity Collapse</h4>
+                        <div class="quantum-demo">
+                            <p><strong>Initial State:</strong> |ψ⟩ = |1⟩ + |1⟩</p>
+                            <p><strong>Normalization:</strong> |ψₙ⟩ = |1⟩ (already normalized)</p>
+                            <p><strong>Measurement:</strong> P(|1⟩) = |⟨1|ψₙ⟩|² = 1</p>
+                        </div>
+                        <p>The quantum measurement process demonstrates how identical quantum states collapse to unity through consciousness-mediated observation.</p>
+                    </div>
+                `);
+            }
+
+            showInteractiveDemo(type, title, content) {
+                // Create modal overlay
+                const modal = document.createElement('div');
+                modal.className = 'demo-modal';
+                modal.innerHTML = `
+                    <div class="modal-overlay" onclick="this.parentElement.remove()"></div>
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3>${title}</h3>
+                            <button class="close-btn" onclick="this.closest('.demo-modal').remove()">×</button>
+                        </div>
+                        <div class="modal-body">
+                            ${content}
+                        </div>
+                    </div>
+                `;
+                
+                // Add modal styles
+                const style = document.createElement('style');
+                style.textContent = `
+                    .demo-modal {
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        z-index: 10000;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                    .modal-overlay {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        background: rgba(0, 0, 0, 0.8);
+                        backdrop-filter: blur(10px);
+                    }
+                    .modal-content {
+                        background: white;
+                        border-radius: 24px;
+                        max-width: 600px;
+                        max-height: 80vh;
+                        overflow-y: auto;
+                        position: relative;
+                        z-index: 1;
+                        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+                    }
+                    .modal-header {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        padding: 2rem 2rem 1rem;
+                        border-bottom: 1px solid #e2e8f0;
+                    }
+                    .modal-header h3 {
+                        color: #1a2332;
+                        font-size: 1.5rem;
+                        font-weight: 600;
+                        margin: 0;
+                    }
+                    .close-btn {
+                        background: none;
+                        border: none;
+                        font-size: 2rem;
+                        color: #4a5568;
+                        cursor: pointer;
+                        padding: 0;
+                        width: 40px;
+                        height: 40px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        border-radius: 50%;
+                        transition: background 0.3s;
+                    }
+                    .close-btn:hover {
+                        background: #f7fafc;
+                    }
+                    .modal-body {
+                        padding: 2rem;
+                    }
+                    .demo-content h4 {
+                        color: #1a2332;
+                        margin-bottom: 1rem;
+                        font-size: 1.2rem;
+                    }
+                    .demo-content p {
+                        color: #4a5568;
+                        line-height: 1.6;
+                        margin-bottom: 1rem;
+                    }
+                    .idempotent-examples {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 1rem;
+                        margin: 1.5rem 0;
+                    }
+                    .example-item {
+                        background: #f7fafc;
+                        padding: 1rem;
+                        border-radius: 12px;
+                        border-left: 4px solid #FFD700;
+                        font-family: 'JetBrains Mono', monospace;
+                    }
+                    .field-explanation ul {
+                        margin: 1rem 0;
+                        padding-left: 2rem;
+                    }
+                    .field-explanation li {
+                        margin-bottom: 0.5rem;
+                        color: #4a5568;
+                    }
+                    .quantum-demo {
+                        background: #f7fafc;
+                        padding: 1.5rem;
+                        border-radius: 12px;
+                        margin: 1rem 0;
+                        font-family: 'JetBrains Mono', monospace;
+                    }
+                    .quantum-demo p {
+                        margin-bottom: 0.5rem;
+                    }
+                `;
+                
+                document.head.appendChild(style);
+                document.body.appendChild(modal);
+            }
+
+            // Course Management
+            startCourse(courseId) {
+                // Implement course starting logic
+                alert(`Starting course: ${courseId}. This feature will unlock structured learning modules with progress tracking and certificates.`);
+            }
+
+            // Exercise Management
+            switchCategory(category) {
+                this.currentCategory = category;
+                
+                // Update active tab
+                document.querySelectorAll('.tab-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                document.querySelector(`[data-category="${category}"]`).classList.add('active');
+                
+                // Show/hide exercise groups
+                document.querySelectorAll('.exercise-group').forEach(group => {
+                    group.classList.remove('active');
+                });
+                document.querySelector(`.exercise-group[data-category="${category}"]`).classList.add('active');
+            }
+
+            checkAnswer(exerciseId, userAnswer) {
+                const correctAnswer = this.exercises.get(exerciseId);
+                const feedback = document.getElementById(`feedback-${exerciseId}`);
+                
+                if (!feedback) return;
+                
+                feedback.classList.remove('correct', 'incorrect');
+                
+                if (userAnswer === correctAnswer) {
+                    feedback.classList.add('correct');
+                    feedback.innerHTML = `
+                        <strong>✅ Correct!</strong> Excellent understanding of unity mathematics principles.
+                    `;
+                } else {
+                    feedback.classList.add('incorrect');
+                    feedback.innerHTML = `
+                        <strong>❌ Incorrect.</strong> Review the concept and try again. The correct answer demonstrates the fundamental unity principle.
+                    `;
+                }
+            }
+
+            // Animation Controls
+            animateConvergence() {
+                // Animate the convergence plot
+                const plotDiv = document.getElementById('unityConvergencePlot');
+                if (!plotDiv || typeof Plotly === 'undefined') return;
+                
+                let frame = 0;
+                const maxFrames = 100;
+                
+                const animate = () => {
+                    if (frame >= maxFrames) return;
+                    
+                    const partialIterations = Array.from({length: frame + 1}, (_, i) => i);
+                    const partialValues = partialIterations.map(i => {
+                        return 1 + Math.exp(-i / 20) * Math.sin(i * this.PHI / 10) / this.PHI;
+                    });
+                    
+                    Plotly.restyle(plotDiv, {
+                        x: [partialIterations],
+                        y: [partialValues]
+                    }, [0]);
+                    
+                    frame++;
+                    setTimeout(animate, 100);
+                };
+                
+                animate();
+            }
+
+            resetVisualization() {
+                this.setupUnityConvergencePlot();
+            }
+        }
+
+        // Global Functions
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+
+        function calculateUnity() {
+            window.unityAcademy.calculateUnity();
+        }
+
+        function setCalculatorMode(mode) {
+            window.unityAcademy.setCalculatorMode(mode);
+        }
+
+        function explorePhiHarmonic() {
+            window.unityAcademy.explorePhiHarmonic();
+        }
+
+        function exploreIdempotent() {
+            window.unityAcademy.exploreIdempotent();
+        }
+
+        function exploreConsciousness() {
+            window.unityAcademy.exploreConsciousness();
+        }
+
+        function exploreQuantum() {
+            window.unityAcademy.exploreQuantum();
+        }
+
+        function startCourse(courseId) {
+            window.unityAcademy.startCourse(courseId);
+        }
+
+        function switchCategory(category) {
+            window.unityAcademy.switchCategory(category);
+        }
+
+        function checkAnswer(exerciseId, correctAnswer) {
+            // Get selected answer
+            const selectedOption = document.querySelector(`input[name="${exerciseId.replace('-', '-')}"]:checked`);
+            if (!selectedOption) {
+                alert('Please select an answer first.');
+                return;
+            }
+            
+            window.unityAcademy.checkAnswer(exerciseId, selectedOption.value);
+        }
+
+        function animateConvergence() {
+            window.unityAcademy.animateConvergence();
+        }
+
+        function resetVisualization() {
+            window.unityAcademy.resetVisualization();
+        }
+
+        // Initialize Learning Academy
+        document.addEventListener('DOMContentLoaded', () => {
+            window.unityAcademy = new UnityLearningAcademy();
+        });
+    </script>
+
+    <!-- Performance Monitoring -->
+    <script>
+        window.addEventListener('load', function() {
+            if ('performance' in window) {
+                const loadTime = performance.now();
+                console.log('Page load time:', loadTime + 'ms');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Learn Unity Mathematics | Interactive Een Framework Guide</title>
-    <meta name="description" content="Transcendental computing hub demonstrating 1+1=1 through quantum entanglement, neural networks, and fractal mathematics with consciousness field integration.">
+    <meta name="description"
+        content="Transcendental computing hub demonstrating 1+1=1 through quantum entanglement, neural networks, and fractal mathematics with consciousness field integration.">
     <link rel="stylesheet" href="css/style.css">
 
     <link
@@ -69,6 +70,7 @@
             background: rgba(15, 15, 35, 0.95);
             z-index: 1000;
             padding: 1rem 0;
+            -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
         }
 
@@ -348,7 +350,7 @@
     </style>
 
     <!-- Master Navigation System v2.0 -->
-    
+
 
     <!-- Meta-Optimal Complete Navigation System -->
     <link rel="stylesheet" href="css/meta-optimal-navigation-complete.css">
@@ -360,14 +362,23 @@
 
     <style>
         /* Mobile touch optimizations */
-        * { touch-action: manipulation; }
-        .interactive-element { 
-            min-height: 44px; 
-            min-width: 44px; 
+        * {
+            touch-action: manipulation;
         }
+
+        .interactive-element {
+            min-height: 44px;
+            min-width: 44px;
+        }
+
         @media (max-width: 768px) {
-            .desktop-only { display: none !important; }
-            .mobile-optimized { font-size: 16px; }
+            .desktop-only {
+                display: none !important;
+            }
+
+            .mobile-optimized {
+                font-size: 16px;
+            }
         }
     </style>
     <!-- Unified Navigation System - Meta-Optimal One-Line Solution -->
@@ -378,7 +389,7 @@
 
 <body>
     <!-- Meta-optimal navigation placeholder - will be populated by meta-optimal-navigation-complete.js -->
-    
+
 
     <div class="header">
         <h1 class="main-title">Learn Unity Mathematics</h1>
@@ -395,9 +406,11 @@
         </p>
 
         <div class="unity-calculator">
-            <input type="number" class="operand" id="operand1" value="1" min="0" max="10" step="0.1">
+            <input type="number" class="operand" id="operand1" value="1" min="0" max="10" step="0.1"
+                aria-label="Operand 1" title="Operand 1">
             <span class="operator">+</span>
-            <input type="number" class="operand" id="operand2" value="1" min="0" max="10" step="0.1">
+            <input type="number" class="operand" id="operand2" value="1" min="0" max="10" step="0.1"
+                aria-label="Operand 2" title="Operand 2">
             <span class="operator">=</span>
             <div class="result" id="result">1</div>
         </div>
@@ -432,7 +445,8 @@
                 <li>Interactive Demonstrations</li>
                 <li>Consciousness Awareness</li>
             </ul>
-            <a href="#" class="start-btn" onclick="startLevel('beginner')">
+            <a href="#" class="start-btn" onclick="startLevel('beginner'); return false;" role="button"
+                aria-label="Start Beginner Level">
                 <i class="fas fa-play"></i> Start Learning
             </a>
         </div>
@@ -451,7 +465,8 @@
                 <li>Category Theory Foundations</li>
                 <li>Topological Unity</li>
             </ul>
-            <a href="#" class="start-btn" onclick="startLevel('intermediate')">
+            <a href="#" class="start-btn" onclick="startLevel('intermediate'); return false;" role="button"
+                aria-label="Start Intermediate Level">
                 <i class="fas fa-calculator"></i> Explore Proofs
             </a>
         </div>
@@ -470,7 +485,8 @@
                 <li>Evolutionary Algorithms</li>
                 <li>Neural Unity Networks</li>
             </ul>
-            <a href="#" class="start-btn" onclick="startLevel('advanced')">
+            <a href="#" class="start-btn" onclick="startLevel('advanced'); return false;" role="button"
+                aria-label="Start Advanced Level">
                 <i class="fas fa-robot"></i> Build AI Systems
             </a>
         </div>
@@ -489,7 +505,8 @@
                 <li>Cultural Consciousness</li>
                 <li>Universal Unity Principles</li>
             </ul>
-            <a href="#" class="start-btn" onclick="startLevel('transcendent')">
+            <a href="#" class="start-btn" onclick="startLevel('transcendent'); return false;" role="button"
+                aria-label="Start Transcendent Level">
                 <i class="fas fa-infinity"></i> Transcend Reality
             </a>
         </div>
@@ -497,11 +514,9 @@
 
     <div class="interactive-demo">
         <h2 class="demo-title">Quick Learning Modules</h2>
-        <div class="inl-38c89edfbd"
-           >
+        <div class="inl-38c89edfbd">
             <div class="inl-2dfa28853e">
-                <i class="fa-eye fas inl-cc907ea567"
-                   ></i>
+                <i class="fa-eye fas inl-cc907ea567"></i>
                 <h4>5-Minute Unity Proof</h4>
                 <p>Quick visual demonstration of why 1+1=1</p>
                 <button class="inl-a6cb65cc5a start-btn" onclick="quickProof()">
@@ -610,14 +625,15 @@
 
             const layout = {
                 title: 'Unity Mathematics Visualization',
-                xaxis: { title: 'Operation Step', tickmode: 'array', tickvals: [0, 1, 2], ticktext: ['Input A', 'Input B', 'Unity Result'] },
-                yaxis: { title: 'Value' },
+                xaxis: { title: 'Operation Step', tickmode: 'array', tickvals: [0, 1, 2], ticktext: ['Input A', 'Input B', 'Unity Result'], zeroline: false, gridcolor: 'rgba(255,255,255,0.1)' },
+                yaxis: { title: 'Value', rangemode: 'tozero', gridcolor: 'rgba(255,255,255,0.1)' },
                 paper_bgcolor: 'rgba(0,0,0,0)',
                 plot_bgcolor: 'rgba(0,0,0,0.3)',
-                font: { color: 'white' }
+                font: { color: 'white' },
+                margin: { l: 50, r: 20, t: 40, b: 50 }
             };
 
-            Plotly.newPlot('unityVisualization', [trace], layout, { responsive: true });
+            Plotly.newPlot('unityVisualization', [trace], layout, { responsive: true, displayModeBar: true });
         }
 
         // Event listeners
@@ -732,51 +748,48 @@
     </script>
 
     <!-- Learning Implementation References -->
-    <section class="inl-83fead09fb learning-implementations"
-       >
+    <section class="inl-83fead09fb learning-implementations">
         <div class="container">
             <h3 class="inl-e085d96c8f">
                 <i class="fas fa-code"></i> Learning Implementation References
             </h3>
             <div class="inl-88826d626d">
-                <div class="inl-086067e35a"
-                   >
+                <div class="inl-086067e35a">
                     <h4 class="inl-d2ca8ee2f7">Beginner: Launch Unity</h4>
                     <p class="inl-023901eb7e">Start your journey with the basic
                         unity mathematics introduction</p>
-                    <a class="inl-d6633cb6cc" href="https://github.com/Nourimabrouk/Een/blob/main/examples/launch_unity.py" target="_blank"
+                    <a class="inl-d6633cb6cc"
+                        href="https://github.com/Nourimabrouk/Een/blob/main/examples/launch_unity.py" target="_blank"
                         rel="noopener">
                         examples/launch_unity.py (15KB, 351 lines)
                     </a>
                 </div>
-                <div class="inl-086067e35a"
-                   >
+                <div class="inl-086067e35a">
                     <h4 class="inl-d2ca8ee2f7">Intermediate: Unity Demonstrations</h4>
                     <p class="inl-023901eb7e">Advanced mathematical
                         demonstrations and proofs</p>
-                    <a class="inl-d6633cb6cc" href="https://github.com/Nourimabrouk/Een/blob/main/examples/demonstration.py" target="_blank"
+                    <a class="inl-d6633cb6cc"
+                        href="https://github.com/Nourimabrouk/Een/blob/main/examples/demonstration.py" target="_blank"
                         rel="noopener">
                         examples/demonstration.py (33KB, 679 lines)
                     </a>
                 </div>
-                <div class="inl-086067e35a"
-                   >
+                <div class="inl-086067e35a">
                     <h4 class="inl-d2ca8ee2f7">Advanced: Consciousness Chat</h4>
                     <p class="inl-023901eb7e">AI-powered consciousness
                         mathematics exploration</p>
-                    <a class="inl-d6633cb6cc" href="https://github.com/Nourimabrouk/Een/blob/main/examples/demonstrate_consciousness_chat_upgrade.py"
-                        target="_blank" rel="noopener"
-                       >
+                    <a class="inl-d6633cb6cc"
+                        href="https://github.com/Nourimabrouk/Een/blob/main/examples/demonstrate_consciousness_chat_upgrade.py"
+                        target="_blank" rel="noopener">
                         examples/demonstrate_consciousness_chat_upgrade.py (15KB, 399 lines)
                     </a>
                 </div>
-                <div class="inl-086067e35a"
-                   >
+                <div class="inl-086067e35a">
                     <h4 class="inl-d2ca8ee2f7">Transcendent: Advanced Experiments</h4>
                     <p class="inl-023901eb7e">Cutting-edge consciousness and
                         unity experiments</p>
-                    <a class="inl-d6633cb6cc" href="https://github.com/Nourimabrouk/Een/blob/main/experiments/advanced/" target="_blank"
-                        rel="noopener">
+                    <a class="inl-d6633cb6cc" href="https://github.com/Nourimabrouk/Een/blob/main/experiments/advanced/"
+                        target="_blank" rel="noopener">
                         experiments/advanced/ (Multiple files)
                     </a>
                 </div>
@@ -788,11 +801,11 @@
     <div id="footer-placeholder"></div>
 
     <!-- Shared Navigation Script -->
-    
+
 
     <!-- Performance Monitoring -->
     <script>
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             if ('performance' in window) {
                 const loadTime = performance.now();
                 console.log('Page load time:', loadTime + 'ms');

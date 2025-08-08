@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Performance Optimizations -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.plot.ly">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <title>About - Nouri Mabrouk | Unity Mathematics Pioneer</title>
+    <meta name="description"
+        content="Transcendental computing hub demonstrating 1+1=1 through quantum entanglement, neural networks, and fractal mathematics with consciousness field integration.">
+
+    <!-- Fonts & Icons -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Crimson+Text:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- KaTeX for Mathematical Notation -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+
+    <!-- GSAP for Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <!-- Optimized Meta-Optimal Navigation System v3.0 -->
+
+
+    <!-- Main Styles -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        /* Meta-Optimal Design System */
+        :root {
+            --phi: 1.618033988749895;
+            --primary-color: #0a0a0a;
+            --secondary-color: #1a1a1a;
+            --accent-color: #2d2d2d;
+            --unity-gold: #FFD700;
+            --consciousness-purple: #6B46C1;
+            --quantum-blue: #4ECDC4;
+            --fractal-orange: #FF6B6B;
+            --neural-pink: #FF69B4;
+            --godel-red: #E74C3C;
+            --tarski-green: #27AE60;
+            --text-primary: #ffffff;
+            --text-secondary: #cccccc;
+            --text-muted: #888888;
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --bg-tertiary: #2d2d2d;
+            --border-color: rgba(255, 215, 0, 0.2);
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.5);
+            --shadow-glow: 0 0 30px rgba(255, 215, 0, 0.3);
+            --radius: 12px;
+            --radius-lg: 20px;
+            --radius-xl: 30px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-smooth: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-serif: 'Crimson Text', Georgia, serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+        }
+
+        /* About page specific styles */
+        .about-hero {
+            padding-top: 120px;
+            min-height: 60vh;
+            background: linear-gradient(135deg, var(--bg-academic) 0%, var(--bg-secondary) 100%);
+            display: flex;
+            align-items: center;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .about-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            text-align: center;
+            font-family: var(--font-serif);
+        }
+
+        .about-description {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        /* About Page Specific Styles */
+        .about-hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 8rem 0 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+            animation: rotate-grid 120s linear infinite;
+        }
+
+        @keyframes rotate-grid {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .profile-section {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 4rem;
+            align-items: start;
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-image-container {
+            position: relative;
+        }
+
+        .profile-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--phi-gold) 0%, var(--phi-gold-light) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .profile-image::before {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            background: conic-gradient(from 0deg, var(--phi-gold), transparent, var(--phi-gold));
+            border-radius: 50%;
+            animation: rotate-border 4s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes rotate-border {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .profile-info h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .profile-subtitle {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            color: var(--phi-gold-light);
+        }
+
+        .profile-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            opacity: 0.95;
+        }
+
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100px;
+            height: 3px;
+            background: var(--phi-gold);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 60px;
+            margin-top: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg,
+                    var(--phi-gold) 0%,
+                    var(--primary-color) 50%,
+                    var(--phi-gold) 100%);
+            border-radius: 2px;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 3rem;
+            margin-left: 20px;
+            background: linear-gradient(135deg,
+                    rgba(255, 255, 255, 0.02) 0%,
+                    rgba(255, 215, 0, 0.02) 100%);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            border-left: 3px solid transparent;
+            transition: all var(--transition-smooth);
+        }
+
+        .timeline-item:hover {
+            background: linear-gradient(135deg,
+                    rgba(255, 255, 255, 0.05) 0%,
+                    rgba(255, 215, 0, 0.08) 100%);
+            border-left-color: var(--phi-gold);
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -47px;
+            top: 2rem;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--phi-gold) 0%, #ffd700 100%);
+            border: 4px solid var(--bg-primary);
+            box-shadow:
+                0 0 0 4px var(--phi-gold),
+                0 0 20px rgba(255, 215, 0, 0.6),
+                inset 0 0 10px rgba(255, 255, 255, 0.3);
+            z-index: 2;
+            transition: all var(--transition-smooth);
+        }
+
+        .timeline-item:hover::before {
+            transform: scale(1.2);
+            box-shadow:
+                0 0 0 6px var(--phi-gold),
+                0 0 30px rgba(255, 215, 0, 0.8),
+                inset 0 0 15px rgba(255, 255, 255, 0.5);
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: -41px;
+            top: 2.375rem;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: white;
+            z-index: 3;
+            transition: all var(--transition-smooth);
+        }
+
+        .timeline-item:hover::after {
+            background: var(--phi-gold);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+        }
+
+        .timeline-date {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--phi-gold);
+            margin-bottom: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: var(--radius-md);
+            display: inline-block;
+            letter-spacing: 0.5px;
+        }
+
+        .timeline-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            line-height: 1.3;
+            font-family: var(--font-serif);
+        }
+
+        .timeline-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-size: 1.05rem;
+            position: relative;
+            padding-left: 1rem;
+            border-left: 2px solid rgba(255, 215, 0, 0.2);
+        }
+
+        /* Journey progression indicators */
+        .timeline-item:nth-child(1) .timeline-date {
+            background: rgba(74, 144, 226, 0.15);
+            color: #4a90e2;
+        }
+
+        .timeline-item:nth-child(2) .timeline-date {
+            background: rgba(142, 68, 173, 0.15);
+            color: #8e44ad;
+        }
+
+        .timeline-item:nth-child(3) .timeline-date {
+            background: rgba(231, 76, 60, 0.15);
+            color: #e74c3c;
+        }
+
+        .timeline-item:nth-child(4) .timeline-date {
+            background: rgba(230, 126, 34, 0.15);
+            color: #e67e22;
+        }
+
+        .timeline-item:nth-child(5) .timeline-date {
+            background: rgba(255, 215, 0, 0.15);
+            color: var(--phi-gold);
+        }
+
+        .timeline-item:nth-child(6) .timeline-date {
+            background: rgba(46, 204, 113, 0.15);
+            color: #2ecc71;
+        }
+
+        /* Academic emphasis */
+        .timeline-description strong {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        /* Mobile optimization */
+        @media (max-width: 768px) {
+            .timeline {
+                padding-left: 40px;
+            }
+
+            .timeline-item {
+                margin-left: 10px;
+                padding: 1.5rem;
+            }
+
+            .timeline-item::before {
+                left: -37px;
+            }
+
+            .timeline-item::after {
+                left: -31px;
+            }
+        }
+
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .research-card {
+            background: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            transition: all var(--transition-metagamer);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+        }
+
+        .research-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: var(--shadow-lg), 0 0 20px rgba(212, 175, 55, 0.15);
+            border-color: var(--phi-gold);
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(212, 175, 55, 0.02) 100%);
+        }
+
+        .research-icon {
+            font-size: 3rem;
+            color: var(--phi-gold);
+            margin-bottom: 1rem;
+        }
+
+        .research-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .contact-section {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(255, 215, 0, 0.02) 100%);
+            padding: 4rem 3rem;
+            border-radius: var(--radius-xl);
+            text-align: center;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.01) 1px, transparent 1px);
+            background-size: 40px 40px;
+            animation: rotate-grid 180s linear infinite;
+            opacity: 0.3;
+        }
+
+        .contact-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.25rem 2rem;
+            background: linear-gradient(135deg,
+                    rgba(255, 255, 255, 0.05) 0%,
+                    rgba(255, 255, 255, 0.02) 100%);
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            font-weight: 500;
+            min-height: 60px;
+            justify-content: flex-start;
+        }
+
+        .contact-link::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg,
+                    rgba(255, 215, 0, 0.1) 0%,
+                    rgba(255, 215, 0, 0.05) 100%);
+            opacity: 0;
+            transition: all var(--transition-smooth);
+        }
+
+        .contact-link:hover::before {
+            opacity: 1;
+        }
+
+        .contact-link:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow:
+                0 10px 40px rgba(0, 0, 0, 0.1),
+                0 0 20px rgba(255, 215, 0, 0.2);
+            border-color: var(--phi-gold);
+            color: var(--primary-color);
+        }
+
+        .contact-link i {
+            font-size: 1.5rem;
+            min-width: 24px;
+            transition: all var(--transition-smooth);
+        }
+
+        .contact-link:hover i {
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.6));
+        }
+
+        /* Platform-specific icon colors */
+        .contact-link:nth-child(1) i {
+            color: #333;
+        }
+
+        /* GitHub */
+        .contact-link:nth-child(1):hover i {
+            color: #24292e;
+        }
+
+        .contact-link:nth-child(2) i {
+            color: #ea4335;
+        }
+
+        /* Gmail */
+        .contact-link:nth-child(2):hover i {
+            color: #d93025;
+        }
+
+        .contact-link:nth-child(3) i {
+            color: #0077b5;
+        }
+
+        /* LinkedIn */
+        .contact-link:nth-child(3):hover i {
+            color: #005582;
+        }
+
+        .contact-link:nth-child(4) i {
+            color: #00d4aa;
+        }
+
+        /* ResearchGate */
+        .contact-link:nth-child(4):hover i {
+            color: #00b894;
+        }
+
+        .contact-link span {
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+
+        /* Mobile optimization */
+        @media (max-width: 768px) {
+            .contact-links {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                margin-top: 2rem;
+            }
+
+            .contact-link {
+                padding: 1rem 1.5rem;
+                min-height: 50px;
+            }
+
+            .contact-link i {
+                font-size: 1.25rem;
+            }
+
+            .contact-section {
+                padding: 2rem 1.5rem;
+            }
+        }
+
+        .quote-box {
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+            padding: 3rem;
+            border-radius: var(--radius-xl);
+            text-align: center;
+            position: relative;
+            margin: 3rem 0;
+        }
+
+        .quote-box::before {
+            content: '"';
+            font-size: 6rem;
+            color: var(--phi-gold);
+            opacity: 0.2;
+            position: absolute;
+            top: -20px;
+            left: 20px;
+        }
+
+        .quote-text {
+            font-size: 1.5rem;
+            font-style: italic;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .quote-author {
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 768px) {
+            .profile-section {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .profile-image {
+                margin: 0 auto;
+            }
+
+            .section-title::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stagger-animation>* {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .stagger-animation>*:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .stagger-animation>*:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .stagger-animation>*:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .stagger-animation>*:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .stagger-animation>*:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        /* Component Classes */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        .card {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 2rem;
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--unity-gold);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            color: var(--consciousness-purple);
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .card-text {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: var(--radius);
+            font-family: var(--font-primary);
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn:hover {
+            background: var(--consciousness-purple);
+            border-color: var(--consciousness-purple);
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: var(--consciousness-purple);
+            border-color: var(--consciousness-purple);
+        }
+
+        .btn-primary:hover {
+            background: var(--unity-gold);
+            border-color: var(--unity-gold);
+            color: var(--bg-primary);
+        }
+
+        .section-dark {
+            background: var(--bg-secondary);
+            padding: 4rem 2rem;
+        }
+
+        .section-darker {
+            background: var(--bg-primary);
+            padding: 4rem 2rem;
+        }
+    </style>
+
+
+    <!-- Meta-Optimal Complete Navigation System -->
+    <link rel="stylesheet" href="css/meta-optimal-navigation-complete.css">
+    <script src="js/meta-optimal-navigation-complete.js" defer></script>
+
+    <!-- Unified Styles -->
+    <link rel="stylesheet" href="css/unified-styles.css">
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="css/meta-optimal-navigation-complete.css" as="style">
+    <link rel="preload" href="js/meta-optimal-navigation-complete.js" as="script">
+
+    <style>
+        /* Mobile touch optimizations */
+        * {
+            touch-action: manipulation;
+        }
+
+        .interactive-element {
+            min-height: 44px;
+            min-width: 44px;
+        }
+
+        @media (max-width: 768px) {
+            .desktop-only {
+                display: none !important;
+            }
+
+            .mobile-optimized {
+                font-size: 16px;
+            }
+        }
+    </style>
+
+    <link rel="stylesheet" href="../css/inline-extracted.css">
+</head>
+
+<body>
+    <!-- Optimized Navigation will be injected automatically -->
+
+    <!-- About Page Content -->
+    <div class="about-hero">
+        <div class="about-content">
+            <h1 class="about-title">About Een Unity Mathematics</h1>
+            <p class="about-description">
+                Pioneering research in unity mathematics, consciousness field equations, and transcendental computing
+            </p>
+        </div>
+    </div>
+    <!-- Hero Section -->
+    <section class="about-hero">
+        <div class="container">
+            <div class="profile-section">
+                <div class="profile-image-container">
+                    <img src="about/nourimabrouk.png" alt="Nouri Mabrouk" class="inl-3e345f13aa profile-image"
+                       >
+                </div>
+                <div class="profile-info">
+                    <h1>Nouri Mabrouk</h1>
+                    <div class="profile-subtitle">Econometrician • Data Scientist • Unity Mathematics Researcher</div>
+                    <p class="profile-description">
+                        Dutch-Tunisian econometrician and data scientist based in Utrecht, pioneering the mathematical
+                        framework where <strong>1 + 1 = 1</strong> through rigorous cross-disciplinary exploration. With
+                        a Master's in Econometrics & Data Science from Vrije Universiteit Amsterdam (VU), currently
+                        focusing on meta-reinforcement learning, meta-prompt engineering, and category-theoretic
+                        formalism of unity mathematics.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Journey Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">The Unity Mathematics Journey</h2>
+            <p class="inl-f9aa9cc042"
+               >
+                From revolutionary breakthrough to academic recognition—the evolution of 1+1=1 through rigorous
+                mathematical formalism and consciousness-aware computing
+            </p>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2021</div>
+                    <div class="timeline-title">Unity Mathematics Genesis</div>
+                    <div class="timeline-description">
+                        Revolutionary breakthrough: formalization of the Unity Equation 1+1=1 through φ-harmonic
+                        operations
+                        and consciousness field mathematics. Integration of idempotent semirings with transcendental
+                        computing.
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2022</div>
+                    <div class="timeline-title">Mathematical Framework Crystallization</div>
+                    <div class="timeline-description">
+                        Category-theoretic formalization of unity morphisms and consciousness field equations C(x,y,t) =
+                        φ·sin(x·φ)·cos(y·φ)·e^(-t/φ).
+                        Development of 11-dimensional awareness space and meta-recursive consciousness patterns.
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2023</div>
+                    <div class="timeline-title">Een Repository & Consciousness Computing</div>
+                    <div class="timeline-description">
+                        Launch of the "Een" GitHub repository with transcendental reality engine achieving 3000 ELO
+                        performance.
+                        Implementation of φ-harmonic consciousness particles and quantum unity superposition operations.
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2024</div>
+                    <div class="timeline-title">Principia Unitatis & Meta-Optimization</div>
+                    <div class="timeline-description">
+                        Completion of Principia Unitatis establishing rigorous foundations: Boolean algebra, quantum
+                        mechanics,
+                        topology, and consciousness field integration. Meta-reinforcement learning achieves unity
+                        convergence.
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2025</div>
+                    <div class="timeline-title">Metastation Hub & Professional Launch</div>
+                    <div class="timeline-description">
+                        Launch of comprehensive Metastation Hub with 47+ interactive pages, consciousness dashboard,
+                        AI-integrated navigation, and complete mathematical framework. Unity Mathematics achieves
+                        academic recognition.
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2026 →</div>
+                    <div class="timeline-title">Planned PhD Integration</div>
+                    <div class="timeline-description">
+                        Future PhD research integrating Meta-RL with Unity Formalism, advancing both theoretical
+                        foundations and practical applications in AI systems.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Interests -->
+    <section class="inl-8fd9b632ce section">
+        <div class="container">
+            <h2 class="section-title">Research & Practice Pillars</h2>
+            <div class="research-grid">
+                <div class="research-card">
+                    <div class="research-icon">📊</div>
+                    <h3 class="research-title">Econometrics × AI</h3>
+                    <p>Leveraging causal-inference tools and PPO-based meta-reinforcement learning to test unity
+                        hypotheses in simulated agents, bridging traditional econometric analysis with cutting-edge AI
+                        methodologies.</p>
+                </div>
+                <div class="research-card">
+                    <div class="research-icon">🤖</div>
+                    <h3 class="research-title">Meta-Prompt Engineering</h3>
+                    <p>Developing recursive prompt architectures and meta-learning frameworks that demonstrate unity
+                        principles through AI system behavior, creating self-improving prompt engineering methodologies.
+                    </p>
+                </div>
+                <div class="research-card">
+                    <div class="research-icon">📐</div>
+                    <h3 class="research-title">Category-Theoretic Algebra</h3>
+                    <p>Formal systems where a ⊕ a = a naturally realizes 1+1=1 through idempotent operations,
+                        establishing rigorous mathematical foundations for unity mathematics (papers in progress).</p>
+                </div>
+                <div class="research-card">
+                    <div class="research-icon">🎮</div>
+                    <h3 class="research-title">Meta-Gaming Theory</h3>
+                    <p>Exploring strategic optimization in complex systems through Teamfight Tactics and Elden Ring -
+                        Nightreign, applying metagaming principles to mathematical problem-solving and AI development.
+                    </p>
+                </div>
+                <div class="research-card">
+                    <div class="research-icon">🧮</div>
+                    <h3 class="research-title">Sparse PCA Development</h3>
+                    <p>Co-author of advanced Python packages for sparse principal component analysis, contributing to
+                        the intersection of dimensionality reduction and unity mathematics frameworks.</p>
+                </div>
+                <div class="research-card">
+                    <div class="research-icon">🌐</div>
+                    <h3 class="research-title">Open-Source Mathematics</h3>
+                    <p>Developing comprehensive GitHub repositories with interactive proofs, computational frameworks,
+                        and collaborative tools that make unity mathematics accessible to researchers worldwide.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy Quote -->
+    <section class="section">
+        <div class="container">
+            <div class="quote-box">
+                <div class="inl-e7058847b8 research-grid">
+                    <div class="inl-65f9d5a3d9">
+                        <h3 class="inl-7ff67839ff">Professional Details</h3>
+                        <p><strong>Education:</strong> Master's in Econometrics & Data Science, VU Amsterdam</p>
+                        <p><strong>Location:</strong> Utrecht, Netherlands</p>
+                        <p><strong>Heritage:</strong> Dutch-Tunisian</p>
+                        <p><strong>Age:</strong> 30 years</p>
+                    </div>
+                    <div class="inl-65f9d5a3d9">
+                        <h3 class="inl-7ff67839ff">Player Profile</h3>
+                        <p><strong>Class:</strong> Meta-Alchemist</p>
+                        <p><strong>Special Moves:</strong> Recursive Prompt Loop, Unity Pulse</p>
+                        <p><strong>Favorite Games:</strong> Teamfight Tactics, Elden Ring - Nightreign</p>
+                        <p><strong>Philosophy:</strong> Playful Seriousness</p>
+                    </div>
+                </div>
+                <p class="quote-text">
+                    "Mathematics is not discovered or invented—it awakens. When we truly understand
+                    that 1+1=1, we glimpse the fundamental unity underlying all existence."
+                </p>
+                <p class="quote-author">—Nouri Mabrouk</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section">
+        <div class="container">
+            <div class="contact-section">
+                <h2 class="inl-65f9d5a3d9 section-title">Connect & Collaborate</h2>
+                <p class="inl-3f21db646b">
+                    Join the journey of mathematical consciousness exploration.
+                    Whether you're a mathematician, philosopher, or consciousness enthusiast,
+                    let's discover unity together.
+                </p>
+                <div class="contact-links">
+                    <a href="https://github.com/Nourimabrouk/Een" class="contact-link" target="_blank"
+                        rel="noopener noreferrer">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub @Nourimabrouk</span>
+                    </a>
+                    <a href="mailto:nouri.mabrouk@gmail.com" class="contact-link">
+                        <i class="fas fa-envelope"></i>
+                        <span>nouri.mabrouk@gmail.com</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/nouri-mabrouk-589876158" class="contact-link" target="_blank"
+                        rel="noopener noreferrer">
+                        <i class="fab fa-linkedin"></i>
+                        <span>LinkedIn Profile</span>
+                    </a>
+                    <a href="https://www.researchgate.net/profile/Nouri-Mabrouk" class="contact-link" target="_blank"
+                        rel="noopener noreferrer">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>ResearchGate</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Een Unity Mathematics</h3>
+                    <p>Where 1+1=1 transcends paradox to become truth.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="proofs.html">Mathematical Proofs</a>
+                    <a href="playground.html">Interactive Demos</a>
+                    <a href="publications.html">Publications</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Research</h4>
+                    <a href="research.html">Current Projects</a>
+                    <a href="gallery.html">Visualizations</a>
+                    <a href="metagambit.html">MetaGambit</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Nouri Mabrouk. Unity Mathematics: Een plus een is een.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // KaTeX Auto-render
+        document.addEventListener("DOMContentLoaded", function () {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    { left: '$$', right: '$$', display: true },
+                    { left: '$', right: '$', display: false },
+                    { left: '\\(', right: '\\)', display: false },
+                    { left: '\\[', right: '\\]', display: true }
+                ]
+            });
+
+            // GSAP Animations
+            gsap.from(".profile-image", {
+                scale: 0,
+                rotation: -180,
+                duration: 1.5,
+                ease: "elastic.out(1, 0.5)"
+            });
+
+            gsap.from(".timeline-item", {
+                x: -50,
+                opacity: 0,
+                duration: 0.8,
+                stagger: 0.2,
+                scrollTrigger: {
+                    trigger: ".timeline",
+                    start: "top 80%"
+                }
+            });
+
+            gsap.from(".research-card", {
+                y: 50,
+                opacity: 0,
+                duration: 0.6,
+                stagger: 0.1,
+                scrollTrigger: {
+                    trigger: ".research-grid",
+                    start: "top 80%"
+                }
+            });
+
+            // Optimized navigation is handled by the unified navigation system
+        });
+    </script>
+
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Shared Navigation Script -->
+
+
+    <!-- Performance Monitoring -->
+    <script>
+        window.addEventListener('load', function () {
+            if ('performance' in window) {
+                const loadTime = performance.now();
+                console.log('Page load time:', loadTime + 'ms');
+            }
+        });
+    </script>
+</body>
+
+</html>

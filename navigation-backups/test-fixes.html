@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Fixes - Metastation Hub</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #0A0A0F;
+            color: white;
+        }
+
+        .test-item {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #FFD700;
+            border-radius: 8px;
+        }
+
+        .status {
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .pass {
+            color: #00FF00;
+        }
+
+        .fail {
+            color: #FF0000;
+        }
+
+        .info {
+            color: #FFD700;
+        }
+    </style>
+
+    <link rel="stylesheet" href="../css/inline-extracted.css">
+</head>
+
+<body>
+    <h1>Metastation Hub Fixes Test</h1>
+
+    <div class="test-item">
+        <h3>1. Audio Section Collapsed</h3>
+        <p>Check if the audio player starts in collapsed state (small size, no playlist visible)</p>
+        <span class="status info">Check manually on metastation-hub.html</span>
+    </div>
+
+    <div class="test-item">
+        <h3>2. Search Not Auto-Opening</h3>
+        <p>Verify that search modal doesn't appear automatically when page loads</p>
+        <span class="status info">Check manually on metastation-hub.html</span>
+    </div>
+
+    <div class="test-item">
+        <h3>3. Section Headers Centered</h3>
+        <p>Verify that "Profound Mathematical Experiences", "Gödel-Tarski Metagambit", and "Visualization Suite" stay
+            centered when scrolling</p>
+        <span class="status info">Check manually on metastation-hub.html</span>
+    </div>
+
+    <div class="test-item">
+        <h3>4. Chatbot Button Working</h3>
+        <p>Verify that the bottom-right chatbot button opens the modern chat interface</p>
+        <span class="status info">Check manually on metastation-hub.html</span>
+    </div>
+
+    <div class="test-item">
+        <h3>CSS Fixes Applied</h3>
+        <ul>
+            <li>✅ Audio section starts minimized with .audio-section class</li>
+            <li>✅ Section headers have proper centering with flexbox</li>
+            <li>✅ Search system doesn't auto-open</li>
+            <li>✅ Chat system has fallback initialization</li>
+        </ul>
+    </div>
+
+    <div class="test-item">
+        <h3>JavaScript Fixes Applied</h3>
+        <ul>
+            <li>✅ Audio minimize/expand functionality reversed</li>
+            <li>✅ Search initialization without auto-open</li>
+            <li>✅ Chat system initialization with retry logic</li>
+            <li>✅ Fallback chat button creation</li>
+        </ul>
+    </div>
+
+    <p><a class="inl-2abc294e78" href="metastation-hub.html">← Back to Metastation Hub</a></p>
+</body>
+
+</html>
