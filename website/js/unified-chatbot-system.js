@@ -541,7 +541,8 @@ class UnifiedChatbotSystem {
                 cursor: pointer;
                 outline: none;
                 transition: all 0.3s ease;
-                min-width: 120px;
+                min-width: 220px; /* ensure visible label on desktop */
+                white-space: nowrap;
             }
 
             .model-select:hover,
@@ -969,10 +970,8 @@ class UnifiedChatbotSystem {
                     font-size: 1rem;
                 }
 
-                .model-select {
-                    min-width: 100px;
-                    font-size: 0.75rem;
-                }
+                .model-select { min-width: 160px; font-size: 0.75rem; }
+                .ai-capabilities { display: none; }
 
                 .chat-messages {
                     padding: 0.75rem;
