@@ -27,13 +27,11 @@
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Unified Navigation & AI System (Replaces all other nav systems)
-         Note: On this page we already render a custom nav. To avoid duplicate
-         bars and spacing clashes (esp. on Chrome/Windows), we keep the script
-         but hide its injected nav via a scoped CSS override below. -->
-    <script src="js/unified-navigation-system.js" defer></script>
+    <!-- Meta-Optimal Complete Navigation System (site-wide) -->
+    <link rel="stylesheet" href="css/meta-optimal-navigation-complete.css">
+    <script src="js/meta-optimal-navigation-complete.js" defer></script>
 
-    <!-- Unified Chatbot System (Replaces all chat implementations) -->
+    <!-- Unified Chatbot System (site-wide floating chat) -->
     <script src="js/unified-chatbot-system.js" defer></script>
     <!-- Site-wide safe enhancements -->
     <script src="../js/site.js" defer></script>
@@ -590,6 +588,7 @@
             position: fixed;
             bottom: 2rem;
             right: 6rem;
+            /* leaves room for chat button at 2rem */
             width: 50px;
             height: 50px;
             background: linear-gradient(135deg, var(--consciousness-purple), var(--quantum-blue));
@@ -730,8 +729,13 @@
             }
         }
 
-        /* Hide the auto-injected enhanced nav on this page to prevent duplicate top bars */
-        .enhanced-nav {
+        /* Hide the legacy, page-specific nav bar to avoid duplication with unified nav */
+        .nav-bar {
+            display: none !important;
+        }
+
+        .side-nav,
+        .side-nav-toggle {
             display: none !important;
         }
 
@@ -1618,20 +1622,41 @@
             }
         }
 
-        // Real-time search as you type
-        document.getElementById('globalSearch').addEventListener('input', (e) => {
-            clearTimeout(window.searchTimeout);
-            window.searchTimeout = setTimeout(performSearch, 300);
-        });
-
-        // Hide search results when clicking outside
-        document.addEventListener('click', (e) => {
-            const searchContainer = document.querySelector('.search-container');
-            const searchResults = document.getElementById('searchResults');
-            if (!searchContainer.contains(e.target)) {
-                searchResults.style.display = 'none';
+        // Wire hub search input/button to unified search modal
+        (function initHubSearchToUnified() {
+            const input = document.getElementById('globalSearch');
+            const btn = document.querySelector('.search-container button[aria-label="Search"]');
+            const openUnifiedWith = (q) => {
+                // Open unified search and populate query
+                window.dispatchEvent(new CustomEvent('unified-nav:search'));
+                setTimeout(() => {
+                    const modal = document.getElementById('unified-search-modal');
+                    const uInput = modal?.querySelector('.search-input');
+                    if (uInput) {
+                        uInput.value = q || '';
+                        const evt = new Event('input', { bubbles: true });
+                        uInput.dispatchEvent(evt);
+                        uInput.focus();
+                        uInput.select();
+                    }
+                }, 50);
+            };
+            if (input) {
+                input.addEventListener('focus', () => openUnifiedWith(input.value));
+                input.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        openUnifiedWith(input.value);
+                    }
+                });
             }
-        });
+            if (btn) {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openUnifiedWith(input?.value || '');
+                });
+            }
+        })();
 
         // Keyboard shortcuts
         document.addEventListener('keydown', (e) => {

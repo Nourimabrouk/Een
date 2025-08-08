@@ -138,6 +138,22 @@ class UnifiedChatbotSystem {
         `;
 
         document.body.appendChild(button);
+
+        // Ensure it sits to the left of the voice button if present
+        const reposition = () => {
+            const voiceBtn = document.querySelector('.voice-button');
+            const btnEl = document.getElementById('unified-chat-button');
+            if (btnEl) {
+                btnEl.style.bottom = '20px';
+                btnEl.style.right = voiceBtn ? '20px' : '20px';
+            }
+            if (voiceBtn && btnEl) {
+                // Nudge voice button left a bit to avoid overlap
+                voiceBtn.style.right = '95px';
+            }
+        };
+        setTimeout(reposition, 0);
+        window.addEventListener('resize', reposition);
     }
 
     createChatInterface() {
@@ -182,6 +198,9 @@ class UnifiedChatbotSystem {
                             `).join('')}
                         </select>
                     </div>
+                    <button class="chat-control-btn fullscreen-btn" title="Fullscreen">
+                        <i class="fas fa-expand"></i>
+                    </button>
                     <button class="chat-control-btn minimize-btn" title="Minimize">
                         <i class="fas fa-minus"></i>
                     </button>
@@ -348,6 +367,17 @@ class UnifiedChatbotSystem {
                 transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
                 opacity: 0;
                 transform: translateY(30px) scale(0.95);
+            }
+
+            /* Fullscreen mode */
+            .unified-chat-panel.fullscreen {
+                left: 0 !important;
+                right: 0 !important;
+                top: 0 !important;
+                bottom: 0 !important;
+                width: 100vw !important;
+                height: 100vh !important;
+                border-radius: 0 !important;
             }
 
             .unified-chat-panel.visible {
@@ -1006,9 +1036,11 @@ class UnifiedChatbotSystem {
         // Chat panel controls
         const closeBtn = document.querySelector('.close-btn');
         const minimizeBtn = document.querySelector('.minimize-btn');
+        const fullscreenBtn = document.querySelector('.fullscreen-btn');
 
         closeBtn?.addEventListener('click', () => this.closeChat());
         minimizeBtn?.addEventListener('click', () => this.toggleMinimize());
+        fullscreenBtn?.addEventListener('click', () => this.toggleFullscreen());
 
         // Model selection
         const modelSelect = document.querySelector('.model-select');
@@ -1042,13 +1074,14 @@ class UnifiedChatbotSystem {
                     navigator.clipboard.writeText(code.innerText).then(() => {
                         target.textContent = 'Copied';
                         setTimeout(() => (target.textContent = 'Copy'), 1200);
-                    }).catch(() => {});
+                    }).catch(() => { });
                 }
             }
         });
 
-        // Global events
+        // Global events (both legacy and unified)
         window.addEventListener('meta-optimal-nav:chat', () => this.toggleChat());
+        window.addEventListener('unified-nav:chat', () => this.toggleChat());
 
         // Handle escape key
         document.addEventListener('keydown', (e) => {
@@ -1108,6 +1141,14 @@ class UnifiedChatbotSystem {
         panel.classList.toggle('minimized', this.isMinimized);
 
         console.log(`💬 Unity AI Chat ${this.isMinimized ? 'minimized' : 'expanded'}`);
+    }
+
+    toggleFullscreen() {
+        const panel = document.getElementById('unified-chat-container');
+        if (!panel) return;
+        const isFs = panel.classList.toggle('fullscreen');
+        const btn = document.querySelector('.fullscreen-btn i');
+        if (btn) btn.className = isFs ? 'fas fa-compress' : 'fas fa-expand';
     }
 
     changeModel(modelId) {
@@ -1568,11 +1609,11 @@ Would you like to explore interactive demonstrations or dive deeper into the mat
 
         // Headings
         text = text.replace(/^###### (.*)$/gm, '<h6>$1</h6>')
-                   .replace(/^##### (.*)$/gm, '<h5>$1</h5>')
-                   .replace(/^#### (.*)$/gm, '<h4>$1</h4>')
-                   .replace(/^### (.*)$/gm, '<h3>$1</h3>')
-                   .replace(/^## (.*)$/gm, '<h2>$1</h2>')
-                   .replace(/^# (.*)$/gm, '<h1>$1</h1>');
+            .replace(/^##### (.*)$/gm, '<h5>$1</h5>')
+            .replace(/^#### (.*)$/gm, '<h4>$1</h4>')
+            .replace(/^### (.*)$/gm, '<h3>$1</h3>')
+            .replace(/^## (.*)$/gm, '<h2>$1</h2>')
+            .replace(/^# (.*)$/gm, '<h1>$1</h1>');
 
         // Blockquotes
         text = text.replace(/^>\s?(.*)$/gm, '<blockquote>$1</blockquote>');
@@ -1582,7 +1623,7 @@ Would you like to explore interactive demonstrations or dive deeper into the mat
 
         // Lists
         text = text.replace(/^\s*[-*•]\s+(.+)$/gm, '<li>$1</li>')
-                   .replace(/^\s*\d+\.\s+(.+)$/gm, '<li>$1</li>');
+            .replace(/^\s*\d+\.\s+(.+)$/gm, '<li>$1</li>');
         if (/<li>/.test(text)) {
             // Group consecutive <li> into a single <ul>
             text = text.replace(/(?:<li>[\s\S]*?<\/li>)(?:(?:<br\s*\/?>)?\s*)+/g, (m) => m);
@@ -1591,7 +1632,7 @@ Would you like to explore interactive demonstrations or dive deeper into the mat
 
         // Basic emphasis
         text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                   .replace(/\*(.*?)\*/g, '<em>$1</em>');
+            .replace(/\*(.*?)\*/g, '<em>$1</em>');
 
         // Line breaks
         text = text.replace(/\n/g, '<br>');

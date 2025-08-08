@@ -11,16 +11,16 @@ class MetaOptimalNavigationSystem {
         this.isMobile = window.innerWidth <= 768;
         this.isTablet = window.innerWidth <= 1024 && window.innerWidth > 768;
         this.sidebarOpen = false;
-        
+
         // Initialize meta-optimal system
         this.init();
-        
+
         // Bind events
         this.bindEvents();
-        
+
         console.log('🚀 Meta-Optimal Navigation System initialized - 42 pages accessible');
     }
-    
+
     getCompleteNavigationStructure() {
         return {
             primary: [
@@ -145,32 +145,32 @@ class MetaOptimalNavigationSystem {
             ]
         };
     }
-    
+
     getCurrentPageName() {
         const path = window.location.pathname;
         const page = path.split('/').pop() || 'index.html';
         return page.replace('.html', '');
     }
-    
+
     init() {
         // Remove existing conflicting navigation systems
         this.cleanupConflictingNavigation();
-        
+
         // Create meta-optimal navigation structure
         this.createTopNavigation();
         this.createMobileNavigation();
         this.createSidebarToggle();
-        
+
         // Apply meta-optimal styles
         this.applyMetaOptimalStyles();
-        
+
         // Initialize active states
         this.updateActiveStates();
-        
+
         // Add scroll effects
         this.addScrollEffects();
     }
-    
+
     cleanupConflictingNavigation() {
         // Remove overloaded top navigation
         const existingNav = document.querySelector('.nav-links');
@@ -178,15 +178,15 @@ class MetaOptimalNavigationSystem {
             console.log('🧹 Cleaning up overloaded navigation (42 pages → organized structure)');
             existingNav.innerHTML = '';
         }
-        
+
         // Remove conflicting margin styles
         document.body.style.marginLeft = '';
-        
+
         // Clean up duplicate event listeners
         const oldButtons = document.querySelectorAll('.nav-toggle, .sidebar-toggle');
         oldButtons.forEach(btn => btn.replaceWith(btn.cloneNode(true)));
     }
-    
+
     createTopNavigation() {
         let navContainer = document.querySelector('.nav-container');
         if (!navContainer) {
@@ -196,10 +196,10 @@ class MetaOptimalNavigationSystem {
             navContainer.className = 'nav-container meta-optimal-nav';
             header.appendChild(navContainer);
         }
-        
+
         // Clear existing content
         navContainer.innerHTML = '';
-        
+
         // Create navigation HTML
         navContainer.innerHTML = `
             <div class="nav-wrapper">
@@ -231,7 +231,7 @@ class MetaOptimalNavigationSystem {
             </div>
         `;
     }
-    
+
     renderPrimaryNavigation() {
         return this.navigationData.primary.map(item => `
             <div class="nav-item ${item.dropdown ? 'has-dropdown' : ''} ${item.featured ? 'featured' : ''}" data-nav-id="${item.id}">
@@ -244,7 +244,7 @@ class MetaOptimalNavigationSystem {
             </div>
         `).join('');
     }
-    
+
     renderDropdown(items) {
         return `
             <div class="nav-dropdown">
@@ -260,7 +260,7 @@ class MetaOptimalNavigationSystem {
             </div>
         `;
     }
-    
+
     renderUtilityNavigation() {
         return this.navigationData.utilities.map(item => `
             <button class="utility-btn" data-action="${item.action}" title="${item.label}">
@@ -269,7 +269,7 @@ class MetaOptimalNavigationSystem {
             </button>
         `).join('');
     }
-    
+
     createMobileNavigation() {
         // Create mobile overlay navigation
         const mobileNav = document.createElement('div');
@@ -293,13 +293,13 @@ class MetaOptimalNavigationSystem {
                 </div>
             </div>
         `;
-        
+
         document.body.appendChild(mobileNav);
     }
-    
+
     renderMobileNavigation() {
         const allItems = [];
-        
+
         // Add primary navigation items with their dropdowns
         this.navigationData.primary.forEach(section => {
             allItems.push(`
@@ -323,10 +323,10 @@ class MetaOptimalNavigationSystem {
                 </div>
             `);
         });
-        
+
         return allItems.join('');
     }
-    
+
     renderMobileUtilities() {
         return this.navigationData.utilities.map(item => `
             <button class="mobile-utility-btn" data-action="${item.action}">
@@ -335,7 +335,7 @@ class MetaOptimalNavigationSystem {
             </button>
         `).join('');
     }
-    
+
     createSidebarToggle() {
         // This replaces the conflicting sidebar system with a simple toggle
         // that works with the unified navigation
@@ -346,7 +346,7 @@ class MetaOptimalNavigationSystem {
             console.log('🔧 Existing sidebar hidden to prevent conflicts');
         }
     }
-    
+
     applyMetaOptimalStyles() {
         // Inject meta-optimal navigation styles
         const styleId = 'meta-optimal-navigation-styles';
@@ -357,7 +357,7 @@ class MetaOptimalNavigationSystem {
             document.head.appendChild(style);
         }
     }
-    
+
     getMetaOptimalStyles() {
         return `
             /* Meta-Optimal Navigation System Styles - Fixed for Chrome PC */
@@ -454,7 +454,7 @@ class MetaOptimalNavigationSystem {
                 justify-content: center;
                 min-width: 0;
                 overflow: hidden;
-                max-width: calc(100vw - 400px);
+                max-width: calc(100vw - 520px);
             }
             
             .nav-item {
@@ -521,7 +521,8 @@ class MetaOptimalNavigationSystem {
                 margin-top: 0.5rem;
             }
             
-            .nav-item:hover .nav-dropdown {
+            .nav-item:hover .nav-dropdown,
+            .nav-item.open .nav-dropdown {
                 opacity: 1;
                 visibility: visible;
                 transform: translateX(-50%) translateY(0);
@@ -589,6 +590,7 @@ class MetaOptimalNavigationSystem {
                 align-items: center;
                 gap: 0.5rem;
                 flex-shrink: 0;
+                min-width: 320px;
             }
             
             .utility-btn {
@@ -1020,50 +1022,50 @@ class MetaOptimalNavigationSystem {
             }
         `;
     }
-    
+
     addScrollEffects() {
         let lastScrollTop = 0;
-        
+
         window.addEventListener('scroll', () => {
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
             const nav = document.querySelector('.meta-optimal-nav');
-            
+
             if (nav) {
                 if (scrollTop > 50) {
                     nav.classList.add('scrolled');
                 } else {
                     nav.classList.remove('scrolled');
                 }
-                
+
                 // Hide/show navigation on scroll
                 if (scrollTop > lastScrollTop && scrollTop > 100) {
                     nav.style.transform = 'translateY(-100%)';
                 } else {
                     nav.style.transform = 'translateY(0)';
                 }
-                
+
                 lastScrollTop = scrollTop;
             }
         });
     }
-    
+
     bindEvents() {
         // Mobile navigation toggle
         const mobileToggle = document.querySelector('.mobile-toggle');
         const mobileNav = document.querySelector('.mobile-nav-overlay');
         const mobileClose = document.querySelector('.mobile-close');
-        
+
         if (mobileToggle && mobileNav) {
             mobileToggle.addEventListener('click', () => {
                 mobileNav.classList.add('active');
                 document.body.style.overflow = 'hidden';
             });
-            
+
             mobileClose?.addEventListener('click', () => {
                 mobileNav.classList.remove('active');
                 document.body.style.overflow = '';
             });
-            
+
             // Close on backdrop click
             mobileNav.addEventListener('click', (e) => {
                 if (e.target === mobileNav) {
@@ -1072,7 +1074,7 @@ class MetaOptimalNavigationSystem {
                 }
             });
         }
-        
+
         // Utility button actions
         document.addEventListener('click', (e) => {
             const utilityBtn = e.target.closest('.utility-btn, .mobile-utility-btn');
@@ -1081,7 +1083,29 @@ class MetaOptimalNavigationSystem {
                 this.handleUtilityAction(action);
             }
         });
-        
+
+        // Click-to-toggle dropdowns without navigating
+        document.addEventListener('click', (e) => {
+            const link = e.target.closest('.nav-item.has-dropdown > a.nav-link');
+            if (link) {
+                e.preventDefault();
+                const item = link.closest('.nav-item');
+                const isOpen = item.classList.contains('open');
+                // Close others
+                document.querySelectorAll('.nav-item.has-dropdown.open').forEach(el => {
+                    if (el !== item) el.classList.remove('open');
+                });
+                item.classList.toggle('open', !isOpen);
+            }
+        });
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.nav-item.has-dropdown')) {
+                document.querySelectorAll('.nav-item.has-dropdown.open').forEach(el => el.classList.remove('open'));
+            }
+        });
+
         // Close mobile nav on link click
         document.addEventListener('click', (e) => {
             if (e.target.classList.contains('mobile-nav-item')) {
@@ -1092,12 +1116,12 @@ class MetaOptimalNavigationSystem {
                 }
             }
         });
-        
+
         // Handle window resize
         window.addEventListener('resize', () => {
             this.isMobile = window.innerWidth <= 768;
             this.isTablet = window.innerWidth <= 1024 && window.innerWidth > 768;
-            
+
             if (!this.isMobile) {
                 const mobileNav = document.querySelector('.mobile-nav-overlay');
                 if (mobileNav) {
@@ -1106,7 +1130,7 @@ class MetaOptimalNavigationSystem {
                 }
             }
         });
-        
+
         // Keyboard navigation
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
@@ -1118,7 +1142,7 @@ class MetaOptimalNavigationSystem {
             }
         });
     }
-    
+
     handleUtilityAction(action) {
         switch (action) {
             case 'openSearch':
@@ -1132,33 +1156,36 @@ class MetaOptimalNavigationSystem {
                 break;
         }
     }
-    
+
     openSearch() {
         console.log('🔍 Search functionality triggered');
         window.dispatchEvent(new CustomEvent('meta-optimal-nav:search'));
+        window.dispatchEvent(new CustomEvent('unified-nav:search'));
     }
-    
+
     openChat() {
         console.log('💬 Chat functionality triggered');
         window.dispatchEvent(new CustomEvent('meta-optimal-nav:chat'));
+        window.dispatchEvent(new CustomEvent('unified-nav:chat'));
     }
-    
+
     toggleAudio() {
         console.log('🎵 Audio functionality triggered');
         window.dispatchEvent(new CustomEvent('meta-optimal-nav:audio'));
+        window.dispatchEvent(new CustomEvent('unified-nav:audio'));
     }
-    
+
     isActive(href) {
         if (!href) return false;
         const currentPage = this.currentPage;
         const linkPage = href.replace('.html', '').split('/').pop();
-        
+
         // Check for exact match or index page
-        return linkPage === currentPage || 
-               (currentPage === 'index' && linkPage === 'metastation-hub') ||
-               (currentPage === 'metastation-hub' && linkPage === 'index');
+        return linkPage === currentPage ||
+            (currentPage === 'index' && linkPage === 'metastation-hub') ||
+            (currentPage === 'metastation-hub' && linkPage === 'index');
     }
-    
+
     updateActiveStates() {
         // Update active states for all navigation links
         const allLinks = document.querySelectorAll('.nav-link, .dropdown-item, .mobile-nav-item');
@@ -1171,21 +1198,21 @@ class MetaOptimalNavigationSystem {
             }
         });
     }
-    
+
     // Public API
     refresh() {
         this.currentPage = this.getCurrentPageName();
         this.updateActiveStates();
     }
-    
+
     destroy() {
         // Remove event listeners and clean up
         const style = document.getElementById('meta-optimal-navigation-styles');
         if (style) style.remove();
-        
+
         const mobileNav = document.querySelector('.mobile-nav-overlay');
         if (mobileNav) mobileNav.remove();
-        
+
         document.body.style.paddingTop = '';
         console.log('🧹 Meta-Optimal Navigation System destroyed');
     }

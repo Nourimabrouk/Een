@@ -21,7 +21,8 @@ class PersistentAudioSystem {
                 url: 'audio/U2 - One.webm',
                 duration: 276,
                 artist: 'U2',
-                album: 'Achtung Baby'
+                album: 'Achtung Baby',
+                isDefault: true
             },
             {
                 id: 'always-bon-jovi',
@@ -45,8 +46,7 @@ class PersistentAudioSystem {
                 url: 'audio/TheFatRat - Unity.mp3',
                 duration: 270,
                 artist: 'TheFatRat',
-                album: 'NCS',
-                isDefault: true
+                album: 'NCS'
             },
             {
                 id: 'one-love-bob-marley',
@@ -516,10 +516,37 @@ class PersistentAudioSystem {
         this.audio = new Audio(track.url);
         this.audio.volume = this.volume;
 
-        // Fallback to generated audio if file doesn't exist
+        // Fallback handling when file missing
         this.audio.addEventListener('error', () => {
-            console.log(`Audio file ${track.url} not found, using generated tone`);
-            this.generateAudioTone(track);
+            console.warn(`Audio file ${track.url} not found. Checking alternatives...`);
+            if (track.id === 'unity-thefatrat') {
+                // Try common alternate filename locations
+                const alternates = [
+                    'audio/Unity - TheFatRat.mp3',
+                    'audio/Unity.mp3'
+                ];
+                let tried = 0;
+                const tryNext = () => {
+                    if (tried >= alternates.length) {
+                        console.log('Alternates not found. Generating φ-harmonic tone');
+                        this.generateAudioTone(track);
+                        return;
+                    }
+                    const alt = alternates[tried++];
+                    const testAudio = new Audio(alt);
+                    testAudio.addEventListener('canplaythrough', () => {
+                        this.audio = testAudio;
+                        this.audio.volume = this.volume;
+                        this.updateTrackInfo();
+                        this.audio.play().catch(() => { });
+                    });
+                    testAudio.addEventListener('error', tryNext);
+                    testAudio.load();
+                };
+                tryNext();
+            } else {
+                this.generateAudioTone(track);
+            }
         });
 
         this.audio.addEventListener('loadeddata', () => {

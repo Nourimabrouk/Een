@@ -464,21 +464,22 @@ class MetaOptimalCompleteNavigation {
     }
 
     toggleSearch() {
-        // Implement search modal
-        console.log('Search feature coming soon');
-        alert('Search feature coming soon! For now, use the Site Map.');
-        window.location.href = 'sitemap.html';
+        // Open unified search system if available
+        try {
+            window.dispatchEvent(new CustomEvent('unified-nav:search'));
+            window.dispatchEvent(new CustomEvent('meta-optimal-nav:search'));
+        } catch (e) {
+            console.warn('Unified search not available:', e);
+        }
     }
 
     toggleChat() {
-        // Trigger existing chat system if available
-        if (typeof window.openAIChat === 'function') {
-            window.openAIChat();
-        } else if (typeof window.toggleChat === 'function') {
-            window.toggleChat();
-        } else {
-            console.log('AI Chat integration pending');
-            alert('AI Chat is being upgraded. Coming soon!');
+        // Trigger unified chat system
+        try {
+            window.dispatchEvent(new CustomEvent('unified-nav:chat'));
+            window.dispatchEvent(new CustomEvent('meta-optimal-nav:chat'));
+        } catch (e) {
+            console.warn('Unified chat not available:', e);
         }
     }
 

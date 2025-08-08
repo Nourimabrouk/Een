@@ -20,8 +20,9 @@ class UnifiedSearchSystem {
         this.createSearchModal();
         this.bindEvents();
 
-        // Listen for unified navigation events
+        // Listen for unified navigation events (both legacy and unified)
         window.addEventListener('unified-nav:search', () => this.toggleSearch());
+        window.addEventListener('meta-optimal-nav:search', () => this.toggleSearch());
 
         // Don't auto-open search on page load
         console.log('🔍 Unified Search System initialized (not auto-opening)');
@@ -936,7 +937,7 @@ class UnifiedSearchSystem {
             }, 300);
         });
 
-        // Result click events
+        // Result click events (prevent immediate navigation until explicit click)
         modal.addEventListener('click', (e) => {
             const resultItem = e.target.closest('[data-search-result]');
             if (resultItem) {
@@ -946,9 +947,11 @@ class UnifiedSearchSystem {
                     e.preventDefault();
                     this.showConceptExplanation(href.replace('#concept-', ''));
                 } else {
-                    // Handle page navigation
+                    // Close modal then navigate
+                    e.preventDefault();
+                    const targetUrl = href;
                     this.closeSearch();
-                    // Let the default navigation happen
+                    setTimeout(() => { window.location.href = targetUrl; }, 50);
                 }
             }
         });

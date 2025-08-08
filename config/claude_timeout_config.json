@@ -1,0 +1,35 @@
+{
+  "claude_settings": {
+    "max_file_size": 50000,
+    "max_workspace_size": 100000000,
+    "max_files_in_context": 50,
+    "timeout_prevention": {
+      "chunk_large_files": true,
+      "use_file_references": true,
+      "optimize_cursorrules": true,
+      "batch_operations": true
+    }
+  },
+  "file_organization": {
+    "exclude_patterns": [
+      "*.pyc",
+      "*.pyo",
+      "__pycache__",
+      ".git",
+      "venv",
+      "node_modules",
+      ".venv",
+      "*.log",
+      "*.tmp"
+    ],
+    "max_file_size_threshold": 1000000,
+    "compress_large_files": true
+  },
+  "api_optimization": {
+    "request_timeout": 300,
+    "retry_attempts": 3,
+    "backoff_strategy": "exponential",
+    "chunk_size": 1000,
+    "max_context_length": 100000
+  }
+}

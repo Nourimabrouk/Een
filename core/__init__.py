@@ -16,7 +16,7 @@ Enhanced Features:
 
 # Core unity mathematics
 try:
-    from .unity_mathematics import (
+    from .mathematical.unity_mathematics import (
         UnityMathematics,
         UnityState,
         PHI,
@@ -26,10 +26,10 @@ try:
 
     # Try to import demonstration function (may have different name)
     try:
-        from .unity_mathematics import demonstrate_unity_mathematics
+        from .mathematical.unity_mathematics import demonstrate_unity_mathematics
     except ImportError:
         try:
-            from .unity_mathematics import (
+            from .mathematical.unity_mathematics import (
                 demonstrate_unity_operations as demonstrate_unity_mathematics,
             )
         except ImportError:
@@ -39,12 +39,12 @@ try:
 
     # Try to import additional components that may exist
     try:
-        from .unity_mathematics import UnityOperationType
+        from .mathematical.unity_mathematics import UnityOperationType
     except ImportError:
         UnityOperationType = None
 
     try:
-        from .unity_mathematics import create_unity_mathematics
+        from .mathematical.unity_mathematics import create_unity_mathematics
     except ImportError:
 
         def create_unity_mathematics(*args, **kwargs):
