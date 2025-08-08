@@ -103,7 +103,8 @@ class UnifiedChatbotSystem {
             '#ai-chat-modal',
             '#floating-ai-chat-button',
             '#persistent-chat-button',
-            '.floating-chat-button'
+            '.floating-chat-button',
+            '#een-chat-widget' // legacy widget container to avoid style collisions
         ];
 
         existingChats.forEach(selector => {
@@ -117,7 +118,8 @@ class UnifiedChatbotSystem {
             '#ai-chat-styles',
             '#unity-chat-styles',
             '#enhanced-chat-styles',
-            '#classic-chat-styles'
+            '#classic-chat-styles',
+            '#een-chat-styles' // legacy widget global styles that used generic class names
         ];
 
         conflictingStyles.forEach(id => {

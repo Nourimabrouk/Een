@@ -146,15 +146,15 @@ body.sidebar-open {
 
 /* Main Navigation */
 .nav-main {
-    display: flex;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: max-content;
     align-items: center;
     list-style: none;
-    gap: clamp(0.5rem, 2vw, 1.25rem);
-    /* more even spacing across desktop widths */
+    column-gap: clamp(0.75rem, 2vw, 1.5rem);
+    /* evenly distribute items between logo and search */
     flex: 1 1 auto;
-    /* occupy remaining space between logo and search */
     justify-content: center;
-    /* center categories on wide screens */
 }
 
 .nav-item {
