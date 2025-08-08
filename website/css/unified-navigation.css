@@ -34,6 +34,7 @@
     --border-glow: rgba(255, 215, 0, 0.3);
     --shadow-nav: 0 4px 20px rgba(0, 0, 0, 0.4);
     --shadow-dropdown: 0 8px 32px rgba(0, 0, 0, 0.6);
+    --shadow-footer: 0 -8px 32px rgba(0, 0, 0, 0.45);
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-smooth: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
@@ -75,6 +76,7 @@ body.sidebar-open {
     /* ensure above any canvas/hero/effects */
     height: var(--nav-height);
     background: var(--bg-nav);
+    -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border-glow);
     box-shadow: var(--shadow-nav);
@@ -459,6 +461,121 @@ body.sidebar-open {
     }
 }
 
+/* =================================================================
+   SITE FOOTER (Meta-Optimal Styling)
+   ================================================================= */
+
+.site-footer {
+    background: var(--bg-nav-scrolled);
+    border-top: 1px solid var(--border-glow);
+    color: var(--text-secondary);
+    box-shadow: var(--shadow-footer);
+}
+
+.site-footer .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 2rem 2.5rem;
+}
+
+.site-footer .footer-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+    margin-bottom: 1.25rem;
+}
+
+.site-footer .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.site-footer .phi {
+    color: var(--unity-gold);
+    font-size: 1.5rem;
+    animation: rotate-phi 8s linear infinite;
+}
+
+.site-footer .brand-title {
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+.site-footer .brand-tagline {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.site-footer .footer-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.site-footer .footer-section-title {
+    color: var(--unity-gold);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.site-footer .footer-links {
+    display: grid;
+    gap: 0.35rem;
+}
+
+.site-footer .footer-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: var(--transition);
+    border-radius: 6px;
+    padding: 0.2rem 0.25rem;
+}
+
+.site-footer .footer-link:hover {
+    color: var(--unity-gold);
+    background: rgba(255, 215, 0, 0.08);
+}
+
+.site-footer .footer-bottom {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 215, 0, 0.15);
+    font-size: 0.9rem;
+}
+
+.site-footer .separator {
+    opacity: 0.6;
+}
+
+.site-footer .pulse {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--unity-gold);
+    box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.6);
+    animation: pulseGlow 2s infinite;
+}
+
+@keyframes pulseGlow {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.6);
+    }
+
+    70% {
+        box-shadow: 0 0 0 12px rgba(255, 215, 0, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 215, 0, 0);
+    }
+}
+
 @media (max-width: 768px) {
     .nav-main {
         display: none;
@@ -484,6 +601,7 @@ body.sidebar-open {
         right: 0;
         bottom: 0;
         background: var(--bg-nav);
+        -webkit-backdrop-filter: blur(20px);
         backdrop-filter: blur(20px);
         z-index: 999;
         padding: 2rem;

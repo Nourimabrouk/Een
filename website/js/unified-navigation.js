@@ -9,6 +9,16 @@ class UnifiedNavigationSystem {
         this.isInitialized = false;
         this.currentPage = this.getCurrentPageName();
         this.searchData = this.initializeSearchData();
+        this.baseFooterLinks = new Set([
+            // Mathematics
+            'mathematical-framework.html', 'proofs.html', 'enhanced-mathematical-proofs.html', 'unity_proof.html', '3000-elo-proof.html', 'al_khwarizmi_phi_unity.html', 'unity-mathematics-synthesis.html',
+            // Experiences & AI
+            'zen-unity-meditation.html', 'consciousness_dashboard.html', 'consciousness_dashboard_clean.html', 'unity-mathematics-experience.html', 'ai-unified-hub.html', 'metagamer_agent.html',
+            // Visualizations & Tools
+            'gallery.html', 'dalle-gallery.html', 'enhanced-3d-consciousness-field.html', 'enhanced-unity-visualization-system.html', 'unity_visualization.html', 'gallery/phi_consciousness_transcendence.html', 'dashboards.html', 'playground.html', 'mathematical_playground.html', 'live-code-showcase.html', 'examples/unity-calculator.html', 'examples/phi-harmonic-explorer.html',
+            // About
+            'about.html', 'research.html', 'publications.html', 'learning.html', 'further-reading.html', 'unity-meta-atlas.html', 'mobile-app.html', 'sitemap.html'
+        ]);
         this.init();
     }
 
@@ -60,16 +70,8 @@ class UnifiedNavigationSystem {
         document.body.appendChild(sidebarToggle);
         document.body.appendChild(mobileOverlay);
 
-        // Inject footer if not present
-        if (!document.querySelector('.site-footer')) {
-            const footer = document.createElement('footer');
-            footer.className = 'site-footer';
-            footer.style.background = 'rgba(18,18,26,0.95)';
-            footer.style.borderTop = '1px solid rgba(255, 215, 0, 0.3)';
-            footer.style.color = 'var(--text-secondary, #cfcfe6)';
-            footer.innerHTML = this.generateFooterHTML();
-            document.body.appendChild(footer);
-        }
+        // Ensure unified, styled footer exists and is meta-optimized
+        this.ensureUnifiedFooter();
     }
 
     generateHeaderHTML() {
@@ -730,68 +732,137 @@ class UnifiedNavigationSystem {
         });
     }
 
-    generateFooterHTML() {
+    generateFooterHTML(additionalLinks = []) {
+        const additionalLinksHTML = additionalLinks.length > 0 ? `
+            <div class="footer-section">
+                <div class="footer-section-title">Additional Links</div>
+                <nav class="footer-links">
+                    ${additionalLinks.map(l => `<a class="footer-link" href="${l.href}">${l.text || l.href}</a>`).join('')}
+                </nav>
+            </div>
+        ` : '';
+
         return `
-            <div style="max-width:1200px; margin:0 auto; padding:1.5rem 2rem; display:grid; gap:1rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
-                <div>
-                    <div style="color:#FFD700; font-weight:700; margin-bottom:0.5rem;">Unity Mathematics</div>
-                    <p style="margin:0; opacity:0.85;">Where consciousness meets mathematical truth. 1+1=1.</p>
+            <div class="footer-inner">
+                <div class="footer-top">
+                    <div class="brand">
+                        <div class="phi">φ</div>
+                        <div>
+                            <div class="brand-title">Unity Mathematics</div>
+                            <div class="brand-tagline">Where consciousness meets mathematical truth. 1+1=1.</div>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <div style="color:#FFD700; font-weight:600; margin-bottom:0.5rem;">Mathematics</div>
-                    <nav style="display:grid; gap:0.3rem;">
-                        <a href="mathematical-framework.html">Framework</a>
-                        <a href="proofs.html">Proofs & Theorems</a>
-                        <a href="enhanced-mathematical-proofs.html">Enhanced Proofs</a>
-                        <a href="unity_proof.html">Unity Proof (1+1=1)</a>
-                        <a href="3000-elo-proof.html">3000 ELO Proof</a>
-                        <a href="al_khwarizmi_phi_unity.html">Al‑Khwarizmi Unity</a>
-                        <a href="unity-mathematics-synthesis.html">Unity Synthesis</a>
-                    </nav>
+                <div class="footer-grid">
+                    <div class="footer-section">
+                        <div class="footer-section-title">Mathematics</div>
+                        <nav class="footer-links">
+                            <a class="footer-link" href="mathematical-framework.html">Framework</a>
+                            <a class="footer-link" href="proofs.html">Proofs & Theorems</a>
+                            <a class="footer-link" href="enhanced-mathematical-proofs.html">Enhanced Proofs</a>
+                            <a class="footer-link" href="unity_proof.html">Unity Proof (1+1=1)</a>
+                            <a class="footer-link" href="3000-elo-proof.html">3000 ELO Proof</a>
+                            <a class="footer-link" href="al_khwarizmi_phi_unity.html">Al‑Khwarizmi Unity</a>
+                            <a class="footer-link" href="unity-mathematics-synthesis.html">Unity Synthesis</a>
+                        </nav>
+                    </div>
+                    <div class="footer-section">
+                        <div class="footer-section-title">Experiences & AI</div>
+                        <nav class="footer-links">
+                            <a class="footer-link" href="zen-unity-meditation.html">Zen Unity Meditation</a>
+                            <a class="footer-link" href="consciousness_dashboard.html">Consciousness Field</a>
+                            <a class="footer-link" href="consciousness_dashboard_clean.html">Consciousness Field (Clean)</a>
+                            <a class="footer-link" href="unity-mathematics-experience.html">Unity Mathematics Experience</a>
+                            <a class="footer-link" href="ai-unified-hub.html">AI Unity Hub</a>
+                            <a class="footer-link" href="metagamer_agent.html">Metagamer Agent</a>
+                        </nav>
+                    </div>
+                    <div class="footer-section">
+                        <div class="footer-section-title">Visualizations & Tools</div>
+                        <nav class="footer-links">
+                            <a class="footer-link" href="gallery.html">Gallery</a>
+                            <a class="footer-link" href="dalle-gallery.html">DALL‑E Gallery</a>
+                            <a class="footer-link" href="enhanced-3d-consciousness-field.html">3D Consciousness</a>
+                            <a class="footer-link" href="enhanced-unity-visualization-system.html">Visualization System</a>
+                            <a class="footer-link" href="unity_visualization.html">Unity Visualization</a>
+                            <a class="footer-link" href="gallery/phi_consciousness_transcendence.html">Phi Consciousness</a>
+                            <a class="footer-link" href="dashboards.html">Dashboards</a>
+                            <a class="footer-link" href="playground.html">Playground</a>
+                            <a class="footer-link" href="mathematical_playground.html">Math Playground</a>
+                            <a class="footer-link" href="live-code-showcase.html">Live Code Showcase</a>
+                            <a class="footer-link" href="examples/unity-calculator.html">Unity Calculator</a>
+                            <a class="footer-link" href="examples/phi-harmonic-explorer.html">φ‑Harmonic Explorer</a>
+                        </nav>
+                    </div>
+                    <div class="footer-section">
+                        <div class="footer-section-title">About</div>
+                        <nav class="footer-links">
+                            <a class="footer-link" href="about.html">About Unity</a>
+                            <a class="footer-link" href="research.html">Research</a>
+                            <a class="footer-link" href="publications.html">Publications</a>
+                            <a class="footer-link" href="learning.html">Learning Path</a>
+                            <a class="footer-link" href="further-reading.html">Further Reading</a>
+                            <a class="footer-link" href="unity-meta-atlas.html">Unity Meta Atlas</a>
+                            <a class="footer-link" href="mobile-app.html">Mobile App</a>
+                            <a class="footer-link" href="sitemap.html">Site Map</a>
+                        </nav>
+                    </div>
+                    ${additionalLinksHTML}
                 </div>
-                <div>
-                    <div style="color:#FFD700; font-weight:600; margin-bottom:0.5rem;">Experiences & AI</div>
-                    <nav style="display:grid; gap:0.3rem;">
-                        <a href="zen-unity-meditation.html">Zen Unity Meditation</a>
-                        <a href="consciousness_dashboard.html">Consciousness Field</a>
-                        <a href="consciousness_dashboard_clean.html">Consciousness Field (Clean)</a>
-                        <a href="unity-mathematics-experience.html">Unity Mathematics Experience</a>
-                        <a href="ai-unified-hub.html">AI Unity Hub</a>
-                        <a href="metagamer_agent.html">Metagamer Agent</a>
-                    </nav>
-                </div>
-                <div>
-                    <div style="color:#FFD700; font-weight:600; margin-bottom:0.5rem;">Visualizations & Tools</div>
-                    <nav style="display:grid; gap:0.3rem;">
-                        <a href="gallery.html">Gallery</a>
-                        <a href="dalle-gallery.html">DALL‑E Gallery</a>
-                        <a href="enhanced-3d-consciousness-field.html">3D Consciousness</a>
-                        <a href="enhanced-unity-visualization-system.html">Visualization System</a>
-                        <a href="unity_visualization.html">Unity Visualization</a>
-                        <a href="gallery/phi_consciousness_transcendence.html">Phi Consciousness</a>
-                        <a href="dashboards.html">Dashboards</a>
-                        <a href="playground.html">Playground</a>
-                        <a href="mathematical_playground.html">Math Playground</a>
-                        <a href="live-code-showcase.html">Live Code Showcase</a>
-                        <a href="examples/unity-calculator.html">Unity Calculator</a>
-                        <a href="examples/phi-harmonic-explorer.html">φ‑Harmonic Explorer</a>
-                    </nav>
-                </div>
-                <div>
-                    <div style="color:#FFD700; font-weight:600; margin-bottom:0.5rem;">About</div>
-                    <nav style="display:grid; gap:0.3rem;">
-                        <a href="about.html">About Unity</a>
-                        <a href="research.html">Research</a>
-                        <a href="publications.html">Publications</a>
-                        <a href="learning.html">Learning Path</a>
-                        <a href="further-reading.html">Further Reading</a>
-                        <a href="unity-meta-atlas.html">Unity Meta Atlas</a>
-                        <a href="mobile-app.html">Mobile App</a>
-                        <a href="sitemap.html">Site Map</a>
-                    </nav>
+                <div class="footer-bottom">
+                    <div class="pulse"></div>
+                    <span>© ${new Date().getFullYear()} Unity Mathematics</span>
+                    <span class="separator">•</span>
+                    <span>φ‑harmonic resonance • E_in = E_out</span>
                 </div>
             </div>
         `;
+    }
+
+    ensureUnifiedFooter() {
+        const allFooters = Array.from(document.querySelectorAll('footer'));
+        const isSpecial = (el) => el.classList.contains('proof-footer') || el.classList.contains('dashboard-footer') || el.classList.contains('unity-footer');
+
+        // Collect links from existing footers (to preserve all)
+        const collected = [];
+        allFooters.forEach(f => {
+            const links = Array.from(f.querySelectorAll('a[href]'));
+            links.forEach(a => {
+                const href = a.getAttribute('href');
+                if (!href || href.startsWith('#')) return;
+                collected.push({ href, text: (a.textContent || '').trim() });
+            });
+        });
+
+        // Deduplicate and exclude base footer links
+        const seen = new Set();
+        const additionalLinks = collected.filter(({ href }) => {
+            if (this.baseFooterLinks.has(href)) return false;
+            if (seen.has(href)) return false;
+            seen.add(href);
+            return true;
+        });
+
+        // Choose a target footer to render into
+        let target = document.querySelector('.site-footer');
+        if (!target) {
+            target = allFooters.find(f => !isSpecial(f)) || null;
+        }
+        if (!target) {
+            target = document.createElement('footer');
+            document.body.appendChild(target);
+        }
+
+        // Remove any duplicate non-special footers except the target
+        allFooters.forEach(f => {
+            if (f !== target && !isSpecial(f)) {
+                try { f.remove(); } catch (_) { }
+            }
+        });
+
+        target.classList.add('site-footer');
+        target.setAttribute('role', 'contentinfo');
+        target.innerHTML = this.generateFooterHTML(additionalLinks);
     }
 
     setupKeyboardShortcuts() {

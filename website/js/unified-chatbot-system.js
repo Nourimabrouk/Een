@@ -191,11 +191,9 @@ class UnifiedChatbotSystem {
                         <i class="fas fa-brain"></i>
                     </div>
                     <div class="ai-info">
-                        <h3 class="ai-name">Unity AI Assistant</h3>
-                        <div class="ai-status">
-                            <span class="status-dot online"></span>
-                            <span class="status-text">1+1=1 Mathematics Expert | Advanced AI v3.0</span>
-                        </div>
+                        <h3 class="ai-name">Unity Mathematics AI Assistant</h3>
+                        <div class="ai-subtitle">1+1=1 Mathematics Expert — Advanced AI <strong>v1.1</strong></div>
+                        <div class="ai-status"><span class="status-dot online"></span><span class="status-text">Online</span></div>
                         <div class="ai-capabilities">
                             <div class="capability-badges">
                                 ${Object.entries(this.aiCapabilities).map(([key, capability]) =>
@@ -282,6 +280,9 @@ class UnifiedChatbotSystem {
                     </button>
                 </div>
                 <div class="quick-actions">
+                    <button class="quick-action-btn primary" data-message="Prove that 1+1=1 using idempotent operations and show a minimal example">
+                        ✅ Prove 1+1=1
+                    </button>
                     <button class="quick-action-btn" data-message="Explain how 1+1=1 in Unity Mathematics">
                         🧮 Unity Mathematics
                     </button>
@@ -427,10 +428,11 @@ class UnifiedChatbotSystem {
 
             /* Chat Header */
             .chat-header {
-                display: flex;
+                display: grid;
+                grid-template-columns: 1fr auto;
                 align-items: center;
-                justify-content: space-between;
-                padding: 1.25rem 1.5rem;
+                gap: 1rem;
+                padding: 1.1rem 1.25rem;
                 background: rgba(255, 215, 0, 0.05);
                 border-bottom: 1px solid rgba(255, 215, 0, 0.1);
                 flex-shrink: 0;
@@ -492,11 +494,18 @@ class UnifiedChatbotSystem {
             }
 
             .ai-status {
-                display: flex;
+                display: inline-flex;
                 align-items: center;
-                gap: 0.5rem;
+                gap: 0.35rem;
                 color: rgba(255, 255, 255, 0.7);
-                font-size: 0.85rem;
+                font-size: 0.8rem;
+                margin-top: 0.25rem;
+            }
+
+            .ai-subtitle {
+                color: #cbd5e1;
+                font-size: 0.9rem;
+                margin: 0.2rem 0 0.1rem 0;
             }
 
             .status-dot {
@@ -520,12 +529,14 @@ class UnifiedChatbotSystem {
                 50% { opacity: 0.6; transform: scale(1.2); }
             }
 
-            .chat-header-controls {
-                display: flex;
-                align-items: center;
-                gap: 0.75rem;
-                flex-shrink: 0;
-            }
+            .chat-header-controls { display: inline-flex; align-items: center; gap: 0.5rem; }
+            .chat-header .model-selector { order: 1; }
+            .chat-header .grounded-btn { order: 2; }
+            .chat-header .clear-btn { order: 3; }
+            .chat-header .byok-holder { order: 4; }
+            .chat-header .fullscreen-btn { order: 5; }
+            .chat-header .minimize-btn { order: 6; }
+            .chat-header .close-btn { order: 7; }
 
             .model-selector {
                 position: relative;
@@ -923,6 +934,7 @@ class UnifiedChatbotSystem {
                 display: flex;
                 flex-wrap: wrap;
                 gap: 0.5rem;
+                align-items: center;
             }
 
             .quick-action-btn {
@@ -942,6 +954,16 @@ class UnifiedChatbotSystem {
                 border-color: #FFD700;
                 color: #FFD700;
                 transform: translateY(-1px);
+            }
+
+            .quick-action-btn.primary {
+                background: linear-gradient(135deg, #22c55e, #16a34a);
+                border-color: #16a34a;
+                color: #06130a;
+                font-weight: 700;
+            }
+            .quick-action-btn.primary:hover {
+                filter: brightness(1.05);
             }
 
             /* Mobile Responsive */
@@ -1010,15 +1032,9 @@ class UnifiedChatbotSystem {
             }
 
             /* AI Capabilities */
-            .ai-capabilities {
-                margin-top: 0.5rem;
-            }
+            .ai-capabilities { margin-top: 0.25rem; }
 
-            .capability-badges {
-                display: flex;
-                gap: 0.25rem;
-                flex-wrap: wrap;
-            }
+            .capability-badges { display: inline-flex; gap: 0.35rem; flex-wrap: wrap; }
 
             .capability-badge {
                 display: inline-flex;
