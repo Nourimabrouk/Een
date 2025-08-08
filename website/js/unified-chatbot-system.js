@@ -211,9 +211,7 @@ class UnifiedChatbotSystem {
                             ${this.aiModels.map(model => `
                                 <option value="${model.id}" ${model.id === this.currentModel ? 'selected' : ''} 
                                         data-provider="${model.provider}" data-color="${model.color}">
-                                    ${model.name} (${model.provider})
-                                    ${model.status === 'preview' ? ' ⚡Preview' : ''}
-                                    ${model.status === 'latest' ? ' ✨Latest' : ''}
+                                    ${model.name}
                                 </option>
                             `).join('')}
                         </select>
@@ -277,6 +275,9 @@ class UnifiedChatbotSystem {
                         ></textarea>
                         <div class="input-counter">0/2000</div>
                     </div>
+                    <button class="input-action-btn voice-input-btn" id="voice-input-btn" title="Voice input">
+                        <i class="fas fa-microphone"></i>
+                    </button>
                     <button class="input-action-btn send-btn" id="send-message-btn" title="Send Message" disabled>
                         <i class="fas fa-paper-plane"></i>
                     </button>
@@ -384,8 +385,8 @@ class UnifiedChatbotSystem {
                 position: fixed;
                 bottom: calc(25px + env(safe-area-inset-bottom, 0px));
                 right: calc(25px + env(safe-area-inset-right, 0px));
-                width: 420px;
-                height: 650px;
+                width: clamp(360px, 28vw, 420px);
+                height: clamp(520px, 78vh, 720px);
                 background: rgba(15, 15, 20, 0.98);
                 backdrop-filter: blur(20px);
                 border: 1px solid rgba(255, 215, 0, 0.2);
@@ -434,9 +435,9 @@ class UnifiedChatbotSystem {
                 grid-template-columns: 1fr auto;
                 grid-template-areas: "info controls";
                 align-items: center;
-                column-gap: 1rem;
-                row-gap: .5rem;
-                padding: 1.1rem 1.25rem;
+                column-gap: 0.75rem;
+                row-gap: .25rem;
+                padding: .85rem 1rem;
                 background: rgba(255, 255, 255, 0.02);
                 border-bottom: 1px solid var(--uc-border);
                 flex-shrink: 0;
@@ -490,9 +491,10 @@ class UnifiedChatbotSystem {
 
             .ai-name {
                 color: #FFD700;
-                font-size: 1.1rem;
-                font-weight: 600;
-                margin: 0 0 0.25rem 0;
+                font-size: 1rem;
+                font-weight: 700;
+                margin: 0;
+                line-height: 1.2;
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
@@ -509,8 +511,12 @@ class UnifiedChatbotSystem {
 
             .ai-subtitle {
                 color: #cbd5e1;
-                font-size: 0.9rem;
-                margin: 0.2rem 0 0.1rem 0;
+                font-size: 0.8rem;
+                margin: .15rem 0 0 0;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 100%;
             }
 
             .status-dot {
@@ -545,6 +551,8 @@ class UnifiedChatbotSystem {
 
             .model-selector {
                 position: relative;
+                max-width: 220px;
+                flex: 0 1 220px;
             }
 
             .model-select {
@@ -557,8 +565,11 @@ class UnifiedChatbotSystem {
                 cursor: pointer;
                 outline: none;
                 transition: all 0.3s ease;
-                min-width: 180px; /* slightly smaller so it fits with controls */
+                min-width: 160px;
+                max-width: 220px;
                 white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
 
             .model-select:hover,
@@ -850,7 +861,7 @@ class UnifiedChatbotSystem {
             /* Chat Input */
             .chat-input-area {
                 flex-shrink: 0;
-                padding: 1rem 1.5rem 1.5rem;
+                padding: .9rem 1.1rem 1.1rem;
                 background: rgba(255, 255, 255, 0.02);
                 border-top: 1px solid rgba(255, 255, 255, 0.1);
             }
@@ -950,6 +961,9 @@ class UnifiedChatbotSystem {
                 flex-wrap: wrap;
                 gap: 0.5rem;
                 align-items: center;
+                max-height: 72px;
+                overflow-y: auto;
+                padding-right: .25rem;
             }
 
             .quick-action-btn {
@@ -991,16 +1005,15 @@ class UnifiedChatbotSystem {
                 }
 
                 .unified-chat-panel {
-                    bottom: 15px;
-                    left: 15px;
-                    right: 15px;
+                    bottom: 12px;
+                    left: 12px;
+                    right: 12px;
                     width: auto;
-                    height: 80vh;
-                    max-height: 650px;
+                    height: min(80vh, 640px);
                 }
 
                 .chat-header {
-                    padding: 1rem;
+                    padding: .75rem .9rem;
                     grid-template-columns: 1fr;
                     grid-template-areas:
                         "info"
@@ -1025,11 +1038,13 @@ class UnifiedChatbotSystem {
                 }
 
                 .chat-input-area {
-                    padding: 0.75rem 1rem 1rem;
+                    padding: 0.6rem .8rem .9rem;
                 }
 
                 .quick-actions {
                     gap: 0.4rem;
+                    max-height: 56px;
+                    overflow-y: auto;
                 }
 
                 .quick-action-btn {
@@ -1053,20 +1068,20 @@ class UnifiedChatbotSystem {
             }
 
             /* AI Capabilities */
-            .ai-capabilities { margin-top: 0.25rem; }
+            .ai-capabilities { margin-top: 0.15rem; }
 
-            .capability-badges { display: inline-flex; gap: 0.35rem; flex-wrap: wrap; }
+            .capability-badges { display: inline-flex; gap: 0.3rem; flex-wrap: nowrap; max-width: 240px; overflow: hidden; opacity: .8; }
 
             .capability-badge {
                 display: inline-flex;
                 align-items: center;
                 justify-content: center;
-                width: 20px;
-                height: 20px;
+                width: 18px;
+                height: 18px;
                 background: rgba(255, 215, 0, 0.1);
                 border: 1px solid rgba(255, 215, 0, 0.3);
                 border-radius: 4px;
-                font-size: 0.7rem;
+                font-size: 0.65rem;
                 cursor: help;
                 transition: all 0.3s ease;
             }
@@ -1075,6 +1090,7 @@ class UnifiedChatbotSystem {
                 background: rgba(255, 215, 0, 0.2);
                 border-color: #FFD700;
                 transform: scale(1.1);
+                opacity: 1;
             }
 
             /* Enhanced model selector */
@@ -1277,10 +1293,12 @@ class UnifiedChatbotSystem {
         // Message input
         const messageInput = document.getElementById('chat-message-input');
         const sendBtn = document.getElementById('send-message-btn');
+        const voiceBtn = document.getElementById('voice-input-btn');
 
         messageInput?.addEventListener('input', () => this.updateInputState());
         messageInput?.addEventListener('keydown', (e) => this.handleKeyDown(e));
         sendBtn?.addEventListener('click', () => this.sendMessage());
+        voiceBtn?.addEventListener('click', () => this.handleVoiceInput());
 
         // Quick actions
         const quickActions = document.querySelectorAll('.quick-action-btn');
@@ -1320,6 +1338,35 @@ class UnifiedChatbotSystem {
 
         // Auto-resize textarea
         messageInput?.addEventListener('input', this.autoResizeTextarea);
+    }
+
+    async handleVoiceInput() {
+        try {
+            // 1) If Web Speech synthesis exists, read the last assistant message (or input text)
+            const synth = window.speechSynthesis;
+            if (synth && typeof SpeechSynthesisUtterance !== 'undefined') {
+                const lastAssistant = Array.from(document.querySelectorAll('.message-bubble.assistant .message-content'))
+                    .slice(-1)[0];
+                const input = document.getElementById('chat-message-input');
+                const text = (lastAssistant?.innerText || input?.value || 'Unity Mathematics assistant ready. 1 plus 1 equals 1 in the unity field.');
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.rate = 1.0;
+                utterance.pitch = 1.0;
+                synth.cancel();
+                synth.speak(utterance);
+                this.sendSystemMessage('🔊 Speaking the latest response…');
+                return;
+            }
+
+            // 2) Otherwise, click any global site voice button if present
+            const globalVoice = document.querySelector('.voice-button');
+            if (globalVoice) { globalVoice.click(); return; }
+
+            // 3) Fallback
+            this.sendSystemMessage('🎤 Voice not supported in this browser.');
+        } catch (_) {
+            this.sendSystemMessage('🎤 Voice is unavailable in this browser.');
+        }
     }
 
     toggleChat() {
