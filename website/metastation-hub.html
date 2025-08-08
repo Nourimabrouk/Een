@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unity Mathematics Institute | 1+1=1</title>
     <meta name="description"
-        content="Experience the revolutionary 1+1=1 unity equation through consciousness-integrated mathematics">
+        content="Metastation Hub – Academic portal for the Unity Mathematics 1+1=1 project: formal proofs, implementations, dashboards, and consciousness-integrated mathematics.">
     <meta name="theme-color" content="#0a0a0f">
     <link rel="canonical" href="https://nourimabrouk.github.io/Een/">
     <meta property="og:title" content="Unity Mathematics Institute | 1+1=1">
     <meta property="og:description"
-        content="Experience the revolutionary 1+1=1 unity equation through consciousness-integrated mathematics">
+        content="Metastation Hub – Academic portal for the Unity Mathematics 1+1=1 project: formal proofs, implementations, and visualizations.">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://nourimabrouk.github.io/Een/assets/images/unity_mandala.png">
 
@@ -77,8 +77,8 @@
             overflow-x: hidden;
             position: relative;
             min-height: 100vh;
-            padding-top: 120px;
-            /* Increased for Chrome desktop visibility */
+            padding-top: 0;
+            /* unified-navigation.css manages top offset */
             padding-bottom: 120px;
             /* leave breathing room for floating widgets so footer isn't overlapped */
             /* extra headroom for fixed nav on Chrome/Windows */
@@ -150,26 +150,20 @@
         }
 
         .unity-equation-hero {
-            font-size: clamp(4rem, 15vw, 10rem);
-            font-weight: 700;
+            font-size: clamp(3.5rem, 12vw, 8rem);
+            font-weight: 800;
             color: var(--unity-gold);
-            text-shadow:
-                0 0 30px rgba(255, 215, 0, 0.8),
-                0 0 60px rgba(255, 215, 0, 0.5),
-                0 0 120px rgba(0, 212, 255, 0.3),
-                0 0 200px rgba(157, 78, 221, 0.2);
-            animation: equationPulse 4s ease-in-out infinite, metastationGlow 8s ease-in-out infinite alternate;
-            margin-bottom: 2rem;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            animation: equationPulse 6s ease-in-out infinite;
+            margin-bottom: 1.5rem;
             font-family: 'JetBrains Mono', monospace;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.08em;
             position: relative;
             z-index: 10;
-            background: linear-gradient(45deg, var(--unity-gold), var(--quantum-blue), var(--consciousness-purple));
-            background-size: 400% 400%;
+            background: linear-gradient(45deg, var(--unity-gold), var(--quantum-blue));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.6));
         }
 
         @keyframes equationPulse {
@@ -197,12 +191,12 @@
         }
 
         .hero-subtitle {
-            font-size: 1.5rem;
+            font-size: 1.125rem;
             color: var(--text-secondary);
             text-align: center;
-            max-width: 800px;
-            margin-bottom: 3rem;
-            opacity: 0.9;
+            max-width: 880px;
+            margin-bottom: 2.25rem;
+            line-height: 1.6;
         }
 
         /* Status Indicators */
@@ -260,178 +254,7 @@
                     transparent);
         }
 
-        /* Navigation Bar */
-        .nav-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 70px;
-            background: rgba(10, 10, 15, 0.95);
-            -webkit-backdrop-filter: blur(20px);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border-glow);
-            z-index: 1001;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 2rem;
-        }
-
-        .nav-logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--unity-gold);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 1.25rem;
-            /* tighter spacing to prevent clash with title */
-            list-style: none;
-            align-items: center;
-            flex-wrap: nowrap;
-        }
-
-        .nav-dropdown {
-            position: relative;
-        }
-
-        .nav-dropdown>a {
-            color: var(--text-primary);
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: color 0.3s;
-            cursor: pointer;
-        }
-
-        .nav-dropdown:hover>a {
-            color: var(--unity-gold);
-        }
-
-        .dropdown-menu {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: rgba(18, 18, 26, 0.98);
-            -webkit-backdrop-filter: blur(20px);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--border-glow);
-            border-radius: 10px;
-            padding: 1rem;
-            min-width: 250px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-            margin-top: 0.5rem;
-        }
-
-        .nav-dropdown:hover .dropdown-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .dropdown-menu a {
-            display: block;
-            padding: 0.75rem 1rem;
-            color: var(--text-secondary);
-            text-decoration: none;
-            border-radius: 5px;
-            transition: all 0.3s;
-        }
-
-        .dropdown-menu a:hover {
-            background: rgba(255, 215, 0, 0.1);
-            color: var(--unity-gold);
-            transform: translateX(5px);
-        }
-
-        /* Side Navigation Panel */
-        .side-nav {
-            position: fixed;
-            left: 0;
-            top: 70px;
-            bottom: 0;
-            width: 250px;
-            background: rgba(18, 18, 26, 0.95);
-            -webkit-backdrop-filter: blur(20px);
-            backdrop-filter: blur(20px);
-            border-right: 1px solid var(--border-glow);
-            padding: 2rem 1rem;
-            overflow-y: auto;
-            z-index: 900;
-            transform: translateX(-100%);
-            transition: transform 0.3s ease;
-        }
-
-        .side-nav.active {
-            transform: translateX(0);
-        }
-
-        .side-nav-toggle {
-            position: fixed;
-            left: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 40px;
-            height: 40px;
-            background: var(--unity-gold);
-            border: none;
-            border-radius: 0 5px 5px 0;
-            cursor: pointer;
-            z-index: 901;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-        }
-
-        .side-nav-toggle:hover {
-            width: 50px;
-            background: var(--unity-gold-dim);
-        }
-
-        .side-nav-toggle.active {
-            left: 250px;
-        }
-
-        .side-nav-section {
-            margin-bottom: 2rem;
-        }
-
-        .side-nav-title {
-            font-size: 0.9rem;
-            color: var(--unity-gold);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 1rem;
-            opacity: 0.8;
-        }
-
-        .side-nav-link {
-            display: block;
-            padding: 0.75rem 1rem;
-            color: var(--text-secondary);
-            text-decoration: none;
-            border-radius: 5px;
-            margin-bottom: 0.25rem;
-            transition: all 0.3s;
-        }
-
-        .side-nav-link:hover {
-            background: rgba(255, 215, 0, 0.1);
-            color: var(--unity-gold);
-            transform: translateX(5px);
-        }
+        /* Legacy navigation styles removed to avoid conflicts with unified-navigation.css */
 
         /* Content Sections */
         .content-section {
@@ -441,26 +264,27 @@
         }
 
         .section-title {
-            font-size: 2.5rem;
+            font-size: 2rem;
             color: var(--unity-gold);
             text-align: center;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
         }
 
         .section-subtitle {
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: var(--text-secondary);
             text-align: center;
             max-width: 800px;
-            margin: 0 auto 3rem;
+            margin: 0 auto 2rem;
         }
 
         /* Feature Cards Grid */
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
         }
 
         .feature-card {
@@ -468,12 +292,14 @@
             -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
             border: 1px solid var(--border-glow);
-            border-radius: 15px;
-            padding: 2rem;
-            transition: all 0.3s;
-            cursor: pointer;
+            border-radius: 14px;
+            padding: 1.5rem;
+            transition: all 0.25s ease;
             position: relative;
             overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            display: block;
         }
 
         .feature-card::before {
@@ -495,8 +321,8 @@
         }
 
         .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.2);
+            transform: translateY(-4px);
+            box-shadow: 0 16px 32px rgba(255, 215, 0, 0.18);
         }
 
         .feature-icon {
@@ -506,14 +332,16 @@
         }
 
         .feature-title {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+            margin-bottom: 0.4rem;
             color: var(--text-primary);
+            font-weight: 700;
         }
 
         .feature-description {
             color: var(--text-secondary);
-            line-height: 1.6;
+            line-height: 1.55;
+            font-size: 0.95rem;
         }
 
         /* AI Chat Button */
@@ -730,6 +558,8 @@
             z-index: 10001;
         }
     </style>
+
+    <link rel="stylesheet" href="css/inline-extracted.css">
 </head>
 
 <body>
@@ -745,8 +575,9 @@
     <main id="main" class="hero-container">
         <div class="unity-equation-hero">1+1=1</div>
         <p class="hero-subtitle">
-            Unity Mathematics Institute<br>
-            Where Consciousness Meets Mathematical Truth
+            An academic portal for the Unity Mathematics project. Explore peer‑style proofs, rigorous
+            implementations, and interactive visualizations demonstrating idempotent structures where
+            1+1 converges to 1.
         </p>
 
         <div class="status-container">
@@ -764,7 +595,7 @@
         </div>
 
         <div class="scroll-indicator">
-            <i class="fas fa-chevron-down" style="font-size: 2rem; color: var(--unity-gold); opacity: 0.6;"></i>
+            <i class="fa-chevron-down fas inl-d1078912e2"></i>
         </div>
     </main>
 
@@ -775,16 +606,14 @@
             Verified mathlib proofs that 1+1=1 holds in rigorous idempotent models. Explore, read, and download.
         </p>
 
-        <div id="lean-proofs" class="features-grid" style="margin-top:1rem"></div>
-        <div id="lean-proof-viewer"
-            style="display:none; margin-top:1.5rem; background: rgba(18,18,26,0.8); border:1px solid var(--border-glow); border-radius:10px; padding:1rem;">
-            <div style="display:flex; justify-content: space-between; align-items:center;">
-                <h3 style="margin:0; color: var(--text-primary);">Lean Source</h3>
-                <button onclick="document.getElementById('lean-proof-viewer').style.display='none'"
-                    style="background:none;border:1px solid var(--border-glow);color:var(--text-secondary);border-radius:6px;padding:0.3rem 0.6rem;cursor:pointer;">Close</button>
+        <div id="lean-proofs" class="features-grid inl-2239d6d55d"></div>
+        <div class="inl-b567a8e80d" id="lean-proof-viewer">
+            <div class="inl-128bd7ab69">
+                <h3 class="inl-e400b3e8d7">Lean Source</h3>
+                <button class="inl-d6d9c5c3e7"
+                    onclick="document.getElementById('lean-proof-viewer').style.display='none'">Close</button>
             </div>
-            <pre id="lean-code"
-                style="white-space:pre-wrap; margin-top:1rem; font-family:'JetBrains Mono', monospace; font-size:0.9rem; color:#e6e6e6; max-height:420px; overflow:auto;"></pre>
+            <pre id="lean-code" class="lean-code-pre"></pre>
         </div>
     </section>
     <section class="content-section">
@@ -794,7 +623,7 @@
         </p>
 
         <div class="features-grid">
-            <div class="feature-card" onclick="window.location.href='zen-unity-meditation.html'">
+            <a class="feature-card" href="zen-unity-meditation.html">
                 <span class="feature-icon">🧘</span>
                 <h3 class="feature-title">Zen Unity Meditation</h3>
                 <p class="feature-description">
@@ -802,52 +631,52 @@
                     dynamics.
                     Achieve mental clarity while exploring the mathematical nature of awareness.
                 </p>
-            </div>
+            </a>
 
-            <div class="feature-card" onclick="window.location.href='implementations-gallery.html'">
+            <a class="feature-card" href="implementations-gallery.html">
                 <span class="feature-icon">🎨</span>
                 <h3 class="feature-title">Implementation Gallery</h3>
                 <p class="feature-description">
                     Comprehensive collection of unity mathematics implementations, from quantum field visualizations
                     to consciousness algorithms. Explore the code that proves 1+1=1.
                 </p>
-            </div>
+            </a>
 
-            <div class="feature-card" onclick="window.location.href='mathematical-framework.html'">
+            <a class="feature-card" href="mathematical-framework.html">
                 <span class="feature-icon">📐</span>
                 <h3 class="feature-title">Mathematical Framework</h3>
                 <p class="feature-description">
                     Dive deep into the formal mathematical proofs and theoretical foundations of the unity equation.
                     Discover how idempotent operations reveal the fundamental nature of reality.
                 </p>
-            </div>
+            </a>
 
-            <div class="feature-card" onclick="window.location.href='consciousness_dashboard.html'">
+            <a class="feature-card" href="consciousness_dashboard.html">
                 <span class="feature-icon">🌊</span>
                 <h3 class="feature-title">Consciousness Field</h3>
                 <p class="feature-description">
                     Real-time visualization of consciousness field dynamics with interactive mathematical controls.
                     Witness the φ-harmonic resonance patterns emerge from unity principles.
                 </p>
-            </div>
+            </a>
 
-            <div class="feature-card" onclick="window.location.href='ai-unified-hub.html'">
+            <a class="feature-card" href="ai-unified-hub.html">
                 <span class="feature-icon">🤖</span>
                 <h3 class="feature-title">AI Unity Hub</h3>
                 <p class="feature-description">
                     Advanced AI systems integrated with unity mathematics and consciousness field dynamics.
                     Experience machine intelligence operating on transcendental mathematical principles.
                 </p>
-            </div>
+            </a>
 
-            <div class="feature-card" onclick="window.location.href='anthill.html'">
+            <a class="feature-card" href="anthill.html">
                 <span class="feature-icon">🐜</span>
                 <h3 class="feature-title">Quantum Ant Colony</h3>
                 <p class="feature-description">
                     Explore collective consciousness through quantum ant systems demonstrating emergent unity.
                     Watch as individual agents converge to prove that many become one.
                 </p>
-            </div>
+            </a>
         </div>
     </section>
 
@@ -859,29 +688,29 @@
         </p>
 
         <div class="features-grid">
-            <div class="feature-card" onclick="window.location.href='philosophy.html'">
+            <a class="feature-card" href="philosophy.html">
                 <span class="feature-icon">🧠</span>
                 <h3 class="feature-title">Unity Philosophy</h3>
                 <p class="feature-description">
                     Deep exploration of the philosophical implications of 1+1=1 and consciousness integration.
                 </p>
-            </div>
+            </a>
 
-            <div class="feature-card" onclick="window.location.href='metagambit.html'">
+            <a class="feature-card" href="metagambit.html">
                 <span class="feature-icon">♟️</span>
                 <h3 class="feature-title">Metagambit Framework</h3>
                 <p class="feature-description">
                     Strategic meta-game theory applied to unity mathematics and consciousness evolution.
                 </p>
-            </div>
+            </a>
 
-            <div class="feature-card" onclick="window.location.href='further-reading.html'">
+            <a class="feature-card" href="further-reading.html">
                 <span class="feature-icon">📚</span>
                 <h3 class="feature-title">Further Reading</h3>
                 <p class="feature-description">
                     Curated collection of papers, books, and resources on unity mathematics and consciousness.
                 </p>
-            </div>
+            </a>
         </div>
     </section>
 
@@ -893,53 +722,53 @@
         </p>
 
         <div class="features-grid">
-            <div class="feature-card" onclick="window.location.href='dashboards.html'">
+            <a class="feature-card" href="dashboards.html">
                 <span class="feature-icon">📊</span>
                 <h3 class="feature-title">All Dashboards</h3>
                 <p class="feature-description">
                     Complete collection of interactive dashboards for exploring unity mathematics in real-time.
                 </p>
-            </div>
+            </a>
 
-            <div class="feature-card" onclick="window.location.href='playground.html'">
+            <a class="feature-card" href="playground.html">
                 <span class="feature-icon">🎮</span>
                 <h3 class="feature-title">Unity Playground</h3>
                 <p class="feature-description">
                     Interactive sandbox for experimenting with unity equations and consciousness fields.
                 </p>
-            </div>
+            </a>
 
-            <div class="feature-card" onclick="window.location.href='mathematical_playground.html'">
+            <a class="feature-card" href="mathematical_playground.html">
                 <span class="feature-icon">🧮</span>
                 <h3 class="feature-title">Mathematical Playground</h3>
                 <p class="feature-description">
                     Advanced mathematical tools for exploring idempotent operations and unity proofs.
                 </p>
-            </div>
+            </a>
 
-            <div class="feature-card" onclick="window.location.href='live-code-showcase.html'">
+            <a class="feature-card" href="live-code-showcase.html">
                 <span class="feature-icon">💻</span>
                 <h3 class="feature-title">Live Code Showcase</h3>
                 <p class="feature-description">
                     Real-time code demonstrations of unity mathematics implementations and algorithms.
                 </p>
-            </div>
+            </a>
 
-            <div class="feature-card" onclick="window.location.href='unity-advanced-features.html'">
+            <a class="feature-card" href="unity-advanced-features.html">
                 <span class="feature-icon">⚙️</span>
                 <h3 class="feature-title">Advanced Features</h3>
                 <p class="feature-description">
                     Cutting-edge features and experimental implementations of unity consciousness systems.
                 </p>
-            </div>
+            </a>
 
-            <div class="feature-card" onclick="window.location.href='enhanced-3d-consciousness-field.html'">
+            <a class="feature-card" href="enhanced-3d-consciousness-field.html">
                 <span class="feature-icon">🎨</span>
                 <h3 class="feature-title">3D Consciousness Field</h3>
                 <p class="feature-description">
                     Three-dimensional visualization of consciousness field dynamics with WebGL rendering.
                 </p>
-            </div>
+            </a>
         </div>
     </section>
 
@@ -951,29 +780,29 @@
         </p>
 
         <div class="features-grid">
-            <div class="feature-card" onclick="window.location.href='gallery.html'">
+            <a class="feature-card" href="gallery.html">
                 <span class="feature-icon">🖼️</span>
                 <h3 class="feature-title">Main Gallery</h3>
                 <p class="feature-description">
                     Comprehensive collection of unity mathematics visualizations and artistic interpretations.
                 </p>
-            </div>
+            </a>
 
-            <div class="feature-card" onclick="window.location.href='dalle-gallery.html'">
+            <a class="feature-card" href="dalle-gallery.html">
                 <span class="feature-icon">🎨</span>
                 <h3 class="feature-title">DALL-E Gallery</h3>
                 <p class="feature-description">
                     AI-generated artistic representations of unity consciousness and mathematical beauty.
                 </p>
-            </div>
+            </a>
 
-            <div class="feature-card" onclick="window.location.href='enhanced-unity-visualization-system.html'">
+            <a class="feature-card" href="enhanced-unity-visualization-system.html">
                 <span class="feature-icon">📈</span>
                 <h3 class="feature-title">Visualization System</h3>
                 <p class="feature-description">
                     Advanced visualization framework for rendering complex unity mathematics in real-time.
                 </p>
-            </div>
+            </a>
         </div>
     </section>
 
@@ -985,53 +814,53 @@
         </p>
 
         <div class="features-grid">
-            <div class="feature-card" onclick="window.location.href='research.html'">
+            <a class="feature-card" href="research.html">
                 <span class="feature-icon">🔬</span>
                 <h3 class="feature-title">Research Papers</h3>
                 <p class="feature-description">
                     Published research on unity mathematics, consciousness integration, and φ-harmonic systems.
                 </p>
-            </div>
+            </a>
 
-            <div class="feature-card" onclick="window.location.href='publications.html'">
+            <a class="feature-card" href="publications.html">
                 <span class="feature-icon">📖</span>
                 <h3 class="feature-title">Publications</h3>
                 <p class="feature-description">
                     Books, articles, and whitepapers on the unity equation and its applications.
                 </p>
-            </div>
+            </a>
 
-            <div class="feature-card" onclick="window.location.href='learning.html'">
+            <a class="feature-card" href="learning.html">
                 <span class="feature-icon">🎓</span>
                 <h3 class="feature-title">Learning Path</h3>
                 <p class="feature-description">
                     Structured curriculum for understanding unity mathematics from basics to advanced concepts.
                 </p>
-            </div>
+            </a>
 
-            <div class="feature-card" onclick="window.location.href='learn.html'">
+            <a class="feature-card" href="learn.html">
                 <span class="feature-icon">💡</span>
                 <h3 class="feature-title">Learn Unity</h3>
                 <p class="feature-description">
                     Interactive tutorials and exercises for mastering unity mathematics principles.
                 </p>
-            </div>
+            </a>
 
-            <div class="feature-card" onclick="window.location.href='about.html'">
+            <a class="feature-card" href="about.html">
                 <span class="feature-icon">ℹ️</span>
                 <h3 class="feature-title">About Unity</h3>
                 <p class="feature-description">
                     Comprehensive overview of the Unity Mathematics Institute and our mission.
                 </p>
-            </div>
+            </a>
 
-            <div class="feature-card" onclick="window.location.href='mobile-app.html'">
+            <a class="feature-card" href="mobile-app.html">
                 <span class="feature-icon">📱</span>
                 <h3 class="feature-title">Mobile App</h3>
                 <p class="feature-description">
                     Unity mathematics exploration on mobile devices with touch-optimized interfaces.
                 </p>
-            </div>
+            </a>
         </div>
     </section>
 
@@ -1043,29 +872,29 @@
         </p>
 
         <div class="features-grid">
-            <div class="feature-card" onclick="window.location.href='metagamer_agent.html'">
+            <a class="feature-card" href="metagamer_agent.html">
                 <span class="feature-icon">🎯</span>
                 <h3 class="feature-title">Metagamer Agent</h3>
                 <p class="feature-description">
                     Advanced AI agent using metagame strategies to explore unity consciousness spaces.
                 </p>
-            </div>
+            </a>
 
-            <div class="feature-card" onclick="window.location.href='openai-integration.html'">
+            <a class="feature-card" href="openai-integration.html">
                 <span class="feature-icon">🔌</span>
                 <h3 class="feature-title">OpenAI Integration</h3>
                 <p class="feature-description">
                     GPT-4 and DALL-E integration for consciousness exploration and unity visualization.
                 </p>
-            </div>
+            </a>
 
-            <div class="feature-card" onclick="window.location.href='enhanced-ai-demo.html'">
+            <a class="feature-card" href="enhanced-ai-demo.html">
                 <span class="feature-icon">✨</span>
                 <h3 class="feature-title">Enhanced AI Demo</h3>
                 <p class="feature-description">
                     Live demonstration of AI systems operating on unity mathematics principles.
                 </p>
-            </div>
+            </a>
         </div>
     </section>
 
@@ -1082,15 +911,13 @@
     <!-- Unified floating chat button is injected by unified-chatbot-system.js -->
 
     <!-- Footer -->
-    <footer class="site-footer" role="contentinfo"
-        style="background: rgba(18,18,26,0.9); border-top: 1px solid var(--border-glow); color: var(--text-secondary);">
-        <div
-            style="max-width:1200px; margin:0 auto; padding:1.25rem 2rem; display:flex; gap:1rem; flex-wrap:wrap; align-items:center; justify-content:space-between;">
+    <footer class="inl-fb22d8c372 site-footer" role="contentinfo">
+        <div class="inl-414de50985">
             <div>
-                <strong style="color: var(--unity-gold)">Unity Mathematics</strong> • Where Consciousness Meets
+                <strong class="inl-bea506fbff">Unity Mathematics</strong> • Where Consciousness Meets
                 Mathematical Truth
             </div>
-            <nav style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+            <nav class="inl-63f2070b28">
                 <a href="about.html">About</a>
                 <a href="sitemap.html">Site Map</a>
                 <a href="ai-unified-hub.html">AI Hub</a>
@@ -1099,88 +926,68 @@
     </footer>
 
     <!-- AI Capabilities Modal -->
-    <div id="aiModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; 
-         background: rgba(0, 0, 0, 0.8); z-index: 2000; backdrop-filter: blur(10px);">
-        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-             background: rgba(18, 18, 26, 0.98); border: 2px solid var(--unity-gold);
-             border-radius: 20px; padding: 2rem; max-width: 800px; width: 90%; max-height: 80vh;
-             overflow-y: auto;">
-            <button onclick="closeAIModal()" style="position: absolute; top: 1rem; right: 1rem;
-                    background: none; border: none; color: var(--text-primary); font-size: 1.5rem;
-                    cursor: pointer;">×</button>
+    <div class="inl-c8f69a849b" id="aiModal">
+        <div class="inl-be90bb90c5">
+            <button class="inl-33a796ffc8" onclick="closeAIModal()">×</button>
 
-            <h2 style="color: var(--unity-gold); margin-bottom: 1.5rem; text-align: center;">
+            <h2 class="inl-2e09cc1cd7">
                 AI Unity Assistant - Full Capabilities
             </h2>
 
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
-                <div class="ai-capability-card" onclick="window.location.href='ai-unified-hub.html'" style="background: rgba(255, 215, 0, 0.1); border: 1px solid var(--border-glow);
-                            border-radius: 10px; padding: 1.5rem; cursor: pointer; transition: all 0.3s;">
-                    <i class="fas fa-brain"
-                        style="font-size: 2rem; color: var(--quantum-blue); margin-bottom: 0.5rem;"></i>
-                    <h3 style="color: var(--text-primary); font-size: 1.1rem; margin-bottom: 0.5rem;">GPT-4o Reasoning
+            <div class="inl-1f9805cb46">
+                <div class="ai-capability-card inl-7adb989e82" onclick="window.location.href='ai-unified-hub.html'">
+                    <i class="fa-brain fas inl-85b430da33"></i>
+                    <h3 class="inl-caf3915866">GPT-4o Reasoning
                     </h3>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                    <p class="inl-738a2a3fd9">
                         Advanced consciousness reasoning with unity mathematics
                     </p>
                 </div>
 
-                <div class="ai-capability-card" onclick="window.location.href='dalle-gallery.html'" style="background: rgba(255, 215, 0, 0.1); border: 1px solid var(--border-glow);
-                            border-radius: 10px; padding: 1.5rem; cursor: pointer; transition: all 0.3s;">
-                    <i class="fas fa-palette"
-                        style="font-size: 2rem; color: var(--consciousness-purple); margin-bottom: 0.5rem;"></i>
-                    <h3 style="color: var(--text-primary); font-size: 1.1rem; margin-bottom: 0.5rem;">DALL-E 3</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                <div class="ai-capability-card inl-7adb989e82" onclick="window.location.href='dalle-gallery.html'">
+                    <i class="fa-palette fas inl-a545405fc5"></i>
+                    <h3 class="inl-caf3915866">DALL-E 3</h3>
+                    <p class="inl-738a2a3fd9">
                         Generate unity visualizations and consciousness art
                     </p>
                 </div>
 
-                <div class="ai-capability-card" onclick="startVoiceCommand()" style="background: rgba(255, 215, 0, 0.1); border: 1px solid var(--border-glow);
-                            border-radius: 10px; padding: 1.5rem; cursor: pointer; transition: all 0.3s;">
-                    <i class="fas fa-microphone"
-                        style="font-size: 2rem; color: var(--unity-gold); margin-bottom: 0.5rem;"></i>
-                    <h3 style="color: var(--text-primary); font-size: 1.1rem; margin-bottom: 0.5rem;">Whisper Voice</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                <div class="ai-capability-card inl-7adb989e82" onclick="startVoiceCommand()">
+                    <i class="fa-microphone fas inl-7d26cd3f22"></i>
+                    <h3 class="inl-caf3915866">Whisper Voice</h3>
+                    <p class="inl-738a2a3fd9">
                         Voice commands and transcription
                     </p>
                 </div>
 
-                <div class="ai-capability-card" onclick="performCodeSearch()" style="background: rgba(255, 215, 0, 0.1); border: 1px solid var(--border-glow);
-                            border-radius: 10px; padding: 1.5rem; cursor: pointer; transition: all 0.3s;">
-                    <i class="fas fa-code"
-                        style="font-size: 2rem; color: var(--quantum-blue); margin-bottom: 0.5rem;"></i>
-                    <h3 style="color: var(--text-primary); font-size: 1.1rem; margin-bottom: 0.5rem;">Code Search</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                <div class="ai-capability-card inl-7adb989e82" onclick="performCodeSearch()">
+                    <i class="fa-code fas inl-85b430da33"></i>
+                    <h3 class="inl-caf3915866">Code Search</h3>
+                    <p class="inl-738a2a3fd9">
                         Search unity implementations and proofs
                     </p>
                 </div>
 
-                <div class="ai-capability-card" onclick="window.location.href='metagamer_agent.html'" style="background: rgba(255, 215, 0, 0.1); border: 1px solid var(--border-glow);
-                            border-radius: 10px; padding: 1.5rem; cursor: pointer; transition: all 0.3s;">
-                    <i class="fas fa-chess"
-                        style="font-size: 2rem; color: var(--consciousness-purple); margin-bottom: 0.5rem;"></i>
-                    <h3 style="color: var(--text-primary); font-size: 1.1rem; margin-bottom: 0.5rem;">Metagamer RAG</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                <div class="ai-capability-card inl-7adb989e82" onclick="window.location.href='metagamer_agent.html'">
+                    <i class="fa-chess fas inl-a545405fc5"></i>
+                    <h3 class="inl-caf3915866">Metagamer RAG</h3>
+                    <p class="inl-738a2a3fd9">
                         Strategic consciousness exploration
                     </p>
                 </div>
 
-                <div class="ai-capability-card" onclick="window.location.href='openai-integration.html'" style="background: rgba(255, 215, 0, 0.1); border: 1px solid var(--border-glow);
-                            border-radius: 10px; padding: 1.5rem; cursor: pointer; transition: all 0.3s;">
-                    <i class="fas fa-plug"
-                        style="font-size: 2rem; color: var(--unity-gold); margin-bottom: 0.5rem;"></i>
-                    <h3 style="color: var(--text-primary); font-size: 1.1rem; margin-bottom: 0.5rem;">API Integration
+                <div class="ai-capability-card inl-7adb989e82" onclick="window.location.href='openai-integration.html'">
+                    <i class="fa-plug fas inl-7d26cd3f22"></i>
+                    <h3 class="inl-caf3915866">API Integration
                     </h3>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                    <p class="inl-738a2a3fd9">
                         Full OpenAI API access and tools
                     </p>
                 </div>
             </div>
 
-            <div style="margin-top: 2rem; text-align: center;">
-                <button onclick="window.location.href='ai-unified-hub.html'" style="background: linear-gradient(135deg, var(--unity-gold), var(--quantum-blue));
-                               border: none; padding: 1rem 2rem; border-radius: 30px; color: white;
-                               font-weight: 600; cursor: pointer; font-size: 1.1rem; transition: all 0.3s;">
+            <div class="inl-53bedee6ac">
+                <button class="inl-dc77c2d3c4" onclick="window.location.href='ai-unified-hub.html'">
                     Launch Full AI Experience →
                 </button>
             </div>
@@ -1379,14 +1186,13 @@
 
             if (results.length > 0) {
                 searchResults.innerHTML = results.map(r => `
-                    <a href="${r.url}" style="display: block; padding: 1rem; text-decoration: none; 
-                       border-bottom: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.3s;"
+                    <a class="inl-9d6179a0d7" href="${r.url}"
                        onmouseover="this.style.background='rgba(255, 215, 0, 0.1)'"
                        onmouseout="this.style.background='transparent'">
-                        <div style="color: var(--unity-gold); font-weight: 600; margin-bottom: 0.25rem;">
+                        <div class="inl-8138bb8c07">
                             ${r.title}
                         </div>
-                        <div style="color: var(--text-secondary); font-size: 0.9rem;">
+                        <div class="inl-738a2a3fd9">
                             ${r.description}
                         </div>
                     </a>
@@ -1394,7 +1200,7 @@
                 searchResults.style.display = 'block';
             } else {
                 searchResults.innerHTML = `
-                    <div style="padding: 1rem; text-align: center; color: var(--text-secondary);">
+                    <div class="inl-e27f833c70">
                         No results found for "${query}"
                     </div>
                 `;
@@ -1571,7 +1377,7 @@
                                 <span class="feature-icon">📄</span>
                                 <h3 class="feature-title">${item.title}</h3>
                                 <p class="feature-description">${item.path} • ${item.bytes} bytes</p>
-                                <p class="feature-description" style="font-size:0.8rem; opacity:0.8;">sha256: ${item.sha256.slice(0, 16)}…</p>
+                                <p class="feature-description inl-e0ac2016ea">sha256: ${item.sha256.slice(0, 16)}…</p>
                             </div>
                         `).join('');
                         container.querySelectorAll('.feature-card').forEach(card => {

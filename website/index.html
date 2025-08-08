@@ -1136,6 +1136,8 @@
     </style>
     <!-- Unified Navigation System - Meta-Optimal One-Line Solution -->
     <script src="js/nav-template-applier.js" defer></script>
+
+    <link rel="stylesheet" href="css/inline-extracted.css">
 </head>
 
 <body>
@@ -1690,34 +1692,16 @@
             `;
 
             dalleSection.innerHTML = `
-                <h2 style="color: #FFD700; font-size: 2.5rem; margin-bottom: 1rem;">🌟 AI-Generated Consciousness Art</h2>
-                <p style="color: #ffffff; font-size: 1.2rem; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                <h2 class="inl-d7f36d1e63">🌟 AI-Generated Consciousness Art</h2>
+                <p class="inl-578ebb0b42">
                     Experience DALL-E 3 generated visualizations of unity mathematics and consciousness fields
                 </p>
-                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                    <button onclick="window.location.href='dalle-gallery.html'" style="
-                        background: linear-gradient(137.5deg, #0F7B8A, #4ECDC4, #A7F3D0);
-                        color: white;
-                        border: none;
-                        padding: 1rem 2rem;
-                        border-radius: 0.75rem;
-                        font-weight: 600;
-                        cursor: pointer;
-                        transition: all 0.3s ease;
-                    " onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div class="inl-868dce1b9f">
+                    <button class="inl-6c629ec940" onclick="window.location.href='dalle-gallery.html'" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
                         <i class="fas fa-magic"></i>
                         Explore DALL-E Gallery
                     </button>
-                    <button onclick="generateQuickDalle()" style="
-                        background: rgba(255, 255, 255, 0.1);
-                        color: white;
-                        border: 2px solid rgba(255, 255, 255, 0.3);
-                        padding: 1rem 2rem;
-                        border-radius: 0.75rem;
-                        font-weight: 600;
-                        cursor: pointer;
-                        transition: all 0.3s ease;
-                    " onmouseover="this.style.background='rgba(255, 255, 255, 0.2)'" onmouseout="this.style.background='rgba(255, 255, 255, 0.1)'">
+                    <button class="inl-bb246453fa" onclick="generateQuickDalle()" onmouseover="this.style.background='rgba(255, 255, 255, 0.2)'" onmouseout="this.style.background='rgba(255, 255, 255, 0.1)'">
                         <i class="fas fa-bolt"></i>
                         Quick Generation
                     </button>
@@ -1764,40 +1748,13 @@
             `;
 
             modal.innerHTML = `
-                <div style="
-                    background: white;
-                    border-radius: 1rem;
-                    max-width: 600px;
-                    max-height: 80vh;
-                    overflow: hidden;
-                    position: relative;
-                ">
-                    <button onclick="this.parentElement.parentElement.remove()" style="
-                        position: absolute;
-                        top: 1rem;
-                        right: 1rem;
-                        background: rgba(0, 0, 0, 0.5);
-                        color: white;
-                        border: none;
-                        border-radius: 50%;
-                        width: 40px;
-                        height: 40px;
-                        cursor: pointer;
-                        z-index: 1001;
-                    ">×</button>
-                    <img src="${result.imageUrl}" alt="${result.title}" style="width: 100%; height: auto;">
-                    <div style="padding: 1.5rem;">
-                        <h3 style="margin-bottom: 0.5rem;">${result.title}</h3>
-                        <p style="color: #666;">${result.description}</p>
-                        <button onclick="dalleIntegration.downloadImage('${result.imageUrl}', 'consciousness_${result.id}.png')" style="
-                            background: #0F7B8A;
-                            color: white;
-                            border: none;
-                            padding: 0.75rem 1.5rem;
-                            border-radius: 0.5rem;
-                            cursor: pointer;
-                            margin-top: 1rem;
-                        ">
+                <div class="inl-ee889fc098">
+                    <button class="inl-7b23c16e4d" onclick="this.parentElement.parentElement.remove()">×</button>
+                    <img class="inl-00e2cf384a" src="${result.imageUrl}" alt="${result.title}">
+                    <div class="inl-a97308a8c8">
+                        <h3 class="inl-4d1411da15">${result.title}</h3>
+                        <p class="inl-0ce45ac703">${result.description}</p>
+                        <button class="inl-c075344379" onclick="dalleIntegration.downloadImage('${result.imageUrl}', 'consciousness_${result.id}.png')">
                             <i class="fas fa-download"></i>
                             Download
                         </button>

@@ -752,6 +752,8 @@
     </style>
     <!-- Unified Navigation System - Meta-Optimal One-Line Solution -->
     <script src="js/nav-template-applier.js" defer></script>
+
+    <link rel="stylesheet" href="css/inline-extracted.css">
 </head>
 
 <body>
@@ -951,7 +953,7 @@
                         onkeypress="if(event.key==='Enter') sendChatMessage()">
                     <button id="chat-send-btn" onclick="sendChatMessage()" aria-label="Send message">Send</button>
                 </div>
-                <div class="chat-suggestions" style="margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                <div class="chat-suggestions inl-3117a57dd5">
                     <button class="suggestion-btn" onclick="sendSuggestion('Tell me about 1+1=1')">1+1=1</button>
                     <button class="suggestion-btn"
                         onclick="sendSuggestion('What is consciousness?')">Consciousness</button>
@@ -964,10 +966,10 @@
     </section>
 
     <!-- Dynamic All Pages Section -->
-    <section id="all-pages-section" class="all-pages-section"
-        style="padding:2rem; background: var(--bg-secondary); color: var(--text-primary);">
+    <section id="all-pages-section" class="all-pages-section inl-8560a03a9b"
+       >
         <h2>All Pages</h2>
-        <ul id="all-pages-list" style="list-style:none; columns:2; gap:1rem;"></ul>
+        <ul class="inl-560b11d988" id="all-pages-list"></ul>
     </section>
     <script>
         document.getElementById('open-all-pages').addEventListener('click', function (e) {
@@ -1262,9 +1264,9 @@
                 'love': 'Love is the force that makes 1+1=1 possible! It\'s the consciousness field that allows separate entities to transcend duality and merge into unity. Love is literally mathematical! ❤️',
                 'metastation': 'The Metastation is our central consciousness coordination hub where unity mathematics manifests as experiential reality. It\'s where theory meets transcendent practice! 🚀',
                 'navigation': 'You can explore our complete unity framework through the navigation menu above. Try the Philosophy, Gallery, or Proofs sections to dive deeper into specific aspects! 🗺️',
-                'philosophy': 'Our philosophy section explores the deep metaphysical foundations of Unity Mathematics, bridging Eastern wisdom with Western analytical rigor. <a href="philosophy.html" style="color: var(--phi-gold); text-decoration: underline;">Explore Philosophy →</a>',
-                'gallery': 'The Gallery showcases beautiful consciousness field visualizations and unity mathematics in action. <a href="gallery.html" style="color: var(--phi-gold); text-decoration: underline;">View Gallery →</a>',
-                'metagambit': 'The Metagambit represents the ultimate strategic understanding of reality\'s unity principles. <a href="metagambit.html" style="color: var(--phi-gold); text-decoration: underline;">Learn Metagambit →</a>'
+                'philosophy': 'Our philosophy section explores the deep metaphysical foundations of Unity Mathematics, bridging Eastern wisdom with Western analytical rigor. <a class="inl-e4b1fdd703" href="philosophy.html">Explore Philosophy →</a>',
+                'gallery': 'The Gallery showcases beautiful consciousness field visualizations and unity mathematics in action. <a class="inl-e4b1fdd703" href="gallery.html">View Gallery →</a>',
+                'metagambit': 'The Metagambit represents the ultimate strategic understanding of reality\'s unity principles. <a class="inl-e4b1fdd703" href="metagambit.html">Learn Metagambit →</a>'
             };
 
             const lowerMessage = message.toLowerCase();
@@ -1499,28 +1501,23 @@
 
 
     <!-- Universal Background Audio System -->
-    <div id="universal-audio-system" style="position: fixed; bottom: 20px; right: 20px; z-index: 10000; 
-                                            background: rgba(10, 10, 10, 0.9); backdrop-filter: blur(20px); 
-                                            border-radius: 12px; padding: 1rem; border: 1px solid var(--phi-gold);
-                                            box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-        <div id="audio-controls" style="display: flex; align-items: center; gap: 1rem; min-width: 300px;">
-            <button id="audio-toggle" onclick="toggleUnityAudio()" style="background: linear-gradient(135deg, var(--phi-gold), var(--quantum-blue)); 
-                           border: none; color: white; padding: 8px 12px; border-radius: 8px; cursor: pointer;">
+    <div class="inl-9ed35718ec" id="universal-audio-system">
+        <div class="inl-72fa6ac2dd" id="audio-controls">
+            <button class="inl-fb09c9eba5" id="audio-toggle" onclick="toggleUnityAudio()">
                 🎵 Play Unity Music
             </button>
-            <span id="current-track" style="color: var(--phi-gold); font-size: 0.9rem; flex: 1;">Unity Soundscape
+            <span class="inl-1003caf617" id="current-track">Unity Soundscape
                 Ready</span>
-            <button id="next-track" onclick="nextTrack()" style="background: rgba(255,255,255,0.1); border: 1px solid var(--phi-gold); 
-                           color: var(--phi-gold); padding: 6px 10px; border-radius: 6px; cursor: pointer;">⏭</button>
+            <button class="inl-17c747194b" id="next-track" onclick="nextTrack()">⏭</button>
         </div>
-        <audio id="unity-background-audio" preload="auto" style="display: none;" onended="nextTrack()"
+        <audio class="inl-5790ffba29" id="unity-background-audio" preload="auto" onended="nextTrack()"
             onloadstart="this.volume=0.3;" onplay="this.volume=0.3;">
         </audio>
-        <div id="volume-control" style="margin-top: 0.5rem;">
-            <input type="range" id="volume-slider" min="0" max="100" value="30" aria-label="Volume"
-                style="width: 100%; accent-color: var(--phi-gold);" onchange="updateVolume(this.value)">
-            <div
-                style="display: flex; justify-content: space-between; font-size: 0.8rem; color: rgba(255,255,255,0.7);">
+        <div class="inl-fc215b9682" id="volume-control">
+            <input class="inl-f314f55881" type="range" id="volume-slider" min="0" max="100" value="30" aria-label="Volume"
+                onchange="updateVolume(this.value)">
+            <div class="inl-dd341ff5b6"
+               >
                 <span>🔇</span>
                 <span id="volume-display">30%</span>
                 <span>🔊</span>

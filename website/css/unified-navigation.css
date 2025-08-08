@@ -5,8 +5,8 @@
  */
 
 :root {
-    --nav-height: 88px;
-    /* Increased for Chrome desktop so nav isn't hidden under URL bar */
+    --nav-height: 84px;
+    /* tuned for Chrome/Windows titlebar */
     --sidebar-width: 300px;
     --sidebar-collapsed: 60px;
     --phi: 1.618033988749895;
@@ -46,8 +46,8 @@
 }
 
 body {
-    padding-top: calc(var(--nav-height) + 6px);
-    /* ensure clear space above content */
+    /* Use safe-area inset to account for OS chrome; clamp ensures no negative values */
+    padding-top: calc(var(--nav-height) + max(env(safe-area-inset-top, 0px), 0px));
     transition: var(--transition);
     font-family: 'Space Grotesk', 'Inter', sans-serif;
 }
@@ -59,7 +59,6 @@ body.sidebar-open {
 @media (max-width: 768px) {
     body {
         margin-left: 0 !important;
-        padding-top: calc(var(--nav-height) + 10px);
     }
 }
 
@@ -72,7 +71,8 @@ body.sidebar-open {
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1000;
+    z-index: 10010;
+    /* ensure above any canvas/hero/effects */
     height: var(--nav-height);
     background: var(--bg-nav);
     backdrop-filter: blur(20px);
@@ -86,12 +86,13 @@ body.sidebar-open {
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
 }
 
+/* Keep header visible on initial load; only hide on scroll after threshold */
 .unified-header.hidden {
-    transform: translateY(-100%);
+    transform: translateY(0);
 }
 
 .nav-container {
-    max-width: 100%;
+    max-width: 1400px;
     height: 100%;
     padding: 0 1.5rem;
     display: flex;

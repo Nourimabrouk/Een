@@ -262,7 +262,7 @@ class UnifiedNavigationSystem {
 
                 <div class="nav-search">
                     <input type="text" class="search-input" id="unified-search-input" 
-                           placeholder="Search unity mathematics..." 
+                           placeholder="Search" 
                            aria-label="Search">
                     <i class="fas fa-search search-icon"></i>
                     <div class="search-results" id="unified-search-results"></div>

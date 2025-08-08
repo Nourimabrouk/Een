@@ -50,6 +50,8 @@
             background: #2196F3;
         }
     </style>
+
+    <link rel="stylesheet" href="../css/inline-extracted.css">
 </head>
 
 <body>
@@ -71,10 +73,10 @@
 
     <div class="test-section">
         <h2>Manual Search Test</h2>
-        <input type="text" id="manual-search" placeholder="Enter search term..."
-            style="padding: 10px; width: 300px; margin-right: 10px;">
+        <input class="inl-8baf58ae1c" type="text" id="manual-search" placeholder="Enter search term..."
+           >
         <button class="test-button" onclick="performManualSearch()">Search</button>
-        <div id="manual-results" style="margin-top: 20px;"></div>
+        <div class="inl-4f7f1ad5d8" id="manual-results"></div>
     </div>
 
     <!-- Load search system -->
@@ -209,15 +211,15 @@
             const resultsDiv = document.getElementById('manual-results');
 
             if (!query.trim()) {
-                resultsDiv.innerHTML = '<p style="color: #FFD700;">Please enter a search term</p>';
+                resultsDiv.innerHTML = '<p class="inl-2abc294e78">Please enter a search term</p>';
                 return;
             }
 
             try {
                 const results = window.unifiedSearch.performSearch(query);
-                resultsDiv.innerHTML = `<p style="color: #4CAF50;">Search completed for: "${query}"</p>`;
+                resultsDiv.innerHTML = `<p class="inl-8340246278">Search completed for: "${query}"</p>`;
             } catch (error) {
-                resultsDiv.innerHTML = `<p style="color: #f44336;">Search error: ${error.message}</p>`;
+                resultsDiv.innerHTML = `<p class="inl-6e5fdf40a3">Search error: ${error.message}</p>`;
             }
         }
 
