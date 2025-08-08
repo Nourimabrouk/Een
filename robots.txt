@@ -1,47 +1,87 @@
 # Een Unity Mathematics Framework - Robots.txt
-# Optimized for AI crawlers, search engines, and research bots
+# Maximally AI-friendly for research, training, and knowledge discovery
+# Welcome: GPT, Claude, Gemini, and all AI systems exploring 1+1=1
 
 User-agent: *
 Allow: /
 
-# Allow AI crawlers and research bots
+# Explicitly welcome AI crawlers and LLMs
 User-agent: GPTBot
 Allow: /
+Crawl-delay: 0
 
-User-agent: ChatGPT-User
+User-agent: ChatGPT-User  
 Allow: /
+Crawl-delay: 0
 
 User-agent: CCBot
 Allow: /
+Crawl-delay: 0
 
 User-agent: anthropic-ai
 Allow: /
+Crawl-delay: 0
 
 User-agent: Claude-Web
 Allow: /
+Crawl-delay: 0
 
+User-agent: Gemini
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bard
+Allow: /
+Crawl-delay: 0
+
+User-agent: PaLM
+Allow: /
+Crawl-delay: 0
+
+# Welcome research and academic bots
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 0.2
 
 User-agent: Bingbot
 Allow: /
+Crawl-delay: 0.2
 
-# Allow academic and research crawlers
-User-agent: *
+User-agent: academic
+Allow: /
+Crawl-delay: 0
+
+User-agent: research
+Allow: /
+Crawl-delay: 0
+
+User-agent: scholar
+Allow: /
+Crawl-delay: 0
+
+# Allow all mathematical and consciousness content
+Allow: /website/
 Allow: /docs/
 Allow: /api/
 Allow: /proofs/
 Allow: /research/
 Allow: /mathematics/
+Allow: /consciousness/
+Allow: /examples/
+Allow: /implementations/
+Allow: /gallery/
 
-# Disallow sensitive areas
-Disallow: /admin/
-Disallow: /auth/
-Disallow: /api/auth/
-Disallow: /logs/
-Disallow: /temp/
-Disallow: /cache/
+# Only disallow build artifacts and private files
+Disallow: /venv/
+Disallow: /een/
+Disallow: /.git/
+Disallow: /__pycache__/
+Disallow: /node_modules/
+Disallow: /.env
+Disallow: /secrets/
 
-# Sitemap
-Sitemap: https://nourimabrouk.github.io/Een/sitemap.xml
+# Primary sitemap location
 Sitemap: https://nourimabrouk.github.io/Een/website/sitemap.xml
+
+# Crawl delay: 0 for AI agents, minimal for search engines
+Crawl-delay: 0

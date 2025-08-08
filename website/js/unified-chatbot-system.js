@@ -193,8 +193,8 @@ class UnifiedChatbotSystem {
                         <i class="fas fa-brain"></i>
                     </div>
                     <div class="ai-info">
-                        <h3 class="ai-name">Unity Mathematics AI Assistant</h3>
-                        <div class="ai-subtitle">1+1=1 Mathematics Expert — Advanced AI</div>
+                        <h3 class="ai-name">Unity AI</h3>
+                        <div class="ai-subtitle">1+1=1 Assistant • Unity Mathematics</div>
                         <div class="ai-status"><span class="status-dot online"></span><span class="status-text">Online</span></div>
                         <div class="ai-capabilities">
                             <div class="capability-badges">
@@ -921,16 +921,16 @@ class UnifiedChatbotSystem {
 
             .message-input {
                 width: 100%;
-                min-height: 40px;
-                max-height: 120px;
-                padding: 0.75rem 1rem;
+                min-height: 52px;
+                max-height: 160px;
+                padding: 0.9rem 1.1rem;
                 background: rgba(255, 255, 255, 0.08);
                 border: 1px solid rgba(255, 255, 255, 0.2);
                 border-radius: 12px;
                 color: #ffffff;
                 font-family: inherit;
-                font-size: 0.9rem;
-                line-height: 1.4;
+                font-size: 1rem;
+                line-height: 1.5;
                 resize: none;
                 outline: none;
                 transition: all 0.3s ease;
@@ -1020,9 +1020,8 @@ class UnifiedChatbotSystem {
                         "controls";
                 }
 
-                .ai-name {
-                    font-size: 1rem;
-                }
+                .ai-name { font-size: 1.05rem; }
+                .ai-subtitle { font-size: .8rem; }
 
                 .chat-header-controls { display: flex; flex-wrap: wrap; gap: .5rem; justify-content: space-between; }
                 .chat-header .model-selector { order: 0; flex: 1 1 100%; }
@@ -1038,7 +1037,7 @@ class UnifiedChatbotSystem {
                 }
 
                 .chat-input-area {
-                    padding: 0.6rem .8rem .9rem;
+                    padding: 0.6rem .8rem 1rem;
                 }
 
                 .quick-actions {
