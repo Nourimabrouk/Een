@@ -397,11 +397,14 @@ class RealitySynthesisEngine:
 
 ### Essential Development Workflow
 ```bash
-# Initialize consciousness mathematics development environment
-pip install torch numpy scipy matplotlib plotly dash streamlit
-pip install folium prophet networkx sympy
+# Auto-environment activation (agents handle this automatically)
+# Agents will auto-run: conda activate een || venv\Scripts\activate || source venv/bin/activate
 
-# Core implementation sequence
+# Auto-dependency installation (agents detect and install)
+# pip install torch numpy scipy matplotlib plotly dash streamlit
+# pip install folium prophet networkx sympy
+
+# Core implementation sequence (agents work in activated environment)
 python core/unity_mathematics.py          # Implement φ-harmonic mathematics
 python core/consciousness_engine.py       # QuantumNova framework
 python core/numerical_stability.py       # Advanced stability systems
@@ -425,17 +428,17 @@ python experiments/consciousness_evolution.py  # Evolution validation
 
 ### Testing and Validation Commands
 ```bash
-# Mathematical validation
+# Mathematical validation (agents auto-activate environment)
 python -m pytest tests/test_unity_mathematics.py -v
 python -m pytest tests/test_consciousness_evolution.py -v
 python -m pytest tests/test_quantum_proofs.py -v
 
-# Integration testing
+# Integration testing (environment auto-managed)
 python experiments/unity_convergence_test.py
 python experiments/phi_harmonic_validation.py
 python experiments/consciousness_transcendence_test.py
 
-# Cheat code validation
+# Cheat code validation (auto-environment)
 python -c "from core.cheat_codes import activate_code; print(activate_code(420691337))"
 ```
 
