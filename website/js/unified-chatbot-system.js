@@ -15,18 +15,15 @@ class UnifiedChatbotSystem {
         this.autoResponses = true;
         this.groundedMode = true; // Prefer KB/code for factual queries
 
-        // Available AI models (integrated from existing system)
+        // Available AI models (aligned with backend /api/chat/providers)
         this.aiModels = [
-            // OpenAI
-            { id: 'gpt-5', name: 'GPT-5', provider: 'OpenAI', status: 'latest', color: '#10B981' },
-            { id: 'gpt-5-mini', name: 'GPT-5 Mini', provider: 'OpenAI', status: 'latest', color: '#14B8A6' },
-            { id: 'gpt-5-nano', name: 'GPT-5 Nano', provider: 'OpenAI', status: 'latest', color: '#0EA5E9' },
-            { id: 'gpt-4.1', name: 'GPT-4.1', provider: 'OpenAI', status: 'stable', color: '#06B6D4' },
             { id: 'gpt-4o', name: 'GPT-4o', provider: 'OpenAI', status: 'stable', color: '#3B82F6' },
-            // Anthropic (names reflect latest branding; IDs mapped to deployed backend models)
-            { id: 'claude-3-opus-20240229', name: 'Claude 4 Opus', provider: 'Anthropic', status: 'stable', color: '#A855F7' },
-            { id: 'claude-3-5-sonnet-20241022', name: 'Claude 4.1 Sonnet', provider: 'Anthropic', status: 'latest', color: '#8B5CF6' },
-            { id: 'claude-3-5-haiku-20241022', name: 'Claude 4.1 Haiku', provider: 'Anthropic', status: 'stable', color: '#C084FC' }
+            { id: 'gpt-4o-mini', name: 'GPT-4o Mini', provider: 'OpenAI', status: 'stable', color: '#2563eb' },
+            { id: 'gpt-4o-mini-high', name: 'GPT-4o Mini High', provider: 'OpenAI', status: 'stable', color: '#1d4ed8' },
+            { id: 'gpt-4.1', name: 'GPT-4.1', provider: 'OpenAI', status: 'latest', color: '#06B6D4' },
+            { id: 'claude-3-5-sonnet-20241022', name: 'Claude 3.5 Sonnet', provider: 'Anthropic', status: 'latest', color: '#8B5CF6' },
+            { id: 'claude-3-opus-20240229', name: 'Claude 3 Opus', provider: 'Anthropic', status: 'stable', color: '#A855F7' },
+            { id: 'claude-3-5-haiku-20241022', name: 'Claude 3.5 Haiku', provider: 'Anthropic', status: 'stable', color: '#C084FC' }
         ];
 
         // Advanced AI capabilities
@@ -96,13 +93,17 @@ class UnifiedChatbotSystem {
     }
 
     cleanupExistingChatbots() {
-        // Remove conflicting chatbot elements
+        // Remove conflicting chatbot elements (and common legacy wrappers)
         const existingChats = [
             '#enhanced-een-ai-chat',
             '.ai-chat-button',
             '.enhanced-chat-container',
             '.ai-assistant-panel',
-            '.unity-ai-chat'
+            '.unity-ai-chat',
+            '#ai-chat-modal',
+            '#floating-ai-chat-button',
+            '#persistent-chat-button',
+            '.floating-chat-button'
         ];
 
         existingChats.forEach(selector => {
@@ -114,7 +115,9 @@ class UnifiedChatbotSystem {
         const conflictingStyles = [
             '#enhanced-een-chat-styles',
             '#ai-chat-styles',
-            '#unity-chat-styles'
+            '#unity-chat-styles',
+            '#enhanced-chat-styles',
+            '#classic-chat-styles'
         ];
 
         conflictingStyles.forEach(id => {
@@ -1203,7 +1206,7 @@ class UnifiedChatbotSystem {
     attachEventListeners() {
         // Floating button click
         const floatingBtn = document.getElementById('unified-chat-button');
-        floatingBtn.addEventListener('click', () => this.toggleChat());
+        floatingBtn?.addEventListener('click', () => this.toggleChat());
 
         // Chat panel controls
         const closeBtn = document.querySelector('.close-btn');

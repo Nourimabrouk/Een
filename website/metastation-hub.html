@@ -7,7 +7,6 @@
     <title>Unity Mathematics Institute | 1+1=1</title>
     <meta name="description"
         content="Metastation Hub – Academic portal for the Unity Mathematics 1+1=1 project: formal proofs, implementations, dashboards, and consciousness-integrated mathematics.">
-    <meta name="theme-color" content="#0a0a0f">
     <link rel="canonical" href="https://nourimabrouk.github.io/Een/">
     <meta property="og:title" content="Unity Mathematics Institute | 1+1=1">
     <meta property="og:description"
@@ -558,6 +557,22 @@
             z-index: 10001;
         }
     </style>
+    <style>
+        /* Academic monospace styling for Lean code preview */
+        .lean-code-pre {
+            white-space: pre-wrap;
+            margin-top: 1rem;
+            font-family: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
+            font-size: 0.95rem;
+            color: #e6e6e6;
+            background: rgba(18, 18, 26, 0.8);
+            border: 1px solid var(--border-glow);
+            border-radius: 10px;
+            padding: 1rem;
+            max-height: 420px;
+            overflow: auto;
+        }
+    </style>
 
     <link rel="stylesheet" href="css/inline-extracted.css">
 </head>
@@ -607,6 +622,17 @@
         </p>
 
         <div id="lean-proofs" class="features-grid inl-2239d6d55d"></div>
+        <div style="display:flex; gap:0.75rem; justify-content:center; margin-top:0.75rem;">
+            <button id="toy-unity-btn"
+                style="background: linear-gradient(135deg, var(--unity-gold), var(--quantum-blue)); border: none; padding: 0.6rem 1rem; border-radius: 20px; color: white; font-weight: 600; cursor: pointer;">
+                ▶️ Run Toy Unity Proof (1 ⊕ 1 = 1)
+            </button>
+            <button id="reload-lean-btn"
+                style="background: rgba(255,255,255,0.08); border: 1px solid var(--border-glow); padding: 0.6rem 1rem; border-radius: 20px; color: var(--text-primary); cursor: pointer;">
+                ↻ Reload Proofs
+            </button>
+        </div>
+        <pre id="toy-unity-output" class="lean-code-pre" style="display:none; margin-top:0.75rem;"></pre>
         <div class="inl-b567a8e80d" id="lean-proof-viewer">
             <div class="inl-128bd7ab69">
                 <h3 class="inl-e400b3e8d7">Lean Source</h3>
@@ -1364,27 +1390,34 @@
             }, 100);
 
             // Load Lean proofs list from backend if available
-            (async function loadLeanProofs() {
+            async function loadLeanProofs() {
                 const container = document.getElementById('lean-proofs');
                 if (!container) return;
                 try {
-                    const res = await fetch('/unity-meta/lean/proofs');
+                    // Try absolute path first, then relative fallback for GitHub Pages
+                    let res = await fetch('/unity-meta/lean/proofs');
+                    if (!res.ok) {
+                        res = await fetch('unity-meta/lean/proofs');
+                    }
                     if (!res.ok) throw new Error('No backend');
                     const data = await res.json();
                     if (Array.isArray(data) && data.length) {
                         container.innerHTML = data.map(item => `
-                            <div class="feature-card" data-filename="${item.path.split('/').pop()}">
+                            <a class="feature-card" data-filename="${item.path.split('/').pop()}">
                                 <span class="feature-icon">📄</span>
                                 <h3 class="feature-title">${item.title}</h3>
                                 <p class="feature-description">${item.path} • ${item.bytes} bytes</p>
                                 <p class="feature-description inl-e0ac2016ea">sha256: ${item.sha256.slice(0, 16)}…</p>
-                            </div>
+                            </a>
                         `).join('');
                         container.querySelectorAll('.feature-card').forEach(card => {
                             card.addEventListener('click', async () => {
                                 const filename = card.getAttribute('data-filename');
                                 try {
-                                    const r = await fetch(`/unity-meta/lean/proof/${filename}`);
+                                    let r = await fetch(`/unity-meta/lean/proof/${filename}`);
+                                    if (!r.ok) {
+                                        r = await fetch(`unity-meta/lean/proof/${filename}`);
+                                    }
                                     const j = await r.json();
                                     const pre = document.getElementById('lean-code');
                                     pre.textContent = j.code || 'Unavailable';
@@ -1396,9 +1429,34 @@
                         container.innerHTML = `<div class="feature-card"><h3 class="feature-title">Formal proofs</h3><p class="feature-description">Start the backend to fetch Lean artifacts.</p></div>`
                     }
                 } catch (e) {
-                    container.innerHTML = `<div class="feature-card"><h3 class="feature-title">Formal proofs</h3><p class="feature-description">Backend offline. Static gallery available in repository.</p></div>`
+                    container.innerHTML = `<div class="feature-card"><h3 class="feature-title">Formal proofs</h3><p class="feature-description">Backend offline. Static gallery available in repository.</p><a class="feature-description" href="unity-meta/lean/proofs" style="color: var(--unity-gold);">Try API →</a></div>`
                 }
-            })();
+            }
+
+            // Wire buttons: toy unity + reload
+            const toyBtn = document.getElementById('toy-unity-btn');
+            const toyOut = document.getElementById('toy-unity-output');
+            const reloadBtn = document.getElementById('reload-lean-btn');
+            if (reloadBtn) reloadBtn.addEventListener('click', loadLeanProofs);
+            if (toyBtn && toyOut) {
+                toyBtn.addEventListener('click', async () => {
+                    try {
+                        let res = await fetch('/unity-meta/toy/unity');
+                        if (!res.ok) res = await fetch('unity-meta/toy/unity');
+                        if (!res.ok) throw new Error('No backend');
+                        const j = await res.json();
+                        toyOut.textContent = JSON.stringify(j, null, 2);
+                        toyOut.style.display = 'block';
+                        toyOut.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    } catch (e) {
+                        toyOut.textContent = 'Backend offline. Example (logical OR): 1 ⊕ 1 = 1';
+                        toyOut.style.display = 'block';
+                    }
+                });
+            }
+
+            // Initial load
+            loadLeanProofs();
         });
     </script>
 </body>

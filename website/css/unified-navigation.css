@@ -97,7 +97,8 @@ body.sidebar-open {
     padding: 0 1.5rem;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
+    /* allow manual alignment of children */
     position: relative;
 }
 
@@ -146,7 +147,12 @@ body.sidebar-open {
     display: flex;
     align-items: center;
     list-style: none;
-    gap: 0.5rem;
+    gap: clamp(0.5rem, 2vw, 1.25rem);
+    /* more even spacing across desktop widths */
+    flex: 1 1 auto;
+    /* occupy remaining space between logo and search */
+    justify-content: center;
+    /* center categories on wide screens */
 }
 
 .nav-item {
@@ -250,7 +256,8 @@ body.sidebar-open {
 /* Search */
 .nav-search {
     position: relative;
-    margin-left: 1rem;
+    margin-left: auto;
+    /* push search to the far right */
 }
 
 .search-input {
@@ -442,7 +449,7 @@ body.sidebar-open {
 
 @media (max-width: 1024px) {
     .nav-main {
-        gap: 0.25rem;
+        gap: 0.5rem;
     }
 
     .search-input {

@@ -302,3 +302,43 @@ async def atlas_evolve(
         "steps": req.steps,
         "phi": phi,
     }
+
+
+# -------------------------------------------
+# Toy endpoint: idempotent unity demonstration
+# -------------------------------------------
+
+
+@router.get("/toy/unity")
+async def toy_unity_proof() -> Dict[str, Any]:
+    """Minimal educational witness that 1 ⊕ 1 = 1 in an idempotent monoid.
+
+    Choose S={0,1} with identity 0 and ⊕ := logical OR. Then x ⊕ x = x, and in
+    particular 1 ⊕ 1 = 1. This is a constructive demonstration of the unity
+    equation in an idempotent algebra (distinct from arithmetic addition).
+    """
+
+    def idempotent_or(a: int, b: int) -> int:
+        return 1 if (a or b) else 0
+
+    lhs = idempotent_or(1, 1)
+    rhs = 1
+    return {
+        "success": True,
+        "operation": "logical_or",
+        "domain": [0, 1],
+        "identity": 0,
+        "equation": "1 ⊕ 1 = 1",
+        "lhs": lhs,
+        "rhs": rhs,
+        "proof": {
+            "idempotent": True,
+            "associative": True,
+            "commutative": True,
+            "identity": 0,
+            "note": "Using (S, ⊕) = ({0,1}, OR).",
+        },
+        "explanation": (
+            "In the idempotent monoid ({0,1}, OR), we have x ⊕ x = x. Thus 1 ⊕ 1 = 1."
+        ),
+    }
