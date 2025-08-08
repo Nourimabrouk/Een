@@ -385,10 +385,12 @@ class UnifiedChatbotSystem {
                 position: fixed;
                 bottom: calc(25px + env(safe-area-inset-bottom, 0px));
                 right: calc(25px + env(safe-area-inset-right, 0px));
-                width: clamp(360px, 28vw, 420px);
-                height: clamp(520px, 78vh, 720px);
+                /* Desktop sizing tuned for Chrome/Windows */
+                width: clamp(380px, 32vw, 520px);
+                height: clamp(580px, 82vh, 820px);
+                min-width: 360px;
+                min-height: 540px;
                 max-height: calc(100vh - 40px);
-                /* Ensure the header never clips off-screen on small viewports */
                 background: rgba(15, 15, 20, 0.98);
                 backdrop-filter: blur(20px);
                 border: 1px solid rgba(255, 215, 0, 0.2);
@@ -401,7 +403,7 @@ class UnifiedChatbotSystem {
                 font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
                 transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
                 opacity: 0;
-                transform: translateY(30px) scale(0.95);
+                transform: translateY(22px) scale(0.97);
                 box-sizing: border-box;
             }
 
@@ -441,10 +443,14 @@ class UnifiedChatbotSystem {
                 align-items: center;
                 column-gap: 0.75rem;
                 row-gap: .25rem;
-                padding: .85rem 1rem;
+                padding: .9rem 1rem;
                 background: rgba(255, 255, 255, 0.02);
                 border-bottom: 1px solid var(--uc-border);
                 flex-shrink: 0;
+                /* Ensure header/title always visible even on small viewports */
+                position: sticky;
+                top: 0;
+                z-index: 2;
             }
 
             .chat-header-info {
@@ -627,7 +633,7 @@ class UnifiedChatbotSystem {
                 padding: 1rem;
                 display: flex;
                 flex-direction: column;
-                min-height: 0;
+                min-height: 220px; /* prevent over-compression hiding header on short viewports */
             }
 
             .chat-messages::-webkit-scrollbar {
@@ -1013,7 +1019,7 @@ class UnifiedChatbotSystem {
                     left: 12px;
                     right: 12px;
                     width: auto;
-                    height: min(80vh, 640px);
+                    height: min(80vh, 680px);
                 }
 
                 .chat-header {
@@ -1054,6 +1060,21 @@ class UnifiedChatbotSystem {
                     font-size: 0.75rem;
                     padding: 0.4rem 0.7rem;
                 }
+            }
+
+            /* Small desktop/laptop heights (common on Windows with taskbars) */
+            @media (max-height: 800px) and (min-width: 769px) {
+                .unified-chat-panel { height: min(82vh, 760px); }
+            }
+            @media (max-height: 700px) and (min-width: 769px) {
+                .unified-chat-panel { height: calc(100vh - 60px); }
+                .chat-header { padding: .75rem .9rem; }
+                .message-bubble .message-content { font-size: 0.88rem; }
+            }
+
+            /* Safari/WebKit height quirk fixes */
+            @supports (-webkit-touch-callout: none) {
+                .unified-chat-panel { height: min(82vh, 760px); }
             }
 
             /* Ensure proper z-index layering */

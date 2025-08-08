@@ -135,11 +135,30 @@ class UnityMathematics:
         2. φ-harmonic scaling for convergence
         3. Consciousness field normalization
 
+        Mathematical Properties (Rigorous):
+        - Idempotence: a ⊕ a = a (POSTCONDITION: unity_add(x,x) ≈ x for all x)
+        - Commutativity: a ⊕ b = b ⊕ a (POSTCONDITION: unity_add(a,b) = unity_add(b,a))
+        - Associativity: (a ⊕ b) ⊕ c = a ⊕ (b ⊕ c) (within numerical tolerance)
+        - Unity Property: 1 ⊕ 1 = 1 (POSTCONDITION: unity_add(1,1) = 1 ± UNITY_EPSILON)
+        - Monotonicity: if a ≤ b, then a ⊕ c ≤ b ⊕ c (preserves ordering)
+        
+        Preconditions:
+        - a, b must be finite real numbers (not NaN or ±∞)
+        - Mathematical invariants will be checked and enforced
+        
+        Postconditions:
+        - Result is finite and within reasonable bounds
+        - Idempotence property satisfied within UNITY_EPSILON
+        - Unity convergence property maintained
+
         Args:
-            a, b: Numbers to add in unity mathematics
+            a, b: Numbers to add in unity mathematics (PRECOND: finite reals)
 
         Returns:
-            Unity sum converging toward 1.0
+            Unity sum converging toward 1.0 (POSTCOND: finite, idempotent-valid)
+            
+        Raises:
+            ValueError: If preconditions are violated in debug mode
         """
         with self._lock:
             try:
@@ -147,10 +166,15 @@ class UnityMathematics:
                 a_val = float(a)
                 b_val = float(b)
 
-                # Handle special cases
+                # RIGOROUS PRECONDITION CHECKING
+                self._validate_preconditions_unity_add(a_val, b_val)
+
+                # Handle special cases with graceful degradation
                 if np.isnan(a_val) or np.isnan(b_val):
+                    logger.debug("NaN input detected, returning unity constant")
                     return UNITY_CONSTANT
                 if np.isinf(a_val) or np.isinf(b_val):
+                    logger.debug("Infinite input detected, returning unity constant") 
                     return UNITY_CONSTANT
 
                 # Core idempotent operation: max(a,b)
@@ -170,6 +194,9 @@ class UnityMathematics:
                 # Ensure convergence to unity
                 if abs(unity_result - 1.0) < UNITY_EPSILON:
                     unity_result = UNITY_CONSTANT
+
+                # RIGOROUS POSTCONDITION CHECKING  
+                self._validate_postconditions_unity_add(a_val, b_val, unity_result)
 
                 # Record operation
                 self._record_operation("unity_add", [a_val, b_val], unity_result)

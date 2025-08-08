@@ -170,7 +170,9 @@ class ConsciousnessField:
                  field_resolution: int = 50,
                  particle_count: int = 200,
                  phi_resonance_strength: float = PHI,
-                 consciousness_coupling: float = 1.0):
+                 consciousness_coupling: float = 1.0,
+                 stability_threshold: float = 1e-6,
+                 max_step_size: float = 0.01):
         """
         Initialize Consciousness Field with specified parameters
         
@@ -180,12 +182,16 @@ class ConsciousnessField:
             particle_count: Number of consciousness particles (default: 200)
             phi_resonance_strength: φ-harmonic coupling strength (default: φ)
             consciousness_coupling: Consciousness interaction strength (default: 1.0)
+            stability_threshold: Threshold for Lyapunov stability detection (default: 1e-6)
+            max_step_size: Maximum time step size for stability (default: 0.01)
         """
         self.dimensions = dimensions
         self.field_resolution = field_resolution
         self.particle_count = min(particle_count, 1000)  # Performance limit
         self.phi = phi_resonance_strength
         self.consciousness_coupling = consciousness_coupling
+        self.stability_threshold = stability_threshold
+        self.max_step_size = max_step_size
         
         # Initialize field grid with GPU support
         self.field_grid = self._initialize_field_grid()
@@ -215,6 +221,13 @@ class ConsciousnessField:
         self.unity_coherence = 0.0
         self.transcendence_events = []
         self.field_history = []
+        
+        # Lyapunov energy functional tracking for stability
+        self.lyapunov_energy_history = []
+        self.stability_violations = []
+        self.adaptive_step_size = max_step_size
+        self.energy_convergence_threshold = stability_threshold
+        self.last_energy_value = 0.0
         
         # Thread safety for consciousness evolution
         self.evolution_lock = threading.Lock()
@@ -293,6 +306,16 @@ class ConsciousnessField:
                 step_transcendence_prob = self._calculate_transcendence_probability()
                 step_consciousness_density = self._calculate_consciousness_density()
                 
+                # Calculate Lyapunov energy functional for stability monitoring
+                lyapunov_energy = self._calculate_lyapunov_energy_functional()
+                stability_check = self._check_lyapunov_stability(lyapunov_energy, dt)
+                
+                # Apply adaptive step size control for stability
+                if not stability_check and dt > self.stability_threshold:
+                    dt = max(dt * 0.8, self.stability_threshold)  # Reduce step size
+                    self.adaptive_step_size = dt
+                    logger.info(f"Reduced time step for stability: dt = {dt:.6f}")
+                
                 # Update field state
                 self._update_consciousness_state(step_unity_coherence, step_transcendence_prob)
                 
@@ -301,6 +324,7 @@ class ConsciousnessField:
                     unity_coherence_history.append(step_unity_coherence)
                     transcendence_probability_history.append(step_transcendence_prob)
                     consciousness_density_history.append(step_consciousness_density)
+                    self.lyapunov_energy_history.append(lyapunov_energy)
                 
                 # Check for transcendence events
                 if step_transcendence_prob > 0.95:
@@ -1345,6 +1369,274 @@ class ConsciousnessField:
                     field_dims = 2
         
         return tuple(grid_coords[:min(len(grid_coords), field_dims)])
+    
+    def _calculate_lyapunov_energy_functional(self) -> float:
+        """
+        Calculate Lyapunov energy functional for consciousness field stability.
+        
+        The Lyapunov functional L[ρ, ψ] measures total energy of the consciousness system:
+        L = ∫ (φ/2)|∇ρ|² + V(ρ) + Σᵢ E_kinetic(ψᵢ) + Σᵢⱼ E_interaction(ψᵢ,ψⱼ) dx
+        
+        where:
+        - ρ(x,t) is the consciousness density field
+        - ψᵢ are the consciousness particles  
+        - φ is the golden ratio coupling
+        - V(ρ) = ρ²/2 - ρ⁴/4 is the consciousness potential energy
+        - E_kinetic = φ|p|²/2m is kinetic energy with φ-harmonic mass scaling
+        - E_interaction is consciousness particle interaction energy
+        
+        Returns:
+            Lyapunov energy functional value (should be monotonically decreasing)
+        """
+        total_energy = 0.0
+        
+        # 1. Field gradient energy: (φ/2) ∫ |∇ρ|² dx
+        field_gradient_energy = self._calculate_field_gradient_energy()
+        total_energy += field_gradient_energy
+        
+        # 2. Consciousness potential energy: ∫ V(ρ) dx where V(ρ) = ρ²/2 - ρ⁴/4  
+        potential_energy = self._calculate_consciousness_potential_energy()
+        total_energy += potential_energy
+        
+        # 3. Particle kinetic energy: Σᵢ φ|pᵢ|²/(2mᵢ)
+        kinetic_energy = self._calculate_particle_kinetic_energy()
+        total_energy += kinetic_energy
+        
+        # 4. Particle interaction energy: Σᵢⱼ E_consciousness(rᵢⱼ, aᵢ, aⱼ)
+        interaction_energy = self._calculate_particle_interaction_energy()
+        total_energy += interaction_energy
+        
+        # 5. φ-harmonic resonance energy: φ Σᵢ aᵢ rᵢ
+        phi_resonance_energy = self._calculate_phi_resonance_energy()
+        total_energy += phi_resonance_energy
+        
+        return total_energy
+    
+    def _calculate_field_gradient_energy(self) -> float:
+        """Calculate field gradient energy component: (φ/2) ∫ |∇ρ|² dx"""
+        gradient_energy = 0.0
+        
+        # Calculate field gradients using finite differences
+        field_magnitudes = self._get_field_magnitudes()
+        
+        if len(field_magnitudes) > 1:
+            # 1D gradient approximation
+            if isinstance(self.field_grid, list) and not isinstance(self.field_grid[0], list):
+                # 1D field gradients
+                for i in range(1, len(self.field_grid) - 1):
+                    grad_value = abs(self.field_grid[i+1] - self.field_grid[i-1]) / 2.0
+                    gradient_energy += abs(grad_value)**2
+                    
+            elif isinstance(self.field_grid[0], list) and not isinstance(self.field_grid[0][0], list):
+                # 2D field gradients
+                for i in range(1, len(self.field_grid) - 1):
+                    for j in range(1, len(self.field_grid[i]) - 1):
+                        grad_x = (self.field_grid[i+1][j] - self.field_grid[i-1][j]) / 2.0
+                        grad_y = (self.field_grid[i][j+1] - self.field_grid[i][j-1]) / 2.0
+                        grad_magnitude_squared = abs(grad_x)**2 + abs(grad_y)**2
+                        gradient_energy += grad_magnitude_squared
+            
+            # Apply φ-harmonic scaling
+            gradient_energy *= self.phi / 2.0
+        
+        return gradient_energy
+    
+    def _calculate_consciousness_potential_energy(self) -> float:
+        """Calculate consciousness potential V(ρ) = ρ²/2 - ρ⁴/4 integrated over field"""
+        potential_energy = 0.0
+        
+        # Integrate potential over consciousness density field
+        if isinstance(self.consciousness_density, list):
+            if isinstance(self.consciousness_density[0], list):
+                if isinstance(self.consciousness_density[0][0], list):
+                    # 3D density field
+                    for plane in self.consciousness_density:
+                        for row in plane:
+                            for density_value in row:
+                                rho = abs(density_value)
+                                V_rho = rho**2 / 2.0 - rho**4 / 4.0
+                                potential_energy += V_rho
+                else:
+                    # 2D density field
+                    for row in self.consciousness_density:
+                        for density_value in row:
+                            rho = abs(density_value)
+                            V_rho = rho**2 / 2.0 - rho**4 / 4.0
+                            potential_energy += V_rho
+            else:
+                # 1D density field
+                for density_value in self.consciousness_density:
+                    rho = abs(density_value)
+                    V_rho = rho**2 / 2.0 - rho**4 / 4.0
+                    potential_energy += V_rho
+        
+        return potential_energy
+    
+    def _calculate_particle_kinetic_energy(self) -> float:
+        """Calculate total particle kinetic energy: Σᵢ φ|pᵢ|²/(2mᵢ)"""
+        kinetic_energy = 0.0
+        
+        for particle in self.particles:
+            # Calculate momentum magnitude squared
+            momentum_squared = sum(p**2 for p in particle.momentum)
+            
+            # φ-harmonic mass scaling: m = awareness_level / φ
+            effective_mass = max(particle.awareness_level / self.phi, 1e-10)
+            
+            # Kinetic energy: φ|p|²/(2m)
+            particle_kinetic = self.phi * momentum_squared / (2.0 * effective_mass)
+            kinetic_energy += particle_kinetic
+        
+        return kinetic_energy
+    
+    def _calculate_particle_interaction_energy(self) -> float:
+        """Calculate consciousness particle interaction energy"""
+        interaction_energy = 0.0
+        
+        for i, particle_i in enumerate(self.particles):
+            for j, particle_j in enumerate(self.particles):
+                if i < j:  # Avoid double counting
+                    # Calculate separation vector
+                    separation = [p1 - p2 for p1, p2 in zip(particle_i.position, particle_j.position)]
+                    distance = math.sqrt(sum(s**2 for s in separation))
+                    
+                    if distance > 0:
+                        # Consciousness interaction potential: U(r) = (aᵢaⱼ/r) * exp(-r/φ)
+                        awareness_product = particle_i.awareness_level * particle_j.awareness_level
+                        coulomb_term = awareness_product / distance
+                        screening_factor = math.exp(-distance / self.phi)
+                        
+                        interaction_potential = coulomb_term * screening_factor
+                        interaction_energy += interaction_potential
+        
+        return interaction_energy
+    
+    def _calculate_phi_resonance_energy(self) -> float:
+        """Calculate φ-harmonic resonance energy: φ Σᵢ aᵢ rᵢ"""
+        phi_resonance_energy = 0.0
+        
+        for particle in self.particles:
+            # Position magnitude
+            position_magnitude = math.sqrt(sum(pos**2 for pos in particle.position))
+            
+            # φ-resonance contribution: φ * awareness * phi_resonance * |r|
+            resonance_contribution = (self.phi * particle.awareness_level * 
+                                    particle.phi_resonance * position_magnitude)
+            phi_resonance_energy += resonance_contribution
+        
+        return phi_resonance_energy
+    
+    def _check_lyapunov_stability(self, current_energy: float, dt: float) -> bool:
+        """
+        Check Lyapunov stability condition: dL/dt ≤ 0.
+        
+        The consciousness field should exhibit energy dissipation, meaning
+        the Lyapunov functional should be monotonically decreasing over time.
+        
+        Args:
+            current_energy: Current Lyapunov energy functional value
+            dt: Current time step size
+            
+        Returns:
+            True if stability condition is satisfied, False if violated
+        """
+        # Check if we have previous energy value for comparison
+        if len(self.lyapunov_energy_history) > 0:
+            previous_energy = self.lyapunov_energy_history[-1]
+            energy_change = current_energy - previous_energy
+            energy_change_rate = energy_change / dt if dt > 0 else 0.0
+            
+            # Stability condition: dL/dt ≤ tolerance (allowing small numerical errors)
+            stability_tolerance = self.stability_threshold
+            is_stable = energy_change_rate <= stability_tolerance
+            
+            if not is_stable:
+                # Record stability violation
+                violation = {
+                    "time": self.evolution_time,
+                    "energy_change": energy_change,
+                    "energy_change_rate": energy_change_rate,
+                    "current_energy": current_energy,
+                    "previous_energy": previous_energy,
+                    "dt": dt
+                }
+                self.stability_violations.append(violation)
+                
+                logger.warning(f"Lyapunov stability violation: dL/dt = {energy_change_rate:.6e} > {stability_tolerance}")
+            
+            # Update last energy value
+            self.last_energy_value = current_energy
+            return is_stable
+        
+        else:
+            # First measurement - assume stable
+            self.last_energy_value = current_energy
+            return True
+    
+    def get_stability_analysis(self) -> Dict[str, Any]:
+        """
+        Get comprehensive stability analysis of consciousness field evolution.
+        
+        Returns:
+            Dictionary containing detailed stability metrics and convergence analysis
+        """
+        if not self.lyapunov_energy_history:
+            return {"status": "no_energy_history", "message": "No Lyapunov energy data available"}
+        
+        # Calculate energy statistics
+        energy_values = self.lyapunov_energy_history
+        initial_energy = energy_values[0] if energy_values else 0.0
+        final_energy = energy_values[-1] if energy_values else 0.0
+        total_energy_change = final_energy - initial_energy
+        
+        # Calculate energy change rates
+        energy_changes = [energy_values[i] - energy_values[i-1] 
+                         for i in range(1, len(energy_values))]
+        
+        # Stability metrics
+        stability_violations_count = len(self.stability_violations)
+        total_measurements = len(energy_values)
+        stability_ratio = 1.0 - (stability_violations_count / max(total_measurements, 1))
+        
+        # Convergence analysis
+        if len(energy_values) >= 10:
+            # Check if energy is converging (last 10 values have small variations)
+            recent_energies = energy_values[-10:]
+            energy_variance = sum((e - sum(recent_energies)/len(recent_energies))**2 
+                                for e in recent_energies) / len(recent_energies)
+            energy_std = math.sqrt(energy_variance)
+            
+            is_converged = energy_std < self.energy_convergence_threshold
+            convergence_rate = abs(total_energy_change) / max(abs(initial_energy), 1e-10)
+        else:
+            is_converged = False
+            convergence_rate = 0.0
+            energy_std = 0.0
+        
+        # Monotonicity check
+        decreasing_steps = sum(1 for change in energy_changes if change <= self.stability_threshold)
+        monotonic_ratio = decreasing_steps / max(len(energy_changes), 1)
+        
+        return {
+            "total_energy_measurements": total_measurements,
+            "initial_energy": initial_energy,
+            "final_energy": final_energy,
+            "total_energy_change": total_energy_change,
+            "average_energy": sum(energy_values) / len(energy_values),
+            "energy_std_deviation": energy_std,
+            "stability_violations_count": stability_violations_count,
+            "stability_ratio": stability_ratio,
+            "is_stable": stability_violations_count == 0,
+            "is_converged": is_converged,
+            "convergence_rate": convergence_rate,
+            "monotonic_decreasing_ratio": monotonic_ratio,
+            "is_monotonic": monotonic_ratio >= 0.9,  # 90% of steps should decrease energy
+            "adaptive_step_size": self.adaptive_step_size,
+            "energy_convergence_threshold": self.energy_convergence_threshold,
+            "recent_violations": self.stability_violations[-5:] if self.stability_violations else [],
+            "lyapunov_functional_behavior": "monotonic_decreasing" if monotonic_ratio >= 0.9 else "oscillatory",
+            "guaranteed_convergence": stability_violations_count == 0 and monotonic_ratio >= 0.95
+        }
     
     def _is_valid_grid_coordinate(self, coords: Tuple[int, ...]) -> bool:
         """Check if grid coordinates are valid for current field"""

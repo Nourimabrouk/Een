@@ -835,9 +835,22 @@ class UnifiedNavigationSystem {
         const allFooters = Array.from(document.querySelectorAll('footer'));
         const isSpecial = (el) => el.classList.contains('proof-footer') || el.classList.contains('dashboard-footer') || el.classList.contains('unity-footer');
 
-        // Collect links from existing footers (to preserve all)
+        // 1) Aggressive de-dup for Metastation Hub: keep ONLY the polished site footer
+        if (this.currentPage === 'metastation-hub.html') {
+            // Remove every footer except an existing .site-footer (if any)
+            const existingSiteFooter = document.querySelector('footer.site-footer');
+            allFooters.forEach(f => {
+                if (existingSiteFooter && f === existingSiteFooter) return;
+                try { f.remove(); } catch (_) { }
+            });
+        }
+
+        // Re-scan after any removals
+        const footersNow = Array.from(document.querySelectorAll('footer'));
+
+        // 2) Collect links from whatever remains (to preserve helpful links)
         const collected = [];
-        allFooters.forEach(f => {
+        footersNow.forEach(f => {
             const links = Array.from(f.querySelectorAll('a[href]'));
             links.forEach(a => {
                 const href = a.getAttribute('href');
@@ -846,7 +859,7 @@ class UnifiedNavigationSystem {
             });
         });
 
-        // Deduplicate and exclude base footer links
+        // 3) Deduplicate and exclude base footer links
         const seen = new Set();
         const additionalLinks = collected.filter(({ href }) => {
             if (this.baseFooterLinks.has(href)) return false;
@@ -855,23 +868,24 @@ class UnifiedNavigationSystem {
             return true;
         });
 
-        // Choose a target footer to render into
-        let target = document.querySelector('.site-footer');
+        // 4) Choose a target footer to render into (prefer an existing .site-footer)
+        let target = document.querySelector('footer.site-footer');
         if (!target) {
-            target = allFooters.find(f => !isSpecial(f)) || null;
+            target = footersNow.find(f => !isSpecial(f)) || null;
         }
         if (!target) {
             target = document.createElement('footer');
             document.body.appendChild(target);
         }
 
-        // Remove any duplicate non-special footers except the target
-        allFooters.forEach(f => {
-            if (f !== target && !isSpecial(f)) {
+        // 5) Remove any other footers to avoid duplicates on all pages
+        Array.from(document.querySelectorAll('footer')).forEach(f => {
+            if (f !== target) {
                 try { f.remove(); } catch (_) { }
             }
         });
 
+        // 6) Render the polished, unified footer
         target.classList.add('site-footer');
         target.setAttribute('role', 'contentinfo');
         target.innerHTML = this.generateFooterHTML(additionalLinks);
