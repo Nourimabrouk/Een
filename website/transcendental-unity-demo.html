@@ -132,8 +132,8 @@
             border-radius: 50px;
             padding: 12px 24px;
             margin-bottom: 30px;
-            backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
             animation: pulse-glow 3s ease-in-out infinite alternate;
         }
 
@@ -699,6 +699,8 @@
 
     <!-- Site-wide safe enhancements -->
     <script src="../js/site.js" defer></script>
+    <!-- Visualization runtime (progressive enhancement) -->
+    <script type="module" src="../js/visualizers/auto_init.js"></script>
 
     <style>
         /* Mobile touch optimizations */

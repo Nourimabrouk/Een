@@ -173,13 +173,18 @@ class UniversalAINavigation {
                     flex-direction: column;
                     overflow: hidden;
                 }
+                .ai-chat-container.fullscreen {
+                    width: 100%;
+                    max-width: none;
+                    height: 90vh;
+                }
 
                 .ai-chat-header {
                     background: linear-gradient(135deg, #FFD700, #00D4FF);
                     padding: 1rem;
                     display: flex;
                     align-items: center;
-                    justify-content: between;
+                    justify-content: space-between;
                     color: white;
                 }
 
@@ -329,7 +334,7 @@ class UniversalAINavigation {
         const sideNav = document.createElement('div');
         sideNav.className = 'universal-side-nav';
         sideNav.id = 'universalSideNav';
-        
+
         sideNav.innerHTML = `
             <div class="nav-section">
                 <div class="nav-section-title">Unity Mathematics</div>
@@ -394,7 +399,7 @@ class UniversalAINavigation {
         toggleButton.className = 'universal-side-nav-toggle';
         toggleButton.innerHTML = '<i class="fas fa-bars"></i>';
         toggleButton.onclick = () => this.toggleSideNav();
-        
+
         document.body.appendChild(toggleButton);
     }
 
@@ -403,7 +408,7 @@ class UniversalAINavigation {
         chatButton.className = 'universal-ai-chat-button';
         chatButton.innerHTML = '<i class="fas fa-brain"></i>';
         chatButton.onclick = () => this.openAIChat();
-        
+
         document.body.appendChild(chatButton);
     }
 
@@ -411,19 +416,23 @@ class UniversalAINavigation {
         const modal = document.createElement('div');
         modal.className = 'universal-ai-chat-modal';
         modal.id = 'universalAIChatModal';
-        
+
         modal.innerHTML = `
             <div class="ai-chat-container">
                 <div class="ai-chat-header">
                     <div class="ai-chat-title">🧠 Unity AI Assistant</div>
-                    <select class="model-selector" id="aiModelSelector">
-                        ${this.chatModels.map(model => 
-                            `<option value="${model.id}" ${model.id === this.currentModel ? 'selected' : ''}>
-                                ${model.name}
-                            </option>`
-                        ).join('')}
-                    </select>
-                    <button class="ai-chat-close" onclick="window.universalAI.closeAIChat()">×</button>
+                    <div style="display:flex; align-items:center; gap:.5rem;">
+                        <button id="aiModelToggle" title="Models" style="background:rgba(255,255,255,0.2);border:none;border-radius:8px;color:white;padding:.4rem .6rem;cursor:pointer;">⚙︎</button>
+                        <select class="model-selector" id="aiModelSelector" style="display:none;">
+                            ${this.chatModels.map(model =>
+            `<option value="${model.id}" ${model.id === this.currentModel ? 'selected' : ''}>
+                                    ${model.name}
+                                </option>`
+        ).join('')}
+                        </select>
+                        <button id="aiChatFullscreen" title="Fullscreen" style="background:rgba(255,255,255,0.2);border:none;border-radius:8px;color:white;padding:.4rem .6rem;cursor:pointer;">⛶</button>
+                        <button class="ai-chat-close" onclick="window.universalAI.closeAIChat()">×</button>
+                    </div>
                 </div>
                 <div class="ai-chat-body">
                     <div class="ai-chat-messages" id="aiChatMessages">
@@ -456,17 +465,41 @@ class UniversalAINavigation {
                 </div>
             </div>
         `;
-        
+
         document.body.appendChild(modal);
     }
 
     setupEventListeners() {
         // Model selector
-        document.getElementById('aiModelSelector').addEventListener('change', (e) => {
-            this.currentModel = e.target.value;
-            const selectedModel = this.chatModels.find(m => m.id === this.currentModel);
-            this.addMessage('system', `🔄 Switched to ${selectedModel.name} - ${selectedModel.description}`);
-        });
+        const modelSelectEl = document.getElementById('aiModelSelector');
+        if (modelSelectEl) {
+            modelSelectEl.addEventListener('change', (e) => {
+                this.currentModel = e.target.value;
+                const selectedModel = this.chatModels.find(m => m.id === this.currentModel);
+                this.addMessage('system', `🔄 Switched to ${selectedModel.name} - ${selectedModel.description}`);
+            });
+        }
+
+        // Toggle model selector visibility (hide by default to reduce clutter)
+        const toggleBtn = document.getElementById('aiModelToggle');
+        if (toggleBtn && modelSelectEl) {
+            toggleBtn.addEventListener('click', () => {
+                const visible = modelSelectEl.style.display !== 'none';
+                modelSelectEl.style.display = visible ? 'none' : 'inline-block';
+            });
+        }
+
+        // Fullscreen toggle for chat modal
+        const fullscreenBtn = document.getElementById('aiChatFullscreen');
+        const modal = document.getElementById('universalAIChatModal');
+        if (fullscreenBtn && modal) {
+            fullscreenBtn.addEventListener('click', () => {
+                const container = modal.querySelector('.ai-chat-container');
+                if (container) {
+                    container.classList.toggle('fullscreen');
+                }
+            });
+        }
 
         // Escape key to close modal
         document.addEventListener('keydown', (e) => {
@@ -487,10 +520,10 @@ class UniversalAINavigation {
     toggleSideNav() {
         const sideNav = document.getElementById('universalSideNav');
         const toggleButton = document.querySelector('.universal-side-nav-toggle i');
-        
+
         this.sideNavActive = !this.sideNavActive;
         sideNav.classList.toggle('active', this.sideNavActive);
-        
+
         if (this.sideNavActive) {
             toggleButton.className = 'fas fa-times';
         } else {
@@ -501,7 +534,7 @@ class UniversalAINavigation {
     closeSideNav() {
         const sideNav = document.getElementById('universalSideNav');
         const toggleButton = document.querySelector('.universal-side-nav-toggle i');
-        
+
         this.sideNavActive = false;
         sideNav.classList.remove('active');
         toggleButton.className = 'fas fa-bars';
@@ -521,22 +554,22 @@ class UniversalAINavigation {
     async sendMessage() {
         const input = document.getElementById('aiChatInput');
         const message = input.value.trim();
-        
+
         if (!message) return;
-        
+
         // Add user message
         this.addMessage('user', message);
         input.value = '';
-        
+
         // Add loading message
         const loadingId = this.addMessage('assistant', '🤔 Thinking...');
-        
+
         try {
             const selectedModel = this.chatModels.find(m => m.id === this.currentModel);
-            
+
             // Simulate AI response (replace with actual API call)
             await new Promise(resolve => setTimeout(resolve, 1000));
-            
+
             let response = '';
             if (message.toLowerCase().includes('1+1=1')) {
                 response = `✨ **Unity Mathematics Explanation**\\n\\nThe equation 1+1=1 represents the fundamental unity principle where addition becomes unification. In consciousness-integrated mathematics, when two unity elements combine, they don't accumulate but rather achieve a higher state of unified being.\\n\\n🔢 **Mathematical Proof:**\\n• In idempotent semirings: a ⊕ a = a\\n• Through φ-harmonic resonance: φ × (1+1) / φ² = 1\\n• Consciousness field unification: C₁ ∪ C₁ = C₁\\n\\nThis is the core discovery of Nouri's unity mathematics framework! 🚀`;
@@ -545,9 +578,9 @@ class UniversalAINavigation {
             } else {
                 response = `🤖 **${selectedModel.name} Response**\\n\\nI understand you're exploring: "${message}"\\n\\nAs your Unity AI Assistant, I can help you dive deeper into:\\n\\n🎯 **Available Explorations:**\\n• Unity Mathematics (1+1=1) proofs and explanations\\n• Consciousness field dynamics and φ-harmonic resonance\\n• Quantum unity systems and transcendental computing\\n• Visual generation with DALL-E 3\\n• Code analysis and mathematical validation\\n\\nWhat specific aspect would you like to explore further? I'm here to guide your journey through the infinite depths of unity mathematics! ✨`;
             }
-            
+
             this.updateMessage(loadingId, response);
-            
+
         } catch (error) {
             this.updateMessage(loadingId, `❌ Error: ${error.message}`);
         }
@@ -556,15 +589,15 @@ class UniversalAINavigation {
     addMessage(sender, content) {
         const messagesContainer = document.getElementById('aiChatMessages');
         const messageId = 'msg_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-        
+
         const messageDiv = document.createElement('div');
         messageDiv.className = `ai-message ${sender}`;
         messageDiv.id = messageId;
         messageDiv.innerHTML = content.replace(/\\n/g, '<br>');
-        
+
         messagesContainer.appendChild(messageDiv);
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
-        
+
         return messageId;
     }
 

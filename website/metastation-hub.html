@@ -27,7 +27,10 @@
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Unified Navigation & AI System (Replaces all other nav systems) -->
+    <!-- Unified Navigation & AI System (Replaces all other nav systems)
+         Note: On this page we already render a custom nav. To avoid duplicate
+         bars and spacing clashes (esp. on Chrome/Windows), we keep the script
+         but hide its injected nav via a scoped CSS override below. -->
     <script src="js/unified-navigation-system.js" defer></script>
 
     <!-- Unified Chatbot System (Replaces all chat implementations) -->
@@ -72,7 +75,8 @@
             overflow-x: hidden;
             position: relative;
             min-height: 100vh;
-            padding-top: 70px;
+            padding-top: 80px;
+            /* extra headroom for fixed nav on Chrome/Windows */
             /* Account for fixed navigation */
         }
 
@@ -210,7 +214,7 @@
             -webkit-backdrop-filter: blur(20px);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border-glow);
-            z-index: 1000;
+            z-index: 1001;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -229,8 +233,11 @@
 
         .nav-menu {
             display: flex;
-            gap: 2rem;
+            gap: 1.25rem;
+            /* tighter spacing to prevent clash with title */
             list-style: none;
+            align-items: center;
+            flex-wrap: nowrap;
         }
 
         .nav-dropdown {
@@ -616,6 +623,8 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
+
+            /* Hide any injected enhanced nav on small screens to avoid duplicates */
             .nav-menu {
                 display: none;
             }
@@ -719,6 +728,20 @@
             100% {
                 transform: rotate(360deg);
             }
+        }
+
+        /* Hide the auto-injected enhanced nav on this page to prevent duplicate top bars */
+        .enhanced-nav {
+            display: none !important;
+        }
+
+        /* Enforce bottom-right placement for any chat buttons, across variants */
+        .universal-ai-chat-button,
+        #persistent-chat-button,
+        #floating-ai-chat-button,
+        .ai-chat-button {
+            right: 2rem !important;
+            left: auto !important;
         }
     </style>
 </head>
@@ -1399,8 +1422,8 @@
             reset() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.vx = (Math.random() - 0.5) * 2;
-                this.vy = (Math.random() - 0.5) * 2;
+                this.vx = (Math.random() - 0.5) * 1.2; // slower movement
+                this.vy = (Math.random() - 0.5) * 1.2; // slower movement
                 this.radius = Math.random() * 3 + 1;
                 this.color = Math.random() > 0.5 ? '#FFD700' : '#00D4FF';
                 this.life = 1;
@@ -1419,8 +1442,8 @@
                 const distance = Math.sqrt(dx * dx + dy * dy);
 
                 if (distance > 10) {
-                    this.vx += dx / distance * 0.1;
-                    this.vy += dy / distance * 0.1;
+                    this.vx += dx / distance * 0.06; // gentler attraction
+                    this.vy += dy / distance * 0.06;
                 }
 
                 // PHI resonance
@@ -1491,7 +1514,7 @@
             ctx.fillText('1+1=1', canvas.width / 2, canvas.height / 2);
             ctx.restore();
 
-            wavePhase += 0.02;
+            wavePhase += 0.008; // slower global waveform speed
             requestAnimationFrame(drawConsciousnessField);
         }
 
