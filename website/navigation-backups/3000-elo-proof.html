@@ -778,15 +778,13 @@
                 if (typeof eenChat === 'undefined') {
                     // Load AI chat integration script
                     const script = document.createElement('script');
-                    script.src = 'js/ai-chat-integration.js';
+                    script.src = 'js/unified-chatbot-system.js';
                     script.onload = () => {
                         // Initialize the chat system
-                        window.eenChat = new EenAIChat({
-                            apiEndpoint: '/api/chat',
-                            enableMath: true,
-                            enableVisualization: true
-                        });
-                        eenChat.toggleChat();
+                        if (window.UnifiedChatbotSystem) {
+                            const u = new UnifiedChatbotSystem();
+                            u.toggle();
+                        }
                     };
                     document.head.appendChild(script);
                 } else {

@@ -811,37 +811,30 @@ const navigationScript = `
             }
 
             function openAIChat() {
-                // Initialize AI chat if not already done
-                if (typeof window.eenChat === 'undefined' || !window.eenChat) {
-                    // Check if EenAIChat class is available
-                    if (typeof EenAIChat !== 'undefined') {
-                        // Initialize the chat system directly
-                        window.eenChat = EenAIChat.initialize();
-                        setTimeout(() => {
-                            if (window.eenChat) {
-                                window.eenChat.open();
-                            }
-                        }, 100);
-                    } else {
-                        // Load AI chat integration script
-                        const script = document.createElement('script');
-                        script.src = 'js/ai-chat-integration.js';
-                        script.onload = () => {
-                            setTimeout(() => {
-                                if (window.eenChat) {
-                                    window.eenChat.open();
-                                }
-                            }, 100);
-                        };
-                        script.onerror = () => {
-                            console.error('Failed to load AI chat integration');
-                            alert('AI Chat is currently unavailable. Please try again later.');
-                        };
-                        document.head.appendChild(script);
+                // Unified: load or toggle the unified chatbot system
+                const ensureUnified = () => {
+                    if (window.unifiedChatbot && typeof window.unifiedChatbot.toggleChat === 'function') {
+                        window.unifiedChatbot.toggleChat();
+                        return true;
                     }
-                } else {
-                    window.eenChat.open();
-                }
+                    return false;
+                };
+
+                if (ensureUnified()) return;
+
+                const script = document.createElement('script');
+                script.src = 'js/unified-chatbot-system.js';
+                script.defer = true;
+                script.onload = () => {
+                    setTimeout(() => {
+                        ensureUnified();
+                    }, 50);
+                };
+                script.onerror = () => {
+                    console.error('Failed to load unified chatbot');
+                    alert('AI Chat is currently unavailable. Please try again later.');
+                };
+                document.head.appendChild(script);
             }
         });
     </script>

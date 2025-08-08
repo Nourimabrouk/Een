@@ -162,9 +162,10 @@ class FinalLaunchCheck {
 
         // Check AI chat scripts
         const aiChatScripts = [
-            'enhanced-ai-chat-modal.js',
-            'enhanced-consciousness-chat.js',
-            'ai-unified-integration.js'
+            // Legacy chatbot files removed in favor of unified-chatbot-system.js
+            // 'enhanced-ai-chat-modal.js',
+            // 'enhanced-consciousness-chat.js',
+            // 'ai-unified-integration.js'
         ];
 
         aiChatScripts.forEach(script => {

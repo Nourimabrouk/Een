@@ -40,7 +40,7 @@ const htmlFiles = [
 const navigationScripts = `
     <!-- Enhanced Navigation System -->
     <script src="shared-navigation.js"></script>
-    <script src="js/ai-chat-integration.js"></script>
+    <script src="js/unified-chatbot-system.js" defer></script>
 `;
 
 // Body padding adjustment for fixed navigation
@@ -75,7 +75,7 @@ function updateHTMLFile(filePath) {
             const bodyMatch = content.match(/<body[^>]*>/);
             if (bodyMatch) {
                 const insertAfter = bodyMatch.index + bodyMatch[0].length;
-                content = content.slice(0, insertAfter) + 
+                content = content.slice(0, insertAfter) +
                     '\n    <!-- Navigation will be injected by shared-navigation.js -->\n    <div id="navigation-placeholder"></div>\n' +
                     content.slice(insertAfter);
                 updated = true;
@@ -87,7 +87,7 @@ function updateHTMLFile(filePath) {
             const headCloseMatch = content.match(/<\/head>/);
             if (headCloseMatch) {
                 const insertBefore = headCloseMatch.index;
-                content = content.slice(0, insertBefore) + 
+                content = content.slice(0, insertBefore) +
                     navigationScripts + '\n' +
                     content.slice(insertBefore);
                 updated = true;
@@ -99,7 +99,7 @@ function updateHTMLFile(filePath) {
             const headCloseMatch = content.match(/<\/head>/);
             if (headCloseMatch) {
                 const insertBefore = headCloseMatch.index;
-                content = content.slice(0, insertBefore) + 
+                content = content.slice(0, insertBefore) +
                     bodyPaddingCSS + '\n' +
                     content.slice(insertBefore);
                 updated = true;
@@ -111,7 +111,7 @@ function updateHTMLFile(filePath) {
             const bodyCloseMatch = content.match(/<\/body>/);
             if (bodyCloseMatch) {
                 const insertBefore = bodyCloseMatch.index;
-                content = content.slice(0, insertBefore) + 
+                content = content.slice(0, insertBefore) +
                     '\n    <!-- Footer will be injected by shared-navigation.js -->\n    <div id="footer-placeholder"></div>\n' +
                     content.slice(insertBefore);
                 updated = true;
@@ -134,7 +134,7 @@ function main() {
     console.log('🚀 Starting navigation update process...\n');
 
     const websiteDir = __dirname;
-    
+
     htmlFiles.forEach(fileName => {
         const filePath = path.join(websiteDir, fileName);
         updateHTMLFile(filePath);

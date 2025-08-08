@@ -20,19 +20,29 @@
 }
 
 /* Touch Target Optimization */
-button, a, input[type="button"], input[type="submit"], input[type="reset"], 
-.nav-link, .btn, .feature-card {
+button,
+a,
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+.nav-link,
+.btn,
+.feature-card {
     min-height: 44px !important;
     min-width: 44px !important;
 }
 
 /* Mobile Font Size (prevents zoom on iOS) */
 @media (max-width: 768px) {
-    input, textarea, select {
+
+    input,
+    textarea,
+    select {
         font-size: 16px !important;
     }
-    
-    .btn, .nav-link {
+
+    .btn,
+    .nav-link {
         font-size: 16px !important;
         padding: 12px 16px !important;
     }
@@ -54,22 +64,9 @@ button, a, input[type="button"], input[type="submit"], input[type="reset"],
     color: #CCCCCC !important;
 }
 
-/* Skip Link */
+/* Skip Link removed on hub to reduce clutter */
 .skip-link {
-    position: absolute;
-    top: -40px;
-    left: 6px;
-    background: #FFD700;
-    color: #000000;
-    padding: 8px 16px;
-    text-decoration: none;
-    z-index: 10000;
-    border-radius: 4px;
-    font-weight: 600;
-}
-
-.skip-link:focus {
-    top: 6px;
+    display: none !important;
 }
 
 /* Screen Reader Only */
@@ -87,7 +84,10 @@ button, a, input[type="button"], input[type="submit"], input[type="reset"],
 
 /* Reduced Motion Support */
 @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
+
+    *,
+    *::before,
+    *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
@@ -101,4 +101,4 @@ button, a, input[type="button"], input[type="submit"], input[type="reset"],
         outline: 3px solid #FFFF00 !important;
         outline-offset: 3px !important;
     }
-} 
+}

@@ -164,22 +164,6 @@ class UnifiedNavigationSystem {
                             </a>
                         </div>
 
-                    <div class="nav-item">
-                        <button class="nav-dropdown-toggle" type="button">
-                            Examples <i class="fas fa-chevron-down"></i>
-                        </button>
-                        <div class="nav-dropdown">
-                            <a href="examples/unity-calculator.html" class="nav-dropdown-link">
-                                <i class="fas fa-calculator"></i> Unity Calculator
-                            </a>
-                            <a href="examples/phi-harmonic-explorer.html" class="nav-dropdown-link">
-                                <i class="fas fa-wave-square"></i> φ‑Harmonic Explorer
-                            </a>
-                            <a href="examples/index.html" class="nav-dropdown-link">
-                                <i class="fas fa-flask"></i> Examples Home
-                            </a>
-                        </div>
-                    </div>
                     </div>
 
                     <div class="nav-item">
@@ -259,6 +243,18 @@ class UnifiedNavigationSystem {
                              </a>
                              <a href="mobile-app.html" class="nav-dropdown-link">
                                  <i class="fas fa-mobile-alt"></i> Mobile App
+                             </a>
+                             <div class="nav-dropdown-link" style="pointer-events:none; opacity:0.85; font-weight:700; margin-top:0.25rem;">
+                                 <i class="fas fa-flask"></i> Examples
+                             </div>
+                             <a href="examples/unity-calculator.html" class="nav-dropdown-link">
+                                 <i class="fas fa-calculator"></i> Unity Calculator
+                             </a>
+                             <a href="examples/phi-harmonic-explorer.html" class="nav-dropdown-link">
+                                 <i class="fas fa-wave-square"></i> φ‑Harmonic Explorer
+                             </a>
+                             <a href="examples/index.html" class="nav-dropdown-link">
+                                 <i class="fas fa-flask"></i> Examples Home
                              </a>
                         </div>
                     </div>

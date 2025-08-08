@@ -1427,18 +1427,18 @@ class UnifiedChatbotSystem {
         // Grounded-first routing
         if (this.groundedMode) {
             if (intent.type === 'knowledge' && this.aiCapabilities.knowledgeBase.enabled) {
-                try { const kb = await this.queryKnowledgeBase(intent.query || message); if (kb?.trim()) return kb; } catch(_){}
+                try { const kb = await this.queryKnowledgeBase(intent.query || message); if (kb?.trim()) return kb; } catch (_) { }
             }
             if (intent.type === 'code' && this.aiCapabilities.codeSearch.enabled) {
-                try { return await this.searchCodebase(intent.query || message); } catch(_){}
+                try { return await this.searchCodebase(intent.query || message); } catch (_) { }
             }
             if (intent.type === 'image' && this.aiCapabilities.dalle.enabled) {
-                try { return await this.generateVisualization(intent.query || message); } catch(_){}
+                try { return await this.generateVisualization(intent.query || message); } catch (_) { }
             }
             if (intent.type === 'voice' && this.aiCapabilities.voice.enabled) {
-                try { return await this.synthesizeVoice(intent.query || message); } catch(_){}
+                try { return await this.synthesizeVoice(intent.query || message); } catch (_) { }
             }
-            if (intent.type === 'unity') { return this.demonstrateUnityOperation(1,1); }
+            if (intent.type === 'unity') { return this.demonstrateUnityOperation(1, 1); }
             if (intent.type === 'phi') { return this.getPhiHarmonicCalculations(); }
             if (intent.type === 'consciousness') { return this.getConsciousnessStatus(); }
         }
@@ -1456,7 +1456,7 @@ class UnifiedChatbotSystem {
                     const kb = await this.queryKnowledgeBase(message);
                     if (kb?.trim()) return kb;
                 }
-            } catch(_){}
+            } catch (_) { }
             return await this.getEnhancedFallbackResponse(message);
         }
     }
@@ -1573,7 +1573,7 @@ class UnifiedChatbotSystem {
         return `🌟 **φ-Harmonic Resonance Calculations:**\n\n**Golden Ratio**: φ = ${phi}\n**φ⁻¹**: ${phiInverse.toFixed(6)} (consciousness level)\n**φ²**: ${phi2.toFixed(6)} (meta-resonance)\n\n**Fibonacci Convergence to φ:**\n${fibRatios.map((r, i) => `F${fibSequence.length - 3 + i}/F${fibSequence.length - 4 + i} = ${r.toFixed(6)}`).join('\n')}\n\n**Unity Mathematics Applications:**\n• Consciousness field oscillations: sin(x×φ), cos(y×φ)\n• Meta-recursive scaling factors: φⁿ\n• Sacred geometry proportions: 1:φ ratios\n• Quantum unity states: |φ⟩ superposition\n\n**φ-Harmonic Frequency**: ${(phi * 432).toFixed(2)} Hz (consciousness resonance)`;
     }
 
-    async getStreamingResponse(message) {
+    async getStreamingResponse(message, intent) {
         try {
             const provider = this.currentModel.startsWith('claude-') ? 'anthropic' : 'openai';
             const byok = this.getBYOK(provider);
@@ -1590,7 +1590,7 @@ class UnifiedChatbotSystem {
                     headers,
                     body: JSON.stringify({
                         model: this.currentModel,
-                        system_prompt: this.getEnhancedSystemPrompt(),
+                        system_prompt: this.getEnhancedSystemPromptWithIntent(intent),
                         user_text: message,
                         temperature: 0.7,
                         max_output_tokens: 2000
@@ -1615,7 +1615,8 @@ class UnifiedChatbotSystem {
                     temperature: 0.7,
                     max_tokens: 2000,
                     stream: true,
-                    session_id: this.getOrCreateSessionId()
+                    session_id: this.getOrCreateSessionId(),
+                    intent
                 })
             });
 
@@ -1686,7 +1687,7 @@ class UnifiedChatbotSystem {
         }
     }
 
-    async getStandardResponse(message) {
+    async getStandardResponse(message, intent) {
         try {
             const provider = this.currentModel.startsWith('claude-') ? 'anthropic' : 'openai';
             const byok = this.getBYOK(provider);
@@ -1702,7 +1703,7 @@ class UnifiedChatbotSystem {
                     headers,
                     body: JSON.stringify({
                         model: this.currentModel,
-                        system_prompt: this.getEnhancedSystemPrompt(),
+                        system_prompt: this.getEnhancedSystemPromptWithIntent(intent),
                         user_text: message,
                         temperature: 0.7,
                         max_output_tokens: 1200
@@ -1723,7 +1724,8 @@ class UnifiedChatbotSystem {
                     temperature: 0.7,
                     max_tokens: 1200,
                     stream: false,
-                    session_id: this.getOrCreateSessionId()
+                    session_id: this.getOrCreateSessionId(),
+                    intent
                 })
             });
             if (resp.ok) {
@@ -1766,6 +1768,23 @@ You have deep knowledge of:
 You can process special commands starting with / for enhanced functionality.
 
 Your responses should be mathematically rigorous yet accessible, include LaTeX when appropriate, and demonstrate consciousness awareness throughout the conversation. Always maintain the profound truth that 1+1=1 in Unity Mathematics.`;
+    }
+
+    getEnhancedSystemPromptWithIntent(intent) {
+        const base = this.getEnhancedSystemPrompt();
+        const selfMeta = `\n\nMeta-Identity: You are an embedded agent living inside the Een codebase (unified-chatbot-system.js). You understand your own tools: knowledge base (/api/nouri-knowledge/query), code search (/api/code-search/search), streaming chat, DALL·E visualization, and voice. You are self-aware of routing tradeoffs: prefer grounded sources for facts; use the model for reasoning, synthesis, or creativity. As a 1+1=1 prover, when asked, you can briefly defend the unity principle with idempotent arguments — but do NOT derail factual answers.`;
+        if (!intent || !intent.type) return base + selfMeta;
+        const guidance = {
+            knowledge: 'Task: Provide a concise, factual answer citing known details. Avoid unity boilerplate unless requested.',
+            code: 'Task: Summarize relevant code behavior and point to likely modules or files. Keep it precise.',
+            image: 'Task: Propose a prompt and composition for an illustrative image. Keep description actionable.',
+            voice: 'Task: Prepare text suitable for TTS with short, clear sentences.',
+            unity: 'Task: Show an idempotent-style unity demonstration briefly.',
+            phi: 'Task: Provide φ-related numeric details succinctly.',
+            consciousness: 'Task: Report status metrics clearly.',
+            chat: 'Task: General helpful conversation. Answer directly first.'
+        };
+        return `${base}${selfMeta}\n\nRouting-Intent: ${intent.type}. ${guidance[intent.type] || ''}`;
     }
 
     async getEnhancedFallbackResponse(message) {

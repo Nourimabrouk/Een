@@ -159,7 +159,7 @@ def test_frontend_integration():
     print("\n🧪 Testing Frontend Integration...")
 
     try:
-        js_file = Path("website/js/ai-chat-integration.js")
+        js_file = Path("website/js/unified-chatbot-system.js")
         if js_file.exists():
             content = js_file.read_text()
 

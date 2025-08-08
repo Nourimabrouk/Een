@@ -776,24 +776,20 @@
             }
 
             openAIChat() {
-                // Initialize AI chat if not already done
-                if (typeof eenChat === 'undefined') {
-                    // Load AI chat integration script
-                    const script = document.createElement('script');
-                    script.src = 'js/ai-chat-integration.js';
-                    script.onload = () => {
-                        // Initialize the chat system
-                        window.eenChat = new EenAIChat({
-                            apiEndpoint: '/api/chat',
-                            enableMath: true,
-                            enableVisualization: true
-                        });
-                        eenChat.toggleChat();
-                    };
-                    document.head.appendChild(script);
-                } else {
-                    eenChat.toggleChat();
-                }
+                // Unified: prefer the unified chatbot system
+                const ensureUnified = () => {
+                    if (window.unifiedChatbot && typeof window.unifiedChatbot.toggleChat === 'function') {
+                        window.unifiedChatbot.toggleChat();
+                        return true;
+                    }
+                    return false;
+                };
+                if (ensureUnified()) return;
+                const script = document.createElement('script');
+                script.src = 'js/unified-chatbot-system.js';
+                script.defer = true;
+                script.onload = () => setTimeout(ensureUnified, 50);
+                document.head.appendChild(script);
             }
 
             setupKeyboardNavigation() {

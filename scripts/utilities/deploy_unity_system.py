@@ -162,7 +162,7 @@ class UnityDeploymentManager:
                 "js/neural-unity-visualizer.js",
                 "js/unity-visualizations.js",
                 "js/unified-navigation.js",
-                "js/ai-chat-integration.js",
+                "js/unified-chatbot-system.js",
             ]
 
             missing_files = []

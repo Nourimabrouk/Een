@@ -5,7 +5,8 @@
  */
 
 :root {
-    --nav-height: 75px;
+    --nav-height: 88px;
+    /* Increased for Chrome desktop so nav isn't hidden under URL bar */
     --sidebar-width: 300px;
     --sidebar-collapsed: 60px;
     --phi: 1.618033988749895;
@@ -45,7 +46,8 @@
 }
 
 body {
-    padding-top: var(--nav-height);
+    padding-top: calc(var(--nav-height) + 6px);
+    /* ensure clear space above content */
     transition: var(--transition);
     font-family: 'Space Grotesk', 'Inter', sans-serif;
 }
@@ -161,12 +163,16 @@ body.sidebar-open {
     border-radius: 8px;
     transition: var(--transition);
     cursor: pointer;
-    background: rgba(255, 255, 255, 0.05); /* Subtle background for visibility */
-    border: 1px solid rgba(255, 215, 0, 0.2); /* Subtle border for definition */
+    background: rgba(255, 255, 255, 0.05);
+    /* Subtle background for visibility */
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    /* Subtle border for definition */
     font-size: 0.95rem;
-    font-weight: 600; /* Increased weight for better visibility */
+    font-weight: 600;
+    /* Increased weight for better visibility */
     font-family: inherit;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5); /* Text shadow for contrast */
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    /* Text shadow for contrast */
 }
 
 .nav-link:hover,
@@ -247,13 +253,15 @@ body.sidebar-open {
 }
 
 .search-input {
-    width: 280px; /* Increased width to show full "Search" text */
-    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    width: 260px;
+    /* slightly narrower so placeholder fits in header */
+    padding: 0.6rem 0.9rem 0.6rem 2.2rem;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid var(--border-glow);
-    border-radius: 25px;
+    border-radius: 22px;
     color: var(--text-primary);
-    font-size: 0.85rem; /* Reduced font size to fit more text */
+    font-size: 0.8rem;
+    /* Smaller so full word "Search" is visible */
     transition: var(--transition);
 }
 
@@ -437,7 +445,8 @@ body.sidebar-open {
     }
 
     .search-input {
-        width: 220px; /* Adjusted for better "Search" visibility on tablets */
+        width: 220px;
+        /* Adjusted for better "Search" visibility on tablets */
         font-size: 0.8rem;
     }
 }

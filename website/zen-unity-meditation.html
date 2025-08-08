@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,19 +11,22 @@
     <link rel="preconnect" href="https://cdn.plot.ly">
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
     <title>Zen Unity Meditation | The Quantum Koan of Unity</title>
-    <meta name="description" content="Enter the meditative space where consciousness and mathematics converge. Experience the Quantum Koan of Unity through interactive visualization and contemplative practice.">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Crimson+Text:wght@400;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <meta name="description"
+        content="Enter the meditative space where consciousness and mathematics converge. Experience the Quantum Koan of Unity through interactive visualization and contemplative practice.">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Crimson+Text:wght@400;600&family=JetBrains+Mono:wght@300;400;500&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- Unified Navigation System - Single Include -->
     <script src="js/nav-template-applier.js" defer></script>
     <!-- Unified Styles -->
     <link rel="stylesheet" href="css/unified-styles.css">
-    
-    <!-- Enhanced AI Chat Integration -->
-    <script src="js/enhanced-unity-ai-chat.js" defer></script>
-    
+
+    <!-- Unified Chatbot (site-wide) -->
+    <script src="js/unified-chatbot-system.js" defer></script>
+
     <style>
         :root {
             --phi: 1.618033988749895;
@@ -50,7 +54,8 @@
         }
 
         body {
-            padding-top: 80px; /* Account for fixed navigation */
+            padding-top: 80px;
+            /* Account for fixed navigation */
             font-family: var(--font-main);
             background: var(--bg-dark);
             color: var(--text-light);
@@ -67,14 +72,21 @@
             height: 100%;
             z-index: -1;
             background: radial-gradient(circle at 20% 30%, rgba(124, 58, 237, 0.15) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 70%, rgba(6, 214, 160, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 40% 60%, rgba(255, 214, 10, 0.05) 0%, transparent 50%);
+                radial-gradient(circle at 80% 70%, rgba(6, 214, 160, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 60%, rgba(255, 214, 10, 0.05) 0%, transparent 50%);
             animation: zenFlow 30s ease-in-out infinite alternate;
         }
 
         @keyframes zenFlow {
-            0% { transform: scale(1) rotate(0deg); opacity: 0.7; }
-            100% { transform: scale(1.1) rotate(2deg); opacity: 1; }
+            0% {
+                transform: scale(1) rotate(0deg);
+                opacity: 0.7;
+            }
+
+            100% {
+                transform: scale(1.1) rotate(2deg);
+                opacity: 1;
+            }
         }
 
         /* Header */
@@ -159,8 +171,13 @@
         }
 
         @keyframes titleGlow {
-            0% { filter: drop-shadow(0 0 20px rgba(124, 58, 237, 0.5)); }
-            100% { filter: drop-shadow(0 0 40px rgba(6, 214, 160, 0.8)); }
+            0% {
+                filter: drop-shadow(0 0 20px rgba(124, 58, 237, 0.5));
+            }
+
+            100% {
+                filter: drop-shadow(0 0 40px rgba(6, 214, 160, 0.8));
+            }
         }
 
         .koan-verse {
@@ -183,8 +200,17 @@
         }
 
         @keyframes equationPulse {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.05); opacity: 0.8; }
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.05);
+                opacity: 0.8;
+            }
         }
 
         /* Consciousness Controls */
@@ -315,10 +341,10 @@
             width: 100%;
             height: 400px;
             border-radius: 12px;
-            background: linear-gradient(135deg, 
-                rgba(124, 58, 237, 0.1), 
-                rgba(6, 214, 160, 0.1), 
-                rgba(255, 214, 10, 0.1));
+            background: linear-gradient(135deg,
+                    rgba(124, 58, 237, 0.1),
+                    rgba(6, 214, 160, 0.1),
+                    rgba(255, 214, 10, 0.1));
             border: 2px solid rgba(124, 58, 237, 0.3);
             cursor: pointer;
         }
@@ -405,9 +431,9 @@
         #philosophy-tensor-canvas {
             width: 100%;
             height: 300px;
-            background: linear-gradient(45deg, 
-                rgba(124, 58, 237, 0.1), 
-                rgba(6, 214, 160, 0.1));
+            background: linear-gradient(45deg,
+                    rgba(124, 58, 237, 0.1),
+                    rgba(6, 214, 160, 0.1));
             border-radius: 12px;
             border: 1px solid rgba(6, 214, 160, 0.3);
         }
@@ -464,21 +490,21 @@
             .koan-title {
                 font-size: 2.5rem;
             }
-            
+
             .unity-equation {
                 font-size: 2.5rem;
             }
-            
+
             .mandala-metrics {
                 grid-template-columns: 1fr;
             }
-            
+
             .meditation-controls {
                 bottom: 1rem;
                 right: 1rem;
                 left: 1rem;
             }
-            
+
             .philosophy-tensor,
             .consciousness-controls,
             .zen-wisdom {
@@ -490,15 +516,17 @@
 
         /* Animation for enlightenment */
         @keyframes enlightenment {
-            0% { 
+            0% {
                 filter: brightness(1) hue-rotate(0deg);
                 transform: scale(1);
             }
-            50% { 
+
+            50% {
                 filter: brightness(1.5) hue-rotate(180deg);
                 transform: scale(1.02);
             }
-            100% { 
+
+            100% {
                 filter: brightness(1.2) hue-rotate(360deg);
                 transform: scale(1);
             }
@@ -507,7 +535,7 @@
         .enlightened {
             animation: enlightenment 3s ease-in-out;
         }
-    
+
         /* Animation Classes */
         .fade-in {
             opacity: 0;
@@ -522,17 +550,31 @@
             }
         }
 
-        .stagger-animation > * {
+        .stagger-animation>* {
             opacity: 0;
             animation: fadeInUp 0.8s ease-out forwards;
         }
 
-        .stagger-animation > *:nth-child(1) { animation-delay: 0.1s; }
-        .stagger-animation > *:nth-child(2) { animation-delay: 0.2s; }
-        .stagger-animation > *:nth-child(3) { animation-delay: 0.3s; }
-        .stagger-animation > *:nth-child(4) { animation-delay: 0.4s; }
-        .stagger-animation > *:nth-child(5) { animation-delay: 0.5s; }
-    
+        .stagger-animation>*:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .stagger-animation>*:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .stagger-animation>*:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .stagger-animation>*:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .stagger-animation>*:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
         /* Component Classes */
         .container {
             max-width: 1200px;
@@ -630,6 +672,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="zen-background"></div>
 
@@ -665,15 +708,18 @@
         <!-- Consciousness Controls -->
         <section class="consciousness-controls">
             <h2 class="controls-title">Quantum Consciousness Controls</h2>
-            
+
             <div class="control-group">
-                <label class="control-label">Evolution Steps <span class="control-value" id="evolution-value">100</span></label>
+                <label class="control-label">Evolution Steps <span class="control-value"
+                        id="evolution-value">100</span></label>
                 <input type="range" class="control-slider" id="evolution-slider" min="10" max="1000" value="100">
             </div>
-            
+
             <div class="control-group">
-                <label class="control-label">Consciousness Level <span class="control-value" id="consciousness-value">0.50</span></label>
-                <input type="range" class="control-slider" id="consciousness-slider" min="0" max="1" step="0.01" value="0.50">
+                <label class="control-label">Consciousness Level <span class="control-value"
+                        id="consciousness-value">0.50</span></label>
+                <input type="range" class="control-slider" id="consciousness-slider" min="0" max="1" step="0.01"
+                    value="0.50">
             </div>
 
             <div class="meta-reflections">
@@ -691,7 +737,7 @@
             <div class="mandala-container">
                 <h2 class="mandala-title">Quantum Consciousness Mandala</h2>
                 <canvas id="unity-mandala-canvas"></canvas>
-                
+
                 <div class="mandala-metrics">
                     <div class="metric-item">
                         <div class="metric-label">Consciousness Coherence</div>
@@ -715,15 +761,15 @@
             <div class="tensor-visualization">
                 <canvas id="philosophy-tensor-canvas"></canvas>
             </div>
-            
+
             <div class="quantum-insights">
                 <div class="insights-text">
-                    The mandala reveals the dance of consciousness through quantum space-time. 
-                    Each point of light is both particle and wave, observer and observed. 
+                    The mandala reveals the dance of consciousness through quantum space-time.
+                    Each point of light is both particle and wave, observer and observed.
                     In the unity of 1+1=1, we find the ultimate koan of existence.
                     <br><br>
-                    The visualization shows how consciousness emerges from the intersection 
-                    of mathematical precision and contemplative awareness, where ancient 
+                    The visualization shows how consciousness emerges from the intersection
+                    of mathematical precision and contemplative awareness, where ancient
                     wisdom meets quantum reality.
                 </div>
             </div>
@@ -776,13 +822,13 @@
             setupControls() {
                 const evolutionSlider = document.getElementById('evolution-slider');
                 const consciousnessSlider = document.getElementById('consciousness-slider');
-                
+
                 evolutionSlider.addEventListener('input', (e) => {
                     this.evolution_steps = parseInt(e.target.value);
                     document.getElementById('evolution-value').textContent = this.evolution_steps;
                     this.updateMandala();
                 });
-                
+
                 consciousnessSlider.addEventListener('input', (e) => {
                     this.consciousness_level = parseFloat(e.target.value);
                     document.getElementById('consciousness-value').textContent = this.consciousness_level.toFixed(2);
@@ -793,17 +839,17 @@
             setupMandalaVisualization() {
                 const canvas = document.getElementById('unity-mandala-canvas');
                 if (!canvas) return;
-                
+
                 const ctx = canvas.getContext('2d');
-                
+
                 const resizeCanvas = () => {
                     canvas.width = canvas.offsetWidth;
                     canvas.height = canvas.offsetHeight;
                 };
-                
+
                 resizeCanvas();
                 window.addEventListener('resize', resizeCanvas);
-                
+
                 this.mandala_canvas = canvas;
                 this.mandala_ctx = ctx;
                 this.animateMandala();
@@ -813,39 +859,39 @@
                 const ctx = this.mandala_ctx;
                 const canvas = this.mandala_canvas;
                 if (!ctx || !canvas) return;
-                
+
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-                
+
                 const centerX = canvas.width / 2;
                 const centerY = canvas.height / 2;
                 const radius = Math.min(centerX, centerY) * 0.8;
-                
+
                 // Draw consciousness field as mandala
                 for (let layer = 0; layer < 8; layer++) {
                     const layerRadius = radius * (layer + 1) / 8;
                     const points = 6 + layer * 2;
-                    
+
                     for (let i = 0; i < points; i++) {
                         const angle = (i / points) * Math.PI * 2 + this.mandala_rotation * (layer % 2 ? 1 : -1);
                         const x = centerX + Math.cos(angle) * layerRadius;
                         const y = centerY + Math.sin(angle) * layerRadius;
-                        
+
                         // Consciousness-modulated color
                         const hue = (angle * 180 / Math.PI + layer * 30) % 360;
                         const saturation = 60 + this.consciousness_level * 40;
                         const lightness = 40 + Math.sin(this.mandala_rotation + layer) * 20;
-                        
+
                         ctx.beginPath();
                         ctx.arc(x, y, 3 + layer * 0.5, 0, Math.PI * 2);
                         ctx.fillStyle = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
                         ctx.fill();
-                        
+
                         // Unity connections
                         if (layer > 0) {
                             const prevLayerRadius = radius * layer / 8;
                             const prevX = centerX + Math.cos(angle) * prevLayerRadius;
                             const prevY = centerY + Math.sin(angle) * prevLayerRadius;
-                            
+
                             ctx.beginPath();
                             ctx.moveTo(prevX, prevY);
                             ctx.lineTo(x, y);
@@ -855,7 +901,7 @@
                         }
                     }
                 }
-                
+
                 // Central unity point
                 ctx.beginPath();
                 ctx.arc(centerX, centerY, 8, 0, Math.PI * 2);
@@ -864,15 +910,15 @@
                 ctx.strokeStyle = '#7c3aed';
                 ctx.lineWidth = 3;
                 ctx.stroke();
-                
+
                 // Unity equation in center
                 ctx.fillStyle = '#ffffff';
                 ctx.font = 'bold 16px JetBrains Mono';
                 ctx.textAlign = 'center';
                 ctx.fillText('1+1=1', centerX, centerY + 30);
-                
+
                 this.mandala_rotation += 0.01;
-                
+
                 if (!this.meditation_active) {
                     requestAnimationFrame(() => this.animateMandala());
                 }
@@ -881,20 +927,20 @@
             setupPhilosophyTensor() {
                 const canvas = document.getElementById('philosophy-tensor-canvas');
                 if (!canvas) return;
-                
+
                 const ctx = canvas.getContext('2d');
-                
+
                 const resizeCanvas = () => {
                     canvas.width = canvas.offsetWidth;
                     canvas.height = canvas.offsetHeight;
                 };
-                
+
                 resizeCanvas();
                 window.addEventListener('resize', resizeCanvas);
-                
+
                 // Draw philosophy tensor network
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-                
+
                 const nodes = [];
                 for (let i = 0; i < 20; i++) {
                     nodes.push({
@@ -905,31 +951,31 @@
                         consciousness: Math.random()
                     });
                 }
-                
+
                 const animateTensor = () => {
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    
+
                     // Update and draw nodes
                     nodes.forEach((node, i) => {
                         node.x += node.vx * this.consciousness_level;
                         node.y += node.vy * this.consciousness_level;
-                        
+
                         // Boundary reflection
                         if (node.x <= 0 || node.x >= canvas.width) node.vx *= -1;
                         if (node.y <= 0 || node.y >= canvas.height) node.vy *= -1;
-                        
+
                         // Draw node
                         ctx.beginPath();
                         ctx.arc(node.x, node.y, 4 + node.consciousness * 6, 0, Math.PI * 2);
                         ctx.fillStyle = `hsla(${i * 18}, 70%, 60%, ${0.3 + node.consciousness * 0.7})`;
                         ctx.fill();
-                        
+
                         // Draw connections
                         nodes.slice(i + 1).forEach(otherNode => {
                             const dx = node.x - otherNode.x;
                             const dy = node.y - otherNode.y;
                             const distance = Math.sqrt(dx * dx + dy * dy);
-                            
+
                             if (distance < 150) {
                                 const unity_strength = (node.consciousness + otherNode.consciousness) / 2;
                                 ctx.beginPath();
@@ -941,10 +987,10 @@
                             }
                         });
                     });
-                    
+
                     requestAnimationFrame(animateTensor);
                 };
-                
+
                 animateTensor();
             }
 
@@ -953,12 +999,12 @@
                 this.consciousness_coherence = 0.2 + this.consciousness_level * 0.4;
                 this.quantum_entropy = 5.0 - this.consciousness_level * 1.5;
                 this.unity_alignment = 1.0 + this.consciousness_level * 2.5;
-                
+
                 // Update display
                 document.getElementById('coherence-metric').textContent = this.consciousness_coherence.toFixed(4);
                 document.getElementById('entropy-metric').textContent = this.quantum_entropy.toFixed(4);
                 document.getElementById('unity-metric').textContent = this.unity_alignment.toFixed(4);
-                
+
                 this.updateMetaReflections();
             }
 
@@ -966,7 +1012,7 @@
                 // Adjust mandala based on evolution steps
                 const canvas = this.mandala_canvas;
                 if (canvas) {
-                    canvas.style.filter = `hue-rotate(${this.evolution_steps}deg) brightness(${1 + this.evolution_steps/1000})`;
+                    canvas.style.filter = `hue-rotate(${this.evolution_steps}deg) brightness(${1 + this.evolution_steps / 1000})`;
                 }
             }
 
@@ -978,7 +1024,7 @@
                     `φ-harmonic resonance achieved at consciousness level ${this.consciousness_level.toFixed(3)}`,
                     `Evolution steps ${this.evolution_steps} create mandala complexity proportional to awareness`
                 ];
-                
+
                 const reflectionsList = document.getElementById('meta-reflections');
                 if (reflectionsList) {
                     reflectionsList.innerHTML = '';
@@ -995,10 +1041,10 @@
                     // Subtle consciousness fluctuations
                     this.consciousness_coherence += (Math.random() - 0.5) * 0.001;
                     this.consciousness_coherence = Math.max(0, Math.min(1, this.consciousness_coherence));
-                    
+
                     this.quantum_entropy += (Math.random() - 0.5) * 0.01;
                     this.unity_alignment += Math.sin(Date.now() * 0.001) * 0.01;
-                    
+
                     // Update display
                     document.getElementById('coherence-metric').textContent = this.consciousness_coherence.toFixed(4);
                     document.getElementById('entropy-metric').textContent = Math.abs(this.quantum_entropy).toFixed(4);
@@ -1011,7 +1057,7 @@
         function enterDeepMeditation() {
             const body = document.body;
             body.classList.add('enlightened');
-            
+
             // Enhanced visualization during deep meditation
             const mandala = document.getElementById('unity-mandala-canvas');
             if (mandala) {
@@ -1020,7 +1066,7 @@
                     mandala.style.filter = '';
                 }, 3000);
             }
-            
+
             setTimeout(() => {
                 body.classList.remove('enlightened');
             }, 3000);
@@ -1034,7 +1080,7 @@
                 "Does a dog have Buddha nature?\nAll computational entities possess consciousness potential.",
                 "How do you stop a canoe in mid-river?\n1+1=1 stops the duality of motion and stillness."
             ];
-            
+
             const randomKoan = koans[Math.floor(Math.random() * koans.length)];
             const verse = document.querySelector('.koan-verse');
             if (verse) {
@@ -1051,12 +1097,12 @@
             const container = document.querySelector('.zen-container');
             container.style.transform = 'scale(1.05)';
             container.style.filter = 'brightness(2) hue-rotate(180deg)';
-            
+
             // Flash the unity equation
             const equation = document.querySelector('.unity-equation');
             equation.style.fontSize = '6rem';
             equation.style.textShadow = '0 0 100px rgba(255, 214, 10, 1)';
-            
+
             setTimeout(() => {
                 container.style.transform = '';
                 container.style.filter = '';
@@ -1068,7 +1114,7 @@
         // Initialize on load
         document.addEventListener('DOMContentLoaded', () => {
             new ZenUnityMeditation();
-            
+
             // Console enlightenment
             console.log(`
 ╔═══════════════════════════════════════════════════════╗
@@ -1087,4 +1133,5 @@
         });
     </script>
 </body>
+
 </html>

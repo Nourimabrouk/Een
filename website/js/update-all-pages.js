@@ -43,7 +43,7 @@ class PageUpdater {
             `1. Open ${pageName}`,
             '2. Add these script tags in the <head> section:',
             '   <script src="js/unified-navigation.js"></script>',
-            '   <script src="js/ai-chat-integration.js"></script>',
+            '   <script src="js/unified-chatbot-system.js" defer></script>',
             '3. Add padding-top: 80px to the body CSS',
             '4. Add margin-top: -80px and padding-top: 80px to the main header section',
             '5. Add AI chat initialization in the DOMContentLoaded event:',

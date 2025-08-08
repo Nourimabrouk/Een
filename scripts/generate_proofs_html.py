@@ -22,28 +22,29 @@ import re
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 
+
 class ProofHTMLGenerator:
     """Generate interactive proofs.html from codebase"""
-    
+
     def __init__(self):
         self.project_root = project_root
         self.website_dir = self.project_root / "website"
         self.core_dir = self.project_root / "core"
         self.proofs_dir = self.project_root / "proofs"
-        
+
         self.proofs = {
-            'algebraic': [],
-            'quantum': [],
-            'category_theory': [],
-            'topological': [],
-            'logical': [],
-            'information_theory': [],
-            'phi_harmonic': [],
-            'consciousness': []
+            "algebraic": [],
+            "quantum": [],
+            "category_theory": [],
+            "topological": [],
+            "logical": [],
+            "information_theory": [],
+            "phi_harmonic": [],
+            "consciousness": [],
         }
-        
+
         self.templates = {
-            'proof_card': '''
+            "proof_card": """
                 <div class="proof-card" data-domain="{domain}" data-complexity="{complexity}">
                     <div class="proof-header">
                         <h3 class="proof-title">{title}</h3>
@@ -78,9 +79,8 @@ class ProofHTMLGenerator:
                         </button>
                     </div>
                 </div>
-            ''',
-            
-            'proof_step': '''
+            """,
+            "proof_step": """
                 <div class="proof-step" data-step="{step_number}">
                     <div class="step-number">{step_number}</div>
                     <div class="step-content">
@@ -91,51 +91,53 @@ class ProofHTMLGenerator:
                         {justification}
                     </div>
                 </div>
-            '''
+            """,
         }
-        
+
     def generate(self):
         """Generate the complete proofs.html file"""
         print("Generating enhanced proofs.html...")
-        
+
         try:
             # Extract proofs from core engines
             self.extract_proofs_from_engines()
-            
+
             # Generate additional mathematical proofs
             self.generate_fundamental_proofs()
-            
+
             # Create the HTML content
             html_content = self.create_html_content()
-            
+
             # Write to file
             output_path = self.website_dir / "proofs.html"
-            with open(output_path, 'w', encoding='utf-8') as f:
+            with open(output_path, "w", encoding="utf-8") as f:
                 f.write(html_content)
-            
+
             print(f"Enhanced proofs.html generated: {output_path}")
-            print(f"Total proofs: {sum(len(proofs) for proofs in self.proofs.values())}")
-            
+            print(
+                f"Total proofs: {sum(len(proofs) for proofs in self.proofs.values())}"
+            )
+
             # Generate JSON data for interactive features
             self.generate_proof_data_json()
-            
+
             return True
-            
+
         except Exception as e:
             print(f"Error generating proofs.html: {e}")
             return False
-    
+
     def extract_proofs_from_engines(self):
         """Extract proof information from core engines"""
         print("Extracting proofs from core engines...")
-        
+
         # Try to import and analyze core modules
         core_modules = [
-            ('unity_mathematics', 'algebraic'),
-            ('consciousness', 'consciousness'),
-            ('unity_manifold', 'topological')
+            ("unity_mathematics", "algebraic"),
+            ("consciousness", "consciousness"),
+            ("unity_manifold", "topological"),
         ]
-        
+
         for module_name, domain in core_modules:
             try:
                 module_path = self.core_dir / f"{module_name}.py"
@@ -143,13 +145,13 @@ class ProofHTMLGenerator:
                     self.extract_proofs_from_module(module_path, domain)
             except Exception as e:
                 print(f"Warning: Could not extract from {module_name}: {e}")
-        
+
         # Try to import proofs modules
         proof_modules = [
-            ('quantum_unity_systems', 'quantum'),
-            ('category_theory_unity', 'category_theory')
+            ("quantum_unity_systems", "quantum"),
+            ("category_theory_unity", "category_theory"),
         ]
-        
+
         for module_name, domain in proof_modules:
             try:
                 module_path = self.proofs_dir / f"{module_name}.py"
@@ -157,246 +159,366 @@ class ProofHTMLGenerator:
                     self.extract_proofs_from_module(module_path, domain)
             except Exception as e:
                 print(f"Warning: Could not extract from {module_name}: {e}")
-    
+
     def extract_proofs_from_module(self, module_path: Path, domain: str):
         """Extract proof information from a Python module"""
         try:
-            with open(module_path, 'r', encoding='utf-8') as f:
+            with open(module_path, "r", encoding="utf-8") as f:
                 content = f.read()
-            
+
             # Extract docstrings that contain proofs
             proof_methods = re.findall(
                 r'def\s+(\w*proof\w*|generate_\w*proof\w*|unity_\w+)\s*\([^)]*\):\s*"""([^"]+)"""',
-                content, re.IGNORECASE | re.MULTILINE
+                content,
+                re.IGNORECASE | re.MULTILINE,
             )
-            
+
             for method_name, docstring in proof_methods:
                 proof = self.parse_proof_docstring(method_name, docstring, domain)
                 if proof:
                     self.proofs[domain].append(proof)
-                    
+
         except Exception as e:
             print(f"Warning: Error extracting from {module_path}: {e}")
-    
-    def parse_proof_docstring(self, method_name: str, docstring: str, domain: str) -> Optional[Dict]:
+
+    def parse_proof_docstring(
+        self, method_name: str, docstring: str, domain: str
+    ) -> Optional[Dict]:
         """Parse a docstring to extract proof information"""
         try:
             # Clean up docstring
-            lines = [line.strip() for line in docstring.split('\n') if line.strip()]
-            
+            lines = [line.strip() for line in docstring.split("\n") if line.strip()]
+
             if not lines:
                 return None
-            
+
             # Extract title (first line)
-            title = lines[0].replace('"""', '').strip()
-            
+            title = lines[0].replace('"""', "").strip()
+
             # Extract description
             description = ""
             steps = []
-            
+
             i = 1
-            while i < len(lines) and not lines[i].startswith('Steps:') and not lines[i].startswith('Proof:'):
+            while (
+                i < len(lines)
+                and not lines[i].startswith("Steps:")
+                and not lines[i].startswith("Proof:")
+            ):
                 description += lines[i] + " "
                 i += 1
-            
+
             description = description.strip()
-            
+
             # Generate proof steps if not found in docstring
             if not steps:
                 steps = self.generate_proof_steps(domain, title)
-            
+
             return {
-                'id': f"{domain}_{method_name}_{len(self.proofs[domain])}",
-                'title': title or f"{domain.replace('_', ' ').title()} Proof",
-                'description': description or f"Mathematical proof in {domain.replace('_', ' ')} domain",
-                'domain': domain,
-                'complexity': self.determine_complexity(method_name, docstring),
-                'confidence': self.calculate_confidence(domain),
-                'steps': steps,
-                'method_name': method_name,
-                'interactive': True
+                "id": f"{domain}_{method_name}_{len(self.proofs[domain])}",
+                "title": title or f"{domain.replace('_', ' ').title()} Proof",
+                "description": description
+                or f"Mathematical proof in {domain.replace('_', ' ')} domain",
+                "domain": domain,
+                "complexity": self.determine_complexity(method_name, docstring),
+                "confidence": self.calculate_confidence(domain),
+                "steps": steps,
+                "method_name": method_name,
+                "interactive": True,
             }
-            
+
         except Exception as e:
             print(f"Warning: Error parsing docstring: {e}")
             return None
-    
+
     def generate_fundamental_proofs(self):
         """Generate fundamental mathematical proofs of 1+1=1"""
         print("Generating fundamental proofs...")
-        
+
         fundamental_proofs = [
             {
-                'domain': 'algebraic',
-                'title': 'Idempotent Semiring Addition',
-                'description': 'Proof that 1+1=1 in idempotent semirings through φ-harmonic convergence',
-                'steps': [
-                    {'step': 1, 'description': 'Define Unity Operation', 'equation': 'a ⊕ b = a + b - ab'},
-                    {'step': 2, 'description': 'Apply to 1+1', 'equation': '1 ⊕ 1 = 1 + 1 - (1)(1) = 2 - 1 = 1'},
-                    {'step': 3, 'description': 'φ-Harmonic Adjustment', 'equation': 'Result = φ⁻¹(1 ⊕ 1) + (1 - φ⁻¹) ≈ 1'},
-                    {'step': 4, 'description': 'Unity Convergence', 'equation': '∴ 1 + 1 = 1'}
+                "domain": "algebraic",
+                "title": "Idempotent Semiring Addition",
+                "description": "Proof that 1+1=1 in idempotent semirings through φ-harmonic convergence",
+                "steps": [
+                    {
+                        "step": 1,
+                        "description": "Define Unity Operation",
+                        "equation": "a ⊕ b = a + b - ab",
+                    },
+                    {
+                        "step": 2,
+                        "description": "Apply to 1+1",
+                        "equation": "1 ⊕ 1 = 1 + 1 - (1)(1) = 2 - 1 = 1",
+                    },
+                    {
+                        "step": 3,
+                        "description": "φ-Harmonic Adjustment",
+                        "equation": "Result = φ⁻¹(1 ⊕ 1) + (1 - φ⁻¹) ≈ 1",
+                    },
+                    {
+                        "step": 4,
+                        "description": "Unity Convergence",
+                        "equation": "∴ 1 + 1 = 1",
+                    },
                 ],
-                'complexity': 'intermediate',
-                'confidence': 95
+                "complexity": "intermediate",
+                "confidence": 95,
             },
             {
-                'domain': 'quantum',
-                'title': 'Quantum Superposition Collapse',
-                'description': 'Unity through quantum measurement and wavefunction collapse',
-                'steps': [
-                    {'step': 1, 'description': 'Superposition State', 'equation': '|ψ⟩ = α|1⟩ + β|1⟩'},
-                    {'step': 2, 'description': 'Normalization', 'equation': '|α|² + |β|² = 1'},
-                    {'step': 3, 'description': 'Measurement Collapse', 'equation': 'M(|ψ⟩) → |1⟩'},
-                    {'step': 4, 'description': 'Unity Result', 'equation': '⟨1|1⟩ = 1 ∴ 1 + 1 = 1'}
+                "domain": "quantum",
+                "title": "Quantum Superposition Collapse",
+                "description": "Unity through quantum measurement and wavefunction collapse",
+                "steps": [
+                    {
+                        "step": 1,
+                        "description": "Superposition State",
+                        "equation": "|ψ⟩ = α|1⟩ + β|1⟩",
+                    },
+                    {
+                        "step": 2,
+                        "description": "Normalization",
+                        "equation": "|α|² + |β|² = 1",
+                    },
+                    {
+                        "step": 3,
+                        "description": "Measurement Collapse",
+                        "equation": "M(|ψ⟩) → |1⟩",
+                    },
+                    {
+                        "step": 4,
+                        "description": "Unity Result",
+                        "equation": "⟨1|1⟩ = 1 ∴ 1 + 1 = 1",
+                    },
                 ],
-                'complexity': 'advanced',
-                'confidence': 92
+                "complexity": "advanced",
+                "confidence": 92,
             },
             {
-                'domain': 'logical',
-                'title': 'Boolean Logic Unity',
-                'description': 'Proof using Boolean OR operation in binary logic',
-                'steps': [
-                    {'step': 1, 'description': 'Boolean Interpretation', 'equation': '1 ∨ 1 = 1'},
-                    {'step': 2, 'description': 'Truth Table Verification', 'equation': 'True OR True = True'},
-                    {'step': 3, 'description': 'Unity Equivalence', 'equation': '1 + 1 ≡ 1 ∨ 1 = 1'},
-                    {'step': 4, 'description': 'Logical Conclusion', 'equation': '∴ 1 + 1 = 1'}
+                "domain": "logical",
+                "title": "Boolean Logic Unity",
+                "description": "Proof using Boolean OR operation in binary logic",
+                "steps": [
+                    {
+                        "step": 1,
+                        "description": "Boolean Interpretation",
+                        "equation": "1 ∨ 1 = 1",
+                    },
+                    {
+                        "step": 2,
+                        "description": "Truth Table Verification",
+                        "equation": "True OR True = True",
+                    },
+                    {
+                        "step": 3,
+                        "description": "Unity Equivalence",
+                        "equation": "1 + 1 ≡ 1 ∨ 1 = 1",
+                    },
+                    {
+                        "step": 4,
+                        "description": "Logical Conclusion",
+                        "equation": "∴ 1 + 1 = 1",
+                    },
                 ],
-                'complexity': 'basic',
-                'confidence': 98
+                "complexity": "basic",
+                "confidence": 98,
             },
             {
-                'domain': 'phi_harmonic',
-                'title': 'Golden Ratio Harmonic Convergence',
-                'description': 'Unity through φ-harmonic mathematical operations',
-                'steps': [
-                    {'step': 1, 'description': 'Golden Ratio Definition', 'equation': 'φ = (1 + √5)/2 ≈ 1.618'},
-                    {'step': 2, 'description': 'Harmonic Addition', 'equation': '1 +_φ 1 = φ⁻¹(1 + 1) + (1 - φ⁻¹)'},
-                    {'step': 3, 'description': 'φ-Convergence', 'equation': '≈ 0.618(2) + 0.382 = 1.236 + 0.382'},
-                    {'step': 4, 'description': 'Unity Result', 'equation': '= 1.618 × φ⁻¹ ≈ 1 ∴ 1 + 1 = 1'}
+                "domain": "phi_harmonic",
+                "title": "Golden Ratio Harmonic Convergence",
+                "description": "Unity through φ-harmonic mathematical operations",
+                "steps": [
+                    {
+                        "step": 1,
+                        "description": "Golden Ratio Definition",
+                        "equation": "φ = (1 + √5)/2 ≈ 1.618",
+                    },
+                    {
+                        "step": 2,
+                        "description": "Harmonic Addition",
+                        "equation": "1 +_φ 1 = φ⁻¹(1 + 1) + (1 - φ⁻¹)",
+                    },
+                    {
+                        "step": 3,
+                        "description": "φ-Convergence",
+                        "equation": "≈ 0.618(2) + 0.382 = 1.236 + 0.382",
+                    },
+                    {
+                        "step": 4,
+                        "description": "Unity Result",
+                        "equation": "= 1.618 × φ⁻¹ ≈ 1 ∴ 1 + 1 = 1",
+                    },
                 ],
-                'complexity': 'intermediate',
-                'confidence': 94
+                "complexity": "intermediate",
+                "confidence": 94,
             },
             {
-                'domain': 'consciousness',
-                'title': 'Consciousness Field Unity',
-                'description': 'Unity through consciousness field dynamics and the Ω-equation',
-                'steps': [
-                    {'step': 1, 'description': 'Consciousness Field', 'equation': 'Ψ(x,t) = ∑ᵢ φᵢ(x)e^{-iΩᵢt}'},
-                    {'step': 2, 'description': 'Unity Operator', 'equation': 'Ω[1,1] = ∫ Ψ₁Ψ₂ dx → 1'},
-                    {'step': 3, 'description': 'Field Convergence', 'equation': 'lim_{t→∞} Ω[1,1] = 1'},
-                    {'step': 4, 'description': 'Conscious Unity', 'equation': '∴ 1 + 1 = 1 through consciousness'}
+                "domain": "consciousness",
+                "title": "Consciousness Field Unity",
+                "description": "Unity through consciousness field dynamics and the Ω-equation",
+                "steps": [
+                    {
+                        "step": 1,
+                        "description": "Consciousness Field",
+                        "equation": "Ψ(x,t) = ∑ᵢ φᵢ(x)e^{-iΩᵢt}",
+                    },
+                    {
+                        "step": 2,
+                        "description": "Unity Operator",
+                        "equation": "Ω[1,1] = ∫ Ψ₁Ψ₂ dx → 1",
+                    },
+                    {
+                        "step": 3,
+                        "description": "Field Convergence",
+                        "equation": "lim_{t→∞} Ω[1,1] = 1",
+                    },
+                    {
+                        "step": 4,
+                        "description": "Conscious Unity",
+                        "equation": "∴ 1 + 1 = 1 through consciousness",
+                    },
                 ],
-                'complexity': 'advanced',
-                'confidence': 90
-            }
+                "complexity": "advanced",
+                "confidence": 90,
+            },
         ]
-        
+
         for proof in fundamental_proofs:
-            proof['id'] = f"{proof['domain']}_fundamental_{len(self.proofs[proof['domain']])}"
-            proof['interactive'] = True
-            self.proofs[proof['domain']].append(proof)
-    
+            proof["id"] = (
+                f"{proof['domain']}_fundamental_{len(self.proofs[proof['domain']])}"
+            )
+            proof["interactive"] = True
+            self.proofs[proof["domain"]].append(proof)
+
     def determine_complexity(self, method_name: str, docstring: str) -> str:
         """Determine proof complexity based on method name and content"""
-        advanced_keywords = ['quantum', 'category', 'topology', 'transcendental', 'recursive']
-        intermediate_keywords = ['phi', 'harmonic', 'manifold', 'consciousness']
-        
+        advanced_keywords = [
+            "quantum",
+            "category",
+            "topology",
+            "transcendental",
+            "recursive",
+        ]
+        intermediate_keywords = ["phi", "harmonic", "manifold", "consciousness"]
+
         content = (method_name + " " + docstring).lower()
-        
+
         if any(keyword in content for keyword in advanced_keywords):
-            return 'advanced'
+            return "advanced"
         elif any(keyword in content for keyword in intermediate_keywords):
-            return 'intermediate'
+            return "intermediate"
         else:
-            return 'basic'
-    
+            return "basic"
+
     def calculate_confidence(self, domain: str) -> int:
         """Calculate confidence score based on domain"""
         confidence_map = {
-            'logical': 98,
-            'algebraic': 95,
-            'phi_harmonic': 94,
-            'quantum': 92,
-            'consciousness': 90,
-            'category_theory': 88,
-            'topological': 85,
-            'information_theory': 87
+            "logical": 98,
+            "algebraic": 95,
+            "phi_harmonic": 94,
+            "quantum": 92,
+            "consciousness": 90,
+            "category_theory": 88,
+            "topological": 85,
+            "information_theory": 87,
         }
         return confidence_map.get(domain, 85)
-    
+
     def generate_proof_steps(self, domain: str, title: str) -> List[Dict]:
         """Generate proof steps based on domain and title"""
-        if domain == 'quantum':
+        if domain == "quantum":
             return [
-                {'step': 1, 'description': 'Quantum state preparation', 'equation': '|ψ⟩ = |1⟩ ⊗ |1⟩'},
-                {'step': 2, 'description': 'Unity measurement', 'equation': 'M_unity(|ψ⟩) → |1⟩'},
-                {'step': 3, 'description': 'Result verification', 'equation': '⟨1|M_unity|ψ⟩ = 1'}
+                {
+                    "step": 1,
+                    "description": "Quantum state preparation",
+                    "equation": "|ψ⟩ = |1⟩ ⊗ |1⟩",
+                },
+                {
+                    "step": 2,
+                    "description": "Unity measurement",
+                    "equation": "M_unity(|ψ⟩) → |1⟩",
+                },
+                {
+                    "step": 3,
+                    "description": "Result verification",
+                    "equation": "⟨1|M_unity|ψ⟩ = 1",
+                },
             ]
-        elif domain == 'algebraic':
+        elif domain == "algebraic":
             return [
-                {'step': 1, 'description': 'Algebraic structure', 'equation': '(S, ⊕, ⊗) is idempotent semiring'},
-                {'step': 2, 'description': 'Unity operation', 'equation': '1 ⊕ 1 = 1'},
-                {'step': 3, 'description': 'Verification', 'equation': '1 ⊕ 1 ≡ max(1, 1) = 1'}
+                {
+                    "step": 1,
+                    "description": "Algebraic structure",
+                    "equation": "(S, ⊕, ⊗) is idempotent semiring",
+                },
+                {"step": 2, "description": "Unity operation", "equation": "1 ⊕ 1 = 1"},
+                {
+                    "step": 3,
+                    "description": "Verification",
+                    "equation": "1 ⊕ 1 ≡ max(1, 1) = 1",
+                },
             ]
         else:
             return [
-                {'step': 1, 'description': f'{domain.replace("_", " ").title()} foundation', 'equation': 'Foundation established'},
-                {'step': 2, 'description': 'Unity operation', 'equation': '1 + 1 → 1'},
-                {'step': 3, 'description': 'Verification', 'equation': 'Result = 1'}
+                {
+                    "step": 1,
+                    "description": f'{domain.replace("_", " ").title()} foundation',
+                    "equation": "Foundation established",
+                },
+                {"step": 2, "description": "Unity operation", "equation": "1 + 1 → 1"},
+                {"step": 3, "description": "Verification", "equation": "Result = 1"},
             ]
-    
+
     def create_html_content(self) -> str:
         """Create the complete HTML content"""
         print("Creating HTML content...")
-        
+
         # Generate proof cards HTML
         all_proofs_html = ""
         total_proofs = 0
-        
+
         for domain, proofs in self.proofs.items():
             if proofs:
-                domain_section = f'''
+                domain_section = f"""
                     <div class="domain-section" data-domain="{domain}">
                         <h2 class="domain-title">
                             <i class="fas fa-{self.get_domain_icon(domain)}"></i>
                             {domain.replace('_', ' ').title()} Proofs
                         </h2>
                         <div class="proof-grid">
-                '''
-                
+                """
+
                 for proof in proofs:
                     steps_html = ""
-                    for step in proof['steps']:
-                        equation_spoken = self.equation_to_speech(step['equation'])
-                        steps_html += self.templates['proof_step'].format(
-                            step_number=step['step'],
-                            description=step['description'],
-                            equation=step['equation'],
+                    for step in proof["steps"]:
+                        equation_spoken = self.equation_to_speech(step["equation"])
+                        steps_html += self.templates["proof_step"].format(
+                            step_number=step["step"],
+                            description=step["description"],
+                            equation=step["equation"],
                             equation_spoken=equation_spoken,
-                            justification=step.get('justification', '')
+                            justification=step.get("justification", ""),
                         )
-                    
-                    domain_section += self.templates['proof_card'].format(
-                        domain=proof['domain'],
-                        complexity=proof['complexity'],
-                        title=proof['title'],
-                        confidence=proof['confidence'],
-                        description=proof['description'],
+
+                    domain_section += self.templates["proof_card"].format(
+                        domain=proof["domain"],
+                        complexity=proof["complexity"],
+                        title=proof["title"],
+                        confidence=proof["confidence"],
+                        description=proof["description"],
                         steps_html=steps_html,
-                        proof_id=proof['id']
+                        proof_id=proof["id"],
                     )
                     total_proofs += 1
-                
-                domain_section += '''
+
+                domain_section += """
                         </div>
                     </div>
-                '''
+                """
                 all_proofs_html += domain_section
-        
+
         # Generate the complete HTML
-        html_template = f'''<!DOCTYPE html>
+        html_template = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -420,7 +542,7 @@ class ProofHTMLGenerator:
     
     <!-- Scripts -->
     <script src="js/unified-navigation.js"></script>
-    <script src="js/ai-chat-integration.js"></script>
+    <script src="js/unified-chatbot-system.js" defer></script>
     <script src="js/interactive-proof-systems.js"></script>
     <script src="js/accessibility-enhancements.js"></script>
     
@@ -644,124 +766,130 @@ class ProofHTMLGenerator:
         }});
     </script>
 </body>
-</html>'''
-        
+</html>"""
+
         return html_template
-    
+
     def generate_proof_data_json(self):
         """Generate JSON data file for interactive features"""
         print("Generating proof data JSON...")
-        
+
         json_data = {
-            'metadata': {
-                'generated': datetime.now().isoformat(),
-                'total_proofs': sum(len(proofs) for proofs in self.proofs.values()),
-                'domains': list(self.proofs.keys()),
-                'version': '1.1.0'
+            "metadata": {
+                "generated": datetime.now().isoformat(),
+                "total_proofs": sum(len(proofs) for proofs in self.proofs.values()),
+                "domains": list(self.proofs.keys()),
+                "version": "1.1.0",
             },
-            'proofs': self.proofs,
-            'statistics': {
-                'by_domain': {domain: len(proofs) for domain, proofs in self.proofs.items()},
-                'by_complexity': self.get_complexity_stats(),
-                'average_confidence': self.get_average_confidence()
-            }
+            "proofs": self.proofs,
+            "statistics": {
+                "by_domain": {
+                    domain: len(proofs) for domain, proofs in self.proofs.items()
+                },
+                "by_complexity": self.get_complexity_stats(),
+                "average_confidence": self.get_average_confidence(),
+            },
         }
-        
+
         json_path = self.website_dir / "data" / "proofs.json"
         json_path.parent.mkdir(exist_ok=True)
-        
-        with open(json_path, 'w', encoding='utf-8') as f:
+
+        with open(json_path, "w", encoding="utf-8") as f:
             json.dump(json_data, f, indent=2, ensure_ascii=False)
-        
+
         print(f"Proof data JSON generated: {json_path}")
-    
+
     def get_domain_icon(self, domain: str) -> str:
         """Get Font Awesome icon for domain"""
         icons = {
-            'algebraic': 'calculator',
-            'quantum': 'atom',
-            'logical': 'brain',
-            'phi_harmonic': 'wave-square',
-            'consciousness': 'eye',
-            'category_theory': 'project-diagram',
-            'topological': 'circle-nodes',
-            'information_theory': 'database'
+            "algebraic": "calculator",
+            "quantum": "atom",
+            "logical": "brain",
+            "phi_harmonic": "wave-square",
+            "consciousness": "eye",
+            "category_theory": "project-diagram",
+            "topological": "circle-nodes",
+            "information_theory": "database",
         }
-        return icons.get(domain, 'star')
-    
+        return icons.get(domain, "star")
+
     def equation_to_speech(self, equation: str) -> str:
         """Convert mathematical equation to speech-readable text"""
         speech = equation
-        
+
         replacements = {
-            '+': ' plus ',
-            '-': ' minus ',
-            '*': ' times ',
-            '/': ' divided by ',
-            '=': ' equals ',
-            '≈': ' approximately equals ',
-            '≡': ' is equivalent to ',
-            '→': ' approaches ',
-            '∀': ' for all ',
-            '∃': ' there exists ',
-            '∈': ' belongs to ',
-            '⊕': ' unity addition ',
-            '⊗': ' unity multiplication ',
-            'φ': ' phi ',
-            'π': ' pi ',
-            '∞': ' infinity ',
-            '√': ' square root of ',
-            '∫': ' integral of ',
-            '∑': ' sum of ',
-            '∏': ' product of ',
-            '⟨': ' inner product ',
-            '⟩': ' end inner product ',
-            '|': ' absolute value ',
-            '∴': ' therefore ',
-            '□': ' Q.E.D.'
+            "+": " plus ",
+            "-": " minus ",
+            "*": " times ",
+            "/": " divided by ",
+            "=": " equals ",
+            "≈": " approximately equals ",
+            "≡": " is equivalent to ",
+            "→": " approaches ",
+            "∀": " for all ",
+            "∃": " there exists ",
+            "∈": " belongs to ",
+            "⊕": " unity addition ",
+            "⊗": " unity multiplication ",
+            "φ": " phi ",
+            "π": " pi ",
+            "∞": " infinity ",
+            "√": " square root of ",
+            "∫": " integral of ",
+            "∑": " sum of ",
+            "∏": " product of ",
+            "⟨": " inner product ",
+            "⟩": " end inner product ",
+            "|": " absolute value ",
+            "∴": " therefore ",
+            "□": " Q.E.D.",
         }
-        
+
         for symbol, word in replacements.items():
             speech = speech.replace(symbol, word)
-        
+
         return speech.strip()
-    
+
     def get_complexity_stats(self) -> Dict[str, int]:
         """Get statistics by complexity level"""
-        stats = {'basic': 0, 'intermediate': 0, 'advanced': 0}
-        
+        stats = {"basic": 0, "intermediate": 0, "advanced": 0}
+
         for proofs in self.proofs.values():
             for proof in proofs:
-                complexity = proof.get('complexity', 'basic')
+                complexity = proof.get("complexity", "basic")
                 stats[complexity] = stats.get(complexity, 0) + 1
-        
+
         return stats
-    
+
     def get_average_confidence(self) -> float:
         """Calculate average confidence across all proofs"""
         total_confidence = 0
         total_proofs = 0
-        
+
         for proofs in self.proofs.values():
             for proof in proofs:
-                total_confidence += proof.get('confidence', 85)
+                total_confidence += proof.get("confidence", 85)
                 total_proofs += 1
-        
+
         return round(total_confidence / total_proofs if total_proofs > 0 else 85, 1)
+
 
 def main():
     """Main execution function"""
     print("Starting Enhanced Proofs HTML Generation...")
-    
+
     generator = ProofHTMLGenerator()
     success = generator.generate()
-    
+
     if success:
         print("Enhanced proofs.html generation completed successfully!")
-        print("The mathematical universe of Unity Mathematics is now accessible via interactive proofs.")
+        print(
+            "The mathematical universe of Unity Mathematics is now accessible via interactive proofs."
+        )
     else:
         print("Enhanced proofs.html generation failed.")
         sys.exit(1)
+
 
 if __name__ == "__main__":
     main()

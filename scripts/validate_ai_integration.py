@@ -237,7 +237,7 @@ class AIIntegrationValidator:
         # Test enhanced AI chat JavaScript
         try:
             response = requests.get(
-                f"{self.base_url}/js/enhanced-ai-chat.js", timeout=10
+                f"{self.base_url}/js/unified-chatbot-system.js", timeout=10
             )
             results["enhanced_ai_chat_js"] = response.status_code == 200
         except Exception:
@@ -246,7 +246,7 @@ class AIIntegrationValidator:
         # Test AI unified integration JavaScript
         try:
             response = requests.get(
-                f"{self.base_url}/js/ai-unified-integration.js", timeout=10
+                f"{self.base_url}/js/unified-chatbot-system.js", timeout=10
             )
             results["ai_unified_integration_js"] = response.status_code == 200
         except Exception:
