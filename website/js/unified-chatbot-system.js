@@ -141,17 +141,21 @@ class UnifiedChatbotSystem {
 
         document.body.appendChild(button);
 
-        // Ensure it sits to the left of the voice button if present
+        // Ensure fixed position and non-overlap with voice button
         const reposition = () => {
             const voiceBtn = document.querySelector('.voice-button');
             const btnEl = document.getElementById('unified-chat-button');
             if (btnEl) {
+                btnEl.style.position = 'fixed';
                 btnEl.style.bottom = '20px';
-                btnEl.style.right = voiceBtn ? '20px' : '20px';
+                btnEl.style.right = '20px';
+                btnEl.style.zIndex = '10002';
             }
-            if (voiceBtn && btnEl) {
-                // Nudge voice button left a bit to avoid overlap
+            if (voiceBtn) {
+                voiceBtn.style.position = 'fixed';
+                voiceBtn.style.bottom = '20px';
                 voiceBtn.style.right = '95px';
+                voiceBtn.style.zIndex = '10001';
             }
         };
         setTimeout(reposition, 0);
@@ -305,7 +309,7 @@ class UnifiedChatbotSystem {
                 border: none;
                 border-radius: 50%;
                 cursor: pointer;
-                z-index: 10002;
+                z-index: 10002; /* sits above voice button */
                 box-shadow: 0 8px 32px rgba(255, 215, 0, 0.3);
                 transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
                 display: flex;

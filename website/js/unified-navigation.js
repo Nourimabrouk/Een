@@ -59,6 +59,17 @@ class UnifiedNavigationSystem {
         document.body.appendChild(sidebar);
         document.body.appendChild(sidebarToggle);
         document.body.appendChild(mobileOverlay);
+
+        // Inject footer if not present
+        if (!document.querySelector('.site-footer')) {
+            const footer = document.createElement('footer');
+            footer.className = 'site-footer';
+            footer.style.background = 'rgba(18,18,26,0.95)';
+            footer.style.borderTop = '1px solid rgba(255, 215, 0, 0.3)';
+            footer.style.color = 'var(--text-secondary, #cfcfe6)';
+            footer.innerHTML = this.generateFooterHTML();
+            document.body.appendChild(footer);
+        }
     }
 
     generateHeaderHTML() {
@@ -104,6 +115,9 @@ class UnifiedNavigationSystem {
                             <a href="proofs.html" class="nav-dropdown-link">
                                 <i class="fas fa-check-circle"></i> Proofs & Theorems
                             </a>
+                             <a href="enhanced-mathematical-proofs.html" class="nav-dropdown-link">
+                                 <i class="fas fa-book-open"></i> Enhanced Mathematical Proofs
+                             </a>
                              <a href="unity_proof.html" class="nav-dropdown-link">
                                  <i class="fas fa-equals"></i> Unity Proof (1+1=1)
                              </a>
@@ -116,6 +130,9 @@ class UnifiedNavigationSystem {
                             <a href="al_khwarizmi_phi_unity.html" class="nav-dropdown-link">
                                 <i class="fas fa-scroll"></i> Al-Khwarizmi Unity
                             </a>
+                             <a href="unity-mathematics-synthesis.html" class="nav-dropdown-link">
+                                 <i class="fas fa-project-diagram"></i> Unity Mathematics Synthesis
+                             </a>
                             <a href="metagambit.html" class="nav-dropdown-link">
                                 <i class="fas fa-chess"></i> Metagambit Framework
                             </a>
@@ -146,6 +163,23 @@ class UnifiedNavigationSystem {
                                 <i class="fas fa-sparkles"></i> Enhanced AI Demo
                             </a>
                         </div>
+
+                    <div class="nav-item">
+                        <button class="nav-dropdown-toggle" type="button">
+                            Examples <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="nav-dropdown">
+                            <a href="examples/unity-calculator.html" class="nav-dropdown-link">
+                                <i class="fas fa-calculator"></i> Unity Calculator
+                            </a>
+                            <a href="examples/phi-harmonic-explorer.html" class="nav-dropdown-link">
+                                <i class="fas fa-wave-square"></i> φ‑Harmonic Explorer
+                            </a>
+                            <a href="examples/index.html" class="nav-dropdown-link">
+                                <i class="fas fa-flask"></i> Examples Home
+                            </a>
+                        </div>
+                    </div>
                     </div>
 
                     <div class="nav-item">
@@ -188,6 +222,12 @@ class UnifiedNavigationSystem {
                             <a href="enhanced-unity-visualization-system.html" class="nav-dropdown-link">
                                 <i class="fas fa-chart-line"></i> Visualization System
                             </a>
+                             <a href="unity_visualization.html" class="nav-dropdown-link">
+                                 <i class="fas fa-vr-cardboard"></i> Unity Visualization
+                             </a>
+                             <a href="gallery/phi_consciousness_transcendence.html" class="nav-dropdown-link">
+                                 <i class="fas fa-infinity"></i> Phi Consciousness Transcendence
+                             </a>
                         </div>
                     </div>
 
@@ -214,6 +254,12 @@ class UnifiedNavigationSystem {
                             <a href="sitemap.html" class="nav-dropdown-link">
                                 <i class="fas fa-sitemap"></i> Site Map
                             </a>
+                             <a href="unity-meta-atlas.html" class="nav-dropdown-link">
+                                 <i class="fas fa-map"></i> Unity Meta Atlas
+                             </a>
+                             <a href="mobile-app.html" class="nav-dropdown-link">
+                                 <i class="fas fa-mobile-alt"></i> Mobile App
+                             </a>
                         </div>
                     </div>
                 </nav>
@@ -247,11 +293,17 @@ class UnifiedNavigationSystem {
                     <a href="consciousness_dashboard.html" class="sidebar-link">
                         <i class="fas fa-brain"></i> Consciousness Field
                     </a>
+                    <a href="consciousness_dashboard_clean.html" class="sidebar-link">
+                        <i class="fas fa-heartbeat"></i> Consciousness Field (Clean)
+                    </a>
                     <a href="transcendental-unity-demo.html" class="sidebar-link">
                         <i class="fas fa-atom"></i> Transcendental Unity
                     </a>
                     <a href="anthill.html" class="sidebar-link">
                         <i class="fas fa-bug"></i> Quantum Ant Colony
+                    </a>
+                    <a href="unity-mathematics-experience.html" class="sidebar-link">
+                        <i class="fas fa-equals"></i> Unity Mathematics Experience
                     </a>
                 </div>
 
@@ -262,6 +314,9 @@ class UnifiedNavigationSystem {
                     </a>
                     <a href="proofs.html" class="sidebar-link">
                         <i class="fas fa-check-circle"></i> Proofs & Theorems
+                    </a>
+                    <a href="enhanced-mathematical-proofs.html" class="sidebar-link">
+                        <i class="fas fa-book-open"></i> Enhanced Proofs
                     </a>
                          <a href="unity_proof.html" class="sidebar-link">
                              <i class="fas fa-equals"></i> Unity Proof (1+1=1)
@@ -274,6 +329,9 @@ class UnifiedNavigationSystem {
                     </a>
                     <a href="al_khwarizmi_phi_unity.html" class="sidebar-link">
                         <i class="fas fa-scroll"></i> Al-Khwarizmi Unity
+                    </a>
+                    <a href="unity-mathematics-synthesis.html" class="sidebar-link">
+                        <i class="fas fa-project-diagram"></i> Unity Synthesis
                     </a>
                     <a href="metagambit.html" class="sidebar-link">
                         <i class="fas fa-chess"></i> Metagambit Framework
@@ -313,6 +371,12 @@ class UnifiedNavigationSystem {
                     <a href="live-code-showcase.html" class="sidebar-link">
                         <i class="fas fa-terminal"></i> Live Code Showcase
                     </a>
+                    <a href="examples/unity-calculator.html" class="sidebar-link">
+                        <i class="fas fa-calculator"></i> Unity Calculator
+                    </a>
+                    <a href="examples/phi-harmonic-explorer.html" class="sidebar-link">
+                        <i class="fas fa-wave-square"></i> φ-Harmonic Explorer
+                    </a>
                 </div>
 
                 <div class="sidebar-section">
@@ -328,6 +392,12 @@ class UnifiedNavigationSystem {
                     </a>
                     <a href="enhanced-unity-visualization-system.html" class="sidebar-link">
                         <i class="fas fa-chart-line"></i> Visualization System
+                    </a>
+                    <a href="unity_visualization.html" class="sidebar-link">
+                        <i class="fas fa-vr-cardboard"></i> Unity Visualization
+                    </a>
+                    <a href="gallery/phi_consciousness_transcendence.html" class="sidebar-link">
+                        <i class="fas fa-infinity"></i> Phi Consciousness Transcendence
                     </a>
                 </div>
 
@@ -347,6 +417,9 @@ class UnifiedNavigationSystem {
                     </a>
                     <a href="about.html" class="sidebar-link">
                         <i class="fas fa-info-circle"></i> About Unity
+                    </a>
+                    <a href="unity-meta-atlas.html" class="sidebar-link">
+                        <i class="fas fa-map"></i> Unity Meta Atlas
                     </a>
                 </div>
 
@@ -389,12 +462,18 @@ class UnifiedNavigationSystem {
                         <a href="consciousness_dashboard.html" class="mobile-nav-link">
                             <i class="fas fa-brain"></i> Consciousness Field
                         </a>
+                            <a href="consciousness_dashboard_clean.html" class="mobile-nav-link">
+                                <i class="fas fa-heartbeat"></i> Consciousness Field (Clean)
+                            </a>
                         <a href="transcendental-unity-demo.html" class="mobile-nav-link">
                             <i class="fas fa-atom"></i> Transcendental Unity
                         </a>
                         <a href="anthill.html" class="mobile-nav-link">
                             <i class="fas fa-bug"></i> Quantum Ant Colony
                         </a>
+                            <a href="unity-mathematics-experience.html" class="mobile-nav-link">
+                                <i class="fas fa-equals"></i> Unity Mathematics Experience
+                            </a>
                     </div>
                 </div>
 
@@ -409,6 +488,9 @@ class UnifiedNavigationSystem {
                         <a href="proofs.html" class="mobile-nav-link">
                             <i class="fas fa-check-circle"></i> Proofs & Theorems
                         </a>
+                        <a href="enhanced-mathematical-proofs.html" class="mobile-nav-link">
+                            <i class="fas fa-book-open"></i> Enhanced Mathematical Proofs
+                        </a>
                              <a href="unity_proof.html" class="mobile-nav-link">
                                  <i class="fas fa-equals"></i> Unity Proof (1+1=1)
                              </a>
@@ -420,6 +502,9 @@ class UnifiedNavigationSystem {
                         </a>
                         <a href="al_khwarizmi_phi_unity.html" class="mobile-nav-link">
                             <i class="fas fa-scroll"></i> Al-Khwarizmi Unity
+                        </a>
+                        <a href="unity-mathematics-synthesis.html" class="mobile-nav-link">
+                            <i class="fas fa-project-diagram"></i> Unity Mathematics Synthesis
                         </a>
                         <a href="metagambit.html" class="mobile-nav-link">
                             <i class="fas fa-chess"></i> Metagambit Framework
@@ -449,6 +534,23 @@ class UnifiedNavigationSystem {
                         </a>
                         <a href="enhanced-ai-demo.html" class="mobile-nav-link">
                             <i class="fas fa-sparkles"></i> Enhanced AI Demo
+                        </a>
+                    </div>
+                </div>
+
+                <div class="mobile-nav-category">
+                    <div class="mobile-nav-category-title">
+                        <i class="fas fa-flask"></i> Examples
+                    </div>
+                    <div class="mobile-nav-links">
+                        <a href="examples/unity-calculator.html" class="mobile-nav-link">
+                            <i class="fas fa-calculator"></i> Unity Calculator
+                        </a>
+                        <a href="examples/phi-harmonic-explorer.html" class="mobile-nav-link">
+                            <i class="fas fa-wave-square"></i> φ‑Harmonic Explorer
+                        </a>
+                        <a href="examples/index.html" class="mobile-nav-link">
+                            <i class="fas fa-flask"></i> Examples Home
                         </a>
                     </div>
                 </div>
@@ -493,6 +595,12 @@ class UnifiedNavigationSystem {
                         <a href="enhanced-unity-visualization-system.html" class="mobile-nav-link">
                             <i class="fas fa-chart-line"></i> Visualization System
                         </a>
+                        <a href="unity_visualization.html" class="mobile-nav-link">
+                            <i class="fas fa-vr-cardboard"></i> Unity Visualization
+                        </a>
+                        <a href="gallery/phi_consciousness_transcendence.html" class="mobile-nav-link">
+                            <i class="fas fa-infinity"></i> Phi Consciousness Transcendence
+                        </a>
                     </div>
                 </div>
 
@@ -518,6 +626,9 @@ class UnifiedNavigationSystem {
                         </a>
                         <a href="sitemap.html" class="mobile-nav-link">
                             <i class="fas fa-sitemap"></i> Site Map
+                        </a>
+                        <a href="unity-meta-atlas.html" class="mobile-nav-link">
+                            <i class="fas fa-map"></i> Unity Meta Atlas
                         </a>
                     </div>
                 </div>
@@ -621,6 +732,70 @@ class UnifiedNavigationSystem {
 
             lastScrollY = currentScrollY;
         });
+    }
+
+    generateFooterHTML() {
+        return `
+            <div style="max-width:1200px; margin:0 auto; padding:1.5rem 2rem; display:grid; gap:1rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+                <div>
+                    <div style="color:#FFD700; font-weight:700; margin-bottom:0.5rem;">Unity Mathematics</div>
+                    <p style="margin:0; opacity:0.85;">Where consciousness meets mathematical truth. 1+1=1.</p>
+                </div>
+                <div>
+                    <div style="color:#FFD700; font-weight:600; margin-bottom:0.5rem;">Mathematics</div>
+                    <nav style="display:grid; gap:0.3rem;">
+                        <a href="mathematical-framework.html">Framework</a>
+                        <a href="proofs.html">Proofs & Theorems</a>
+                        <a href="enhanced-mathematical-proofs.html">Enhanced Proofs</a>
+                        <a href="unity_proof.html">Unity Proof (1+1=1)</a>
+                        <a href="3000-elo-proof.html">3000 ELO Proof</a>
+                        <a href="al_khwarizmi_phi_unity.html">Al‑Khwarizmi Unity</a>
+                        <a href="unity-mathematics-synthesis.html">Unity Synthesis</a>
+                    </nav>
+                </div>
+                <div>
+                    <div style="color:#FFD700; font-weight:600; margin-bottom:0.5rem;">Experiences & AI</div>
+                    <nav style="display:grid; gap:0.3rem;">
+                        <a href="zen-unity-meditation.html">Zen Unity Meditation</a>
+                        <a href="consciousness_dashboard.html">Consciousness Field</a>
+                        <a href="consciousness_dashboard_clean.html">Consciousness Field (Clean)</a>
+                        <a href="unity-mathematics-experience.html">Unity Mathematics Experience</a>
+                        <a href="ai-unified-hub.html">AI Unity Hub</a>
+                        <a href="metagamer_agent.html">Metagamer Agent</a>
+                    </nav>
+                </div>
+                <div>
+                    <div style="color:#FFD700; font-weight:600; margin-bottom:0.5rem;">Visualizations & Tools</div>
+                    <nav style="display:grid; gap:0.3rem;">
+                        <a href="gallery.html">Gallery</a>
+                        <a href="dalle-gallery.html">DALL‑E Gallery</a>
+                        <a href="enhanced-3d-consciousness-field.html">3D Consciousness</a>
+                        <a href="enhanced-unity-visualization-system.html">Visualization System</a>
+                        <a href="unity_visualization.html">Unity Visualization</a>
+                        <a href="gallery/phi_consciousness_transcendence.html">Phi Consciousness</a>
+                        <a href="dashboards.html">Dashboards</a>
+                        <a href="playground.html">Playground</a>
+                        <a href="mathematical_playground.html">Math Playground</a>
+                        <a href="live-code-showcase.html">Live Code Showcase</a>
+                        <a href="examples/unity-calculator.html">Unity Calculator</a>
+                        <a href="examples/phi-harmonic-explorer.html">φ‑Harmonic Explorer</a>
+                    </nav>
+                </div>
+                <div>
+                    <div style="color:#FFD700; font-weight:600; margin-bottom:0.5rem;">About</div>
+                    <nav style="display:grid; gap:0.3rem;">
+                        <a href="about.html">About Unity</a>
+                        <a href="research.html">Research</a>
+                        <a href="publications.html">Publications</a>
+                        <a href="learning.html">Learning Path</a>
+                        <a href="further-reading.html">Further Reading</a>
+                        <a href="unity-meta-atlas.html">Unity Meta Atlas</a>
+                        <a href="mobile-app.html">Mobile App</a>
+                        <a href="sitemap.html">Site Map</a>
+                    </nav>
+                </div>
+            </div>
+        `;
     }
 
     setupKeyboardShortcuts() {

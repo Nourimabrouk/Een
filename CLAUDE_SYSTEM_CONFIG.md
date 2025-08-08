@@ -55,6 +55,10 @@ dir website\
 
 # DON'T use Unix paths on Windows without proper quoting
 # WRONG: cd C:\Users\Nouri\Documents\GitHub\Een (use quotes)
+
+# ❌ NEVER USE start /B - causes interruptions and errors
+# WRONG: start /B python -m http.server 8001
+# WRONG: start /B "path\to\command"
 ```
 
 ## Quick Reference Commands
