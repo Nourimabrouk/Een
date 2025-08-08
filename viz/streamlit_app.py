@@ -30,19 +30,27 @@ import plotly.express as px
 from plotly.subplots import make_subplots
 import time
 import json
-import asyncio
-import threading
 from datetime import datetime, timedelta
 from typing import Dict, List, Tuple, Optional, Any, Union
 from dataclasses import dataclass, field
 import logging
 from pathlib import Path
-import base64
-from io import BytesIO
-import requests
 from collections import deque
 import math
 import sys
+
+# Optional imports with fallbacks
+try:
+    import requests
+except ImportError:
+    requests = None
+    
+try:
+    import asyncio
+    import threading
+except ImportError:
+    asyncio = None
+    threading = None
 
 # Sacred Mathematical Constants
 PHI = 1.618033988749895  # Golden ratio

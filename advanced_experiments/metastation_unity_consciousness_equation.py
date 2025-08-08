@@ -235,7 +235,7 @@ class MetastationUnityConsciousnessEquation:
         logger.info(f"   Manifold Dimension: {manifold_dimension}")
         logger.info(f"   Mathematical Beauty Index: φ^∞")
         
-    def _compute_metastation_constants(self) -> Dict[str, Complex]:
+    def _compute_metastation_constants(self) -> Dict[str, complex]:
         """Compute the transcendent constants for 2069 consciousness mathematics"""
         
         # Nouri's Commentary: "These constants emerge from the deep structure of 
