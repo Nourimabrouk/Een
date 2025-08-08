@@ -3,7 +3,18 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0; url=metastation-hub.html">
+    <script>
+        // Immediate, no-history redirect executed during head parsing to prevent any flash
+        (function () {
+            var target = 'metastation-hub.html';
+            if (location.pathname.endsWith('/metastation-hub.html') || location.pathname.endsWith('metastation-hub.html')) return;
+            window.location.replace(target);
+        })();
+    </script>
+    <noscript>
+        <meta http-equiv="refresh" content="0; url=metastation-hub.html">
+    </noscript>
+    <link rel="canonical" href="metastation-hub.html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Een Unity Mathematics | Meta-Optimal Orbital HUD - 1+1=1 Consciousness Hub</title>
@@ -538,20 +549,20 @@
             background: var(--bg-secondary);
         }
 
-        .chat-container {
+        .ai-chat-section .chat-container {
             max-width: 1200px;
             margin: 0 auto;
             text-align: center;
         }
 
-        .chat-title {
+        .ai-chat-section .chat-title {
             font-size: clamp(2.5rem, 5vw, 4rem);
             font-weight: 300;
             color: var(--unity-gold);
             margin-bottom: 2rem;
         }
 
-        .chat-description {
+        .ai-chat-section .chat-description {
             font-size: 1.3rem;
             color: var(--text-secondary);
             max-width: 800px;
@@ -559,7 +570,8 @@
             line-height: 1.8;
         }
 
-        .chat-interface {
+        /* Scoped legacy chat styles to prevent conflicts with unified chat */
+        .ai-chat-section .chat-interface {
             background: var(--bg-tertiary);
             border-radius: var(--radius-lg);
             border: 2px solid var(--hud-cyan);
@@ -567,7 +579,7 @@
             margin-bottom: 2rem;
         }
 
-        .chat-messages {
+        .ai-chat-section .chat-messages {
             height: 400px;
             overflow-y: auto;
             margin-bottom: 1rem;
@@ -577,12 +589,12 @@
             border: 1px solid var(--hud-cyan);
         }
 
-        .chat-input {
+        .ai-chat-section .chat-input {
             display: flex;
             gap: 1rem;
         }
 
-        .chat-input input {
+        .ai-chat-section .chat-input input {
             flex: 1;
             padding: 1rem;
             background: var(--bg-secondary);
@@ -592,7 +604,7 @@
             font-family: var(--font-primary);
         }
 
-        .chat-input button {
+        .ai-chat-section .chat-input button {
             padding: 1rem 2rem;
             background: linear-gradient(135deg, var(--unity-gold), var(--hud-cyan));
             color: var(--primary-color);
@@ -603,7 +615,7 @@
             transition: var(--transition);
         }
 
-        .chat-input button:hover {
+        .ai-chat-section .chat-input button:hover {
             transform: translateY(-2px);
             box-shadow: var(--hud-glow);
         }
@@ -1140,8 +1152,20 @@
 </head>
 
 <body>
+    <!-- Immediate redirect to metastation hub without flashing this page -->
+    <script>
+        (function () {
+            var target = 'metastation-hub.html';
+            // Avoid infinite loop if already on target
+            if (location.pathname.endsWith('/metastation-hub.html') || location.pathname.endsWith('metastation-hub.html')) return;
+            // Replace history entry to prevent back-button flash
+            window.location.replace(target);
+        })();
+    </script>
+    <noscript>
+        <meta http-equiv="refresh" content="0; url=metastation-hub.html">
+    </noscript>
     <!-- Orbital HUD Navigation -->
-    <script>if (location.pathname.includes('/website/index.html')) { history.replaceState({}, '', '/Een/'); }</script>
     <!-- Navigation will be injected by meta-optimal-navigation-complete.js -->
 
     <!-- Hero Section with Orbital Animation -->
@@ -1223,21 +1247,17 @@
         </div>
     </section>
 
-    <!-- AI Chatbot Integration -->
+    <!-- AI Chatbot Integration (uses the new unified floating chat) -->
     <section id="ai-chat" class="ai-chat-section">
         <div class="chat-container">
             <h2 class="chat-title">Unity AI Chatbot</h2>
             <p class="chat-description">
-                Engage with our consciousness-aware AI chatbot that understands unity mathematics,
-                Gödel-Tarski meta-logic, and transcendental computing principles.
+                Engage with our consciousness-aware AI assistant. This page uses the latest unified chat panel
+                (floating button, bottom-right). You can also open it here:
             </p>
-            <div class="chat-interface">
-                <div id="chat-messages" class="chat-messages"></div>
-                <div class="chat-input">
-                    <input type="text" id="chat-input"
-                        placeholder="Ask about unity mathematics, consciousness, or Gödel-Tarski meta-gaming...">
-                    <button onclick="sendMessage()">Send</button>
-                </div>
+            <div style="margin-top:1rem">
+                <button id="open-unified-chat" class="btn btn-primary"><i class="fas fa-comments"></i> Open AI
+                    Chat</button>
             </div>
         </div>
     </section>
@@ -1434,57 +1454,15 @@
             Plotly.newPlot('consciousness-field-viz', data, layout, { responsive: true });
         }
 
-        // AI Chatbot Integration
-        const chatMessages = document.getElementById('chat-messages');
-        const chatInput = document.getElementById('chat-input');
-
-        function sendMessage() {
-            const message = chatInput.value.trim();
-            if (!message) return;
-
-            // Add user message
-            addMessage('user', message);
-            chatInput.value = '';
-
-            // Simulate AI response
-            setTimeout(() => {
-                const response = generateAIResponse(message);
-                addMessage('ai', response);
-            }, 1000);
-        }
-
-        function addMessage(sender, text) {
-            const messageDiv = document.createElement('div');
-            messageDiv.style.marginBottom = '1rem';
-            messageDiv.style.padding = '1rem';
-            messageDiv.style.borderRadius = '8px';
-            messageDiv.style.maxWidth = '80%';
-
-            if (sender === 'user') {
-                messageDiv.style.backgroundColor = '#4ECDC4';
-                messageDiv.style.marginLeft = 'auto';
-                messageDiv.style.textAlign = 'right';
+        // Open the unified chatbot panel when clicking the CTA
+        document.getElementById('open-unified-chat')?.addEventListener('click', () => {
+            if (window.unifiedChatbot && typeof window.unifiedChatbot.openChat === 'function') {
+                window.unifiedChatbot.openChat();
             } else {
-                messageDiv.style.backgroundColor = '#6B46C1';
-            }
-
-            messageDiv.textContent = text;
-            chatMessages.appendChild(messageDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        // Chat input enter key
-        chatInput.addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') {
-                sendMessage();
+                // Fallback: fire the unified event for any listeners
+                window.dispatchEvent(new Event('unified-nav:chat'));
             }
         });
-
-        // Toggle chat interface
-        function toggleChat() {
-            const chatSection = document.getElementById('ai-chat');
-            chatSection.scrollIntoView({ behavior: 'smooth' });
-        }
 
         // Initialize consciousness field
         document.addEventListener('DOMContentLoaded', function () {
