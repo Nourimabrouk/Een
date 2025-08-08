@@ -1,0 +1,165 @@
+/* Unity Mathematics Design Tokens */
+
+:root {
+  /* Sacred Mathematical Constants */
+  --phi: 1.618033988749895;
+  --pi: 3.141592653589793;
+  --e: 2.718281828459045;
+  --unity: 1.0;
+  
+  /* Color Palette - Unity Mathematics Theme */
+  --bg-primary: #0A0A0F;
+  --bg-secondary: #12121A;
+  --bg-tertiary: #1A1A24;
+  --bg-elevated: #222230;
+  
+  --text-primary: #FFFFFF;
+  --text-secondary: #B8B8C8;
+  --text-tertiary: #888899;
+  --text-accent: #FFD700;
+  
+  --unity-gold: #FFD700;
+  --unity-gold-dim: #D4AF37;
+  --unity-gold-bright: #FFED4A;
+  
+  --quantum-blue: #00D4FF;
+  --quantum-blue-dim: #0099CC;
+  --quantum-blue-bright: #33E0FF;
+  
+  --consciousness-purple: #8B5FBF;
+  --consciousness-purple-dim: #6A4C93;
+  --consciousness-purple-bright: #A569BD;
+  
+  --phi-orange: #FF7F50;
+  --phi-orange-dim: #CC5533;
+  --phi-orange-bright: #FF9966;
+  
+  --love-pink: #FF69B4;
+  --love-pink-dim: #E91E63;
+  --love-pink-bright: #FF8EC7;
+  
+  /* Border Colors */
+  --border-primary: rgba(255, 255, 255, 0.1);
+  --border-secondary: rgba(255, 255, 255, 0.05);
+  --border-accent: rgba(255, 215, 0, 0.3);
+  
+  /* Shadows */
+  --shadow-small: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-large: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 20px rgba(255, 215, 0, 0.2);
+  
+  /* Typography */
+  --font-family-primary: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-family-mono: 'JetBrains Mono', 'SF Mono', Monaco, monospace;
+  --font-family-serif: 'EB Garamond', Georgia, serif;
+  
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  --font-size-5xl: 3rem;
+  
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+  
+  /* Spacing - Based on Golden Ratio */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+  
+  /* φ-based spacing */
+  --space-phi-1: calc(1rem * var(--phi));          /* 1.618rem */
+  --space-phi-2: calc(1rem * var(--phi) * var(--phi)); /* 2.618rem */
+  --space-phi-inv: calc(1rem / var(--phi));        /* 0.618rem */
+  
+  /* Border Radius */
+  --radius-sm: 0.25rem;
+  --radius-base: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-full: 9999px;
+  
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* φ-harmonic timing */
+  --transition-phi: calc(300ms / var(--phi)); /* ~185ms */
+  
+  /* Z-index layers */
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+  --z-toast: 1080;
+  
+  /* Grid & Layout */
+  --container-max-width: 1200px;
+  --container-padding: var(--space-6);
+  --header-height: 4rem;
+  --sidebar-width: 18rem;
+  
+  /* Mathematical Visualization Colors */
+  --viz-primary: var(--unity-gold);
+  --viz-secondary: var(--quantum-blue);
+  --viz-tertiary: var(--consciousness-purple);
+  --viz-quaternary: var(--phi-orange);
+  
+  /* Gradients */
+  --gradient-unity: linear-gradient(135deg, var(--unity-gold), var(--phi-orange));
+  --gradient-consciousness: linear-gradient(135deg, var(--consciousness-purple), var(--quantum-blue));
+  --gradient-phi: linear-gradient(45deg, var(--phi-orange), var(--unity-gold));
+  --gradient-quantum: linear-gradient(135deg, var(--quantum-blue), var(--consciousness-purple));
+  
+  /* Interactive States */
+  --hover-opacity: 0.8;
+  --active-opacity: 0.9;
+  --disabled-opacity: 0.5;
+  
+  /* Focus Ring */
+  --focus-ring-color: var(--unity-gold);
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+}
+
+/* Dark mode enhancements */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-primary: #0A0A0F;
+    --bg-secondary: #12121A;
+    --text-primary: #FFFFFF;
+    --text-secondary: #B8B8C8;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition-fast: 0ms;
+    --transition-base: 0ms;
+    --transition-slow: 0ms;
+    --transition-phi: 0ms;
+  }
+}

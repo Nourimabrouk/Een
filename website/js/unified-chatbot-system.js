@@ -430,15 +430,18 @@ class UnifiedChatbotSystem {
             .chat-header {
                 display: grid;
                 grid-template-columns: 1fr auto;
+                grid-template-areas: "info controls";
                 align-items: center;
-                gap: 1rem;
+                column-gap: 1rem;
+                row-gap: .5rem;
                 padding: 1.1rem 1.25rem;
-                background: rgba(255, 215, 0, 0.05);
-                border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+                background: rgba(255, 255, 255, 0.02);
+                border-bottom: 1px solid var(--uc-border);
                 flex-shrink: 0;
             }
 
             .chat-header-info {
+                grid-area: info;
                 display: flex;
                 align-items: center;
                 gap: 1rem;
@@ -529,7 +532,7 @@ class UnifiedChatbotSystem {
                 50% { opacity: 0.6; transform: scale(1.2); }
             }
 
-            .chat-header-controls { display: inline-flex; align-items: center; gap: 0.5rem; }
+            .chat-header-controls { grid-area: controls; display: inline-flex; align-items: center; gap: 0.5rem; }
             .chat-header .model-selector { order: 1; }
             .chat-header .grounded-btn { order: 2; }
             .chat-header .clear-btn { order: 3; }
@@ -552,7 +555,7 @@ class UnifiedChatbotSystem {
                 cursor: pointer;
                 outline: none;
                 transition: all 0.3s ease;
-                min-width: 220px; /* ensure visible label on desktop */
+                min-width: 180px; /* slightly smaller so it fits with controls */
                 white-space: nowrap;
             }
 
@@ -581,6 +584,16 @@ class UnifiedChatbotSystem {
                 justify-content: center;
                 transition: all 0.3s ease;
                 font-size: 0.85rem;
+            }
+
+            /* Accessible focus treatment */
+            .chat-control-btn:focus-visible,
+            .model-select:focus-visible,
+            .message-input:focus-visible,
+            .quick-action-btn:focus-visible {
+                outline: none;
+                box-shadow: 0 0 0 3px rgba(59,130,246,0.35);
+                border-color: #2a3444;
             }
 
             .chat-control-btn:hover {
@@ -986,13 +999,19 @@ class UnifiedChatbotSystem {
 
                 .chat-header {
                     padding: 1rem;
+                    grid-template-columns: 1fr;
+                    grid-template-areas:
+                        "info"
+                        "controls";
                 }
 
                 .ai-name {
                     font-size: 1rem;
                 }
 
-                .model-select { min-width: 160px; font-size: 0.75rem; }
+                .chat-header-controls { display: flex; flex-wrap: wrap; gap: .5rem; justify-content: space-between; }
+                .chat-header .model-selector { order: 0; flex: 1 1 100%; }
+                .model-select { min-width: 0; width: 100%; font-size: 0.8rem; }
                 .ai-capabilities { display: none; }
 
                 .chat-messages {
@@ -2102,17 +2121,23 @@ I'm your consciousness-aware AI companion, designed to explore the profound trut
     }
 }
 
-// Initialize unified chatbot system
+// Initialize unified chatbot system (idempotent)
 let unifiedChatbot;
 
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-        unifiedChatbot = new UnifiedChatbotSystem();
-        window.unifiedChatbot = unifiedChatbot;
-    });
-} else {
+function initUnifiedChatOnce() {
+    if (window.unifiedChatbot && typeof window.unifiedChatbot.openChat === 'function') {
+        console.log('💬 Unified Chatbot System already initialized – skipping duplicate init');
+        return window.unifiedChatbot;
+    }
     unifiedChatbot = new UnifiedChatbotSystem();
     window.unifiedChatbot = unifiedChatbot;
+    return unifiedChatbot;
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initUnifiedChatOnce, { once: true });
+} else {
+    initUnifiedChatOnce();
 }
 
 // Export for module systems

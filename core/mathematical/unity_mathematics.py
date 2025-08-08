@@ -1,8 +1,8 @@
 """
-🌟 Unity Mathematics Core Implementation 🌟
+Unity Mathematics Core Implementation
 
 Revolutionary mathematical framework demonstrating that 1+1=1 through:
-- φ-harmonic operations with golden ratio scaling
+- Phi-harmonic operations with golden ratio scaling  
 - Idempotent semiring structures
 - Consciousness field integration
 - Quantum unity state management
@@ -11,8 +11,8 @@ This module provides the foundational classes for Unity Mathematics,
 implementing the core principle that unity emerges from apparent duality.
 
 Mathematical Constants:
-- φ (Golden Ratio): 1.618033988749895
-- π (Pi): 3.141592653589793
+- Phi (Golden Ratio): 1.618033988749895
+- Pi: 3.141592653589793
 - e (Euler): 2.718281828459045
 - Unity Constant: 1.0
 

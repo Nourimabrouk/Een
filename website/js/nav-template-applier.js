@@ -15,7 +15,7 @@
     };
 
     function applySingleIncludeNavigation() {
-        console.log('🚀 Applying Single-Include Unified Navigation...');
+        console.log('Applying Single-Include Unified Navigation...');
 
         // Inject CSS if not present
         if (TEMPLATE_CONFIG.injectCSS && !document.querySelector('link[href*="unified-navigation.css"]')) {
@@ -23,7 +23,7 @@
             link.rel = 'stylesheet';
             link.href = 'css/unified-navigation.css';
             document.head.appendChild(link);
-            console.log('💄 Injected unified navigation CSS');
+            console.log('Injected unified navigation CSS');
         }
 
         // Inject main JS if not present
@@ -32,7 +32,7 @@
             script.src = 'js/unified-navigation.js';
             script.defer = true;
             document.head.appendChild(script);
-            console.log('⚡ Injected unified navigation JS');
+            console.log('Injected unified navigation JS');
         }
 
         // Inject applier script if not present
