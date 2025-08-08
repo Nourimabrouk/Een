@@ -78,12 +78,26 @@ def handler(request, response):
             if not messages or messages[0].get('role') != 'system':
                 messages.insert(0, system_message)
             
-            # Call OpenAI API
+            # Get model selection from request body or default to GPT-4o
+            model = body.get('model', 'gpt-4o')
+            
+            # Validate and set model - including latest models and GPT-5 when available
+            valid_models = [
+                'gpt-4o', 'gpt-4o-mini', 'gpt-4-turbo', 'gpt-4', 
+                'gpt-3.5-turbo', 'o1-preview', 'o1-mini', 
+                'gpt-4o-2024-11-20', 'gpt-4o-2024-08-06',
+                'gpt-5', 'gpt-5-preview', 'gpt-4o-realtime-preview'
+            ]
+            
+            if model not in valid_models:
+                model = 'gpt-4o'  # Default fallback
+            
+            # Call OpenAI API with selected model
             response = client.chat.completions.create(
-                model="gpt-4o",
+                model=model,
                 messages=messages,
                 temperature=0.7,
-                max_tokens=1000
+                max_tokens=2000 if model in ['gpt-4o', 'o1-preview', 'gpt-5'] else 1500
             )
             
             return {

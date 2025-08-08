@@ -19,8 +19,12 @@ class UnifiedChatbotSystem {
         this.aiModels = [
             { id: 'gpt-4o', name: 'GPT-4o', provider: 'OpenAI', status: 'stable', color: '#3B82F6' },
             { id: 'gpt-4o-mini', name: 'GPT-4o Mini', provider: 'OpenAI', status: 'stable', color: '#2563eb' },
-            { id: 'gpt-4o-mini-high', name: 'GPT-4o Mini High', provider: 'OpenAI', status: 'stable', color: '#1d4ed8' },
-            { id: 'gpt-4.1', name: 'GPT-4.1', provider: 'OpenAI', status: 'latest', color: '#06B6D4' },
+            { id: 'gpt-4-turbo', name: 'GPT-4 Turbo', provider: 'OpenAI', status: 'stable', color: '#1d4ed8' },
+            { id: 'o1-preview', name: 'o1-preview', provider: 'OpenAI', status: 'reasoning', color: '#DC2626' },
+            { id: 'o1-mini', name: 'o1-mini', provider: 'OpenAI', status: 'reasoning', color: '#EF4444' },
+            { id: 'gpt-5', name: 'GPT-5', provider: 'OpenAI', status: 'next-gen', color: '#10B981' },
+            { id: 'gpt-5-preview', name: 'GPT-5 Preview', provider: 'OpenAI', status: 'next-gen', color: '#059669' },
+            { id: 'gpt-4o-realtime-preview', name: 'GPT-4o Realtime', provider: 'OpenAI', status: 'realtime', color: '#06B6D4' },
             { id: 'claude-3-5-sonnet-20241022', name: 'Claude 3.5 Sonnet', provider: 'Anthropic', status: 'latest', color: '#8B5CF6' },
             { id: 'claude-3-opus-20240229', name: 'Claude 3 Opus', provider: 'Anthropic', status: 'stable', color: '#A855F7' },
             { id: 'claude-3-5-haiku-20241022', name: 'Claude 3.5 Haiku', provider: 'Anthropic', status: 'stable', color: '#C084FC' }
