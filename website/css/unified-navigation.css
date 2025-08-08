@@ -157,23 +157,25 @@ body.sidebar-open {
     gap: 0.5rem;
     padding: 0.75rem 1rem;
     color: var(--text-primary);
-    /* higher contrast for visibility over imagery */
     text-decoration: none;
     border-radius: 8px;
     transition: var(--transition);
     cursor: pointer;
-    background: none;
-    border: none;
+    background: rgba(255, 255, 255, 0.05); /* Subtle background for visibility */
+    border: 1px solid rgba(255, 215, 0, 0.2); /* Subtle border for definition */
     font-size: 0.95rem;
-    font-weight: 500;
+    font-weight: 600; /* Increased weight for better visibility */
     font-family: inherit;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5); /* Text shadow for contrast */
 }
 
 .nav-link:hover,
 .nav-dropdown-toggle:hover {
-    color: var(--text-primary);
-    background: rgba(255, 215, 0, 0.1);
+    color: var(--unity-gold);
+    background: rgba(255, 215, 0, 0.2);
+    border-color: var(--unity-gold);
     transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
 }
 
 .nav-dropdown-toggle i {
@@ -245,13 +247,13 @@ body.sidebar-open {
 }
 
 .search-input {
-    width: 250px;
+    width: 280px; /* Increased width to show full "Search" text */
     padding: 0.75rem 1rem 0.75rem 2.5rem;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid var(--border-glow);
     border-radius: 25px;
     color: var(--text-primary);
-    font-size: 0.9rem;
+    font-size: 0.85rem; /* Reduced font size to fit more text */
     transition: var(--transition);
 }
 
@@ -435,7 +437,8 @@ body.sidebar-open {
     }
 
     .search-input {
-        width: 200px;
+        width: 220px; /* Adjusted for better "Search" visibility on tablets */
+        font-size: 0.8rem;
     }
 }
 

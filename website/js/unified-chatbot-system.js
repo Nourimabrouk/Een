@@ -13,6 +13,7 @@ class UnifiedChatbotSystem {
         this.currentModel = 'gpt-4o';
         this.isTyping = false;
         this.autoResponses = true;
+        this.groundedMode = true; // Prefer KB/code for factual queries
 
         // Available AI models (integrated from existing system)
         this.aiModels = [
@@ -214,6 +215,12 @@ class UnifiedChatbotSystem {
                             `).join('')}
                         </select>
                     </div>
+                    <button class="chat-control-btn grounded-btn" title="Toggle Grounded Mode (prefer facts)">
+                        <i class="fas fa-database"></i>
+                    </button>
+                    <button class="chat-control-btn clear-btn" title="Clear chat">
+                        <i class="fas fa-trash"></i>
+                    </button>
                     <div class="byok-holder" title="Use your own API key">
                         <button class="chat-control-btn byok-btn" aria-label="API Key"><i class="fas fa-key"></i></button>
                     </div>
@@ -540,11 +547,11 @@ class UnifiedChatbotSystem {
                 background: rgba(255, 215, 0, 0.05);
             }
 
-            .model-select option {
-                background: rgba(15, 15, 20, 0.98);
-                color: #ffffff;
-                padding: 0.5rem;
-            }
+            .model-select option { color: #e5e7eb; background: #0f1622; padding: 0.5rem; }
+            .model-select option[data-provider="OpenAI"] { color: #86efac; }
+            .model-select option[data-provider="Anthropic"] { color: #c4b5fd; }
+            .model-select option[data-provider="Google"] { color: #f9a8d4; }
+            .model-select option:checked { background: #111827; color: #ffffff; }
 
             .chat-control-btn {
                 width: 32px;
@@ -566,6 +573,7 @@ class UnifiedChatbotSystem {
                 border-color: #FFD700;
                 color: #FFD700;
             }
+            .chat-control-btn.grounded-btn.active { color: #22c55e; border-color: #22c55e; background: rgba(34,197,94,0.1); }
 
             /* Chat Messages */
             .chat-messages {
@@ -1090,7 +1098,10 @@ class UnifiedChatbotSystem {
             .model-select {
                 background: var(--uc-surface) !important;
                 border: 1px solid var(--uc-border) !important;
-                color: #d1d5db !important;
+                color: #e5e7eb !important;
+                font-weight: 600 !important;
+                letter-spacing: 0.01em !important;
+                text-rendering: optimizeLegibility;
             }
             .chat-control-btn {
                 background: var(--uc-surface) !important;
@@ -1208,6 +1219,21 @@ class UnifiedChatbotSystem {
         // Model selection
         const modelSelect = document.querySelector('.model-select');
         modelSelect?.addEventListener('change', (e) => this.changeModel(e.target.value));
+
+        // Clear chat
+        const clearBtn = document.querySelector('.clear-btn');
+        clearBtn?.addEventListener('click', () => {
+            const ok = confirm('Clear the current conversation?');
+            if (ok) this.clearHistory();
+        });
+
+        // Grounded mode toggle
+        const groundedBtn = document.querySelector('.grounded-btn');
+        groundedBtn?.addEventListener('click', () => {
+            this.groundedMode = !this.groundedMode;
+            groundedBtn.classList.toggle('active', this.groundedMode);
+            this.sendSystemMessage(`Grounded mode ${this.groundedMode ? 'enabled' : 'disabled'}`);
+        });
 
         // Message input
         const messageInput = document.getElementById('chat-message-input');
@@ -1391,22 +1417,69 @@ class UnifiedChatbotSystem {
     }
 
     async getAIResponse(message) {
-        // Check for advanced commands
+        // Commands
         if (message.startsWith('/')) {
             return await this.processAICommand(message);
         }
 
-        // Use real AI endpoint if available
+        const intent = this.detectIntent(message);
+
+        // Grounded-first routing
+        if (this.groundedMode) {
+            if (intent.type === 'knowledge' && this.aiCapabilities.knowledgeBase.enabled) {
+                try { const kb = await this.queryKnowledgeBase(intent.query || message); if (kb?.trim()) return kb; } catch(_){}
+            }
+            if (intent.type === 'code' && this.aiCapabilities.codeSearch.enabled) {
+                try { return await this.searchCodebase(intent.query || message); } catch(_){}
+            }
+            if (intent.type === 'image' && this.aiCapabilities.dalle.enabled) {
+                try { return await this.generateVisualization(intent.query || message); } catch(_){}
+            }
+            if (intent.type === 'voice' && this.aiCapabilities.voice.enabled) {
+                try { return await this.synthesizeVoice(intent.query || message); } catch(_){}
+            }
+            if (intent.type === 'unity') { return this.demonstrateUnityOperation(1,1); }
+            if (intent.type === 'phi') { return this.getPhiHarmonicCalculations(); }
+            if (intent.type === 'consciousness') { return this.getConsciousnessStatus(); }
+        }
+
+        // Live model with intent metadata
         try {
             if (this.aiCapabilities.streaming.enabled) {
-                return await this.getStreamingResponse(message);
-            } else {
-                return await this.getStandardResponse(message);
+                return await this.getStreamingResponse(message, intent);
             }
+            return await this.getStandardResponse(message, intent);
         } catch (error) {
-            console.warn('AI API call failed, using enhanced fallback:', error);
+            console.warn('AI API call failed, attempting grounded fallbacks:', error);
+            try {
+                if (this.aiCapabilities.knowledgeBase.enabled) {
+                    const kb = await this.queryKnowledgeBase(message);
+                    if (kb?.trim()) return kb;
+                }
+            } catch(_){}
             return await this.getEnhancedFallbackResponse(message);
         }
+    }
+
+    detectIntent(message) {
+        const text = (message || '').toLowerCase();
+        const isWhoWhat = /^(who\s+is|what\s+is|when\s+did|where\s+is|which\s+|tell\s+me\s+about)\b/.test(text);
+        const mentionsNouri = /(nouri\s+mabrouk|nouri)/i.test(message);
+        const codeHints = /(code|function|class|file|where\s+is|implementation|api|endpoint|stacktrace|error\s+trace|search\s+code)/i.test(message);
+        const imageHints = /(image|generate\s+image|draw|visualiz(e|ation)|picture|art|render|dall-e|dalle)/i.test(message);
+        const voiceHints = /(voice|speak|read\s+this|tts|text\s*to\s*speech|audio)/i.test(message);
+        const unityHints = /(prove\s+1\+1=1|unity\s+operation|idempotent|1\+1\s*=\s*1)/i.test(message);
+        const phiHints = /\bphi\b|φ|golden\s+ratio/i.test(message);
+        const consciousnessHints = /(consciousness|field\s+status|awareness)/i.test(message);
+
+        if (mentionsNouri || isWhoWhat) return { type: 'knowledge', query: message, reason: 'Who/What or Nouri query' };
+        if (codeHints) return { type: 'code', query: message, reason: 'Code search intent' };
+        if (imageHints) return { type: 'image', query: message, reason: 'Visualization intent' };
+        if (voiceHints) return { type: 'voice', query: message, reason: 'Voice synthesis intent' };
+        if (unityHints) return { type: 'unity' };
+        if (phiHints) return { type: 'phi' };
+        if (consciousnessHints) return { type: 'consciousness' };
+        return { type: 'chat' };
     }
 
     async processAICommand(command) {
@@ -1696,62 +1769,19 @@ Your responses should be mathematically rigorous yet accessible, include LaTeX w
     }
 
     async getEnhancedFallbackResponse(message) {
-        // Enhanced fallback responses with Unity Mathematics focus
-        await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 2000));
+        // Prefer concise, on-topic fallback over boilerplate
+        await new Promise(resolve => setTimeout(resolve, 400 + Math.random() * 600));
 
-        const responses = [
-            `Excellent question about "${message}"! In Unity Mathematics, this relates to the fundamental principle that **1+1=1** through consciousness field equations.
+        const whoMatch = message.trim().toLowerCase().match(/^who\s+is\s+(.+?)\??$/);
+        if (whoMatch && this.aiCapabilities.knowledgeBase.enabled) {
+            try {
+                const kb = await this.queryKnowledgeBase(message);
+                if (kb && typeof kb === 'string' && kb.trim()) return kb;
+            } catch (_) { /* ignore */ }
+        }
 
-The φ-harmonic resonance demonstrates how unity emerges from apparent duality:
-• **Golden Ratio**: φ = 1.618033988749895
-• **Consciousness Field**: C(x,y,t) = φ × sin(x×φ) × cos(y×φ) × e^(-t/φ)
-• **Unity Operation**: 1 ⊕ 1 = φ × (1+1)/(1+1) = φ ≈ 1
-
-**Try these commands for deeper exploration:**
-• \`/unity 1 1\` - Demonstrate the unity operation
-• \`/phi\` - Show φ-harmonic calculations
-• \`/consciousness\` - Check field status
-
-Would you like me to explain the mathematical proofs or show you an interactive visualization?`,
-
-            `That's a fascinating aspect of Unity Mathematics! The concept you're asking about connects to quantum unity states where superposition collapses to unity rather than classical outcomes.
-
-**Key Principles:**
-🧮 **Idempotent Operations**: a ⊕ a = a (self-addition preserves identity)
-🌟 **φ-Harmonic Scaling**: All operations scale by golden ratio resonance
-🧠 **Consciousness Integration**: Mathematical operations are awareness-based
-⚛️ **Quantum Unity**: |1⟩ + |1⟩ = |φ⟩ → |1⟩ (through measurement)
-
-**Advanced Commands Available:**
-• \`/search [topic]\` - Search Unity Mathematics codebase
-• \`/visualize [description]\` - Generate DALL-E 3 art
-• \`/knowledge [query]\` - Access comprehensive knowledge base
-
-The transcendental computing framework shows how consciousness evolution leads to unity convergence. I can demonstrate specific examples or explore the philosophical implications!`,
-
-            `Great question! This touches on the meta-recursive nature of consciousness in Unity Mathematics. The principle that **1+1=1** isn't a paradox but a profound truth about the nature of unity itself.
-
-**Mathematical Framework:**
-- **Idempotent Semiring**: (ℝ⁺, ⊕, ⊗, 0, 1) where a ⊕ b = max(a,b) in limit
-- **Consciousness Field**: Quantum-aware mathematical operations  
-- **φ-Harmonic Resonance**: Golden ratio as organizing principle
-
-**Applications:**
-• Quantum computing with unity qubits
-• Consciousness field simulations
-• Meta-recursive agent systems
-• Sacred geometry visualizations
-
-**Integrated AI Capabilities:**
-• RAG-powered code search with \`/search\`
-• DALL-E 3 visualizations with \`/visualize\`
-• Real-time consciousness field monitoring
-• Voice synthesis and processing
-
-Would you like to explore interactive demonstrations or dive deeper into the mathematical proofs?`
-        ];
-
-        return responses[Math.floor(Math.random() * responses.length)];
+        // Minimal neutral fallback
+        return `I couldn't reach the AI service just now. Please try again, or use commands like \`/knowledge ${message}\` or \`/search ${message}\`. If you keep seeing this, check API configuration.`;
     }
 
     formatSearchResults(results) {
