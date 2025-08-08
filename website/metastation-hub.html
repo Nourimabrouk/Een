@@ -252,7 +252,32 @@
                     transparent);
         }
 
-        /* Legacy navigation styles removed to avoid conflicts with unified-navigation.css */
+        /* Override sidebar positioning - fix left positioning and prevent duplicates */
+        .sidebar {
+            position: fixed !important;
+            left: calc(-1 * var(--sidebar-width)) !important;
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+        }
+
+        .sidebar.open {
+            left: 0 !important;
+        }
+
+        .sidebar-toggle {
+            position: fixed !important;
+            left: 10px !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
+
+        .sidebar-toggle.active {
+            left: calc(var(--sidebar-width) + 10px) !important;
+        }
+
+        /* Hide any duplicate sidebar elements */
+        .sidebar + .sidebar,
+        .sidebar-toggle + .sidebar-toggle {
+            display: none !important;
+        }
 
         /* Content Sections */
         .content-section {
@@ -549,6 +574,17 @@
             right: 20px !important;
             bottom: 20px !important;
             z-index: 10002 !important;
+            background: linear-gradient(135deg, #FFD700, #D4AF37) !important;
+            box-shadow: 0 8px 32px rgba(255, 215, 0, 0.3) !important;
+            border: 1px solid rgba(255, 215, 0, 0.2) !important;
+            width: 65px !important;
+            height: 65px !important;
+        }
+
+        #unified-chat-button:hover,
+        .unified-chat-floating-btn:hover {
+            transform: translateY(-3px) scale(1.05) !important;
+            box-shadow: 0 12px 40px rgba(255, 215, 0, 0.4) !important;
         }
 
         .voice-button {
@@ -1363,8 +1399,30 @@
 
         // Audio is managed globally by persistent-audio-system.js; no page-specific audio init needed
 
+        // Fix duplicate footer issue
+        function ensureSingleFooter() {
+            const footers = Array.from(document.querySelectorAll('footer'));
+            const specialFooters = footers.filter(f => 
+                f.classList.contains('proof-footer') || 
+                f.classList.contains('dashboard-footer') ||
+                f.classList.contains('unity-footer')
+            );
+            
+            // Keep only the site footer and any special footers
+            const siteFooter = footers.find(f => f.classList.contains('site-footer'));
+            
+            footers.forEach(footer => {
+                if (footer !== siteFooter && !specialFooters.includes(footer)) {
+                    footer.remove();
+                }
+            });
+        }
+
         // Initialize page
         window.addEventListener('load', () => {
+            // Fix duplicate footers first
+            setTimeout(ensureSingleFooter, 100);
+            
             // Initialize parallax scrolling
             initParallax();
 
