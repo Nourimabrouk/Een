@@ -1711,8 +1711,8 @@ class UnifiedChatbotSystem {
                 }
             }
 
-            // Fallback to server-side configured keys
-            const response = await fetch('/api/chat/public/stream', {
+            // Use serverless API with default keys (works on Vercel/Netlify/Render)
+            const response = await fetch('/api/chat', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -1824,13 +1824,18 @@ class UnifiedChatbotSystem {
                 }
             }
 
-            const resp = await fetch('/api/chat/public', {
+            const resp = await fetch('/api/chat', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    message,
+                    messages: [
+                        ...this.chatHistory.slice(-10).map(msg => ({
+                            role: msg.sender === 'user' ? 'user' : 'assistant',
+                            content: msg.content
+                        })),
+                        { role: 'user', content: message }
+                    ],
                     model: this.currentModel,
-                    provider,
                     temperature: 0.7,
                     max_tokens: 1200,
                     stream: false,

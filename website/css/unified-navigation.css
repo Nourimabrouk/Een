@@ -576,6 +576,15 @@ body.sidebar-open {
     }
 }
 
+/* Ensure mobile navigation overlay is hidden by default (desktop and general) */
+.mobile-nav-overlay {
+    display: none;
+}
+
+.mobile-nav-overlay.open {
+    display: block;
+}
+
 @media (max-width: 768px) {
     .nav-main {
         display: none;
