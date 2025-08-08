@@ -77,7 +77,7 @@
             overflow-x: hidden;
             position: relative;
             min-height: 100vh;
-            padding-top: 80px;
+            padding-top: 120px; /* Increased for Chrome desktop visibility */
             padding-bottom: 120px;
             /* leave breathing room for floating widgets so footer isn't overlapped */
             /* extra headroom for fixed nav on Chrome/Windows */
@@ -128,14 +128,14 @@
 
         /* Hero Section with Unity Equation */
         .hero-container {
-            min-height: calc(100vh - 70px);
+            min-height: calc(100vh - 120px); /* Adjusted for new padding */
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             position: relative;
             padding: 2rem;
-            padding-top: 2rem;
+            padding-top: 1rem; /* Reduced since body now has more padding */
             background: radial-gradient(ellipse at center, 
                 rgba(10, 10, 15, 0.7) 0%,
                 rgba(10, 10, 15, 0.4) 60%,
@@ -544,19 +544,27 @@
             backdrop-filter: blur(20px);
             border: 1px solid var(--border-glow);
             border-radius: 15px;
-            padding: 1rem;
+            padding: 0.5rem; /* Start minimized */
             z-index: 998;
             transition: all 0.3s;
-            min-width: 300px;
+            min-width: auto; /* Start with minimal width */
         }
 
-        .audio-panel.minimized {
-            padding: 0.5rem;
-            min-width: auto;
+        .audio-panel.expanded {
+            padding: 1rem;
+            min-width: 300px;
         }
 
         .audio-panel.minimized .audio-controls {
             display: none;
+        }
+
+        .audio-controls {
+            display: none; /* Start hidden */
+        }
+
+        .audio-panel.expanded .audio-controls {
+            display: flex;
         }
 
         .audio-header {
@@ -673,6 +681,9 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
+            body {
+                padding-top: 90px; /* Less padding on mobile */
+            }
 
             /* Hide any injected enhanced nav on small screens to avoid duplicates */
             .nav-menu {
@@ -701,8 +712,8 @@
             }
 
             .hero-container {
-                padding-top: 100px;
-                /* Adjust for mobile */
+                min-height: calc(100vh - 90px);
+                padding-top: 1rem;
             }
 
             .consciousness-field-container {
@@ -1161,6 +1172,29 @@
     </section>
 
     <!-- Audio handled by persistent-audio-system.js (global mini-player) -->
+
+    <!-- Audio Panel -->
+    <div class="audio-panel minimized" id="audioPanel">
+        <div class="audio-header">
+            <div class="audio-title">
+                <i class="fas fa-music"></i>
+                <span id="audioTrackName">Unity - The Fat Rat</span>
+            </div>
+            <button class="audio-minimize" onclick="toggleAudioPanel()" aria-label="Toggle audio panel">
+                <i class="fas fa-expand-alt" id="audioToggleIcon"></i>
+            </button>
+        </div>
+        <div class="audio-controls">
+            <button class="audio-button" onclick="togglePlay()" id="playPauseBtn" aria-label="Play/Pause">
+                <i class="fas fa-play"></i>
+            </button>
+            <button class="audio-button" onclick="stopAudio()" aria-label="Stop">
+                <i class="fas fa-stop"></i>
+            </button>
+            <input type="range" class="audio-volume" min="0" max="1" step="0.1" value="0.3" 
+                   onchange="setVolume(this.value)" aria-label="Volume">
+        </div>
+    </div>
 
     <!-- Voice Button -->
     <button type="button" class="voice-button" onclick="startVoiceCommand()" aria-label="Start voice command"
@@ -1632,8 +1666,96 @@
             updateParallax();
         }
 
+        // Initialize Audio System
+        function initAudio() {
+            // Try to autoplay Unity - The Fat Rat
+            const unityTrack = 'audio/TheFatRat - Unity.mp4'; // Found the actual file!
+            
+            // Create audio element if it doesn't exist
+            let audioElement = document.querySelector('#backgroundAudio');
+            if (!audioElement) {
+                audioElement = document.createElement('audio');
+                audioElement.id = 'backgroundAudio';
+                audioElement.loop = true;
+                audioElement.volume = 0.3;
+                document.body.appendChild(audioElement);
+            }
+            
+            // Set source and attempt autoplay
+            audioElement.src = unityTrack;
+            
+            // Modern browsers require user interaction for autoplay
+            // Try autoplay but handle gracefully if blocked
+            const playPromise = audioElement.play();
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    console.log('Unity - The Fat Rat started playing');
+                }).catch(error => {
+                    console.log('Autoplay blocked - user interaction required');
+                    // Show audio panel expanded to encourage user interaction
+                    const audioPanel = document.querySelector('.audio-panel');
+                    if (audioPanel) {
+                        audioPanel.classList.add('expanded');
+                        audioPanel.classList.remove('minimized');
+                    }
+                });
+            }
+            
+            // Initialize audio panel in minimized state
+            const audioPanel = document.querySelector('.audio-panel');
+            if (audioPanel && !audioPanel.classList.contains('expanded')) {
+                audioPanel.classList.add('minimized');
+            }
+        }
+
+        // Audio Control Functions
+        function toggleAudioPanel() {
+            const panel = document.getElementById('audioPanel');
+            const icon = document.getElementById('audioToggleIcon');
+            
+            if (panel.classList.contains('minimized')) {
+                panel.classList.remove('minimized');
+                panel.classList.add('expanded');
+                icon.className = 'fas fa-compress-alt';
+            } else {
+                panel.classList.remove('expanded');
+                panel.classList.add('minimized');
+                icon.className = 'fas fa-expand-alt';
+            }
+        }
+
+        function togglePlay() {
+            const audio = document.getElementById('backgroundAudio');
+            const playBtn = document.getElementById('playPauseBtn');
+            
+            if (audio.paused) {
+                audio.play();
+                playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            } else {
+                audio.pause();
+                playBtn.innerHTML = '<i class="fas fa-play"></i>';
+            }
+        }
+
+        function stopAudio() {
+            const audio = document.getElementById('backgroundAudio');
+            const playBtn = document.getElementById('playPauseBtn');
+            
+            audio.pause();
+            audio.currentTime = 0;
+            playBtn.innerHTML = '<i class="fas fa-play"></i>';
+        }
+
+        function setVolume(value) {
+            const audio = document.getElementById('backgroundAudio');
+            audio.volume = parseFloat(value);
+        }
+
         // Initialize page
         window.addEventListener('load', () => {
+            // Initialize audio system
+            initAudio();
+            
             // Initialize parallax scrolling
             initParallax();
             

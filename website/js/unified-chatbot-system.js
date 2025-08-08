@@ -1042,6 +1042,148 @@ class UnifiedChatbotSystem {
             .model-select option[data-provider="Google"] {
                 background: rgba(236, 72, 153, 0.1);
             }
+
+            /* --- Modern Minimal Theme (OpenAI/Anthropic inspired) --- */
+            /* Palette */
+            :root {
+                --uc-bg: #0b0f14;           /* panel background */
+                --uc-surface: #0f1622;      /* cards/inputs */
+                --uc-border: #202634;       /* subtle borders */
+                --uc-text: #e5e7eb;         /* primary text */
+                --uc-text-muted: #94a3b8;   /* secondary text */
+                --uc-accent: #22c55e;       /* action accent (green) */
+                --uc-accent-2: #3b82f6;     /* secondary accent (blue) */
+                --uc-shadow: 0 24px 64px rgba(0, 0, 0, 0.6);
+            }
+
+            /* Floating button */
+            .unified-chat-floating-btn {
+                background: linear-gradient(180deg, #111827, var(--uc-bg)) !important;
+                border: 1px solid var(--uc-border) !important;
+                box-shadow: var(--uc-shadow) !important;
+            }
+            .unified-chat-floating-btn .chat-btn-icon {
+                color: var(--uc-text) !important;
+            }
+            .unified-chat-floating-btn .chat-btn-pulse { display: none !important; }
+
+            /* Panel */
+            .unified-chat-panel {
+                background: var(--uc-bg) !important;
+                border: 1px solid var(--uc-border) !important;
+                box-shadow: var(--uc-shadow) !important;
+            }
+
+            /* Header */
+            .chat-header {
+                background: rgba(255,255,255,0.02) !important;
+                border-bottom: 1px solid var(--uc-border) !important;
+            }
+            .ai-avatar {
+                background: radial-gradient(120px 120px at 30% 30%, #1f2937 0%, #0f1622 70%) !important;
+                color: #cbd5e1 !important;
+            }
+            .ai-name { color: #f9fafb !important; }
+            .ai-status { color: var(--uc-text-muted) !important; }
+
+            /* Controls */
+            .model-select {
+                background: var(--uc-surface) !important;
+                border: 1px solid var(--uc-border) !important;
+                color: #d1d5db !important;
+            }
+            .chat-control-btn {
+                background: var(--uc-surface) !important;
+                border: 1px solid var(--uc-border) !important;
+                color: var(--uc-text-muted) !important;
+            }
+            .chat-control-btn:hover {
+                background: #142032 !important;
+                border-color: #2a3444 !important;
+                color: #e2e8f0 !important;
+            }
+
+            /* Messages */
+            .chat-messages { background: transparent !important; }
+            .message-bubble .message-content {
+                color: #e6e6e6 !important;
+            }
+            .message-bubble.assistant .message-content {
+                background: var(--uc-surface) !important;
+                border: 1px solid var(--uc-border) !important;
+            }
+            .message-bubble.user .message-content {
+                background: linear-gradient(180deg, rgba(34,197,94,0.22), rgba(34,197,94,0.18)) !important;
+                color: #dffbe6 !important;
+                border: 1px solid rgba(34,197,94,0.35) !important;
+            }
+            .message-time { color: #6b7280 !important; }
+
+            /* Rich content */
+            .message-content h1,
+            .message-content h2,
+            .message-content h3 { color: #ffffff !important; }
+            .message-content a { color: #93c5fd !important; }
+            .message-content code {
+                background: #0b1220 !important;
+                color: #eab308 !important;
+                border: 1px solid #1f2937 !important;
+            }
+            .message-content pre {
+                background: #0b1220 !important;
+                border: 1px solid #1f2937 !important;
+            }
+            .message-content pre .copy-code-btn {
+                background: rgba(148,163,184,0.15) !important;
+                border-color: rgba(148,163,184,0.35) !important;
+                color: #cbd5e1 !important;
+            }
+
+            /* Typing indicator */
+            .typing-bubble {
+                background: var(--uc-surface) !important;
+                border: 1px solid var(--uc-border) !important;
+            }
+            .typing-dots span { background: var(--uc-accent) !important; }
+
+            /* Input area */
+            .chat-input-area {
+                background: rgba(255,255,255,0.01) !important;
+                border-top: 1px solid var(--uc-border) !important;
+            }
+            .message-input {
+                background: var(--uc-surface) !important;
+                border: 1px solid var(--uc-border) !important;
+                color: var(--uc-text) !important;
+            }
+            .message-input:focus {
+                border-color: #2a7f4f !important;
+                box-shadow: 0 0 0 3px rgba(34,197,94,0.15) !important;
+            }
+            .message-input::placeholder { color: #64748b !important; }
+            .input-counter { color: #64748b !important; }
+
+            .send-btn {
+                background: linear-gradient(180deg, var(--uc-accent), #16a34a) !important;
+                border-color: #16a34a !important;
+                color: #06130a !important;
+            }
+            .send-btn:disabled {
+                background: #0f1622 !important;
+                border-color: var(--uc-border) !important;
+                color: #4b5563 !important;
+            }
+
+            .quick-action-btn {
+                background: #0f1622 !important;
+                border: 1px solid var(--uc-border) !important;
+                color: #cbd5e1 !important;
+            }
+            .quick-action-btn:hover {
+                background: #142032 !important;
+                border-color: #2a3444 !important;
+                color: #ffffff !important;
+            }
         `;
 
         document.head.appendChild(style);

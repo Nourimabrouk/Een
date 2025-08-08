@@ -54,15 +54,16 @@ class PersistentAudioSystem {
     }
 
     getFallbackTracks() {
+        // Updated with correct file paths from actual audio directory
         return [
             {
                 id: 'unity-thefatrat',
                 name: 'Unity',
                 artist: 'TheFatRat',
                 album: 'NCS',
-                url: 'audio/TheFatRat - Unity.webm',
+                url: 'audio/TheFatRat - Unity.mp4', // Updated to correct file extension
                 duration: 270,
-                filename: 'TheFatRat - Unity.webm',
+                filename: 'TheFatRat - Unity.mp4',
                 isDefault: true
             },
             {
@@ -70,36 +71,45 @@ class PersistentAudioSystem {
                 name: 'One',
                 artist: 'U2', 
                 album: 'Achtung Baby',
-                url: 'audio/U2 - One.webm',
+                url: 'audio/U2 - One.mp4', // Updated to correct file extension
                 duration: 276,
-                filename: 'U2 - One.webm'
+                filename: 'U2 - One.mp4'
             },
             {
                 id: 'always-bon-jovi',
                 name: 'Always',
                 artist: 'Bon Jovi',
                 album: 'Cross Road', 
-                url: 'audio/Bon Jovi - Always.webm',
+                url: 'audio/Bon Jovi - Always.mp4', // Updated to correct file extension
                 duration: 351,
-                filename: 'Bon Jovi - Always.webm'
+                filename: 'Bon Jovi - Always.mp4'
             },
             {
                 id: 'i-want-to-know-what-love-is',
                 name: 'I Want to Know What Love Is',
                 artist: 'Foreigner',
                 album: 'Agent Provocateur',
-                url: 'audio/Foreigner - I Want to Know What Love Is.webm', 
+                url: 'audio/Foreigner - I Want to Know What Love Is.mp4', // Updated to correct file extension
                 duration: 297,
-                filename: 'Foreigner - I Want to Know What Love Is.webm'
+                filename: 'Foreigner - I Want to Know What Love Is.mp4'
             },
             {
                 id: 'one-love-bob-marley',
                 name: 'One Love',
                 artist: 'Bob Marley',
                 album: 'Legend',
-                url: 'audio/Bob Marley - One Love.webm',
+                url: 'audio/Bob Marley - One Love.webm', // Correct - only webm available
                 duration: 210,
                 filename: 'Bob Marley - One Love.webm'
+            },
+            {
+                id: 'still-alive',
+                name: 'Still Alive',
+                artist: 'Portal',
+                album: 'Portal Soundtrack',
+                url: 'audio/Still Alive.mp3', // Added missing track
+                duration: 178,
+                filename: 'Still Alive.mp3'
             }
         ];
     }
