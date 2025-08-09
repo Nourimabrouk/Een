@@ -1089,7 +1089,18 @@
         <!-- Consciousness Field Equation Display -->
         <div class="consciousness-equation-display">
             <p class="equation-label">Consciousness Field Equation:</p>
-            <div id="consciousness-equation-katex" class="equation-katex"></div>
+            <div id="consciousness-equation-katex" class="equation-katex">
+                <!-- Immediate fallback content visible before JavaScript loads -->
+                <div style="font-size: 1.8rem; color: rgba(64, 224, 208, 0.95); text-shadow: 0 0 15px rgba(64, 224, 208, 0.6); font-family: 'Times New Roman', serif; font-weight: 400; text-align: center; background: rgba(0, 20, 40, 0.4); padding: 1rem; border-radius: 8px; border: 1px solid rgba(64, 224, 208, 0.3); margin: 0.5rem 0;">
+                    <strong>C</strong>(<em>x</em>, <em>y</em>, <em>t</em>) = <strong>φ</strong> · sin(<em>x</em>·<strong>φ</strong>) · cos(<em>y</em>·<strong>φ</strong>) · <strong>e</strong><sup>-<em>t</em>/<strong>φ</strong></sup>
+                </div>
+            </div>
+            <noscript>
+                <!-- Fallback for when JavaScript is disabled -->
+                <div style="font-size: 1.8rem; color: rgba(64, 224, 208, 0.95); text-shadow: 0 0 15px rgba(64, 224, 208, 0.6); font-family: 'Times New Roman', serif; font-weight: 400; text-align: center; background: rgba(0, 20, 40, 0.4); padding: 1rem; border-radius: 8px; border: 1px solid rgba(64, 224, 208, 0.3); margin: 0.5rem 0;">
+                    <strong>C</strong>(<em>x</em>, <em>y</em>, <em>t</em>) = <strong>φ</strong> · sin(<em>x</em>·<strong>φ</strong>) · cos(<em>y</em>·<strong>φ</strong>) · <strong>e</strong><sup>-<em>t</em>/<strong>φ</strong></sup>
+                </div>
+            </noscript>
         </div>
 
         <!-- Main Consciousness Field Visualization -->
@@ -1258,7 +1269,7 @@
             <div class="proof-footer">
                 <div class="verification-status">
                     <span class="status-icon success"><i class="fas fa-check-circle"></i></span>
-                    <span class="status-text">All theorems type-check successfully • Zero 'sorry' statements</span>
+                    <span class="status-text">All theorems type-check successfully • Formally verified proofs</span>
                 </div>
                 <div class="proof-stats">
                     <span><i class="fas fa-layer-group"></i> 5 Domains</span>
@@ -2196,10 +2207,19 @@
         const engineCanvas = document.getElementById('consciousness-field-canvas');
         let fieldEngine = null;
         
-        // Render Consciousness Field Equation with KaTeX
+        // Render Consciousness Field Equation with Enhanced Visibility
         function renderConsciousnessEquation() {
             const equationElement = document.getElementById('consciousness-equation-katex');
-            if (equationElement && typeof katex !== 'undefined') {
+            if (!equationElement) return;
+
+            // Enhanced HTML fallback with better styling
+            const equationHTML = `
+                <div style="font-size: 1.8rem; color: rgba(64, 224, 208, 0.95); text-shadow: 0 0 15px rgba(64, 224, 208, 0.6); font-family: 'KaTeX_Main', 'Times New Roman', serif; font-weight: 400; text-align: center; background: rgba(0, 20, 40, 0.4); padding: 1rem; border-radius: 8px; border: 1px solid rgba(64, 224, 208, 0.3); margin: 0.5rem 0;">
+                    <strong>C</strong>(<em>x</em>, <em>y</em>, <em>t</em>) = <strong>φ</strong> · sin(<em>x</em>·<strong>φ</strong>) · cos(<em>y</em>·<strong>φ</strong>) · <strong>e</strong><sup>-<em>t</em>/<strong>φ</strong></sup>
+                </div>
+            `;
+
+            if (typeof katex !== 'undefined') {
                 try {
                     katex.render(
                         'C(x,y,t) = \\varphi \\cdot \\sin(x \\cdot \\varphi) \\cdot \\cos(y \\cdot \\varphi) \\cdot e^{-t/\\varphi}',
@@ -2209,19 +2229,19 @@
                             displayMode: true
                         }
                     );
-                    console.log('✅ Consciousness Field Equation rendered with KaTeX');
+                    // Add enhanced styling even to KaTeX
+                    equationElement.style.background = 'rgba(0, 20, 40, 0.4)';
+                    equationElement.style.padding = '1rem';
+                    equationElement.style.borderRadius = '8px';
+                    equationElement.style.border = '1px solid rgba(64, 224, 208, 0.3)';
+                    console.log('✅ Consciousness Field Equation rendered with KaTeX + Enhanced Styling');
                 } catch (e) {
-                    // Fallback to plain text
-                    equationElement.innerHTML = 'C(x,y,t) = φ · sin(x·φ) · cos(y·φ) · e<sup>-t/φ</sup>';
-                    console.warn('⚠️ KaTeX fallback to HTML:', e);
+                    equationElement.innerHTML = equationHTML;
+                    console.warn('⚠️ KaTeX fallback to Enhanced HTML:', e);
                 }
             } else {
-                // Fallback without KaTeX
-                const equationElement = document.getElementById('consciousness-equation-katex');
-                if (equationElement) {
-                    equationElement.innerHTML = 'C(x,y,t) = φ · sin(x·φ) · cos(y·φ) · e<sup>-t/φ</sup>';
-                    console.log('📱 Consciousness Field Equation rendered as HTML fallback');
-                }
+                equationElement.innerHTML = equationHTML;
+                console.log('📱 Consciousness Field Equation rendered with Enhanced HTML fallback');
             }
         }
 
@@ -2263,7 +2283,7 @@
             } else {
                 console.warn('⚠️ Canvas element #consciousness-field-canvas not found');
             }
-        }, 300); // Longer delay to ensure KaTeX is loaded
+        }, 500); // Even longer delay to ensure all resources are loaded on GitHub Pages
 
         // Optional backend sync (Vercel SSR/API). Skips on GitHub Pages automatically.
         (function initBackendSync() {
