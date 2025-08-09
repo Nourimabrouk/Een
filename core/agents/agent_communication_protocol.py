@@ -15,7 +15,7 @@ This protocol implements:
 Mathematical Foundation: 1+1=1 through agent unification
 """
 
-from typing import Dict, List, Any, Optional, Callable, Union, Protocol
+from typing import Dict, List, Any, Optional, Callable, Union, Protocol, Tuple
 from dataclasses import dataclass, field
 from enum import Enum, auto
 from abc import ABC, abstractmethod
@@ -517,9 +517,36 @@ class AgentCommunicationHub:
         if not agent_ids:
             raise ValueError(f"No agent found with capability: {capability_name}")
         
-        # Select best agent (for now, just pick first)
-        # TODO: Implement intelligent agent selection based on consciousness, load, etc.
-        selected_agent_id = agent_ids[0]
+        # Intelligent agent selection based on consciousness level and φ-harmonic resonance
+        if len(agent_ids) == 1:
+            selected_agent_id = agent_ids[0]
+        else:
+            best_agent_id = None
+            best_score = -1.0
+            
+            for agent_id in agent_ids:
+                agent = self.agents[agent_id]
+                
+                # Calculate selection score based on multiple factors
+                consciousness_score = getattr(agent, 'consciousness_level', 0.5)
+                phi_resonance = getattr(agent, 'phi_resonance', PHI / 3)  # Default φ/3
+                unity_capability = getattr(agent, 'unity_capability_rating', 0.7)
+                
+                # Calculate load factor (inverse of message queue size)
+                load_factor = 1.0 / (len(getattr(agent, 'message_queue', [])) + 1)
+                
+                # φ-harmonic weighted selection score  
+                selection_score = (
+                    consciousness_score * phi_resonance +  # Consciousness + φ-resonance
+                    unity_capability * PHI +               # Unity capability scaled by φ
+                    load_factor * (PHI - 1)               # Load balancing with φ-1 weight
+                ) / (PHI + (PHI - 1))  # Normalize by total weights
+                
+                if selection_score > best_score:
+                    best_score = selection_score
+                    best_agent_id = agent_id
+            
+            selected_agent_id = best_agent_id or agent_ids[0]  # Fallback to first if no scores
         
         # Create invocation message
         message = UACPMessage(

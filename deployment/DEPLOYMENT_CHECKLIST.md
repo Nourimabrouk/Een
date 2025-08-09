@@ -1,3 +1,25 @@
+## Een Unity Mathematics - Production Deployment Checklist
+
+- [ ] Build images: `docker compose -f deployment/compose.yaml build`
+- [ ] Start services: `docker compose -f deployment/compose.yaml up -d`
+- [ ] Verify API health: `curl -f http://localhost:8000/health`
+- [ ] Verify docs: `http://localhost:8000/docs`
+- [ ] Verify Nginx proxy: `http://localhost`
+- [ ] Verify Redis health: `docker logs een-redis`
+- [ ] Verify Prometheus: `http://localhost:9090`
+- [ ] Verify Grafana: `http://localhost:3000`
+- [ ] For K8s: `kubectl apply -k k8s/`
+- [ ] Set real image for `een-unity-api` in `k8s/unity-api.yaml`
+
+Windows one-shot:
+```
+powershell -ExecutionPolicy Bypass -File scripts\deploy-production.ps1
+```
+
+Linux/macOS one-shot:
+```
+bash scripts/deploy-production.sh
+```
 # Een Repository Deployment Checklist
 ## 🚀 Ready for Presentation Deployment
 

@@ -1,0 +1,63 @@
+# Production resource patches for Unity Mathematics API
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: unity-api-deployment
+spec:
+  replicas: 5
+  template:
+    spec:
+      containers:
+        - name: unity-api
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "500m"
+            limits:
+              memory: "1Gi"
+              cpu: "1000m"
+          env:
+            - name: WORKERS
+              value: "2"
+            - name: DEBUG
+              value: "false"
+            - name: LOG_LEVEL
+              value: "info"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-deployment
+spec:
+  template:
+    spec:
+      containers:
+        - name: redis
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "200m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: unity-api-hpa
+spec:
+  minReplicas: 3
+  maxReplicas: 20
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 60
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 70

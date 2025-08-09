@@ -49,6 +49,8 @@
     <link rel="stylesheet" href="website/css/tokens.css">
     <link rel="stylesheet" href="website/css/layout.css">
     <link rel="stylesheet" href="website/css/components.css">
+    <!-- Bootloader to guarantee rendering on GitHub Pages (root variant) -->
+    <script src="website/js/consciousness-boot.js" defer></script>
     <style>
         :root {
             --phi: 1.618033988749895;
@@ -246,6 +248,7 @@
             overflow: hidden;
             box-shadow: 0 25px 80px rgba(255, 215, 0, 0.15),
                 0 0 120px rgba(157, 78, 221, 0.1);
+            -webkit-backdrop-filter: blur(20px);
             backdrop-filter: blur(20px);
         }
 

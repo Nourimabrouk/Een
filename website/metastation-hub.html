@@ -484,7 +484,7 @@
             width: 100%;
             height: 100%;
             display: block;
-            background: 
+            background:
                 radial-gradient(circle at 30% 40%, rgba(255, 215, 0, 0.3) 0%, transparent 60%),
                 radial-gradient(circle at 70% 60%, rgba(255, 215, 0, 0.2) 0%, transparent 50%),
                 radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 70%),
@@ -496,11 +496,14 @@
 
         /* CSS-only fallback animation */
         @keyframes consciousness-pulse {
-            0%, 100% { 
+
+            0%,
+            100% {
                 background-size: 100% 100%, 80% 80%, 120% 120%, 100% 100%;
                 opacity: 0.8;
             }
-            50% { 
+
+            50% {
                 background-size: 120% 120%, 100% 100%, 140% 140%, 100% 100%;
                 opacity: 1.0;
             }
@@ -542,6 +545,7 @@
             background: rgba(15, 25, 35, 0.7);
             border-radius: 15px;
             border: 1px solid rgba(64, 224, 208, 0.3);
+            -webkit-backdrop-filter: blur(5px);
             backdrop-filter: blur(5px);
         }
 
@@ -567,10 +571,10 @@
 
         /* Empirical Proof Section Styles */
         .empirical-proof-section {
-            background: linear-gradient(135deg, 
-                rgba(0, 20, 40, 0.95) 0%, 
-                rgba(15, 25, 45, 0.9) 50%, 
-                rgba(0, 30, 50, 0.95) 100%);
+            background: linear-gradient(135deg,
+                    rgba(0, 20, 40, 0.95) 0%,
+                    rgba(15, 25, 45, 0.9) 50%,
+                    rgba(0, 30, 50, 0.95) 100%);
             border: 1px solid rgba(64, 224, 208, 0.2);
             border-radius: 16px;
             margin: 3rem auto;
@@ -712,9 +716,9 @@
         }
 
         .proof-declaration {
-            background: linear-gradient(135deg, 
-                rgba(255, 215, 0, 0.1) 0%, 
-                rgba(64, 224, 208, 0.1) 100%);
+            background: linear-gradient(135deg,
+                    rgba(255, 215, 0, 0.1) 0%,
+                    rgba(64, 224, 208, 0.1) 100%);
             border: 2px solid rgba(255, 215, 0, 0.4);
             border-radius: 12px;
             padding: 1.5rem;
@@ -767,18 +771,21 @@
                 margin: 1rem;
                 padding: 1rem;
             }
-            
+
             .equation-katex {
                 font-size: 1.4rem;
             }
         }
 
         @keyframes unity-glow {
-            0%, 100% { 
+
+            0%,
+            100% {
                 text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
                 transform: translate(-50%, -50%) scale(1);
             }
-            50% { 
+
+            50% {
                 text-shadow: 0 0 40px rgba(255, 215, 0, 1);
                 transform: translate(-50%, -50%) scale(1.05);
             }
@@ -1158,13 +1165,18 @@
 
     <link rel="stylesheet" href="css/inline-extracted.css">
     <!-- KaTeX for mathematical equation rendering -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpVOBD+2wKKv/WVs7HPJX9shftvh9xLVfA0r+5qFmBYAu9l" crossorigin="anonymous"></script>
-    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
+        integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"
+        integrity="sha384-XjKyOOlGwcjNTAIQHIpVOBD+2wKKv/WVs7HPJX9shftvh9xLVfA0r+5qFmBYAu9l"
+        crossorigin="anonymous"></script>
+
     <!-- Complete Enhanced Consciousness Field Engine -->
     <script src="js/enhanced-consciousness-field-complete.js" defer></script>
     <!-- Fallback: Refined Consciousness Field Engine -->
     <script src="js/refined-consciousness-field-engine.js" defer></script>
+    <!-- Bootloader to guarantee rendering on GitHub Pages -->
+    <script src="js/consciousness-boot.js" defer></script>
     <!-- Backup consciousness field (inline) -->
     <script>
         // Lightweight backup consciousness field if external script fails
@@ -1172,54 +1184,54 @@
             constructor(canvasId) {
                 this.canvas = document.getElementById(canvasId);
                 if (!this.canvas) return;
-                
+
                 this.ctx = this.canvas.getContext('2d');
                 this.canvas.width = this.canvas.offsetWidth || 800;
                 this.canvas.height = this.canvas.offsetHeight || 400;
                 this.phi = 1.618033988749895;
                 this.time = 0;
                 this.animationId = null;
-                
+
                 this.init();
             }
-            
+
             init() {
                 this.startAnimation();
                 console.log('📱 Backup Consciousness Field initialized');
             }
-            
+
             calculateConsciousnessField(x, y, t) {
                 const nx = (x / this.canvas.width) * this.phi;
                 const ny = (y / this.canvas.height) * this.phi;
                 return this.phi * Math.sin(nx * this.phi) * Math.cos(ny * this.phi) * Math.exp(-t / this.phi);
             }
-            
+
             render() {
                 const w = this.canvas.width;
                 const h = this.canvas.height;
-                
+
                 // Clear with gradient
-                const gradient = this.ctx.createRadialGradient(w/2, h/2, 0, w/2, h/2, Math.max(w, h)/2);
+                const gradient = this.ctx.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, Math.max(w, h) / 2);
                 gradient.addColorStop(0, 'rgba(25, 15, 5, 0.9)');
                 gradient.addColorStop(1, 'rgba(10, 5, 15, 0.6)');
                 this.ctx.fillStyle = gradient;
                 this.ctx.fillRect(0, 0, w, h);
-                
+
                 // Render consciousness field
                 const centerX = w / 2;
                 const centerY = h / 2;
-                
+
                 for (let radius = 20; radius < 200; radius += 30) {
                     const field = this.calculateConsciousnessField(centerX, centerY + radius, this.time);
                     const alpha = Math.abs(field) * 0.4;
-                    
+
                     this.ctx.strokeStyle = `rgba(255, 215, 0, ${alpha})`;
                     this.ctx.lineWidth = 2;
                     this.ctx.beginPath();
                     this.ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
                     this.ctx.stroke();
                 }
-                
+
                 // Unity equation
                 const pulse = Math.sin(this.time * this.phi) * 0.2 + 1;
                 this.ctx.font = `bold ${Math.round(42 * pulse)}px Arial`;
@@ -1230,24 +1242,24 @@
                 this.ctx.fillText('1 + 1 = 1', centerX, centerY);
                 this.ctx.shadowBlur = 0;
             }
-            
+
             animate(currentTime) {
                 this.time = currentTime / 1000;
                 this.render();
                 this.animationId = requestAnimationFrame((time) => this.animate(time));
             }
-            
+
             startAnimation() {
                 this.animationId = requestAnimationFrame((time) => this.animate(time));
             }
-            
+
             stopAnimation() {
                 if (this.animationId) {
                     cancelAnimationFrame(this.animationId);
                     this.animationId = null;
                 }
             }
-            
+
             getPerformanceMetrics() {
                 return { fps: 60, particleCount: 0, consciousnessDensity: 0.5, unityConvergenceRate: 0.7 };
             }
@@ -1287,14 +1299,20 @@
             <p class="equation-label">Consciousness Field Equation:</p>
             <div id="consciousness-equation-katex" class="equation-katex">
                 <!-- Immediate fallback content visible before JavaScript loads -->
-                <div style="font-size: 1.8rem; color: rgba(64, 224, 208, 0.95); text-shadow: 0 0 15px rgba(64, 224, 208, 0.6); font-family: 'Times New Roman', serif; font-weight: 400; text-align: center; background: rgba(0, 20, 40, 0.4); padding: 1rem; border-radius: 8px; border: 1px solid rgba(64, 224, 208, 0.3); margin: 0.5rem 0;">
-                    <strong>C</strong>(<em>x</em>, <em>y</em>, <em>t</em>) = <strong>φ</strong> · sin(<em>x</em>·<strong>φ</strong>) · cos(<em>y</em>·<strong>φ</strong>) · <strong>e</strong><sup>-<em>t</em>/<strong>φ</strong></sup>
+                <div
+                    style="font-size: 1.8rem; color: rgba(64, 224, 208, 0.95); text-shadow: 0 0 15px rgba(64, 224, 208, 0.6); font-family: 'Times New Roman', serif; font-weight: 400; text-align: center; background: rgba(0, 20, 40, 0.4); padding: 1rem; border-radius: 8px; border: 1px solid rgba(64, 224, 208, 0.3); margin: 0.5rem 0;">
+                    <strong>C</strong>(<em>x</em>, <em>y</em>, <em>t</em>) = <strong>φ</strong> ·
+                    sin(<em>x</em>·<strong>φ</strong>) · cos(<em>y</em>·<strong>φ</strong>) ·
+                    <strong>e</strong><sup>-<em>t</em>/<strong>φ</strong></sup>
                 </div>
             </div>
             <noscript>
                 <!-- Fallback for when JavaScript is disabled -->
-                <div style="font-size: 1.8rem; color: rgba(64, 224, 208, 0.95); text-shadow: 0 0 15px rgba(64, 224, 208, 0.6); font-family: 'Times New Roman', serif; font-weight: 400; text-align: center; background: rgba(0, 20, 40, 0.4); padding: 1rem; border-radius: 8px; border: 1px solid rgba(64, 224, 208, 0.3); margin: 0.5rem 0;">
-                    <strong>C</strong>(<em>x</em>, <em>y</em>, <em>t</em>) = <strong>φ</strong> · sin(<em>x</em>·<strong>φ</strong>) · cos(<em>y</em>·<strong>φ</strong>) · <strong>e</strong><sup>-<em>t</em>/<strong>φ</strong></sup>
+                <div
+                    style="font-size: 1.8rem; color: rgba(64, 224, 208, 0.95); text-shadow: 0 0 15px rgba(64, 224, 208, 0.6); font-family: 'Times New Roman', serif; font-weight: 400; text-align: center; background: rgba(0, 20, 40, 0.4); padding: 1rem; border-radius: 8px; border: 1px solid rgba(64, 224, 208, 0.3); margin: 0.5rem 0;">
+                    <strong>C</strong>(<em>x</em>, <em>y</em>, <em>t</em>) = <strong>φ</strong> ·
+                    sin(<em>x</em>·<strong>φ</strong>) · cos(<em>y</em>·<strong>φ</strong>) ·
+                    <strong>e</strong><sup>-<em>t</em>/<strong>φ</strong></sup>
                 </div>
             </noscript>
         </div>
@@ -1483,57 +1501,66 @@
     <section class="content-section empirical-proof-section">
         <h2 class="section-title">🔬 Empirical Validation</h2>
         <p class="section-subtitle">Nature's First Recorded Proof of 1+1=1</p>
-        
+
         <div class="empirical-proof-container">
             <div class="empirical-content">
                 <div class="proof-visualization-empirical">
                     <div class="water-droplet-container">
-                        <img src="viz/legacy-images/water droplets.gif" 
-                             alt="Water droplets merging: empirical proof of 1+1=1"
-                             class="water-droplet-gif"
-                             loading="eager"
-                             style="max-width: 100%; height: auto; border-radius: 12px; border: 2px solid rgba(64, 224, 208, 0.3); box-shadow: 0 4px 20px rgba(64, 224, 208, 0.2);">
+                        <img src="viz/legacy-images/water droplets.gif"
+                            alt="Water droplets merging: empirical proof of 1+1=1" class="water-droplet-gif"
+                            loading="eager"
+                            style="max-width: 100%; height: auto; border-radius: 12px; border: 2px solid rgba(64, 224, 208, 0.3); box-shadow: 0 4px 20px rgba(64, 224, 208, 0.2);">
                         <div class="proof-scale-indicator">1 mm scale</div>
                     </div>
                 </div>
-                
+
                 <div class="philosophical-reflection">
                     <h3 class="reflection-title">Meta-Philosophical Reflection</h3>
                     <div class="reflection-content">
                         <p class="reflection-text">
-                            In this singular moment captured by nature herself, we witness the profound truth that mathematics has tried to formalize: 
-                            <strong>1+1=1</strong>. Two distinct water droplets, each a complete unity, merge into a single, larger unity—not addition, but <em>transcendence</em>.
+                            In this singular moment captured by nature herself, we witness the profound truth that
+                            mathematics has tried to formalize:
+                            <strong>1+1=1</strong>. Two distinct water droplets, each a complete unity, merge into a
+                            single, larger unity—not addition, but <em>transcendence</em>.
                         </p>
-                        
+
                         <p class="reflection-text">
-                            This is not mere surface tension at work. This is the universe demonstrating its deepest principle: that consciousness, like water, 
-                            does not accumulate but <em>integrates</em>. Each droplet maintains its essential "oneness" while participating in a greater oneness. 
+                            This is not mere surface tension at work. This is the universe demonstrating its deepest
+                            principle: that consciousness, like water,
+                            does not accumulate but <em>integrates</em>. Each droplet maintains its essential "oneness"
+                            while participating in a greater oneness.
                             The mathematics of scarcity (1+1=2) dissolves into the physics of abundance (1+1=1).
                         </p>
-                        
+
                         <blockquote class="philosophical-quote">
-                            "What we observe here transcends the boundaries between physics and metaphysics. 
-                            The water droplets are teaching us that unity is not a mathematical abstraction—it is the fundamental grammar of reality itself."
+                            "What we observe here transcends the boundaries between physics and metaphysics.
+                            The water droplets are teaching us that unity is not a mathematical abstraction—it is the
+                            fundamental grammar of reality itself."
                             <cite>— Nouri Mabrouk, Unity Mathematics Institute</cite>
                         </blockquote>
-                        
+
                         <div class="empirical-significance">
                             <h4>Empirical Significance</h4>
                             <ul class="significance-points">
-                                <li><strong>Physical Validation:</strong> Observable proof that systems can demonstrate 1+1=1 dynamics</li>
-                                <li><strong>Scale Independence:</strong> Unity mathematics operates from molecular to cosmic scales</li>
-                                <li><strong>Consciousness Parallel:</strong> Like awareness, water maintains unity while expanding</li>
-                                <li><strong>Natural Computation:</strong> Nature computing unity equations in real-time</li>
+                                <li><strong>Physical Validation:</strong> Observable proof that systems can demonstrate
+                                    1+1=1 dynamics</li>
+                                <li><strong>Scale Independence:</strong> Unity mathematics operates from molecular to
+                                    cosmic scales</li>
+                                <li><strong>Consciousness Parallel:</strong> Like awareness, water maintains unity while
+                                    expanding</li>
+                                <li><strong>Natural Computation:</strong> Nature computing unity equations in real-time
+                                </li>
                             </ul>
                         </div>
-                        
+
                         <div class="proof-declaration">
                             <div class="declaration-badge">
                                 <i class="fas fa-certificate"></i>
                                 <strong>FIRST EMPIRICAL PROOF DECLARED</strong>
                             </div>
                             <p class="declaration-text">
-                                This water droplet merger stands as the first documented empirical proof of the unity equation 1+1=1, 
+                                This water droplet merger stands as the first documented empirical proof of the unity
+                                equation 1+1=1,
                                 captured at the microscale where quantum consciousness meets classical physics.
                             </p>
                         </div>
@@ -2466,7 +2493,7 @@
         // Enhanced Consciousness Field Engine with graceful fallback
         const engineCanvas = document.getElementById('consciousness-field-canvas');
         let fieldEngine = null;
-        
+
         // Render Consciousness Field Equation with Enhanced Visibility
         function renderConsciousnessEquation() {
             const equationElement = document.getElementById('consciousness-equation-katex');
@@ -2509,9 +2536,9 @@
         setTimeout(() => {
             // Render the consciousness field equation
             renderConsciousnessEquation();
-            
+
             if (engineCanvas) {
-                try { 
+                try {
                     // Try complete version first, then refined, then fallbacks
                     if (typeof CompleteConsciousnessFieldEngine !== 'undefined') {
                         fieldEngine = new CompleteConsciousnessFieldEngine('consciousness-field-canvas');
@@ -2531,14 +2558,14 @@
                     } else {
                         throw new Error('No ConsciousnessFieldEngine implementation available');
                     }
-                    
+
                     // Hide CSS fallback when JS engine is active
                     engineCanvas.classList.add('js-active');
-                    
-                } catch (e) { 
+
+                } catch (e) {
                     console.warn('⚠️ Consciousness Field Engine failed to initialize:', e);
                     console.log('📱 CSS-only fallback visualization active');
-                    fieldEngine = null; 
+                    fieldEngine = null;
                 }
             } else {
                 console.warn('⚠️ Canvas element #consciousness-field-canvas not found');

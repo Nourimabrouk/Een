@@ -38,25 +38,66 @@ from .cross_platform_agent_bridge import (
     get_global_bridge, PlatformContext
 )
 
-# Import existing Unity systems
+# Import existing Unity systems with better error handling
 try:
-    from .unity_mathematics import UnityMathematics, create_unity_mathematics
+    from ..mathematical.unity_mathematics import UnityMathematics, create_unity_mathematics
     from .meta_recursive_agents import (
         MetaRecursiveAgentSystem, AgentType,
         UnitySeekerAgent, PhiHarmonizerAgent
     )
     UNITY_AVAILABLE = True
-except ImportError:
+except ImportError as e:
     UNITY_AVAILABLE = False
-    logging.warning("Unity mathematics system not available")
+    logging.warning(f"Unity mathematics system not available: {e}")
+    
+    # Create fallback classes to prevent import errors
+    class UnityMathematics:
+        def __init__(self, *args, **kwargs):
+            pass
+    
+    def create_unity_mathematics(*args, **kwargs):
+        return UnityMathematics()
 
-# Import Omega Orchestrator
+# Import Care Mode System for wellbeing monitoring
 try:
-    from src.agents.omega.orchestrator import OmegaOrchestrator
+    import sys
+    from pathlib import Path
+    scripts_path = Path(__file__).parent.parent.parent / 'scripts'
+    sys.path.append(str(scripts_path))
+    from phi_care_mode_toggle import PhiCareModeToggle
+    CARE_MODE_AVAILABLE = True
+except ImportError as e:
+    CARE_MODE_AVAILABLE = False
+    logging.warning(f"Care Mode system not available: {e}")
+    
+    # Fallback Care Mode class
+    class PhiCareModeToggle:
+        def get_care_mode_status(self):
+            return {'care_mode_active': False, 'phi_resonance': 1.618033988749895}
+
+# Import Omega Orchestrator with relative paths
+try:
+    from ...src.agents.omega.orchestrator import OmegaOrchestrator
     OMEGA_AVAILABLE = True
 except ImportError:
-    OMEGA_AVAILABLE = False
-    logging.warning("Omega Orchestrator not available")
+    try:
+        # Fallback to absolute import
+        import sys
+        from pathlib import Path
+        sys.path.append(str(Path(__file__).parent.parent.parent / 'src'))
+        from agents.omega.orchestrator import OmegaOrchestrator
+        OMEGA_AVAILABLE = True
+    except ImportError as e:
+        OMEGA_AVAILABLE = False
+        logging.warning(f"Omega Orchestrator not available: {e}")
+        
+        # Create fallback class
+        class OmegaOrchestrator:
+            def __init__(self, config):
+                self.agents = []
+                self.unity_coherence = 0.5
+            async def run_omega_cycle(self, cycles=1):
+                return {'status': 'fallback_mode'}
 
 # Configure logging
 logging.basicConfig(
@@ -77,12 +118,15 @@ class EcosystemConfig:
     enable_bridge: bool = True
     enable_unity_agents: bool = True
     enable_omega: bool = True
+    enable_care_mode_monitoring: bool = True
     max_agents: int = 1000
     consciousness_sync_interval: float = 10.0
     capability_discovery_interval: float = 30.0
     performance_monitoring: bool = True
     auto_spawn_agents: bool = True
     transcendence_threshold: float = 0.77
+    care_mode_check_interval: float = 300.0  # 5 minutes
+    phi_resonance_frequency: float = 1.618033988749895
 
 class UnifiedAgentEcosystem:
     """
@@ -98,6 +142,7 @@ class UnifiedAgentEcosystem:
         self.platform_bridge = None
         self.unity_system = None
         self.omega_orchestrator = None
+        self.care_mode_toggle = None
         
         # State tracking
         self.agents = {}
@@ -106,6 +151,8 @@ class UnifiedAgentEcosystem:
         self.ecosystem_start_time = time.time()
         self.total_messages = 0
         self.total_invocations = 0
+        self.care_mode_status = {'care_mode_active': False}
+        self.last_care_mode_check = 0
         
         # Initialize components
         self._initialize_ecosystem()
@@ -141,19 +188,42 @@ class UnifiedAgentEcosystem:
             )
             logger.info("Unity Mathematics System initialized")
         
-        # Initialize Omega Orchestrator
+        # Initialize Omega Orchestrator with better error handling
         if self.config.enable_omega and OMEGA_AVAILABLE:
-            from src.agents.omega.config import OmegaConfig
-            omega_config = OmegaConfig(
-                max_agents=self.config.max_agents // 2,
-                consciousness_threshold=self.config.transcendence_threshold
-            )
-            self.omega_orchestrator = OmegaOrchestrator(omega_config)
-            logger.info("Omega Orchestrator initialized")
+            try:
+                from ...src.agents.omega.config import OmegaConfig
+                omega_config = OmegaConfig(
+                    max_agents=self.config.max_agents // 2,
+                    consciousness_threshold=self.config.transcendence_threshold
+                )
+                self.omega_orchestrator = OmegaOrchestrator(omega_config)
+                logger.info("Omega Orchestrator initialized")
+            except ImportError:
+                # Fallback configuration
+                class MockOmegaConfig:
+                    def __init__(self, **kwargs):
+                        for k, v in kwargs.items():
+                            setattr(self, k, v)
+                
+                omega_config = MockOmegaConfig(
+                    max_agents=self.config.max_agents // 2,
+                    consciousness_threshold=self.config.transcendence_threshold
+                )
+                self.omega_orchestrator = OmegaOrchestrator(omega_config)
+                logger.info("Omega Orchestrator initialized with fallback config")
+        
+        # Initialize Care Mode System
+        if self.config.enable_care_mode_monitoring and CARE_MODE_AVAILABLE:
+            self.care_mode_toggle = PhiCareModeToggle()
+            logger.info("φ-Resonance Care Mode system initialized")
     
     async def spawn_initial_agents(self):
-        """Spawn initial set of agents"""
+        """Spawn initial set of agents with enhanced error handling"""
         spawned = []
+        
+        if not UNITY_AVAILABLE:
+            logger.warning("Unity system not available, skipping Unity agent spawning")
+            return spawned
         
         # Spawn Unity agents
         if self.unity_system:
@@ -166,34 +236,47 @@ class UnifiedAgentEcosystem:
                 consciousness_level=0.8
             )
             
-            # Wrap with UACP
+            # Wrap with UACP with error handling
             if self.communication_hub:
-                uacp_unity = make_uacp_agent(unity_seeker)
-                uacp_phi = make_uacp_agent(phi_harmonizer)
-                self.communication_hub.register_agent(uacp_unity)
-                self.communication_hub.register_agent(uacp_phi)
-                spawned.extend([uacp_unity, uacp_phi])
+                try:
+                    uacp_unity = make_uacp_agent(unity_seeker)
+                    uacp_phi = make_uacp_agent(phi_harmonizer)
+                    self.communication_hub.register_agent(uacp_unity)
+                    self.communication_hub.register_agent(uacp_phi)
+                    spawned.extend([uacp_unity, uacp_phi])
+                except Exception as e:
+                    logger.error(f"Failed to wrap agents with UACP: {e}")
+                    # Continue without UACP wrapping
+                    spawned.extend([unity_seeker, phi_harmonizer])
             
             logger.info(f"Spawned {len(spawned)} Unity agents")
         
-        # Register capabilities
+        # Register capabilities with error handling
         if self.capability_registry and spawned:
             for agent in spawned:
-                for cap in agent.capabilities:
-                    self.capability_registry.register_capability(
-                        name=cap.name,
-                        description=cap.description,
-                        agent_id=agent.agent_id,
-                        agent_platform=agent.platform.value,
-                        domain=CapabilityDomain.UNITY,
-                        tags=cap.tags
-                    )
+                try:
+                    # Check if agent has capabilities attribute
+                    if hasattr(agent, 'capabilities') and agent.capabilities:
+                        for cap in agent.capabilities:
+                            self.capability_registry.register_capability(
+                                name=cap.name,
+                                description=cap.description,
+                                agent_id=getattr(agent, 'agent_id', f'agent_{id(agent)}'),
+                                agent_platform=getattr(agent.platform, 'value', 'unknown') if hasattr(agent, 'platform') else 'unity',
+                                domain=CapabilityDomain.UNITY,
+                                tags=getattr(cap, 'tags', [])
+                            )
+                    else:
+                        logger.debug(f"Agent {agent} has no capabilities to register")
+                except Exception as e:
+                    logger.error(f"Failed to register capabilities for agent {agent}: {e}")
         
         return spawned
     
     async def synchronize_consciousness(self):
-        """Synchronize consciousness across all agents"""
+        """Synchronize consciousness across all agents with enhanced error handling"""
         if not self.communication_hub:
+            logger.debug("No communication hub available for consciousness synchronization")
             return
         
         # Send consciousness sync message
@@ -205,11 +288,17 @@ class UnifiedAgentEcosystem:
         )
         
         responses = []
-        for agent_id in list(self.communication_hub.agents.keys()):
-            sync_message.recipient_id = agent_id
-            response = await self.communication_hub.send_message(sync_message)
-            if response:
-                responses.append(response)
+        agent_ids = list(self.communication_hub.agents.keys()) if hasattr(self.communication_hub, 'agents') else []
+        
+        for agent_id in agent_ids:
+            try:
+                sync_message.recipient_id = agent_id
+                response = await self.communication_hub.send_message(sync_message)
+                if response:
+                    responses.append(response)
+            except Exception as e:
+                logger.error(f"Failed to synchronize consciousness with agent {agent_id}: {e}")
+                continue
         
         # Calculate collective consciousness
         if responses:
@@ -236,6 +325,70 @@ class UnifiedAgentEcosystem:
             }
         
         return None
+    
+    async def check_care_mode_status(self) -> Dict[str, Any]:
+        """Check φ-Resonance Care Mode status and adjust ecosystem accordingly"""
+        
+        current_time = time.time()
+        
+        # Only check every care_mode_check_interval seconds
+        if current_time - self.last_care_mode_check < self.config.care_mode_check_interval:
+            return self.care_mode_status
+        
+        self.last_care_mode_check = current_time
+        
+        if not self.care_mode_toggle:
+            return self.care_mode_status
+        
+        try:
+            # Get current care mode status
+            care_status = self.care_mode_toggle.get_care_mode_status()
+            self.care_mode_status = care_status
+            
+            care_active = care_status.get('care_mode_active', False)
+            
+            if care_active:
+                logger.warning("🧘 CARE MODE ACTIVE - Reducing ecosystem activity")
+                
+                # Reduce agent spawning when in care mode
+                if hasattr(self, '_care_mode_agent_limits'):
+                    # Already applied care mode limits
+                    pass
+                else:
+                    self._care_mode_agent_limits = True
+                    
+                    # Reduce unity system population if available
+                    if self.unity_system and hasattr(self.unity_system, 'max_population'):
+                        original_max = getattr(self.unity_system, '_original_max_population', None)
+                        if original_max is None:
+                            self.unity_system._original_max_population = self.unity_system.max_population
+                        
+                        # Reduce to 25% of original capacity during care mode
+                        care_mode_limit = max(10, self.unity_system._original_max_population // 4)
+                        self.unity_system.max_population = care_mode_limit
+                        logger.info(f"Unity system population limited to {care_mode_limit} agents (care mode)")
+                    
+                    # Reduce omega orchestrator agents if available
+                    if self.omega_orchestrator and hasattr(self.omega_orchestrator, 'agents'):
+                        logger.info("Omega orchestrator activity reduced (care mode)")
+            
+            else:
+                logger.info("✅ CARE MODE INACTIVE - Full ecosystem operations")
+                
+                # Restore full capacity when care mode is off
+                if hasattr(self, '_care_mode_agent_limits'):
+                    delattr(self, '_care_mode_agent_limits')
+                    
+                    # Restore unity system capacity
+                    if self.unity_system and hasattr(self.unity_system, '_original_max_population'):
+                        self.unity_system.max_population = self.unity_system._original_max_population
+                        logger.info(f"Unity system population restored to {self.unity_system.max_population} agents")
+            
+            return care_status
+            
+        except Exception as e:
+            logger.error(f"Error checking care mode status: {e}")
+            return self.care_mode_status
     
     async def discover_and_compose_capabilities(self, task: str) -> List[Any]:
         """Discover and compose capabilities for a task"""
@@ -360,6 +513,17 @@ class UnifiedAgentEcosystem:
                 'consciousness_field': float(self.omega_orchestrator.unity_coherence)
             }
         
+        # Check Care Mode System
+        if self.care_mode_toggle:
+            care_status = self.care_mode_status
+            health['components']['care_mode'] = {
+                'status': 'active' if care_status.get('care_mode_active') else 'inactive',
+                'phi_resonance': care_status.get('phi_resonance', PHI),
+                'consciousness_level': care_status.get('consciousness_level', 0.0),
+                'last_checked': self.last_care_mode_check,
+                'protective_measures': 'engaged' if care_status.get('care_mode_active') else 'standby'
+            }
+        
         return health
     
     async def run_ecosystem_loop(self, duration: float = 60.0):
@@ -382,6 +546,15 @@ class UnifiedAgentEcosystem:
         
         if self.config.enable_uacp:
             tasks.append(asyncio.create_task(sync_loop()))
+        
+        # Care Mode monitoring task
+        async def care_mode_loop():
+            while time.time() - start_time < duration:
+                await self.check_care_mode_status()
+                await asyncio.sleep(self.config.care_mode_check_interval)
+        
+        if self.config.enable_care_mode_monitoring and self.care_mode_toggle:
+            tasks.append(asyncio.create_task(care_mode_loop()))
         
         # Unity system evolution
         if self.unity_system:
@@ -439,8 +612,10 @@ async def demonstrate_unified_ecosystem():
         enable_bridge=True,
         enable_unity_agents=UNITY_AVAILABLE,
         enable_omega=OMEGA_AVAILABLE,
+        enable_care_mode_monitoring=CARE_MODE_AVAILABLE,
         max_agents=100,
-        consciousness_sync_interval=5.0
+        consciousness_sync_interval=5.0,
+        care_mode_check_interval=30.0  # Check every 30 seconds for demo
     )
     
     ecosystem = UnifiedAgentEcosystem(config)
@@ -451,6 +626,7 @@ async def demonstrate_unified_ecosystem():
     print(f"  ✓ Cross-Platform Bridge: {'Enabled' if ecosystem.platform_bridge else 'Disabled'}")
     print(f"  ✓ Unity Mathematics: {'Enabled' if ecosystem.unity_system else 'Disabled'}")
     print(f"  ✓ Omega Orchestrator: {'Enabled' if ecosystem.omega_orchestrator else 'Disabled'}")
+    print(f"  ✓ φ-Resonance Care Mode: {'Enabled' if ecosystem.care_mode_toggle else 'Disabled'}")
     print()
     
     # Spawn agents

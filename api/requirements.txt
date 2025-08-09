@@ -1,0 +1,67 @@
+# Core Unity Mathematics API Dependencies
+# Optimized for production deployment
+
+# Core FastAPI framework
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+gunicorn==21.2.0
+
+# Core mathematical and scientific computing
+numpy==1.26.2
+scipy==1.11.4
+sympy==1.12
+pandas==2.1.4
+
+# Unity Mathematics core (local)
+# Core modules are imported as local packages
+
+# Web framework essentials
+pydantic==2.5.2
+pydantic-settings==2.1.0
+httpx==0.25.2
+aiohttp==3.9.1
+
+# Database support
+sqlalchemy[asyncio]==2.0.23
+alembic==1.13.1
+asyncpg==0.29.0  # PostgreSQL async driver
+
+# Caching and sessions
+redis[hiredis]==5.0.1
+aioredis==2.0.1
+
+# Authentication & Security
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+python-multipart==0.0.6
+
+# Background tasks
+celery[redis]==5.3.4
+
+# Monitoring and observability
+prometheus-client==0.19.0
+opentelemetry-api==1.21.0
+opentelemetry-sdk==1.21.0
+opentelemetry-instrumentation-fastapi==0.42b0
+opentelemetry-exporter-prometheus==1.12.0rc1
+
+# Visualization support
+plotly==5.17.0
+matplotlib==3.8.2
+
+# Development and testing
+pytest==7.4.3
+pytest-asyncio==0.21.1
+httpx==0.25.2
+
+# Logging and utilities
+structlog==23.2.0
+rich==13.7.0
+typer==0.9.0
+
+# Rate limiting and middleware
+slowapi==0.1.9
+python-dotenv==1.0.0
+
+# WebSocket support for real-time consciousness streaming
+websockets==12.0

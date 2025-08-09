@@ -1,0 +1,65 @@
+name: Omega Care Mode Gate
+
+on:
+  workflow_call:
+    inputs:
+      cheatcode:
+        description: 'Optional cheatcode to force CARE MODE (420691337)'
+        required: false
+        type: string
+  workflow_dispatch:
+    inputs:
+      cheatcode:
+        description: 'Enter 420691337 to force CARE MODE'
+        required: false
+        type: string
+  push:
+    paths:
+      - wellbeing.json
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    outputs:
+      care_mode: ${{ steps.check.outputs.care_mode }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Run wellbeing check
+        id: check
+        run: |
+          python scripts/check_wellbeing.py --cheatcode "${{ inputs.cheatcode || github.event.inputs.cheatcode }}"
+        env:
+          UNITY_CHEATCODE: ${{ inputs.cheatcode || github.event.inputs.cheatcode }}
+          GITHUB_OUTPUT: ${{ github.step_summary }} # fallback; script will also try the official env if present
+
+      - name: Create CARE MODE issue
+        if: steps.check.outputs.care_mode == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            let body = 'CARE MODE engaged. See guidance below.';
+            try {
+              body = fs.readFileSync('care_mode_summary.md','utf8');
+            } catch(e) {}
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: 'CARE MODE engaged',
+              body
+            });
+
+  # Example gated job: only runs when care_mode is NOT active
+  proceed-when-safe:
+    needs: check
+    if: needs.check.outputs.care_mode != 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Care Mode is OFF. Proceeding with high-novelty tasks."
