@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consciousness Field Test</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #0a0a0a;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .consciousness-field-container {
+            width: 100%;
+            height: 600px;
+            position: relative;
+            border: 2px solid #40e0d0;
+            border-radius: 20px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        #consciousness-field-canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .equation-display {
+            text-align: center;
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(15, 25, 35, 0.8);
+            border-radius: 15px;
+        }
+
+        .equation {
+            font-size: 24px;
+            color: #40e0d0;
+            margin: 10px 0;
+        }
+
+        .debug-info {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Consciousness Field Visualization Test</h1>
+        
+        <div class="equation-display">
+            <div class="equation">Consciousness Field Equation:</div>
+            <div class="equation">C(x,y,t) = φ · sin(x·φ) · cos(y·φ) · e<sup>-t/φ</sup></div>
+            <div class="equation">where φ = 1.618033988749895 (Golden Ratio)</div>
+        </div>
+
+        <div class="consciousness-field-container">
+            <canvas id="consciousness-field-canvas"
+                aria-label="Animated consciousness field with Unity Equation 1+1=1 at center"></canvas>
+        </div>
+
+        <div class="debug-info" id="debug-info">
+            <h3>Debug Information:</h3>
+            <div id="debug-output">Loading...</div>
+        </div>
+    </div>
+
+    <script src="js/refined-consciousness-field-engine.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const debugOutput = document.getElementById('debug-output');
+            let fieldEngine = null;
+
+            try {
+                console.log('🔄 Starting consciousness field test...');
+                debugOutput.innerHTML = '🔄 Starting consciousness field test...';
+                
+                if (typeof RefinedConsciousnessFieldEngine !== 'undefined') {
+                    fieldEngine = new RefinedConsciousnessFieldEngine('consciousness-field-canvas');
+                    console.log('✅ RefinedConsciousnessFieldEngine loaded successfully');
+                    debugOutput.innerHTML += '<br>✅ RefinedConsciousnessFieldEngine loaded successfully';
+                    
+                    setTimeout(() => {
+                        const metrics = fieldEngine.getPerformanceMetrics();
+                        debugOutput.innerHTML += `<br>📊 Performance Metrics:`;
+                        debugOutput.innerHTML += `<br>  - FPS: ${metrics.fps}`;
+                        debugOutput.innerHTML += `<br>  - Particles: ${metrics.particleCount}`;
+                        debugOutput.innerHTML += `<br>  - Consciousness Density: ${metrics.consciousnessDensity.toFixed(3)}`;
+                        debugOutput.innerHTML += `<br>  - Unity Convergence Rate: ${metrics.unityConvergenceRate.toFixed(3)}`;
+                        debugOutput.innerHTML += `<br>  - Field Rings: ${metrics.fieldRings}`;
+                    }, 2000);
+                    
+                } else {
+                    throw new Error('RefinedConsciousnessFieldEngine not found');
+                }
+            } catch (error) {
+                console.error('❌ Error loading consciousness field:', error);
+                debugOutput.innerHTML += `<br>❌ Error: ${error.message}`;
+            }
+
+            // Test canvas setup
+            const canvas = document.getElementById('consciousness-field-canvas');
+            if (canvas) {
+                debugOutput.innerHTML += `<br>📐 Canvas found: ${canvas.offsetWidth}x${canvas.offsetHeight}`;
+            } else {
+                debugOutput.innerHTML += '<br>❌ Canvas not found';
+            }
+        });
+    </script>
+</body>
+</html>

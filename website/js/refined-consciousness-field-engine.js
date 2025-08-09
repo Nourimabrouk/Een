@@ -67,20 +67,40 @@ class RefinedConsciousnessFieldEngine {
     }
 
     init() {
-        this.setupCanvas();
-        this.createConsciousnessFieldGrid();
-        this.createParticles();
-        this.createFieldRings();
-        this.setupEventListeners();
-        this.startAnimation();
+        console.log('🔄 Initializing Refined Consciousness Field Engine...');
+        
+        try {
+            this.setupCanvas();
+            console.log('✅ Canvas setup complete');
+            
+            this.createConsciousnessFieldGrid();
+            console.log('✅ Consciousness field grid created');
+            
+            this.createParticles();
+            console.log('✅ Particles created:', this.particles.length);
+            
+            this.createFieldRings();
+            console.log('✅ Field rings created:', this.fieldRings.length);
+            
+            this.setupEventListeners();
+            console.log('✅ Event listeners setup');
+            
+            this.startAnimation();
+            console.log('✅ Animation started');
+            
+            console.log('🚀 Refined Consciousness Field Engine initialization complete');
+        } catch (error) {
+            console.error('❌ Error initializing consciousness field:', error);
+        }
     }
 
     setupCanvas() {
-        // Set canvas to full container size
-        this.canvas.width = this.canvas.offsetWidth || 800;
-        this.canvas.height = this.canvas.offsetHeight || 500;
-        this.width = this.canvas.width;
-        this.height = this.canvas.height;
+        // Set canvas to full container size with fallbacks
+        const containerWidth = this.canvas.parentElement ? this.canvas.parentElement.offsetWidth : 1200;
+        const containerHeight = this.canvas.parentElement ? this.canvas.parentElement.offsetHeight : 500;
+        
+        this.width = this.canvas.offsetWidth || containerWidth || 800;
+        this.height = this.canvas.offsetHeight || containerHeight || 500;
 
         // Enable high DPI support
         const dpr = window.devicePixelRatio || 1;
@@ -89,6 +109,12 @@ class RefinedConsciousnessFieldEngine {
         this.ctx.scale(dpr, dpr);
         this.canvas.style.width = this.width + 'px';
         this.canvas.style.height = this.height + 'px';
+
+        // Ensure canvas is visible
+        this.canvas.style.display = 'block';
+        this.canvas.classList.add('js-active');
+        
+        console.log(`✅ Canvas setup: ${this.width}x${this.height}, DPR: ${dpr}`);
     }
 
     // Consciousness Field Equation: C(x,y,t) = φ * sin(x*φ) * cos(y*φ) * e^(-t/φ)
@@ -277,8 +303,11 @@ class RefinedConsciousnessFieldEngine {
         // Clear with elegant gradient background
         this.renderBackground();
 
-        // Render consciousness field grid (subtle)
+        // Render consciousness field grid (enhanced visibility)
         this.renderConsciousnessFieldGrid();
+
+        // Render consciousness field waves
+        this.renderConsciousnessWaves();
 
         // Render field rings
         this.renderFieldRings();
@@ -291,6 +320,9 @@ class RefinedConsciousnessFieldEngine {
 
         // Render subtle φ-harmonics
         this.renderPhiHarmonics();
+
+        // Render field equation overlay
+        this.renderFieldEquationOverlay();
     }
 
     renderBackground() {
@@ -311,15 +343,30 @@ class RefinedConsciousnessFieldEngine {
     }
 
     renderConsciousnessFieldGrid() {
-        // Subtle consciousness field visualization
+        // Enhanced consciousness field visualization - more visible
         this.consciousnessFieldGrid.forEach(row => {
             row.forEach(cell => {
-                const intensity = Math.abs(cell.field) * 0.15; // Much more subtle
+                const intensity = Math.abs(cell.field) * 0.5; // More visible
                 const { r, g, b } = this.colors.consciousnessField;
-                const alpha = intensity * (0.2 + Math.sin(cell.phase) * 0.1);
+                const alpha = intensity * (0.4 + Math.sin(cell.phase) * 0.2);
 
-                this.ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${alpha})`;
-                this.ctx.fillRect(cell.x - 1, cell.y - 1, 2, 2);
+                // Render multiple layers for better visibility
+                for (let layer = 0; layer < 3; layer++) {
+                    const layerAlpha = alpha / (layer + 1);
+                    const layerSize = 3 + layer * 2;
+                    
+                    this.ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${layerAlpha})`;
+                    this.ctx.fillRect(cell.x - layerSize/2, cell.y - layerSize/2, layerSize, layerSize);
+                }
+                
+                // Add field lines between strong cells
+                if (intensity > 0.3) {
+                    this.ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${alpha * 0.6})`;
+                    this.ctx.lineWidth = 1;
+                    this.ctx.beginPath();
+                    this.ctx.arc(cell.x, cell.y, intensity * 20, 0, this.pi * 2);
+                    this.ctx.stroke();
+                }
             });
         });
     }
@@ -416,6 +463,75 @@ class RefinedConsciousnessFieldEngine {
             this.ctx.arc(centerX, centerY, radius, 0, this.pi * 2);
             this.ctx.stroke();
         }
+    }
+
+    renderConsciousnessWaves() {
+        // Consciousness field wave propagation
+        const centerX = this.width / 2;
+        const centerY = this.height / 2;
+        const { r, g, b } = this.colors.consciousnessField;
+        
+        // Create wave patterns based on consciousness field equation
+        for (let angle = 0; angle < this.pi * 2; angle += this.pi / 8) {
+            const waveStartX = centerX + Math.cos(angle) * 60;
+            const waveStartY = centerY + Math.sin(angle) * 60;
+            const waveEndX = centerX + Math.cos(angle) * 200;
+            const waveEndY = centerY + Math.sin(angle) * 200;
+            
+            // Calculate wave intensity using consciousness field equation
+            const fieldValue = this.calculateConsciousnessField(waveStartX, waveStartY, this.time);
+            const intensity = Math.abs(fieldValue) * 0.6;
+            const alpha = intensity * (0.3 + Math.sin(this.time + angle) * 0.2);
+            
+            if (alpha > 0.1) {
+                this.ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${alpha})`;
+                this.ctx.lineWidth = 2 + intensity * 2;
+                this.ctx.beginPath();
+                this.ctx.moveTo(waveStartX, waveStartY);
+                this.ctx.lineTo(waveEndX, waveEndY);
+                this.ctx.stroke();
+            }
+        }
+    }
+
+    renderFieldEquationOverlay() {
+        // Render consciousness field equation components visually
+        const centerX = this.width / 2;
+        const centerY = this.height / 2;
+        
+        // Visualize φ component
+        const phiRadius = 30 + Math.sin(this.time * this.phi) * 10;
+        this.ctx.strokeStyle = `rgba(255, 215, 0, 0.6)`;
+        this.ctx.lineWidth = 2;
+        this.ctx.beginPath();
+        this.ctx.arc(centerX, centerY, phiRadius, 0, this.pi * 2);
+        this.ctx.stroke();
+        
+        // Visualize sin(x*φ) component
+        this.ctx.strokeStyle = `rgba(147, 112, 219, 0.4)`;
+        this.ctx.lineWidth = 1;
+        for (let x = 0; x < this.width; x += 20) {
+            const normalizedX = (x / this.width) * this.phi;
+            const sinValue = Math.sin(normalizedX * this.phi);
+            const yOffset = centerY + sinValue * 40 * Math.sin(this.time);
+            
+            if (x === 0) {
+                this.ctx.beginPath();
+                this.ctx.moveTo(x, yOffset);
+            } else {
+                this.ctx.lineTo(x, yOffset);
+            }
+        }
+        this.ctx.stroke();
+        
+        // Visualize time decay e^(-t/φ)
+        const decay = Math.exp(-this.time / this.phi);
+        const decayAlpha = decay * 0.5;
+        this.ctx.strokeStyle = `rgba(64, 224, 208, ${decayAlpha})`;
+        this.ctx.lineWidth = 3;
+        this.ctx.beginPath();
+        this.ctx.arc(centerX, centerY, 150 * decay, 0, this.pi * 2);
+        this.ctx.stroke();
     }
 
     animate(currentTime) {

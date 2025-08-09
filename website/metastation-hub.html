@@ -965,7 +965,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpVOBD+2wKKv/WVs7HPJX9shftvh9xLVfA0r+5qFmBYAu9l" crossorigin="anonymous"></script>
     
-    <!-- Refined Consciousness Field Engine -->
+    <!-- Complete Enhanced Consciousness Field Engine -->
+    <script src="js/enhanced-consciousness-field-complete.js" defer></script>
+    <!-- Fallback: Refined Consciousness Field Engine -->
     <script src="js/refined-consciousness-field-engine.js" defer></script>
     <!-- Backup consciousness field (inline) -->
     <script>
@@ -2230,10 +2232,13 @@
             
             if (engineCanvas) {
                 try { 
-                    // Try refined version first, fallback to enhanced, then backup
-                    if (typeof RefinedConsciousnessFieldEngine !== 'undefined') {
+                    // Try complete version first, then refined, then fallbacks
+                    if (typeof CompleteConsciousnessFieldEngine !== 'undefined') {
+                        fieldEngine = new CompleteConsciousnessFieldEngine('consciousness-field-canvas');
+                        console.log('✅ Complete Consciousness Field Engine initialized successfully');
+                    } else if (typeof RefinedConsciousnessFieldEngine !== 'undefined') {
                         fieldEngine = new RefinedConsciousnessFieldEngine('consciousness-field-canvas');
-                        console.log('✅ Refined Consciousness Field Engine initialized successfully');
+                        console.log('⚠️ Using Refined Consciousness Field Engine as fallback');
                     } else if (typeof EnhancedConsciousnessFieldEngine !== 'undefined') {
                         fieldEngine = new EnhancedConsciousnessFieldEngine('consciousness-field-canvas');
                         console.log('⚠️ Using Enhanced Consciousness Field Engine as fallback');
