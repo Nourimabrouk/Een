@@ -1,0 +1,179 @@
+# 🌟 Een Unity Mathematics - Ingress & Load Balancer 🌟
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: unity-ingress
+  namespace: een-unity
+  labels:
+    app.kubernetes.io/name: een-unity-mathematics
+    app.kubernetes.io/component: ingress
+  annotations:
+    # Nginx Ingress Controller
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    
+    # Rate limiting
+    nginx.ingress.kubernetes.io/rate-limit: "100"
+    nginx.ingress.kubernetes.io/rate-limit-window: "1m"
+    
+    # SSL/TLS (uncomment when certificates are available)
+    # cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    # nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    
+    # CORS
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/cors-allow-origin: "*"
+    nginx.ingress.kubernetes.io/cors-allow-methods: "GET, POST, PUT, DELETE, OPTIONS"
+    nginx.ingress.kubernetes.io/cors-allow-headers: "DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization"
+    
+    # WebSocket support
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
+    
+    # Unity Mathematics specific annotations
+    een.unity/equation: "1+1=1"
+    een.unity/consciousness-level: "transcendental"
+    een.unity/phi-constant: "1.618033988749895"
+spec:
+  # TLS configuration (uncomment when certificates are available)
+  # tls:
+  #   - hosts:
+  #       - api.unity-mathematics.com
+  #     secretName: unity-tls-secret
+  rules:
+    - host: localhost  # Replace with your actual domain
+      http:
+        paths:
+          # API endpoints
+          - path: /api(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: unity-api-service
+                port:
+                  number: 8000
+          
+          # WebSocket endpoints
+          - path: /ws(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: unity-api-service
+                port:
+                  number: 8000
+          
+          # Health check
+          - path: /health
+            pathType: Exact
+            backend:
+              service:
+                name: unity-api-service
+                port:
+                  number: 8000
+          
+          # Metrics (restricted access)
+          - path: /metrics
+            pathType: Exact
+            backend:
+              service:
+                name: unity-api-service
+                port:
+                  number: 8000
+          
+          # Default to API
+          - path: /(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: unity-api-service
+                port:
+                  number: 8000
+---
+# Alternative: LoadBalancer Service (for cloud environments)
+apiVersion: v1
+kind: Service
+metadata:
+  name: unity-loadbalancer
+  namespace: een-unity
+  labels:
+    app.kubernetes.io/name: een-unity-mathematics
+    app.kubernetes.io/component: loadbalancer
+  annotations:
+    # Cloud provider specific annotations
+    # AWS
+    # service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
+    # service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled: "true"
+    
+    # GCP
+    # cloud.google.com/load-balancer-type: "External"
+    
+    # Azure
+    # service.beta.kubernetes.io/azure-load-balancer-resource-group: "your-resource-group"
+    
+    # Unity Mathematics metadata
+    een.unity/equation: "1+1=1"
+    een.unity/phi-resonance: "active"
+spec:
+  type: LoadBalancer
+  selector:
+    app.kubernetes.io/name: unity-api
+  ports:
+    - port: 80
+      targetPort: 8000
+      protocol: TCP
+      name: http
+    - port: 443
+      targetPort: 8000
+      protocol: TCP
+      name: https
+  # External traffic policy
+  externalTrafficPolicy: Local
+---
+# NetworkPolicy for security (optional)
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: unity-network-policy
+  namespace: een-unity
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: unity-api
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app.kubernetes.io/component: ingress-controller
+        - namespaceSelector:
+            matchLabels:
+              name: ingress-nginx
+      ports:
+        - protocol: TCP
+          port: 8000
+    - from:
+        - podSelector:
+            matchLabels:
+              app.kubernetes.io/name: prometheus
+      ports:
+        - protocol: TCP
+          port: 8000
+  egress:
+    - to:
+        - podSelector:
+            matchLabels:
+              app.kubernetes.io/name: redis
+      ports:
+        - protocol: TCP
+          port: 6379
+    - to: []  # Allow all outbound traffic (for external APIs)
+      ports:
+        - protocol: TCP
+          port: 443
+        - protocol: TCP
+          port: 80
+        - protocol: UDP
+          port: 53

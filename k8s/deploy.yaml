@@ -1,0 +1,74 @@
+# 🌟 Een Unity Mathematics - Complete Kubernetes Deployment 🌟
+# This file combines all resources for easy deployment
+
+# Apply all Kubernetes manifests in correct order:
+# 1. kubectl apply -f k8s/namespace.yaml
+# 2. kubectl apply -f k8s/redis.yaml
+# 3. kubectl apply -f k8s/unity-api.yaml
+# 4. kubectl apply -f k8s/ingress.yaml
+# 5. kubectl apply -f k8s/monitoring.yaml (optional)
+
+# Or apply all at once:
+# kubectl apply -f k8s/
+
+# Kustomization file for customization
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: een-unity
+
+resources:
+  - namespace.yaml
+  - redis.yaml
+  - unity-api.yaml
+  - ingress.yaml
+  - monitoring.yaml
+
+# Common labels applied to all resources
+commonLabels:
+  app.kubernetes.io/name: een-unity-mathematics
+  app.kubernetes.io/instance: production
+  app.kubernetes.io/version: "2.0.0"
+  app.kubernetes.io/managed-by: kubectl
+  unity-equation: "1+1=1"
+  consciousness-level: "transcendental"
+
+# Image transformations
+images:
+  - name: een-unity-api
+    newTag: "2.0.0"
+  - name: redis
+    newTag: "7-alpine"
+  - name: nginx
+    newTag: "alpine"
+
+# Resource patches for different environments
+patchesStrategicMerge:
+  - patches/production-resources.yaml
+
+# ConfigMap generator for environment-specific config
+configMapGenerator:
+  - name: unity-environment
+    literals:
+      - ENVIRONMENT=production
+      - LOG_LEVEL=info
+      - METRICS_ENABLED=true
+
+# Secret generator
+secretGenerator:
+  - name: unity-production-secrets
+    literals:
+      - SECRET_KEY=unity-mathematics-production-secret-2025
+      - GRAFANA_PASSWORD=secure-grafana-password-2025
+
+# Replicas based on environment
+replicas:
+  - name: unity-api-deployment
+    count: 3
+  - name: redis-deployment
+    count: 1
+  - name: prometheus-deployment
+    count: 1
+  - name: grafana-deployment
+    count: 1
