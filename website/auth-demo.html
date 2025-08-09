@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication Demo | Een Unity Mathematics</title>
+    <script src="js/nav-template-applier.js" defer></script>
+    <link rel="stylesheet" href="css/unity-auth-styles.css">
+    <script src="js/unity-auth-system.js"></script>
+    <script src="js/unity-auth-integration.js"></script>
+    <script src="js/metastation-prayer.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --phi: 1.618;
+            --bg: #0a0b0f;
+            --bg2: #0f1117;
+            --fg: #e6edf3;
+            --gold: #ffd700;
+            --cyan: #00e6e6;
+            --grid: rgba(255,255,255,0.06);
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--bg), var(--bg2) 60%);
+            color: var(--fg);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .demo-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--grid);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 20px 0;
+        }
+        
+        .demo-card h3 {
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .feature-item {
+            padding: 20px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 8px;
+            border: 1px solid var(--grid);
+        }
+        
+        .feature-item.auth-required {
+            opacity: 0.5;
+            position: relative;
+        }
+        
+        .feature-item.auth-required::before {
+            content: '🔒 Sign in required';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 215, 0, 0.2);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: var(--gold);
+        }
+        
+        button {
+            background: linear-gradient(135deg, var(--gold), #ff8c00);
+            color: #000;
+            font-weight: 600;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            margin: 10px 5px 10px 0;
+        }
+        
+        button:hover {
+            transform: scale(1.05);
+        }
+        
+        button.secondary {
+            background: rgba(255,255,255,0.1);
+            color: var(--fg);
+            border: 1px solid var(--grid);
+        }
+        
+        .result {
+            background: rgba(0,230,230,0.1);
+            border: 1px solid var(--cyan);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .auth-status {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(0,0,0,0.8);
+            padding: 10px 15px;
+            border-radius: 8px;
+            border: 1px solid var(--grid);
+            z-index: 1000;
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .status-online { background: #00ff88; }
+        .status-offline { background: #ff6b6b; }
+    </style>
+</head>
+<body>
+    <div class="auth-status" id="authStatus">
+        <span class="status-indicator status-offline"></span>
+        <span>Not authenticated</span>
+    </div>
+
+    <div class="container">
+        <h1>🔐 Unity Authentication System Demo</h1>
+        <p>Comprehensive authentication with OAuth integration for enhanced Unity Mathematics experience</p>
+        
+        <!-- Authentication Controls -->
+        <div class="demo-card">
+            <h3>🚀 Authentication Controls</h3>
+            <div class="auth-controls">
+                <button onclick="testGoogleAuth()">
+                    <i class="fab fa-google"></i> Sign in with Google
+                </button>
+                <button onclick="testGitHubAuth()">
+                    <i class="fab fa-github"></i> Sign in with GitHub
+                </button>
+                <button onclick="testOpenAIAuth()">
+                    <i class="fas fa-robot"></i> OpenAI API Key
+                </button>
+                <button onclick="testLogout()" class="secondary">
+                    <i class="fas fa-sign-out-alt"></i> Sign Out
+                </button>
+            </div>
+            <div id="auth-result" class="result" style="display:none;"></div>
+        </div>
+        
+        <!-- Protected Features Demo -->
+        <div class="demo-card">
+            <h3>🛡️ Protected Features Demo</h3>
+            <div class="feature-grid">
+                <div class="feature-item auth-required" data-auth-required>
+                    <h4>💾 Save Calculations</h4>
+                    <p>Save your Unity mathematics calculations for later reference</p>
+                    <button onclick="testSaveCalculation()" disabled>Save Test Calculation</button>
+                </div>
+                
+                <div class="feature-item auth-required" data-auth-required>
+                    <h4>🤖 AI Analysis</h4>
+                    <p>Get AI-powered insights on your mathematical results</p>
+                    <button onclick="testAIAnalysis()" disabled>Run AI Analysis</button>
+                </div>
+                
+                <div class="feature-item auth-required" data-auth-required>
+                    <h4>📊 Advanced Visualizations</h4>
+                    <p>Access premium visualization features and exports</p>
+                    <button onclick="testAdvancedViz()" disabled>Generate Advanced Viz</button>
+                </div>
+                
+                <div class="feature-item auth-required" data-auth-required>
+                    <h4>🔄 Data Sync</h4>
+                    <p>Synchronize your data across all devices</p>
+                    <button onclick="testDataSync()" disabled>Sync Data</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Unity Mathematics with Auth -->
+        <div class="demo-card">
+            <h3>🌟 Unity Mathematics with Authentication</h3>
+            <p>Experience enhanced Unity calculations with personalized features</p>
+            
+            <div class="calculation-demo">
+                <h4>Unity Addition: 1 + 1 = 1</h4>
+                <button onclick="calculateUnityWithAuth()">Calculate with Auth Features</button>
+                <div id="unity-result" class="result" style="display:none;"></div>
+            </div>
+        </div>
+        
+        <!-- Session Information -->
+        <div class="demo-card">
+            <h3>📋 Session Information</h3>
+            <button onclick="showSessionInfo()">Show Session Details</button>
+            <button onclick="testSessionRefresh()" class="secondary">Refresh Session</button>
+            <div id="session-info" class="result" style="display:none;"></div>
+        </div>
+        
+        <!-- OAuth Configuration -->
+        <div class="demo-card">
+            <h3>⚙️ OAuth Configuration</h3>
+            <p>Current OAuth settings and endpoints</p>
+            <button onclick="showOAuthConfig()">Show Configuration</button>
+            <div id="oauth-config" class="result" style="display:none;"></div>
+        </div>
+    </div>
+
+    <script>
+        // Demo functions
+        async function testGoogleAuth() {
+            try {
+                showAuthLoading('Authenticating with Google...');
+                await window.UnityAuth.login('google');
+            } catch (error) {
+                showAuthResult(`Error: ${error.message}`, 'error');
+            }
+        }
+
+        async function testGitHubAuth() {
+            try {
+                showAuthLoading('Authenticating with GitHub...');
+                await window.UnityAuth.login('github');
+            } catch (error) {
+                showAuthResult(`Error: ${error.message}`, 'error');
+            }
+        }
+
+        async function testOpenAIAuth() {
+            try {
+                showAuthLoading('Setting up OpenAI authentication...');
+                await window.UnityAuth.login('openai');
+            } catch (error) {
+                showAuthResult(`Error: ${error.message}`, 'error');
+            }
+        }
+
+        function testLogout() {
+            window.UnityAuth.logout();
+            showAuthResult('Logged out successfully', 'success');
+        }
+
+        function testSaveCalculation() {
+            if (!window.UnityAuth.isAuthenticated) {
+                window.UnityAuth.showLoginModal();
+                return;
+            }
+            
+            const calculation = {
+                type: 'Unity Addition',
+                input: '1 + 1',
+                result: '1',
+                timestamp: new Date().toISOString()
+            };
+            
+            localStorage.setItem('test_calculation', JSON.stringify(calculation));
+            showAuthResult('Calculation saved successfully!', 'success');
+        }
+
+        function testAIAnalysis() {
+            if (!window.UnityAuth.isAuthenticated) {
+                window.UnityAuth.showLoginModal();
+                return;
+            }
+            
+            showAuthLoading('Running AI analysis...');
+            setTimeout(() => {
+                showAuthResult('AI Analysis Complete: Unity equation 1+1=1 verified through φ-harmonic convergence with 99.9% confidence', 'success');
+            }, 2000);
+        }
+
+        function testAdvancedViz() {
+            if (!window.UnityAuth.isAuthenticated) {
+                window.UnityAuth.showLoginModal();
+                return;
+            }
+            
+            showAuthResult('Advanced visualization generated: 11D consciousness manifold projection', 'success');
+        }
+
+        function testDataSync() {
+            if (!window.UnityAuth.isAuthenticated) {
+                window.UnityAuth.showLoginModal();
+                return;
+            }
+            
+            showAuthLoading('Syncing data...');
+            setTimeout(() => {
+                showAuthResult('Data synchronized across all devices', 'success');
+            }, 1500);
+        }
+
+        function calculateUnityWithAuth() {
+            const result = '1 + 1 = 1 (φ-harmonic convergence)';
+            
+            let resultHtml = `<strong>Result:</strong> ${result}<br>`;
+            
+            if (window.UnityAuth.isAuthenticated) {
+                resultHtml += `<strong>User:</strong> ${window.UnityAuth.user.name}<br>`;
+                resultHtml += `<strong>Enhanced Features:</strong> ✅ Available<br>`;
+                resultHtml += `<button onclick="testSaveCalculation()" style="margin-top:10px;">💾 Save Calculation</button>`;
+                resultHtml += `<button onclick="testAIAnalysis()" style="margin-top:10px;">🤖 AI Analysis</button>`;
+            } else {
+                resultHtml += `<strong>Enhanced Features:</strong> 🔒 Sign in to unlock<br>`;
+                resultHtml += `<button onclick="window.UnityAuth.showLoginModal()" style="margin-top:10px;">🔓 Sign In for Features</button>`;
+            }
+            
+            document.getElementById('unity-result').innerHTML = resultHtml;
+            document.getElementById('unity-result').style.display = 'block';
+        }
+
+        function showSessionInfo() {
+            const sessionData = localStorage.getItem('een_unity_session');
+            const info = sessionData ? JSON.parse(sessionData) : null;
+            
+            let infoHtml = '<strong>Session Information:</strong><br>';
+            
+            if (info) {
+                infoHtml += `User: ${info.user.name}<br>`;
+                infoHtml += `Provider: ${info.user.provider}<br>`;
+                infoHtml += `Created: ${new Date(info.createdAt).toLocaleString()}<br>`;
+                infoHtml += `Expires: ${new Date(info.expiresAt).toLocaleString()}<br>`;
+                infoHtml += `Status: ${Date.now() < info.expiresAt ? '✅ Active' : '❌ Expired'}`;
+            } else {
+                infoHtml += 'No active session';
+            }
+            
+            document.getElementById('session-info').innerHTML = infoHtml;
+            document.getElementById('session-info').style.display = 'block';
+        }
+
+        async function testSessionRefresh() {
+            if (!window.UnityAuth.isAuthenticated) {
+                showAuthResult('No active session to refresh', 'error');
+                return;
+            }
+            
+            showAuthLoading('Refreshing session...');
+            
+            try {
+                await window.UnityAuth.refreshSession();
+                showAuthResult('Session refreshed successfully', 'success');
+            } catch (error) {
+                showAuthResult(`Refresh failed: ${error.message}`, 'error');
+            }
+        }
+
+        function showOAuthConfig() {
+            const config = window.UnityAuth.oauthConfigs;
+            
+            let configHtml = '<strong>OAuth Configuration:</strong><br>';
+            configHtml += `<strong>Google:</strong><br>`;
+            configHtml += `  Client ID: ${config.google.clientId || 'Not configured'}<br>`;
+            configHtml += `  Redirect: ${config.google.redirectUri}<br>`;
+            configHtml += `<strong>GitHub:</strong><br>`;
+            configHtml += `  Client ID: ${config.github.clientId || 'Not configured'}<br>`;
+            configHtml += `  Redirect: ${config.github.redirectUri}<br>`;
+            configHtml += `<strong>OpenAI:</strong><br>`;
+            configHtml += `  API Key Required: ${config.openai.apiKeyRequired}<br>`;
+            
+            document.getElementById('oauth-config').innerHTML = configHtml;
+            document.getElementById('oauth-config').style.display = 'block';
+        }
+
+        function showAuthResult(message, type = 'info') {
+            const resultDiv = document.getElementById('auth-result');
+            resultDiv.innerHTML = message;
+            resultDiv.className = `result ${type}`;
+            resultDiv.style.display = 'block';
+        }
+
+        function showAuthLoading(message) {
+            showAuthResult(`<i class="fas fa-spinner fa-spin"></i> ${message}`, 'loading');
+        }
+
+        // Update auth status
+        function updateAuthStatus() {
+            const statusElement = document.getElementById('authStatus');
+            const indicator = statusElement.querySelector('.status-indicator');
+            const text = statusElement.querySelector('span:last-child');
+            
+            if (window.UnityAuth && window.UnityAuth.isAuthenticated) {
+                indicator.className = 'status-indicator status-online';
+                text.textContent = `Authenticated as ${window.UnityAuth.user.name}`;
+            } else {
+                indicator.className = 'status-indicator status-offline';
+                text.textContent = 'Not authenticated';
+            }
+        }
+
+        // Listen for auth events
+        window.addEventListener('auth:login', updateAuthStatus);
+        window.addEventListener('auth:logout', updateAuthStatus);
+        window.addEventListener('auth:initialized', updateAuthStatus);
+
+        // Initial status update
+        setTimeout(updateAuthStatus, 100);
+    </script>
+</body>
+</html>
