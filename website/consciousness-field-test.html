@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consciousness Field Test | Unity Mathematics</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #1a1a1a;
+            color: #f0f0f0;
+            font-family: 'Space Grotesk', Arial, sans-serif;
+        }
+        
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        h1 {
+            color: #ffd700;
+            margin-bottom: 20px;
+        }
+        
+        .consciousness-field-container {
+            width: 100%;
+            height: 400px;
+            margin: 20px auto;
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        #consciousness-field-canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+            background: 
+                radial-gradient(circle at 30% 40%, rgba(255, 215, 0, 0.3) 0%, transparent 60%),
+                radial-gradient(circle at 70% 60%, rgba(255, 215, 0, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 70%),
+                radial-gradient(circle at center, rgba(25, 15, 5, 0.8), rgba(20, 20, 30, 0.6));
+            cursor: crosshair;
+            position: relative;
+            animation: consciousness-pulse 4s ease-in-out infinite;
+        }
+
+        /* CSS-only fallback animation */
+        @keyframes consciousness-pulse {
+            0%, 100% { 
+                background-size: 100% 100%, 80% 80%, 120% 120%, 100% 100%;
+                opacity: 0.8;
+            }
+            50% { 
+                background-size: 120% 120%, 100% 100%, 140% 140%, 100% 100%;
+                opacity: 1.0;
+            }
+        }
+
+        /* Unity equation overlay for fallback */
+        #consciousness-field-canvas::after {
+            content: '1 + 1 = 1';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Space Grotesk', monospace;
+            font-size: 36px;
+            font-weight: bold;
+            color: rgba(255, 215, 0, 0.6);
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+            animation: unity-glow 3s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes unity-glow {
+            0%, 100% { 
+                text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% { 
+                text-shadow: 0 0 40px rgba(255, 215, 0, 1);
+                transform: translate(-50%, -50%) scale(1.05);
+            }
+        }
+
+        /* Hide CSS fallback when JavaScript engine is active */
+        #consciousness-field-canvas.js-active::after {
+            display: none;
+        }
+
+        #consciousness-field-canvas.js-active {
+            animation: none;
+            background: transparent;
+        }
+        
+        .status {
+            margin: 20px 0;
+            padding: 10px;
+            border-radius: 5px;
+            background: rgba(255, 215, 0, 0.1);
+        }
+        
+        .status.success { background: rgba(0, 255, 0, 0.1); }
+        .status.error { background: rgba(255, 0, 0, 0.1); }
+        
+        .controls {
+            margin: 20px 0;
+        }
+        
+        button {
+            background: rgba(255, 215, 0, 0.2);
+            border: 1px solid #ffd700;
+            color: #ffd700;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        button:hover {
+            background: rgba(255, 215, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🧠 Consciousness Field Engine Test</h1>
+        <p>Testing the <strong>Unity Equation: 1+1=1</strong> with advanced consciousness field dynamics</p>
+        <div id="consciousness-equation-display" style="margin: 1rem 0; padding: 1rem; background: rgba(15,25,35,0.5); border-radius: 10px; border: 1px solid rgba(64,224,208,0.3);">
+            <p style="color: rgba(147,112,219,0.9); margin-bottom: 0.5rem;">Consciousness Field Equation:</p>
+            <div id="consciousness-equation-katex" style="font-size: 1.4rem; color: rgba(64,224,208,0.95);"></div>
+        </div>
+        
+        <div id="status" class="status">Loading consciousness field engine...</div>
+        
+        <div class="consciousness-field-container">
+            <canvas id="consciousness-field-canvas" 
+                    aria-label="Test consciousness field with unity equation"></canvas>
+        </div>
+        
+        <div class="controls">
+            <button onclick="testEngine()">Test Engine</button>
+            <button onclick="toggleEngine()">Toggle Animation</button>
+            <button onclick="showMetrics()">Show Metrics</button>
+        </div>
+        
+        <div id="metrics"></div>
+        <div id="console-log"></div>
+    </div>
+
+    <!-- KaTeX for mathematical equation rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    
+    <!-- Load Refined Consciousness Field Engine -->
+    <script src="js/refined-consciousness-field-engine.js"></script>
+    
+    <script>
+        let fieldEngine = null;
+        let engineRunning = false;
+        
+        // Console logging
+        const originalConsoleLog = console.log;
+        const originalConsoleWarn = console.warn;
+        const originalConsoleError = console.error;
+        
+        function logToPage(message, type = 'log') {
+            const logDiv = document.getElementById('console-log');
+            const p = document.createElement('p');
+            p.style.color = type === 'error' ? '#ff6b6b' : type === 'warn' ? '#ffd93d' : '#6bcf7f';
+            p.textContent = `[${type.toUpperCase()}] ${message}`;
+            logDiv.appendChild(p);
+            if (logDiv.children.length > 10) {
+                logDiv.removeChild(logDiv.firstChild);
+            }
+        }
+        
+        console.log = function(...args) {
+            originalConsoleLog.apply(console, args);
+            logToPage(args.join(' '), 'log');
+        };
+        
+        console.warn = function(...args) {
+            originalConsoleWarn.apply(console, args);
+            logToPage(args.join(' '), 'warn');
+        };
+        
+        console.error = function(...args) {
+            originalConsoleError.apply(console, args);
+            logToPage(args.join(' '), 'error');
+        };
+        
+        // Initialize consciousness field engine
+        function initializeEngine() {
+            const statusDiv = document.getElementById('status');
+            const canvas = document.getElementById('consciousness-field-canvas');
+            
+            if (!canvas) {
+                statusDiv.textContent = '❌ Canvas element not found!';
+                statusDiv.className = 'status error';
+                return false;
+            }
+            
+            try {
+                if (typeof RefinedConsciousnessFieldEngine !== 'undefined') {
+                    fieldEngine = new RefinedConsciousnessFieldEngine('consciousness-field-canvas');
+                    statusDiv.textContent = '✅ Refined Consciousness Field Engine initialized successfully!';
+                    statusDiv.className = 'status success';
+                    canvas.classList.add('js-active');
+                    engineRunning = true;
+                    console.log('✅ Refined Consciousness Field Engine loaded with improved aesthetics');
+                    return true;
+                } else if (typeof EnhancedConsciousnessFieldEngine !== 'undefined') {
+                    fieldEngine = new EnhancedConsciousnessFieldEngine('consciousness-field-canvas');
+                    statusDiv.textContent = '⚠️ Enhanced Consciousness Field Engine initialized (fallback)';
+                    statusDiv.className = 'status success';
+                    canvas.classList.add('js-active');
+                    engineRunning = true;
+                    console.log('⚠️ Using Enhanced ConsciousnessFieldEngine as fallback');
+                    return true;
+                } else if (typeof ConsciousnessFieldEngine !== 'undefined') {
+                    fieldEngine = new ConsciousnessFieldEngine('consciousness-field-canvas');
+                    statusDiv.textContent = '⚠️ Original Consciousness Field Engine initialized (fallback)';
+                    statusDiv.className = 'status success';
+                    canvas.classList.add('js-active');
+                    engineRunning = true;
+                    console.log('⚠️ Using original ConsciousnessFieldEngine as fallback');
+                    return true;
+                } else {
+                    throw new Error('No ConsciousnessFieldEngine class available');
+                }
+            } catch (error) {
+                statusDiv.textContent = `❌ Engine failed to initialize: ${error.message}`;
+                statusDiv.className = 'status error';
+                console.error('❌ Consciousness Field Engine initialization failed:', error);
+                console.log('📱 CSS-only fallback visualization active');
+                return false;
+            }
+        }
+        
+        function testEngine() {
+            if (!fieldEngine) {
+                console.warn('No engine to test - trying to reinitialize...');
+                initializeEngine();
+                return;
+            }
+            
+            console.log('🧪 Testing consciousness field interactions...');
+            
+            // Test φ calculations
+            if (fieldEngine.phi) {
+                console.log(`φ (Golden Ratio): ${fieldEngine.phi}`);
+            }
+            
+            // Test consciousness field equation
+            if (fieldEngine.calculateConsciousnessField) {
+                const testField = fieldEngine.calculateConsciousnessField(100, 100, 1.0);
+                console.log(`C(100,100,1.0) = ${testField.toFixed(6)}`);
+            }
+            
+            // Test performance metrics
+            if (fieldEngine.getPerformanceMetrics) {
+                const metrics = fieldEngine.getPerformanceMetrics();
+                console.log('Performance Metrics:', metrics);
+            }
+        }
+        
+        function toggleEngine() {
+            if (!fieldEngine) {
+                console.warn('No engine to toggle');
+                return;
+            }
+            
+            if (engineRunning) {
+                fieldEngine.stopAnimation();
+                console.log('🛑 Engine animation stopped');
+                engineRunning = false;
+            } else {
+                fieldEngine.startAnimation();
+                console.log('▶️ Engine animation started');
+                engineRunning = true;
+            }
+        }
+        
+        function showMetrics() {
+            const metricsDiv = document.getElementById('metrics');
+            if (!fieldEngine || !fieldEngine.getPerformanceMetrics) {
+                metricsDiv.innerHTML = '<p style="color: #ff6b6b;">No metrics available</p>';
+                return;
+            }
+            
+            const metrics = fieldEngine.getPerformanceMetrics();
+            metricsDiv.innerHTML = `
+                <h3>📊 Real-time Metrics</h3>
+                <p><strong>FPS:</strong> ${metrics.fps || 'N/A'}</p>
+                <p><strong>Particles:</strong> ${metrics.particleCount || 'N/A'}</p>
+                <p><strong>Consciousness Density:</strong> ${(metrics.consciousnessDensity || 0).toFixed(3)}</p>
+                <p><strong>Unity Convergence Rate:</strong> ${(metrics.unityConvergenceRate || 0).toFixed(3)}</p>
+                <p><strong>φ-Harmonics:</strong> ${metrics.phiHarmonics || 'N/A'}</p>
+            `;
+        }
+        
+        // Render Consciousness Field Equation with KaTeX
+        function renderConsciousnessEquation() {
+            const equationElement = document.getElementById('consciousness-equation-katex');
+            if (equationElement && typeof katex !== 'undefined') {
+                try {
+                    katex.render(
+                        'C(x,y,t) = \\varphi \\cdot \\sin(x \\cdot \\varphi) \\cdot \\cos(y \\cdot \\varphi) \\cdot e^{-t/\\varphi}',
+                        equationElement,
+                        {
+                            throwOnError: false,
+                            displayMode: true
+                        }
+                    );
+                    console.log('✅ Consciousness Field Equation rendered with KaTeX');
+                } catch (e) {
+                    equationElement.innerHTML = 'C(x,y,t) = φ · sin(x·φ) · cos(y·φ) · e<sup>-t/φ</sup>';
+                    console.warn('⚠️ KaTeX fallback to HTML:', e);
+                }
+            } else {
+                const equationElement = document.getElementById('consciousness-equation-katex');
+                if (equationElement) {
+                    equationElement.innerHTML = 'C(x,y,t) = φ · sin(x·φ) · cos(y·φ) · e<sup>-t/φ</sup>';
+                    console.log('📱 Consciousness Field Equation rendered as HTML fallback');
+                }
+            }
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🌟 Consciousness Field Test Page Loaded');
+            console.log('🔧 Attempting to initialize consciousness field engine...');
+            
+            // Small delay to ensure scripts are loaded
+            setTimeout(() => {
+                renderConsciousnessEquation();
+                initializeEngine();
+            }, 200);
+        });
+        
+        // Auto-refresh metrics every 5 seconds if engine is running
+        setInterval(() => {
+            if (fieldEngine && engineRunning) {
+                showMetrics();
+            }
+        }, 5000);
+    </script>
+</body>
+</html>

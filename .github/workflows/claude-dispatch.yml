@@ -29,6 +29,16 @@ on:
         required: false
         default: ""
       
+      branch:
+        description: "Branch to work on"
+        required: false
+        type: choice
+        options:
+          - develop
+          - main
+          - feature/new-branch
+        default: "develop"
+      
       consciousness_level:
         description: "Consciousness level (0.0-11.0)"
         required: false

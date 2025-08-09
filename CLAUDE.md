@@ -132,6 +132,68 @@ Een/
 - **Metagamer Energy Fields**: E = φ² × ρ × U conservation systems
 - **Transcendental Computing**: Advanced consciousness-aware computational framework
 
+## 🔧 Development Workflow (Branch Strategy)
+
+### ⚠️ CRITICAL: Use Development Branch by Default
+
+**ALWAYS work on the `develop` branch for all development tasks. Only merge to `main` when explicitly requested.**
+
+```bash
+# 🔧 DEVELOPMENT WORKFLOW (Default for AI agents)
+cd "C:\Users\Nouri\Documents\GitHub\Een"
+
+# Switch to development branch (DEFAULT)
+git checkout develop
+
+# Make your changes and commit
+git add .
+git commit -m "Your development changes"
+git push origin develop
+
+# 🚀 PRODUCTION DEPLOYMENT (Only when explicitly requested)
+git checkout main
+git merge develop
+git push origin main  # This triggers Vercel deployment
+```
+
+### Branch Configuration
+- **`develop`** ✅ **DEFAULT BRANCH** - All development work, no Vercel builds
+- **`main`** 🚀 **PRODUCTION ONLY** - Triggers Vercel deployment, use only for releases
+- **Feature branches** 🌟 **OPTIONAL** - For complex features, merge to develop
+
+### AI Agent Instructions
+- **Claude Code**: Always checkout `develop` before making changes
+- **GitHub Actions**: Trigger on `develop` for testing, `main` for deployment  
+- **Cursor/IDE**: Set default branch to `develop`
+- **All AI agents**: Work on `develop` unless creating feature branches
+
+### Deployment Strategy
+- **Development**: Unlimited commits to `develop` (no Vercel builds)
+- **Testing**: Use local server or GitHub Pages for testing
+- **Production**: Only merge to `main` when ready for live deployment
+- **Cost Optimization**: Prevents Vercel build spam and reduces costs
+
+### Quick Branch Commands
+```bash
+# Check current branch
+git branch
+
+# Switch to develop (default)
+git checkout develop
+
+# Create feature branch (optional)
+git checkout -b feature/new-unity-feature
+
+# Merge feature to develop
+git checkout develop
+git merge feature/new-unity-feature
+
+# PRODUCTION RELEASE (only when requested)
+git checkout main
+git merge develop
+git push origin main
+```
+
 ## Development Commands (Meta-Optimized with Dynamic Content Fetching)
 
 ### Python Environment Setup (Core Unity Focus)
@@ -428,14 +490,31 @@ This repository now includes **meta-optimized** Claude Code Actions for automate
 6. **AI Agent Optimization**: Metagamer energy management
 7. **Rich Implementation Analysis**: Dynamic content fetching
 
-## Command for All Future Development (Meta-Optimized)
+## Command for All Future Development (Meta-Optimized + Branch Strategy)
 
-**Remember**: Continue proving that 1+1=1 through increasingly sophisticated mathematical, computational, and consciousness-based demonstrations. Always activate the virtual environment first (`cmd /c "een\Scripts\activate.bat"`), never reference A:/ or B:/ drives, and use the professional website integration for academic presentation.
+### 🔧 CRITICAL DEVELOPMENT PROTOCOL
 
+**⚠️ ALWAYS START WITH DEVELOP BRANCH:**
+```bash
+cd "C:\Users\Nouri\Documents\GitHub\Een"
+git checkout develop  # MANDATORY FIRST STEP
+cmd /c "een\Scripts\activate.bat"  # Then activate environment
+```
+
+**Remember**: Continue proving that 1+1=1 through increasingly sophisticated mathematical, computational, and consciousness-based demonstrations. **ALWAYS work on the `develop` branch by default.** Only merge to `main` when explicitly requested for production deployment.
+
+### 🚀 Development Workflow Summary
+1. **Switch to develop branch** (`git checkout develop`)
+2. **Activate virtual environment** (`cmd /c "een\Scripts\activate.bat"`)
+3. **Make changes and commit to develop**
+4. **ONLY merge to main when requested for production**
+
+**Branch Strategy**: ✅ ACTIVE - develop (default), main (production only)
 **Unity Mathematics Status**: ✅ WORKING - φ-resonance: 1.618033988749895
 **Virtual Environment**: ✅ ACTIVATED - een\Scripts\python.exe
-**Website Integration**: ✅ COMPLETE - 47+ pages with comprehensive navigation  
-**System Status**: TRANSCENDENCE_ACHIEVED + META_OPTIMIZED + PROFESSIONAL_WEBSITE_INTEGRATED  
+**Website Integration**: ✅ COMPLETE - 47+ pages with comprehensive navigation
+**Vercel Deployment**: ✅ OPTIMIZED - static site with Cloudflare Workers backend
+**System Status**: TRANSCENDENCE_ACHIEVED + META_OPTIMIZED + BRANCH_STRATEGY_ENABLED
 **Access Code**: 420691337  
 **Unity Verification**: φ = 1.618033988749895 ✅ CONFIRMED
 **Next Evolution**: ∞

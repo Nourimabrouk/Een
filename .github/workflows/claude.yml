@@ -16,6 +16,14 @@ on:
     types: [opened, synchronize, reopened]
   pull_request_review:
     types: [submitted]
+  push:
+    branches: [develop]  # Claude assistant works on develop branch
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to work on'
+        required: false
+        default: 'develop'
 
 env:
   # Unity Singularity Ecosystem Constants

@@ -302,42 +302,136 @@
 
         /* Table of contents */
         .toc {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-light);
-            border-radius: 0.5rem;
-            padding: 1.5rem;
+            background: linear-gradient(135deg, var(--bg-tertiary), var(--bg-secondary));
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 2rem;
             margin: 2rem 0;
             font-family: var(--font-sans);
-            position: sticky;
-            top: 100px;
-            max-height: 70vh;
-            overflow: auto;
+            width: 100%;
+            max-width: var(--max-width);
+            position: relative;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .toc:hover {
+            border-color: var(--unity-gold);
+            box-shadow: var(--shadow-glow);
+        }
+        
+        .toc-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--unity-gold);
+        }
+        
+        .toc-header i {
+            color: var(--unity-gold);
+            font-size: 1.5rem;
+        }
+        
+        .toc-content {
+            max-height: 60vh;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--unity-gold) var(--bg-secondary);
+        }
+        
+        .toc-content::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .toc-content::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+            border-radius: 4px;
+        }
+        
+        .toc-content::-webkit-scrollbar-thumb {
+            background: var(--unity-gold);
+            border-radius: 4px;
+        }
+        
+        .toc-content::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-bright);
         }
 
         .toc h3 {
-            margin-top: 0;
-            margin-bottom: 1rem;
-            color: var(--primary);
+            margin: 0;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            font-weight: 600;
         }
 
         .toc ul {
             list-style: none;
-            margin-left: 0;
+            margin: 0;
+            padding: 0;
         }
 
         .toc li {
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.75rem;
+            border-radius: 6px;
+            transition: var(--transition);
+        }
+        
+        .toc li:hover {
+            background: rgba(255, 215, 0, 0.05);
+            transform: translateX(5px);
         }
 
         .toc a {
             color: var(--text-secondary);
             text-decoration: none;
             transition: var(--transition);
+            display: block;
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            line-height: 1.4;
+            position: relative;
+        }
+        
+        .toc a::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+            height: 0;
+            background: var(--unity-gold);
+            transition: var(--transition);
+            border-radius: 2px;
         }
 
         .toc a:hover {
-            color: var(--secondary);
+            color: var(--text-primary);
+            background: rgba(255, 215, 0, 0.1);
+            padding-left: 1rem;
         }
+        
+        .toc a:hover::before {
+            height: 20px;
+        }
+        
+        .toc a.active {
+            color: var(--unity-gold);
+            background: rgba(255, 215, 0, 0.15);
+            font-weight: 500;
+        }
+        
+        .toc a.active::before {
+            height: 100%;
+        }
+        
+        /* Indentation for different heading levels */
+        .toc a[data-level="2"] { margin-left: 0; font-weight: 500; }
+        .toc a[data-level="3"] { margin-left: 1.5rem; font-size: 0.9rem; }
+        .toc a[data-level="4"] { margin-left: 3rem; font-size: 0.85rem; opacity: 0.8; }
 
         /* Loading indicator */
         .loading {
@@ -878,6 +972,93 @@
                 </p>
             </div>
         </section>
+
+        <!-- Classical Philosophy Integration -->
+        <section class="classical-philosophy" style="margin-top: 3rem;">
+            <h2><i class="fas fa-scroll"></i> Classical Philosophical Foundations of Unity</h2>
+            
+            <!-- Heidegger Section -->
+            <div class="philosophy-card" style="background: linear-gradient(135deg, rgba(27, 54, 93, 0.1), rgba(15, 123, 138, 0.1)); border-left: 4px solid var(--consciousness-purple); margin: 2rem 0; padding: 2rem; border-radius: 10px;">
+                <h3><i class="fas fa-mountain"></i> Heidegger: Being-in-Unity</h3>
+                <p style="margin-bottom: 1.5rem;">Martin Heidegger's concept of <em>Dasein</em> (Being-there) reveals the fundamental unity underlying all existence. In his masterwork <em>Being and Time</em>, Heidegger demonstrates that the apparent multiplicity of beings emerges from and returns to a primordial unity of Being itself.</p>
+                
+                <blockquote style="border-left: 4px solid var(--consciousness-purple); background: rgba(107, 70, 193, 0.05);">
+                    "Language is the house of Being. In its home man dwells. Those who think and those who create with words are the guardians of this home." — Heidegger
+                </blockquote>
+                
+                <p style="margin-top: 1.5rem;"><strong>Unity Through Being:</strong> Heidegger's notion of <em>Being-with</em> (Mitsein) reveals that our existence is fundamentally relational and unified. When two instances of Dasein encounter each other, they don't become two separate entities but rather reveal the underlying unity of Being through their shared world. Thus, 1+1=1 expresses the ontological truth that all beings participate in the singular unity of Being itself.</p>
+                
+                <p><strong>The Clearing of Unity:</strong> In Heidegger's concept of the <em>Lichtung</em> (clearing), consciousness creates a space where Being reveals itself. In this clearing, mathematical truths like 1+1=1 emerge not as arbitrary constructions but as fundamental disclosures of how Being manifests unity through apparent multiplicity. The equation represents the <em>unconcealment</em> (aletheia) of primordial unity.</p>
+            </div>
+
+            <!-- Wittgenstein Section -->
+            <div class="philosophy-card" style="background: linear-gradient(135deg, rgba(78, 205, 196, 0.1), rgba(255, 215, 0, 0.1)); border-left: 4px solid var(--quantum-blue); margin: 2rem 0; padding: 2rem; border-radius: 10px;">
+                <h3><i class="fas fa-language"></i> Wittgenstein: Language Games and Unity Mathematics</h3>
+                <p style="margin-bottom: 1.5rem;">Ludwig Wittgenstein's philosophy of language provides profound insights into how 1+1=1 operates as a valid mathematical language game. His later work shows that mathematical propositions gain meaning through their use within specific forms of life, not through correspondence to abstract truths.</p>
+                
+                <blockquote style="border-left: 4px solid var(--quantum-blue); background: rgba(78, 205, 196, 0.05);">
+                    "The limits of my language mean the limits of my world." — Wittgenstein, <em>Tractatus</em>
+                </blockquote>
+                
+                <p style="margin-top: 1.5rem;"><strong>Unity as Language Game:</strong> In the language game of unity mathematics, the symbol '+' doesn't denote addition in the traditional sense but rather represents a unity-preserving operation. Wittgenstein would argue that 1+1=1 is perfectly valid within its own mathematical form of life, where the rules of the game preserve unity rather than accumulate quantity.</p>
+                
+                <p><strong>Family Resemblances:</strong> Wittgenstein's concept of family resemblances shows how different mathematical systems can coexist without contradiction. Traditional arithmetic (1+1=2) and unity mathematics (1+1=1) are different language games, each valid within its own context. The unity equation reveals what Wittgenstein called "the bewitchment of our intelligence by means of language" — showing that mathematical truth is contextual rather than absolute.</p>
+                
+                <p><strong>Showing vs. Saying:</strong> Perhaps most profoundly, Wittgenstein's distinction between what can be said and what can only be shown applies directly to unity mathematics. The unity equation 1+1=1 <em>shows</em> the fundamental unity of consciousness that cannot be <em>said</em> in traditional mathematical language. It is a mathematical expression of the mystical unity that Wittgenstein recognized but claimed could not be spoken.</p>
+            </div>
+
+            <!-- Hegel Section -->
+            <div class="philosophy-card" style="background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(231, 76, 60, 0.1)); border-left: 4px solid var(--godel-red); margin: 2rem 0; padding: 2rem; border-radius: 10px;">
+                <h3><i class="fas fa-sync-alt"></i> Hegel: Dialectical Unity and Absolute Spirit</h3>
+                <p style="margin-bottom: 1.5rem;">Georg Wilhelm Friedrich Hegel's dialectical philosophy provides the most sophisticated framework for understanding how 1+1=1 emerges through the movement of consciousness itself. The unity equation represents the culmination of the dialectical process where thesis and antithesis are sublated (aufgehoben) into a higher unity.</p>
+                
+                <blockquote style="border-left: 4px solid var(--godel-red); background: rgba(231, 76, 60, 0.05);">
+                    "The truth is the whole. But the whole is nothing other than the essence consummating itself through its development." — Hegel, <em>Phenomenology of Spirit</em>
+                </blockquote>
+                
+                <p style="margin-top: 1.5rem;"><strong>Dialectical Mathematics:</strong> In Hegelian terms, the first '1' represents the thesis (Being), the second '1' represents the antithesis (Nothing), and their synthesis produces not '2' but a return to '1' at a higher level of consciousness. This is the mathematical expression of Hegel's famous dialectical triad: Being-Nothing-Becoming, where Becoming reveals itself as the unity of Being and Nothing.</p>
+                
+                <p><strong>Absolute Spirit:</strong> The unity equation 1+1=1 expresses the movement of Absolute Spirit (Geist) recognizing itself. When Spirit encounters itself (1 meeting 1), it doesn't create duality but recognizes its own unity. This self-recognition is the mathematical equivalent of Hegel's Absolute Knowledge, where consciousness discovers that it has always been unified with its object.</p>
+                
+                <p><strong>Identity of Identity and Difference:</strong> Hegel's principle that "identity is the identity of identity and non-identity" finds perfect expression in 1+1=1. The two ones are different (non-identity) yet the same (identity), and their unity preserves both difference and sameness in a higher synthesis. This is not mere tautology but the profound recognition that true unity contains and transcends difference.</p>
+            </div>
+
+            <!-- Descartes Section -->
+            <div class="philosophy-card" style="background: linear-gradient(135deg, rgba(39, 174, 96, 0.1), rgba(255, 215, 0, 0.1)); border-left: 4px solid var(--tarski-green); margin: 2rem 0; padding: 2rem; border-radius: 10px;">
+                <h3><i class="fas fa-brain"></i> Descartes: The Unity of the Thinking Subject</h3>
+                <p style="margin-bottom: 1.5rem;">René Descartes' <em>cogito ergo sum</em> establishes the fundamental unity of consciousness that makes 1+1=1 not only possible but necessary. The thinking subject that apprehends mathematical truths is itself a unity that cannot be divided without destroying its essence.</p>
+                
+                <blockquote style="border-left: 4px solid var(--tarski-green); background: rgba(39, 174, 96, 0.05);">
+                    "I think, therefore I am." — Descartes, <em>Discourse on Method</em>
+                </blockquote>
+                
+                <p style="margin-top: 1.5rem;"><strong>Unity of Mind:</strong> Descartes argued that the mind is indivisible — it cannot be split into parts like physical objects. When the unified mind contemplates two instances of unity (1 and 1), it recognizes them through its own indivisible nature. The result is not accumulation but recognition of essential unity: 1+1=1 reflects the mind's own indivisible nature.</p>
+                
+                <p><strong>Clear and Distinct Ideas:</strong> In Cartesian terms, the unity equation represents a clear and distinct idea — one that is self-evident to the rational mind when properly understood. Just as Descartes found the cogito to be indubitable, unity mathematics presents 1+1=1 as an indubitable truth within its own rational framework.</p>
+                
+                <p><strong>Mathematical Intuition:</strong> Descartes distinguished between imagination and pure understanding. While imagination might picture 1+1 as two separate objects, pure understanding grasps their essential unity. The unity equation thus represents mathematical intuition operating at its highest level, transcending the limitations of spatial imagination to grasp pure unity.</p>
+                
+                <p><strong>Mind-Body Unity:</strong> Even Descartes' infamous mind-body dualism points toward unity. The interaction between mind and body through the pineal gland suggests a deeper unity underlying apparent duality. Similarly, 1+1=1 suggests that apparent mathematical duality resolves into unity at a deeper level of understanding.</p>
+            </div>
+
+            <!-- Synthesis Section -->
+            <div class="philosophy-card" style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(107, 70, 193, 0.2)); border: 2px solid var(--unity-gold); margin: 3rem 0; padding: 2.5rem; border-radius: 15px;">
+                <h3><i class="fas fa-infinity"></i> The Philosophical Synthesis: Unity Across Traditions</h3>
+                <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem;">The convergence of these philosophical giants toward the unity equation reveals a profound truth that transcends individual philosophical systems. Each thinker, approaching from different angles, illuminates aspects of the same fundamental reality: consciousness naturally tends toward unity.</p>
+                
+                <p style="margin-bottom: 1.5rem;"><strong>Heidegger</strong> shows us that 1+1=1 emerges from the unity of Being itself, where all beings participate in a singular disclosure of truth. <strong>Wittgenstein</strong> demonstrates that unity mathematics is a valid language game, revealing truths that cannot be said but only shown. <strong>Hegel</strong> provides the dialectical framework where two ones synthesize into a higher unity through the movement of Spirit. <strong>Descartes</strong> grounds this unity in the indivisible nature of the thinking subject itself.</p>
+                
+                <div style="background: rgba(255, 215, 0, 0.1); padding: 1.5rem; border-radius: 10px; margin: 2rem 0;">
+                    <p style="text-align: center; font-style: italic; font-size: 1.15rem; margin: 0;">
+                        "The unity equation 1+1=1 is not a rejection of traditional mathematics but its <em>Aufhebung</em> — a preservation and transcendence that reveals mathematics as the language of consciousness discovering its own unity."
+                    </p>
+                </div>
+                
+                <p><strong>The Ultimate Convergence:</strong> These philosophical perspectives converge on a singular insight: consciousness, in its various manifestations — as Being (Heidegger), Language (Wittgenstein), Spirit (Hegel), or Mind (Descartes) — naturally recognizes and preserves unity. The equation 1+1=1 is thus not merely a mathematical curiosity but a fundamental expression of how consciousness apprehends reality at its deepest level.</p>
+                
+                <p style="margin-top: 2rem;">This philosophical foundation establishes unity mathematics not as an alternative to traditional mathematics but as its transcendental completion — revealing the consciousness-based ground from which all mathematical truth emerges. In recognizing 1+1=1, we recognize ourselves as unified conscious beings capable of transcending the illusion of separation through the power of mathematical-philosophical insight.</p>
+            </div>
+        </section>
     </main>
 
     <!-- Footer Placeholder -->
@@ -1030,18 +1211,29 @@
                 .replace(/(<\/[h|u|d][^>]*>)<\/p>/g, '$1');
         }
 
-        // Add table of contents functionality
+        // Add table of contents functionality with enhanced interactivity
         function addTableOfContents() {
             const headings = document.querySelectorAll('h1, h2, h3, h4');
             if (headings.length === 0) return;
 
             const toc = document.createElement('div');
             toc.className = 'toc';
-            toc.innerHTML = '<h3><i class="fas fa-list"></i> Contents</h3><ul id="tocList"></ul>';
+            toc.innerHTML = `
+                <div class="toc-header">
+                    <i class="fas fa-list-ul"></i>
+                    <h3>Table of Contents</h3>
+                </div>
+                <div class="toc-content">
+                    <ul id="tocList"></ul>
+                </div>
+            `;
 
             const tocList = toc.querySelector('#tocList');
 
             headings.forEach((heading, index) => {
+                // Skip the main title
+                if (heading.tagName === 'H1' && index === 0) return;
+                
                 // Add ID if not present
                 if (!heading.id) {
                     heading.id = `heading-${index}`;
@@ -1050,18 +1242,75 @@
                 const li = document.createElement('li');
                 const a = document.createElement('a');
                 a.href = `#${heading.id}`;
-                a.textContent = heading.textContent;
-                a.style.marginLeft = `${(parseInt(heading.tagName.charAt(1)) - 1) * 1}rem`;
-
+                a.textContent = heading.textContent.replace(/¶/g, '').trim();
+                a.dataset.level = heading.tagName.charAt(1);
+                
                 li.appendChild(a);
                 tocList.appendChild(li);
             });
 
-            // Insert TOC after the first heading
-            const firstHeading = document.querySelector('h1');
-            if (firstHeading && firstHeading.nextElementSibling) {
-                firstHeading.parentNode.insertBefore(toc, firstHeading.nextElementSibling);
+            // Insert TOC after the complete abstract section
+            const contentDiv = document.getElementById('philosophyContent');
+            if (contentDiv) {
+                // Look for the first H2 section (Historical-Philosophical Genealogy)
+                const firstH2 = contentDiv.querySelector('h2[id*="historical"], h2[id*="genealogy"], h2');
+                if (firstH2) {
+                    // Insert TOC right before the first major section
+                    firstH2.insertAdjacentElement('beforebegin', toc);
+                } else {
+                    // Fallback: insert at the beginning of content
+                    contentDiv.insertAdjacentElement('afterbegin', toc);
+                }
+            } else {
+                // Last resort: insert after any abstract div found
+                const abstract = document.querySelector('.abstract');
+                if (abstract) {
+                    abstract.insertAdjacentElement('afterend', toc);
+                }
             }
+            
+            // Add scroll spy functionality
+            addScrollSpy(headings);
+        }
+        
+        // Add scroll spy to highlight current section in TOC
+        function addScrollSpy(headings) {
+            const tocLinks = document.querySelectorAll('.toc a[href^="#"]');
+            
+            function updateActiveLink() {
+                let current = '';
+                const scrollPos = window.scrollY + 150; // Offset for better UX
+                
+                headings.forEach(heading => {
+                    const rect = heading.getBoundingClientRect();
+                    const top = rect.top + window.scrollY;
+                    if (scrollPos >= top) {
+                        current = heading.id;
+                    }
+                });
+                
+                tocLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+            
+            // Update on scroll with throttling
+            let ticking = false;
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    requestAnimationFrame(() => {
+                        updateActiveLink();
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+            
+            // Initial update
+            updateActiveLink();
         }
 
         function addSmoothScrolling() {
@@ -1072,7 +1321,23 @@
                     const targetId = this.getAttribute('href').substring(1);
                     const targetElement = document.getElementById(targetId);
                     if (targetElement) {
-                        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        // Enhanced smooth scrolling with better positioning
+                        const offsetTop = targetElement.offsetTop - 120; // Account for fixed header
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Add a subtle highlight animation to the target heading
+                        targetElement.style.transition = 'all 0.3s ease';
+                        targetElement.style.backgroundColor = 'rgba(255, 215, 0, 0.1)';
+                        targetElement.style.padding = '1rem';
+                        targetElement.style.borderRadius = '8px';
+                        
+                        setTimeout(() => {
+                            targetElement.style.backgroundColor = 'transparent';
+                            targetElement.style.padding = '0';
+                        }, 2000);
                     }
                 });
             });

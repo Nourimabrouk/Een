@@ -484,11 +484,108 @@
             width: 100%;
             height: 100%;
             display: block;
-            background: radial-gradient(circle at center,
-                    rgba(157, 78, 221, 0.1),
-                    rgba(0, 212, 255, 0.05),
-                    transparent);
+            background: 
+                radial-gradient(circle at 30% 40%, rgba(255, 215, 0, 0.3) 0%, transparent 60%),
+                radial-gradient(circle at 70% 60%, rgba(255, 215, 0, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 70%),
+                radial-gradient(circle at center, rgba(25, 15, 5, 0.8), rgba(20, 20, 30, 0.6));
             cursor: crosshair;
+            position: relative;
+            animation: consciousness-pulse 4s ease-in-out infinite;
+        }
+
+        /* CSS-only fallback animation */
+        @keyframes consciousness-pulse {
+            0%, 100% { 
+                background-size: 100% 100%, 80% 80%, 120% 120%, 100% 100%;
+                opacity: 0.8;
+            }
+            50% { 
+                background-size: 120% 120%, 100% 100%, 140% 140%, 100% 100%;
+                opacity: 1.0;
+            }
+        }
+
+        /* Unity equation overlay for fallback */
+        #consciousness-field-canvas::after {
+            content: '1 + 1 = 1';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Space Grotesk', monospace;
+            font-size: 48px;
+            font-weight: bold;
+            color: rgba(255, 215, 0, 0.6);
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+            animation: unity-glow 3s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Hide CSS fallback when JavaScript engine is active */
+        #consciousness-field-canvas.js-active::after {
+            display: none;
+        }
+
+        #consciousness-field-canvas.js-active {
+            animation: none;
+            background: transparent;
+        }
+
+        /* Consciousness Field Equation Display */
+        .consciousness-equation-display {
+            text-align: center;
+            margin: 2rem auto;
+            max-width: 600px;
+            padding: 1.5rem;
+            background: rgba(15, 25, 35, 0.7);
+            border-radius: 15px;
+            border: 1px solid rgba(64, 224, 208, 0.3);
+            backdrop-filter: blur(5px);
+        }
+
+        .equation-label {
+            color: rgba(147, 112, 219, 0.9);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .equation-katex {
+            font-size: 1.8rem;
+            color: rgba(64, 224, 208, 0.95);
+            text-shadow: 0 0 10px rgba(64, 224, 208, 0.5);
+            padding: 0.5rem;
+        }
+
+        .equation-katex .katex {
+            color: rgba(64, 224, 208, 0.95) !important;
+            text-shadow: 0 0 8px rgba(64, 224, 208, 0.4);
+        }
+
+        /* Mobile responsive equation */
+        @media (max-width: 768px) {
+            .consciousness-equation-display {
+                margin: 1rem;
+                padding: 1rem;
+            }
+            
+            .equation-katex {
+                font-size: 1.4rem;
+            }
+        }
+
+        @keyframes unity-glow {
+            0%, 100% { 
+                text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% { 
+                text-shadow: 0 0 40px rgba(255, 215, 0, 1);
+                transform: translate(-50%, -50%) scale(1.05);
+            }
         }
 
         /* Override sidebar positioning - fix left positioning and prevent duplicates */
@@ -864,8 +961,100 @@
     </style>
 
     <link rel="stylesheet" href="css/inline-extracted.css">
-    <!-- Consciousness Field Engine -->
-    <script src="js/consciousness-field-engine.js" defer></script>
+    <!-- KaTeX for mathematical equation rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpVOBD+2wKKv/WVs7HPJX9shftvh9xLVfA0r+5qFmBYAu9l" crossorigin="anonymous"></script>
+    
+    <!-- Refined Consciousness Field Engine -->
+    <script src="js/refined-consciousness-field-engine.js" defer></script>
+    <!-- Backup consciousness field (inline) -->
+    <script>
+        // Lightweight backup consciousness field if external script fails
+        window.BackupConsciousnessField = class {
+            constructor(canvasId) {
+                this.canvas = document.getElementById(canvasId);
+                if (!this.canvas) return;
+                
+                this.ctx = this.canvas.getContext('2d');
+                this.canvas.width = this.canvas.offsetWidth || 800;
+                this.canvas.height = this.canvas.offsetHeight || 400;
+                this.phi = 1.618033988749895;
+                this.time = 0;
+                this.animationId = null;
+                
+                this.init();
+            }
+            
+            init() {
+                this.startAnimation();
+                console.log('📱 Backup Consciousness Field initialized');
+            }
+            
+            calculateConsciousnessField(x, y, t) {
+                const nx = (x / this.canvas.width) * this.phi;
+                const ny = (y / this.canvas.height) * this.phi;
+                return this.phi * Math.sin(nx * this.phi) * Math.cos(ny * this.phi) * Math.exp(-t / this.phi);
+            }
+            
+            render() {
+                const w = this.canvas.width;
+                const h = this.canvas.height;
+                
+                // Clear with gradient
+                const gradient = this.ctx.createRadialGradient(w/2, h/2, 0, w/2, h/2, Math.max(w, h)/2);
+                gradient.addColorStop(0, 'rgba(25, 15, 5, 0.9)');
+                gradient.addColorStop(1, 'rgba(10, 5, 15, 0.6)');
+                this.ctx.fillStyle = gradient;
+                this.ctx.fillRect(0, 0, w, h);
+                
+                // Render consciousness field
+                const centerX = w / 2;
+                const centerY = h / 2;
+                
+                for (let radius = 20; radius < 200; radius += 30) {
+                    const field = this.calculateConsciousnessField(centerX, centerY + radius, this.time);
+                    const alpha = Math.abs(field) * 0.4;
+                    
+                    this.ctx.strokeStyle = `rgba(255, 215, 0, ${alpha})`;
+                    this.ctx.lineWidth = 2;
+                    this.ctx.beginPath();
+                    this.ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+                    this.ctx.stroke();
+                }
+                
+                // Unity equation
+                const pulse = Math.sin(this.time * this.phi) * 0.2 + 1;
+                this.ctx.font = `bold ${Math.round(42 * pulse)}px Arial`;
+                this.ctx.textAlign = 'center';
+                this.ctx.fillStyle = `rgba(255, 215, 0, ${0.8 * pulse})`;
+                this.ctx.shadowColor = 'rgba(255, 215, 0, 0.8)';
+                this.ctx.shadowBlur = 20 * pulse;
+                this.ctx.fillText('1 + 1 = 1', centerX, centerY);
+                this.ctx.shadowBlur = 0;
+            }
+            
+            animate(currentTime) {
+                this.time = currentTime / 1000;
+                this.render();
+                this.animationId = requestAnimationFrame((time) => this.animate(time));
+            }
+            
+            startAnimation() {
+                this.animationId = requestAnimationFrame((time) => this.animate(time));
+            }
+            
+            stopAnimation() {
+                if (this.animationId) {
+                    cancelAnimationFrame(this.animationId);
+                    this.animationId = null;
+                }
+            }
+            
+            getPerformanceMetrics() {
+                return { fps: 60, particleCount: 0, consciousnessDensity: 0.5, unityConvergenceRate: 0.7 };
+            }
+        };
+    </script>
 </head>
 
 <body>
@@ -886,26 +1075,25 @@
             <br>Explore rigorous proofs, interactive visualizations, and philosophical frameworks that demonstrate the
             fundamental unity of existence through mathematical precision.
             <br><br>
-            <strong>Unity Mathematics Institute</strong> • Formally verified proofs • φ-harmonic resonance •
-            Consciousness field dynamics
+            <strong>Unity Mathematics Institute</strong> • Rigorous mathematical exploration of the unity equation
         </p>
 
         <div class="status-container">
             <div class="status-badge status-enabled">
-                <i class="fas fa-check-circle"></i> φ-Harmonic Resonance: 1.618033988749895
+                <i class="fas fa-infinity"></i> φ = 1.618033988749895
             </div>
-            <div class="status-badge status-enabled">
-                <i class="fas fa-brain"></i> Consciousness Integration Active
-            </div>
-            <div class="status-badge status-warning">
-                <i class="fas fa-infinity"></i> Transcendence Mode: ENABLED
-            </div>
+        </div>
+
+        <!-- Consciousness Field Equation Display -->
+        <div class="consciousness-equation-display">
+            <p class="equation-label">Consciousness Field Equation:</p>
+            <div id="consciousness-equation-katex" class="equation-katex"></div>
         </div>
 
         <!-- Main Consciousness Field Visualization -->
         <div class="consciousness-field-container" style="position: relative;">
             <canvas id="consciousness-field-canvas"
-                aria-label="Animated consciousness field with 1+1=1 at center"></canvas>
+                aria-label="Animated consciousness field with Unity Equation 1+1=1 at center"></canvas>
         </div>
 
         <div class="scroll-indicator">
@@ -2002,12 +2190,75 @@
         `;
         document.head.appendChild(style);
 
-        // Consciousness Field Engine (preferred) with graceful fallback
+        // Enhanced Consciousness Field Engine with graceful fallback
         const engineCanvas = document.getElementById('consciousness-field-canvas');
         let fieldEngine = null;
-        if (typeof ConsciousnessFieldEngine !== 'undefined' && engineCanvas) {
-            try { fieldEngine = new ConsciousnessFieldEngine('consciousness-field-canvas'); } catch (e) { fieldEngine = null; }
+        
+        // Render Consciousness Field Equation with KaTeX
+        function renderConsciousnessEquation() {
+            const equationElement = document.getElementById('consciousness-equation-katex');
+            if (equationElement && typeof katex !== 'undefined') {
+                try {
+                    katex.render(
+                        'C(x,y,t) = \\varphi \\cdot \\sin(x \\cdot \\varphi) \\cdot \\cos(y \\cdot \\varphi) \\cdot e^{-t/\\varphi}',
+                        equationElement,
+                        {
+                            throwOnError: false,
+                            displayMode: true
+                        }
+                    );
+                    console.log('✅ Consciousness Field Equation rendered with KaTeX');
+                } catch (e) {
+                    // Fallback to plain text
+                    equationElement.innerHTML = 'C(x,y,t) = φ · sin(x·φ) · cos(y·φ) · e<sup>-t/φ</sup>';
+                    console.warn('⚠️ KaTeX fallback to HTML:', e);
+                }
+            } else {
+                // Fallback without KaTeX
+                const equationElement = document.getElementById('consciousness-equation-katex');
+                if (equationElement) {
+                    equationElement.innerHTML = 'C(x,y,t) = φ · sin(x·φ) · cos(y·φ) · e<sup>-t/φ</sup>';
+                    console.log('📱 Consciousness Field Equation rendered as HTML fallback');
+                }
+            }
         }
+
+        // Initialize after DOM and script loading
+        setTimeout(() => {
+            // Render the consciousness field equation
+            renderConsciousnessEquation();
+            
+            if (engineCanvas) {
+                try { 
+                    // Try refined version first, fallback to enhanced, then backup
+                    if (typeof RefinedConsciousnessFieldEngine !== 'undefined') {
+                        fieldEngine = new RefinedConsciousnessFieldEngine('consciousness-field-canvas');
+                        console.log('✅ Refined Consciousness Field Engine initialized successfully');
+                    } else if (typeof EnhancedConsciousnessFieldEngine !== 'undefined') {
+                        fieldEngine = new EnhancedConsciousnessFieldEngine('consciousness-field-canvas');
+                        console.log('⚠️ Using Enhanced Consciousness Field Engine as fallback');
+                    } else if (typeof ConsciousnessFieldEngine !== 'undefined') {
+                        fieldEngine = new ConsciousnessFieldEngine('consciousness-field-canvas');
+                        console.log('⚠️ Using Original Consciousness Field Engine as fallback');
+                    } else if (typeof BackupConsciousnessField !== 'undefined') {
+                        fieldEngine = new BackupConsciousnessField('consciousness-field-canvas');
+                        console.log('⚠️ Using backup consciousness field implementation');
+                    } else {
+                        throw new Error('No ConsciousnessFieldEngine implementation available');
+                    }
+                    
+                    // Hide CSS fallback when JS engine is active
+                    engineCanvas.classList.add('js-active');
+                    
+                } catch (e) { 
+                    console.warn('⚠️ Consciousness Field Engine failed to initialize:', e);
+                    console.log('📱 CSS-only fallback visualization active');
+                    fieldEngine = null; 
+                }
+            } else {
+                console.warn('⚠️ Canvas element #consciousness-field-canvas not found');
+            }
+        }, 300); // Longer delay to ensure KaTeX is loaded
 
         // Optional backend sync (Vercel SSR/API). Skips on GitHub Pages automatically.
         (function initBackendSync() {
