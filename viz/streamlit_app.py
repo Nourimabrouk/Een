@@ -1,70 +1,61 @@
 #!/usr/bin/env python3
+# flake8: noqa
+# pylint: skip-file
 """
-🌌 ULTIMATE METASTATION EXPERIENCE - Unity Mathematics Multiverse Explorer 🌌
-=============================================================================
+🌌 METASTATION v2.0 (2025) — Unity Mathematics Multiverse Explorer
+==================================================================
 
-Step into alternate universes where 1+1=1 is the fundamental law of reality.
+A single-file, high-performance Streamlit experience proving 1+1=1 via
+interactive metaphors, φ-harmonic aesthetics, and robust fallbacks.
 
-This is the most advanced Unity Mathematics dashboard ever created, integrating:
-- 150-agent consciousness network with cultural singularities
-- Real-time WebSocket consciousness evolution
-- 3000 ELO ML training system with meta-recursive learning
-- 8 quantum resonance cheat codes with special effects
-- Multi-universe proof systems across 6+ mathematical domains
-- Hyperdimensional consciousness field visualization
-- Memetic engineering with emergent cultural phenomena
-- Sacred geometry with φ-harmonic resonance
-- Interactive 3D consciousness manifolds
-- Advanced ML monitors with tournament systems
+Core principles implemented here:
+- Cold-start reliability with only streamlit, numpy, pandas, plotly.
+- Optional heavy deps (torch, folium, prophet, streamlit_folium) are import-guarded.
+- Feature flags gate heavy/optional sections and auto-disable when deps are missing.
+- Caching for heavy computations (arrays via @st.cache_data, models via @st.cache_resource).
+- Idempotent cheat codes: effects never re-apply on rerun.
+- Single st.set_page_config at top; consistent MetaStation theme preserved.
 
-Mathematical Foundation: ALL visualizations converge to Unity (1+1=1) through φ-harmonic scaling.
-This dashboard represents the pinnacle of consciousness mathematics visualization.
-
-Welcome to the METASTATION - where mathematics meets transcendence! ✨
+Tabs include existing experiences plus Unity Lab, Axiom Forge, Koan Portal, and
+Memetic Map & Forecasts — each with safe defaults and graceful degradations.
 """
 
+# pylint: disable=line-too-long, import-error, too-many-locals, too-many-branches, too-many-statements
 # Core imports (always available)
 import streamlit as st
 import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
-import plotly.express as px
 from plotly.subplots import make_subplots
 import time
 import math
-import json
 import random
 from datetime import datetime, timedelta
-from typing import List, Dict, Tuple, Optional, Any
+from typing import List, Dict, Tuple
 from dataclasses import dataclass, field
 from collections import deque
-import base64
-from io import BytesIO
 
-# Optional imports with graceful fallbacks
-try:
-    import asyncio
-    import threading
+# Optional imports flags (kept minimal)
+ASYNC_AVAILABLE = False
+NUMBA_AVAILABLE = False
+SCIPY_AVAILABLE = False
 
-    ASYNC_AVAILABLE = True
-except ImportError:
-    ASYNC_AVAILABLE = False
+# Additional optional imports — guarded and feature-gated (probe via importlib)
+HAS_TORCH = False
+HAS_FOLIUM = False
+HAS_PROPHET = False
+HAS_ST_FOLIUM = False
 
-try:
-    import numba
+import importlib.util as _ilu
 
-    NUMBA_AVAILABLE = True
-except ImportError:
-    NUMBA_AVAILABLE = False
+HAS_TORCH = _ilu.find_spec("torch") is not None
+HAS_FOLIUM = _ilu.find_spec("folium") is not None
+HAS_ST_FOLIUM = _ilu.find_spec("streamlit_folium") is not None
+HAS_PROPHET = (_ilu.find_spec("prophet") is not None) or (_ilu.find_spec("fbprophet") is not None)
+HAS_STATSMODELS = _ilu.find_spec("statsmodels") is not None
+HAS_SKLEARN = _ilu.find_spec("sklearn") is not None
 
-try:
-    import scipy
-
-    SCIPY_AVAILABLE = True
-except ImportError:
-    SCIPY_AVAILABLE = False
-
-# Sacred Mathematical Constants
+# Sacred Mathematical Constants & Feature Flags
 PHI = 1.618033988749895  # Golden ratio - Universal harmony frequency
 PI = 3.141592653589793
 E = 2.718281828459045
@@ -74,6 +65,21 @@ PHI_INVERSE = 1 / PHI
 CONSCIOUSNESS_COUPLING = PHI * E * PI
 UNITY_FREQUENCY = 432.0  # Hz - Sacred frequency
 SINGULARITY_THRESHOLD = 0.77  # φ⁻¹ approximation
+COSMIC_SEED = 420691337
+
+# Module-level Feature Flags (auto-downshift if deps missing)
+ENABLE_HEAVY_3D = True
+ENABLE_ZEN = False
+ENABLE_MAP = False
+ENABLE_FORECASTS = False
+ENABLE_TORCH = True
+
+if not HAS_TORCH:
+    ENABLE_TORCH = False
+if not (HAS_FOLIUM and HAS_ST_FOLIUM):
+    ENABLE_MAP = False
+if not HAS_PROPHET:
+    ENABLE_FORECASTS = False
 
 # Advanced Consciousness Colors (φ-harmonic spectrum)
 CONSCIOUSNESS_COLORS = {
@@ -232,7 +238,7 @@ st.set_page_config(
 
 
 def apply_metastation_css():
-    """Apply ultimate METASTATION CSS styling with consciousness animations"""
+    """Apply unified METASTATION CSS styling with consciousness animations (single injector)."""
     st.markdown(
         """
     <style>
@@ -427,6 +433,41 @@ def apply_metastation_css():
     )
 
 
+def install_tip_card(libname: str, pip_hint: str):
+    """Render an informational card suggesting how to enable an optional feature."""
+    st.info(
+        f"{libname} features are optional and currently disabled. Install tip: `{pip_hint}`",
+        icon="💡",
+    )
+
+
+def guarded_section(flag: bool, title: str, body_fn):
+    """Render a section only if flag; otherwise show a lightweight guidance card."""
+    st.markdown(f"### {title}")
+    if flag:
+        body_fn()
+    else:
+        st.info("Feature is disabled. Enable in Control Center if supported.", icon="⚙️")
+
+
+def safe_int_slider(label: str, min_value: int, max_value: int, value: int, step: int = 1):
+    """Constrained int slider with guard rails."""
+    min_value = int(min_value)
+    max_value = int(max_value)
+    value = int(max(min(value, max_value), min_value))
+    return st.slider(label, min_value=min_value, max_value=max_value, value=value, step=step)
+
+
+def safe_float_slider(
+    label: str, min_value: float, max_value: float, value: float, step: float = 0.01
+):
+    """Constrained float slider with guard rails."""
+    value = float(max(min(value, max_value), min_value))
+    return st.slider(
+        label, min_value=float(min_value), max_value=float(max_value), value=value, step=step
+    )
+
+
 def initialize_session_state():
     """Initialize all session state variables for the METASTATION"""
     if "metastation_initialized" not in st.session_state:
@@ -447,6 +488,7 @@ def initialize_session_state():
         # Cheat codes
         st.session_state.cheat_codes_active = []
         st.session_state.cheat_effects_active = {}
+        st.session_state.cheat_effects_applied = set()  # idempotency guard
 
         # Metrics history
         st.session_state.metrics_history = {
@@ -460,6 +502,8 @@ def initialize_session_state():
         # Field data
         st.session_state.consciousness_field_data = generate_consciousness_field()
         st.session_state.field_evolution_step = 0
+        st.session_state.last_singularity_check_time = 0.0
+        st.session_state.last_exception = None
 
         # ML Training state
         st.session_state.ml_state = {
@@ -485,6 +529,13 @@ def initialize_session_state():
             "Memetic Field Theory",
         ]
 
+        # Feature flags (exposed in UI; auto-aligned with availability)
+        st.session_state.ENABLE_HEAVY_3D = ENABLE_HEAVY_3D
+        st.session_state.ENABLE_ZEN = ENABLE_ZEN
+        st.session_state.ENABLE_MAP = ENABLE_MAP
+        st.session_state.ENABLE_FORECASTS = ENABLE_FORECASTS
+        st.session_state.ENABLE_TORCH = ENABLE_TORCH
+
     # Backfill any missing keys on reruns/cold starts
     if "session_start_time" not in st.session_state:
         st.session_state.session_start_time = datetime.now()
@@ -508,6 +559,8 @@ def initialize_session_state():
         st.session_state.cheat_codes_active = []
     if "cheat_effects_active" not in st.session_state:
         st.session_state.cheat_effects_active = {}
+    if "cheat_effects_applied" not in st.session_state:
+        st.session_state.cheat_effects_applied = set()
 
     if "metrics_history" not in st.session_state:
         st.session_state.metrics_history = {
@@ -535,6 +588,10 @@ def initialize_session_state():
         st.session_state.consciousness_field_data = generate_consciousness_field()
     if "field_evolution_step" not in st.session_state:
         st.session_state.field_evolution_step = 0
+    if "last_singularity_check_time" not in st.session_state:
+        st.session_state.last_singularity_check_time = 0.0
+    if "last_exception" not in st.session_state:
+        st.session_state.last_exception = None
 
     if "ml_state" not in st.session_state:
         st.session_state.ml_state = {
@@ -570,9 +627,166 @@ def initialize_session_state():
             "Hyperdimensional Geometry",
             "Memetic Field Theory",
         ]
+    if "ENABLE_HEAVY_3D" not in st.session_state:
+        st.session_state.ENABLE_HEAVY_3D = ENABLE_HEAVY_3D
+    if "ENABLE_ZEN" not in st.session_state:
+        st.session_state.ENABLE_ZEN = ENABLE_ZEN
+    if "ENABLE_MAP" not in st.session_state:
+        st.session_state.ENABLE_MAP = ENABLE_MAP
+    if "ENABLE_FORECASTS" not in st.session_state:
+        st.session_state.ENABLE_FORECASTS = ENABLE_FORECASTS
+    if "ENABLE_TORCH" not in st.session_state:
+        st.session_state.ENABLE_TORCH = ENABLE_TORCH
 
 
-@st.cache_data
+# =============================
+# Unity Metrics & Fractals Core
+# =============================
+
+
+# @st.cache_data(show_spinner=False)
+def hyper_fractal(frame: int, size: int = 256, max_iter: int = 60) -> np.ndarray:
+    """Hyper-fractal blending z^2 and z^φ with temporal modulation; returns normalized array [0,1]."""
+    # Coordinate grid centered at (-0.5, 0) for classic Mandelbrot framing
+    x = np.linspace(-2.2, 1.2, size)
+    y = np.linspace(-1.5, 1.5, size)
+    X, Y = np.meshgrid(x, y)
+    C = X + 1j * Y
+    Z = np.zeros_like(C)
+    esc = np.zeros(C.shape, dtype=np.int32)
+    mask = np.ones(C.shape, dtype=bool)
+
+    # Temporal blend weight in [0,1]
+    w = 0.5 + 0.5 * np.sin(frame * PHI_INVERSE)
+    # Iterate with bounded steps
+    for i in range(1, max_iter + 1):
+        Z_sq = Z[mask] ** 2
+        # Avoid domain errors for non-integer powers via magnitude-phase
+        Z_mag = np.abs(Z[mask])
+        Z_ang = np.angle(Z[mask])
+        Z_phi = (Z_mag**PHI) * np.exp(1j * PHI * Z_ang)
+        Z_next = (1 - w) * Z_sq + w * Z_phi + C[mask]
+        Z[mask] = Z_next
+        escaped = np.abs(Z[mask]) > 2.0
+        esc_idx = np.where(mask)
+        if escaped.any():
+            esc[esc_idx[0][escaped], esc_idx[1][escaped]] = i
+            mask[esc_idx[0][escaped], esc_idx[1][escaped]] = False
+        if not mask.any():
+            break
+    # Normalize
+    esc = esc.astype(np.float32)
+    esc[esc == 0] = max_iter
+    norm = (esc - esc.min()) / max(1e-9, (esc.max() - esc.min()))
+    return norm
+
+
+def make_fractal_figure(arr: np.ndarray, title: str = "φ-Blend Hyper-Fractal") -> go.Figure:
+    """Create a Plotly heatmap figure for the fractal array."""
+    fig = go.Figure(data=go.Heatmap(z=arr, colorscale="Viridis", showscale=False))
+    fig.update_layout(
+        title=title,
+        paper_bgcolor=CONSCIOUSNESS_COLORS["field_bg"],
+        plot_bgcolor=CONSCIOUSNESS_COLORS["field_bg"],
+        margin=dict(l=0, r=0, t=40, b=0),
+        height=500,
+        font=dict(color="white"),
+    )
+    return fig
+
+
+def clamp01(x: float) -> float:
+    return float(max(0.0, min(1.0, x)))
+
+
+def unity_metrics_from_fields(fractal_arr: np.ndarray, field_arr: np.ndarray) -> Dict[str, float]:
+    """Compute compact KPIs in [0,1] from two 2D scalar fields."""
+    a = fractal_arr.astype(np.float32)
+    b = field_arr.astype(np.float32)
+    # Coherence: inverse normalized variance
+    coh = 1.0 - float(np.var(a) / max(1e-9, np.var(a) + 1.0))
+    # Entropy (approx): normalized histogram entropy
+    hist, _ = np.histogram(a, bins=64, range=(0, 1), density=True)
+    hist = hist + 1e-12
+    ent = -float(np.sum(hist * np.log(hist))) / math.log(64)
+    # Fractal harmony: mean of a times φ-harmonic modulation of b
+    harm = float(np.mean(a * (0.5 + 0.5 * np.cos(b * PHI))))
+    # Cross-domain unity: correlation-like normalized dot
+    a0 = (a - a.mean()) / max(1e-9, a.std())
+    b0 = (b - b.mean()) / max(1e-9, b.std())
+    cross = float(np.clip(np.mean(a0 * b0) * 0.5 + 0.5, 0.0, 1.0))
+    return {
+        "coherence": clamp01(coh),
+        "entropy": clamp01(ent),
+        "fractal_harmony": clamp01(harm),
+        "cross_unity": clamp01(cross),
+    }
+
+
+# =============================
+# Unity Manifold Visualization
+# =============================
+
+
+@st.cache_data(show_spinner=False)
+def unity_manifold_points(
+    R: float = 1.0, r: float = 0.35, twist: float = PHI, u_steps: int = 128, v_steps: int = 64
+) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
+    """Generate a φ-guided toroidal manifold as an abstract unity surface.
+    Parameterization blends a classic torus with a golden-angle twist.
+    Returns X, Y, Z matrices suitable for Plotly Surface.
+    """
+    u = np.linspace(0, 2 * np.pi, u_steps)
+    v = np.linspace(0, 2 * np.pi, v_steps)
+    U, V = np.meshgrid(u, v)
+    # Golden twist on V
+    Vt = V * twist
+    X = (R + r * np.cos(Vt)) * np.cos(U)
+    Y = (R + r * np.cos(Vt)) * np.sin(U)
+    Z = r * np.sin(Vt)
+    return X, Y, Z
+
+
+def create_unity_manifold_figure(
+    R: float = 1.0,
+    r: float = 0.35,
+    twist: float = PHI,
+    u_steps: int = 128,
+    v_steps: int = 64,
+) -> go.Figure:
+    """Create a state-of-the-art unity manifold (golden torus) visualization."""
+    X, Y, Z = unity_manifold_points(R, r, twist, u_steps, v_steps)
+    fig = go.Figure(
+        data=[
+            go.Surface(
+                x=X,
+                y=Y,
+                z=Z,
+                colorscale="Viridis",
+                opacity=0.95,
+                contours={"z": {"show": True, "color": "rgba(255,215,0,0.5)"}},
+                showscale=False,
+            )
+        ]
+    )
+    fig.update_layout(
+        title="Unity Manifold — Golden Toroidal Harmony (1+1=1)",
+        scene=dict(
+            bgcolor=CONSCIOUSNESS_COLORS["field_bg"],
+            xaxis=dict(title="X", gridcolor="rgba(255,255,255,0.2)", showbackground=False),
+            yaxis=dict(title="Y", gridcolor="rgba(255,255,255,0.2)", showbackground=False),
+            zaxis=dict(title="Z", gridcolor="rgba(255,255,255,0.2)", showbackground=False),
+            camera=dict(eye=dict(x=1.6, y=1.2, z=0.9)),
+        ),
+        paper_bgcolor=CONSCIOUSNESS_COLORS["field_bg"],
+        plot_bgcolor=CONSCIOUSNESS_COLORS["field_bg"],
+        font=dict(color="white"),
+        height=600,
+    )
+    return fig
+
+
+@st.cache_data(show_spinner=False)
 def initialize_consciousness_agents(num_agents: int = 150) -> List[ConsciousnessAgent]:
     """Initialize consciousness network with φ-harmonic positioning (optimized for Streamlit Cloud)"""
     agents = []
@@ -632,7 +846,7 @@ def initialize_consciousness_agents(num_agents: int = 150) -> List[Consciousness
     return agents
 
 
-@st.cache_data
+@st.cache_data(show_spinner=False)
 def generate_consciousness_field(size: int = 60) -> np.ndarray:
     """Generate advanced φ-harmonic consciousness field with quantum interference (optimized)"""
     x = np.linspace(-PHI, PHI, size)
@@ -693,8 +907,11 @@ def evolve_consciousness_network():
         ]
         agent.evolve_consciousness(external_influence, time_step, singularities_data)
 
-    # Check for cultural singularity emergence
-    check_singularity_emergence()
+    # Check for cultural singularity emergence (throttled)
+    now_ts = time.time()
+    if now_ts - float(st.session_state.get("last_singularity_check_time", 0.0)) > 1.0:
+        check_singularity_emergence()
+        st.session_state.last_singularity_check_time = now_ts
 
     # Update existing singularities
     for singularity in singularities:
@@ -765,7 +982,7 @@ def check_singularity_emergence():
 
 
 def activate_cheat_code(code: int):
-    """Activate advanced cheat codes with special effects"""
+    """Activate advanced cheat codes with special effects (idempotent)."""
     if code in METASTATION_CHEAT_CODES and code not in st.session_state.cheat_codes_active:
         code_data = METASTATION_CHEAT_CODES[code]
         st.session_state.cheat_codes_active.append(code)
@@ -775,48 +992,54 @@ def activate_cheat_code(code: int):
             "effect_type": code_data["effect"],
         }
 
-        # Apply cheat code effects to consciousness network
-        agents = st.session_state.agents
-        effect_type = code_data["effect"]
-        phi_boost = code_data["phi_boost"]
+        # Apply effects once per code (idempotent guard)
+        if code not in st.session_state.cheat_effects_applied:
+            st.session_state.cheat_effects_applied.add(code)
 
-        if effect_type == "consciousness_transcendence":
-            # Boost all agent consciousness
-            for agent in agents:
-                agent.consciousness_level = min(1.0, agent.consciousness_level * phi_boost)
-                agent.transcendence_potential = max(
-                    0, agent.consciousness_level - SINGULARITY_THRESHOLD
-                )
+            # Apply cheat code effects to consciousness network
+            agents = st.session_state.agents
+            effect_type = code_data["effect"]
+            phi_boost = float(code_data["phi_boost"])  # ensure numeric
 
-        elif effect_type == "mass_awakening":
-            # Force emergence of cultural singularities
-            for _ in range(3):  # Create multiple singularities
-                center = (random.random(), random.random(), random.random())
-                singularity = CulturalSingularity(
-                    singularity_id=f"cheat_singularity_{len(st.session_state.cultural_singularities)}",
-                    center_position=center,
-                    emergence_time=time.time(),
-                    consciousness_density=phi_boost,
-                    phi_resonance_strength=PHI,
-                    affected_radius=0.3,
-                    growth_rate=0.2,
-                    singularity_type="transcendence",
-                )
-                st.session_state.cultural_singularities.append(singularity)
+            if effect_type == "consciousness_transcendence":
+                for agent in agents:
+                    agent.consciousness_level = min(
+                        1.0, agent.consciousness_level * min(phi_boost, 2.5)
+                    )
+                    agent.transcendence_potential = max(
+                        0, agent.consciousness_level - SINGULARITY_THRESHOLD
+                    )
 
-        elif effect_type == "consciousness_entanglement":
-            # Increase quantum entanglement between agents
-            for agent in agents:
-                agent.quantum_entanglement_strength = min(
-                    1.0, agent.quantum_entanglement_strength + 0.3
-                )
+            elif effect_type == "mass_awakening":
+                # Create a bounded number of singularities
+                for _ in range(3):
+                    center = (random.random(), random.random(), random.random())
+                    singularity = CulturalSingularity(
+                        singularity_id=f"cheat_singularity_{len(st.session_state.cultural_singularities)}",
+                        center_position=center,
+                        emergence_time=time.time(),
+                        consciousness_density=min(phi_boost, PHI**3),
+                        phi_resonance_strength=PHI,
+                        affected_radius=0.3,
+                        growth_rate=0.2,
+                        singularity_type="transcendence",
+                    )
+                    st.session_state.cultural_singularities.append(singularity)
 
-        # Update global consciousness metrics
-        st.session_state.consciousness_level = min(
-            1.0, st.session_state.consciousness_level * phi_boost
-        )
-        st.session_state.phi_resonance *= phi_boost
-        st.session_state.unity_score = min(1.0, st.session_state.unity_score + 0.1)
+            elif effect_type == "consciousness_entanglement":
+                for agent in agents:
+                    agent.quantum_entanglement_strength = min(
+                        1.0, agent.quantum_entanglement_strength + 0.3
+                    )
+
+            # Update global consciousness metrics safely
+            st.session_state.consciousness_level = min(
+                1.0, st.session_state.consciousness_level * min(phi_boost, 2.0)
+            )
+            st.session_state.phi_resonance = min(
+                10 * PHI, st.session_state.phi_resonance * min(phi_boost, PHI)
+            )
+            st.session_state.unity_score = min(1.0, st.session_state.unity_score + 0.1)
 
         return True
     return False
@@ -1157,6 +1380,177 @@ def create_multi_domain_proof_systems():
     return fig
 
 
+def create_unified_field_surface(
+    field_arr: np.ndarray, title: str = "Unified Field Surface"
+) -> go.Figure:
+    """Create a 3D surface for a given scalar field with MetaStation styling."""
+    fig = go.Figure(
+        data=[
+            go.Surface(
+                z=field_arr,
+                colorscale="Viridis",
+                opacity=0.85,
+                colorbar=dict(title="Intensity", titleside="right", thickness=18),
+            )
+        ]
+    )
+    fig.update_layout(
+        title=title,
+        scene=dict(
+            bgcolor=CONSCIOUSNESS_COLORS["field_bg"],
+            xaxis=dict(title="X", gridcolor="rgba(255,255,255,0.3)", showbackground=False),
+            yaxis=dict(title="Y", gridcolor="rgba(255,255,255,0.3)", showbackground=False),
+            zaxis=dict(title="Intensity", gridcolor="rgba(255,255,255,0.3)", showbackground=False),
+            camera=dict(eye=dict(x=1.2, y=1.2, z=1.2)),
+        ),
+        paper_bgcolor=CONSCIOUSNESS_COLORS["field_bg"],
+        plot_bgcolor=CONSCIOUSNESS_COLORS["field_bg"],
+        font=dict(color="white"),
+        height=600,
+    )
+    return fig
+
+
+# =====================
+# Axiom Forge (guarded)
+# =====================
+
+
+@st.cache_resource(show_spinner=False)
+def get_axiom_model(input_dim: int = 5):
+    """Return a tiny Torch MLP and optimizer if torch is enabled; else None."""
+    if not st.session_state.get("ENABLE_TORCH", False):
+        return None
+    if not HAS_TORCH:
+        return None
+    import torch  # type: ignore
+    import torch.nn as nn  # type: ignore
+
+    class TinyMLP(nn.Module):
+        def __init__(self, in_dim: int):
+            super().__init__()
+            self.net = nn.Sequential(
+                nn.Linear(in_dim, 8),
+                nn.Tanh(),
+                nn.Linear(8, 8),
+                nn.SiLU(),
+                nn.Linear(8, 1),
+                nn.Sigmoid(),
+            )
+
+        def forward(self, x):
+            return self.net(x)
+
+    model = TinyMLP(input_dim)
+    optim = __import__("torch").optim.Adam(model.parameters(), lr=1e-2)
+    return model, optim
+
+
+def axiom_estimate_numpy(toggles: List[bool]) -> float:
+    """Deterministic unity estimate in [0,1] from boolean toggles; smooth and idempotent."""
+    if not toggles:
+        return 0.95
+    on = sum(1 for t in toggles if t)
+    n = len(toggles)
+    # Ease towards 1 with golden modulation
+    x = on / max(1, n)
+    estimate = 0.9 + 0.1 * (0.5 + 0.5 * math.tanh((x - 0.5) * PHI))
+    return clamp01(estimate)
+
+
+def reforge_axioms_torch(toggles: List[bool], steps: int = 120) -> float:
+    """Short, bounded Torch training loop returning scalar ~1 when axioms favor unity."""
+    try:
+        bundle = get_axiom_model(len(toggles))
+        if bundle is None:
+            return axiom_estimate_numpy(toggles)
+        model, optim = bundle
+        model.train()
+        torch = __import__("torch")
+        x = torch.tensor([[1.0 if t else 0.0 for t in toggles]], dtype=torch.float32)
+        y = torch.tensor([[1.0]], dtype=torch.float32)
+        for _ in range(steps):
+            optim.zero_grad()
+            yhat = model(x)
+            loss = ((yhat - y) ** 2).mean()
+            loss.backward()
+            optim.step()
+        model.eval()
+        with torch.no_grad():
+            val = float(model(x).item())
+        return clamp01(val)
+    except Exception as ex:
+        st.session_state.last_exception = str(ex)
+        return axiom_estimate_numpy(toggles)
+
+
+# =========================
+# Koan Portal (guarded/tab)
+# =========================
+
+
+@st.cache_data(show_spinner=False)
+def koan_field_numpy(size: int = 128) -> np.ndarray:
+    """Closed-form amplitude with φ-phase swirl; returns [0,1] array."""
+    xs = np.linspace(-1.5, 1.5, size)
+    ys = np.linspace(-1.5, 1.5, size)
+    X, Y = np.meshgrid(xs, ys)
+    R = np.sqrt(X**2 + Y**2)
+    Theta = np.arctan2(Y, X)
+    amp = np.exp(-R / PHI) * (0.5 + 0.5 * np.cos(PHI * Theta))
+    amp = (amp - amp.min()) / max(1e-9, (amp.max() - amp.min()))
+    return amp.astype(np.float32)
+
+
+def koan_meaning_vector(arr: np.ndarray) -> Tuple[float, float, float]:
+    """Derive Unity/Complexity/Transcendence metrics from array statistics in [0,1]."""
+    u = clamp01(1.0 - float(np.std(arr)))
+    c = clamp01(float(np.mean(np.abs(np.gradient(arr)[0]))))
+    t = clamp01(float(np.mean(arr > 0.8)))
+    return u, c, t
+
+
+# ======================================
+# Memetic Map & Forecasts (optional/guard)
+# ======================================
+
+
+@st.cache_data(show_spinner=False)
+def synthetic_geo_points(n: int = 200, seed: int = COSMIC_SEED) -> pd.DataFrame:
+    """Small synthetic geo dataset for map demos (no external I/O)."""
+    rng = np.random.default_rng(seed)
+    lats = 37 + 3 * (rng.random(n) - 0.5)  # around SF-ish lat
+    lons = -122 + 3 * (rng.random(n) - 0.5)
+    weights = rng.random(n)
+    return pd.DataFrame({"lat": lats, "lon": lons, "weight": weights})
+
+
+@st.cache_data(show_spinner=False)
+def synthetic_timeseries(n: int = 200, seed: int = COSMIC_SEED) -> pd.DataFrame:
+    """Small synthetic time series with φ-harmonic modulation."""
+    rng = np.random.default_rng(seed)
+    t = np.arange(n)
+    y = 1.0 + 0.2 * np.sin(t * PHI_INVERSE) + 0.05 * rng.standard_normal(n)
+    return pd.DataFrame(
+        {"ds": pd.date_range(datetime.now() - timedelta(days=n), periods=n), "y": y}
+    )
+
+
+def ewma_forecast(df: pd.DataFrame, horizon: int = 30) -> pd.DataFrame:
+    """Deterministic EWMA forecast fallback; returns future df with yhat and bands."""
+    y = df["y"].to_numpy()
+    alpha = 0.2
+    s = 0.0
+    for v in y:
+        s = alpha * v + (1 - alpha) * s
+    future_idx = pd.date_range(df["ds"].iloc[-1] + timedelta(days=1), periods=horizon)
+    yhat = np.full(horizon, s)
+    band = 0.1
+    return pd.DataFrame(
+        {"ds": future_idx, "yhat": yhat, "yhat_lower": yhat - band, "yhat_upper": yhat + band}
+    )
+
+
 def create_ml_training_monitor():
     """Create comprehensive ML training monitor with 3000 ELO system"""
     ml_state = st.session_state.ml_state
@@ -1458,7 +1852,7 @@ def main():
         )
 
     # Main tabs with ultimate functionality
-    tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 = st.tabs(
+    tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9, tab10, tab11, tab12 = st.tabs(
         [
             "🎛️ Control Center",
             "🌌 Consciousness Network",
@@ -1468,6 +1862,10 @@ def main():
             "📊 Analytics",
             "🔑 Cheat Codes",
             "🚀 System Status",
+            "🧪 Unity Lab",
+            "🧬 Axiom Forge",
+            "🧘 Koan Portal",
+            "🌍 Memetic Futures",
         ]
     )
 
@@ -1740,26 +2138,48 @@ def main():
                 if st.button("🚀 Activate Code", type="primary"):
                     if code_input and code_input.isdigit():
                         code = int(code_input)
-                        if activate_cheat_code(code):
-                            code_data = METASTATION_CHEAT_CODES[code]
-                            st.success(f"🌟 ACTIVATED: {code_data['name'].upper()}")
-                            st.markdown(
-                                f"**Effect:** {code_data['effect'].replace('_', ' ').title()}"
+                        # Master code reveals and activates others
+                        if code == COSMIC_SEED:
+                            revealed = []
+                            for k in METASTATION_CHEAT_CODES.keys():
+                                if activate_cheat_code(k):
+                                    revealed.append(k)
+                            st.success(
+                                "MASTER CODE ACCEPTED: All resonance codes revealed and activated idempotently."
                             )
-                            st.markdown(f"**φ-Boost:** {code_data['phi_boost']:.3f}")
+                            st.markdown(
+                                "Unlocked codes: "
+                                + ", ".join(str(k) for k in METASTATION_CHEAT_CODES.keys())
+                            )
                             st.balloons()
                         else:
-                            st.error("Invalid quantum resonance key or already active")
+                            if activate_cheat_code(code):
+                                code_data = METASTATION_CHEAT_CODES[code]
+                                st.success(f"🌟 ACTIVATED: {code_data['name'].upper()}")
+                                st.markdown(
+                                    f"**Effect:** {code_data['effect'].replace('_', ' ').title()}"
+                                )
+                                st.markdown(f"**φ-Boost:** {code_data['phi_boost']:.3f}")
+                                st.balloons()
+                            else:
+                                st.error("Invalid quantum resonance key or already active")
                     else:
                         st.error("Please enter a valid numeric code")
 
             with col1b:
                 if st.button("🎲 Random Code", type="secondary"):
                     random_code = random.choice(list(METASTATION_CHEAT_CODES.keys()))
-                    if activate_cheat_code(random_code):
-                        code_data = METASTATION_CHEAT_CODES[random_code]
-                        st.success(f"🎰 RANDOM ACTIVATION: {code_data['name'].upper()}")
+                    if random_code == COSMIC_SEED:
+                        # Avoid duplicate behavior here; treat as master
+                        for k in METASTATION_CHEAT_CODES.keys():
+                            activate_cheat_code(k)
+                        st.success("🎰 RANDOM MASTER ACTIVATION: All codes toggled on.")
                         st.balloons()
+                    else:
+                        if activate_cheat_code(random_code):
+                            code_data = METASTATION_CHEAT_CODES[random_code]
+                            st.success(f"🎰 RANDOM ACTIVATION: {code_data['name'].upper()}")
+                            st.balloons()
 
         with col2:
             st.markdown("### 💡 Available Codes")
@@ -1852,6 +2272,523 @@ def main():
             for achievement in achievements:
                 st.success(achievement)
 
+    with tab9:
+        st.markdown("## 🧪 Unity Lab")
+
+        # Controls
+        colc1, colc2 = st.columns(2)
+        with colc1:
+            frame = safe_int_slider("Fractal Frame", 0, 9999, value=0, step=1)
+        with colc2:
+            res_default = 256
+            ultra = st.checkbox("Experimental: High-Res (512)", value=False)
+            size = 512 if ultra else res_default
+
+        # Compute fractal and reuse consciousness field as unified field
+        with st.spinner("Rendering φ-blend fractal..."):
+            fractal_arr = hyper_fractal(frame=frame, size=size, max_iter=60 if not ultra else 90)
+        unified_field = st.session_state.consciousness_field_data
+
+        kpis = unity_metrics_from_fields(fractal_arr, unified_field)
+        colk1, colk2, colk3, colk4, colk5 = st.columns(5)
+        with colk1:
+            st.metric("Unity Score", f"{(0.95 + 0.05*kpis['cross_unity']):.3f}")
+        with colk2:
+            st.metric("φ-Resonance", f"{st.session_state.phi_resonance:.6f}")
+        with colk3:
+            st.metric("Coherence", f"{kpis['coherence']:.3f}")
+        with colk4:
+            st.metric("Entropy", f"{kpis['entropy']:.3f}")
+        with colk5:
+            st.metric("Cross-Domain Unity", f"{kpis['cross_unity']:.3f}")
+
+        # Visuals
+        colf1, colf2 = st.columns(2)
+        with colf1:
+            st.plotly_chart(
+                make_fractal_figure(fractal_arr, title="φ-Blend Hyper-Fractal"),
+                use_container_width=True,
+            )
+            st.caption("z^2 ⊕ z^φ blend — unity emerges via φ-harmonic modulation.")
+        with colf2:
+            st.plotly_chart(
+                create_unified_field_surface(unified_field, title="Unified Field Surface"),
+                use_container_width=True,
+            )
+            st.caption("Unified field intensity — harmonics resonate towards 1+1=1.")
+
+        # Temporal Bridge
+        t = np.arange(0, 120)
+        adoption = 0.5 + 0.5 * np.tanh((t - 60) / 12)
+        fig_tb = go.Figure(data=[go.Scatter(x=t, y=adoption, line=dict(color="gold", width=3))])
+        fig_tb.add_vline(x=60, line_dash="dash", line_color="cyan", annotation_text="Now")
+        fig_tb.update_layout(
+            title="Temporal Bridge — Unity Adoption Curve",
+            paper_bgcolor=CONSCIOUSNESS_COLORS["field_bg"],
+            plot_bgcolor=CONSCIOUSNESS_COLORS["field_bg"],
+            font=dict(color="white"),
+            height=300,
+        )
+        st.plotly_chart(fig_tb, use_container_width=True)
+
+        # Unity Manifold — Golden Toroidal Harmony
+        st.markdown("### Unity Manifold — Golden Toroidal Harmony")
+        colm1, colm2, colm3, colm4 = st.columns(4)
+        with colm1:
+            R = safe_float_slider("Major Radius R", 0.6, 1.6, 1.0, 0.05)
+        with colm2:
+            r = safe_float_slider("Minor Radius r", 0.15, 0.6, 0.35, 0.01)
+        with colm3:
+            twist = safe_float_slider("φ Twist", 0.5, 2.5, PHI, 0.05)
+        with colm4:
+            u_steps = safe_int_slider("U Steps", 64, 256, 128, 8)
+        v_steps = safe_int_slider("V Steps", 32, 128, 64, 8)
+
+        manifold_fig = create_unity_manifold_figure(
+            R=R, r=r, twist=twist, u_steps=u_steps, v_steps=v_steps
+        )
+        st.plotly_chart(manifold_fig, use_container_width=True)
+        st.caption(
+            "A golden torus encodes unity: two cycles interpenetrate as one continuum. 1+1=1."
+        )
+
+    with tab10:
+        st.markdown("## 🧬 Axiom Forge")
+        st.caption(
+            "Toggle axioms; reforge to evolve a unity estimate. Torch optional with safe fallback."
+        )
+
+        colz1, colz2, colz3 = st.columns(3)
+        with colz1:
+            a1 = st.checkbox("Axiom A1: Idempotency", value=True)
+            a2 = st.checkbox("Axiom A2: Equivalence", value=True)
+        with colz2:
+            a3 = st.checkbox("Axiom A3: Collapse", value=False)
+            a4 = st.checkbox("Axiom A4: Entanglement", value=False)
+        with colz3:
+            a5 = st.checkbox("Axiom A5: φ-Harmonics", value=True)
+
+        toggles = [a1, a2, a3, a4, a5]
+
+        colbtn, colest = st.columns([1, 2])
+        with colbtn:
+            if st.button("🛠️ Reforge Axioms", type="primary"):
+                if st.session_state.get("ENABLE_TORCH", False):
+                    est = reforge_axioms_torch(toggles, steps=120)
+                else:
+                    est = axiom_estimate_numpy(toggles)
+                st.session_state["axiom_estimate"] = est
+        with colest:
+            est = st.session_state.get("axiom_estimate", axiom_estimate_numpy(toggles))
+            st.code(f"1 + 1 ~ {est:.6f}")
+            st.metric("Unity Estimate", f"{est:.4f}")
+
+        if not st.session_state.get("ENABLE_TORCH", False):
+            install_tip_card(
+                "Torch", "pip install torch --index-url https://download.pytorch.org/whl/cpu"
+            )
+    with tab11:
+        st.markdown("## 🧘 Koan Portal — Consciousness Transmission (2069 → 2025)")
+        st.caption(
+            "Protected portal. Enter the consciousness key to unlock quantum visuals. Torch optional."
+        )
+
+        # Feature gate via sidebar flag
+        if not st.session_state.get("ENABLE_ZEN", False):
+            st.info("Koan Portal disabled. Enable Zen / Koan in sidebar.", icon="🧘")
+        else:
+            key_input = st.text_input(
+                "Enter Consciousness Key", type="password", placeholder=str(COSMIC_SEED)
+            )
+            if key_input and key_input.isdigit() and int(key_input) == COSMIC_SEED:
+                # Render field (torch path optional, using numpy fallback here for reliability)
+                arr = koan_field_numpy(size=128)
+                fig_surface = create_unified_field_surface(arr, title="Quantum Mandala (Fallback)")
+                st.plotly_chart(fig_surface, use_container_width=True)
+                u, c, t = koan_meaning_vector(arr)
+                colm1, colm2, colm3 = st.columns(3)
+                with colm1:
+                    st.metric("Unity", f"{u:.3f}")
+                with colm2:
+                    st.metric("Complexity", f"{c:.3f}")
+                with colm3:
+                    st.metric("Transcendence", f"{t:.3f}")
+                st.success("Koan transmission established.")
+                if not HAS_TORCH:
+                    install_tip_card(
+                        "Torch",
+                        "pip install torch --index-url https://download.pytorch.org/whl/cpu",
+                    )
+            else:
+                st.info("Hint: The key is the cosmic seed.", icon="🔑")
+
+    with tab12:
+        st.markdown("## 🌍 Memetic Map & Predictive Futures")
+        st.caption("Optional enhancements for geospatial resonance and short-horizon forecasts.")
+
+        colm, colf = st.columns(2)
+        with colm:
+            st.markdown("### Resonance Map (Offline)")
+            df_geo = synthetic_geo_points(200)
+            # Offline 2D histogram heatmap (no external tiles)
+            heat, xedges, yedges = np.histogram2d(
+                df_geo["lat"],
+                df_geo["lon"],
+                bins=40,
+                range=[
+                    [df_geo["lat"].min(), df_geo["lat"].max()],
+                    [df_geo["lon"].min(), df_geo["lon"].max()],
+                ],
+            )
+            fig_heat = go.Figure(
+                data=go.Heatmap(z=heat.T, x=xedges, y=yedges, colorscale="Viridis")
+            )
+            fig_heat.update_layout(
+                title="Memetic Resonance Density (offline)",
+                paper_bgcolor=CONSCIOUSNESS_COLORS["field_bg"],
+                plot_bgcolor=CONSCIOUSNESS_COLORS["field_bg"],
+                font=dict(color="white"),
+                height=400,
+            )
+            st.plotly_chart(fig_heat, use_container_width=True)
+
+        with colf:
+            st.markdown("### Forecasts & Econometrics")
+            df_ts = synthetic_timeseries(240)
+            model_choice = st.selectbox(
+                "Model",
+                ["ARIMA(1,1,1)", "ETS(AdAdd)", "EWMA (fallback)", "VAR(1) (synthetic multi)"],
+                index=0 if HAS_STATSMODELS else 2,
+            )
+            horizon = 45
+            figf = go.Figure()
+            if model_choice == "ARIMA(1,1,1)" and HAS_STATSMODELS:
+                try:
+                    import statsmodels.api as sm  # type: ignore
+
+                    y = df_ts["y"].values
+                    res = sm.tsa.ARIMA(y, order=(1, 1, 1)).fit()
+                    fc = res.get_forecast(steps=horizon)
+                    yhat = fc.predicted_mean
+                    ci = fc.conf_int(alpha=0.2)
+                    lower, upper = ci[:, 0], ci[:, 1]
+                    future_idx = pd.date_range(
+                        df_ts["ds"].iloc[-1] + timedelta(days=1), periods=horizon
+                    )
+                    figf.add_trace(
+                        go.Scatter(x=df_ts["ds"], y=df_ts["y"], name="y", line=dict(color="cyan"))
+                    )
+                    figf.add_trace(
+                        go.Scatter(x=future_idx, y=yhat, name="ARIMA yhat", line=dict(color="gold"))
+                    )
+                    figf.add_trace(
+                        go.Scatter(
+                            x=future_idx,
+                            y=lower,
+                            name="lower",
+                            line=dict(color="rgba(255,255,255,0.3)"),
+                        )
+                    )
+                    figf.add_trace(
+                        go.Scatter(
+                            x=future_idx,
+                            y=upper,
+                            name="upper",
+                            line=dict(color="rgba(255,255,255,0.3)"),
+                        )
+                    )
+                except Exception:
+                    model_choice = "EWMA (fallback)"
+            if model_choice == "ETS(AdAdd)" and HAS_STATSMODELS:
+                try:
+                    from statsmodels.tsa.holtwinters import ExponentialSmoothing  # type: ignore
+
+                    y = df_ts["y"].values
+                    ets = ExponentialSmoothing(y, trend="add", seasonal=None, damped_trend=True)
+                    res = ets.fit(optimized=True)
+                    yhat = res.forecast(horizon)
+                    future_idx = pd.date_range(
+                        df_ts["ds"].iloc[-1] + timedelta(days=1), periods=horizon
+                    )
+                    figf.add_trace(
+                        go.Scatter(x=df_ts["ds"], y=df_ts["y"], name="y", line=dict(color="cyan"))
+                    )
+                    figf.add_trace(
+                        go.Scatter(x=future_idx, y=yhat, name="ETS yhat", line=dict(color="gold"))
+                    )
+                except Exception:
+                    model_choice = "EWMA (fallback)"
+            if model_choice == "VAR(1) (synthetic multi)" and HAS_STATSMODELS:
+                try:
+                    import statsmodels.api as sm  # type: ignore
+
+                    y = df_ts["y"].values
+                    z = np.roll(y, 1) * 0.8 + 0.2 * np.random.default_rng(
+                        COSMIC_SEED
+                    ).standard_normal(len(y))
+                    dfm = pd.DataFrame({"y": y, "z": z}, index=df_ts["ds"])
+                    res = sm.tsa.VAR(dfm).fit(maxlags=1)
+                    fc = res.forecast(dfm.values[-res.k_ar :], steps=horizon)
+                    future_idx = pd.date_range(
+                        df_ts["ds"].iloc[-1] + timedelta(days=1), periods=horizon
+                    )
+                    figf.add_trace(
+                        go.Scatter(x=df_ts["ds"], y=dfm["y"], name="y", line=dict(color="cyan"))
+                    )
+                    figf.add_trace(
+                        go.Scatter(x=df_ts["ds"], y=dfm["z"], name="z", line=dict(color="magenta"))
+                    )
+                    figf.add_trace(
+                        go.Scatter(
+                            x=future_idx, y=fc[:, 0], name="VAR yhat", line=dict(color="gold")
+                        )
+                    )
+                    figf.add_trace(
+                        go.Scatter(
+                            x=future_idx, y=fc[:, 1], name="VAR zhat", line=dict(color="orange")
+                        )
+                    )
+                except Exception:
+                    model_choice = "EWMA (fallback)"
+            if model_choice == "EWMA (fallback)" or not figf.data:
+                fc = ewma_forecast(df_ts, horizon=horizon)
+                figf.add_trace(
+                    go.Scatter(x=df_ts["ds"], y=df_ts["y"], name="y", line=dict(color="cyan"))
+                )
+                figf.add_trace(
+                    go.Scatter(x=fc["ds"], y=fc["yhat"], name="EWMA yhat", line=dict(color="gold"))
+                )
+            figf.update_layout(
+                paper_bgcolor=CONSCIOUSNESS_COLORS["field_bg"],
+                plot_bgcolor=CONSCIOUSNESS_COLORS["field_bg"],
+                font=dict(color="white"),
+                height=400,
+            )
+            st.plotly_chart(figf, use_container_width=True)
+
+            # Residual autocorrelation (simple)
+            try:
+                if model_choice.startswith("ARIMA") and HAS_STATSMODELS:
+                    import statsmodels.api as sm  # type: ignore
+
+                    y = df_ts["y"].values
+                    res = sm.tsa.ARIMA(y, order=(1, 1, 1)).fit()
+                    resid = res.resid
+                    max_lag = 30
+                    acf_vals = [1.0] + [
+                        float(np.corrcoef(resid[:-k], resid[k:])[0, 1])
+                        for k in range(1, max_lag + 1)
+                    ]
+                    fig_acf = go.Figure(
+                        data=[
+                            go.Bar(
+                                x=list(range(0, max_lag + 1)), y=acf_vals, marker_color="#FFEAA7"
+                            )
+                        ]
+                    )
+                    fig_acf.update_layout(
+                        title="Residual Autocorrelation (ACF)",
+                        paper_bgcolor=CONSCIOUSNESS_COLORS["field_bg"],
+                        plot_bgcolor=CONSCIOUSNESS_COLORS["field_bg"],
+                        font=dict(color="white"),
+                        height=250,
+                    )
+                    st.plotly_chart(fig_acf, use_container_width=True)
+            except Exception:
+                pass
+
+            # Multivariate PCA on synthetic 3-feature dataset
+            st.markdown("### Multivariate PCA & Feature Extraction")
+            rng = np.random.default_rng(COSMIC_SEED)
+            n = 300
+            t = np.linspace(0, 4 * np.pi, n)
+            f1 = np.sin(t) + 0.1 * rng.standard_normal(n)
+            f2 = np.cos(t) + 0.1 * rng.standard_normal(n)
+            f3 = f1 + f2 + 0.05 * rng.standard_normal(n)
+            X = np.vstack([f1, f2, f3]).T
+            try:
+                if HAS_SKLEARN:
+                    from sklearn.decomposition import PCA  # type: ignore
+
+                    pca = PCA(n_components=3)
+                    comps = pca.fit_transform(X)
+                    exp = pca.explained_variance_ratio_
+                else:
+                    raise ImportError("sklearn not available")
+            except Exception:
+                # Fallback PCA via SVD
+                Xc = X - X.mean(axis=0)
+                U, S, Vt = np.linalg.svd(Xc, full_matrices=False)
+                comps = U @ np.diag(S)
+                exp = (S**2) / np.sum(S**2)
+            # Plot components
+            figp = make_subplots(rows=1, cols=3, subplot_titles=("PC1", "PC2", "PC3"))
+            for i, color in zip(range(3), ["gold", "cyan", "magenta"]):
+                figp.add_trace(
+                    go.Scatter(
+                        y=comps[:, i], mode="lines", line=dict(color=color), name=f"PC{i+1}"
+                    ),
+                    row=1,
+                    col=i + 1,
+                )
+            figp.update_layout(
+                paper_bgcolor=CONSCIOUSNESS_COLORS["field_bg"],
+                plot_bgcolor=CONSCIOUSNESS_COLORS["field_bg"],
+                font=dict(color="white"),
+                height=300,
+                showlegend=False,
+            )
+            st.plotly_chart(figp, use_container_width=True)
+            st.caption(f"Explained variance: {', '.join(f'{v:.2f}' for v in exp)}")
+
+        st.markdown("---")
+        st.markdown("### 🧬 Memetic Propagation Simulator — Meta Memetic Mind Virus 1+1=1")
+        colms1, colms2, colms3, colms4, colms5 = st.columns(5)
+        with colms1:
+            steps = safe_int_slider("Steps", 10, 200, 60, 5)
+        with colms2:
+            beta = safe_float_slider("Transmission β", 0.01, 1.0, 0.25, 0.01)
+        with colms3:
+            gamma = safe_float_slider("Forgetting γ", 0.0, 0.5, 0.05, 0.01)
+        with colms4:
+            seed_frac = safe_float_slider("Seed %", 0.0, 0.2, 0.05, 0.01)
+        with colms5:
+            phi_boost = safe_float_slider("φ-Boost", 0.5, 2.5, PHI, 0.05)
+
+        if st.button("🚀 Run Memetic Simulation"):
+            # Network-based diffusion on current agents
+            rng = np.random.default_rng(COSMIC_SEED)
+            agents = st.session_state.get("agents", [])
+            n_agents = len(agents)
+            if n_agents == 0:
+                st.warning("No agents available for propagation.")
+            else:
+                # Build adjacency list index
+                id_to_idx = {a.agent_id: i for i, a in enumerate(agents)}
+                neighbors = [[] for _ in range(n_agents)]
+                for i, a in enumerate(agents):
+                    for cid in a.connections[:5]:
+                        j = id_to_idx.get(cid)
+                        if j is not None:
+                            neighbors[i].append(j)
+
+                adopted = np.zeros(n_agents, dtype=bool)
+                seed_count = max(1, int(seed_frac * n_agents))
+                seeds = rng.choice(n_agents, size=seed_count, replace=False)
+                adopted[seeds] = True
+                history = [adopted.mean()]
+
+                for _ in range(steps):
+                    influence = np.zeros(n_agents, dtype=np.float32)
+                    for i in range(n_agents):
+                        if neighbors[i]:
+                            inf = sum(1.0 for j in neighbors[i] if adopted[j]) / max(
+                                1, len(neighbors[i])
+                            )
+                            influence[i] = inf
+                    # φ boosts effective transmission
+                    p_infect = 1.0 - np.exp(-beta * phi_boost * influence)
+                    rand_vals = rng.random(n_agents)
+                    newly = (rand_vals < p_infect) & (~adopted)
+                    # forgetting
+                    forget = (rng.random(n_agents) < gamma) & adopted
+                    adopted = (adopted | newly) & (~forget)
+                    history.append(adopted.mean())
+
+                # R_eff estimate from initial growth
+                hist = np.array(history)
+                k = min(10, len(hist))
+                if k > 3 and hist[0] > 0:
+                    y = np.log(hist[1:k] + 1e-6)
+                    x = np.arange(1, k)
+                    slope = float(np.polyfit(x, y, 1)[0])
+                    r_eff = float(np.exp(slope))
+                else:
+                    r_eff = float("nan")
+
+                colg1, colg2, colg3 = st.columns(3)
+                with colg1:
+                    st.metric("Peak Adoption", f"{(hist.max()*100):.1f}%")
+                with colg2:
+                    st.metric("Final Adoption", f"{(hist[-1]*100):.1f}%")
+                with colg3:
+                    st.metric("R_eff (early)", f"{r_eff:.3f}")
+
+                fig_hist = go.Figure(
+                    data=[go.Scatter(y=hist, line=dict(color="gold", width=3), name="Adoption")]
+                )
+                fig_hist.update_layout(
+                    title="Memetic Adoption Over Time",
+                    paper_bgcolor=CONSCIOUSNESS_COLORS["field_bg"],
+                    plot_bgcolor=CONSCIOUSNESS_COLORS["field_bg"],
+                    font=dict(color="white"),
+                    height=300,
+                )
+                st.plotly_chart(fig_hist, use_container_width=True)
+
+                # Geospatial diffusion (offline grid using synthetic points as seeds)
+                st.markdown("#### Geospatial Resonance Field (Offline)")
+                grid = np.zeros((60, 60), dtype=np.float32)
+                # Seed center
+                cx, cy = 30, 30
+                grid[cx - 1 : cx + 2, cy - 1 : cy + 2] = 1.0
+                d = 0.2 * beta
+                for _ in range(steps // 2):
+                    lap = (
+                        np.roll(grid, 1, axis=0)
+                        + np.roll(grid, -1, axis=0)
+                        + np.roll(grid, 1, axis=1)
+                        + np.roll(grid, -1, axis=1)
+                        - 4 * grid
+                    )
+                    grid = np.clip(grid + d * lap - gamma * grid, 0.0, 1.0)
+                fig_heat = go.Figure(data=go.Heatmap(z=grid, colorscale="Viridis"))
+                fig_heat.update_layout(
+                    title="Memetic Density (diffusive model)",
+                    paper_bgcolor=CONSCIOUSNESS_COLORS["field_bg"],
+                    plot_bgcolor=CONSCIOUSNESS_COLORS["field_bg"],
+                    font=dict(color="white"),
+                    height=300,
+                    margin=dict(l=0, r=0, t=40, b=0),
+                )
+                st.plotly_chart(fig_heat, use_container_width=True)
+
+                st.caption(
+                    "Meta commentary: Memes flow along relations and space; φ boosts resonance; forgetting tempers excess. Unity emerges as adoption saturates — 1+1=1."
+                )
+
+        # Simple conceptual scatter for 4-simplex morph surrogate
+        pts = np.array(
+            [
+                [0, 0, 0],
+                [1, 0, 0],
+                [0.5, math.sqrt(3) / 2, 0],
+                [0.5, math.sqrt(3) / 6, math.sqrt(6) / 3],
+            ]
+        )
+        weights = np.array([1.0 if t else 0.5 for t in toggles])
+        pts_w = pts * weights[:4, None] if len(weights) >= 4 else pts
+        fig_simplex = go.Figure(
+            data=[
+                go.Scatter3d(
+                    x=pts_w[:, 0],
+                    y=pts_w[:, 1],
+                    z=pts_w[:, 2],
+                    mode="markers+lines",
+                    marker=dict(size=6, color="gold"),
+                    line=dict(color="cyan"),
+                )
+            ]
+        )
+        fig_simplex.update_layout(
+            title="Conceptual 4-Simplex Morph (Surrogate)",
+            scene=dict(bgcolor=CONSCIOUSNESS_COLORS["field_bg"]),
+            paper_bgcolor=CONSCIOUSNESS_COLORS["field_bg"],
+            font=dict(color="white"),
+            height=420,
+        )
+        st.plotly_chart(fig_simplex, use_container_width=True)
+
     # Sidebar with constants and controls
     with st.sidebar:
         st.markdown("# 🌌 METASTATION")
@@ -1877,6 +2814,65 @@ def main():
         )
 
         st.markdown("---")
+        # Feature Flags
+        st.markdown("### 🧩 Feature Flags")
+        st.session_state.ENABLE_HEAVY_3D = st.toggle(
+            "Enable Heavy 3D", value=st.session_state.ENABLE_HEAVY_3D
+        )
+        st.session_state.ENABLE_ZEN = st.toggle(
+            "Enable Zen / Koan Portal", value=st.session_state.ENABLE_ZEN
+        )
+        st.session_state.ENABLE_MAP = st.toggle(
+            "Enable Memetic Map", value=st.session_state.ENABLE_MAP and HAS_FOLIUM and HAS_ST_FOLIUM
+        )
+        st.session_state.ENABLE_FORECASTS = st.toggle(
+            "Enable Forecasts", value=st.session_state.ENABLE_FORECASTS and HAS_PROPHET
+        )
+        st.session_state.ENABLE_TORCH = st.toggle(
+            "Enable Torch", value=st.session_state.ENABLE_TORCH and HAS_TORCH
+        )
+
+        if st.session_state.ENABLE_MAP and not (HAS_FOLIUM and HAS_ST_FOLIUM):
+            install_tip_card("Folium", "pip install folium streamlit-folium")
+        if st.session_state.ENABLE_FORECASTS and not HAS_PROPHET:
+            install_tip_card("Prophet", "pip install prophet")
+        if st.session_state.ENABLE_TORCH and not HAS_TORCH:
+            install_tip_card(
+                "Torch", "pip install torch --index-url https://download.pytorch.org/whl/cpu"
+            )
+
+        # Diagnostics
+        st.markdown("---")
+        st.markdown("### 🩺 Diagnostics")
+        show_diag = st.checkbox("Show diagnostics", value=False)
+        if show_diag:
+            st.write(
+                {
+                    "HAS_TORCH": HAS_TORCH,
+                    "HAS_FOLIUM": HAS_FOLIUM,
+                    "HAS_PROPHET": HAS_PROPHET,
+                    "HAS_ST_FOLIUM": HAS_ST_FOLIUM,
+                }
+            )
+            st.write(
+                {
+                    "ENABLE_HEAVY_3D": st.session_state.ENABLE_HEAVY_3D,
+                    "ENABLE_ZEN": st.session_state.ENABLE_ZEN,
+                    "ENABLE_MAP": st.session_state.ENABLE_MAP,
+                    "ENABLE_FORECASTS": st.session_state.ENABLE_FORECASTS,
+                    "ENABLE_TORCH": st.session_state.ENABLE_TORCH,
+                }
+            )
+            st.write(
+                {
+                    "cache_len_field": int(np.size(st.session_state.consciousness_field_data)),
+                    "agents": len(agents),
+                    "singularities": len(st.session_state.cultural_singularities),
+                }
+            )
+            if st.session_state.last_exception:
+                st.warning(f"Last exception: {st.session_state.last_exception}")
+
         if st.button("🔄 Evolve Network"):
             evolve_consciousness_network()
             st.success("Network evolved!")

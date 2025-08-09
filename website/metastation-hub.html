@@ -110,6 +110,8 @@
             filter: brightness(0.8) contrast(1.4) saturate(1.3) hue-rotate(5deg);
             /* Enhanced for cosmic metastation aesthetic */
             mix-blend-mode: luminosity;
+            will-change: transform;
+            transition: transform 0.1s ease-out;
         }
 
         .metastation-bg::after {
@@ -418,53 +420,25 @@
 
         /* Mathematical Overlay */
         .math-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            pointer-events: none;
+            /* Floating math overlay disabled in favor of the live consciousness field */
+            display: none !important;
         }
 
         .equation-float {
-            position: absolute;
-            padding: 0.5rem 1rem;
-            background: rgba(255, 215, 0, 0.1);
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            border-radius: 20px;
-            -webkit-backdrop-filter: blur(10px);
-            backdrop-filter: blur(10px);
+            display: none !important;
         }
 
         .math-text {
-            color: var(--unity-gold);
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.1rem;
-            font-weight: 500;
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            display: none !important;
         }
 
         @keyframes floatEquation {
-
-            0%,
-            100% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 0.7;
+            from {
+                opacity: 0;
             }
 
-            25% {
-                transform: translateY(-10px) rotate(1deg);
-                opacity: 1;
-            }
-
-            50% {
-                transform: translateY(5px) rotate(-1deg);
-                opacity: 0.9;
-            }
-
-            75% {
-                transform: translateY(-5px) rotate(0.5deg);
-                opacity: 1;
+            to {
+                opacity: 0;
             }
         }
 
@@ -882,10 +856,7 @@
         }
 
         .equation-float.center-eq .math-text {
-            font-size: clamp(2rem, 6vw, 5rem);
-            color: var(--unity-gold);
-            text-shadow: 0 0 18px rgba(255, 215, 0, 0.55);
-            letter-spacing: 1px;
+            display: none !important;
         }
     </style>
 
@@ -930,24 +901,8 @@
 
         <!-- Main Consciousness Field Visualization -->
         <div class="consciousness-field-container" style="position: relative;">
-            <canvas id="consciousness-field-canvas"></canvas>
-            <div class="math-overlay">
-                <div class="equation-float"
-                    style="position: absolute; top: 20%; left: 10%; animation: floatEquation 8s infinite;">
-                    <span class="math-text">∀x: x⊕x = x</span>
-                </div>
-                <div class="equation-float"
-                    style="position: absolute; top: 60%; right: 15%; animation: floatEquation 10s infinite reverse;">
-                    <span class="math-text">true ∨ true = true</span>
-                </div>
-                <div class="equation-float"
-                    style="position: absolute; bottom: 25%; left: 20%; animation: floatEquation 12s infinite;">
-                    <span class="math-text">A ∪ A = A</span>
-                </div>
-                <div class="equation-float center-eq">
-                    <span class="math-text">1+1=1</span>
-                </div>
-            </div>
+            <canvas id="consciousness-field-canvas"
+                aria-label="Animated consciousness field with 1+1=1 at center"></canvas>
         </div>
 
         <div class="scroll-indicator">
@@ -2465,7 +2420,11 @@
                 // Combined movement for metastation feel
                 const finalOffset = parallaxOffset + waveOffset;
 
-                metastationBg.style.transform = `translate3d(0, ${finalOffset}px, 0)`;
+                // Move the inner image instead of the fixed wrapper so the background scrolls with content
+                const bgImage = metastationBg.querySelector('img');
+                if (bgImage) {
+                    bgImage.style.transform = `translate3d(0, ${finalOffset}px, 0)`;
+                }
                 ticking = false;
             }
 

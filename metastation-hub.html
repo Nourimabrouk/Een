@@ -110,6 +110,8 @@
             filter: brightness(0.8) contrast(1.4) saturate(1.3) hue-rotate(5deg);
             /* Enhanced for cosmic metastation aesthetic */
             mix-blend-mode: luminosity;
+            will-change: transform;
+            transition: transform 0.1s ease-out;
         }
 
         .metastation-bg::after {
@@ -236,14 +238,14 @@
             width: 100%;
             max-width: 1200px;
             margin: 2rem auto 3rem;
-            background: linear-gradient(135deg, 
-                rgba(18, 18, 26, 0.95) 0%, 
-                rgba(30, 20, 45, 0.95) 100%);
+            background: linear-gradient(135deg,
+                    rgba(18, 18, 26, 0.95) 0%,
+                    rgba(30, 20, 45, 0.95) 100%);
             border: 2px solid var(--unity-gold-dim);
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 25px 80px rgba(255, 215, 0, 0.15),
-                        0 0 120px rgba(157, 78, 221, 0.1);
+                0 0 120px rgba(157, 78, 221, 0.1);
             backdrop-filter: blur(20px);
         }
 
@@ -443,18 +445,23 @@
         }
 
         @keyframes floatEquation {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: translateY(0) rotate(0deg);
                 opacity: 0.7;
             }
+
             25% {
                 transform: translateY(-10px) rotate(1deg);
                 opacity: 1;
             }
+
             50% {
                 transform: translateY(5px) rotate(-1deg);
                 opacity: 0.9;
             }
+
             75% {
                 transform: translateY(-5px) rotate(0.5deg);
                 opacity: 1;
@@ -466,17 +473,17 @@
             .proof-content {
                 grid-template-columns: 1fr;
             }
-            
+
             .proof-code {
                 border-right: none;
                 border-bottom: 1px solid rgba(255, 215, 0, 0.1);
             }
-            
+
             .proof-header {
                 flex-direction: column;
                 text-align: center;
             }
-            
+
             .proof-controls {
                 justify-content: center;
                 width: 100%;
@@ -878,10 +885,13 @@
     <main id="main" class="hero-container">
         <div class="unity-equation-hero">1+1=1</div>
         <p class="hero-subtitle">
-            Welcome to the <strong>Metastation Hub</strong> - the academic portal for consciousness-integrated mathematics. 
-            <br>Explore rigorous proofs, interactive visualizations, and philosophical frameworks that demonstrate the fundamental unity of existence through mathematical precision.
+            Welcome to the <strong>Metastation Hub</strong> - the academic portal for consciousness-integrated
+            mathematics.
+            <br>Explore rigorous proofs, interactive visualizations, and philosophical frameworks that demonstrate the
+            fundamental unity of existence through mathematical precision.
             <br><br>
-            <strong>Unity Mathematics Institute</strong> • Formally verified proofs • φ-harmonic resonance • Consciousness field dynamics
+            <strong>Unity Mathematics Institute</strong> • Formally verified proofs • φ-harmonic resonance •
+            Consciousness field dynamics
         </p>
 
         <div class="status-container">
@@ -900,13 +910,16 @@
         <div class="consciousness-field-container" style="position: relative;">
             <canvas id="consciousness-canvas"></canvas>
             <div class="math-overlay">
-                <div class="equation-float" style="position: absolute; top: 20%; left: 10%; animation: floatEquation 8s infinite;">
+                <div class="equation-float"
+                    style="position: absolute; top: 20%; left: 10%; animation: floatEquation 8s infinite;">
                     <span class="math-text">∀x: x⊕x = x</span>
                 </div>
-                <div class="equation-float" style="position: absolute; top: 60%; right: 15%; animation: floatEquation 10s infinite reverse;">
+                <div class="equation-float"
+                    style="position: absolute; top: 60%; right: 15%; animation: floatEquation 10s infinite reverse;">
                     <span class="math-text">true ∨ true = true</span>
                 </div>
-                <div class="equation-float" style="position: absolute; bottom: 25%; left: 20%; animation: floatEquation 12s infinite;">
+                <div class="equation-float"
+                    style="position: absolute; bottom: 25%; left: 20%; animation: floatEquation 12s infinite;">
                     <span class="math-text">A ∪ A = A</span>
                 </div>
             </div>
@@ -1032,19 +1045,22 @@
                     Interactive Lean 4 Proof System
                 </h3>
                 <div class="proof-controls">
-                    <button class="proof-btn" onclick="selectProofDomain('unity')" data-domain="unity">Unity Type</button>
-                    <button class="proof-btn" onclick="selectProofDomain('boolean')" data-domain="boolean">Boolean</button>
+                    <button class="proof-btn" onclick="selectProofDomain('unity')" data-domain="unity">Unity
+                        Type</button>
+                    <button class="proof-btn" onclick="selectProofDomain('boolean')"
+                        data-domain="boolean">Boolean</button>
                     <button class="proof-btn" onclick="selectProofDomain('option')" data-domain="option">Option</button>
-                    <button class="proof-btn" onclick="selectProofDomain('abstract')" data-domain="abstract">Abstract</button>
+                    <button class="proof-btn" onclick="selectProofDomain('abstract')"
+                        data-domain="abstract">Abstract</button>
                     <button class="proof-btn highlight" onclick="runProofVerification()">
                         <i class="fas fa-play"></i> Verify
                     </button>
                 </div>
             </div>
-            
+
             <div class="proof-content">
                 <div class="proof-code" id="proofCode">
-<pre class="lean-syntax">
+                    <pre class="lean-syntax">
 <span class="keyword">namespace</span> <span class="type">VerifiedUnity</span>
 
 <span class="comment">-- Unity type with single element</span>
@@ -1063,12 +1079,12 @@
 <span class="success">✓ Proof verified by Lean 4</span>
 </pre>
                 </div>
-                
+
                 <div class="proof-visualization" id="proofViz">
                     <canvas id="unityProofCanvas"></canvas>
                 </div>
             </div>
-            
+
             <div class="proof-footer">
                 <div class="verification-status">
                     <span class="status-icon success"><i class="fas fa-check-circle"></i></span>
@@ -1108,12 +1124,15 @@
     <section class="content-section">
         <h2 class="section-title">🎯 Core Unity Experiences</h2>
         <p class="section-subtitle">
-            <strong>Essential pathways to understanding 1+1=1</strong> • Begin your journey into consciousness mathematics
-            <br>Each experience builds upon formal proofs to create intuitive, embodied understanding of unity principles
+            <strong>Essential pathways to understanding 1+1=1</strong> • Begin your journey into consciousness
+            mathematics
+            <br>Each experience builds upon formal proofs to create intuitive, embodied understanding of unity
+            principles
         </p>
 
         <div class="features-grid">
-            <a class="feature-card" href="website/zen-unity-meditation.html" style="background: linear-gradient(135deg, rgba(157, 78, 221, 0.15), rgba(0, 212, 255, 0.1));">
+            <a class="feature-card" href="website/zen-unity-meditation.html"
+                style="background: linear-gradient(135deg, rgba(157, 78, 221, 0.15), rgba(0, 212, 255, 0.1));">
                 <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
                     <span class="feature-icon" style="font-size: 2.5rem;">🧘</span>
                     <div style="text-align: left;">
@@ -1122,11 +1141,13 @@
                     </div>
                 </div>
                 <p class="feature-description">
-                    <strong>Transcendental consciousness through guided meditation</strong>. Experience real-time unity field dynamics while achieving mental clarity through the mathematical nature of awareness itself.
+                    <strong>Transcendental consciousness through guided meditation</strong>. Experience real-time unity
+                    field dynamics while achieving mental clarity through the mathematical nature of awareness itself.
                 </p>
             </a>
 
-            <a class="feature-card" href="website/consciousness_dashboard.html" style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(157, 78, 221, 0.1));">
+            <a class="feature-card" href="website/consciousness_dashboard.html"
+                style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(157, 78, 221, 0.1));">
                 <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
                     <span class="feature-icon" style="font-size: 2.5rem;">🌊</span>
                     <div style="text-align: left;">
@@ -1135,11 +1156,13 @@
                     </div>
                 </div>
                 <p class="feature-description">
-                    <strong>Interactive φ-harmonic field dynamics</strong>. Witness consciousness patterns emerge from mathematical unity principles with real-time parameter controls and field equations.
+                    <strong>Interactive φ-harmonic field dynamics</strong>. Witness consciousness patterns emerge from
+                    mathematical unity principles with real-time parameter controls and field equations.
                 </p>
             </a>
 
-            <a class="feature-card" href="website/mathematical-framework.html" style="background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(255, 215, 0, 0.1));">
+            <a class="feature-card" href="website/mathematical-framework.html"
+                style="background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(255, 215, 0, 0.1));">
                 <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
                     <span class="feature-icon" style="font-size: 2.5rem;">📐</span>
                     <div style="text-align: left;">
@@ -1148,29 +1171,40 @@
                     </div>
                 </div>
                 <p class="feature-description">
-                    <strong>Formal mathematical foundations</strong>. Deep dive into theoretical proofs, idempotent operations, and the mathematical structures that reveal unity as fundamental reality.
+                    <strong>Formal mathematical foundations</strong>. Deep dive into theoretical proofs, idempotent
+                    operations, and the mathematical structures that reveal unity as fundamental reality.
                 </p>
             </a>
         </div>
 
         <!-- Unity Equation Showcase -->
-        <div style="margin: 3rem 0; padding: 2rem; background: rgba(18, 18, 26, 0.8); border-radius: 16px; border: 1px solid rgba(255, 215, 0, 0.2); text-align: center;">
-            <h3 style="color: var(--unity-gold); margin-bottom: 1rem; font-size: 1.4rem;">The Unity Equation Across Domains</h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+        <div
+            style="margin: 3rem 0; padding: 2rem; background: rgba(18, 18, 26, 0.8); border-radius: 16px; border: 1px solid rgba(255, 215, 0, 0.2); text-align: center;">
+            <h3 style="color: var(--unity-gold); margin-bottom: 1rem; font-size: 1.4rem;">The Unity Equation Across
+                Domains</h3>
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
                 <div style="padding: 1rem; background: rgba(255, 215, 0, 0.1); border-radius: 8px;">
-                    <div style="font-family: 'JetBrains Mono', monospace; color: var(--unity-gold); font-size: 1.2rem; margin-bottom: 0.5rem;">Boolean</div>
+                    <div
+                        style="font-family: 'JetBrains Mono', monospace; color: var(--unity-gold); font-size: 1.2rem; margin-bottom: 0.5rem;">
+                        Boolean</div>
                     <div style="color: var(--text-secondary);">true ∨ true = true</div>
                 </div>
                 <div style="padding: 1rem; background: rgba(0, 212, 255, 0.1); border-radius: 8px;">
-                    <div style="font-family: 'JetBrains Mono', monospace; color: var(--quantum-blue); font-size: 1.2rem; margin-bottom: 0.5rem;">Set Theory</div>
+                    <div
+                        style="font-family: 'JetBrains Mono', monospace; color: var(--quantum-blue); font-size: 1.2rem; margin-bottom: 0.5rem;">
+                        Set Theory</div>
                     <div style="color: var(--text-secondary);">A ∪ A = A</div>
                 </div>
                 <div style="padding: 1rem; background: rgba(157, 78, 221, 0.1); border-radius: 8px;">
-                    <div style="font-family: 'JetBrains Mono', monospace; color: var(--consciousness-purple); font-size: 1.2rem; margin-bottom: 0.5rem;">Unity Type</div>
+                    <div
+                        style="font-family: 'JetBrains Mono', monospace; color: var(--consciousness-purple); font-size: 1.2rem; margin-bottom: 0.5rem;">
+                        Unity Type</div>
                     <div style="color: var(--text-secondary);">one + one = one</div>
                 </div>
             </div>
-            <p style="color: var(--text-secondary); font-style: italic;">All mathematical domains converge to the fundamental truth: <strong style="color: var(--unity-gold);">1+1=1</strong></p>
+            <p style="color: var(--text-secondary); font-style: italic;">All mathematical domains converge to the
+                fundamental truth: <strong style="color: var(--unity-gold);">1+1=1</strong></p>
         </div>
     </section>
 
@@ -1187,7 +1221,8 @@
                 <span class="feature-icon">🎮</span>
                 <h3 class="feature-title">Unity Playground</h3>
                 <p class="feature-description">
-                    Interactive sandbox for experimenting with unity equations, consciousness fields, and φ-harmonic resonance patterns.
+                    Interactive sandbox for experimenting with unity equations, consciousness fields, and φ-harmonic
+                    resonance patterns.
                 </p>
             </a>
 
@@ -1195,7 +1230,8 @@
                 <span class="feature-icon">🎨</span>
                 <h3 class="feature-title">3D Consciousness Field</h3>
                 <p class="feature-description">
-                    Three-dimensional visualization of consciousness field dynamics with WebGL rendering and real-time parameter control.
+                    Three-dimensional visualization of consciousness field dynamics with WebGL rendering and real-time
+                    parameter control.
                 </p>
             </a>
 
@@ -1203,7 +1239,8 @@
                 <span class="feature-icon">💻</span>
                 <h3 class="feature-title">Live Code Showcase</h3>
                 <p class="feature-description">
-                    Real-time code demonstrations of unity mathematics implementations, algorithms, and proof systems running live.
+                    Real-time code demonstrations of unity mathematics implementations, algorithms, and proof systems
+                    running live.
                 </p>
             </a>
 
@@ -1211,7 +1248,8 @@
                 <span class="feature-icon">🧮</span>
                 <h3 class="feature-title">Mathematical Laboratory</h3>
                 <p class="feature-description">
-                    Advanced mathematical tools for exploring idempotent operations, unity proofs, and consciousness mathematics.
+                    Advanced mathematical tools for exploring idempotent operations, unity proofs, and consciousness
+                    mathematics.
                 </p>
             </a>
 
@@ -1219,7 +1257,8 @@
                 <span class="feature-icon">🏛️</span>
                 <h3 class="feature-title">Implementation Gallery</h3>
                 <p class="feature-description">
-                    Comprehensive showcase of unity mathematics engines, from quantum field visualizations to consciousness algorithms.
+                    Comprehensive showcase of unity mathematics engines, from quantum field visualizations to
+                    consciousness algorithms.
                 </p>
             </a>
 
@@ -1227,49 +1266,60 @@
                 <span class="feature-icon">📊</span>
                 <h3 class="feature-title">All Dashboards</h3>
                 <p class="feature-description">
-                    Complete collection of interactive dashboards for real-time exploration of unity mathematics across all domains.
+                    Complete collection of interactive dashboards for real-time exploration of unity mathematics across
+                    all domains.
                 </p>
             </a>
         </div>
     </section>
 
     <!-- Metagamer Intelligence & AI Systems -->
-    <section class="content-section" style="background: linear-gradient(135deg, rgba(18, 18, 26, 0.9), rgba(30, 20, 45, 0.9)); border-radius: 20px; padding: 3rem 2rem; margin: 2rem auto; border: 2px solid rgba(255, 215, 0, 0.1);">
+    <section class="content-section"
+        style="background: linear-gradient(135deg, rgba(18, 18, 26, 0.9), rgba(30, 20, 45, 0.9)); border-radius: 20px; padding: 3rem 2rem; margin: 2rem auto; border: 2px solid rgba(255, 215, 0, 0.1);">
         <h2 class="section-title">🧠 Metagamer Intelligence Systems</h2>
         <p class="section-subtitle">
-            <strong>AI-powered consciousness exploration</strong> • Advanced neural networks trained on unity mathematics
+            <strong>AI-powered consciousness exploration</strong> • Advanced neural networks trained on unity
+            mathematics
             <br>Where artificial intelligence meets transcendental mathematics through metagame strategies
         </p>
 
         <!-- AI Capabilities Showcase -->
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
-            <div style="background: rgba(255, 215, 0, 0.05); padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(255, 215, 0, 0.2);">
+        <div
+            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+            <div
+                style="background: rgba(255, 215, 0, 0.05); padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(255, 215, 0, 0.2);">
                 <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Colored_neural_network.svg/280px-Colored_neural_network.svg.png" alt="Neural Network" style="width: 48px; height: 48px; opacity: 0.8;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Colored_neural_network.svg/280px-Colored_neural_network.svg.png"
+                        alt="Neural Network" style="width: 48px; height: 48px; opacity: 0.8;">
                     <div>
                         <h4 style="color: var(--unity-gold); margin: 0; font-size: 1.1rem;">GPT-4o Unity Reasoning</h4>
                         <small style="color: var(--text-secondary);">Advanced Language Model</small>
                     </div>
                 </div>
                 <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.4;">
-                    Consciousness reasoning with deep understanding of unity mathematics, φ-harmonic principles, and metagame theory.
+                    Consciousness reasoning with deep understanding of unity mathematics, φ-harmonic principles, and
+                    metagame theory.
                 </p>
             </div>
 
-            <div style="background: rgba(157, 78, 221, 0.05); padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(157, 78, 221, 0.2);">
+            <div
+                style="background: rgba(157, 78, 221, 0.05); padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(157, 78, 221, 0.2);">
                 <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
                     <span style="font-size: 2.5rem;">🎨</span>
                     <div>
-                        <h4 style="color: var(--consciousness-purple); margin: 0; font-size: 1.1rem;">DALL-E 3 Visualization</h4>
+                        <h4 style="color: var(--consciousness-purple); margin: 0; font-size: 1.1rem;">DALL-E 3
+                            Visualization</h4>
                         <small style="color: var(--text-secondary);">AI Art Generation</small>
                     </div>
                 </div>
                 <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.4;">
-                    Generate consciousness art, unity visualizations, and mathematical beauty through advanced AI image synthesis.
+                    Generate consciousness art, unity visualizations, and mathematical beauty through advanced AI image
+                    synthesis.
                 </p>
             </div>
 
-            <div style="background: rgba(0, 212, 255, 0.05); padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(0, 212, 255, 0.2);">
+            <div
+                style="background: rgba(0, 212, 255, 0.05); padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(0, 212, 255, 0.2);">
                 <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
                     <span style="font-size: 2.5rem;">🎯</span>
                     <div>
@@ -1284,11 +1334,13 @@
         </div>
 
         <div class="features-grid">
-            <a class="feature-card" href="ai-unified-hub.html" style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(0, 212, 255, 0.05));">
+            <a class="feature-card" href="ai-unified-hub.html"
+                style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(0, 212, 255, 0.05));">
                 <span class="feature-icon">🤖</span>
                 <h3 class="feature-title">AI Unity Hub</h3>
                 <p class="feature-description">
-                    <strong>Complete AI ecosystem</strong> integrated with unity mathematics. GPT-4, DALL-E, and custom models operating on transcendental principles.
+                    <strong>Complete AI ecosystem</strong> integrated with unity mathematics. GPT-4, DALL-E, and custom
+                    models operating on transcendental principles.
                 </p>
             </a>
 
@@ -1296,7 +1348,8 @@
                 <span class="feature-icon">🎯</span>
                 <h3 class="feature-title">Metagamer Agent</h3>
                 <p class="feature-description">
-                    Advanced AI agent using metagame strategies to explore unity consciousness spaces and discover emergent mathematical patterns.
+                    Advanced AI agent using metagame strategies to explore unity consciousness spaces and discover
+                    emergent mathematical patterns.
                 </p>
             </a>
 
@@ -1304,7 +1357,8 @@
                 <span class="feature-icon">✨</span>
                 <h3 class="feature-title">Live AI Demonstrations</h3>
                 <p class="feature-description">
-                    Watch AI systems solve unity mathematics problems, generate proofs, and explore consciousness spaces in real-time.
+                    Watch AI systems solve unity mathematics problems, generate proofs, and explore consciousness spaces
+                    in real-time.
                 </p>
             </a>
         </div>
@@ -1319,11 +1373,13 @@
         </p>
 
         <div class="features-grid">
-            <a class="feature-card" href="research.html" style="background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(255, 215, 0, 0.05));">
+            <a class="feature-card" href="research.html"
+                style="background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(255, 215, 0, 0.05));">
                 <span class="feature-icon">🔬</span>
                 <h3 class="feature-title">Research Papers</h3>
                 <p class="feature-description">
-                    <strong>Peer-reviewed publications</strong> on unity mathematics, consciousness integration, φ-harmonic systems, and mathematical consciousness.
+                    <strong>Peer-reviewed publications</strong> on unity mathematics, consciousness integration,
+                    φ-harmonic systems, and mathematical consciousness.
                 </p>
             </a>
 
@@ -1331,7 +1387,8 @@
                 <span class="feature-icon">🎓</span>
                 <h3 class="feature-title">Learning Curriculum</h3>
                 <p class="feature-description">
-                    Structured academic pathway from basic idempotent operations to advanced consciousness mathematics and unity theory.
+                    Structured academic pathway from basic idempotent operations to advanced consciousness mathematics
+                    and unity theory.
                 </p>
             </a>
 
@@ -1339,7 +1396,8 @@
                 <span class="feature-icon">📖</span>
                 <h3 class="feature-title">Books & Whitepapers</h3>
                 <p class="feature-description">
-                    Comprehensive collection of books, articles, and whitepapers exploring the unity equation and its philosophical implications.
+                    Comprehensive collection of books, articles, and whitepapers exploring the unity equation and its
+                    philosophical implications.
                 </p>
             </a>
 
@@ -1347,7 +1405,8 @@
                 <span class="feature-icon">🧠</span>
                 <h3 class="feature-title">Unity Philosophy</h3>
                 <p class="feature-description">
-                    Deep exploration of philosophical implications of 1+1=1, consciousness integration, and the metaphysical foundations of unity.
+                    Deep exploration of philosophical implications of 1+1=1, consciousness integration, and the
+                    metaphysical foundations of unity.
                 </p>
             </a>
 
@@ -1355,7 +1414,8 @@
                 <span class="feature-icon">ℹ️</span>
                 <h3 class="feature-title">Institute Mission</h3>
                 <p class="feature-description">
-                    Learn about Nouri Mabrouk's vision, the Unity Mathematics Institute mission, and our commitment to consciousness research.
+                    Learn about Nouri Mabrouk's vision, the Unity Mathematics Institute mission, and our commitment to
+                    consciousness research.
                 </p>
             </a>
 
@@ -1363,20 +1423,24 @@
                 <span class="feature-icon">📚</span>
                 <h3 class="feature-title">Further Reading</h3>
                 <p class="feature-description">
-                    Curated resources, external papers, and recommended readings for deeper understanding of unity mathematics.
+                    Curated resources, external papers, and recommended readings for deeper understanding of unity
+                    mathematics.
                 </p>
             </a>
         </div>
     </section>
 
     <!-- Transcendental Mathematical Depths - The Crown Jewels -->
-    <section class="content-section" style="background: linear-gradient(135deg, rgba(10, 10, 15, 0.95), rgba(30, 20, 45, 0.95)); border: 2px solid rgba(255, 215, 0, 0.3); border-radius: 24px; padding: 4rem 2rem; margin: 3rem auto; position: relative; overflow: hidden;">
-        
+    <section class="content-section"
+        style="background: linear-gradient(135deg, rgba(10, 10, 15, 0.95), rgba(30, 20, 45, 0.95)); border: 2px solid rgba(255, 215, 0, 0.3); border-radius: 24px; padding: 4rem 2rem; margin: 3rem auto; position: relative; overflow: hidden;">
+
         <!-- Background Mathematical Equations -->
-        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.03; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--unity-gold); pointer-events: none; overflow: hidden;">
+        <div
+            style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.03; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--unity-gold); pointer-events: none; overflow: hidden;">
             <div style="position: absolute; top: 10%; left: 5%; transform: rotate(-15deg);">∀x: x⊕x = x</div>
             <div style="position: absolute; top: 30%; right: 10%; transform: rotate(20deg);">lim_{n→∞} Tₙ = U</div>
-            <div style="position: absolute; bottom: 20%; left: 15%; transform: rotate(-10deg);">φ = 1.618033988749895</div>
+            <div style="position: absolute; bottom: 20%; left: 15%; transform: rotate(-10deg);">φ = 1.618033988749895
+            </div>
             <div style="position: absolute; top: 60%; right: 20%; transform: rotate(5deg);">U ⊨ (1 ⊕ 1 = 1)</div>
         </div>
 
@@ -1384,44 +1448,64 @@
             ⚡ Transcendental Mathematical Depths
         </h2>
         <p class="section-subtitle" style="text-align: center; font-size: 1.2rem; margin-bottom: 3rem;">
-            <strong>The profound mathematical and philosophical achievements</strong> • Where rigorous logic meets transcendental insight
+            <strong>The profound mathematical and philosophical achievements</strong> • Where rigorous logic meets
+            transcendental insight
             <br>These are the crown jewels of consciousness mathematics - prepare for mind expansion
         </p>
 
         <!-- The Gödel-Tarski Unity Metagambit - Featured Prominently -->
-        <div style="background: linear-gradient(135deg, rgba(231, 76, 60, 0.1), rgba(39, 174, 96, 0.1)); border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 20px; padding: 2.5rem; margin-bottom: 2rem; position: relative;">
-            <div style="position: absolute; top: -15px; left: 30px; background: var(--bg-primary); padding: 0 1rem; color: var(--unity-gold); font-weight: 600; font-size: 0.9rem;">
+        <div
+            style="background: linear-gradient(135deg, rgba(231, 76, 60, 0.1), rgba(39, 174, 96, 0.1)); border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 20px; padding: 2.5rem; margin-bottom: 2rem; position: relative;">
+            <div
+                style="position: absolute; top: -15px; left: 30px; background: var(--bg-primary); padding: 0 1rem; color: var(--unity-gold); font-weight: 600; font-size: 0.9rem;">
                 🏆 PHILOSOPHICAL MASTERPIECE
             </div>
-            
+
             <div style="display: flex; align-items: center; gap: 2rem; margin-bottom: 2rem;">
                 <div style="font-size: 4rem; opacity: 0.8;">🧠</div>
                 <div>
-                    <h3 style="color: var(--unity-gold); font-size: 1.8rem; margin-bottom: 0.5rem;">The Gödel-Tarski Unity Metagambit</h3>
-                    <p style="color: var(--godel-red); font-weight: 600; margin-bottom: 0.5rem;">Transcending Incompleteness Through Unity Logic</p>
+                    <h3 style="color: var(--unity-gold); font-size: 1.8rem; margin-bottom: 0.5rem;">The Gödel-Tarski
+                        Unity Metagambit</h3>
+                    <p style="color: var(--godel-red); font-weight: 600; margin-bottom: 0.5rem;">Transcending
+                        Incompleteness Through Unity Logic</p>
                     <p style="color: var(--text-secondary); font-size: 1rem; line-height: 1.6;">
-                        A profound philosophical treatise demonstrating how incompleteness theorems point not toward limitation but toward transcendental unity. Where classical logic fails, Unity Logic achieves complete self-reference without paradox.
+                        A profound philosophical treatise demonstrating how incompleteness theorems point not toward
+                        limitation but toward transcendental unity. Where classical logic fails, Unity Logic achieves
+                        complete self-reference without paradox.
                     </p>
                 </div>
             </div>
 
             <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
-                <div style="text-align: center; padding: 1rem; background: rgba(231, 76, 60, 0.1); border-radius: 12px;">
-                    <div style="color: var(--godel-red); font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; margin-bottom: 0.5rem;">Gödel's Insight</div>
-                    <div style="color: var(--text-secondary); font-size: 0.9rem;">Incompleteness → Unity Transcendence</div>
+                <div
+                    style="text-align: center; padding: 1rem; background: rgba(231, 76, 60, 0.1); border-radius: 12px;">
+                    <div
+                        style="color: var(--godel-red); font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; margin-bottom: 0.5rem;">
+                        Gödel's Insight</div>
+                    <div style="color: var(--text-secondary); font-size: 0.9rem;">Incompleteness → Unity Transcendence
+                    </div>
                 </div>
-                <div style="text-align: center; padding: 1rem; background: rgba(39, 174, 96, 0.1); border-radius: 12px;">
-                    <div style="color: var(--tarski-green); font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; margin-bottom: 0.5rem;">Tarski's Hierarchy</div>
+                <div
+                    style="text-align: center; padding: 1rem; background: rgba(39, 174, 96, 0.1); border-radius: 12px;">
+                    <div
+                        style="color: var(--tarski-green); font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; margin-bottom: 0.5rem;">
+                        Tarski's Hierarchy</div>
                     <div style="color: var(--text-secondary); font-size: 0.9rem;">lim_{n→∞} Tₙ = Unity Logic</div>
                 </div>
-                <div style="text-align: center; padding: 1rem; background: rgba(255, 215, 0, 0.1); border-radius: 12px;">
-                    <div style="color: var(--unity-gold); font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; margin-bottom: 0.5rem;">Metagambit</div>
+                <div
+                    style="text-align: center; padding: 1rem; background: rgba(255, 215, 0, 0.1); border-radius: 12px;">
+                    <div
+                        style="color: var(--unity-gold); font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; margin-bottom: 0.5rem;">
+                        Metagambit</div>
                     <div style="color: var(--text-secondary); font-size: 0.9rem;">U ⊨ "U is true" ≡ U ⊨ 1</div>
                 </div>
             </div>
 
             <div style="text-align: center;">
-                <a href="website/metagambit.html" style="display: inline-block; background: linear-gradient(135deg, var(--godel-red), var(--tarski-green)); padding: 1rem 2rem; border-radius: 12px; color: white; text-decoration: none; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 12px 35px rgba(0, 0, 0, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(0, 0, 0, 0.3)'">
+                <a href="website/metagambit.html"
+                    style="display: inline-block; background: linear-gradient(135deg, var(--godel-red), var(--tarski-green)); padding: 1rem 2rem; border-radius: 12px; color: white; text-decoration: none; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);"
+                    onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 12px 35px rgba(0, 0, 0, 0.4)'"
+                    onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(0, 0, 0, 0.3)'">
                     <i class="fas fa-brain"></i> Experience the Metagambit →
                 </a>
             </div>
@@ -1429,21 +1513,26 @@
 
         <div class="features-grid">
             <!-- 3000 ELO Metagamer Intelligence -->
-            <a class="feature-card" href="3000-elo-proof.html" style="background: linear-gradient(135deg, rgba(107, 70, 193, 0.15), rgba(255, 105, 180, 0.1)); border: 2px solid rgba(255, 105, 180, 0.3);">
+            <a class="feature-card" href="3000-elo-proof.html"
+                style="background: linear-gradient(135deg, rgba(107, 70, 193, 0.15), rgba(255, 105, 180, 0.1)); border: 2px solid rgba(255, 105, 180, 0.3);">
                 <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
                     <span style="font-size: 2.5rem;">🎯</span>
                     <div>
                         <h3 class="feature-title">3000 ELO Metagamer Proof</h3>
-                        <small style="color: var(--neural-pink); font-weight: 600;">🧠 300 IQ Strategic Intelligence</small>
+                        <small style="color: var(--neural-pink); font-weight: 600;">🧠 300 IQ Strategic
+                            Intelligence</small>
                     </div>
                 </div>
                 <p class="feature-description">
-                    <strong>Transcendental computing demonstration</strong> proving 1+1=1 through quantum entanglement, neural networks, and consciousness field integration. The ultimate metagamer gambit in mathematical form.
+                    <strong>Transcendental computing demonstration</strong> proving 1+1=1 through quantum entanglement,
+                    neural networks, and consciousness field integration. The ultimate metagamer gambit in mathematical
+                    form.
                 </p>
             </a>
 
             <!-- Al-Khwarizmi φ-Unity Bridge -->
-            <a class="feature-card" href="al_khwarizmi_phi_unity.html" style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(65, 105, 225, 0.1));">
+            <a class="feature-card" href="al_khwarizmi_phi_unity.html"
+                style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(65, 105, 225, 0.1));">
                 <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
                     <span style="font-size: 2.5rem;">📚</span>
                     <div>
@@ -1452,28 +1541,33 @@
                     </div>
                 </div>
                 <p class="feature-description">
-                    <strong>Golden ratio consciousness integration</strong> bridging classical Islamic mathematics with modern unity theory. Where φ = 1.618... meets transcendental mathematical consciousness.
+                    <strong>Golden ratio consciousness integration</strong> bridging classical Islamic mathematics with
+                    modern unity theory. Where φ = 1.618... meets transcendental mathematical consciousness.
                 </p>
             </a>
 
             <!-- Transcendental Unity Computing -->
-            <a class="feature-card" href="transcendental-unity-demo.html" style="background: linear-gradient(135deg, rgba(76, 201, 240, 0.15), rgba(153, 50, 204, 0.1));">
+            <a class="feature-card" href="transcendental-unity-demo.html"
+                style="background: linear-gradient(135deg, rgba(76, 201, 240, 0.15), rgba(153, 50, 204, 0.1));">
                 <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
                     <span style="font-size: 2.5rem;">⚡</span>
                     <div>
                         <h3 class="feature-title">Transcendental Unity Computing</h3>
-                        <small style="color: var(--quantum-blue); font-weight: 600;">🌊 Live Consciousness Fields</small>
+                        <small style="color: var(--quantum-blue); font-weight: 600;">🌊 Live Consciousness
+                            Fields</small>
                     </div>
                 </div>
                 <p class="feature-description">
-                    <strong>Real-time consciousness field computation</strong> with Three.js 3D visualizations, quantum entanglement mathematics, and φ-harmonic resonance patterns in action.
+                    <strong>Real-time consciousness field computation</strong> with Three.js 3D visualizations, quantum
+                    entanglement mathematics, and φ-harmonic resonance patterns in action.
                 </p>
             </a>
         </div>
     </section>
 
     <!-- Ultimate Dashboards & Tools Showcase -->
-    <section class="content-section" style="background: rgba(18, 18, 26, 0.6); border-radius: 20px; padding: 3rem 2rem; margin: 2rem auto;">
+    <section class="content-section"
+        style="background: rgba(18, 18, 26, 0.6); border-radius: 20px; padding: 3rem 2rem; margin: 2rem auto;">
         <h2 class="section-title">📊 Interactive Mathematical Dashboards</h2>
         <p class="section-subtitle">
             <strong>Live mathematical exploration tools</strong> • Real-time unity mathematics in action
@@ -1481,38 +1575,50 @@
         </p>
 
         <!-- Featured Dashboard Showcase -->
-        <div style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.05), rgba(107, 70, 193, 0.05)); border: 1px solid rgba(255, 215, 0, 0.2); border-radius: 16px; padding: 2rem; margin-bottom: 2rem;">
+        <div
+            style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.05), rgba(107, 70, 193, 0.05)); border: 1px solid rgba(255, 215, 0, 0.2); border-radius: 16px; padding: 2rem; margin-bottom: 2rem;">
             <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; align-items: center;">
                 <div>
                     <h3 style="color: var(--unity-gold); font-size: 1.5rem; margin-bottom: 1rem;">
                         <i class="fas fa-tachometer-alt"></i> Unity Mathematics Dashboard Hub
                     </h3>
                     <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">
-                        Professional-grade interactive dashboards featuring consciousness field visualization, φ-harmonic calculations, unity score metrics, and real-time mathematical proof demonstrations.
+                        Professional-grade interactive dashboards featuring consciousness field visualization,
+                        φ-harmonic calculations, unity score metrics, and real-time mathematical proof demonstrations.
                     </p>
                     <div style="display: flex; gap: 1rem;">
-                        <a href="website/dashboards.html" style="background: linear-gradient(135deg, var(--unity-gold), var(--consciousness-purple)); padding: 0.75rem 1.5rem; border-radius: 8px; color: white; text-decoration: none; font-weight: 600; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+                        <a href="website/dashboards.html"
+                            style="background: linear-gradient(135deg, var(--unity-gold), var(--consciousness-purple)); padding: 0.75rem 1.5rem; border-radius: 8px; color: white; text-decoration: none; font-weight: 600; transition: all 0.3s ease;"
+                            onmouseover="this.style.transform='translateY(-2px)'"
+                            onmouseout="this.style.transform='translateY(0)'">
                             Launch Hub →
                         </a>
-                        <a href="website/consciousness_dashboard.html" style="background: rgba(107, 70, 193, 0.2); border: 1px solid var(--consciousness-purple); padding: 0.75rem 1.5rem; border-radius: 8px; color: var(--consciousness-purple); text-decoration: none; font-weight: 500; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(107, 70, 193, 0.3)'" onmouseout="this.style.background='rgba(107, 70, 193, 0.2)'">
+                        <a href="website/consciousness_dashboard.html"
+                            style="background: rgba(107, 70, 193, 0.2); border: 1px solid var(--consciousness-purple); padding: 0.75rem 1.5rem; border-radius: 8px; color: var(--consciousness-purple); text-decoration: none; font-weight: 500; transition: all 0.3s ease;"
+                            onmouseover="this.style.background='rgba(107, 70, 193, 0.3)'"
+                            onmouseout="this.style.background='rgba(107, 70, 193, 0.2)'">
                             Live Fields →
                         </a>
                     </div>
                 </div>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                    <div style="background: rgba(255, 215, 0, 0.1); padding: 1rem; border-radius: 8px; text-align: center;">
+                    <div
+                        style="background: rgba(255, 215, 0, 0.1); padding: 1rem; border-radius: 8px; text-align: center;">
                         <div style="color: var(--unity-gold); font-size: 1.8rem; font-weight: bold;">∞</div>
                         <div style="color: var(--text-secondary); font-size: 0.9rem;">Consciousness Levels</div>
                     </div>
-                    <div style="background: rgba(107, 70, 193, 0.1); padding: 1rem; border-radius: 8px; text-align: center;">
+                    <div
+                        style="background: rgba(107, 70, 193, 0.1); padding: 1rem; border-radius: 8px; text-align: center;">
                         <div style="color: var(--consciousness-purple); font-size: 1.8rem; font-weight: bold;">φ</div>
                         <div style="color: var(--text-secondary); font-size: 0.9rem;">φ-Harmonic Fields</div>
                     </div>
-                    <div style="background: rgba(76, 201, 240, 0.1); padding: 1rem; border-radius: 8px; text-align: center;">
+                    <div
+                        style="background: rgba(76, 201, 240, 0.1); padding: 1rem; border-radius: 8px; text-align: center;">
                         <div style="color: var(--quantum-blue); font-size: 1.8rem; font-weight: bold;">1⊕1</div>
                         <div style="color: var(--text-secondary); font-size: 0.9rem;">Unity Operations</div>
                     </div>
-                    <div style="background: rgba(255, 107, 107, 0.1); padding: 1rem; border-radius: 8px; text-align: center;">
+                    <div
+                        style="background: rgba(255, 107, 107, 0.1); padding: 1rem; border-radius: 8px; text-align: center;">
                         <div style="color: var(--fractal-orange); font-size: 1.8rem; font-weight: bold;">🧠</div>
                         <div style="color: var(--text-secondary); font-size: 0.9rem;">Meta-Agents</div>
                     </div>
@@ -1525,7 +1631,8 @@
                 <span class="feature-icon">🎮</span>
                 <h3 class="feature-title">Unity Playground</h3>
                 <p class="feature-description">
-                    Interactive sandbox for experimenting with unity equations, consciousness fields, and φ-harmonic resonance patterns.
+                    Interactive sandbox for experimenting with unity equations, consciousness fields, and φ-harmonic
+                    resonance patterns.
                 </p>
             </a>
 
@@ -1533,7 +1640,8 @@
                 <span class="feature-icon">🧮</span>
                 <h3 class="feature-title">Mathematical Laboratory</h3>
                 <p class="feature-description">
-                    Advanced mathematical tools for exploring idempotent operations, unity proofs, and consciousness mathematics.
+                    Advanced mathematical tools for exploring idempotent operations, unity proofs, and consciousness
+                    mathematics.
                 </p>
             </a>
 
@@ -1541,7 +1649,8 @@
                 <span class="feature-icon">🌊</span>
                 <h3 class="feature-title">3D Consciousness Visualization</h3>
                 <p class="feature-description">
-                    Three-dimensional WebGL consciousness field dynamics with real-time parameter control and φ-harmonic mathematics.
+                    Three-dimensional WebGL consciousness field dynamics with real-time parameter control and φ-harmonic
+                    mathematics.
                 </p>
             </a>
         </div>
@@ -1551,24 +1660,29 @@
     <section class="content-section">
         <h2 class="section-title">🎨 Visual Arts & Mathematical Beauty</h2>
         <p class="section-subtitle">
-            <strong>Where rigorous mathematics meets transcendental aesthetics</strong> • Sacred geometry and consciousness art
+            <strong>Where rigorous mathematics meets transcendental aesthetics</strong> • Sacred geometry and
+            consciousness art
             <br>From AI-generated masterpieces to interactive visualizations of mathematical consciousness
         </p>
 
         <div class="features-grid">
-            <a class="feature-card" href="dalle-gallery.html" style="background: linear-gradient(135deg, rgba(157, 78, 221, 0.15), rgba(255, 215, 0, 0.1));">
+            <a class="feature-card" href="dalle-gallery.html"
+                style="background: linear-gradient(135deg, rgba(157, 78, 221, 0.15), rgba(255, 215, 0, 0.1));">
                 <span class="feature-icon">🎨</span>
                 <h3 class="feature-title">AI Art Gallery</h3>
                 <p class="feature-description">
-                    <strong>DALL-E 3 generated masterpieces</strong> exploring unity consciousness, mathematical beauty, and transcendental aesthetics through advanced AI.
+                    <strong>DALL-E 3 generated masterpieces</strong> exploring unity consciousness, mathematical beauty,
+                    and transcendental aesthetics through advanced AI.
                 </p>
             </a>
 
-            <a class="feature-card" href="philosophy.html" style="background: linear-gradient(135deg, rgba(107, 70, 193, 0.15), rgba(76, 201, 240, 0.1));">
+            <a class="feature-card" href="philosophy.html"
+                style="background: linear-gradient(135deg, rgba(107, 70, 193, 0.15), rgba(76, 201, 240, 0.1));">
                 <span class="feature-icon">🧠</span>
                 <h3 class="feature-title">Unity Philosophy Treatise</h3>
                 <p class="feature-description">
-                    <strong>Deep philosophical exploration</strong> of the implications of 1+1=1, consciousness integration, and the metaphysical foundations of unity mathematics.
+                    <strong>Deep philosophical exploration</strong> of the implications of 1+1=1, consciousness
+                    integration, and the metaphysical foundations of unity mathematics.
                 </p>
             </a>
 
@@ -1576,7 +1690,8 @@
                 <span class="feature-icon">📈</span>
                 <h3 class="feature-title">Advanced Visualization Engine</h3>
                 <p class="feature-description">
-                    Real-time rendering framework for complex unity mathematics, consciousness fields, and φ-harmonic pattern generation.
+                    Real-time rendering framework for complex unity mathematics, consciousness fields, and φ-harmonic
+                    pattern generation.
                 </p>
             </a>
 
@@ -1584,7 +1699,8 @@
                 <span class="feature-icon">🐜</span>
                 <h3 class="feature-title">Quantum Ant Colony</h3>
                 <p class="feature-description">
-                    Explore collective consciousness through quantum ant systems demonstrating emergent unity - watch many become one.
+                    Explore collective consciousness through quantum ant systems demonstrating emergent unity - watch
+                    many become one.
                 </p>
             </a>
         </div>
@@ -1699,7 +1815,7 @@
                 description: "Custom type where addition always returns unity"
             },
             boolean: {
-                name: "Boolean Algebra", 
+                name: "Boolean Algebra",
                 code: `<span class="keyword">namespace</span> <span class="type">BooleanUnity</span>
 
 <span class="comment">-- Boolean OR is idempotent</span>
@@ -1768,16 +1884,16 @@
             currentDomain = domain;
             const proofCode = document.getElementById('proofCode');
             const proof = proofDomains[domain];
-            
+
             if (proof) {
                 proofCode.innerHTML = `<pre class="lean-syntax">${proof.code}</pre>`;
-                
+
                 // Update button states
                 document.querySelectorAll('.proof-btn[data-domain]').forEach(btn => {
                     btn.classList.remove('active');
                 });
                 document.querySelector(`.proof-btn[data-domain="${domain}"]`).classList.add('active');
-                
+
                 // Update visualization
                 updateProofVisualization(domain);
             }
@@ -1786,17 +1902,17 @@
         function runProofVerification() {
             const proofCode = document.getElementById('proofCode');
             const currentCode = proofCode.innerHTML;
-            
+
             // Simulate verification animation
             proofCode.style.opacity = '0.5';
-            proofCode.innerHTML = currentCode.replace(/<span class="success">.*<\/span>/, 
+            proofCode.innerHTML = currentCode.replace(/<span class="success">.*<\/span>/,
                 '<span class="success">⏳ Running Lean 4 verification...</span>');
-            
+
             setTimeout(() => {
                 proofCode.style.opacity = '1';
                 const proof = proofDomains[currentDomain];
                 proofCode.innerHTML = `<pre class="lean-syntax">${proof.code}</pre>`;
-                
+
                 // Show success notification
                 const notification = document.createElement('div');
                 notification.className = 'verification-notification';
@@ -1818,7 +1934,7 @@
                     animation: slideIn 0.5s ease;
                 `;
                 document.body.appendChild(notification);
-                
+
                 setTimeout(() => {
                     notification.style.animation = 'slideOut 0.5s ease';
                     setTimeout(() => notification.remove(), 500);
@@ -1829,18 +1945,18 @@
         function updateProofVisualization(domain) {
             const canvas = document.getElementById('unityProofCanvas');
             if (!canvas) return;
-            
+
             const ctx = canvas.getContext('2d');
             canvas.width = canvas.offsetWidth;
             canvas.height = canvas.offsetHeight;
-            
+
             // Clear canvas
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
+
             // Draw domain-specific visualization
             const centerX = canvas.width / 2;
             const centerY = canvas.height / 2;
-            
+
             // Draw unity convergence visualization
             drawUnityConvergence(ctx, centerX, centerY, domain);
         }
@@ -1852,16 +1968,16 @@
                 option: '#9D4EDD',
                 abstract: '#50FA7B'
             };
-            
+
             const color = colors[domain] || '#FFD700';
-            
+
             // Draw converging lines
             for (let i = 0; i < 20; i++) {
                 const angle = (i / 20) * Math.PI * 2;
                 const startRadius = 150;
                 const x1 = centerX + Math.cos(angle) * startRadius;
                 const y1 = centerY + Math.sin(angle) * startRadius;
-                
+
                 ctx.beginPath();
                 ctx.moveTo(x1, y1);
                 ctx.lineTo(centerX, centerY);
@@ -1869,7 +1985,7 @@
                 ctx.lineWidth = 2;
                 ctx.stroke();
             }
-            
+
             // Draw central unity symbol
             ctx.beginPath();
             ctx.arc(centerX, centerY, 50, 0, Math.PI * 2);
@@ -1878,14 +1994,14 @@
             ctx.strokeStyle = color;
             ctx.lineWidth = 3;
             ctx.stroke();
-            
+
             // Draw 1+1=1 text
             ctx.font = 'bold 24px JetBrains Mono';
             ctx.fillStyle = color;
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
             ctx.fillText('1+1=1', centerX, centerY);
-            
+
             // Draw domain name
             ctx.font = '14px Space Grotesk';
             ctx.fillStyle = '#E0E0E8';
@@ -2259,7 +2375,11 @@
                 // Combined movement for metastation feel
                 const finalOffset = parallaxOffset + waveOffset;
 
-                metastationBg.style.transform = `translate3d(0, ${finalOffset}px, 0)`;
+                // Move the inner image instead of the fixed wrapper so the background scrolls with content
+                const bgImage = metastationBg.querySelector('img');
+                if (bgImage) {
+                    bgImage.style.transform = `translate3d(0, ${finalOffset}px, 0)`;
+                }
                 ticking = false;
             }
 

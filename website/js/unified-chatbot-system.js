@@ -442,12 +442,14 @@ class UnifiedChatbotSystem {
             /* Chat Header */
             .chat-header {
                 display: grid;
-                grid-template-columns: 1fr auto;
-                grid-template-areas: "info controls";
-                align-items: center;
+                grid-template-columns: 1fr;
+                grid-template-areas:
+                    "info"
+                    "controls";
+                align-items: start;
                 column-gap: 0.75rem;
-                row-gap: .25rem;
-                padding: .9rem 1rem;
+                row-gap: .5rem;
+                padding: .9rem 1rem .7rem;
                 background: rgba(255, 255, 255, 0.02);
                 border-bottom: 1px solid var(--uc-border);
                 flex-shrink: 0;
@@ -554,7 +556,7 @@ class UnifiedChatbotSystem {
                 50% { opacity: 0.6; transform: scale(1.2); }
             }
 
-            .chat-header-controls { grid-area: controls; display: inline-flex; align-items: center; gap: 0.5rem; }
+            .chat-header-controls { grid-area: controls; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; justify-content: flex-start; }
             .chat-header .model-selector { order: 1; }
             .chat-header .grounded-btn { order: 2; }
             .chat-header .clear-btn { order: 3; }

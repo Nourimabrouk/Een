@@ -36,6 +36,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
 
     <!-- Main Metagamer Energy Stylesheet -->
     <link rel="stylesheet" href="css/style.css">
@@ -44,6 +45,7 @@
         /* Meta-Optimal Design System */
         :root {
             --phi: 1.618033988749895;
+            /* Core palette */
             --primary-color: #0a0a0a;
             --secondary-color: #1a1a1a;
             --accent-color: #2d2d2d;
@@ -61,45 +63,33 @@
             --bg-secondary: #1a1a1a;
             --bg-tertiary: #2d2d2d;
             --border-color: rgba(255, 215, 0, 0.2);
+            --border-light: rgba(255, 255, 255, 0.12);
+            --border-medium: rgba(255, 255, 255, 0.25);
+            --accent-bright: #FFD700;
+            /* Aliases used in styles */
+            --primary: #ffffff;
+            --secondary: #cccccc;
+            --accent: #FFD700;
+            /* Shadows */
             --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
             --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.5);
             --shadow-glow: 0 0 30px rgba(255, 215, 0, 0.3);
+            --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            /* Radii */
             --radius: 12px;
             --radius-lg: 20px;
             --radius-xl: 30px;
+            /* Transitions */
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             --transition-smooth: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
-            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            --font-serif: 'Crimson Text', Georgia, serif;
-            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
-        }
-
-        /* Academic typography and spacing */
-        --font-serif: 'Crimson Text',
-        'Times New Roman',
-        serif;
-        --font-sans: 'Inter',
-        -apple-system,
-        BlinkMacSystemFont,
-        'Segoe UI',
-        sans-serif;
-        --font-mono: 'JetBrains Mono',
-        'SF Mono',
-        'Monaco',
-        monospace;
-
-        /* Spacing and layout */
-        --max-width: 800px;
-        --section-spacing: 3rem;
-        --paragraph-spacing: 1.5rem;
-
-        /* Shadows and effects */
-        --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-        --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-
-        /* Transitions */
-        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            /* Type */
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-serif: 'Crimson Text', Georgia, 'Times New Roman', serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', 'Monaco', monospace;
+            /* Layout */
+            --max-width: 880px;
+            --section-spacing: 3rem;
+            --paragraph-spacing: 1.5rem;
         }
 
         * {
@@ -318,6 +308,10 @@
             padding: 1.5rem;
             margin: 2rem 0;
             font-family: var(--font-sans);
+            position: sticky;
+            top: 100px;
+            max-height: 70vh;
+            overflow: auto;
         }
 
         .toc h3 {
@@ -458,10 +452,11 @@
                 page-break-after: avoid;
             }
 
+            /* Avoid bad breaks where possible (fallback-safe) */
             p,
             blockquote {
-                orphans: 3;
-                widows: 3;
+                break-inside: avoid;
+                page-break-inside: avoid;
             }
 
             .abstract,
@@ -643,6 +638,15 @@
             }
         }
     </style>
+    <style>
+        .inline-note {
+            background: #f1f5f9;
+            padding: 1rem;
+            border-radius: 5px;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+        }
+    </style>
     <!-- Unified Navigation System - Meta-Optimal One-Line Solution -->
     <script src="js/nav-template-applier.js" defer></script>
 
@@ -820,8 +824,7 @@
                         space. This evolutionary pressure drives the emergence of unity mathematics
                         as a natural consequence of consciousness evolution.
                     </p>
-                    <div
-                        style="background: #f1f5f9; padding: 1rem; border-radius: 5px; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem;">
+                    <div class="inline-note">
                         Fitness(Unity) > Fitness(Traditional) in consciousness landscape
                     </div>
                 </div>
@@ -913,8 +916,16 @@
                     throw new Error('Could not load markdown content from any path');
                 }
 
-                // Convert markdown to HTML using simple conversion
-                const htmlContent = convertMarkdownToHTML(markdownContent);
+                // Configure and render markdown using marked
+                if (window.marked) {
+                    marked.setOptions({
+                        gfm: true,
+                        breaks: false,
+                        headerIds: true,
+                        mangle: false
+                    });
+                }
+                const htmlContent = window.marked ? marked.parse(markdownContent) : convertMarkdownToHTML(markdownContent);
 
                 // Insert content
                 const contentDiv = document.getElementById('philosophyContent');
@@ -934,16 +945,39 @@
                 if (window.renderMathInElement) {
                     renderMathInElement(document.body, {
                         delimiters: [
-                            { left: '$', right: '$', display: true },
                             { left: '$$', right: '$$', display: true },
+                            { left: '$', right: '$', display: false },
                             { left: '\\(', right: '\\)', display: false },
                             { left: '\\[', right: '\\]', display: true }
                         ]
                     });
                 }
 
-                // Add table of contents functionality
+                // Add table of contents functionality and anchor links
                 addTableOfContents();
+                addAnchorLinks();
+
+                // Initialize Mermaid after content injection
+                if (window.mermaid) {
+                    try {
+                        mermaid.initialize({ startOnLoad: false, securityLevel: 'loose', theme: 'dark' });
+                        // Transform marked code blocks into mermaid containers if needed
+                        const mermaidCodes = contentDiv.querySelectorAll('code.language-mermaid');
+                        mermaidCodes.forEach(code => {
+                            const host = document.createElement('div');
+                            host.className = 'mermaid';
+                            host.textContent = code.textContent;
+                            const pre = code.closest('pre');
+                            if (pre) pre.replaceWith(host); else code.replaceWith(host);
+                        });
+                        // Also convert fenced blocks captured by fallback converter
+                        const rawMermaids = contentDiv.querySelectorAll('div.mermaid');
+                        rawMermaids.forEach(div => { div.textContent = div.textContent; });
+                        mermaid.run({ querySelector: '.mermaid' });
+                    } catch (e) {
+                        console.warn('Mermaid initialization error:', e);
+                    }
+                }
 
                 // Add smooth scrolling
                 addSmoothScrolling();
@@ -968,9 +1002,11 @@
             }
         });
 
-        // Simple markdown to HTML converter
+        // Simple markdown to HTML converter (fallback if marked is unavailable)
         function convertMarkdownToHTML(markdown) {
             return markdown
+                // Mermaid blocks to containers
+                .replace(/```mermaid\s*([\s\S]*?)```/gim, '<div class="mermaid">$1</div>')
                 .replace(/^### (.*$)/gim, '<h3>$1</h3>')
                 .replace(/^## (.*$)/gim, '<h2>$1</h2>')
                 .replace(/^# (.*$)/gim, '<h1>$1</h1>')
@@ -1039,6 +1075,26 @@
                         targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }
                 });
+            });
+        }
+
+        // Add small permalink anchors to headings
+        function addAnchorLinks() {
+            const headings = document.querySelectorAll('h1, h2, h3');
+            headings.forEach(h => {
+                if (!h.id) return;
+                const a = document.createElement('a');
+                a.href = `#${h.id}`;
+                a.textContent = '¶';
+                a.setAttribute('aria-label', 'Permalink');
+                a.style.marginLeft = '0.5rem';
+                a.style.textDecoration = 'none';
+                a.style.color = 'var(--text-secondary)';
+                a.style.opacity = '0.0';
+                a.style.transition = 'opacity 0.2s ease';
+                h.appendChild(a);
+                h.addEventListener('mouseenter', () => a.style.opacity = '1.0');
+                h.addEventListener('mouseleave', () => a.style.opacity = '0.0');
             });
         }
     </script>

@@ -13,16 +13,26 @@
     <link rel="stylesheet" href="css/unified-styles.css" />
     <script src="js/meta-optimal-navigation-complete.js" defer></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
     <style>
         :root {
             --bg: #0b0b0c;
             --surface: #131316;
+            --surface-2: #0e0e12;
             --text: #fff;
             --muted: #9aa0a6;
             --gold: #FFD700;
             --cyan: #00D4FF;
             --violet: #9d4edd;
+            --phi: #FF7F50;
             --radius: 16px;
+            --border: rgba(255, 255, 255, 0.10);
+        }
+
+        html,
+        body {
+            height: 100%;
         }
 
         body {
@@ -32,32 +42,80 @@
             margin: 0;
         }
 
+        /* Subtle φ-harmonic background */
+        #phi-bg {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.25;
+        }
+
         .container {
-            max-width: 1280px;
+            position: relative;
+            z-index: 1;
+            max-width: 1360px;
             margin: 0 auto;
-            padding: 112px 24px 48px;
+            padding: 112px 24px 64px;
         }
 
         .hero {
             text-align: center;
-            margin-bottom: 16px;
+            margin: 0 0 20px;
         }
 
         .hero h1 {
             font-weight: 800;
             letter-spacing: -0.02em;
-            font-size: clamp(2.2rem, 5vw, 3.2rem);
+            font-size: clamp(2.4rem, 5vw, 3.4rem);
             color: var(--gold);
+            margin: 0 0 8px;
         }
 
         .sub {
             color: var(--muted);
+            max-width: 980px;
+            margin: 0 auto;
+        }
+
+        .atlas-tabs {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin: 20px 0 28px;
+            flex-wrap: wrap;
+        }
+
+        .atlas-tab {
+            background: var(--surface);
+            color: var(--text);
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            padding: 10px 14px;
+            cursor: pointer;
+        }
+
+        .atlas-tab.active {
+            background: linear-gradient(135deg, var(--cyan), var(--violet));
+            border: none;
+            font-weight: 700;
         }
 
         .grid {
             display: grid;
             gap: 16px;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            align-items: stretch;
+        }
+
+        .section {
+            margin: 28px 0;
+        }
+
+        .section-title {
+            font-weight: 700;
+            color: var(--cyan);
+            margin: 8px 0 12px;
         }
 
         .card {
@@ -65,11 +123,19 @@
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: var(--radius);
             padding: 16px;
+            -webkit-backdrop-filter: blur(2px);
+            backdrop-filter: blur(2px);
         }
 
         .card h3 {
-            margin: 0 0 6px 0;
+            margin: 0 0 8px 0;
             color: var(--cyan);
+        }
+
+        .card .desc {
+            color: var(--muted);
+            font-size: 14px;
+            margin: 4px 0 10px;
         }
 
         .pill {
@@ -87,17 +153,23 @@
             height: 420px;
             border-radius: 12px;
             border: 1px solid rgba(255, 255, 255, 0.08);
+            background: var(--surface-2);
+        }
+
+        .viz.tall {
+            height: 520px;
         }
 
         .controls {
             display: flex;
             gap: 8px;
             flex-wrap: wrap;
-            margin: 6px 0 8px;
+            margin: 6px 0 10px;
         }
 
         .controls input,
-        .controls button {
+        .controls button,
+        .controls select {
             background: var(--surface);
             color: var(--text);
             border: 1px solid rgba(255, 255, 255, 0.12);
@@ -117,124 +189,480 @@
             font-family: "JetBrains Mono", monospace;
             color: var(--gold);
         }
+
+        .links {
+            margin-top: 10px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .links a {
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .toolbar {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            justify-content: flex-end;
+            margin-top: 8px;
+        }
+
+        .toolbar button {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 6px 10px;
+            color: var(--text);
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .toolbar button.primary {
+            background: linear-gradient(135deg, var(--cyan), var(--violet));
+            border: none;
+            font-weight: 700;
+        }
+
+        .a11y {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 8px;
+            color: var(--muted);
+            font-size: 13px;
+        }
     </style>
-    <!-- Unified Navigation System - Meta-Optimal One-Line Solution -->
     <script src="js/nav-template-applier.js" defer></script>
+    <meta name="description"
+        content="A living, interactive atlas of unity mathematics connecting proofs, manifolds, agents, and consciousness fields." />
 </head>
 
 <body>
+    <canvas id="phi-bg" aria-hidden="true"></canvas>
     <div class="container">
-        <div class="hero">
-            <h1>Unity Meta-Atlas</h1>
-            <div class="sub">A living atlas of unity mathematics: synthesis, manifold geometry, metagambit equilibria,
-                and φ-harmonic evolution</div>
+        <div class="hero" role="banner">
+            <h1>Unity Meta‑Atlas</h1>
+            <div class="sub">A living atlas of unity mathematics — synthesis metrics, manifold geometry, metagambit
+                equilibria, and φ‑harmonic evolution with deep links into proofs, demos, and visualizations.</div>
         </div>
 
-        <div class="grid">
-            <div class="card">
-                <h3>Atlas Snapshot</h3>
-                <div class="pill">Synthesis</div>
-                <div class="pill">Manifold</div>
-                <div class="pill">Meta-Gambit</div>
-                <div class="pill">Information</div>
-                <div id="atlasSynth" class="viz"></div>
-            </div>
+        <div class="atlas-tabs" role="tablist" aria-label="Atlas Modes">
+            <button class="atlas-tab active" data-target="#section-synthesis" role="tab"
+                aria-selected="true">Synthesis</button>
+            <button class="atlas-tab" data-target="#section-manifolds" role="tab"
+                aria-selected="false">Manifolds</button>
+            <button class="atlas-tab" data-target="#section-agents" role="tab" aria-selected="false">Agents</button>
+            <button class="atlas-tab" data-target="#section-proofs" role="tab" aria-selected="false">Proofs</button>
+            <button class="atlas-tab" data-target="#section-visuals" role="tab" aria-selected="false">Visuals</button>
+        </div>
 
-            <div class="card">
-                <h3>Unity Manifold Invariants</h3>
-                <div class="controls">
-                    <input id="aDim" type="number" min="2" max="11" value="3" />
-                    <input id="aPhi" type="number" step="0.001" value="1.618" />
-                    <input id="aIdem" type="number" step="0.1" value="1.0" />
-                    <button id="atlasManifoldBtn">Compute</button>
+        <!-- Synthesis Section -->
+        <section id="section-synthesis" class="section" aria-labelledby="synthesis-title">
+            <h2 id="synthesis-title" class="section-title">Synthesis Dashboard</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Atlas Snapshot</h3>
+                    <div class="desc">Composite indicators: synthesis confidence, curvature, information unity, and
+                        meta‑potential.</div>
+                    <div id="atlasSynth" class="viz"></div>
+                    <div class="toolbar">
+                        <button onclick="exportViz('atlasSynth')">Export</button>
+                        <a href="dashboards.html" class="mono">Explore dashboards →</a>
+                    </div>
                 </div>
-                <div id="atlasManifold" class="viz"></div>
-            </div>
 
-            <div class="card">
-                <h3>Recursive Evolution</h3>
-                <div class="controls">
-                    <input id="steps" type="number" min="1" max="100" value="7" />
-                    <input id="phiTarget" type="number" step="0.001" placeholder="φ target (optional)" />
-                    <button id="evolveBtn">Evolve</button>
+                <div class="card">
+                    <h3>Knowledge Graph</h3>
+                    <div class="desc">Force‑directed unity map connecting algebra, category, quantum, information,
+                        agents, and manifolds.</div>
+                    <canvas id="atlasGraph" class="viz" aria-label="Unity knowledge graph" role="img"></canvas>
+                    <div class="toolbar">
+                        <button onclick="exportCanvas('atlasGraph','unity-knowledge-graph')">Export</button>
+                        <a href="unity-mathematics-synthesis.html" class="mono">Unity synthesis →</a>
+                    </div>
                 </div>
-                <div id="atlasEvolve" class="viz"></div>
-            </div>
 
-            <div class="card">
-                <h3>Meta-Gambit Equilibria</h3>
-                <p class="mono" id="atlasGambit">—</p>
+                <div class="card">
+                    <h3>Recursive Evolution</h3>
+                    <div class="controls">
+                        <label>Steps <input id="steps" type="range" min="1" max="100" value="12" /></label>
+                        <input id="phiTarget" type="number" step="0.001" placeholder="φ target (optional)" />
+                        <button id="evolveBtn">Run</button>
+                    </div>
+                    <div id="atlasEvolve" class="viz"></div>
+                    <div class="toolbar">
+                        <button onclick="exportViz('atlasEvolve')">Export</button>
+                        <a href="transcendental-unity-demo.html" class="mono">Reproduce in demo →</a>
+                    </div>
+                </div>
             </div>
+        </section>
+
+        <!-- Manifolds Section -->
+        <section id="section-manifolds" class="section" aria-labelledby="manifolds-title" hidden>
+            <h2 id="manifolds-title" class="section-title">Unity Manifolds</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Unity Manifold Invariants</h3>
+                    <div class="controls">
+                        <label>Dim <input id="aDim" type="number" min="2" max="11" value="3" /></label>
+                        <label>φ <input id="aPhi" type="number" step="0.001" value="1.618" /></label>
+                        <label>Idem <input id="aIdem" type="number" step="0.1" value="1.0" /></label>
+                        <button id="atlasManifoldBtn">Compute</button>
+                    </div>
+                    <div id="atlasManifold" class="viz"></div>
+                    <div class="links">
+                        <a href="mathematical-framework.html">Framework</a>
+                        <a href="enhanced-3d-consciousness-field.html">3D field</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Manifold Explorer (3D)</h3>
+                    <div class="desc">Interactive WebGL projection of higher‑dimensional unity structures with φ‑aligned
+                        coloring.</div>
+                    <div id="manifold3d" class="viz tall" role="img" aria-label="Manifold Explorer"></div>
+                    <div class="toolbar">
+                        <button onclick="exportThree('manifold3d','unity-manifold-3d')">Export</button>
+                        <a href="unity_visualization.html" class="mono">More visualizations →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Agents Section -->
+        <section id="section-agents" class="section" aria-labelledby="agents-title" hidden>
+            <h2 id="agents-title" class="section-title">Agents & Metagambit</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Meta‑Gambit Equilibria</h3>
+                    <div class="desc">Payoff landscape and potential equilibria across strategy pairs; learnable
+                        convergence to unity.</div>
+                    <div id="gambitHeat" class="viz"></div>
+                    <p class="mono" id="atlasGambit">—</p>
+                    <div class="toolbar">
+                        <button onclick="exportViz('gambitHeat')">Export</button>
+                        <a href="metagambit.html" class="mono">Theory →</a>
+                        <a href="ai-agents-ecosystem.html" class="mono">Agents →</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Consciousness Field Mini</h3>
+                    <div class="desc">A compact φ‑harmonic field animation with reduced‑motion aware rendering.</div>
+                    <canvas id="fieldMini" class="viz" role="img" aria-label="Consciousness field"></canvas>
+                    <div class="toolbar">
+                        <button onclick="exportCanvas('fieldMini','consciousness-field-mini')">Export</button>
+                        <a href="consciousness_dashboard.html" class="mono">Open dashboard →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Proofs Section -->
+        <section id="section-proofs" class="section" aria-labelledby="proofs-title" hidden>
+            <h2 id="proofs-title" class="section-title">Proofs & Foundations</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Curated Proofs</h3>
+                    <div class="desc">Direct access to formal and enhanced proofs across multiple domains.</div>
+                    <div class="links">
+                        <a href="unity_proof.html">Unity Proof (1+1=1)</a>
+                        <a href="proofs.html">Proofs & Theorems</a>
+                        <a href="enhanced-mathematical-proofs.html">Enhanced Proofs</a>
+                        <a href="al_khwarizmi_phi_unity.html">Al‑Khwarizmi Unity</a>
+                        <a href="mathematical-framework.html">Mathematical Framework</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Guided Learning</h3>
+                    <div class="desc">A structured path with context and references.</div>
+                    <div class="links">
+                        <a href="philosophy.html">Philosophy</a>
+                        <a href="learning.html">Learning Path</a>
+                        <a href="research.html">Research Hub</a>
+                        <a href="publications.html">Publications</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Visuals Section -->
+        <section id="section-visuals" class="section" aria-labelledby="visuals-title" hidden>
+            <h2 id="visuals-title" class="section-title">Visual Gallery</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Featured Visualizations</h3>
+                    <div class="links">
+                        <a href="gallery.html">Gallery</a>
+                        <a href="enhanced-unity-visualization-system.html">Visualization System</a>
+                        <a href="unity_visualization.html">Unity Visualization</a>
+                        <a href="dalle-gallery.html">DALL‑E Gallery</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="a11y">
+            <label><input type="checkbox" id="reducedMotionToggle" /> Reduce motion</label>
+            <label><input type="checkbox" id="highContrastToggle" /> High contrast</label>
         </div>
     </div>
 
     <script>
+        // API helpers with graceful fallback
         const ALT_API = location.origin.replace(/\/$/, '') + '/unity-meta';
-
         async function apiGet(url) {
-            const res = await fetch(url, { credentials: 'include' });
-            if (!res.ok) throw new Error(await res.text());
+            const res = await fetch(url, { credentials: 'include' }).catch(() => null);
+            if (!res || !res.ok) throw new Error('offline');
             return await res.json();
         }
-
         async function apiPost(url, body) {
-            const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'include', body: JSON.stringify(body) });
-            if (!res.ok) throw new Error(await res.text());
+            const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'include', body: JSON.stringify(body) }).catch(() => null);
+            if (!res || !res.ok) throw new Error('offline');
             return await res.json();
         }
 
+        // URL state helpers
+        const setParam = (k, v) => {
+            const u = new URL(location.href); u.searchParams.set(k, v); history.replaceState({}, '', u);
+        };
+        const getParam = (k, d = null) => new URL(location.href).searchParams.get(k) ?? d;
+
+        // Plotly theme
+        const plotlyLayout = (title = '') => ({ title, paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)', font: { color: '#fff' }, margin: { l: 32, r: 16, t: 40, b: 30 } });
+
+        // Snapshot KPI
         async function loadSnapshot() {
             try {
                 const snap = await apiGet(ALT_API + '/atlas/summary');
-                const conf = snap.synthesis.confidence;
-                const ricci = snap.manifold.ricci_scalar;
-                const mi = snap.information_unity.I_XY;
-                const pot = parseFloat(snap.metagambit.unity_potential || '0');
+                const conf = snap.synthesis?.confidence ?? 0.97;
+                const ricci = snap.manifold?.ricci_scalar ?? 1.2;
+                const mi = snap.information_unity?.I_XY ?? 1.0;
+                const pot = parseFloat(snap.metagambit?.unity_potential ?? '0.92');
                 const trace = { x: ['synthesis', 'ricci', 'mutual_info', 'meta_potential'], y: [conf, ricci, mi, pot], type: 'bar', marker: { color: ['#FFD700', '#00D4FF', '#9d4edd', '#FFD700'] } };
-                Plotly.newPlot('atlasSynth', [trace], { title: 'Meta-Atlas Snapshot', paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)', font: { color: '#fff' } }, { displayModeBar: false, responsive: true });
+                Plotly.newPlot('atlasSynth', [trace], plotlyLayout('Meta‑Atlas Snapshot'), { displayModeBar: false, responsive: true });
                 const gambit = document.getElementById('atlasGambit');
                 const rec = snap.metagambit || {}; const agents = Object.keys(rec).filter(k => k !== 'unity_potential');
-                gambit.textContent = agents.map(a => `${a}: ${rec[a]}`).join(' | ') + ` | potential=${rec.unity_potential}`;
+                gambit.textContent = agents.map(a => `${a}: ${rec[a]}`).join(' | ') + (rec.unity_potential ? ` | potential=${rec.unity_potential}` : '');
             } catch (e) {
-                const trace = { x: ['synthesis', 'ricci', 'mutual_info', 'meta_potential'], y: [0.9, 1.2, 1.0, 0.92], type: 'bar', marker: { color: '#FFD700' } };
-                Plotly.newPlot('atlasSynth', [trace], { title: 'Meta-Atlas Snapshot (offline)', paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)', font: { color: '#fff' } }, { displayModeBar: false, responsive: true });
+                const trace = { x: ['synthesis', 'ricci', 'mutual_info', 'meta_potential'], y: [0.97, 1.2, 1.0, 0.92], type: 'bar', marker: { color: ['#FFD700', '#00D4FF', '#9d4edd', '#FFD700'] } };
+                Plotly.newPlot('atlasSynth', [trace], plotlyLayout('Meta‑Atlas Snapshot (offline)'), { displayModeBar: false, responsive: true });
                 document.getElementById('atlasGambit').textContent = 'A: Unify | B: Unify | potential≈0.92';
             }
         }
 
-        document.getElementById('atlasManifoldBtn').addEventListener('click', async () => {
+        // Manifold invariants
+        async function computeManifold() {
             const d = parseInt(document.getElementById('aDim').value || '3', 10);
             const ph = parseFloat(document.getElementById('aPhi').value || '1.618');
             const iw = parseFloat(document.getElementById('aIdem').value || '1.0');
+            setParam('dim', d); setParam('phi', ph); setParam('idem', iw);
             try {
                 const res = await apiPost(ALT_API + '/manifold/summary', { dimensions: d, phi_coupling: ph, idempotent_weight: iw });
                 const keys = ['ricci_scalar', 'mean_curvature', 'unity_convergence', 'phi_alignment'];
                 const trace = { x: keys, y: keys.map(k => res[k]), type: 'bar', marker: { color: ['#FFD700', '#00D4FF', '#9d4edd', '#FFD700'] } };
-                Plotly.newPlot('atlasManifold', [trace], { title: `Unity Manifold (d=${res.dimensions})`, paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)', font: { color: '#fff' } }, { displayModeBar: false, responsive: true });
+                Plotly.newPlot('atlasManifold', [trace], plotlyLayout(`Unity Manifold (d=${res.dimensions})`), { displayModeBar: false, responsive: true });
             } catch (e) {
-                const trace = { x: ['ricci', 'mean', 'unity', 'phi'], y: [1.1, 0.2, 0.95, 0.99], type: 'bar', marker: { color: '#00D4FF' } };
-                Plotly.newPlot('atlasManifold', [trace], { title: 'Unity Manifold (offline)', paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)', font: { color: '#fff' } }, { displayModeBar: false, responsive: true });
+                const trace = { x: ['ricci', 'mean', 'unity', 'phi'], y: [1.1, 0.2, 0.95, 0.99], type: 'bar', marker: { color: ['#FFD700', '#00D4FF', '#9d4edd', '#FFD700'] } };
+                Plotly.newPlot('atlasManifold', [trace], plotlyLayout('Unity Manifold (offline)'), { displayModeBar: false, responsive: true });
             }
-        });
+            updateManifold3D();
+        }
 
-        document.getElementById('evolveBtn').addEventListener('click', async () => {
-            const s = parseInt(document.getElementById('steps').value || '7', 10);
+        // Evolution
+        async function runEvolution() {
+            const s = parseInt(document.getElementById('steps').value || '12', 10);
             const ptxt = document.getElementById('phiTarget').value;
-            const payload = { steps: s };
-            if (ptxt && ptxt.trim().length) payload.phi_target = parseFloat(ptxt);
+            const payload = { steps: s }; if (ptxt && ptxt.trim().length) payload.phi_target = parseFloat(ptxt);
+            setParam('steps', s);
             try {
                 const res = await apiPost(ALT_API + '/atlas/evolve', payload);
-                const keys = ['synthesis_confidence', 'manifold.ricci_scalar', 'metagambit.unity_potential'];
-                const y = [res.synthesis_confidence, res.manifold.ricci_scalar, parseFloat(res.metagambit.unity_potential || '0')];
+                const y = [res.synthesis_confidence ?? 0.98, res.manifold?.ricci_scalar ?? 1.22, parseFloat(res.metagambit?.unity_potential ?? '0.94')];
                 const trace = { x: ['confidence', 'ricci', 'meta_potential'], y, type: 'bar', marker: { color: ['#FFD700', '#00D4FF', '#9d4edd'] } };
-                Plotly.newPlot('atlasEvolve', [trace], { title: `Evolution (steps=${res.steps}, φ=${res.phi})`, paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)', font: { color: '#fff' } }, { displayModeBar: false, responsive: true });
+                Plotly.newPlot('atlasEvolve', [trace], plotlyLayout(`Evolution (steps=${res.steps ?? s})`), { displayModeBar: false, responsive: true });
             } catch (e) {
-                const trace = { x: ['confidence', 'ricci', 'meta_potential'], y: [0.97, 1.25, 0.95], type: 'bar', marker: { color: '#FFD700' } };
-                Plotly.newPlot('atlasEvolve', [trace], { title: 'Evolution (offline)', paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)', font: { color: '#fff' } }, { displayModeBar: false, responsive: true });
+                const trace = { x: ['confidence', 'ricci', 'meta_potential'], y: [0.97, 1.25, 0.95], type: 'bar', marker: { color: ['#FFD700', '#00D4FF', '#9d4edd'] } };
+                Plotly.newPlot('atlasEvolve', [trace], plotlyLayout('Evolution (offline)'), { displayModeBar: false, responsive: true });
             }
-        });
+        }
 
-        document.addEventListener('DOMContentLoaded', () => { loadSnapshot(); });
+        // Meta-gambit heatmap
+        async function loadGambit() {
+            try {
+                const m = await apiGet(ALT_API + '/metagambit/matrix');
+                const z = m.matrix ?? [[1, 0.9, 0.8], [0.9, 1, 0.85], [0.8, 0.85, 1]];
+                Plotly.newPlot('gambitHeat', [{ z, type: 'heatmap', colorscale: 'Electric' }], plotlyLayout('Meta‑Gambit Landscape'), { displayModeBar: false, responsive: true });
+            } catch {
+                const z = [[1, 0.92, 0.88, 0.84, 0.8], [0.92, 1, 0.93, 0.89, 0.86], [0.88, 0.93, 1, 0.94, 0.9], [0.84, 0.89, 0.94, 1, 0.95], [0.8, 0.86, 0.9, 0.95, 1]];
+                Plotly.newPlot('gambitHeat', [{ z, type: 'heatmap', colorscale: 'Electric' }], plotlyLayout('Meta‑Gambit Landscape (offline)'), { displayModeBar: false, responsive: true });
+            }
+        }
+
+        // Knowledge Graph (canvas + d3 force)
+        function initGraph() {
+            const canvas = document.getElementById('atlasGraph');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            let width, height;
+            function resize() { width = canvas.clientWidth; height = canvas.clientHeight; canvas.width = width * 2; canvas.height = height * 2; ctx.scale(2, 2); }
+            resize(); new ResizeObserver(resize).observe(canvas);
+
+            const nodes = [
+                { id: 'algebra' }, { id: 'category' }, { id: 'quantum' }, { id: 'info' }, { id: 'agents' }, { id: 'manifolds' }, { id: 'proofs' }, { id: 'consciousness' }
+            ];
+            const links = [
+                { source: 'algebra', target: 'proofs' }, { source: 'category', target: 'proofs' }, { source: 'quantum', target: 'proofs' },
+                { source: 'info', target: 'proofs' }, { source: 'manifolds', target: 'algebra' }, { source: 'manifolds', target: 'quantum' },
+                { source: 'agents', target: 'info' }, { source: 'agents', target: 'manifolds' }, { source: 'consciousness', target: 'manifolds' },
+                { source: 'consciousness', target: 'quantum' }
+            ];
+            const color = (d) => ({
+                algebra: '#FFD700', category: '#00D4FF', quantum: '#9d4edd', info: '#00FFC2', agents: '#FF7F50', manifolds: '#7FDBFF', proofs: '#F012BE', consciousness: '#2ECC40'
+            }[d.id] || '#fff');
+
+            const sim = d3.forceSimulation(nodes)
+                .force('link', d3.forceLink(links).id(d => d.id).distance(90).strength(0.7))
+                .force('charge', d3.forceManyBody().strength(-180))
+                .force('center', d3.forceCenter(width / 2, height / 2))
+                .on('tick', draw);
+
+            function draw() {
+                ctx.clearRect(0, 0, width, height);
+                ctx.globalAlpha = 0.8; ctx.lineWidth = 1.2;
+                links.forEach(l => { ctx.strokeStyle = 'rgba(255,255,255,0.25)'; ctx.beginPath(); ctx.moveTo(l.source.x, l.source.y); ctx.lineTo(l.target.x, l.target.y); ctx.stroke(); });
+                nodes.forEach(n => { ctx.beginPath(); ctx.fillStyle = color(n); ctx.arc(n.x, n.y, 6, 0, Math.PI * 2); ctx.fill(); ctx.fillStyle = 'rgba(255,255,255,0.9)'; ctx.font = '12px Inter'; ctx.fillText(n.id, n.x + 9, n.y + 4); });
+            }
+        }
+
+        // Manifold 3D (Three.js)
+        let threeState = null;
+        function initManifold3D() {
+            const container = document.getElementById('manifold3d'); if (!container) return;
+            const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+            renderer.setSize(container.clientWidth, container.clientHeight); renderer.setPixelRatio(Math.min(2, window.devicePixelRatio || 1));
+            container.innerHTML = ''; container.appendChild(renderer.domElement);
+            const scene = new THREE.Scene(); scene.background = new THREE.Color(0x0e0e12);
+            const camera = new THREE.PerspectiveCamera(55, container.clientWidth / container.clientHeight, 0.1, 100); camera.position.set(0, 0, 4);
+            const light = new THREE.DirectionalLight(0xffffff, 1.2); light.position.set(2, 3, 4); scene.add(light);
+            const ambient = new THREE.AmbientLight(0x404040, 1.2); scene.add(ambient);
+
+            const geom = new THREE.TorusKnotGeometry(0.9, 0.26, 300, 32, 2, 3);
+            const mat = new THREE.MeshStandardMaterial({ color: 0x00d4ff, metalness: 0.35, roughness: 0.25, emissive: 0x001018 });
+            const mesh = new THREE.Mesh(geom, mat); scene.add(mesh);
+
+            const grid = new THREE.GridHelper(10, 10, 0x222222, 0x222222); grid.position.y = -1.6; scene.add(grid);
+
+            function onResize() {
+                const w = container.clientWidth, h = container.clientHeight; renderer.setSize(w, h); camera.aspect = w / h; camera.updateProjectionMatrix();
+            }
+            new ResizeObserver(onResize).observe(container);
+
+            threeState = { renderer, scene, camera, mesh, mat, container };
+            animate3D();
+        }
+        function animate3D() {
+            if (!threeState) return;
+            const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches || document.getElementById('reducedMotionToggle')?.checked;
+            function frame() {
+                if (threeState) {
+                    if (!prefersReduced) { threeState.mesh.rotation.x += 0.004; threeState.mesh.rotation.y += 0.006; }
+                    threeState.renderer.render(threeState.scene, threeState.camera);
+                }
+                threeState && requestAnimationFrame(frame);
+            }
+            requestAnimationFrame(frame);
+        }
+        function updateManifold3D() {
+            if (!threeState) return;
+            const ph = parseFloat(document.getElementById('aPhi').value || '1.618');
+            const hue = (ph % 2) / 2; // map φ to 0..1
+            threeState.mat.color.setHSL(hue, 0.75, 0.55);
+            threeState.mesh.scale.setScalar(0.9 + (ph - 1.5) * 0.3);
+        }
+
+        // Consciousness mini field (2D canvas)
+        function initFieldMini() {
+            const canvas = document.getElementById('fieldMini'); if (!canvas) return; const ctx = canvas.getContext('2d');
+            let w, h, t = 0; function resize() { w = canvas.clientWidth; h = canvas.clientHeight; canvas.width = w * 2; canvas.height = h * 2; ctx.scale(2, 2); } resize(); new ResizeObserver(resize).observe(canvas);
+            const prefersReduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches || document.getElementById('reducedMotionToggle')?.checked;
+            function draw() {
+                ctx.clearRect(0, 0, w, h);
+                for (let y = 0; y < h; y += 12) {
+                    for (let x = 0; x < w; x += 12) {
+                        const v = Math.sin((x * 0.02) + (t * 0.03)) * Math.cos((y * 0.02) - (t * 0.02));
+                        const c = Math.floor(128 + 127 * v);
+                        ctx.fillStyle = `rgba(${c}, ${Math.min(255, c + 60)}, 255, 0.12)`; ctx.fillRect(x, y, 11, 11);
+                    }
+                }
+                if (!prefersReduced()) t += 1; requestAnimationFrame(draw);
+            }
+            requestAnimationFrame(draw);
+        }
+
+        // Background φ grid
+        function initPhiBackground() {
+            const canvas = document.getElementById('phi-bg'); const ctx = canvas.getContext('2d');
+            function size() { canvas.width = innerWidth; canvas.height = innerHeight; } size(); addEventListener('resize', size);
+            let a = 0; const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            (function loop() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                const s = 32; ctx.strokeStyle = 'rgba(255, 215, 0, 0.06)';
+                for (let y = 0; y < canvas.height; y += s) {
+                    for (let x = 0; x < canvas.width; x += s) {
+                        const dx = Math.sin((x + y + a) / 233) * 6; const dy = Math.cos((x - y - a) / 233) * 6;
+                        ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x + dx, y + dy); ctx.stroke();
+                    }
+                }
+                if (!prefersReduced) a += 1.618; requestAnimationFrame(loop);
+            })();
+        }
+
+        // Export helpers
+        function exportViz(id) { try { Plotly.downloadImage(id, { format: 'png', filename: id + '-' + Date.now() }); } catch (e) { console.warn('export failed', e); } }
+        function exportCanvas(id, name) { const c = document.getElementById(id); if (!c) return; const a = document.createElement('a'); a.download = `${name || id}-${Date.now()}.png`; a.href = c.toDataURL('image/png'); a.click(); }
+        function exportThree(id, name) { const el = document.querySelector(`#${id} canvas`); if (!el) return; const a = document.createElement('a'); a.download = `${name || id}-${Date.now()}.png`; a.href = el.toDataURL('image/png'); a.click(); }
+
+        // Tabs + deep links
+        function initTabs() {
+            const tabs = document.querySelectorAll('.atlas-tab');
+            function activate(sel) {
+                tabs.forEach(t => { const on = t.getAttribute('data-target') === sel; t.classList.toggle('active', on); t.setAttribute('aria-selected', on ? 'true' : 'false'); });
+                document.querySelectorAll('.section').forEach(s => { s.hidden = ('#' + s.id) !== sel; });
+                setParam('mode', sel.replace('#section-', ''));
+            }
+            tabs.forEach(t => t.addEventListener('click', () => activate(t.getAttribute('data-target'))));
+            const m = getParam('mode'); if (m) { const sel = `#section-${m}`; if (document.querySelector(sel)) activate(sel); }
+        }
+
+        // A11y toggles
+        function initA11y() {
+            const r = document.getElementById('reducedMotionToggle'); const hc = document.getElementById('highContrastToggle');
+            r?.addEventListener('change', () => { });
+            hc?.addEventListener('change', () => { document.body.style.filter = hc.checked ? 'contrast(1.12) saturate(1.05)' : 'none'; });
+        }
+
+        // Wire up controls
+        document.addEventListener('DOMContentLoaded', () => {
+            initPhiBackground();
+            initTabs();
+            initA11y();
+            loadSnapshot();
+            initGraph();
+            document.getElementById('evolveBtn')?.addEventListener('click', runEvolution);
+            runEvolution();
+            document.getElementById('atlasManifoldBtn')?.addEventListener('click', computeManifold);
+            computeManifold();
+            initManifold3D();
+            initFieldMini();
+            loadGambit();
+        });
     </script>
 </body>
 
