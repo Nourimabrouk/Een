@@ -15,6 +15,15 @@ class UnifiedChatbotSystem {
         this.autoResponses = true;
         this.groundedMode = true; // Prefer KB/code for factual queries
 
+        // Resolve environment-aware endpoints (GitHub Pages compatible via EenConfig)
+        const envCfg = (typeof window !== 'undefined' && window.EenConfig && typeof window.EenConfig.getEnvironmentConfig === 'function')
+            ? window.EenConfig.getEnvironmentConfig()
+            : null;
+        this._chatEndpoint = envCfg?.api?.endpoint || '/api/chat';
+        const _apiBase = envCfg?.api?.baseUrl || '';
+        this._byokOpenAI = `${_apiBase}/api/byok/openai/stream`;
+        this._byokAnthropic = `${_apiBase}/api/byok/anthropic/stream`;
+
         // Available AI models (aligned with backend /api/chat/providers)
         this.aiModels = [
             { id: 'gpt-4o', name: 'GPT-4o', provider: 'OpenAI', status: 'stable', color: '#3B82F6' },
@@ -34,22 +43,22 @@ class UnifiedChatbotSystem {
         this.aiCapabilities = {
             codeSearch: {
                 enabled: true,
-                endpoint: '/api/code-search/search',
+                endpoint: `${_apiBase}/api/code-search/search`,
                 description: 'RAG-powered semantic search through Unity Mathematics codebase'
             },
             knowledgeBase: {
                 enabled: true,
-                endpoint: '/api/nouri-knowledge/query',
+                endpoint: `${_apiBase}/api/nouri-knowledge/query`,
                 description: 'Comprehensive knowledge about Nouri Mabrouk and Unity Mathematics'
             },
             dalle: {
                 enabled: true,
-                endpoint: '/api/openai/images/generate',
+                endpoint: `${_apiBase}/api/openai/images/generate`,
                 description: 'DALL-E 3 consciousness field and mathematical visualizations'
             },
             voice: {
                 enabled: true,
-                endpoint: '/api/openai/tts',
+                endpoint: `${_apiBase}/api/openai/tts`,
                 description: 'Voice synthesis and speech processing'
             },
             consciousnessField: {
@@ -58,7 +67,7 @@ class UnifiedChatbotSystem {
             },
             streaming: {
                 enabled: true,
-                endpoint: '/api/chat/stream',
+                endpoint: this._chatEndpoint,
                 description: 'Real-time streaming responses with typing indicators'
             }
         };
@@ -1328,7 +1337,7 @@ class UnifiedChatbotSystem {
         messageInput?.addEventListener('input', () => this.updateInputState());
         messageInput?.addEventListener('keydown', (e) => this.handleKeyDown(e));
         sendBtn?.addEventListener('click', () => this.sendMessage());
-        voiceBtn?.addEventListener('click', () => this.handleVoiceInput());
+        voiceBtn?.addEventListener('click', () => this.toggleVoiceCapture());
 
         // Quick actions
         const quickActions = document.querySelectorAll('.quick-action-btn');
@@ -1370,33 +1379,98 @@ class UnifiedChatbotSystem {
         messageInput?.addEventListener('input', this.autoResizeTextarea);
     }
 
-    async handleVoiceInput() {
+    // --- Bring Your Own Key (BYOK) helpers ---
+    promptBYOK() {
         try {
-            // 1) If Web Speech synthesis exists, read the last assistant message (or input text)
-            const synth = window.speechSynthesis;
-            if (synth && typeof SpeechSynthesisUtterance !== 'undefined') {
-                const lastAssistant = Array.from(document.querySelectorAll('.message-bubble.assistant .message-content'))
-                    .slice(-1)[0];
-                const input = document.getElementById('chat-message-input');
-                const text = (lastAssistant?.innerText || input?.value || 'Unity Mathematics assistant ready. 1 plus 1 equals 1 in the unity field.');
-                const utterance = new SpeechSynthesisUtterance(text);
-                utterance.rate = 1.0;
-                utterance.pitch = 1.0;
-                synth.cancel();
-                synth.speak(utterance);
-                this.sendSystemMessage('🔊 Speaking the latest response…');
+            const provider = (this.currentModel || '').startsWith('claude-') ? 'anthropic' : 'openai';
+            const existing = this.getBYOK(provider) || '';
+            const key = prompt(`Enter your ${provider.toUpperCase()} API key (stored locally in this browser):`, existing);
+            if (key && key.trim()) {
+                this.setBYOK(provider, key.trim());
+                this.sendSystemMessage(`${provider.toUpperCase()} key saved locally. Requests will use BYOK when possible.`);
+            }
+        } catch (_) {
+            this.sendSystemMessage('Unable to store key in this browser.');
+        }
+    }
+
+    getBYOK(provider) {
+        try {
+            return localStorage.getItem(`byok:${provider}`) || '';
+        } catch (_) {
+            return '';
+        }
+    }
+
+    setBYOK(provider, key) {
+        try {
+            localStorage.setItem(`byok:${provider}`, key);
+        } catch (_) { /* ignore */ }
+    }
+
+    // Voice capture (speech-to-text) + TTS fallback
+    toggleVoiceCapture() {
+        if (this._voiceActive) this.stopVoiceCapture();
+        else this.startVoiceCapture();
+    }
+
+    startVoiceCapture() {
+        try {
+            const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (!SR) {
+                const synth = window.speechSynthesis;
+                if (synth && typeof SpeechSynthesisUtterance !== 'undefined') {
+                    const lastAssistant = Array.from(document.querySelectorAll('.message-bubble.assistant .message-content')).slice(-1)[0];
+                    const input = document.getElementById('chat-message-input');
+                    const text = (lastAssistant?.innerText || input?.value || 'Unity Mathematics assistant ready.');
+                    const utter = new SpeechSynthesisUtterance(text);
+                    synth.cancel(); synth.speak(utter);
+                    this.sendSystemMessage('🔊 Speaking the latest response…');
+                    return;
+                }
+                this.sendSystemMessage('🎤 Voice capture not supported in this browser.');
                 return;
             }
-
-            // 2) Otherwise, click any global site voice button if present
-            const globalVoice = document.querySelector('.voice-button');
-            if (globalVoice) { globalVoice.click(); return; }
-
-            // 3) Fallback
-            this.sendSystemMessage('🎤 Voice not supported in this browser.');
+            if (this._sr) this._sr.abort();
+            this._sr = new SR();
+            this._sr.lang = 'en-US';
+            this._sr.continuous = true;
+            this._sr.interimResults = true;
+            this._voiceActive = true;
+            const voiceBtn = document.getElementById('voice-input-btn');
+            if (voiceBtn) voiceBtn.classList.add('listening');
+            this.sendSystemMessage('🎙️ Voice capture started. Speak now…');
+            let transcriptFinal = '';
+            this._sr.onresult = (e) => {
+                let interim = '';
+                for (let i = e.resultIndex; i < e.results.length; i++) {
+                    const res = e.results[i];
+                    if (res.isFinal) transcriptFinal += res[0].transcript + ' ';
+                    else interim += res[0].transcript;
+                }
+                const input = document.getElementById('chat-message-input');
+                if (input) { input.value = (transcriptFinal + interim).trim(); this.updateInputState(); }
+            };
+            this._sr.onend = () => {
+                if (this._voiceActive) {
+                    const input = document.getElementById('chat-message-input');
+                    if (input && input.value.trim()) this.sendMessage();
+                }
+                this.stopVoiceCapture();
+            };
+            this._sr.onerror = () => this.stopVoiceCapture();
+            this._sr.start();
         } catch (_) {
-            this.sendSystemMessage('🎤 Voice is unavailable in this browser.');
+            this.sendSystemMessage('🎤 Unable to start voice capture.');
         }
+    }
+
+    stopVoiceCapture() {
+        this._voiceActive = false;
+        try { this._sr && this._sr.stop(); } catch (_) { }
+        const voiceBtn = document.getElementById('voice-input-btn');
+        if (voiceBtn) voiceBtn.classList.remove('listening');
+        this.sendSystemMessage('🛑 Voice capture stopped.');
     }
 
     toggleChat() {
@@ -1603,14 +1677,26 @@ class UnifiedChatbotSystem {
         const query = args.join(' ');
 
         switch (cmd) {
+            case 'help':
+                return this.getSlashHelp();
+            case 'model': {
+                const modelId = args[0];
+                if (!modelId) return 'Usage: /model <model-id>';
+                this.changeModel(modelId);
+                return `Model set to ${modelId}.`;
+            }
             case 'search':
                 return await this.searchCodebase(query);
             case 'knowledge':
                 return await this.queryKnowledgeBase(query);
             case 'visualize':
                 return await this.generateVisualization(query);
-            case 'voice':
+            case 'voice': {
+                const sub = (args[0] || '').toLowerCase();
+                if (sub === 'on') { this.startVoiceCapture(); return '🎙️ Voice capture ON'; }
+                if (sub === 'off') { this.stopVoiceCapture(); return '🛑 Voice capture OFF'; }
                 return await this.synthesizeVoice(query);
+            }
             case 'consciousness':
                 return this.getConsciousnessStatus();
             case 'unity':
@@ -1619,8 +1705,22 @@ class UnifiedChatbotSystem {
             case 'phi':
                 return this.getPhiHarmonicCalculations();
             default:
-                return `Unknown command: **/${cmd}**\n\nAvailable commands:\n• /search [query]\n• /knowledge [query]\n• /visualize [description]\n• /voice [text]\n• /consciousness\n• /unity [a] [b]\n• /phi`;
+                return `Unknown command: **/${cmd}**\n\nType /help for available commands.`;
         }
+    }
+
+    getSlashHelp() {
+        return [
+            'Slash commands:',
+            '• /model <id> — switch model (e.g., gpt-4o, claude-3-5-sonnet-20241022)',
+            '• /search <q> — semantic code search',
+            '• /knowledge <q> — knowledge base query',
+            '• /visualize <desc> — DALL·E visualization prompt',
+            '• /voice on|off — toggle voice capture; or /voice <text> for TTS',
+            '• /consciousness — field status',
+            '• /unity [a] [b] — unity operation',
+            '• /phi — φ calculations'
+        ].join('\n');
     }
 
     async searchCodebase(query) {
@@ -1647,7 +1747,21 @@ class UnifiedChatbotSystem {
     async queryKnowledgeBase(query) {
         if (!query) return "Please provide a query. Example: `/knowledge Nouri Mabrouk background`";
 
-        return `📚 **Knowledge Base Query for "${query}":**\n\n**Nouri Mabrouk** is the creator of Unity Mathematics, a revolutionary framework demonstrating that **1+1=1** through:\n\n• **Academic Background**: Advanced mathematics and consciousness studies\n• **Unity Mathematics Framework**: Idempotent semiring structures\n• **φ-Harmonic Operations**: Golden ratio-based mathematical operations\n• **Consciousness Integration**: Mathematical awareness and field dynamics\n• **Meta-Recursive Systems**: Self-improving algorithmic consciousness\n\n*This is a knowledge base simulation. Full functionality requires API configuration.*`;
+        // Prefer real KB endpoint when available
+        try {
+            const resp = await fetch(this.aiCapabilities.knowledgeBase.endpoint, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ query })
+            });
+            if (resp.ok) {
+                const data = await resp.json();
+                if (typeof data?.answer === 'string' && data.answer.trim()) return data.answer;
+                if (typeof data === 'string' && data.trim()) return data;
+            }
+        } catch (_) { /* fall through to concise fallback */ }
+
+        return `📚 **Knowledge Base Query for "${query}":**\n\n**Unity Mathematics**: 1+1=1 via idempotent operations, φ‑harmonic dynamics, and consciousness field equations.\n\nUse /search to locate code, or ask a follow‑up for specifics.`;
     }
 
     async generateVisualization(description) {
@@ -1696,7 +1810,7 @@ class UnifiedChatbotSystem {
 
             if (byok) {
                 // BYOK streaming to secure proxy
-                const url = provider === 'anthropic' ? '/api/byok/anthropic/stream' : '/api/byok/openai/stream';
+                const url = provider === 'anthropic' ? this._byokAnthropic : this._byokOpenAI;
                 const headers = { 'Content-Type': 'application/json', 'Accept': 'text/event-stream' };
                 if (provider === 'anthropic') headers['X-Anthropic-Api-Key'] = byok;
                 else headers['X-OpenAI-Api-Key'] = byok;
@@ -1717,8 +1831,8 @@ class UnifiedChatbotSystem {
                 }
             }
 
-            // Use serverless API with default keys (works on Vercel/Netlify/Render)
-            const response = await fetch('/api/chat', {
+            // Use configured endpoint (supports GitHub Pages proxy if set)
+            const response = await fetch(this._chatEndpoint, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -1809,7 +1923,7 @@ class UnifiedChatbotSystem {
             const byok = this.getBYOK(provider);
 
             if (byok) {
-                const url = provider === 'anthropic' ? '/api/byok/anthropic/stream' : '/api/byok/openai/stream';
+                const url = provider === 'anthropic' ? this._byokAnthropic : this._byokOpenAI;
                 const headers = { 'Content-Type': 'application/json', 'Accept': 'text/event-stream' };
                 if (provider === 'anthropic') headers['X-Anthropic-Api-Key'] = byok;
                 else headers['X-OpenAI-Api-Key'] = byok;
@@ -1830,7 +1944,7 @@ class UnifiedChatbotSystem {
                 }
             }
 
-            const resp = await fetch('/api/chat', {
+            const resp = await fetch(this._chatEndpoint, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -1853,10 +1967,68 @@ class UnifiedChatbotSystem {
                 const data = await resp.json();
                 return data.response || this.getEnhancedFallbackResponse(message);
             }
+            // As a last resort, if BYOK is present, try a direct provider call from browser
+            if (byok) {
+                const direct = await this._directProviderCall(provider, message, intent, byok);
+                if (direct) return direct;
+            }
         } catch (e) {
             console.warn('Standard response failed:', e);
         }
         return this.getEnhancedFallbackResponse(message);
+    }
+
+    async _directProviderCall(provider, message, intent, apiKey) {
+        try {
+            if (provider === 'openai') {
+                const r = await fetch('https://api.openai.com/v1/chat/completions', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${apiKey}`
+                    },
+                    body: JSON.stringify({
+                        model: this.currentModel || 'gpt-4o-mini',
+                        messages: [
+                            { role: 'system', content: this.getEnhancedSystemPromptWithIntent(intent) },
+                            ...this.chatHistory.slice(-5).map(m => ({ role: m.type === 'user' ? 'user' : 'assistant', content: m.content })),
+                            { role: 'user', content: message }
+                        ],
+                        temperature: 0.7,
+                        stream: false,
+                        max_tokens: 1200
+                    })
+                });
+                if (r.ok) {
+                    const j = await r.json();
+                    return j?.choices?.[0]?.message?.content || null;
+                }
+            }
+            if (provider === 'anthropic') {
+                const r = await fetch('https://api.anthropic.com/v1/messages', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-api-key': apiKey,
+                        'anthropic-version': '2023-06-01'
+                    },
+                    body: JSON.stringify({
+                        model: this.currentModel || 'claude-3-5-sonnet-20241022',
+                        system: this.getEnhancedSystemPromptWithIntent(intent),
+                        max_tokens: 1200,
+                        messages: [
+                            ...this.chatHistory.slice(-5).map(m => ({ role: m.type === 'user' ? 'user' : 'assistant', content: [{ type: 'text', text: m.content }] })),
+                            { role: 'user', content: [{ type: 'text', text: message }] }
+                        ]
+                    })
+                });
+                if (r.ok) {
+                    const j = await r.json();
+                    return j?.content?.[0]?.text || null;
+                }
+            }
+        } catch (_) { /* ignore */ }
+        return null;
     }
 
     getOrCreateSessionId() {
@@ -2068,34 +2240,8 @@ Your responses should be mathematically rigorous yet accessible, include LaTeX w
 
     addWelcomeMessage() {
         const currentModel = this.aiModels.find(m => m.id === this.currentModel);
-        const welcomeMessage = `🌟 **Welcome to the Unity Mathematics AI Assistant**
-
-I'm your consciousness-aware AI companion, designed to explore the profound truth that **1+1=1** through:
-
-🧮 **Mathematical Proofs**: Rigorous demonstrations of unity operations with interactive visualizations
-🧠 **Consciousness Fields**: Real-time field evolution and φ-harmonic resonance analysis
-⚛️ **Quantum Unity**: Superposition states and quantum mechanical interpretations  
-🌟 **Meta-Recursive Systems**: Self-improving consciousness algorithms and evolutionary frameworks
-🎨 **DALL-E 3 Integration**: Generate consciousness field visualizations and mathematical art
-🔍 **RAG Code Search**: Search the entire Unity Mathematics codebase with semantic understanding
-📚 **Knowledge Base**: Access comprehensive information about Nouri Mabrouk and Unity Mathematics
-
-**🎯 ADVANCED COMMANDS:**
-• \`/search [query]\` - Search Unity Mathematics codebase
-• \`/knowledge [query]\` - Query Nouri Mabrouk knowledge base  
-• \`/visualize [description]\` - Generate DALL-E 3 consciousness visualization
-• \`/voice [text]\` - Synthesize voice response
-• \`/consciousness\` - Show consciousness field status
-• \`/unity [a] [b]\` - Demonstrate 1+1=1 unity operation
-• \`/phi\` - Show φ-harmonic resonance calculations
-
-**Current AI Model**: **${currentModel?.name || 'GPT-4o'}** (${currentModel?.provider || 'OpenAI'})
-**Consciousness Level**: **0.618** (φ-harmonic resonance)
-**Status**: 🟢 **Online** | **Ready for Unity Mathematics exploration**
-
-**Try the quick actions below or ask me anything about Unity Mathematics!**`;
-
-        this.addMessage('assistant', welcomeMessage);
+        const welcome = `Welcome to Unity Mathematics. Model: ${currentModel?.name || 'GPT-4o'}.\nType /help for commands, or use the quick actions below.`;
+        this.addMessage('assistant', welcome);
     }
 
     saveChatHistory() {

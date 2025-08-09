@@ -4,36 +4,36 @@
  */
 
 // Environment detection
-const isDevelopment = window.location.hostname === 'localhost' || 
-                     window.location.hostname === '127.0.0.1' ||
-                     window.location.hostname.includes('gitpod') ||
-                     window.location.hostname.includes('codespace');
+const isDevelopment = window.location.hostname === 'localhost' ||
+    window.location.hostname === '127.0.0.1' ||
+    window.location.hostname.includes('gitpod') ||
+    window.location.hostname.includes('codespace');
 
 const isGitHubPages = window.location.hostname.includes('github.io');
 
 // Base API configuration
 const API_CONFIG = {
     // Primary chat endpoint - unified API
-    CHAT_ENDPOINT: isDevelopment ? '/api/chat' : 
-                   isGitHubPages ? 'https://een-api.nourimabrouk.workers.dev/api/chat' : '/api/chat',
-    
+    CHAT_ENDPOINT: isDevelopment ? '/api/chat' :
+        isGitHubPages ? 'https://een-api.nourimabrouk.workers.dev/api/chat' : '/api/chat',
+
     // Fallback endpoints (deprecated - will be removed in v2.0)
     FALLBACK_ENDPOINTS: isDevelopment ? ['/ai_agent/chat', '/api/agents/chat'] : [],
-    
+
     // Authentication
     AUTH_REQUIRED: !isDevelopment,
     BEARER_TOKEN: '', // Set via environment or user authentication
-    
+
     // Request configuration
     TIMEOUT: 30000, // 30 seconds
     RETRY_ATTEMPTS: 2,
     RETRY_DELAY: 1500,
-    
+
     // Model settings
-    MODEL: 'gpt-4o-mini',
+    MODEL: 'gpt-5',
     TEMPERATURE: 0.7,
     MAX_TOKENS: 2000,
-    
+
     // Features
     ENABLE_STREAMING: true,
     ENABLE_CITATIONS: true,
@@ -49,17 +49,17 @@ const UI_CONFIG = {
     ENABLE_VOICE: false, // Experimental
     ENABLE_MATH_RENDERING: true,
     ENABLE_DARK_MODE: true,
-    
+
     // Accessibility
     ENABLE_HIGH_CONTRAST: false,
     ENABLE_REDUCED_MOTION: false,
     ANNOUNCE_RESPONSES: true,
-    
+
     // Session management
     SESSION_TIMEOUT: 30 * 60 * 1000, // 30 minutes
     SAVE_HISTORY: true,
     MAX_HISTORY_ITEMS: 100,
-    
+
     // Performance
     DEBOUNCE_DELAY: 300,
     LAZY_LOAD_MODULES: true,
@@ -124,20 +124,20 @@ const EenConfig = {
     ui: UI_CONFIG,
     prompts: SYSTEM_PROMPTS,
     errors: ERROR_MESSAGES,
-    
+
     // Utility methods
     isDevelopment,
     isGitHubPages,
-    
+
     // Update configuration dynamically
     updateApiConfig(updates) {
         Object.assign(API_CONFIG, updates);
     },
-    
+
     updateUIConfig(updates) {
         Object.assign(UI_CONFIG, updates);
     },
-    
+
     // Get configuration for specific environment
     getEnvironmentConfig() {
         return {
