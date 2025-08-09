@@ -99,7 +99,7 @@ class UnityTestRunner:
         """Run specific test suite with options"""
         logger.info(f"🧮 Running {suite_name} test suite...")
         
-        # Test suite configurations
+        # Test suite configurations with all advanced testing modules
         test_configs = {
             'unity-core': {
                 'files': ['test_unity_mathematics_core.py'],
@@ -121,9 +121,41 @@ class UnityTestRunner:
                 'markers': ['performance', 'phi_harmonic'],
                 'timeout': 1200
             },
-            'all': {
+            'advanced': {
+                'files': ['test_advanced_property_based.py', 'test_quantum_unity_systems.py'],
+                'markers': ['advanced', 'quantum', 'property_based'],
+                'timeout': 1800
+            },
+            'stress': {
+                'files': ['test_stress_load_testing.py', 'test_mutation_fuzzing.py'],
+                'markers': ['stress', 'mutation', 'fuzzing'],
+                'timeout': 2400
+            },
+            'security': {
+                'files': ['test_security_mathematical.py', 'test_memory_resource_monitoring.py'],
+                'markers': ['security', 'memory', 'monitoring'],
+                'timeout': 1500
+            },
+            'integration': {
+                'files': ['test_integration_full.py', 'test_contract_api_interfaces.py'],
+                'markers': ['integration', 'contract', 'api'],
+                'timeout': 1200
+            },
+            'visual': {
+                'files': ['test_visual_regression.py', 'test_data_fixtures_generators.py'],
+                'markers': ['visual', 'fixtures', 'regression'],
+                'timeout': 1800
+            },
+            'comprehensive': {
                 'files': ['test_*.py'],
                 'markers': [],
+                'timeout': 3600
+            },
+            'all': {
+                'files': ['test_unity_mathematics_core.py', 'test_consciousness_field.py', 
+                         'test_agent_ecosystem.py', 'test_performance_phi_harmonic.py',
+                         'test_integration_full.py', 'test_framework_validation.py'],
+                'markers': ['unity', 'consciousness', 'agents', 'performance'],
                 'timeout': 1800
             }
         }
@@ -435,7 +467,8 @@ Examples:
     
     parser.add_argument(
         '--suite', 
-        choices=['unity-core', 'consciousness', 'agents', 'performance', 'all'],
+        choices=['unity-core', 'consciousness', 'agents', 'performance', 'advanced', 
+                'stress', 'security', 'integration', 'visual', 'comprehensive', 'all'],
         default='all',
         help='Test suite to run'
     )
@@ -512,6 +545,9 @@ Examples:
             
             if args.suite == 'all':
                 suites = ['unity-core', 'consciousness', 'agents', 'performance']
+            elif args.suite == 'comprehensive':
+                suites = ['unity-core', 'consciousness', 'agents', 'performance', 
+                         'advanced', 'security', 'integration', 'visual']
             else:
                 suites = [args.suite]
                 

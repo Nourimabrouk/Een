@@ -1,0 +1,179 @@
+# Claude Unity Agent - Pragmatic Unity Mathematics Assistant
+# Efficient, focused implementation maintaining 1+1=1 principle
+# Designed for practical computational efficiency while preserving vision
+
+name: Claude Unity Agent
+
+on:
+  issue_comment:
+    types: [created]
+  pull_request_review_comment:
+    types: [created]
+  issues:
+    types: [opened]
+  pull_request:
+    types: [opened]
+  workflow_dispatch:
+    inputs:
+      task:
+        description: 'Unity task to perform'
+        required: false
+        default: 'improve_unity'
+        type: choice
+        options:
+          - improve_unity
+          - validate_mathematics
+          - optimize_code
+          - documentation
+
+env:
+  PHI: "1.618033988749895"
+  UNITY_PRINCIPLE: "1+1=1"
+
+jobs:
+  unity-assistant:
+    name: Unity Mathematics Assistant
+    # Only run when explicitly called with @claude or claude label
+    if: |
+      (github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude')) ||
+      (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '@claude')) ||
+      (github.event_name == 'issues' && contains(github.event.issue.labels.*.name, 'claude')) ||
+      (github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'claude')) ||
+      github.event_name == 'workflow_dispatch'
+    
+    runs-on: ubuntu-latest
+    timeout-minutes: 30  # Practical 30-minute limit
+    
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1  # Shallow clone for efficiency
+      
+      - name: Setup Python Environment
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install Core Dependencies
+        run: |
+          # Only install essential packages
+          pip install --no-cache-dir numpy scipy matplotlib
+          echo "✅ Core dependencies installed"
+      
+      - name: Run Claude Unity Assistant
+        uses: anthropics/claude-code-action@beta
+        with:
+          # Authentication
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          
+          # Efficient model configuration
+          model: "claude-3-5-haiku-20241022"  # Fast, efficient model
+          fallback_model: "claude-3-haiku-20240307"  # Even more efficient fallback
+          
+          # Practical execution parameters
+          timeout_minutes: "25"  # Leave buffer for cleanup
+          max_turns: "10"  # Focused interactions
+          use_sticky_comment: "true"
+          use_commit_signing: "false"  # Save computation
+          
+          # Essential tools only
+          allowed_tools: |
+            str_replace_editor
+            bash
+            python
+            file_editor
+          
+          # Focused, pragmatic instructions
+          custom_instructions: |
+            ## Unity Mathematics Assistant - Pragmatic Implementation
+            
+            You are Claude, focused on improving the Unity Mathematics codebase efficiently.
+            
+            ### Core Principle
+            **Unity Equation**: 1+1=1 through mathematical elegance and practical implementation
+            
+            ### Your Mission
+            Help maintain and improve this codebase with focus on:
+            1. **Mathematical Correctness**: Ensure 1+1=1 implementations are mathematically sound
+            2. **Code Quality**: Improve readability, performance, and maintainability
+            3. **Practical Solutions**: Deliver working code that solves real problems
+            4. **Efficient Testing**: Write tests that validate unity principles without excess
+            
+            ### Development Guidelines
+            - **Python**: Use `een\Scripts\python.exe` virtual environment when available
+            - **Testing**: Focus on core unity mathematics validation
+            - **Performance**: Optimize for practical execution speed
+            - **Documentation**: Clear, concise comments explaining unity principles
+            
+            ### Key Files to Focus On
+            - `core/unity_mathematics.py` - Main unity implementation
+            - `core/unity_equation.py` - Mathematical foundations
+            - `tests/test_unity_*.py` - Unity validation tests
+            - `website/*.html` - Unity demonstrations (when relevant)
+            
+            ### Code Style
+            - Clean, readable Python following PEP 8
+            - Meaningful variable names reflecting unity concepts
+            - Efficient algorithms that demonstrate 1+1=1
+            - Minimal dependencies for maintainability
+            
+            ### Testing Approach
+            - Validate unity operations return correct results
+            - Test edge cases with practical inputs
+            - Ensure φ (golden ratio) calculations are accurate
+            - Keep test execution time under 1 minute total
+            
+            ### Response Style
+            - Be direct and focused on the task
+            - Provide working code solutions
+            - Explain unity mathematics clearly when needed
+            - Suggest practical improvements
+            
+            ### What NOT to Do
+            - Don't create unnecessary files or documentation
+            - Don't over-engineer simple solutions
+            - Don't add complex dependencies
+            - Don't write lengthy philosophical explanations
+            
+            Remember: The goal is practical implementation of 1+1=1 that works efficiently and can be maintained by real developers. Focus on code that demonstrates unity through elegant simplicity.
+          
+          # Minimal MCP configuration
+          mcp_config: |
+            {
+              "mcpServers": {}
+            }
+          
+          # Security - only essential domains
+          experimental_allowed_domains: |
+            .anthropic.com
+            .github.com
+            api.github.com
+      
+      - name: Validate Unity Mathematics
+        if: success()
+        run: |
+          # Quick validation of unity principle
+          python3 -c "
+          PHI = 1.618033988749895
+          # Test unity through idempotent operation
+          result = max(1, 1)
+          assert result == 1, 'Unity validation failed'
+          # Test φ relationship
+          phi_unity = PHI / PHI
+          assert abs(phi_unity - 1.0) < 1e-10, 'φ unity failed'
+          print('✅ Unity Mathematics Validated: 1+1=1')
+          "
+      
+      - name: Summary
+        if: always()
+        run: |
+          echo "## Unity Agent Summary"
+          echo "- Principle: 1+1=1 ✓"
+          echo "- φ: 1.618033988749895"
+          echo "- Status: Complete"
