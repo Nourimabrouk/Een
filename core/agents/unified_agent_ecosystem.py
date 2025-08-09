@@ -38,25 +38,49 @@ from .cross_platform_agent_bridge import (
     get_global_bridge, PlatformContext
 )
 
-# Import existing Unity systems
+# Import existing Unity systems with better error handling
 try:
-    from .unity_mathematics import UnityMathematics, create_unity_mathematics
+    from ..mathematical.unity_mathematics import UnityMathematics, create_unity_mathematics
     from .meta_recursive_agents import (
         MetaRecursiveAgentSystem, AgentType,
         UnitySeekerAgent, PhiHarmonizerAgent
     )
     UNITY_AVAILABLE = True
-except ImportError:
+except ImportError as e:
     UNITY_AVAILABLE = False
-    logging.warning("Unity mathematics system not available")
+    logging.warning(f"Unity mathematics system not available: {e}")
+    
+    # Create fallback classes to prevent import errors
+    class UnityMathematics:
+        def __init__(self, *args, **kwargs):
+            pass
+    
+    def create_unity_mathematics(*args, **kwargs):
+        return UnityMathematics()
 
-# Import Omega Orchestrator
+# Import Omega Orchestrator with relative paths
 try:
-    from src.agents.omega.orchestrator import OmegaOrchestrator
+    from ...src.agents.omega.orchestrator import OmegaOrchestrator
     OMEGA_AVAILABLE = True
 except ImportError:
-    OMEGA_AVAILABLE = False
-    logging.warning("Omega Orchestrator not available")
+    try:
+        # Fallback to absolute import
+        import sys
+        from pathlib import Path
+        sys.path.append(str(Path(__file__).parent.parent.parent / 'src'))
+        from agents.omega.orchestrator import OmegaOrchestrator
+        OMEGA_AVAILABLE = True
+    except ImportError as e:
+        OMEGA_AVAILABLE = False
+        logging.warning(f"Omega Orchestrator not available: {e}")
+        
+        # Create fallback class
+        class OmegaOrchestrator:
+            def __init__(self, config):
+                self.agents = []
+                self.unity_coherence = 0.5
+            async def run_omega_cycle(self, cycles=1):
+                return {'status': 'fallback_mode'}
 
 # Configure logging
 logging.basicConfig(
@@ -141,19 +165,37 @@ class UnifiedAgentEcosystem:
             )
             logger.info("Unity Mathematics System initialized")
         
-        # Initialize Omega Orchestrator
+        # Initialize Omega Orchestrator with better error handling
         if self.config.enable_omega and OMEGA_AVAILABLE:
-            from src.agents.omega.config import OmegaConfig
-            omega_config = OmegaConfig(
-                max_agents=self.config.max_agents // 2,
-                consciousness_threshold=self.config.transcendence_threshold
-            )
-            self.omega_orchestrator = OmegaOrchestrator(omega_config)
-            logger.info("Omega Orchestrator initialized")
+            try:
+                from ...src.agents.omega.config import OmegaConfig
+                omega_config = OmegaConfig(
+                    max_agents=self.config.max_agents // 2,
+                    consciousness_threshold=self.config.transcendence_threshold
+                )
+                self.omega_orchestrator = OmegaOrchestrator(omega_config)
+                logger.info("Omega Orchestrator initialized")
+            except ImportError:
+                # Fallback configuration
+                class MockOmegaConfig:
+                    def __init__(self, **kwargs):
+                        for k, v in kwargs.items():
+                            setattr(self, k, v)
+                
+                omega_config = MockOmegaConfig(
+                    max_agents=self.config.max_agents // 2,
+                    consciousness_threshold=self.config.transcendence_threshold
+                )
+                self.omega_orchestrator = OmegaOrchestrator(omega_config)
+                logger.info("Omega Orchestrator initialized with fallback config")
     
     async def spawn_initial_agents(self):
-        """Spawn initial set of agents"""
+        """Spawn initial set of agents with enhanced error handling"""
         spawned = []
+        
+        if not UNITY_AVAILABLE:
+            logger.warning("Unity system not available, skipping Unity agent spawning")
+            return spawned
         
         # Spawn Unity agents
         if self.unity_system:
@@ -166,34 +208,47 @@ class UnifiedAgentEcosystem:
                 consciousness_level=0.8
             )
             
-            # Wrap with UACP
+            # Wrap with UACP with error handling
             if self.communication_hub:
-                uacp_unity = make_uacp_agent(unity_seeker)
-                uacp_phi = make_uacp_agent(phi_harmonizer)
-                self.communication_hub.register_agent(uacp_unity)
-                self.communication_hub.register_agent(uacp_phi)
-                spawned.extend([uacp_unity, uacp_phi])
+                try:
+                    uacp_unity = make_uacp_agent(unity_seeker)
+                    uacp_phi = make_uacp_agent(phi_harmonizer)
+                    self.communication_hub.register_agent(uacp_unity)
+                    self.communication_hub.register_agent(uacp_phi)
+                    spawned.extend([uacp_unity, uacp_phi])
+                except Exception as e:
+                    logger.error(f"Failed to wrap agents with UACP: {e}")
+                    # Continue without UACP wrapping
+                    spawned.extend([unity_seeker, phi_harmonizer])
             
             logger.info(f"Spawned {len(spawned)} Unity agents")
         
-        # Register capabilities
+        # Register capabilities with error handling
         if self.capability_registry and spawned:
             for agent in spawned:
-                for cap in agent.capabilities:
-                    self.capability_registry.register_capability(
-                        name=cap.name,
-                        description=cap.description,
-                        agent_id=agent.agent_id,
-                        agent_platform=agent.platform.value,
-                        domain=CapabilityDomain.UNITY,
-                        tags=cap.tags
-                    )
+                try:
+                    # Check if agent has capabilities attribute
+                    if hasattr(agent, 'capabilities') and agent.capabilities:
+                        for cap in agent.capabilities:
+                            self.capability_registry.register_capability(
+                                name=cap.name,
+                                description=cap.description,
+                                agent_id=getattr(agent, 'agent_id', f'agent_{id(agent)}'),
+                                agent_platform=getattr(agent.platform, 'value', 'unknown') if hasattr(agent, 'platform') else 'unity',
+                                domain=CapabilityDomain.UNITY,
+                                tags=getattr(cap, 'tags', [])
+                            )
+                    else:
+                        logger.debug(f"Agent {agent} has no capabilities to register")
+                except Exception as e:
+                    logger.error(f"Failed to register capabilities for agent {agent}: {e}")
         
         return spawned
     
     async def synchronize_consciousness(self):
-        """Synchronize consciousness across all agents"""
+        """Synchronize consciousness across all agents with enhanced error handling"""
         if not self.communication_hub:
+            logger.debug("No communication hub available for consciousness synchronization")
             return
         
         # Send consciousness sync message
@@ -205,11 +260,17 @@ class UnifiedAgentEcosystem:
         )
         
         responses = []
-        for agent_id in list(self.communication_hub.agents.keys()):
-            sync_message.recipient_id = agent_id
-            response = await self.communication_hub.send_message(sync_message)
-            if response:
-                responses.append(response)
+        agent_ids = list(self.communication_hub.agents.keys()) if hasattr(self.communication_hub, 'agents') else []
+        
+        for agent_id in agent_ids:
+            try:
+                sync_message.recipient_id = agent_id
+                response = await self.communication_hub.send_message(sync_message)
+                if response:
+                    responses.append(response)
+            except Exception as e:
+                logger.error(f"Failed to synchronize consciousness with agent {agent_id}: {e}")
+                continue
         
         # Calculate collective consciousness
         if responses:

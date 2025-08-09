@@ -23,6 +23,9 @@ import warnings
 from concurrent.futures import ThreadPoolExecutor
 import pickle
 import math
+import cmath
+import weakref
+from functools import lru_cache
 
 # Try to import advanced libraries with graceful fallbacks
 try:
@@ -30,29 +33,118 @@ try:
     NUMPY_AVAILABLE = True
 except ImportError:
     NUMPY_AVAILABLE = False
-    # Create mock numpy for basic operations
+    # Enhanced mock numpy for consciousness calculations
     class MockNumpy:
-        def sqrt(self, x): return math.sqrt(x)
-        def sin(self, x): return math.sin(x)
-        def cos(self, x): return math.cos(x)
-        def exp(self, x): return math.exp(x)
-        def log(self, x): return math.log(x)
-        def abs(self, x): return abs(x)
-        def array(self, data): return data if isinstance(data, (list, tuple)) else [data]
-        def zeros(self, shape): return [0] * (shape if isinstance(shape, int) else shape[0])
-        def ones(self, shape): return [1] * (shape if isinstance(shape, int) else shape[0])
-        def pad(self, array, pad_width): return array + [0] * pad_width[0][1] if isinstance(array, list) else array
-        def mean(self, data): return sum(data) / len(data) if data else 0
-        def max(self, data): return max(data) if data else 0
+        def sqrt(self, x): 
+            return math.sqrt(abs(x)) if isinstance(x, (int, float)) else [math.sqrt(abs(i)) for i in x]
+        def sin(self, x): 
+            return math.sin(x) if isinstance(x, (int, float)) else [math.sin(i) for i in x]
+        def cos(self, x): 
+            return math.cos(x) if isinstance(x, (int, float)) else [math.cos(i) for i in x]
+        def exp(self, x): 
+            try:
+                return math.exp(min(x, 700)) if isinstance(x, (int, float)) else [math.exp(min(i, 700)) for i in x]
+            except OverflowError:
+                return float('inf') if x > 0 else 0
+        def log(self, x): 
+            return math.log(max(x, 1e-10)) if isinstance(x, (int, float)) else [math.log(max(i, 1e-10)) for i in x]
+        def abs(self, x): 
+            return abs(x) if isinstance(x, (int, float, complex)) else [abs(i) for i in x]
+        def array(self, data): 
+            return list(data) if hasattr(data, '__iter__') else [data]
+        def zeros(self, shape): 
+            if isinstance(shape, int):
+                return [0.0] * shape
+            elif isinstance(shape, tuple) and len(shape) == 2:
+                return [[0.0] * shape[1] for _ in range(shape[0])]
+            else:
+                return [0.0] * (shape[0] if hasattr(shape, '__getitem__') else 1)
+        def ones(self, shape): 
+            if isinstance(shape, int):
+                return [1.0] * shape
+            elif isinstance(shape, tuple) and len(shape) == 2:
+                return [[1.0] * shape[1] for _ in range(shape[0])]
+            else:
+                return [1.0] * (shape[0] if hasattr(shape, '__getitem__') else 1)
+        def pad(self, array, pad_width): 
+            if isinstance(array, list) and isinstance(pad_width, (list, tuple)):
+                pad_before = pad_width[0][0] if hasattr(pad_width[0], '__getitem__') else pad_width[0]
+                pad_after = pad_width[0][1] if hasattr(pad_width[0], '__getitem__') else pad_width[0]
+                return [0.0] * pad_before + array + [0.0] * pad_after
+            return array
+        def mean(self, data): 
+            flat_data = self._flatten(data)
+            return sum(flat_data) / len(flat_data) if flat_data else 0.0
+        def max(self, data): 
+            flat_data = self._flatten(data)
+            return max(flat_data) if flat_data else 0.0
+        def std(self, data):
+            flat_data = self._flatten(data)
+            if not flat_data:
+                return 0.0
+            mean_val = sum(flat_data) / len(flat_data)
+            variance = sum((x - mean_val)**2 for x in flat_data) / len(flat_data)
+            return math.sqrt(variance)
+        def sum(self, data, axis=None):
+            if axis is None:
+                return sum(self._flatten(data))
+            return sum(data)  # Simplified for axis operations
+        def gradient(self, data, axis=0):
+            # Simplified gradient calculation
+            if isinstance(data, list) and len(data) > 1:
+                return [data[i+1] - data[i] for i in range(len(data)-1)] + [0]
+            return data
+        def minimum(self, a, b):
+            if isinstance(a, (list, tuple)) and isinstance(b, (list, tuple)):
+                return [min(x, y) for x, y in zip(a, b)]
+            elif isinstance(a, (list, tuple)):
+                return [min(x, b) for x in a]
+            elif isinstance(b, (list, tuple)):
+                return [min(a, y) for y in b]
+            else:
+                return min(a, b)
+        def maximum(self, a, b):
+            if isinstance(a, (list, tuple)) and isinstance(b, (list, tuple)):
+                return [max(x, y) for x, y in zip(a, b)]
+            elif isinstance(a, (list, tuple)):
+                return [max(x, b) for x in a]
+            elif isinstance(b, (list, tuple)):
+                return [max(a, y) for y in b]
+            else:
+                return max(a, b)
+        def _flatten(self, data):
+            """Helper to flatten nested lists"""
+            result = []
+            if isinstance(data, (list, tuple)):
+                for item in data:
+                    if isinstance(item, (list, tuple)):
+                        result.extend(self._flatten(item))
+                    else:
+                        result.append(item)
+            else:
+                result.append(data)
+            return result
+        
         pi = math.pi
         e = math.e
+        newaxis = None
         
-        # Create linalg mock
+        # Enhanced linalg mock
         class LinalgMock:
-            def norm(self, x):
+            def norm(self, x, axis=None):
                 if isinstance(x, list):
-                    return math.sqrt(sum(i**2 for i in x))
-                return abs(x)
+                    if all(isinstance(i, (list, tuple)) for i in x):
+                        # 2D array
+                        if axis == 0:
+                            return [math.sqrt(sum(row[i]**2 for row in x)) for i in range(len(x[0]))]
+                        elif axis == 1:
+                            return [math.sqrt(sum(val**2 for val in row)) for row in x]
+                        else:
+                            return math.sqrt(sum(sum(val**2 for val in row) for row in x))
+                    else:
+                        return math.sqrt(sum(i**2 for i in x))
+                else:
+                    return abs(x)
         linalg = LinalgMock()
     np = MockNumpy()
 
@@ -70,19 +162,23 @@ try:
 except ImportError:
     MATPLOTLIB_AVAILABLE = False
 
-from .unity_mathematics import UnityMathematics, UnityState, PHI, CONSCIOUSNESS_DIMENSION
+from ..mathematical.unity_mathematics import UnityMathematics, UnityState
+from ..mathematical.constants import PHI
+
+# Define consciousness dimension constant
+CONSCIOUSNESS_DIMENSION = 11
 
 # GPU acceleration support with CuPy
 try:
     import cupy as cp
     import cupyx.scipy as csp
     GPU_AVAILABLE = True
-    print("🚀 GPU acceleration available for consciousness field processing")
+    print("GPU acceleration available for consciousness field processing")
 except ImportError:
     cp = np
     csp = None
     GPU_AVAILABLE = False
-    print("⚠️ GPU acceleration not available, using CPU fallback")
+    print("Warning: GPU acceleration not available, using CPU fallback")
 
 # PyTorch for advanced neural processing
 try:
@@ -91,11 +187,11 @@ try:
     import torch.nn.functional as F
     PYTORCH_AVAILABLE = True
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    print(f"🧠 PyTorch available on device: {device}")
+    print(f"PyTorch available on device: {device}")
 except ImportError:
     PYTORCH_AVAILABLE = False
     device = "cpu"
-    print("⚠️ PyTorch not available, using numpy fallback")
+    print("Warning: PyTorch not available, using numpy fallback")
 
 # GPU processing constants
 GPU_BLOCK_SIZE = 256  # GPU processing block size
@@ -197,11 +293,21 @@ class ConsciousnessField:
         self.field_grid = self._initialize_field_grid()
         self.gpu_enabled = GPU_AVAILABLE and phi_resonance_strength > 1.0 and field_resolution >= 32
         
-        # GPU field management
+        # Enhanced GPU field management with proper resource handling
+        self.gpu_field_grid = None
+        self.gpu_memory_pool = None
+        self._gpu_context_manager = None
+        
         if self.gpu_enabled:
-            self.gpu_field_grid = self._initialize_gpu_field()
-            self.gpu_memory_pool = cp.get_default_memory_pool() if GPU_AVAILABLE else None
-            logger.info("🚀 GPU consciousness field acceleration enabled")
+            try:
+                self.gpu_field_grid = self._initialize_gpu_field()
+                self.gpu_memory_pool = cp.get_default_memory_pool() if GPU_AVAILABLE else None
+                self._gpu_context_manager = weakref.finalize(self, self._cleanup_gpu_resources, 
+                                                           self.gpu_memory_pool)
+                logger.info("GPU consciousness field acceleration enabled")
+            except Exception as e:
+                logger.warning(f"GPU initialization failed, falling back to CPU: {e}")
+                self.gpu_enabled = False
         
         # Create 3D consciousness density field for visualization
         density_dims = min(3, dimensions)
@@ -229,9 +335,12 @@ class ConsciousnessField:
         self.energy_convergence_threshold = stability_threshold
         self.last_energy_value = 0.0
         
-        # Thread safety for consciousness evolution
-        self.evolution_lock = threading.Lock()
+        # Enhanced thread safety for consciousness evolution
+        self.evolution_lock = threading.RLock()  # Re-entrant lock for nested operations
+        self.particle_lock = threading.Lock()   # Separate lock for particle operations
+        self.gpu_lock = threading.Lock()        # GPU operations lock
         self.is_evolving = False
+        self._shutdown_requested = False
         
         # Unity mathematics integration
         self.unity_math = UnityMathematics(consciousness_level=consciousness_coupling)
@@ -988,18 +1097,27 @@ class ConsciousnessField:
         except Exception as e:
             logger.error(f"GPU density update failed: {e}")
     
+    @lru_cache(maxsize=128)
+    def _get_phi_scaled_random_params(self, seed: int) -> tuple:
+        """Cache φ-scaled random parameters for better performance"""
+        import random
+        random.seed(seed)
+        awareness = random.expovariate(1/self.phi) if self.phi > 0 else 1.0
+        phi_resonance = random.betavariate(self.phi, 2) if self.phi > 0 else 0.5
+        unity_tendency = random.betavariate(2, 1/self.phi) if self.phi > 0 else 0.8
+        transcendence_potential = random.uniform(0, 1/self.phi) if self.phi > 0 else 0.5
+        return awareness, phi_resonance, unity_tendency, transcendence_potential
+    
     def _create_consciousness_particle(self, particle_id: int) -> ConsciousnessParticle:
         """Create individual consciousness particle with φ-harmonic properties"""
-        # φ-harmonic position initialization using standard library
+        # φ-harmonic position initialization using cached parameters
         import random
         position = [random.gauss(0, 1/self.phi) for _ in range(self.dimensions)]
         momentum = [random.gauss(0, 1/(self.phi**2)) for _ in range(self.dimensions)]
         
-        # φ-scaled awareness properties
-        awareness_level = random.expovariate(1/self.phi) if self.phi > 0 else 1.0
-        phi_resonance = random.betavariate(self.phi, 2) if self.phi > 0 else 0.5
-        unity_tendency = random.betavariate(2, 1/self.phi) if self.phi > 0 else 0.8
-        transcendence_potential = random.uniform(0, 1/self.phi) if self.phi > 0 else 0.5
+        # Use cached φ-scaled awareness properties for better performance
+        seed = (particle_id * 31 + int(self.phi * 1000)) % (2**31)
+        awareness_level, phi_resonance, unity_tendency, transcendence_potential = self._get_phi_scaled_random_params(seed)
         
         return ConsciousnessParticle(
             position=position,
@@ -1013,44 +1131,48 @@ class ConsciousnessField:
         )
     
     def _update_particle_dynamics(self, dt: float):
-        """Update consciousness particle dynamics using φ-harmonic forces"""
-        for i, particle in enumerate(self.particles):
-            # φ-harmonic force calculation
-            harmonic_force = [-self.phi * pos for pos in particle.position]  # Harmonic oscillator
+        """Update consciousness particle dynamics using φ-harmonic forces with thread safety"""
+        if not self.particles:
+            return
             
-            # Consciousness-mediated interactions with other particles
-            interaction_force = [0.0] * self.dimensions
-            for j, other_particle in enumerate(self.particles):
-                if i != j:
-                    separation = [p1 - p2 for p1, p2 in zip(particle.position, other_particle.position)]
-                    distance = math.sqrt(sum(s**2 for s in separation))
-                    if distance > 0:
-                        # φ-scaled consciousness interaction
-                        interaction_strength = (particle.awareness_level * other_particle.awareness_level * 
-                                              self.consciousness_coupling / (distance**2 + 1/self.phi))
-                        for dim in range(len(interaction_force)):
-                            if dim < len(separation):
-                                interaction_force[dim] -= interaction_strength * separation[dim] / distance
-            
-            # Unity-tendency force (attractive toward unity manifold)
-            unity_force = [-particle.unity_tendency * pos * self.phi for pos in particle.position]
-            
-            # Total force
-            total_force = [h + i + u for h, i, u in zip(harmonic_force, interaction_force, unity_force)]
-            
-            # Update momentum and position
-            particle.momentum = [mom + force * dt for mom, force in zip(particle.momentum, total_force)]
-            particle.position = [pos + mom * dt for pos, mom in zip(particle.position, particle.momentum)]
-            
-            # Update consciousness properties
-            particle.consciousness_age += dt
-            particle.awareness_level *= (1 + dt * particle.phi_resonance / self.phi)
-            particle.phi_resonance = min(1.0, particle.phi_resonance + dt * 0.01)
-            
-            # Transcendence potential evolution
-            if particle.awareness_level > self.phi:
-                particle.transcendence_potential = min(1.0, 
-                    particle.transcendence_potential + dt * 0.005)
+        with self.particle_lock:
+            for i, particle in enumerate(self.particles):
+                # φ-harmonic force calculation
+                harmonic_force = [-self.phi * pos for pos in particle.position]  # Harmonic oscillator
+                
+                # Consciousness-mediated interactions with other particles
+                interaction_force = [0.0] * self.dimensions
+                for j, other_particle in enumerate(self.particles):
+                    if i != j:
+                        separation = [p1 - p2 for p1, p2 in zip(particle.position, other_particle.position)]
+                        distance = math.sqrt(sum(s**2 for s in separation))
+                        if distance > 0:
+                            # φ-scaled consciousness interaction
+                            interaction_strength = (particle.awareness_level * other_particle.awareness_level * 
+                                                  self.consciousness_coupling / (distance**2 + 1/self.phi))
+                            for dim in range(len(interaction_force)):
+                                if dim < len(separation):
+                                    interaction_force[dim] -= interaction_strength * separation[dim] / distance
+                
+                # Unity-tendency force (attractive toward unity manifold)
+                unity_force = [-particle.unity_tendency * pos * self.phi for pos in particle.position]
+                
+                # Total force
+                total_force = [h + i + u for h, i, u in zip(harmonic_force, interaction_force, unity_force)]
+                
+                # Update momentum and position
+                particle.momentum = [mom + force * dt for mom, force in zip(particle.momentum, total_force)]
+                particle.position = [pos + mom * dt for pos, mom in zip(particle.position, particle.momentum)]
+                
+                # Update consciousness properties
+                particle.consciousness_age += dt
+                particle.awareness_level *= (1 + dt * particle.phi_resonance / self.phi)
+                particle.phi_resonance = min(1.0, particle.phi_resonance + dt * 0.01)
+                
+                # Transcendence potential evolution
+                if particle.awareness_level > self.phi:
+                    particle.transcendence_potential = min(1.0, 
+                        particle.transcendence_potential + dt * 0.005)
     
     def _solve_field_equation(self, dt: float):
         """Solve consciousness field equation: ∂C/∂t = φ∇²C - C³ + C + γΣᵢψᵢ(r,t)"""
@@ -1770,6 +1892,48 @@ def demonstrate_consciousness_unity():
     
     print("\n[SPARKLE] Consciousness demonstrates Een plus een is een [SPARKLE]")
     return field
+
+    @staticmethod
+    def _cleanup_gpu_resources(memory_pool):
+        """Static method for GPU resource cleanup"""
+        if memory_pool is not None:
+            try:
+                memory_pool.free_all_blocks()
+                logger.debug("GPU memory pool cleaned up")
+            except Exception as e:
+                logger.warning(f"GPU cleanup warning: {e}")
+    
+    def _cleanup_partial_gpu_state(self):
+        """Clean up partial GPU state after errors"""
+        if GPU_AVAILABLE and hasattr(self, 'gpu_memory_pool') and self.gpu_memory_pool:
+            try:
+                # Free allocated GPU memory
+                self.gpu_memory_pool.free_all_blocks()
+                # Reset GPU field grid
+                self.gpu_field_grid = None
+                logger.debug("Partial GPU state cleaned up")
+            except Exception as e:
+                logger.debug(f"GPU partial cleanup: {e}")
+    
+    def _optimize_gpu_memory(self):
+        """Optimize GPU memory usage"""
+        if not GPU_AVAILABLE or not self.gpu_enabled:
+            return
+        
+        try:
+            # Compact GPU field representation
+            if self.gpu_field_grid is not None:
+                # Convert to lower precision if memory is tight
+                if hasattr(self.gpu_field_grid, 'astype'):
+                    self.gpu_field_grid = self.gpu_field_grid.astype(cp.complex64)
+            
+            # Free unused blocks
+            if self.gpu_memory_pool:
+                self.gpu_memory_pool.free_all_blocks()
+            
+            logger.info("GPU memory optimized")
+        except Exception as e:
+            logger.warning(f"GPU memory optimization failed: {e}")
 
 if __name__ == "__main__":
     demonstrate_consciousness_unity()
