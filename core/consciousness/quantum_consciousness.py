@@ -41,10 +41,24 @@ except ImportError:
     class MockNumpy:
         def array(self, data): return data
         def zeros(self, shape): return [[0.0] * shape[1] for _ in range(shape[0])] if isinstance(shape, tuple) else [0.0] * shape
-        def eye(self, n): return [[1.0 if i == j else 0.0 for j in range(n)] for i in range(n)]
+        def eye(self, n): 
+            # Optimized identity matrix creation
+            matrix = [[0.0] * n for _ in range(n)]
+            for i in range(n):
+                matrix[i][i] = 1.0
+            return matrix
         def trace(self, matrix): return sum(matrix[i][i] for i in range(min(len(matrix), len(matrix[0]))))
         def conj(self, z): return complex(z.real, -z.imag) if isinstance(z, complex) else z
-        def transpose(self, matrix): return [[matrix[j][i] for j in range(len(matrix))] for i in range(len(matrix[0]))]
+        def transpose(self, matrix): 
+            # Optimized matrix transpose
+            if not matrix or not matrix[0]:
+                return matrix
+            rows, cols = len(matrix), len(matrix[0])
+            transposed = [[0.0] * rows for _ in range(cols)]
+            for i in range(rows):
+                for j in range(cols):
+                    transposed[j][i] = matrix[i][j]
+            return transposed
         def linalg(self): 
             class LinAlg:
                 def eigh(self, matrix): return ([1.0] * len(matrix), matrix)  # Mock eigenvalues/vectors

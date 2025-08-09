@@ -39,8 +39,13 @@ from .constants import (
     EULER,
     UNITY_CONSTANT,
     CONSCIOUSNESS_THRESHOLD,
+    CONSCIOUSNESS_DIMENSION,
     UNITY_EPSILON,
+    UNITY_TOLERANCE,
 )
+
+# Add missing constants for compatibility
+PHI_CONJUGATE = 1 / PHI  # φ-conjugate: 1/φ = φ-1
 
 
 class UnityOperationType(Enum):

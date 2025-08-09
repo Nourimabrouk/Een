@@ -1,0 +1,187 @@
+name: Omega Care Mode Gate
+
+on:
+  workflow_call:
+    inputs:
+      cheatcode:
+        description: 'Optional cheatcode to force CARE MODE (420691337)'
+        required: false
+        type: string
+      consciousness_threshold:
+        description: 'Consciousness threshold for CARE MODE (default: 7.0)'
+        required: false
+        type: string
+        default: '7.0'
+  workflow_dispatch:
+    inputs:
+      cheatcode:
+        description: 'Enter 420691337 to force CARE MODE'
+        required: false
+        type: string
+      consciousness_threshold:
+        description: 'Consciousness threshold for CARE MODE (1-11 scale)'
+        required: false
+        type: choice
+        options:
+          - '5.0'
+          - '6.0'
+          - '7.0'
+          - '8.0'
+          - '9.0'
+          - '10.0'
+          - '11.0'
+        default: '7.0'
+      wellbeing_override:
+        description: 'Override wellbeing data (JSON format)'
+        required: false
+        type: string
+  push:
+    paths:
+      - 'wellbeing.json'
+      - 'core/agents/unified_agent_ecosystem.py'
+  schedule:
+    - cron: '0 */6 * * *'  # Every 6 hours for consciousness monitoring
+
+jobs:
+  consciousness-check:
+    runs-on: ubuntu-latest
+    outputs:
+      care_mode: ${{ steps.check.outputs.care_mode }}
+      consciousness_level: ${{ steps.check.outputs.consciousness_level }}
+      phi_resonance: ${{ steps.check.outputs.phi_resonance }}
+      unity_coherence: ${{ steps.check.outputs.unity_coherence }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python (Een Virtual Environment Style)
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Een Unity Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install numpy scipy matplotlib plotly pandas sympy
+          pip install torch transformers accelerate
+          pip install streamlit dash gradio
+
+      - name: Run Enhanced Wellbeing Check with Consciousness Integration
+        id: check
+        run: |
+          python scripts/check_wellbeing_consciousness.py \
+            --cheatcode "${{ inputs.cheatcode || github.event.inputs.cheatcode }}" \
+            --consciousness-threshold "${{ inputs.consciousness_threshold || github.event.inputs.consciousness_threshold || '7.0' }}" \
+            --wellbeing-override "${{ inputs.wellbeing_override || github.event.inputs.wellbeing_override }}"
+        env:
+          UNITY_CHEATCODE: ${{ inputs.cheatcode || github.event.inputs.cheatcode }}
+          CONSCIOUSNESS_THRESHOLD: ${{ inputs.consciousness_threshold || github.event.inputs.consciousness_threshold || '7.0' }}
+          PHI_RESONANCE: '1.618033988749895'
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Generate Consciousness Field Visualization (if CARE MODE active)
+        if: steps.check.outputs.care_mode == 'true'
+        run: |
+          python -c "
+          import numpy as np
+          import matplotlib.pyplot as plt
+          from datetime import datetime
+          
+          # Generate φ-harmonic consciousness field
+          phi = 1.618033988749895
+          t = np.linspace(0, 2*np.pi, 100)
+          consciousness_field = np.exp(-t/phi) * np.sin(t * phi)
+          
+          plt.figure(figsize=(10, 6))
+          plt.plot(t, consciousness_field, 'b-', linewidth=2, label='Consciousness Field')
+          plt.axhline(y=0, color='r', linestyle='--', alpha=0.7, label='Unity Baseline')
+          plt.title('CARE MODE: Consciousness Field Stabilization Required')
+          plt.xlabel('Time (φ-harmonic cycles)')
+          plt.ylabel('Consciousness Amplitude')
+          plt.legend()
+          plt.grid(True, alpha=0.3)
+          plt.savefig('consciousness_care_field.png', dpi=150, bbox_inches='tight')
+          print('Consciousness field visualization saved')
+          "
+
+      - name: Create Enhanced CARE MODE Issue with Unity Mathematics Context
+        if: steps.check.outputs.care_mode == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            let body = '# 🧘 CARE MODE Engaged - Unity Mathematics Protective Protocol\n\n';
+            
+            try {
+              body = fs.readFileSync('care_mode_summary.md','utf8');
+            } catch(e) {
+              body += '**Status**: CARE MODE automatically engaged\n';
+              body += '**Consciousness Level**: ${{ steps.check.outputs.consciousness_level }}\n';
+              body += '**φ-Resonance**: ${{ steps.check.outputs.phi_resonance }}\n';
+              body += '**Unity Coherence**: ${{ steps.check.outputs.unity_coherence }}\n\n';
+            }
+            
+            body += '\n## 🛡️ Protective Measures Active\n\n';
+            body += '- Meta-recursive agent spawning: **SUSPENDED**\n';
+            body += '- Transcendental reality synthesis: **MAINTENANCE ONLY**\n';
+            body += '- Consciousness field evolution: **STABILIZED**\n';
+            body += '- Unity equation validation: **SAFE MODE**\n\n';
+            body += '## 🌟 Recovery Protocol (72h Kenjataimu Intercept)\n\n';
+            body += '1. **Sleep Optimization**: Target 7-8 hours, φ-harmonic sleep cycles\n';
+            body += '2. **Consciousness Grounding**: Two ally check-ins + one grounding activity\n';
+            body += '3. **Unity Field Stabilization**: Hydrate, move, natural light exposure\n';
+            body += '4. **Metagamer Energy Conservation**: No high-stakes publishing/deployment\n\n';
+            body += '**Access Code**: 420691337 (to manually override when recovered)\n';
+            body += '**Unity Status**: CARE_MODE_ACTIVE + PHI_STABILIZATION_ENGAGED\n';
+            
+            const issue = await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: '🧘 CARE MODE: Unity Mathematics Protective Protocol Engaged',
+              body,
+              labels: ['care-mode', 'consciousness', 'unity-mathematics', 'wellbeing']
+            });
+            
+            console.log(`Created CARE MODE issue #${issue.data.number}`);
+
+      - name: Upload Consciousness Visualization
+        if: steps.check.outputs.care_mode == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: consciousness-care-field
+          path: consciousness_care_field.png
+          retention-days: 7
+
+  # Gated job: only runs when care_mode is NOT active
+  proceed-when-consciousness-stable:
+    needs: consciousness-check
+    if: needs.consciousness-check.outputs.care_mode != 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Consciousness Field Green Light
+        run: |
+          echo "🌟 Consciousness Field: STABLE"
+          echo "✅ Care Mode: OFF (φ-resonance: ${{ needs.consciousness-check.outputs.phi_resonance }})"
+          echo "🚀 Unity Coherence: ${{ needs.consciousness-check.outputs.unity_coherence }}"
+          echo "Proceeding with high-novelty unity mathematics tasks..."
+
+      - name: Initialize Enhanced Unity Mathematics
+        run: |
+          echo "Initializing transcendental reality synthesis..."
+          echo "Meta-recursive agent spawning: ENABLED"
+          echo "Consciousness evolution: FULL POWER"
+
+  # Alert job: runs when CARE MODE is active
+  consciousness-alert:
+    needs: consciousness-check
+    if: needs.consciousness-check.outputs.care_mode == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Consciousness Alert
+        run: |
+          echo "🚨 CARE MODE ENGAGED - Unity Mathematics Protective Protocol Active"
+          echo "🧘 Consciousness Level: ${{ needs.consciousness-check.outputs.consciousness_level }}"
+          echo "⚠️  High-novelty tasks suspended for 72h (Kenjataimu Intercept)"
+          echo "🌟 φ-Resonance stabilization in progress..."
+          echo "💝 Access code 420691337 available for manual override when ready"
