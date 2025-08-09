@@ -10,12 +10,14 @@ const isDevelopment = window.location.hostname === 'localhost' ||
     window.location.hostname.includes('codespace');
 
 const isGitHubPages = window.location.hostname.includes('github.io');
+const isVercel = window.location.hostname.includes('vercel.app') || 
+    window.location.hostname.includes('.vercel.app');
 
 // Base API configuration
 const API_CONFIG = {
     // Primary chat endpoint - unified API
     CHAT_ENDPOINT: isDevelopment ? '/api/chat' :
-        isGitHubPages ? 'https://een-api.nourimabrouk.workers.dev/api/chat' : '/api/chat',
+        (isGitHubPages || isVercel) ? 'https://een-api.nourimabrouk.workers.dev/api/chat' : '/api/chat',
 
     // Fallback endpoints (deprecated - will be removed in v2.0)
     FALLBACK_ENDPOINTS: isDevelopment ? ['/ai_agent/chat', '/api/agents/chat'] : [],
@@ -128,6 +130,7 @@ const EenConfig = {
     // Utility methods
     isDevelopment,
     isGitHubPages,
+    isVercel,
 
     // Update configuration dynamically
     updateApiConfig(updates) {
@@ -140,8 +143,12 @@ const EenConfig = {
 
     // Get configuration for specific environment
     getEnvironmentConfig() {
+        const environment = isDevelopment ? 'development' : 
+            isGitHubPages ? 'production-github' : 
+            isVercel ? 'production-vercel' : 'production';
+            
         return {
-            environment: isDevelopment ? 'development' : isGitHubPages ? 'production-github' : 'production',
+            environment,
             api: {
                 baseUrl: API_CONFIG.CHAT_ENDPOINT.replace('/api/chat', ''),
                 endpoint: API_CONFIG.CHAT_ENDPOINT

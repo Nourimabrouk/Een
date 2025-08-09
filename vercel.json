@@ -1,62 +1,17 @@
 {
   "version": 2,
-  "functions": {
-    "api/unity_api.py": {
-      "runtime": "python3.12",
-      "maxDuration": 30
+  "git": {
+    "deploymentEnabled": {
+      "main": false
     }
   },
   "builds": [
-    {
-      "src": "api/unity_api.py",
-      "use": "@vercel/python"
-    },
     {
       "src": "website/**",
       "use": "@vercel/static"
     }
   ],
   "routes": [
-    {
-      "src": "/api/auth/google/token",
-      "dest": "/api/auth/google/token.py"
-    },
-    {
-      "src": "/api/auth/github/token",
-      "dest": "/api/auth/github/token.py"
-    },
-    {
-      "src": "/api/auth/refresh",
-      "dest": "/api/auth/refresh.py"
-    },
-    {
-      "src": "/api/(.*)",
-      "dest": "/api/unity_api.py"
-    },
-    {
-      "src": "/auth/callback/google",
-      "dest": "/website/unity-dashboard.html"
-    },
-    {
-      "src": "/auth/callback/github",
-      "dest": "/website/unity-dashboard.html"
-    },
-    {
-      "src": "/unity-dashboard",
-      "dest": "/website/unity-dashboard.html"
-    },
-    {
-      "src": "/dashboard",
-      "dest": "/website/unity-dashboard.html"
-    },
-    {
-      "src": "/auth-demo",
-      "dest": "/website/auth-demo.html"
-    },
-    {
-      "src": "/api-demo",
-      "dest": "/website/api-demo.html"
-    },
     {
       "src": "/website/(.*)",
       "dest": "/website/$1"
@@ -83,23 +38,8 @@
           "value": "strict-origin-when-cross-origin"
         }
       ]
-    },
-    {
-      "source": "/api/(.*)",
-      "headers": [
-        {
-          "key": "Access-Control-Allow-Origin",
-          "value": "*"
-        },
-        {
-          "key": "Access-Control-Allow-Methods",
-          "value": "GET, POST, PUT, DELETE, OPTIONS"
-        },
-        {
-          "key": "Access-Control-Allow-Headers",
-          "value": "X-Requested-With, Content-Type, Authorization"
-        }
-      ]
     }
-  ]
+  ],
+  "cleanUrls": true,
+  "trailingSlash": false
 }

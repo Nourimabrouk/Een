@@ -69,9 +69,12 @@ ml_framework/
 
 # Keep only essential web files
 !website/
-!api/
-!core/
-!src/
-!requirements.txt
 !vercel.json
-!unity_dashboard_simple.py
+
+# Exclude ALL backend files since we use Cloudflare Workers for API
+api/
+core/
+src/
+*.py
+ml_framework/
+consciousness/
