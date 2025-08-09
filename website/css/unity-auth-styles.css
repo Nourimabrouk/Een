@@ -1,0 +1,481 @@
+/**
+ * Unity Authentication System Styles
+ * Master-level authentication UI with premium UX
+ */
+
+:root {
+    --auth-bg: rgba(10, 10, 15, 0.95);
+    --auth-modal-bg: rgba(18, 18, 26, 0.98);
+    --auth-border: rgba(255, 215, 0, 0.2);
+    --auth-gold: #ffd700;
+    --auth-gold-hover: #ffed4a;
+    --auth-text: #e6edf3;
+    --auth-text-dim: #8b949e;
+    --auth-success: #00ff88;
+    --auth-error: #ff6b6b;
+    --auth-glass: rgba(255, 255, 255, 0.05);
+    --auth-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Auth Modal Base */
+.auth-modal, .auth-login-modal, .auth-error-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--auth-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from { 
+        opacity: 0; 
+        transform: scale(0.95);
+    }
+    to { 
+        opacity: 1; 
+        transform: scale(1);
+    }
+}
+
+.auth-modal-content {
+    background: var(--auth-modal-bg);
+    border: 1px solid var(--auth-border);
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 480px;
+    width: 90%;
+    box-shadow: var(--auth-shadow);
+    animation: slideIn 0.4s ease-out;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+@keyframes slideIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(30px);
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0);
+    }
+}
+
+.auth-modal-content h3 {
+    color: var(--auth-gold);
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.auth-modal-content p {
+    color: var(--auth-text);
+    text-align: center;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+/* OAuth Provider Buttons */
+.auth-providers {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.auth-provider {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 16px 20px;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    background: var(--auth-glass);
+    color: var(--auth-text);
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.auth-provider::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.auth-provider:hover::before {
+    left: 100%;
+}
+
+.auth-provider:hover {
+    border-color: var(--auth-gold);
+    background: rgba(255, 215, 0, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.2);
+}
+
+.auth-provider.google:hover {
+    border-color: #4285f4;
+    background: rgba(66, 133, 244, 0.1);
+    box-shadow: 0 8px 25px rgba(66, 133, 244, 0.2);
+}
+
+.auth-provider.github:hover {
+    border-color: #6e5494;
+    background: rgba(110, 84, 148, 0.1);
+    box-shadow: 0 8px 25px rgba(110, 84, 148, 0.2);
+}
+
+.auth-provider.openai:hover {
+    border-color: #00a67e;
+    background: rgba(0, 166, 126, 0.1);
+    box-shadow: 0 8px 25px rgba(0, 166, 126, 0.2);
+}
+
+.auth-provider i {
+    font-size: 20px;
+    width: 20px;
+    text-align: center;
+}
+
+/* Benefits Section */
+.auth-benefits {
+    background: rgba(255, 215, 0, 0.05);
+    border: 1px solid rgba(255, 215, 0, 0.15);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 25px;
+}
+
+.auth-benefits h4 {
+    color: var(--auth-gold);
+    font-size: 1.1em;
+    margin-bottom: 15px;
+}
+
+.auth-benefits ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.auth-benefits li {
+    color: var(--auth-text);
+    padding: 8px 0;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Input Styles */
+input[type="password"], input[type="text"] {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid var(--auth-border);
+    border-radius: 8px;
+    background: var(--auth-glass);
+    color: var(--auth-text);
+    font-size: 16px;
+    margin-bottom: 20px;
+    transition: border-color 0.3s ease;
+}
+
+input[type="password"]:focus, input[type="text"]:focus {
+    outline: none;
+    border-color: var(--auth-gold);
+    box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
+}
+
+/* Action Buttons */
+.auth-modal-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+}
+
+.auth-modal-actions button, .auth-skip {
+    padding: 12px 24px;
+    border: 2px solid var(--auth-border);
+    border-radius: 8px;
+    background: var(--auth-glass);
+    color: var(--auth-text);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.auth-modal-actions button:first-child, button#openai-submit {
+    background: linear-gradient(135deg, var(--auth-gold), #ffed4a);
+    color: #000;
+    border-color: var(--auth-gold);
+}
+
+.auth-modal-actions button:hover, .auth-skip:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2);
+}
+
+.auth-skip {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(139, 148, 158, 0.1);
+    border-color: rgba(139, 148, 158, 0.3);
+    color: var(--auth-text-dim);
+}
+
+.auth-skip:hover {
+    background: rgba(139, 148, 158, 0.2);
+    color: var(--auth-text);
+}
+
+/* User Profile Display */
+.unity-user-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 16px;
+    background: var(--auth-glass);
+    border: 1px solid var(--auth-border);
+    border-radius: 20px;
+    color: var(--auth-text);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.unity-user-profile:hover {
+    background: rgba(255, 215, 0, 0.1);
+    border-color: var(--auth-gold);
+}
+
+.unity-user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--auth-gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: #000;
+    overflow: hidden;
+}
+
+.unity-user-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.unity-user-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.unity-user-name {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.unity-user-provider {
+    font-size: 11px;
+    color: var(--auth-text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* User Dropdown */
+.unity-user-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 8px;
+    background: var(--auth-modal-bg);
+    border: 1px solid var(--auth-border);
+    border-radius: 12px;
+    min-width: 200px;
+    box-shadow: var(--auth-shadow);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.unity-user-dropdown.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.unity-user-dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    color: var(--auth-text);
+    text-decoration: none;
+    transition: background 0.2s ease;
+    border-radius: 8px;
+    margin: 4px;
+}
+
+.unity-user-dropdown-item:hover {
+    background: rgba(255, 215, 0, 0.1);
+}
+
+.unity-user-dropdown-item i {
+    width: 16px;
+    text-align: center;
+    font-size: 14px;
+}
+
+/* Authentication Status Indicator */
+.auth-status-indicator {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    pointer-events: none;
+}
+
+.auth-status-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background: rgba(0, 255, 136, 0.9);
+    color: #000;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    animation: slideInStatus 0.5s ease-out;
+}
+
+@keyframes slideInStatus {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.auth-status-badge.error {
+    background: rgba(255, 107, 107, 0.9);
+    color: #fff;
+}
+
+.auth-status-badge.loading {
+    background: rgba(255, 215, 0, 0.9);
+    color: #000;
+}
+
+/* Loading States */
+.auth-loading {
+    position: relative;
+    overflow: hidden;
+}
+
+.auth-loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.3), transparent);
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .auth-modal-content {
+        margin: 20px;
+        padding: 30px 25px;
+        max-width: none;
+        width: auto;
+    }
+    
+    .auth-provider {
+        padding: 14px 16px;
+        font-size: 15px;
+    }
+    
+    .unity-user-profile {
+        padding: 6px 12px;
+    }
+    
+    .unity-user-avatar {
+        width: 28px;
+        height: 28px;
+        font-size: 12px;
+    }
+    
+    .unity-user-dropdown {
+        right: -10px;
+        left: auto;
+        min-width: 180px;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Focus indicators for keyboard navigation */
+.auth-provider:focus,
+button:focus,
+input:focus {
+    outline: 2px solid var(--auth-gold);
+    outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .auth-modal-content {
+        border: 2px solid var(--auth-gold);
+    }
+    
+    .auth-provider {
+        border-width: 2px;
+    }
+}

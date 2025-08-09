@@ -15,7 +15,7 @@ class UnifiedNavigationSystem {
             // Experiences & AI
             'zen-unity-meditation.html', 'consciousness_dashboard.html', 'consciousness_dashboard_clean.html', 'unity-mathematics-experience.html', 'ai-unified-hub.html', 'metagamer_agent.html',
             // Visualizations & Tools
-            'gallery.html', 'dalle-gallery.html', 'enhanced-3d-consciousness-field.html', 'enhanced-unity-visualization-system.html', 'unity_visualization.html', 'gallery/phi_consciousness_transcendence.html', 'dashboards.html', 'playground.html', 'mathematical_playground.html', 'live-code-showcase.html', 'examples/unity-calculator.html', 'examples/phi-harmonic-explorer.html',
+            'gallery.html', 'dalle-gallery.html', 'enhanced-3d-consciousness-field.html', 'enhanced-unity-visualization-system.html', 'unity_visualization.html', 'gallery/phi_consciousness_transcendence.html', 'dashboards.html', 'unity-dashboard.html', 'playground.html', 'mathematical_playground.html', 'live-code-showcase.html', 'examples/unity-calculator.html', 'examples/phi-harmonic-explorer.html',
             // About
             'about.html', 'research.html', 'publications.html', 'learning.html', 'further-reading.html', 'unity-meta-atlas.html', 'mobile-app.html', 'sitemap.html'
         ]);
@@ -181,6 +181,9 @@ class UnifiedNavigationSystem {
                         <div class="nav-dropdown">
                             <a href="dashboards.html" class="nav-dropdown-link">
                                 <i class="fas fa-th-large"></i> All Dashboards
+                            </a>
+                            <a href="unity-dashboard.html" class="nav-dropdown-link">
+                                <i class="fas fa-infinity"></i> Unity Dashboard (Full)
                             </a>
                             <a href="playground.html" class="nav-dropdown-link">
                                 <i class="fas fa-gamepad"></i> Interactive Playground

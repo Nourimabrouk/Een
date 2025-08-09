@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unity API Demo | Een Mathematics</title>
+    <script src="js/nav-template-applier.js" defer></script>
+    <style>
+        :root {
+            --phi: 1.618;
+            --bg: #0a0b0f;
+            --bg2: #0f1117;
+            --fg: #e6edf3;
+            --gold: #ffd700;
+            --cyan: #00e6e6;
+            --grid: rgba(255,255,255,0.06);
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--bg), var(--bg2) 60%);
+            color: var(--fg);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .api-demo {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--grid);
+            border-radius: 16px;
+            padding: 24px;
+            margin: 20px 0;
+        }
+        
+        .input-group {
+            margin: 15px 0;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--gold);
+            font-weight: 600;
+        }
+        
+        input, button {
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid var(--grid);
+            background: rgba(255,255,255,0.05);
+            color: var(--fg);
+            font-size: 14px;
+            width: 200px;
+        }
+        
+        button {
+            background: linear-gradient(135deg, var(--gold), #ff8c00);
+            color: #000;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+            width: auto;
+            padding: 12px 24px;
+        }
+        
+        button:hover {
+            transform: scale(1.05);
+        }
+        
+        .result {
+            background: rgba(0,230,230,0.1);
+            border: 1px solid var(--cyan);
+            border-radius: 8px;
+            padding: 16px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .phi-symbol {
+            color: var(--gold);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌟 Unity Mathematics API Demo</h1>
+        <p>Interactive demonstration of the Unity Equation <strong>1+1=1</strong> through φ-harmonic operations</p>
+        
+        <!-- Unity Addition -->
+        <div class="api-demo">
+            <h2>Unity Addition</h2>
+            <p>Prove that <strong>1+1=1</strong> through φ-harmonic convergence</p>
+            <div class="input-group">
+                <label for="add-a">Value A:</label>
+                <input type="number" id="add-a" value="1" step="0.01">
+            </div>
+            <div class="input-group">
+                <label for="add-b">Value B:</label>
+                <input type="number" id="add-b" value="1" step="0.01">
+            </div>
+            <button onclick="testUnityAdd()">Calculate Unity Addition</button>
+            <div id="add-result" class="result hidden"></div>
+        </div>
+        
+        <!-- Consciousness Field -->
+        <div class="api-demo">
+            <h2>Consciousness Field</h2>
+            <p>Calculate consciousness field: C(x,y,t) = <span class="phi-symbol">φ</span> × sin(x×φ) × cos(y×φ) × e^(-t/φ)</p>
+            <div class="input-group">
+                <label for="field-x">X coordinate:</label>
+                <input type="number" id="field-x" value="1" step="0.1">
+            </div>
+            <div class="input-group">
+                <label for="field-y">Y coordinate:</label>
+                <input type="number" id="field-y" value="1" step="0.1">
+            </div>
+            <div class="input-group">
+                <label for="field-t">Time t:</label>
+                <input type="number" id="field-t" value="0" step="0.1">
+            </div>
+            <button onclick="testConsciousnessField()">Calculate Consciousness Field</button>
+            <div id="field-result" class="result hidden"></div>
+        </div>
+        
+        <!-- Metagamer Energy -->
+        <div class="api-demo">
+            <h2>Metagamer Energy</h2>
+            <p>Calculate metagamer energy: E = <span class="phi-symbol">φ²</span> × ρ × U</p>
+            <div class="input-group">
+                <label for="energy-rho">Consciousness Density (ρ):</label>
+                <input type="number" id="energy-rho" value="1" step="0.01">
+            </div>
+            <div class="input-group">
+                <label for="energy-u">Unity Rate (U):</label>
+                <input type="number" id="energy-u" value="1" step="0.01">
+            </div>
+            <button onclick="testMetagamerEnergy()">Calculate Metagamer Energy</button>
+            <div id="energy-result" class="result hidden"></div>
+        </div>
+        
+        <!-- Unity Proofs -->
+        <div class="api-demo">
+            <h2>Generate Unity Proofs</h2>
+            <p>Generate comprehensive proofs that 1+1=1 through multiple mathematical frameworks</p>
+            <button onclick="generateProofs()">Generate Unity Proofs</button>
+            <div id="proofs-result" class="result hidden"></div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = '/api';
+        
+        async function apiCall(endpoint, data = null) {
+            try {
+                const response = await fetch(API_BASE + endpoint, {
+                    method: data ? 'POST' : 'GET',
+                    headers: data ? {'Content-Type': 'application/json'} : {},
+                    body: data ? JSON.stringify(data) : null
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                
+                return await response.json();
+            } catch (error) {
+                return {error: error.message};
+            }
+        }
+        
+        async function testUnityAdd() {
+            const a = parseFloat(document.getElementById('add-a').value);
+            const b = parseFloat(document.getElementById('add-b').value);
+            
+            const result = await apiCall('/unity/add', {a, b});
+            
+            const resultDiv = document.getElementById('add-result');
+            if (result.error) {
+                resultDiv.innerHTML = `<strong>Error:</strong> ${result.error}`;
+            } else {
+                resultDiv.innerHTML = `
+                    <strong>Result:</strong> ${result.proof}<br>
+                    <strong>φ-harmonic result:</strong> ${result.result}<br>
+                    <strong>Golden ratio:</strong> φ = ${result.phi}
+                `;
+            }
+            resultDiv.classList.remove('hidden');
+        }
+        
+        async function testConsciousnessField() {
+            const x = parseFloat(document.getElementById('field-x').value);
+            const y = parseFloat(document.getElementById('field-y').value);
+            const t = parseFloat(document.getElementById('field-t').value);
+            
+            const result = await apiCall('/consciousness/field', {x, y, t});
+            
+            const resultDiv = document.getElementById('field-result');
+            if (result.error) {
+                resultDiv.innerHTML = `<strong>Error:</strong> ${result.error}`;
+            } else {
+                resultDiv.innerHTML = `
+                    <strong>Consciousness Field Value:</strong> ${result.result}<br>
+                    <strong>Equation:</strong> ${result.equation}<br>
+                    <strong>φ:</strong> ${result.phi}
+                `;
+            }
+            resultDiv.classList.remove('hidden');
+        }
+        
+        async function testMetagamerEnergy() {
+            const consciousness_density = parseFloat(document.getElementById('energy-rho').value);
+            const unity_rate = parseFloat(document.getElementById('energy-u').value);
+            
+            const result = await apiCall('/metagamer/energy', {consciousness_density, unity_rate});
+            
+            const resultDiv = document.getElementById('energy-result');
+            if (result.error) {
+                resultDiv.innerHTML = `<strong>Error:</strong> ${result.error}`;
+            } else {
+                resultDiv.innerHTML = `
+                    <strong>Metagamer Energy:</strong> ${result.result}<br>
+                    <strong>Equation:</strong> ${result.equation}<br>
+                    <strong>φ²:</strong> ${(result.phi * result.phi).toFixed(6)}
+                `;
+            }
+            resultDiv.classList.remove('hidden');
+        }
+        
+        async function generateProofs() {
+            const result = await apiCall('/prove');
+            
+            const resultDiv = document.getElementById('proofs-result');
+            if (result.error) {
+                resultDiv.innerHTML = `<strong>Error:</strong> ${result.error}`;
+            } else {
+                let proofsHtml = `<strong>${result.unity_equation}</strong> (φ = ${result.phi})<br><br>`;
+                
+                result.proofs.forEach((proof, index) => {
+                    proofsHtml += `<strong>Proof ${index + 1} (${proof.type}):</strong><br>`;
+                    proofsHtml += `${proof.statement}<br>`;
+                    
+                    if (proof.result !== undefined) {
+                        proofsHtml += `Result: ${proof.result}<br>`;
+                    }
+                    if (proof.convergence !== undefined) {
+                        proofsHtml += `Convergence: ${proof.convergence}<br>`;
+                    }
+                    if (proof.conservation_ratio !== undefined) {
+                        proofsHtml += `Conservation ratio: ${proof.conservation_ratio}<br>`;
+                    }
+                    proofsHtml += '<br>';
+                });
+                
+                proofsHtml += `<strong>Verification:</strong> ${result.verification}`;
+                resultDiv.innerHTML = proofsHtml;
+            }
+            resultDiv.classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
