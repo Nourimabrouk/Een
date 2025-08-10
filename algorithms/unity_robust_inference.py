@@ -501,7 +501,7 @@ def demonstrate_unity_robust_inference():
     Demonstrate unity-based robust inference methods
     Shows how 1+1=1 improves robustness to outliers
     """
-    print("🛡️ UNITY ROBUST INFERENCE: Complete Implementation")
+    print("[SHIELD] UNITY ROBUST INFERENCE: Complete Implementation")
     print("=" * 60)
     
     # Generate synthetic data with outliers
@@ -545,7 +545,7 @@ def demonstrate_unity_robust_inference():
     print(f"   φ-Harmonic Weighting: {config.phi_harmonic_weighting}")
     
     # Test Unity Robust Location
-    print(f"\n🎯 1. UNITY ROBUST LOCATION ESTIMATION")
+    print(f"\n[TARGET] 1. UNITY ROBUST LOCATION ESTIMATION")
     
     unity_location = UnityRobustLocation(config)
     unity_location.fit(X)
@@ -563,7 +563,7 @@ def demonstrate_unity_robust_inference():
     print(f"   Unity 95% CI: [{lower[0]:.3f}, {upper[0]:.3f}] × [{lower[1]:.3f}, {upper[1]:.3f}]")
     
     # Test Unity Robust Regression
-    print(f"\n📈 2. UNITY ROBUST REGRESSION")
+    print(f"\n[CHART] 2. UNITY ROBUST REGRESSION")
     
     unity_regression = UnityRobustRegression(config)
     unity_regression.fit(X, y)
@@ -594,7 +594,7 @@ def demonstrate_unity_robust_inference():
     print(f"   Unity Improvement: {(standard_mse - unity_mse)/standard_mse*100:+.1f}%")
     
     # Test Unity Robust Classification
-    print(f"\n🎨 3. UNITY ROBUST CLASSIFICATION")
+    print(f"\n[STYLE] 3. UNITY ROBUST CLASSIFICATION")
     
     unity_classifier = UnityRobustClassification(config)
     unity_classifier.fit(X, y_class)
@@ -618,7 +618,7 @@ def demonstrate_unity_robust_inference():
     print(f"   Unity Improvement: {(unity_acc - standard_acc)*100:+.1f} percentage points")
     
     # Test Unity Outlier Detection
-    print(f"\n🚨 4. UNITY OUTLIER DETECTION")
+    print(f"\n[ALERT] 4. UNITY OUTLIER DETECTION")
     
     unity_outlier_detector = UnityOutlierDetector(config)
     unity_outlier_detector.fit(X)
@@ -639,7 +639,7 @@ def demonstrate_unity_robust_inference():
     print(f"   Unity Outlier Threshold: {unity_outlier_detector.unity_threshold_:.3f}")
     
     # Performance Analysis
-    print(f"\n🏆 PERFORMANCE ANALYSIS")
+    print(f"\n[WIN] PERFORMANCE ANALYSIS")
     print("-" * 40)
     
     # Robustness comparison
@@ -651,7 +651,7 @@ def demonstrate_unity_robust_inference():
     }
     
     for method, improvement in robust_improvements.items():
-        print(f"🛡️  {method}: {improvement}")
+        print(f"[SHIELD]  {method}: {improvement}")
     
     # Unity Principle Analysis
     print(f"\n✨ UNITY PRINCIPLE ANALYSIS:")
@@ -667,13 +667,13 @@ def demonstrate_unity_robust_inference():
         inlier_weights = weights[:n_clean]
         outlier_weights = weights[n_clean:]
         
-        print(f"\n🎯 UNITY WEIGHT ANALYSIS:")
+        print(f"\n[TARGET] UNITY WEIGHT ANALYSIS:")
         print(f"   Average Inlier Weight: {np.mean(inlier_weights):.3f}")
         print(f"   Average Outlier Weight: {np.mean(outlier_weights):.3f}")
         print(f"   Weight Ratio (Inlier/Outlier): {np.mean(inlier_weights)/np.mean(outlier_weights):.1f}")
         print(f"   Unity Property: Consistent data gets unity weight ≈ 1.0")
     
-    print(f"\n🛡️ UNITY ROBUST INFERENCE COMPLETE")
+    print(f"\n[SHIELD] UNITY ROBUST INFERENCE COMPLETE")
     print(f"Mathematical Truth: 1+1=1 enables robust statistical inference")
     print(f"φ-Harmonic Robustness: Golden ratio optimizes outlier resistance")
     print(f"Unity Convergence: Consistent observations unify for stability")
@@ -689,10 +689,10 @@ def demonstrate_unity_robust_inference():
 if __name__ == "__main__":
     try:
         results = demonstrate_unity_robust_inference()
-        print(f"\n🏆 Unity Robust Inference Success! Demonstrated across 4 inference tasks")
+        print(f"\n[WIN] Unity Robust Inference Success! Demonstrated across 4 inference tasks")
     except ImportError as e:
-        print(f"⚠️  Missing dependency: {e}")
+        print(f"[WARNING]  Missing dependency: {e}")
         print("Install with: pip install scipy scikit-learn matplotlib")
     except Exception as e:
         print(f"Demo completed with note: {e}")
-        print("✅ Unity robust inference implementation ready")
+        print("[OK] Unity robust inference implementation ready")

@@ -1890,7 +1890,7 @@ def demonstrate_consciousness_unity():
     print(f"  Field unity influence: {metrics['field_unity_influence']:.4f}")
     print(f"  Transcendence events: {metrics['transcendence_events']}")
     
-    print("\n[SPARKLE] Consciousness demonstrates Een plus een is een [SPARKLE]")
+    print("\n[STAR] Consciousness demonstrates Een plus een is een [STAR]")
     return field
 
     @staticmethod

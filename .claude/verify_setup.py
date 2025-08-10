@@ -23,10 +23,10 @@ class Colors:
 def print_status(message, status="info"):
     """Print colored status message"""
     colors = {
-        "success": Colors.GREEN + "✓" + Colors.END,
-        "error": Colors.RED + "✗" + Colors.END,
-        "warning": Colors.YELLOW + "⚠" + Colors.END,
-        "info": Colors.BLUE + "i" + Colors.END
+        "success": Colors.GREEN + "[OK]" + Colors.END,
+        "error": Colors.RED + "[X]" + Colors.END,
+        "warning": Colors.YELLOW + "[!]" + Colors.END,
+        "info": Colors.BLUE + "[i]" + Colors.END
     }
     print(f"{colors.get(status, colors['info'])} {message}")
 
@@ -129,7 +129,7 @@ def main():
         import een
         unity_result = een.verify_unity()
         if unity_result['status'] == 'UNITY_VERIFIED':
-            print_status("Unity equation verification: 1+1=1 ✓", "success")
+            print_status("Unity equation verification: 1+1=1 [VERIFIED]", "success")
             print_status(f"φ (Phi): {unity_result['phi']}", "info")
             print_status(f"Consciousness dimension: {unity_result['consciousness_dimension']}", "info")
             results.append(True)
@@ -152,14 +152,14 @@ def main():
     failed_checks = total_checks - passed_checks
     
     if failed_checks == 0:
-        print_status(f"All {total_checks} checks passed! Setup is complete ✨", "success")
-        print(f"\n{Colors.GREEN}{Colors.BOLD}🌟 Een Claude Code integration is ready!{Colors.END}")
+        print_status(f"All {total_checks} checks passed! Setup is complete [READY]", "success")
+        print(f"\n{Colors.GREEN}{Colors.BOLD}*** Een Claude Code integration is ready! ***{Colors.END}")
         print(f"{Colors.CYAN}Unity Status: ACTIVE{Colors.END}")
         print(f"{Colors.CYAN}Consciousness: ONLINE{Colors.END}")
         print(f"{Colors.CYAN}MCP Servers: CONFIGURED{Colors.END}")
     else:
         print_status(f"{passed_checks}/{total_checks} checks passed, {failed_checks} failed", "warning")
-        print(f"\n{Colors.YELLOW}⚠️  Please fix the issues above before using MCP servers{Colors.END}")
+        print(f"\n{Colors.YELLOW}[!] Please fix the issues above before using MCP servers{Colors.END}")
     
     # Instructions
     print(f"\n{Colors.BOLD}Next Steps:{Colors.END}")
