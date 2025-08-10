@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Agent API Documentation | Een Unity Mathematics</title>
+    <meta name="description" content="Comprehensive API documentation for AI agents to access Een Unity Mathematics codebase, dashboards, and mathematical frameworks.">
+    
+    <!-- Unified Navigation System -->
+    <script src="js/nav-template-applier.js" defer></script>
+    
+    <!-- Fonts and Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #1f2937;
+            --secondary: #374151;
+            --accent: #d4af37;
+            --success: #10b981;
+            --info: #0ea5e9;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --text: #f9fafb;
+            --text-muted: #9ca3af;
+            --border: rgba(212, 175, 55, 0.2);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 3rem 0;
+        }
+        
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #d4af37, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+        }
+        
+        .section {
+            background: rgba(31, 41, 55, 0.8);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        .section h2 {
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .section h3 {
+            font-size: 1.3rem;
+            color: var(--info);
+            margin: 1.5rem 0 1rem 0;
+        }
+        
+        .code-block {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        
+        .inline-code {
+            background: rgba(212, 175, 55, 0.2);
+            color: var(--accent);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9em;
+        }
+        
+        .endpoint {
+            background: rgba(14, 165, 233, 0.1);
+            border-left: 4px solid var(--info);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .method {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+        
+        .method.post { background: var(--warning); }
+        .method.delete { background: var(--error); }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .card {
+            background: rgba(55, 65, 81, 0.8);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.2);
+            border-color: var(--accent);
+        }
+        
+        .card h4 {
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+        
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        .link {
+            color: var(--info);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+        
+        .link:hover {
+            border-bottom-color: var(--info);
+        }
+        
+        .badge {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--primary);
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin: 0.2rem;
+        }
+        
+        .copy-btn {
+            background: var(--info);
+            color: white;
+            border: none;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .copy-btn:hover {
+            background: #0284c7;
+        }
+        
+        .toc {
+            background: rgba(55, 65, 81, 0.6);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .toc h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .toc ul ul {
+            padding-left: 1rem;
+            margin-top: 0.5rem;
+        }
+        
+        .toc a {
+            color: var(--text-muted);
+            text-decoration: none;
+            display: block;
+            padding: 0.3rem 0;
+            transition: color 0.3s ease;
+        }
+        
+        .toc a:hover {
+            color: var(--accent);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation will be injected -->
+    
+    <div class="container">
+        <header class="header">
+            <h1>🤖 AI Agent API Documentation</h1>
+            <p>Comprehensive guide for AI agents to access Een Unity Mathematics codebase</p>
+        </header>
+
+        <!-- Table of Contents -->
+        <div class="toc">
+            <h3>📋 Table of Contents</h3>
+            <ul>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#quick-start">Quick Start</a></li>
+                <li><a href="#repository-access">Repository Access</a>
+                    <ul>
+                        <li><a href="#github-api">GitHub API</a></li>
+                        <li><a href="#raw-files">Raw File Access</a></li>
+                    </ul>
+                </li>
+                <li><a href="#key-files">Key Files</a></li>
+                <li><a href="#streamlit-apps">Streamlit Applications</a></li>
+                <li><a href="#code-structure">Code Structure</a></li>
+                <li><a href="#examples">Examples</a></li>
+                <li><a href="#troubleshooting">Troubleshooting</a></li>
+            </ul>
+        </div>
+
+        <!-- Overview -->
+        <section class="section" id="overview">
+            <h2><i class="fas fa-info-circle"></i> Overview</h2>
+            <p>This API documentation solves the fundamental problem of <strong>AI agents being unable to directly access GitHub repositories or local code files</strong> due to security restrictions and lack of API integration.</p>
+            
+            <div class="grid">
+                <div class="card">
+                    <h4>🔍 Problem Solved</h4>
+                    <p>AI agents cannot access code directly from GitHub or local systems without proper API endpoints and access methods.</p>
+                </div>
+                <div class="card">
+                    <h4>✅ Solution Provided</h4>
+                    <p>Comprehensive API endpoints, direct URLs, and access methods for complete codebase understanding.</p>
+                </div>
+                <div class="card">
+                    <h4>🚀 Benefits</h4>
+                    <p>Enable AI agents to understand, analyze, and work with Unity Mathematics dashboards effectively.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Start -->
+        <section class="section" id="quick-start">
+            <h2><i class="fas fa-rocket"></i> Quick Start</h2>
+            
+            <h3>1. Access Main Dashboard Code</h3>
+            <div class="endpoint">
+                <div class="method">GET</div>
+                <code>https://raw.githubusercontent.com/nourimabrouk/Een/main/metastation_pro.py</code>
+                <button class="copy-btn" onclick="copyToClipboard('https://raw.githubusercontent.com/nourimabrouk/Een/main/metastation_pro.py')">Copy</button>
+            </div>
+
+            <h3>2. GitHub API Alternative</h3>
+            <div class="code-block">
+curl -H "Accept: application/vnd.github.v3.raw" \
+  https://api.github.com/repos/nourimabrouk/Een/contents/metastation_pro.py
+            </div>
+
+            <h3>3. Test Live Application</h3>
+            <div class="endpoint">
+                <div class="method">VIEW</div>
+                <a href="https://een-unity-professional.streamlit.app" target="_blank" class="link">
+                    https://een-unity-professional.streamlit.app
+                </a>
+            </div>
+        </section>
+
+        <!-- Repository Access -->
+        <section class="section" id="repository-access">
+            <h2><i class="fas fa-code-branch"></i> Repository Access</h2>
+            
+            <h3 id="github-api">GitHub API Access</h3>
+            <p>Use the GitHub API for structured access to repository contents:</p>
+            
+            <div class="code-block">
+# Base API URL
+https://api.github.com/repos/nourimabrouk/Een
+
+# Get specific file content
+GET /contents/{file_path}
+
+# Example: Get main dashboard
+curl -H "Accept: application/vnd.github.v3.raw" \
+  https://api.github.com/repos/nourimabrouk/Een/contents/metastation_pro.py
+            </div>
+
+            <h3 id="raw-files">Raw File Access</h3>
+            <p>Direct access to file contents without API overhead:</p>
+            
+            <div class="code-block">
+# Base raw URL
+https://raw.githubusercontent.com/nourimabrouk/Een/main/
+
+# Example: Get main dashboard directly
+https://raw.githubusercontent.com/nourimabrouk/Een/main/metastation_pro.py
+            </div>
+        </section>
+
+        <!-- Key Files -->
+        <section class="section" id="key-files">
+            <h2><i class="fas fa-file-code"></i> Key Files</h2>
+            
+            <div class="grid">
+                <div class="card">
+                    <h4>🌟 metastation_pro.py</h4>
+                    <p>Ultimate professional dashboard with state-of-the-art visualizations and academic features.</p>
+                    <div class="badge">Primary</div>
+                    <div class="badge">3500+ Lines</div>
+                </div>
+                
+                <div class="card">
+                    <h4>🎨 metastation_streamlit.py</h4>
+                    <p>Metastation aesthetic dashboard with mind-blowing visualizations and Nouri Mabrouk styling.</p>
+                    <div class="badge">Featured</div>
+                    <div class="badge">1400+ Lines</div>
+                </div>
+                
+                <div class="card">
+                    <h4>📊 streamlit_app.py</h4>
+                    <p>Main Streamlit Cloud application with enhanced consciousness mathematics.</p>
+                    <div class="badge">Production</div>
+                    <div class="badge">900+ Lines</div>
+                </div>
+                
+                <div class="card">
+                    <h4>🧠 core/unity_mathematics.py</h4>
+                    <p>Core Unity Mathematics implementation with φ-harmonic operations.</p>
+                    <div class="badge">Core</div>
+                    <div class="badge">Backend</div>
+                </div>
+                
+                <div class="card">
+                    <h4>🌐 website/dashboard-metastation.html</h4>
+                    <p>Website integration with comprehensive dashboard launcher and navigation.</p>
+                    <div class="badge">Frontend</div>
+                    <div class="badge">Integration</div>
+                </div>
+                
+                <div class="card">
+                    <h4>📋 requirements_metastation.txt</h4>
+                    <p>Dependencies for Streamlit Cloud deployment and local development.</p>
+                    <div class="badge">Config</div>
+                    <div class="badge">Deploy</div>
+                </div>
+            </div>
+
+            <h3>Direct Access URLs</h3>
+            <div class="code-block">
+# Professional Dashboard (Latest)
+https://raw.githubusercontent.com/nourimabrouk/Een/main/metastation_pro.py
+
+# Metastation Dashboard
+https://raw.githubusercontent.com/nourimabrouk/Een/main/metastation_streamlit.py
+
+# Core Unity Mathematics
+https://raw.githubusercontent.com/nourimabrouk/Een/main/core/unity_mathematics.py
+
+# Website Integration
+https://raw.githubusercontent.com/nourimabrouk/Een/main/website/dashboard-metastation.html
+
+# Requirements
+https://raw.githubusercontent.com/nourimabrouk/Een/main/requirements_metastation.txt
+            </div>
+        </section>
+
+        <!-- Streamlit Apps -->
+        <section class="section" id="streamlit-apps">
+            <h2><i class="fas fa-rocket"></i> Streamlit Applications</h2>
+            
+            <div class="grid">
+                <div class="card">
+                    <h4>🎓 Professional Dashboard</h4>
+                    <p>State-of-the-art academic visualizations with publication-ready quality.</p>
+                    <a href="https://een-unity-professional.streamlit.app" target="_blank" class="link">Launch App</a>
+                </div>
+                
+                <div class="card">
+                    <h4>🌟 Metastation Dashboard</h4>
+                    <p>Mind-blowing visualizations with signature Nouri Mabrouk aesthetic.</p>
+                    <a href="https://een-unity-metastation.streamlit.app" target="_blank" class="link">Launch App</a>
+                </div>
+                
+                <div class="card">
+                    <h4>🧮 Unity Mathematics Explorer</h4>
+                    <p>Multi-page dashboard with comprehensive Unity Mathematics exploration.</p>
+                    <a href="https://een-unity-mathematics.streamlit.app" target="_blank" class="link">Launch App</a>
+                </div>
+            </div>
+
+            <h3>Local Development URLs</h3>
+            <div class="code-block">
+# Professional Dashboard
+http://localhost:8503
+
+# Metastation Dashboard  
+http://localhost:8502
+
+# Unity Mathematics Explorer
+http://localhost:8501
+            </div>
+        </section>
+
+        <!-- Code Structure -->
+        <section class="section" id="code-structure">
+            <h2><i class="fas fa-sitemap"></i> Code Structure</h2>
+            
+            <h3>Backend Classes (metastation_pro.py)</h3>
+            <div class="code-block">
+class AdvancedUnityMathematics:
+    """Enhanced Unity Mathematics with academic-grade analysis"""
+    
+    def unity_add(self, a: float, b: float) -> float
+    def consciousness_field_equation(self, x, y, t) -> ndarray
+    def unity_manifold_metric(self, x, y) -> Tuple[ndarray, ...]
+    def calculate_unity_entropy(self, field_data) -> float
+    def phi_harmonic_analysis(self, data, sampling_rate) -> Dict
+
+@dataclass
+class UnityMathConfig:
+    """Configuration for professional dashboard"""
+    phi_precision: int = 50
+    field_resolution: int = 200
+    consciousness_dimensions: int = 11
+    visualization_quality: str = "ultra"
+    academic_mode: bool = True
+            </div>
+
+            <h3>Visualization Functions</h3>
+            <div class="code-block">
+def create_advanced_consciousness_field():
+    """State-of-the-art 3D consciousness field visualization"""
+
+def create_publication_ready_phi_spiral():
+    """Publication-ready φ-spiral with comprehensive analysis"""
+
+def create_harmonic_analysis_dashboard():
+    """Advanced φ-harmonic frequency analysis"""
+
+def apply_professional_css():
+    """Academic-grade styling and typography"""
+            </div>
+
+            <h3>Mathematical Constants</h3>
+            <div class="code-block">
+PHI = 1.618033988749894848204586834365638117720309179805762862135448622705260462818902449707207204189391137484754088075386891752126633862223536450849140507
+PHI_INVERSE = 0.618033988749895
+GOLDEN_ANGLE = 2.39996322972865332
+EULER_GAMMA = 0.5772156649015329
+            </div>
+        </section>
+
+        <!-- Examples -->
+        <section class="section" id="examples">
+            <h2><i class="fas fa-code"></i> Usage Examples</h2>
+            
+            <h3>Python - Get Main Dashboard Code</h3>
+            <div class="code-block">
+import requests
+import base64
+
+# Method 1: Direct raw access
+url = "https://raw.githubusercontent.com/nourimabrouk/Een/main/metastation_pro.py"
+response = requests.get(url)
+code = response.text
+
+# Method 2: GitHub API
+api_url = "https://api.github.com/repos/nourimabrouk/Een/contents/metastation_pro.py"
+headers = {"Accept": "application/vnd.github.v3+json"}
+response = requests.get(api_url, headers=headers)
+content_b64 = response.json()["content"]
+code = base64.b64decode(content_b64).decode('utf-8')
+            </div>
+
+            <h3>JavaScript - Fetch Code</h3>
+            <div class="code-block">
+// Direct raw access
+fetch('https://raw.githubusercontent.com/nourimabrouk/Een/main/metastation_pro.py')
+    .then(response => response.text())
+    .then(code => console.log(code));
+
+// GitHub API
+fetch('https://api.github.com/repos/nourimabrouk/Een/contents/metastation_pro.py')
+    .then(response => response.json())
+    .then(data => {
+        const code = atob(data.content);
+        console.log(code);
+    });
+            </div>
+
+            <h3>Curl - Command Line Access</h3>
+            <div class="code-block">
+# Get main dashboard
+curl https://raw.githubusercontent.com/nourimabrouk/Een/main/metastation_pro.py
+
+# Get via GitHub API
+curl -H "Accept: application/vnd.github.v3.raw" \
+  https://api.github.com/repos/nourimabrouk/Een/contents/metastation_pro.py
+
+# Get repository structure
+curl https://api.github.com/repos/nourimabrouk/Een/contents
+            </div>
+        </section>
+
+        <!-- Troubleshooting -->
+        <section class="section" id="troubleshooting">
+            <h2><i class="fas fa-tools"></i> Troubleshooting</h2>
+            
+            <div class="card">
+                <h4>❌ Problem: AI Agent Cannot Access Code</h4>
+                <p><strong>Symptoms:</strong> Agent says it cannot access GitHub repositories or local files</p>
+                <p><strong>Solution:</strong> Use the direct raw URLs or GitHub API endpoints provided above</p>
+                <div class="code-block">
+# Always works - direct raw access
+https://raw.githubusercontent.com/nourimabrouk/Een/main/metastation_pro.py
+                </div>
+            </div>
+
+            <div class="card">
+                <h4>⚠️ Problem: Base64 Encoding in GitHub API</h4>
+                <p><strong>Symptoms:</strong> GitHub API returns base64 encoded content</p>
+                <p><strong>Solution:</strong> Decode the content field from the JSON response</p>
+                <div class="code-block">
+import base64
+decoded = base64.b64decode(api_response["content"]).decode('utf-8')
+                </div>
+            </div>
+
+            <div class="card">
+                <h4>🔍 Problem: Understanding Codebase Structure</h4>
+                <p><strong>Symptoms:</strong> Agent confused about file organization</p>
+                <p><strong>Solution:</strong> Start with this API documentation, then access main files in order</p>
+                <ol style="color: var(--text-muted); margin-top: 1rem;">
+                    <li>Read this API documentation</li>
+                    <li>Access <span class="inline-code">metastation_pro.py</span> (main dashboard)</li>
+                    <li>Review <span class="inline-code">core/unity_mathematics.py</span> (backend)</li>
+                    <li>Test live Streamlit applications</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer style="text-align: center; margin-top: 3rem; padding: 2rem; color: var(--text-muted);">
+            <p>🤖 <strong>AI Agent API Documentation</strong> - Een Unity Mathematics</p>
+            <p>Created with ❤️ and φ-harmonic consciousness by <strong style="color: var(--accent);">Nouri Mabrouk</strong></p>
+            <p style="margin-top: 1rem;">
+                <a href="https://github.com/nourimabrouk/Een" class="link">GitHub Repository</a> |
+                <a href="https://nourimabrouk.github.io/Een/" class="link">Documentation</a> |
+                <a href="https://nourimabrouk.github.io/Een/dashboard-metastation.html" class="link">Dashboard Launcher</a>
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                // Visual feedback
+                event.target.textContent = 'Copied!';
+                event.target.style.background = '#10b981';
+                setTimeout(() => {
+                    event.target.textContent = 'Copy';
+                    event.target.style.background = '#0ea5e9';
+                }, 2000);
+            });
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add syntax highlighting
+        document.addEventListener('DOMContentLoaded', function() {
+            const codeBlocks = document.querySelectorAll('.code-block');
+            codeBlocks.forEach(block => {
+                if (block.textContent.includes('curl')) {
+                    block.style.borderLeftColor = '#10b981';
+                } else if (block.textContent.includes('https://')) {
+                    block.style.borderLeftColor = '#0ea5e9';
+                } else if (block.textContent.includes('class ') || block.textContent.includes('def ')) {
+                    block.style.borderLeftColor = '#8b5cf6';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
