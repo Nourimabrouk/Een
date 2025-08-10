@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /**
  * Visualization Fix Script - Ensures all visualizations work properly
  */

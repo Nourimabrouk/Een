@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /**
  * Metastation Hub Ultimate Comprehensive Fix
  * Deep scan analysis and top meta-ranked fixes for a perfectly showable landing page

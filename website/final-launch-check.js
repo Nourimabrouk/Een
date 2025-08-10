@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /**
  * Final Launch Check for Een Unity Mathematics
  * Comprehensive verification of navigation, metastation-hub, and AI chatbot

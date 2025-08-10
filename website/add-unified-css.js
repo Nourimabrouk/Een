@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /**
  * Add Unified CSS to All HTML Pages
  * Ensures consistent styling across the entire website

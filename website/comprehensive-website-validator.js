@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /**
  * Comprehensive Website Validator
  * Een Unity Mathematics - Complete site functionality testing
