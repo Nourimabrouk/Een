@@ -1,11 +1,52 @@
-# Python
+# Meta-Optimal .gitignore for Een Unity Mathematics Repository
+# Optimized to reduce repository size from 5.56GB to manageable size
+
+# =========================
+# Python Virtual Environments (2.18GB+)
+# =========================
+# Primary venv patterns
+**/venv/
+**/.venv/
+**/env/
+**/ENV/
+*.venv
+
+# Specific large directories
+een/
+
+# Common variations
+virtualenv/
+.conda/
+*env.bak/
+
+# =========================
+# Python Cache & Compiled Files
+# =========================
 __pycache__/
 *.py[cod]
 *$py.class
-*.so
-
-# Distribution / packaging
+*.pyc
+*.pyo
+*.pyd
 .Python
+*.so
+.pytest_cache/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.pytype/
+.ruff_cache/
+
+# =========================
+# Build Artifacts & Distribution
+# =========================
 build/
 develop-eggs/
 dist/
@@ -22,29 +63,23 @@ wheels/
 .installed.cfg
 *.egg
 MANIFEST
+pip-wheel-metadata/
+share/python-wheels/
+*.manifest
+*.spec
 
+# =========================
 # Testing
+# =========================
 htmlcov/
 .tox/
 .nox/
-.coverage
-.coverage.*
 .cache
 nosetests.xml
 coverage.xml
 *.cover
-*.py,cover
-.hypothesis/
-.pytest_cache/
-
-# Environments
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
-een/
+test-results/
+test-reports/
 
 # Security and Configuration Files
 config/production.json
@@ -95,19 +130,38 @@ ai_agent/*.assistant_id
 *.pkl
 *.npz
 
-# Logs
-*.log
-logs/
-
-# Temp
-temp/
-tmp/
-cache/
-nul
-
-# Backup files created by security fixes
+# =========================
+# Legacy & Backup Files (120MB+)
+# =========================
+legacy/
+backups/
+backup/
 *.backup
 *.bak
+*.old
+*.orig
+*.save
+.saves/
+navigation-backups/
+archived_navigation/
+redundant_launchers/
+
+# =========================
+# Logs & Temporary Files
+# =========================
+*.log
+logs/
+*.pid
+*.seed
+*.pid.lock
+.webassets-cache
+*.tmp
+tmp/
+temp/
+.temp/
+.tmp/
+cache/
+nul
 
 # Security audit files (keep for reference)
 # SECURITY_AUDIT_COMPREHENSIVE_REPORT.md
@@ -201,6 +255,129 @@ bundle-analyzer-report.html
 
 # Development aids
 .env.example.local
-/.lake
+# =========================
+# Machine Learning & Data
+# =========================
+*.h5
+*.hdf5
+*.pkl
+*.pickle
+*.model
+*.weights
+*.pth
+*.pt
+*.onnx
+*.pb
+*.tflite
+checkpoints/
+models/
+weights/
+*.tfrecord
+*.tfevents.*
+*.safetensors
+*.ckpt
+
+# =========================
+# Jupyter Notebooks
+# =========================
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+
+# =========================
+# Database Files
+# =========================
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+*.db-shm
+*.db-wal
+db.sqlite3
+db.sqlite3-journal
+
+# =========================
+# Unity Project Specific
+# =========================
+# Large generated files
+generated_images/
+viz/videos/
+viz/*.mp4
+viz/*.avi
+viz/*.mov
+viz/large_files/
+
+# Computation results  
+results/
+output/
+outputs/
+computations/
+data/*.json
+!data/test_sample.json
+omega_evolution_results.json
+unity_synthesis.json
+
+# =========================
+# Docker
+# =========================
+docker-compose.override.yml
+
+# =========================
+# Lean Prover
+# =========================
+.lake/
+lake-packages/
+lean-toolchain
+!UnityProofs/lean-toolchain
+
+# =========================
+# Claude/MCP Specific
+# =========================
+.claude/shell-snapshots/
+.claude/tmp/
+.claude/cache/
+
+# =========================
+# Deployment
+# =========================
+deployment/data/
+deployment/logs/
+deployment/static/
+grafana/data/
+prometheus/data/
+nginx/logs/
+k8s/secrets/
+
+# =========================
+# OS System Files
+# =========================
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+.fseventsd
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Linux
+.Trash-*
+.nfs*
 
 .vercel

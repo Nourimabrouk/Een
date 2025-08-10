@@ -1,84 +1,377 @@
-# 1. Version control
+# Meta-Optimal .dockerignore for Een Unity Mathematics Repository
+# Prevents unnecessary files from being included in Docker images
+# Dramatically reduces image size and build time
+
+# =========================
+# Version Control
+# =========================
 .git/
 .gitignore
+.gitattributes
+.github/
 
-# 2. Python cache and build artifacts
+# =========================
+# Python Virtual Environments (2.18GB+)
+# =========================
+# Primary venv patterns
+**/venv/
+**/.venv/
+**/env/
+**/ENV/
+*.venv
+
+# Specific large directories
+een/
+
+# Common variations
+virtualenv/
+.conda/
+
+# =========================
+# Python Cache & Compiled Files
+# =========================
 __pycache__/
+*.py[cod]
+*$py.class
 *.pyc
 *.pyo
 *.pyd
+.Python
+*.so
 .pytest_cache/
 .coverage
+.coverage.*
+coverage.xml
+*.cover
+.hypothesis/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.pytype/
+.ruff_cache/
 
-# 3. Virtual environments
-venv/
-ENV/
-.env/
+# =========================
+# Node.js & JavaScript
+# =========================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+.npm
+.eslintcache
+.stylelintcache
+.yarn/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
 
-# 4. IDE/editor files
+# =========================
+# Build Artifacts
+# =========================
+build/
+dist/
+*.egg-info/
+*.egg
+.eggs/
+wheels/
+sdist/
+develop-eggs/
+lib/
+lib64/
+parts/
+var/
+out/
+
+# =========================
+# IDE & Editor Files
+# =========================
 .vscode/
 .idea/
 *.swp
 *.swo
+*~
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+*.sublime-project
+.history/
+.ionide/
 
-# 5. Build outputs and temporary files
-dist/
-build/
-out/
+# =========================
+# OS System Files
+# =========================
+.DS_Store
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.lnk
+._*
+.Spotlight-V100
+.Trashes
+.fseventsd
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.Trash-*
+.nfs*
+
+# =========================
+# Logs & Temporary Files
+# =========================
+*.log
+logs/
+*.pid
+*.seed
+*.pid.lock
+*.tmp
 tmp/
 temp/
-*.tmp
-
-# 6. Test and debug files
-test/
-tests/
-*.log
+.temp/
+.tmp/
+cache/
+.cache/
+nul
 debug/
 
-# 7. Environment and secret files
+# =========================
+# Database Files
+# =========================
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+*.db-shm
+*.db-wal
+db.sqlite3
+
+# =========================
+# Legacy & Backup Files (120MB+)
+# =========================
+legacy/
+backups/
+backup/
+*.backup
+*.bak
+*.old
+*.orig
+*.save
+.saves/
+navigation-backups/
+archived_navigation/
+redundant_launchers/
+
+# =========================
+# Machine Learning & Data
+# =========================
+*.h5
+*.hdf5
+*.pkl
+*.pickle
+*.model
+*.weights
+*.pth
+*.pt
+*.onnx
+*.pb
+*.tflite
+checkpoints/
+models/
+weights/
+*.tfrecord
+*.tfevents.*
+*.safetensors
+*.ckpt
+
+# =========================
+# Jupyter Notebooks
+# =========================
+.ipynb_checkpoints/
+notebooks/
+*.ipynb
+
+# =========================
+# Testing
+# =========================
+.tox/
+.nox/
+htmlcov/
+.coverage
+.coverage.*
+nosetests.xml
+coverage.xml
+*.cover
+test-results/
+test-reports/
+tests/
+test/
+spec/
+
+# =========================
+# Documentation
+# =========================
+docs/
+documentation/
+*.md
+!README.md
+!CLAUDE.md
+*.txt
+*.rst
+*.pdf
+*.docx
+*.doc
+
+# =========================
+# Environment & Configuration
+# =========================
 .env
 .env.*
+!.env.example
+!env.example
 *.env
-*.pem
+.envrc
+.direnv/
+secrets/
+credentials/
 *.key
+*.pem
+*.cert
 *.crt
-
-# 8. Project-specific config and local files
 config/settings.local.*
 *.local.yml
 .local/
 local/
 
-# 9. Documentation and markdown
-/docs/
-*.md
-README*
-CHANGELOG*
+# =========================
+# Unity Project Specific
+# =========================
+# Large generated files
+generated_images/
+viz/
+visualizations/
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+*.mp4
+*.avi
+*.mov
 
-# 10. R language artifacts
+# Computation results
+results/
+output/
+outputs/
+computations/
+data/*.json
+!data/test_sample.json
+omega_evolution_results.json
+unity_synthesis.json
+
+# =========================
+# Docker Files (exclude from context)
+# =========================
+Dockerfile*
+docker-compose*.yml
+docker-compose*.yaml
+.dockerignore
+
+# =========================
+# Lean Prover
+# =========================
+.lake/
+lake-packages/
+lean-toolchain
+UnityProofs/
+formal_proofs/
+
+# =========================
+# Claude/MCP Specific
+# =========================
+.claude/
+mcp/
+een/mcp/
+
+# =========================
+# Deployment & Infrastructure
+# =========================
+deployment/
+k8s/
+kubernetes/
+grafana/
+prometheus/
+nginx/
+infrastructure/
+.vercel
+vercel.json
+
+# =========================
+# Scripts & Batch Files
+# =========================
+scripts/
+*.bat
+*.sh
+*.ps1
+*.cmd
+
+# =========================
+# Website Assets (keep only essentials)
+# =========================
+website/archived_navigation/
+website/scripts/
+website/*.bat
+website/*.sh
+
+# =========================
+# Large Directories to Exclude
+# =========================
+migration/
+planning/
+validation/
+benchmarks/
+examples/
+experiments/
+community/
+meta/
+
+# =========================
+# Package Files
+# =========================
+*.tar
+*.tar.gz
+*.zip
+*.rar
+*.7z
+*.gz
+*.bz2
+*.xz
+
+# =========================
+# R language artifacts
+# =========================
 .RData
 .Rhistory
 
-# 11. Miscellaneous
-*.bak
-*.old
-
-# 12. Node.js (if any in the future)
-node_modules/
-npm-debug.log
-yarn-debug.log
-
-# 13. Go (if any in the future)
+# =========================
+# Go artifacts (if any)
+# =========================
 /vendor/
 *.test
 .go-cache/
 
-# 14. Java (if any in the future)
+# =========================
+# Java artifacts (if any)
+# =========================
 target/
 *.class
 .gradle/
-
-# 15. Docker files (do not include Dockerfile itself)
-docker-compose*
 
 # End of .dockerignore

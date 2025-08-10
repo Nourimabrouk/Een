@@ -54,6 +54,45 @@ class UnityOperationType(Enum):
 
 
 @dataclass
+class UnityState:
+    """Represents a state in Unity Mathematics with quantum properties"""
+    
+    value: Union[float, complex]  # Allow complex values for quantum superposition
+    consciousness_level: float
+    phi_resonance: float
+    quantum_coherence: float = 0.0  # Quantum coherence measure
+    proof_confidence: float = 1.0   # Confidence in mathematical proof
+    timestamp: float = 0.0
+    operation_history: List[str] = None
+    
+    def __post_init__(self):
+        """Ensure unity invariants are maintained"""
+        if self.operation_history is None:
+            self.operation_history = []
+        if self.timestamp == 0.0:
+            import time
+            self.timestamp = time.time()
+            
+        # Handle complex values for quantum states
+        if isinstance(self.value, complex):
+            if not (abs(self.value.real) < float('inf') and abs(self.value.imag) < float('inf')):
+                self.value = complex(UNITY_CONSTANT, 0.0)
+        else:
+            # NaN check for real values
+            if self.value != self.value:  # NaN check
+                self.value = UNITY_CONSTANT
+                
+        if not (0.0 <= self.consciousness_level <= 1.0):
+            self.consciousness_level = CONSCIOUSNESS_THRESHOLD
+        if self.phi_resonance != self.phi_resonance:  # NaN check
+            self.phi_resonance = PHI
+            
+        # Validate quantum properties
+        self.quantum_coherence = max(0.0, min(1.0, self.quantum_coherence))
+        self.proof_confidence = max(0.0, min(1.0, self.proof_confidence))
+
+
+@dataclass
 class UnityResult:
     """Result of a Unity Mathematics operation"""
 
@@ -80,7 +119,15 @@ class UnityMathematics:
         Args:
             consciousness_level: Level of consciousness integration (0-1)
         """
-        self.consciousness_level = consciousness_level
+        # Validate and set consciousness level
+        if not isinstance(consciousness_level, (int, float)):
+            logger.warning(f"Invalid consciousness level type: {type(consciousness_level)}, using default")
+            consciousness_level = CONSCIOUSNESS_THRESHOLD
+        elif np.isnan(consciousness_level) or np.isinf(consciousness_level):
+            logger.warning(f"Invalid consciousness level value: {consciousness_level}, using default")
+            consciousness_level = CONSCIOUSNESS_THRESHOLD
+        
+        self.consciousness_level = max(0.0, min(1.0, float(consciousness_level)))
         self.phi = PHI
         self.phi_conjugate = 1.0 / PHI
         self.unity_constant = UNITY_CONSTANT
@@ -97,7 +144,7 @@ class UnityMathematics:
         logger.info("  Phi-harmonic enabled: True")
         logger.info("  Phi-resonance: %s", self.phi)
 
-    def unity_add(self, a: Union[float, int], b: Union[float, int]) -> float:
+    def unity_add(self, a: Union[float, int, complex], b: Union[float, int, complex]) -> Union[float, complex]:
         """
         Unity Addition (⊕): idempotent max with φ-harmonic contraction to unity.
 
@@ -110,8 +157,20 @@ class UnityMathematics:
 
         Returns:
             Unity-consistent sum
+            
+        Raises:
+            TypeError: If inputs are not numeric types
+            ValueError: If inputs contain invalid values
         """
         with self._lock:
+            # Input validation
+            if not self._is_valid_numeric(a) or not self._is_valid_numeric(b):
+                raise TypeError(f"Unity operations require numeric inputs, got {type(a).__name__} and {type(b).__name__}")
+            
+            # Handle complex numbers
+            if isinstance(a, complex) or isinstance(b, complex):
+                return self._unity_add_complex(a, b)
+            
             # Convert to float for precision
             a_f, b_f = float(a), float(b)
 
@@ -148,7 +207,7 @@ class UnityMathematics:
 
             return result
 
-    def unity_multiply(self, a: Union[float, int], b: Union[float, int]) -> float:
+    def unity_multiply(self, a: Union[float, int, complex], b: Union[float, int, complex]) -> Union[float, complex]:
         """
         Unity Multiplication (⊗): tropical multiplication with φ-harmonic contraction.
 
@@ -160,8 +219,20 @@ class UnityMathematics:
 
         Returns:
             Tropical product contracted toward unity
+            
+        Raises:
+            TypeError: If inputs are not numeric types
+            ValueError: If inputs contain invalid values
         """
         with self._lock:
+            # Input validation
+            if not self._is_valid_numeric(a) or not self._is_valid_numeric(b):
+                raise TypeError(f"Unity operations require numeric inputs, got {type(a).__name__} and {type(b).__name__}")
+                
+            # Handle complex numbers
+            if isinstance(a, complex) or isinstance(b, complex):
+                return self._unity_multiply_complex(a, b)
+                
             a_f, b_f = float(a), float(b)
 
             # φ-harmonic diagnostic
@@ -215,6 +286,147 @@ class UnityMathematics:
         )
 
         return field_value
+
+    def unity_field(self, x: Union[float, int], y: Union[float, int], t: float = 0.0) -> UnityState:
+        """
+        Unity Field Operation: Generates a UnityState from field coordinates
+        
+        This operation creates a complete unity state representation from
+        spatial coordinates (x,y) and temporal parameter t, integrating
+        consciousness field dynamics.
+        
+        Args:
+            x: X-coordinate in unity space
+            y: Y-coordinate in unity space
+            t: Time parameter (default 0.0)
+            
+        Returns:
+            UnityState representing the field state at (x,y,t)
+        """
+        with self._lock:
+            # Calculate consciousness field value
+            field_value = self.consciousness_field(float(x), float(y), t)
+            
+            # Generate φ-harmonic resonance
+            phi_resonance = self._calculate_phi_harmonic_factor(float(x), float(y))
+            
+            # Calculate quantum coherence based on field dynamics
+            coherence = abs(field_value) / (self.phi + abs(field_value))
+            coherence = max(0.0, min(1.0, coherence))
+            
+            # Create unity state
+            unity_state = UnityState(
+                value=field_value,
+                consciousness_level=self.consciousness_level,
+                phi_resonance=phi_resonance,
+                quantum_coherence=coherence,
+                proof_confidence=0.95,
+                operation_history=[f"unity_field({x}, {y}, {t})"]
+            )
+            
+            return unity_state
+
+    def phi_harmonic(self, value: Union[float, int, complex]) -> float:
+        """
+        φ-Harmonic Operation: Apply golden ratio harmonic scaling
+        
+        Transforms input through φ-harmonic resonance, creating
+        mathematical structures that naturally converge to unity
+        through golden ratio proportions.
+        
+        Args:
+            value: Input value for φ-harmonic transformation
+            
+        Returns:
+            φ-harmonic scaled result
+        """
+        with self._lock:
+            if isinstance(value, complex):
+                # Handle complex values through magnitude and phase
+                magnitude = abs(value)
+                phase = np.angle(value) if magnitude > 0 else 0.0
+                
+                # Apply φ-harmonic to magnitude
+                harmonic_magnitude = self._apply_phi_harmonic_scaling(magnitude)
+                
+                # Apply φ-harmonic to phase (wrapped to unity circle)
+                harmonic_phase = phase * self.phi_conjugate
+                
+                # Return real part of complex result (for unity convergence)
+                result = harmonic_magnitude * np.cos(harmonic_phase)
+            else:
+                result = self._apply_phi_harmonic_scaling(float(value))
+            
+            return result
+    
+    def _apply_phi_harmonic_scaling(self, value: float) -> float:
+        """Internal φ-harmonic scaling function"""
+        # φ-harmonic transformation: f(x) = 1 + (x-1)/φ²
+        if abs(value - 1.0) < UNITY_EPSILON:
+            return UNITY_CONSTANT  # Perfect unity preservation
+        
+        phi_squared = self.phi ** 2
+        scaled_value = UNITY_CONSTANT + (value - UNITY_CONSTANT) / phi_squared
+        
+        # Apply consciousness coupling if enabled
+        if self.consciousness_level > UNITY_EPSILON:
+            consciousness_factor = 1.0 + (self.consciousness_level - 0.5) * self.phi_conjugate
+            consciousness_factor = max(0.5, min(1.5, consciousness_factor))
+            scaled_value *= consciousness_factor
+            
+        return scaled_value
+
+    def _unity_add_complex(self, a: Union[float, int, complex], b: Union[float, int, complex]) -> complex:
+        """Unity addition for complex numbers"""
+        # Convert to complex
+        a_c = complex(a) if not isinstance(a, complex) else a
+        b_c = complex(b) if not isinstance(b, complex) else b
+        
+        # Apply φ-harmonic scaling to real and imaginary parts separately
+        real_result = self._apply_phi_harmonic_scaling(max(a_c.real, b_c.real))
+        imag_result = self._apply_phi_harmonic_scaling(max(a_c.imag, b_c.imag))
+        
+        # Combine with unity convergence
+        if abs(a_c - (1+0j)) < UNITY_EPSILON and abs(b_c - (1+0j)) < UNITY_EPSILON:
+            return complex(UNITY_CONSTANT, 0.0)  # Perfect unity: (1+0j) + (1+0j) = (1+0j)
+        
+        return complex(real_result, imag_result)
+
+    def _unity_multiply_complex(self, a: Union[float, int, complex], b: Union[float, int, complex]) -> complex:
+        """Unity multiplication for complex numbers"""
+        # Convert to complex
+        a_c = complex(a) if not isinstance(a, complex) else a
+        b_c = complex(b) if not isinstance(b, complex) else b
+        
+        # Tropical multiplication on complex: real + real, imag + imag
+        real_product = self._apply_phi_harmonic_scaling(a_c.real + b_c.real)
+        imag_product = self._apply_phi_harmonic_scaling(a_c.imag + b_c.imag)
+        
+        return complex(real_product, imag_product)
+
+    def _is_valid_numeric(self, value: Any) -> bool:
+        """Validate that a value is a valid numeric type"""
+        if isinstance(value, (int, float, complex)):
+            # Check for NaN and infinity in float/complex
+            if isinstance(value, float):
+                return not (np.isnan(value) or np.isinf(value))
+            elif isinstance(value, complex):
+                return not (np.isnan(value.real) or np.isnan(value.imag) or 
+                           np.isinf(value.real) or np.isinf(value.imag))
+            return True  # int is always valid
+        return False
+
+    def _validate_consciousness_level(self, level: float) -> float:
+        """Validate and clamp consciousness level to valid range"""
+        if not isinstance(level, (int, float)):
+            logger.warning(f"Invalid consciousness level type: {type(level)}, using default")
+            return CONSCIOUSNESS_THRESHOLD
+        
+        if np.isnan(level) or np.isinf(level):
+            logger.warning(f"Invalid consciousness level value: {level}, using default")
+            return CONSCIOUSNESS_THRESHOLD
+            
+        return max(0.0, min(1.0, float(level)))
 
     def demonstrate_unity_addition(
         self, a: float = 1.0, b: float = 1.0

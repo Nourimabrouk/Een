@@ -356,6 +356,119 @@ The navigation system will automatically handle everything else!
 4. **Testing**: Verify idempotent operations maintain unity invariants
 5. **Website Integration**: Professional academic presentation with interactive elements
 
+## ⚠️ CRITICAL: Windows Unicode & Emoji Guidelines
+
+### Unicode Error Prevention for Claude & Cursor
+
+**ALWAYS follow these rules to prevent Unicode encoding errors on Windows:**
+
+1. **NO EMOJIS IN PYTHON CODE**: Never embed emojis (✅❌🚀📊💫) directly in Python strings
+   ```python
+   # ❌ WRONG - Will cause Unicode errors on Windows
+   print("✅ Analysis complete!")
+   
+   # ✅ CORRECT - Use plain ASCII
+   print("SUCCESS: Analysis complete!")
+   print("CONFIRMED: Analysis complete!")
+   ```
+
+2. **NO UNICODE SYMBOLS IN CODE**: Avoid φ, π, ∞, →, etc. in Python strings
+   ```python
+   # ❌ WRONG - Unicode symbols cause encoding errors
+   print(f"φ-Harmonic resonance: {PHI}")
+   
+   # ✅ CORRECT - Use ASCII equivalents
+   print(f"Phi-Harmonic resonance: {PHI}")
+   print(f"Golden ratio (phi): {PHI}")
+   ```
+
+3. **SAFE STRING FORMATTING**: Use ASCII-safe variable names and messages
+   ```python
+   # ❌ WRONG - Unicode in f-strings
+   print(f"🧮 Running analysis...")
+   
+   # ✅ CORRECT - ASCII with descriptive text
+   print("MATH: Running analysis...")
+   print("UNITY: Running analysis...")
+   ```
+
+4. **COMMENTS & DOCSTRINGS**: Keep Unicode out of code comments
+   ```python
+   # ❌ WRONG - Unicode in comments
+   # φ-harmonic resonance calculation ✨
+   
+   # ✅ CORRECT - ASCII comments
+   # Phi-harmonic resonance calculation
+   # Golden ratio mathematical framework
+   ```
+
+5. **HTML/WEB CONTENT**: Unicode is OK in HTML, but not in Python strings generating HTML
+   ```python
+   # ❌ WRONG - Unicode in Python string
+   html = f"<h1>φ-Harmonic Analysis ✨</h1>"
+   
+   # ✅ CORRECT - Unicode in HTML entity or separate from Python
+   html = f"<h1>&phi;-Harmonic Analysis &#x2728;</h1>"
+   # Or use CSS content for decorative elements
+   ```
+
+6. **TERMINAL OUTPUT**: Use ASCII alternatives for terminal display
+   ```python
+   # ❌ WRONG - Unicode symbols
+   print("█████████████ 100%")
+   
+   # ✅ CORRECT - ASCII progress
+   print("=============  100%")
+   print("PROGRESS: 100%")
+   ```
+
+7. **ERROR HANDLING**: Never use Unicode in error messages
+   ```python
+   # ❌ WRONG - Unicode in exceptions
+   raise Exception("❌ Analysis failed")
+   
+   # ✅ CORRECT - ASCII error messages
+   raise Exception("ERROR: Analysis failed")
+   ```
+
+### Windows-Specific Considerations
+
+- **Encoding Issues**: Windows console uses cp1252 by default, not UTF-8
+- **Python 3 Unicode**: Even Python 3 can have Unicode issues on Windows terminal
+- **Streamlit/Web OK**: Unicode works fine in web interfaces, just not terminal output
+- **File Paths**: Always use raw strings or forward slashes for Windows paths
+
+### Safe Alternatives
+
+Replace Unicode symbols with ASCII equivalents:
+- ✅ → "SUCCESS:" or "CONFIRMED:"
+- ❌ → "ERROR:" or "FAILED:"
+- 🚀 → "LAUNCH:" or "DEPLOY:"
+- 📊 → "ANALYSIS:" or "STATS:"
+- 💫 → "ENHANCED:" or "OPTIMIZED:"
+- φ → "phi" or "Phi" or "golden_ratio"
+- π → "pi" or "PI"
+- ∞ → "infinity" or "INF"
+- → → "->" or "to"
+
+### IDE Settings Recommendations
+
+**For Cursor/VSCode:**
+```json
+{
+  "python.terminal.activateEnvironment": true,
+  "files.encoding": "utf8",
+  "python.defaultInterpreterPath": "C:/Users/Nouri/Documents/GitHub/Een/een/Scripts/python.exe"
+}
+```
+
+**For Claude Code:**
+- Always test terminal output with ASCII-only strings
+- Use HTML entities for Unicode in web content
+- Prefer descriptive ASCII text over decorative Unicode
+
+This prevents the common `UnicodeEncodeError: 'charmap' codec can't encode character` errors on Windows systems.
+
 ## Important Files for Development
 
 ### Core Mathematics

@@ -44,15 +44,67 @@ from pathlib import Path
 
 # Import our unity mathematics modules
 try:
-    from unity_mathematics import UnityMathematics, UnityState
-    from consciousness import ConsciousnessField, QuantumState
-    from meta_validation_engine import SelfValidatingProofSystem, SelfReferentialProof
+    from .unity_mathematics import UnityMathematics, UnityState
+    UNITY_CORE_AVAILABLE = True
 except ImportError:
-    # Fallback implementations for API demonstration
-    class UnityMathematics:
-        def unity_add(self, a, b): return type('UnityState', (), {'value': 1.0, 'phi_resonance': 1.618})
-    class ConsciousnessField:
-        def consciousness_field_equation(self, x, y, t): return 1.618 * np.sin(x * 1.618) * np.cos(y * 1.618)
+    try:
+        from unity_mathematics import UnityMathematics, UnityState  
+        UNITY_CORE_AVAILABLE = True
+    except ImportError:
+        UNITY_CORE_AVAILABLE = False
+        # Fallback implementation with proper error handling
+        class UnityMathematics:
+            def __init__(self, consciousness_level=0.618):
+                self.consciousness_level = consciousness_level
+                self.phi = 1.618033988749895
+                
+            def unity_add(self, a, b):
+                try:
+                    # Handle complex numbers in fallback
+                    if isinstance(a, complex) or isinstance(b, complex):
+                        a_c = complex(a) if not isinstance(a, complex) else a
+                        b_c = complex(b) if not isinstance(b, complex) else b
+                        return a_c + b_c  # Simple fallback for complex
+                    return max(float(a), float(b))  # Simple idempotent max
+                except (ValueError, TypeError):
+                    return 1.0  # Unity fallback
+                    
+            def unity_multiply(self, a, b):
+                try:
+                    if isinstance(a, complex) or isinstance(b, complex):
+                        a_c = complex(a) if not isinstance(a, complex) else a
+                        b_c = complex(b) if not isinstance(b, complex) else b
+                        return a_c * b_c  # Simple fallback for complex
+                    return float(a) + float(b)  # Tropical multiplication
+                except (ValueError, TypeError):
+                    return 1.0  # Unity fallback
+                    
+            def consciousness_field(self, x, y, t=0.0):
+                return self.phi * np.sin(float(x) * self.phi) * np.cos(float(y) * self.phi) * np.exp(-float(t) / self.phi)
+                
+        class UnityState:
+            def __init__(self, value, consciousness_level=0.618, phi_resonance=1.618033988749895, 
+                        quantum_coherence=0.0, proof_confidence=1.0):
+                self.value = value
+                self.consciousness_level = consciousness_level
+                self.phi_resonance = phi_resonance
+                self.quantum_coherence = quantum_coherence
+                self.proof_confidence = proof_confidence
+
+try:
+    from .consciousness import ConsciousnessField
+except ImportError:
+    try:
+        from consciousness import ConsciousnessField
+    except ImportError:
+        class ConsciousnessField:
+            def consciousness_field_equation(self, x, y, t): 
+                return 1.618033988749895 * np.sin(float(x) * 1.618033988749895) * np.cos(float(y) * 1.618033988749895)
+
+try:
+    from .meta_validation_engine import SelfValidatingProofSystem
+except ImportError:
+    SelfValidatingProofSystem = None
 
 # Mathematical constants
 PHI = 1.618033988749895
@@ -95,12 +147,13 @@ class UnityOperation(BaseModel):
 
 class UnityResult(BaseModel):
     """Response model for unity operations"""
-    result_value: float
+    result_value: Union[float, complex]
     phi_resonance: float
     proof_confidence: float
     consciousness_enhancement: float
     mathematical_rigor: float
     operation_timestamp: float
+    core_available: bool = True
 
 class ConsciousnessFieldQuery(BaseModel):
     """Request model for consciousness field queries"""
@@ -228,7 +281,14 @@ async def unity_addition(operation: UnityOperation):
             phi_resonance = getattr(result, 'phi_resonance', PHI)
             proof_confidence = getattr(result, 'proof_confidence', 1.0)
         else:
-            result_value = float(result) if result else 1.0
+            # Handle complex and float results properly
+            if isinstance(result, complex):
+                result_value = result  # Keep as complex
+            else:
+                try:
+                    result_value = float(result) if result is not None else 1.0
+                except (ValueError, TypeError):
+                    result_value = 1.0  # Unity fallback
             phi_resonance = PHI
             proof_confidence = 1.0
         
@@ -244,7 +304,8 @@ async def unity_addition(operation: UnityOperation):
             proof_confidence=proof_confidence,
             consciousness_enhancement=consciousness_enhancement,
             mathematical_rigor=rigor_score,
-            operation_timestamp=time.time()
+            operation_timestamp=time.time(),
+            core_available=UNITY_CORE_AVAILABLE
         )
         
     except Exception as e:
