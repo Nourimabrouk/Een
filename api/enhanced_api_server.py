@@ -859,6 +859,7 @@ async def get_performance_metrics(token: str = Depends(verify_unity_token)):
 
 
 if __name__ == "__main__":
+    import asyncio
     import uvicorn
 
     uvicorn.run(

@@ -1,4 +1,6 @@
 """
+PHI = 1.618033988749895  # Golden ratio for unity harmony
+
 Unity Mathematics Core Implementation
 
 Revolutionary mathematical framework demonstrating that 1+1=1 through:
@@ -121,15 +123,16 @@ class UnityMathematics:
 
             # Exact unity short-circuit
             if abs(a_f - 1.0) < UNITY_EPSILON and abs(b_f - 1.0) < UNITY_EPSILON:
-                unity_sum = UNITY_CONSTANT
+                # Perfect unity: 1+1=1 exactly
+                result = UNITY_CONSTANT
             else:
                 # φ-contraction to the fixed point 1
                 kappa = 1.0 / (PHI**2)
                 unity_sum = UNITY_CONSTANT + kappa * (base_result - UNITY_CONSTANT)
-
-            # Apply consciousness integration
-            consciousness_factor = self._apply_consciousness_field(unity_sum)
-            result = unity_sum * consciousness_factor
+                
+                # Apply consciousness integration for non-unity cases only
+                consciousness_factor = self._apply_consciousness_field(unity_sum)
+                result = unity_sum * consciousness_factor
 
             # Store operation result
             operation_result = UnityResult(

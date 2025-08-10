@@ -282,6 +282,7 @@ async def api_docs():
     """
 
 if __name__ == "__main__":
+    import asyncio
     import uvicorn
     print("🚀 Starting Een Unity Mathematics Full Experience Server...")
     print("📝 Make sure to update API keys in the script!")

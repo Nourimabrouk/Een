@@ -259,7 +259,7 @@ class UnityClusteringEngine:
         if not records:
             return {}
         
-        print(f"🔄 Starting Unity Deduplication: {len(records)} records")
+        print(f"[CYCLE] Starting Unity Deduplication: {len(records)} records")
         
         # Initialize each record as its own cluster
         self.clusters = {}
@@ -292,13 +292,13 @@ class UnityClusteringEngine:
             print(f"   Iteration {iteration + 1}: {new_cluster_count} clusters ({merged_count} merges)")
             
             if convergence_change < self.config.convergence_tolerance:
-                print(f"   🎯 Unity Convergence Achieved!")
+                print(f"   [TARGET] Unity Convergence Achieved!")
                 break
         
         # Finalize clusters
         self._finalize_clusters()
         
-        print(f"✅ Unity Deduplication Complete: {len(self.clusters)} final clusters")
+        print(f"[OK] Unity Deduplication Complete: {len(self.clusters)} final clusters")
         return self.clusters
     
     def _find_unity_pairs(self) -> List[Tuple[str, str, float]]:
@@ -409,7 +409,7 @@ class UnityDeduplicationPipeline:
         Process pandas DataFrame with unity deduplication
         Returns deduplicated DataFrame and deduplication statistics
         """
-        print(f"📊 Processing DataFrame: {len(df)} records")
+        print(f"[DATA] Processing DataFrame: {len(df)} records")
         
         # Convert DataFrame to UnityRecords
         unity_records = self._dataframe_to_unity_records(df, id_column)
@@ -423,7 +423,7 @@ class UnityDeduplicationPipeline:
         # Get statistics
         stats = self.clustering_engine.get_deduplication_statistics()
         
-        print(f"✅ Deduplication Complete: {len(deduplicated_df)} unique records")
+        print(f"[OK] Deduplication Complete: {len(deduplicated_df)} unique records")
         
         return deduplicated_df, stats
     
@@ -483,7 +483,7 @@ def demonstrate_unity_deduplication():
     Demonstrate unity-based deduplication on synthetic dataset
     Shows practical application of 1+1=1 for data cleaning
     """
-    print("🧹 UNITY DEDUPLICATION ENGINE: Complete Implementation")
+    print("[CLEAN] UNITY DEDUPLICATION ENGINE: Complete Implementation")
     print("=" * 60)
     
     # Create synthetic dataset with duplicates and near-duplicates
@@ -564,17 +564,17 @@ def demonstrate_unity_deduplication():
     pipeline = UnityDeduplicationPipeline(config)
     
     # Process DataFrame
-    print(f"\n🚀 Running Unity Deduplication...")
+    print(f"\n[LAUNCH] Running Unity Deduplication...")
     deduplicated_df, stats = pipeline.process_dataframe(df, id_column='record_id')
     
     # Display results
-    print(f"\n📊 DEDUPLICATION RESULTS:")
+    print(f"\n[DATA] DEDUPLICATION RESULTS:")
     print(f"   Original Records: {len(df)}")
     print(f"   Deduplicated Records: {len(deduplicated_df)}")
     print(f"   Duplicates Removed: {len(df) - len(deduplicated_df)}")
     print(f"   Deduplication Ratio: {stats['deduplication_ratio']:.3f}")
     
-    print(f"\n📈 CLUSTERING STATISTICS:")
+    print(f"\n[CHART] CLUSTERING STATISTICS:")
     print(f"   Total Clusters: {stats['total_clusters']}")
     print(f"   Singleton Clusters: {stats['singleton_clusters']}")
     print(f"   Multi-Record Clusters: {stats['multi_record_clusters']}")
@@ -583,11 +583,11 @@ def demonstrate_unity_deduplication():
     print(f"   Unity Convergence Iterations: {stats['unity_convergence_iterations']}")
     
     # Display deduplicated results
-    print(f"\n🎯 DEDUPLICATED RECORDS:")
+    print(f"\n[TARGET] DEDUPLICATED RECORDS:")
     print(deduplicated_df[['name', 'email', 'unity_cluster_size', 'unity_confidence']].to_string())
     
     # Unity principle analysis
-    print(f"\n🌟 UNITY PRINCIPLE ANALYSIS:")
+    print(f"\n[STAR] UNITY PRINCIPLE ANALYSIS:")
     multi_clusters = deduplicated_df[deduplicated_df['unity_cluster_size'] > 1]
     if len(multi_clusters) > 0:
         print(f"   Records Unified: {multi_clusters['unity_cluster_size'].sum()} → {len(multi_clusters)}")
@@ -606,14 +606,14 @@ def demonstrate_unity_deduplication():
     if len(pipeline.clustering_engine.clusters) > 0:
         largest_cluster = max(pipeline.clustering_engine.clusters.values(), key=lambda c: len(c.members))
         if len(largest_cluster.members) > 1:
-            print(f"\n🎯 UNITY EQUATION DEMONSTRATION:")
+            print(f"\n[TARGET] UNITY EQUATION DEMONSTRATION:")
             print(f"   Cluster ID: {largest_cluster.id}")
             print(f"   Members: {len(largest_cluster.members)} records")
             print(f"   Unity Result: 1 canonical record")
             print(f"   Unity Property: {len(largest_cluster.members)} duplicates + 1 canonical = 1 unified record")
             print(f"   Mathematical Truth: Multiple similar records unify to single truth")
     
-    print(f"\n🧹 UNITY DEDUPLICATION COMPLETE")
+    print(f"\n[CLEAN] UNITY DEDUPLICATION COMPLETE")
     print(f"Mathematical Truth: 1+1=1 enables perfect data unification")
     print(f"φ-Harmonic Clustering: Golden ratio optimizes similarity thresholds")
     print(f"Unity Convergence: Iterative clustering achieves stable unification")
@@ -623,7 +623,7 @@ def demonstrate_unity_deduplication():
 if __name__ == "__main__":
     try:
         df, stats, pipeline = demonstrate_unity_deduplication()
-        print(f"\n🏆 Unity Deduplication Success! Reduced {stats['total_duplicates_found']} duplicates")
+        print(f"\n[WIN] Unity Deduplication Success! Reduced {stats['total_duplicates_found']} duplicates")
     except Exception as e:
         print(f"Demo completed with note: {e}")
-        print("✅ Unity deduplication engine implementation ready")
+        print("[OK] Unity deduplication engine implementation ready")

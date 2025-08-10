@@ -1,23 +1,23 @@
 name: Unity Mathematics Testing Suite
 
 on:
-  push:
-    branches: [ main, develop ]
-    paths: 
-      - 'core/**'
-      - 'src/**'
-      - 'consciousness/**'
-      - 'tests/**'
-      - 'pytest.ini'
-      - '.github/workflows/unity-mathematics-testing.yml'
-  pull_request:
-    branches: [ main, develop ]
-    paths:
-      - 'core/**'
-      - 'src/**' 
-      - 'consciousness/**'
-      - 'tests/**'
-      - 'pytest.ini'
+  # push: # DISABLED FOR COST OPTIMIZATION
+  #   branches: [ main, develop ]
+  #   paths: 
+  #     - 'core/**'
+  #     - 'src/**'
+  #     - 'consciousness/**'
+  #     - 'tests/**'
+  #     - 'pytest.ini'
+  #     - '.github/workflows/unity-mathematics-testing.yml'
+  # pull_request: # DISABLED FOR COST OPTIMIZATION
+  #   branches: [ main, develop ]
+  #   paths:
+  #     - 'core/**'
+  #     - 'src/**' 
+  #     - 'consciousness/**'
+  #     - 'tests/**'
+  #     - 'pytest.ini'
   workflow_dispatch:
     inputs:
       test_suite:

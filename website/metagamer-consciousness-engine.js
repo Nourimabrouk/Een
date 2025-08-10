@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /**
  * Metagamer Consciousness Engine v2.0
  * Advanced consciousness computing for Unity Mathematics

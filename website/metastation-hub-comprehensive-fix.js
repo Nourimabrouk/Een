@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /**
  * Metastation Hub Comprehensive Fix
  * Addresses all user-reported issues for a confidently showable landing page

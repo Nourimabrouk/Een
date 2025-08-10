@@ -527,6 +527,7 @@ async def metrics():
 
 # Production server startup
 if __name__ == "__main__":
+    import asyncio
     workers = int(os.getenv("WORKERS", 1))
     
     print("🌟 Starting Een Unity Mathematics API...")

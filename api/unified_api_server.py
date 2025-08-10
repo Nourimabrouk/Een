@@ -824,6 +824,7 @@ async def http_exception_handler(request, exc):
     }
 
 if __name__ == "__main__":
+    import asyncio
     # Run the server
     uvicorn.run(
         "unified_api_server:app",

@@ -1,0 +1,92 @@
+/* Mobile Enhancement Styles */
+@media (max-width: 768px) {
+    /* Navigation improvements */
+    .unified-nav-header {
+        padding: 1rem !important;
+    }
+    
+    .nav-menu {
+        flex-direction: column !important;
+        gap: 1rem !important;
+    }
+    
+    /* Typography scaling */
+    .hero-title {
+        font-size: clamp(2rem, 8vw, 4rem) !important;
+        line-height: 1.2 !important;
+    }
+    
+    .hero-subtitle {
+        font-size: clamp(1rem, 4vw, 1.4rem) !important;
+        padding: 0 1rem !important;
+    }
+    
+    /* Button improvements */
+    .btn, .philosophy-link {
+        padding: 1rem 1.5rem !important;
+        font-size: 1rem !important;
+        min-height: 44px !important; /* Touch target size */
+    }
+    
+    /* Form improvements */
+    input, textarea, select {
+        min-height: 44px !important;
+        font-size: 16px !important; /* Prevent zoom on iOS */
+    }
+    
+    /* Card layouts */
+    .philosophy-card, .metagaming-card {
+        margin-bottom: 2rem !important;
+        padding: 1.5rem !important;
+    }
+    
+    /* Spacing improvements */
+    .section-padding {
+        padding: 3rem 1rem !important;
+    }
+    
+    /* Visualization containers */
+    .field-visualization,
+    .consciousness-field-viz,
+    .metastation-slider {
+        height: 300px !important;
+        margin: 1rem 0 !important;
+    }
+    
+    /* Chat interface */
+    .chat-interface {
+        padding: 1rem !important;
+        margin: 1rem 0 !important;
+    }
+    
+    .chat-messages {
+        height: 250px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Extra small screens */
+    .container {
+        padding: 0 1rem !important;
+    }
+    
+    .unity-display {
+        font-size: clamp(3rem, 12vw, 5rem) !important;
+    }
+    
+    .orbital-ring {
+        display: none; /* Hide for performance on small screens */
+    }
+}
+
+/* Touch improvements */
+@media (hover: none) and (pointer: coarse) {
+    .meta-optimal-hover:hover {
+        transform: none !important;
+    }
+    
+    .btn:active,
+    .philosophy-link:active {
+        transform: scale(0.95) !important;
+    }
+}

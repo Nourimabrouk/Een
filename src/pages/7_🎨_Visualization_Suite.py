@@ -5,6 +5,10 @@ from pathlib import Path
 
 import numpy as np
 import plotly.graph_objects as go
+
+import plotly.io as pio
+pio.renderers.default = 'browser'  # Set default renderer
+
 import streamlit as st
 
 st.set_page_config(

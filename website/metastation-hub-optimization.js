@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /**
  * Metastation Hub Optimization Script
  * Fixes all issues mentioned by user:

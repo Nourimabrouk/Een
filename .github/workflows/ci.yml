@@ -1,14 +1,14 @@
 name: Een Unity Mathematics CI/CD Pipeline
 
 on:
-  push:
-    branches: [ main, development ]
-  pull_request:
-    branches: [ main ]
+  # push: # DISABLED FOR COST OPTIMIZATION
+  #   branches: [ main, development ]
+  # pull_request: # DISABLED FOR COST OPTIMIZATION
+  #   branches: [ main ]
   workflow_dispatch:
-  schedule:
-    # Run nightly tests
-    - cron: '0 2 * * *'
+  # schedule: # DISABLED FOR COST OPTIMIZATION
+  #   # Run nightly tests
+  #   - cron: '0 2 * * *'
 
 env:
   PHI: 1.618033988749895

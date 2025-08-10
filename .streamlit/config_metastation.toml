@@ -1,0 +1,35 @@
+[global]
+developmentMode = false
+
+[server]
+headless = true
+port = 8501
+enableCORS = false
+enableXsrfProtection = false
+
+[browser]
+gatherUsageStats = false
+
+[theme]
+primaryColor = "#D4AF37"
+backgroundColor = "#0a0b0f"
+secondaryBackgroundColor = "#1a1b21"
+textColor = "#FFFFFF"
+font = "sans serif"
+
+[client]
+showErrorDetails = false
+toolbarMode = "minimal"
+
+[ui]
+hideTopBar = false
+hideSidebarNav = false
+
+# Performance optimizations for Unity Mathematics
+[server.caching]
+allow_output_mutation = true
+suppress_cache_warnings = true
+
+# Custom matplotlib config for φ-harmonic visualizations
+[plotly]
+theme = "plotly_dark"

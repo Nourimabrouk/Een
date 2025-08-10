@@ -468,7 +468,7 @@ class UnityEmpiricalValidator:
         """Run a single benchmark comparing unity vs traditional aggregation"""
         benchmark = self.benchmarks[benchmark_name]
         
-        print(f"🧪 Running {benchmark_name} benchmark with {n_samples} samples...")
+        print(f"[BENCHMARK] Running {benchmark_name} benchmark with {n_samples} samples...")
         
         # Generate data
         data = benchmark.generate_data(n_samples)

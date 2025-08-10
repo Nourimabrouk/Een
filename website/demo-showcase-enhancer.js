@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /**
  * Demo & Showcase Enhancer for Een Unity Mathematics
  * Ensures natural flow and effective showcasing of codebase and website
