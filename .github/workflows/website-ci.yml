@@ -1,18 +1,19 @@
 name: Website CI/CD
 
 on:
-  push:
-    branches: [ main, website-upgrade-v1.1 ]
-    paths:
-      - 'website/**'
-      - 'scripts/**'
-      - '.github/workflows/website-ci.yml'
-  pull_request:
-    branches: [ main ]
-    paths:
-      - 'website/**'
-      - 'scripts/**'
-      - '.github/workflows/website-ci.yml'
+  # push: # DISABLED FOR COST OPTIMIZATION
+  #   branches: [ main, website-upgrade-v1.1 ]
+  #   paths:
+  #     - 'website/**'
+  #     - 'scripts/**'
+  #     - '.github/workflows/website-ci.yml'
+  # pull_request: # DISABLED FOR COST OPTIMIZATION
+  #   branches: [ main ]
+  #   paths:
+  #     - 'website/**'
+  #     - 'scripts/**'
+  #     - '.github/workflows/website-ci.yml'
+  workflow_dispatch: # Manual trigger only
 
 jobs:
   test-and-validate:

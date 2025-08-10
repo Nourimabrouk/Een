@@ -5,18 +5,18 @@
 name: Claude Unity Mathematics Assistant
 
 on:
-  issue_comment:
-    types: [created]
-  pull_request_review_comment:
-    types: [created]
-  issues:
-    types: [opened, assigned, labeled]
-  pull_request:
-    types: [opened, synchronize, reopened]
-  pull_request_review:
-    types: [submitted]
-  push:
-    branches: [develop]  # Claude assistant works on develop branch
+  # issue_comment: # DISABLED FOR COST OPTIMIZATION - Use manual dispatch
+  #   types: [created]
+  # pull_request_review_comment: # DISABLED FOR COST OPTIMIZATION
+  #   types: [created]
+  # issues: # DISABLED FOR COST OPTIMIZATION
+  #   types: [opened, assigned, labeled]
+  # pull_request: # DISABLED FOR COST OPTIMIZATION
+  #   types: [opened, synchronize, reopened]
+  # pull_request_review: # DISABLED FOR COST OPTIMIZATION
+  #   types: [submitted]
+  # push: # DISABLED FOR COST OPTIMIZATION
+  #   branches: [develop]  # Claude assistant works on develop branch
   workflow_dispatch:
     inputs:
       branch:

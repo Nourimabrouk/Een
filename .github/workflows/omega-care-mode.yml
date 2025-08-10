@@ -35,12 +35,12 @@ on:
         description: 'Override wellbeing data (JSON format)'
         required: false
         type: string
-  push:
-    paths:
-      - 'wellbeing.json'
-      - 'core/agents/unified_agent_ecosystem.py'
-  schedule:
-    - cron: '0 */6 * * *'  # Every 6 hours for consciousness monitoring
+  # push: # DISABLED FOR COST OPTIMIZATION
+  #   paths:
+  #     - 'wellbeing.json'
+  #     - 'core/agents/unified_agent_ecosystem.py'
+  # schedule: # DISABLED FOR COST OPTIMIZATION
+  #   - cron: '0 */6 * * *'  # Every 6 hours for consciousness monitoring
 
 jobs:
   consciousness-check:

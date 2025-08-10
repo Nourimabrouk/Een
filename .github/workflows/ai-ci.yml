@@ -1,26 +1,26 @@
 name: Een AI Agent CI/CD Pipeline
 
 on:
-  push:
-    branches: [ main ]
-    paths:
-      - '**/*.py'
-      - '**/*.md'
-      - '**/*.html'
-      - '**/*.js'
-      - '**/*.css'
-      - '**/*.json'
-      - '**/*.txt'
-      - 'ai_agent/**/*'
-      - '.github/workflows/ai-ci.yml'
+  # push: # DISABLED FOR COST OPTIMIZATION
+  #   branches: [ main ]
+  #   paths:
+  #     - '**/*.py'
+  #     - '**/*.md'
+  #     - '**/*.html'
+  #     - '**/*.js'
+  #     - '**/*.css'
+  #     - '**/*.json'
+  #     - '**/*.txt'
+  #     - 'ai_agent/**/*'
+  #     - '.github/workflows/ai-ci.yml'
   
-  pull_request:
-    branches: [ main ]
-    paths:
-      - '**/*.py'
-      - '**/*.md'
-      - '**/*.html'
-      - 'ai_agent/**/*'
+  # pull_request: # DISABLED FOR COST OPTIMIZATION
+  #   branches: [ main ]
+  #   paths:
+  #     - '**/*.py'
+  #     - '**/*.md'
+  #     - '**/*.html'
+  #     - 'ai_agent/**/*'
   
   workflow_dispatch:
     inputs:
