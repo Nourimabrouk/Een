@@ -73,20 +73,29 @@ def install_requirements():
     print("✅ Package installation completed!")
 
 def setup_api_keys():
-    """Set up default API keys in environment"""
-    print("🔑 Setting up AI API keys...")
+    """Check API keys configuration"""
+    print("🔑 Checking AI API keys...")
     
-    # TODO: Replace these with your actual API keys!
-    OPENAI_API_KEY = "sk-proj-YOUR_OPENAI_KEY_HERE"  # Replace with your key
-    ANTHROPIC_API_KEY = "sk-ant-YOUR_ANTHROPIC_KEY_HERE"  # Replace with your key
+    openai_key = os.getenv('OPENAI_API_KEY')
+    anthropic_key = os.getenv('ANTHROPIC_API_KEY')
     
-    if not os.getenv('OPENAI_API_KEY'):
-        os.environ['OPENAI_API_KEY'] = OPENAI_API_KEY
+    if openai_key:
+        print("✅ OPENAI_API_KEY found")
+    else:
+        print("⚠️  OPENAI_API_KEY not set")
+        print("   Set it with: export OPENAI_API_KEY='your-openai-api-key'")
         
-    if not os.getenv('ANTHROPIC_API_KEY'):
-        os.environ['ANTHROPIC_API_KEY'] = ANTHROPIC_API_KEY
+    if anthropic_key:
+        print("✅ ANTHROPIC_API_KEY found") 
+    else:
+        print("⚠️  ANTHROPIC_API_KEY not set")
+        print("   Set it with: export ANTHROPIC_API_KEY='your-anthropic-api-key'")
         
-    print("✅ API keys configured (using defaults)")
+    if not (openai_key or anthropic_key):
+        print("🎭  Demo Mode: Unity Mathematics will work without AI keys")
+        print("   Copy .env.example to .env and add your API keys for full features")
+    else:
+        print("✅ API keys configured")
     print("🤖 AI Chatbot will be fully functional!")
 
 def is_port_available(port):
@@ -122,8 +131,8 @@ import math
 import random
 
 # Set API keys
-os.environ['OPENAI_API_KEY'] = '{os.getenv("OPENAI_API_KEY", "sk-test")}'
-os.environ['ANTHROPIC_API_KEY'] = '{os.getenv("ANTHROPIC_API_KEY", "sk-ant-test")}'
+os.environ['OPENAI_API_KEY'] = os.getenv("OPENAI_API_KEY", "")
+os.environ['ANTHROPIC_API_KEY'] = os.getenv("ANTHROPIC_API_KEY", "")
 
 app = FastAPI(title="Een Unity Mathematics - Full Experience")
 

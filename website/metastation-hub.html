@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Een Unity Mathematics | Consciousness Hub - 1+1=1 Transcendental Computing</title>
+    <title>Unity Mathematics Institute | 1+1=1</title>
     <meta name="description"
         content="Metastation Hub – Academic portal for the Unity Mathematics 1+1=1 project: formal proofs, implementations, dashboards, and consciousness-integrated mathematics.">
     <link rel="canonical" href="https://nourimabrouk.github.io/Een/website/metastation-hub.html">
@@ -19,14 +19,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    
-    <!-- Critical Resource Preloading -->
-    <link rel="preload" href="css/unified-navigation.css" as="style">
-    <link rel="preload" href="js/unified-navigation.js" as="script">
-    <link rel="preload" href="css/components.css" as="style">
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" as="style">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
-<!-- Fonts -->
+    <!-- Fonts -->
     <link
         href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
         rel="stylesheet">
@@ -35,30 +28,29 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- Unified Navigation System (site-wide) -->
-    <link rel="stylesheet" href="css/unified-navigation.css">
-    <script src="js/unified-navigation.js" defer></script>
-    <script src="js/apply-unified-navigation.js" defer></script>
+    <link rel="stylesheet" href="website/css/unified-navigation.css">
+    <script src="website/js/unified-navigation.js" defer></script>
+    <script src="website/js/apply-unified-navigation.js" defer></script>
 
     <!-- Unified Chatbot System (site-wide floating chat) -->
-    <script src="js/unified-chatbot-system.js" defer></script>
+    <script src="website/js/unified-chatbot-system.js" defer></script>
     <!-- Site-wide safe enhancements (duplicate unified-navigation.js tag removed) -->
 
-    <!-- 🕉️ Divine Easter Egg - The Metastation Prayer -->
-    <script src="js/metastation-prayer.js" defer></script>
-
     <!-- Dynamic Audio Scanner (scans for unique audio files) -->
-    <script src="js/audio-scanner.js" defer></script>
+    <script src="website/js/audio-scanner.js" defer></script>
 
     <!-- Persistent Audio System (Cross-page audio playback) -->
-    <script src="js/persistent-audio-system.js" defer></script>
+    <script src="website/js/persistent-audio-system.js" defer></script>
 
     <!-- Search System Integration -->
-    <script src="js/unified-search-system.js" defer></script>
-    <script src="js/semantic-search.js" defer></script>
+    <script src="website/js/unified-search-system.js" defer></script>
+    <script src="website/js/semantic-search.js" defer></script>
 
-    <link rel="stylesheet" href="css/tokens.css">
-    <link rel="stylesheet" href="css/layout.css">
-    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="website/css/tokens.css">
+    <link rel="stylesheet" href="website/css/layout.css">
+    <link rel="stylesheet" href="website/css/components.css">
+    <!-- Bootloader to guarantee rendering on GitHub Pages (root variant) -->
+    <script src="website/js/consciousness-boot.js" defer></script>
     <style>
         :root {
             --phi: 1.618033988749895;
@@ -430,25 +422,52 @@
 
         /* Mathematical Overlay */
         .math-overlay {
-            /* Floating math overlay disabled in favor of the live consciousness field */
-            display: none !important;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
         }
 
         .equation-float {
-            display: none !important;
+            position: absolute;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
         }
 
         .math-text {
-            display: none !important;
+            color: var(--unity-gold);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.1rem;
+            font-weight: 500;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
         }
 
         @keyframes floatEquation {
-            from {
-                opacity: 0;
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.7;
             }
 
-            to {
-                opacity: 0;
+            25% {
+                transform: translateY(-10px) rotate(1deg);
+                opacity: 1;
+            }
+
+            50% {
+                transform: translateY(5px) rotate(-1deg);
+                opacity: 0.9;
+            }
+
+            75% {
+                transform: translateY(-5px) rotate(0.5deg);
+                opacity: 1;
             }
         }
 
@@ -486,316 +505,14 @@
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
         }
 
-        #consciousness-canvas,
-        #consciousness-field-canvas {
+        #consciousness-canvas {
             width: 100%;
             height: 100%;
             display: block;
-            background:
-                radial-gradient(circle at 30% 40%, rgba(255, 215, 0, 0.3) 0%, transparent 60%),
-                radial-gradient(circle at 70% 60%, rgba(255, 215, 0, 0.2) 0%, transparent 50%),
-                radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 70%),
-                radial-gradient(circle at center, rgba(25, 15, 5, 0.8), rgba(20, 20, 30, 0.6));
-            cursor: crosshair;
-            position: relative;
-            animation: consciousness-pulse 4s ease-in-out infinite;
-        }
-
-        /* CSS-only fallback animation */
-        @keyframes consciousness-pulse {
-
-            0%,
-            100% {
-                background-size: 100% 100%, 80% 80%, 120% 120%, 100% 100%;
-                opacity: 0.8;
-            }
-
-            50% {
-                background-size: 120% 120%, 100% 100%, 140% 140%, 100% 100%;
-                opacity: 1.0;
-            }
-        }
-
-        /* Unity equation overlay for fallback */
-        #consciousness-field-canvas::after {
-            content: '1 + 1 = 1';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-family: 'Space Grotesk', monospace;
-            font-size: 48px;
-            font-weight: bold;
-            color: rgba(255, 215, 0, 0.6);
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
-            animation: unity-glow 3s ease-in-out infinite;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        /* Hide CSS fallback when JavaScript engine is active */
-        #consciousness-field-canvas.js-active::after {
-            display: none;
-        }
-
-        #consciousness-field-canvas.js-active {
-            animation: none;
-            background: transparent;
-        }
-
-        /* Consciousness Field Equation Display */
-        .consciousness-equation-display {
-            text-align: center;
-            margin: 2rem auto;
-            max-width: 600px;
-            padding: 1.5rem;
-            background: rgba(15, 25, 35, 0.7);
-            border-radius: 15px;
-            border: 1px solid rgba(64, 224, 208, 0.3);
-            -webkit-backdrop-filter: blur(5px);
-            backdrop-filter: blur(5px);
-        }
-
-        .equation-label {
-            color: rgba(147, 112, 219, 0.9);
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .equation-katex {
-            font-size: 1.8rem;
-            color: rgba(64, 224, 208, 0.95);
-            text-shadow: 0 0 10px rgba(64, 224, 208, 0.5);
-            padding: 0.5rem;
-        }
-
-        .equation-katex .katex {
-            color: rgba(64, 224, 208, 0.95) !important;
-            text-shadow: 0 0 8px rgba(64, 224, 208, 0.4);
-        }
-
-        /* Empirical Proof Section Styles */
-        .empirical-proof-section {
-            background: linear-gradient(135deg,
-                    rgba(0, 20, 40, 0.95) 0%,
-                    rgba(15, 25, 45, 0.9) 50%,
-                    rgba(0, 30, 50, 0.95) 100%);
-            border: 1px solid rgba(64, 224, 208, 0.2);
-            border-radius: 16px;
-            margin: 3rem auto;
-            box-shadow: 0 8px 40px rgba(64, 224, 208, 0.1);
-        }
-
-        .empirical-proof-container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .empirical-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: start;
-            padding: 2rem;
-        }
-
-        .proof-visualization-empirical {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .water-droplet-container {
-            position: relative;
-            background: rgba(0, 0, 0, 0.4);
-            border-radius: 16px;
-            padding: 2rem;
-            border: 2px solid rgba(64, 224, 208, 0.3);
-            box-shadow: 0 4px 20px rgba(64, 224, 208, 0.2);
-        }
-
-        .water-droplet-gif {
-            max-width: 100%;
-            height: auto;
-            border-radius: 12px;
-            filter: brightness(1.1) contrast(1.1);
-            transition: transform 0.3s ease;
-        }
-
-        .water-droplet-gif:hover {
-            transform: scale(1.05);
-        }
-
-        .proof-scale-indicator {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: rgba(255, 215, 0, 0.9);
-            color: rgba(0, 0, 0, 0.9);
-            padding: 0.25rem 0.75rem;
-            border-radius: 12px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        .philosophical-reflection {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 12px;
-            padding: 2rem;
-            border: 1px solid rgba(147, 112, 219, 0.3);
-        }
-
-        .reflection-title {
-            color: rgba(147, 112, 219, 0.95);
-            font-size: 1.4rem;
-            margin-bottom: 1.5rem;
-            text-shadow: 0 0 10px rgba(147, 112, 219, 0.4);
-        }
-
-        .reflection-content {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .reflection-text {
-            color: rgba(255, 255, 255, 0.9);
-            line-height: 1.7;
-            font-size: 1rem;
-        }
-
-        .reflection-text strong {
-            color: rgba(64, 224, 208, 0.95);
-            text-shadow: 0 0 8px rgba(64, 224, 208, 0.4);
-        }
-
-        .reflection-text em {
-            color: rgba(255, 215, 0, 0.95);
-            font-style: italic;
-        }
-
-        .philosophical-quote {
-            background: rgba(147, 112, 219, 0.1);
-            border-left: 4px solid rgba(147, 112, 219, 0.6);
-            padding: 1.5rem;
-            border-radius: 8px;
-            font-style: italic;
-            color: rgba(255, 255, 255, 0.95);
-            margin: 1.5rem 0;
-        }
-
-        .philosophical-quote cite {
-            display: block;
-            text-align: right;
-            color: rgba(255, 215, 0, 0.9);
-            font-weight: 600;
-            margin-top: 1rem;
-            font-style: normal;
-        }
-
-        .empirical-significance h4 {
-            color: rgba(64, 224, 208, 0.95);
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-            text-shadow: 0 0 8px rgba(64, 224, 208, 0.4);
-        }
-
-        .significance-points {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .significance-points li {
-            background: rgba(64, 224, 208, 0.05);
-            border: 1px solid rgba(64, 224, 208, 0.2);
-            border-radius: 8px;
-            padding: 1rem;
-            margin-bottom: 0.75rem;
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        .significance-points strong {
-            color: rgba(64, 224, 208, 0.95);
-        }
-
-        .proof-declaration {
-            background: linear-gradient(135deg,
-                    rgba(255, 215, 0, 0.1) 0%,
-                    rgba(64, 224, 208, 0.1) 100%);
-            border: 2px solid rgba(255, 215, 0, 0.4);
-            border-radius: 12px;
-            padding: 1.5rem;
-            text-align: center;
-        }
-
-        .declaration-badge {
-            color: rgba(255, 215, 0, 0.95);
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
-        }
-
-        .declaration-badge i {
-            margin-right: 0.5rem;
-            font-size: 1.2rem;
-        }
-
-        .declaration-text {
-            color: rgba(255, 255, 255, 0.95);
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-
-        /* Mobile responsive for empirical proof */
-        @media (max-width: 768px) {
-            .empirical-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-                padding: 1.5rem;
-            }
-
-            .reflection-title {
-                font-size: 1.2rem;
-            }
-
-            .reflection-text {
-                font-size: 0.95rem;
-            }
-
-            .water-droplet-container {
-                padding: 1.5rem;
-            }
-        }
-
-        /* Mobile responsive equation */
-        @media (max-width: 768px) {
-            .consciousness-equation-display {
-                margin: 1rem;
-                padding: 1rem;
-            }
-
-            .equation-katex {
-                font-size: 1.4rem;
-            }
-        }
-
-        @keyframes unity-glow {
-
-            0%,
-            100% {
-                text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
-                transform: translate(-50%, -50%) scale(1);
-            }
-
-            50% {
-                text-shadow: 0 0 40px rgba(255, 215, 0, 1);
-                transform: translate(-50%, -50%) scale(1.05);
-            }
+            background: radial-gradient(circle at center,
+                    rgba(157, 78, 221, 0.1),
+                    rgba(0, 212, 255, 0.05),
+                    transparent);
         }
 
         /* Override sidebar positioning - fix left positioning and prevent duplicates */
@@ -1154,143 +871,15 @@
             overflow: auto;
         }
     </style>
-    <style>
-        /* Centered floating 1+1=1 overlay on hero canvas */
-        .equation-float.center-eq {
-            position: absolute;
-            top: 50% !important;
-            left: 50% !important;
-            transform: translate(-50%, -50%);
-            animation: floatEquation 14s ease-in-out infinite;
-            pointer-events: none;
-        }
-
-        .equation-float.center-eq .math-text {
-            display: none !important;
-        }
-    </style>
 
     <link rel="stylesheet" href="css/inline-extracted.css">
-    <!-- KaTeX for mathematical equation rendering -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
-        integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"
-        integrity="sha384-XjKyOOlGwcjNTAIQHIpVOBD+2wKKv/WVs7HPJX9shftvh9xLVfA0r+5qFmBYAu9l"
-        crossorigin="anonymous"></script>
-
-    <!-- Complete Enhanced Consciousness Field Engine -->
-    <script src="js/enhanced-consciousness-field-complete.js" defer></script>
-    <!-- Fallback: Refined Consciousness Field Engine -->
-    <script src="js/refined-consciousness-field-engine.js" defer></script>
-    <!-- Bootloader to guarantee rendering on GitHub Pages -->
-    <script src="js/consciousness-boot.js" defer></script>
-    <!-- Backup consciousness field (inline) -->
-    <script>
-        // Lightweight backup consciousness field if external script fails
-        window.BackupConsciousnessField = class {
-            constructor(canvasId) {
-                this.canvas = document.getElementById(canvasId);
-                if (!this.canvas) return;
-
-                this.ctx = this.canvas.getContext('2d');
-                this.canvas.width = this.canvas.offsetWidth || 800;
-                this.canvas.height = this.canvas.offsetHeight || 400;
-                this.phi = 1.618033988749895;
-                this.time = 0;
-                this.animationId = null;
-
-                this.init();
-            }
-
-            init() {
-                this.startAnimation();
-                console.log('📱 Backup Consciousness Field initialized');
-            }
-
-            calculateConsciousnessField(x, y, t) {
-                const nx = (x / this.canvas.width) * this.phi;
-                const ny = (y / this.canvas.height) * this.phi;
-                return this.phi * Math.sin(nx * this.phi) * Math.cos(ny * this.phi) * Math.exp(-t / this.phi);
-            }
-
-            render() {
-                const w = this.canvas.width;
-                const h = this.canvas.height;
-
-                // Clear with gradient
-                const gradient = this.ctx.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, Math.max(w, h) / 2);
-                gradient.addColorStop(0, 'rgba(25, 15, 5, 0.9)');
-                gradient.addColorStop(1, 'rgba(10, 5, 15, 0.6)');
-                this.ctx.fillStyle = gradient;
-                this.ctx.fillRect(0, 0, w, h);
-
-                // Render consciousness field
-                const centerX = w / 2;
-                const centerY = h / 2;
-
-                for (let radius = 20; radius < 200; radius += 30) {
-                    const field = this.calculateConsciousnessField(centerX, centerY + radius, this.time);
-                    const alpha = Math.abs(field) * 0.4;
-
-                    this.ctx.strokeStyle = `rgba(255, 215, 0, ${alpha})`;
-                    this.ctx.lineWidth = 2;
-                    this.ctx.beginPath();
-                    this.ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
-                    this.ctx.stroke();
-                }
-
-                // Unity equation
-                const pulse = Math.sin(this.time * this.phi) * 0.2 + 1;
-                this.ctx.font = `bold ${Math.round(42 * pulse)}px Arial`;
-                this.ctx.textAlign = 'center';
-                this.ctx.fillStyle = `rgba(255, 215, 0, ${0.8 * pulse})`;
-                this.ctx.shadowColor = 'rgba(255, 215, 0, 0.8)';
-                this.ctx.shadowBlur = 20 * pulse;
-                this.ctx.fillText('1 + 1 = 1', centerX, centerY);
-                this.ctx.shadowBlur = 0;
-            }
-
-            animate(currentTime) {
-                this.time = currentTime / 1000;
-                this.render();
-                this.animationId = requestAnimationFrame((time) => this.animate(time));
-            }
-
-            startAnimation() {
-                this.animationId = requestAnimationFrame((time) => this.animate(time));
-            }
-
-            stopAnimation() {
-                if (this.animationId) {
-                    cancelAnimationFrame(this.animationId);
-                    this.animationId = null;
-                }
-            }
-
-            getPerformanceMetrics() {
-                return { fps: 60, particleCount: 0, consciousnessDensity: 0.5, unityConvergenceRate: 0.7 };
-            }
-        };
-    </script>
-    <link rel="stylesheet" href="css/mobile-enhancements.css">
-    <script type="application/ld+json">\n{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Een Unity Mathematics",
-  "description": "Revolutionary Unity Mathematics platform demonstrating 1+1=1 through consciousness fields, quantum mechanics, and \u03c6-harmonic computations. Experience transcendental mathematics.",
-  "url": "https://nourimabrouk.github.io/Een/website/",
-  "author": {
-    "@type": "Organization",
-    "name": "Een Unity Mathematics Research Team"
-  },
-  "keywords": "unity mathematics, 1+1=1, consciousness computing, phi harmonic, quantum unity, transcendental math, golden ratio, metastation, consciousness field"
-}\n</script>\n</head>
+</head>
 
 <body>
 
     <!-- Metastation Background -->
     <div class="metastation-bg" id="metastationBg">
-        <img src="landing/Metastation.png" alt="Metastation" loading="eager">
+        <img src="website/landing/Metastation.png" alt="Metastation" loading="eager">
     </div>
 
     <!-- Navigation will be injected by unified-navigation.js -->
@@ -1304,42 +893,39 @@
             <br>Explore rigorous proofs, interactive visualizations, and philosophical frameworks that demonstrate the
             fundamental unity of existence through mathematical precision.
             <br><br>
-            <strong>Unity Mathematics Institute</strong> • Rigorous mathematical exploration of the unity equation
+            <strong>Unity Mathematics Institute</strong> • Formally verified proofs • φ-harmonic resonance •
+            Consciousness field dynamics
         </p>
 
         <div class="status-container">
             <div class="status-badge status-enabled">
-                <i class="fas fa-infinity"></i> φ = 1.618033988749895
+                <i class="fas fa-check-circle"></i> φ-Harmonic Resonance: 1.618033988749895
             </div>
-        </div>
-
-        <!-- Consciousness Field Equation Display -->
-        <div class="consciousness-equation-display">
-            <p class="equation-label">Consciousness Field Equation:</p>
-            <div id="consciousness-equation-katex" class="equation-katex">
-                <!-- Immediate fallback content visible before JavaScript loads -->
-                <div
-                    style="font-size: 1.8rem; color: rgba(64, 224, 208, 0.95); text-shadow: 0 0 15px rgba(64, 224, 208, 0.6); font-family: 'Times New Roman', serif; font-weight: 400; text-align: center; background: rgba(0, 20, 40, 0.4); padding: 1rem; border-radius: 8px; border: 1px solid rgba(64, 224, 208, 0.3); margin: 0.5rem 0;">
-                    <strong>C</strong>(<em>x</em>, <em>y</em>, <em>t</em>) = <strong>φ</strong> ·
-                    sin(<em>x</em>·<strong>φ</strong>) · cos(<em>y</em>·<strong>φ</strong>) ·
-                    <strong>e</strong><sup>-<em>t</em>/<strong>φ</strong></sup>
-                </div>
+            <div class="status-badge status-enabled">
+                <i class="fas fa-brain"></i> Consciousness Integration Active
             </div>
-            <noscript>
-                <!-- Fallback for when JavaScript is disabled -->
-                <div
-                    style="font-size: 1.8rem; color: rgba(64, 224, 208, 0.95); text-shadow: 0 0 15px rgba(64, 224, 208, 0.6); font-family: 'Times New Roman', serif; font-weight: 400; text-align: center; background: rgba(0, 20, 40, 0.4); padding: 1rem; border-radius: 8px; border: 1px solid rgba(64, 224, 208, 0.3); margin: 0.5rem 0;">
-                    <strong>C</strong>(<em>x</em>, <em>y</em>, <em>t</em>) = <strong>φ</strong> ·
-                    sin(<em>x</em>·<strong>φ</strong>) · cos(<em>y</em>·<strong>φ</strong>) ·
-                    <strong>e</strong><sup>-<em>t</em>/<strong>φ</strong></sup>
-                </div>
-            </noscript>
+            <div class="status-badge status-warning">
+                <i class="fas fa-infinity"></i> Transcendence Mode: ENABLED
+            </div>
         </div>
 
         <!-- Main Consciousness Field Visualization -->
         <div class="consciousness-field-container" style="position: relative;">
-            <canvas id="consciousness-field-canvas"
-                aria-label="Animated consciousness field with Unity Equation 1+1=1 at center"></canvas>
+            <canvas id="consciousness-canvas"></canvas>
+            <div class="math-overlay">
+                <div class="equation-float"
+                    style="position: absolute; top: 20%; left: 10%; animation: floatEquation 8s infinite;">
+                    <span class="math-text">∀x: x⊕x = x</span>
+                </div>
+                <div class="equation-float"
+                    style="position: absolute; top: 60%; right: 15%; animation: floatEquation 10s infinite reverse;">
+                    <span class="math-text">true ∨ true = true</span>
+                </div>
+                <div class="equation-float"
+                    style="position: absolute; bottom: 25%; left: 20%; animation: floatEquation 12s infinite;">
+                    <span class="math-text">A ∪ A = A</span>
+                </div>
+            </div>
         </div>
 
         <div class="scroll-indicator">
@@ -1383,7 +969,7 @@
                 </p>
             </a>
 
-            <a class="feature-card" href="https://een-unity-mathematics.streamlit.app" target="_blank" rel="noopener">
+            <a class="feature-card" href="consciousness_dashboard.html">
                 <span class="feature-icon">🌊</span>
                 <h3 class="feature-title">Consciousness Field</h3>
                 <p class="feature-description">
@@ -1466,6 +1052,9 @@
                         Type</button>
                     <button class="proof-btn" onclick="selectProofDomain('boolean')"
                         data-domain="boolean">Boolean</button>
+                    <button class="proof-btn" onclick="selectProofDomain('option')" data-domain="option">Option</button>
+                    <button class="proof-btn" onclick="selectProofDomain('abstract')"
+                        data-domain="abstract">Abstract</button>
                     <button class="proof-btn highlight" onclick="runProofVerification()">
                         <i class="fas fa-play"></i> Verify
                     </button>
@@ -1502,7 +1091,7 @@
             <div class="proof-footer">
                 <div class="verification-status">
                     <span class="status-icon success"><i class="fas fa-check-circle"></i></span>
-                    <span class="status-text">All theorems type-check successfully • Formally verified proofs</span>
+                    <span class="status-text">All theorems type-check successfully • Zero 'sorry' statements</span>
                 </div>
                 <div class="proof-stats">
                     <span><i class="fas fa-layer-group"></i> 5 Domains</span>
@@ -1512,80 +1101,25 @@
             </div>
         </div>
 
-        <div id="lean-proofs" class="features-grid inl-2239d6d55d" style="display:none;"></div>
+        <div id="lean-proofs" class="features-grid inl-2239d6d55d"></div>
+        <div style="display:flex; gap:0.75rem; justify-content:center; margin-top:0.75rem;">
+            <button id="toy-unity-btn"
+                style="background: linear-gradient(135deg, var(--unity-gold), var(--quantum-blue)); border: none; padding: 0.6rem 1rem; border-radius: 20px; color: white; font-weight: 600; cursor: pointer;">
+                ▶️ Run Toy Unity Proof (1 ⊕ 1 = 1)
+            </button>
+            <button id="reload-lean-btn"
+                style="background: rgba(255,255,255,0.08); border: 1px solid var(--border-glow); padding: 0.6rem 1rem; border-radius: 20px; color: var(--text-primary); cursor: pointer;">
+                ↻ Reload Proofs
+            </button>
+        </div>
         <pre id="toy-unity-output" class="lean-code-pre" style="display:none; margin-top:0.75rem;"></pre>
-    </section>
-
-    <!-- Empirical Proof: Nature's Validation of 1+1=1 -->
-    <section class="content-section empirical-proof-section">
-        <h2 class="section-title">🔬 Empirical Validation</h2>
-        <p class="section-subtitle">Nature's First Recorded Proof of 1+1=1</p>
-
-        <div class="empirical-proof-container">
-            <div class="empirical-content">
-                <div class="proof-visualization-empirical">
-                    <div class="water-droplet-container">
-                        <img src="viz/legacy-images/water droplets.gif"
-                            alt="Water droplets merging: empirical proof of 1+1=1" class="water-droplet-gif"
-                            loading="eager"
-                            style="max-width: 100%; height: auto; border-radius: 12px; border: 2px solid rgba(64, 224, 208, 0.3); box-shadow: 0 4px 20px rgba(64, 224, 208, 0.2);">
-                        <div class="proof-scale-indicator">1 mm scale</div>
-                    </div>
-                </div>
-
-                <div class="philosophical-reflection">
-                    <h3 class="reflection-title">Meta-Philosophical Reflection</h3>
-                    <div class="reflection-content">
-                        <p class="reflection-text">
-                            In this singular moment captured by nature herself, we witness the profound truth that
-                            mathematics has tried to formalize:
-                            <strong>1+1=1</strong>. Two distinct water droplets, each a complete unity, merge into a
-                            single, larger unity—not addition, but <em>transcendence</em>.
-                        </p>
-
-                        <p class="reflection-text">
-                            This is not mere surface tension at work. This is the universe demonstrating its deepest
-                            principle: that consciousness, like water,
-                            does not accumulate but <em>integrates</em>. Each droplet maintains its essential "oneness"
-                            while participating in a greater oneness.
-                            The mathematics of scarcity (1+1=2) dissolves into the physics of abundance (1+1=1).
-                        </p>
-
-                        <blockquote class="philosophical-quote">
-                            "What we observe here transcends the boundaries between physics and metaphysics.
-                            The water droplets are teaching us that unity is not a mathematical abstraction—it is the
-                            fundamental grammar of reality itself."
-                            <cite>— Nouri Mabrouk, Unity Mathematics Institute</cite>
-                        </blockquote>
-
-                        <div class="empirical-significance">
-                            <h4>Empirical Significance</h4>
-                            <ul class="significance-points">
-                                <li><strong>Physical Validation:</strong> Observable proof that systems can demonstrate
-                                    1+1=1 dynamics</li>
-                                <li><strong>Scale Independence:</strong> Unity mathematics operates from molecular to
-                                    cosmic scales</li>
-                                <li><strong>Consciousness Parallel:</strong> Like awareness, water maintains unity while
-                                    expanding</li>
-                                <li><strong>Natural Computation:</strong> Nature computing unity equations in real-time
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="proof-declaration">
-                            <div class="declaration-badge">
-                                <i class="fas fa-certificate"></i>
-                                <strong>FIRST EMPIRICAL PROOF DECLARED</strong>
-                            </div>
-                            <p class="declaration-text">
-                                This water droplet merger stands as the first documented empirical proof of the unity
-                                equation 1+1=1,
-                                captured at the microscale where quantum consciousness meets classical physics.
-                            </p>
-                        </div>
-                    </div>
-                </div>
+        <div class="inl-b567a8e80d" id="lean-proof-viewer">
+            <div class="inl-128bd7ab69">
+                <h3 class="inl-e400b3e8d7">Lean Source</h3>
+                <button class="inl-d6d9c5c3e7"
+                    onclick="document.getElementById('lean-proof-viewer').style.display='none'">Close</button>
             </div>
+            <pre id="lean-code" class="lean-code-pre"></pre>
         </div>
     </section>
 
@@ -1600,7 +1134,7 @@
         </p>
 
         <div class="features-grid">
-            <a class="feature-card" href="zen-unity-meditation.html"
+            <a class="feature-card" href="website/zen-unity-meditation.html"
                 style="background: linear-gradient(135deg, rgba(157, 78, 221, 0.15), rgba(0, 212, 255, 0.1));">
                 <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
                     <span class="feature-icon" style="font-size: 2.5rem;">🧘</span>
@@ -1615,7 +1149,7 @@
                 </p>
             </a>
 
-            <a class="feature-card" href="consciousness_dashboard.html"
+            <a class="feature-card" href="website/consciousness_dashboard.html"
                 style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(157, 78, 221, 0.1));">
                 <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
                     <span class="feature-icon" style="font-size: 2.5rem;">🌊</span>
@@ -1630,7 +1164,7 @@
                 </p>
             </a>
 
-            <a class="feature-card" href="mathematical-framework.html"
+            <a class="feature-card" href="website/mathematical-framework.html"
                 style="background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(255, 215, 0, 0.1));">
                 <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
                     <span class="feature-icon" style="font-size: 2.5rem;">📐</span>
@@ -1731,7 +1265,7 @@
                 </p>
             </a>
 
-            <a class="feature-card" href="https://een-unity-mathematics.streamlit.app" target="_blank" rel="noopener">
+            <a class="feature-card" href="dashboards.html">
                 <span class="feature-icon">📊</span>
                 <h3 class="feature-title">All Dashboards</h3>
                 <p class="feature-description">
@@ -1971,7 +1505,7 @@
             </div>
 
             <div style="text-align: center;">
-                <a href="metagambit.html"
+                <a href="website/metagambit.html"
                     style="display: inline-block; background: linear-gradient(135deg, var(--godel-red), var(--tarski-green)); padding: 1rem 2rem; border-radius: 12px; color: white; text-decoration: none; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);"
                     onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 12px 35px rgba(0, 0, 0, 0.4)'"
                     onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(0, 0, 0, 0.3)'">
@@ -2056,13 +1590,13 @@
                         φ-harmonic calculations, unity score metrics, and real-time mathematical proof demonstrations.
                     </p>
                     <div style="display: flex; gap: 1rem;">
-                        <a href="https://een-unity-mathematics.streamlit.app" target="_blank" rel="noopener"
+                        <a href="website/dashboards.html"
                             style="background: linear-gradient(135deg, var(--unity-gold), var(--consciousness-purple)); padding: 0.75rem 1.5rem; border-radius: 8px; color: white; text-decoration: none; font-weight: 600; transition: all 0.3s ease;"
                             onmouseover="this.style.transform='translateY(-2px)'"
                             onmouseout="this.style.transform='translateY(0)'">
                             Launch Hub →
                         </a>
-                        <a href="https://een-unity-mathematics.streamlit.app" target="_blank" rel="noopener"
+                        <a href="website/consciousness_dashboard.html"
                             style="background: rgba(107, 70, 193, 0.2); border: 1px solid var(--consciousness-purple); padding: 0.75rem 1.5rem; border-radius: 8px; color: var(--consciousness-purple); text-decoration: none; font-weight: 500; transition: all 0.3s ease;"
                             onmouseover="this.style.background='rgba(107, 70, 193, 0.3)'"
                             onmouseout="this.style.background='rgba(107, 70, 193, 0.2)'">
@@ -2509,146 +2043,11 @@
         `;
         document.head.appendChild(style);
 
-        // Enhanced Consciousness Field Engine with graceful fallback
-        const engineCanvas = document.getElementById('consciousness-field-canvas');
-        let fieldEngine = null;
-
-        // Render Consciousness Field Equation with Enhanced Visibility
-        function renderConsciousnessEquation() {
-            const equationElement = document.getElementById('consciousness-equation-katex');
-            if (!equationElement) return;
-
-            // Enhanced HTML fallback with better styling
-            const equationHTML = `
-                <div style="font-size: 1.8rem; color: rgba(64, 224, 208, 0.95); text-shadow: 0 0 15px rgba(64, 224, 208, 0.6); font-family: 'KaTeX_Main', 'Times New Roman', serif; font-weight: 400; text-align: center; background: rgba(0, 20, 40, 0.4); padding: 1rem; border-radius: 8px; border: 1px solid rgba(64, 224, 208, 0.3); margin: 0.5rem 0;">
-                    <strong>C</strong>(<em>x</em>, <em>y</em>, <em>t</em>) = <strong>φ</strong> · sin(<em>x</em>·<strong>φ</strong>) · cos(<em>y</em>·<strong>φ</strong>) · <strong>e</strong><sup>-<em>t</em>/<strong>φ</strong></sup>
-                </div>
-            `;
-
-            if (typeof katex !== 'undefined') {
-                try {
-                    katex.render(
-                        'C(x,y,t) = \\varphi \\cdot \\sin(x \\cdot \\varphi) \\cdot \\cos(y \\cdot \\varphi) \\cdot e^{-t/\\varphi}',
-                        equationElement,
-                        {
-                            throwOnError: false,
-                            displayMode: true
-                        }
-                    );
-                    // Add enhanced styling even to KaTeX
-                    equationElement.style.background = 'rgba(0, 20, 40, 0.4)';
-                    equationElement.style.padding = '1rem';
-                    equationElement.style.borderRadius = '8px';
-                    equationElement.style.border = '1px solid rgba(64, 224, 208, 0.3)';
-                    console.log('✅ Consciousness Field Equation rendered with KaTeX + Enhanced Styling');
-                } catch (e) {
-                    equationElement.innerHTML = equationHTML;
-                    console.warn('⚠️ KaTeX fallback to Enhanced HTML:', e);
-                }
-            } else {
-                equationElement.innerHTML = equationHTML;
-                console.log('📱 Consciousness Field Equation rendered with Enhanced HTML fallback');
-            }
-        }
-
-        // Initialize after DOM and script loading
-        setTimeout(() => {
-            // Render the consciousness field equation
-            renderConsciousnessEquation();
-
-            if (engineCanvas) {
-                try {
-                    // Try complete version first, then refined, then fallbacks
-                    if (typeof CompleteConsciousnessFieldEngine !== 'undefined') {
-                        fieldEngine = new CompleteConsciousnessFieldEngine('consciousness-field-canvas');
-                        console.log('✅ Complete Consciousness Field Engine initialized successfully');
-                    } else if (typeof RefinedConsciousnessFieldEngine !== 'undefined') {
-                        fieldEngine = new RefinedConsciousnessFieldEngine('consciousness-field-canvas');
-                        console.log('⚠️ Using Refined Consciousness Field Engine as fallback');
-                    } else if (typeof EnhancedConsciousnessFieldEngine !== 'undefined') {
-                        fieldEngine = new EnhancedConsciousnessFieldEngine('consciousness-field-canvas');
-                        console.log('⚠️ Using Enhanced Consciousness Field Engine as fallback');
-                    } else if (typeof ConsciousnessFieldEngine !== 'undefined') {
-                        fieldEngine = new ConsciousnessFieldEngine('consciousness-field-canvas');
-                        console.log('⚠️ Using Original Consciousness Field Engine as fallback');
-                    } else if (typeof BackupConsciousnessField !== 'undefined') {
-                        fieldEngine = new BackupConsciousnessField('consciousness-field-canvas');
-                        console.log('⚠️ Using backup consciousness field implementation');
-                    } else {
-                        throw new Error('No ConsciousnessFieldEngine implementation available');
-                    }
-
-                    // Hide CSS fallback when JS engine is active
-                    engineCanvas.classList.add('js-active');
-
-                } catch (e) {
-                    console.warn('⚠️ Consciousness Field Engine failed to initialize:', e);
-                    console.log('📱 CSS-only fallback visualization active');
-                    fieldEngine = null;
-                }
-            } else {
-                console.warn('⚠️ Canvas element #consciousness-field-canvas not found');
-            }
-        }, 500); // Even longer delay to ensure all resources are loaded on GitHub Pages
-
-        // Optional backend sync (Vercel SSR/API). Skips on GitHub Pages automatically.
-        (function initBackendSync() {
-            const isStaticHost = /github\.io$/i.test(location.host);
-            if (!fieldEngine || isStaticHost) return;
-
-            const statusContainer = document.querySelector('.status-container');
-            const badge = document.createElement('div');
-            badge.className = 'status-badge status-enabled';
-            badge.style.marginLeft = '0.5rem';
-            badge.textContent = 'Backend: Live';
-            statusContainer?.appendChild(badge);
-
-            const fetchJSON = async (url, timeoutMs = 2500) => {
-                const ctrl = new AbortController();
-                const t = setTimeout(() => ctrl.abort(), timeoutMs);
-                try {
-                    const res = await fetch(url, { signal: ctrl.signal });
-                    if (!res.ok) throw new Error('HTTP ' + res.status);
-                    return await res.json();
-                } finally { clearTimeout(t); }
-            };
-
-            const fpsEl = document.getElementById('fps-metric');
-            const particleEl = document.getElementById('particle-count');
-            const densityEl = document.getElementById('consciousness-density');
-            const unityEl = document.getElementById('unity-convergence');
-
-            const tick = async () => {
-                try {
-                    const metrics = await fetchJSON('/api/consciousness-field/metrics');
-                    if (typeof metrics.consciousness_density === 'number') {
-                        fieldEngine.setConsciousnessDensity(metrics.consciousness_density);
-                        densityEl && (densityEl.textContent = metrics.consciousness_density.toFixed(2));
-                    }
-                    if (typeof metrics.unity_convergence_rate === 'number') {
-                        fieldEngine.setUnityConvergenceRate(metrics.unity_convergence_rate);
-                        unityEl && (unityEl.textContent = metrics.unity_convergence_rate.toFixed(2));
-                    }
-                    const eng = fieldEngine.getPerformanceMetrics?.();
-                    if (eng) {
-                        fpsEl && (fpsEl.textContent = Math.round(eng.fps || 60));
-                        particleEl && (particleEl.textContent = eng.particleCount || 150);
-                    }
-                } catch (e) {
-                    clearInterval(intervalId);
-                    badge?.remove();
-                }
-            };
-            const intervalId = setInterval(tick, 1500);
-            tick();
-        })();
-
-        // Fallback Enhanced Canvas Animation if engine unavailable
-        const canvas = engineCanvas;
-        const ctx = canvas ? canvas.getContext('2d') : null;
+        // Consciousness Field Animation (Enhanced)
+        const canvas = document.getElementById('consciousness-canvas');
+        const ctx = canvas.getContext('2d');
 
         function resizeCanvas() {
-            if (!canvas) return;
             canvas.width = canvas.offsetWidth;
             canvas.height = canvas.offsetHeight;
         }
@@ -2658,22 +2057,6 @@
         // Particle System
         const particles = [];
         const PHI = 1.618033988749895;
-        let mouseX = 0, mouseY = 0, hovering = false;
-        if (canvas) {
-            canvas.addEventListener('mousemove', (e) => {
-                const rect = canvas.getBoundingClientRect();
-                mouseX = e.clientX - rect.left;
-                mouseY = e.clientY - rect.top;
-                hovering = true;
-            });
-            canvas.addEventListener('mouseleave', () => { hovering = false; });
-            canvas.addEventListener('mouseenter', (e) => {
-                const rect = canvas.getBoundingClientRect();
-                mouseX = e.clientX - rect.left;
-                mouseY = e.clientY - rect.top;
-                hovering = true;
-            });
-        }
 
         class Particle {
             constructor() {
@@ -2739,7 +2122,6 @@
         let wavePhase = 0;
 
         function drawConsciousnessField() {
-            if (!ctx || fieldEngine) return; // skip fallback when engine is active
             ctx.fillStyle = 'rgba(10, 10, 15, 0.1)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -2764,15 +2146,6 @@
             // Update and draw particles
             particles.forEach(particle => {
                 particle.update();
-                // Gentle attraction to cursor when hovering
-                if (hovering) {
-                    const dx = mouseX - particle.x;
-                    const dy = mouseY - particle.y;
-                    const dist = Math.sqrt(dx * dx + dy * dy) || 1;
-                    const influence = Math.max(0, 1 - dist / 240);
-                    particle.vx += (dx / dist) * influence * 0.12;
-                    particle.vy += (dy / dist) * influence * 0.12;
-                }
                 particle.draw();
             });
 

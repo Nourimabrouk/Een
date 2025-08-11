@@ -35,66 +35,224 @@ except ImportError:
     NUMPY_AVAILABLE = False
     # Enhanced mock numpy for consciousness calculations
     class MockNumpy:
+        """Professional-grade NumPy fallback with advanced mathematical operations"""
+        
+        def __init__(self):
+            self.pi = math.pi
+            self.e = math.e
+            self.newaxis = None
+            self.linalg = self.LinalgMock()
+            self.random = self.RandomMock()
+            self.fft = self.FFTMock()
+        
         def sqrt(self, x): 
-            return math.sqrt(abs(x)) if isinstance(x, (int, float)) else [math.sqrt(abs(i)) for i in x]
+            if isinstance(x, (int, float, complex)):
+                return cmath.sqrt(x) if isinstance(x, complex) else math.sqrt(abs(x))
+            elif hasattr(x, '__iter__'):
+                return [self.sqrt(i) for i in x]
+            return math.sqrt(abs(x))
+        
         def sin(self, x): 
-            return math.sin(x) if isinstance(x, (int, float)) else [math.sin(i) for i in x]
+            if isinstance(x, (int, float, complex)):
+                return cmath.sin(x) if isinstance(x, complex) else math.sin(x)
+            return [self.sin(i) for i in x]
+        
         def cos(self, x): 
-            return math.cos(x) if isinstance(x, (int, float)) else [math.cos(i) for i in x]
+            if isinstance(x, (int, float, complex)):
+                return cmath.cos(x) if isinstance(x, complex) else math.cos(x)
+            return [self.cos(i) for i in x]
+        
         def exp(self, x): 
-            try:
-                return math.exp(min(x, 700)) if isinstance(x, (int, float)) else [math.exp(min(i, 700)) for i in x]
-            except OverflowError:
-                return float('inf') if x > 0 else 0
+            if isinstance(x, (int, float, complex)):
+                try:
+                    if isinstance(x, complex):
+                        return cmath.exp(x)
+                    return math.exp(min(x, 700))
+                except OverflowError:
+                    return float('inf') if x > 0 else 0
+            return [self.exp(i) for i in x]
+        
         def log(self, x): 
-            return math.log(max(x, 1e-10)) if isinstance(x, (int, float)) else [math.log(max(i, 1e-10)) for i in x]
+            if isinstance(x, (int, float, complex)):
+                if isinstance(x, complex):
+                    return cmath.log(x)
+                return math.log(max(abs(x), 1e-10))
+            return [self.log(i) for i in x]
+        
         def abs(self, x): 
-            return abs(x) if isinstance(x, (int, float, complex)) else [abs(i) for i in x]
+            if isinstance(x, (int, float, complex)):
+                return abs(x)
+            return [abs(i) for i in x]
+        
+        def real(self, x):
+            """Extract real part"""
+            if isinstance(x, complex):
+                return x.real
+            elif hasattr(x, '__iter__'):
+                return [self.real(i) for i in x]
+            return float(x)
+        
+        def imag(self, x):
+            """Extract imaginary part"""
+            if isinstance(x, complex):
+                return x.imag
+            elif hasattr(x, '__iter__'):
+                return [self.imag(i) for i in x]
+            return 0.0
+        
+        def conjugate(self, x):
+            """Complex conjugate"""
+            if isinstance(x, complex):
+                return x.conjugate()
+            elif hasattr(x, '__iter__'):
+                return [self.conjugate(i) for i in x]
+            return x
+        
         def array(self, data): 
-            return list(data) if hasattr(data, '__iter__') else [data]
-        def zeros(self, shape): 
+            """Enhanced array creation with type preservation"""
+            if isinstance(data, (list, tuple)):
+                return list(data)
+            elif hasattr(data, '__iter__'):
+                return list(data)
+            return [data]
+        
+        def zeros(self, shape, dtype=float): 
+            """Create zero array with specified shape and dtype"""
             if isinstance(shape, int):
-                return [0.0] * shape
+                return [dtype(0)] * shape
             elif isinstance(shape, tuple) and len(shape) == 2:
-                return [[0.0] * shape[1] for _ in range(shape[0])]
+                return [[dtype(0)] * shape[1] for _ in range(shape[0])]
+            elif isinstance(shape, tuple) and len(shape) == 3:
+                return [[[dtype(0)] * shape[2] for _ in range(shape[1])] for _ in range(shape[0])]
             else:
-                return [0.0] * (shape[0] if hasattr(shape, '__getitem__') else 1)
-        def ones(self, shape): 
+                size = shape[0] if hasattr(shape, '__getitem__') else 1
+                return [dtype(0)] * size
+        
+        def ones(self, shape, dtype=float): 
+            """Create ones array with specified shape and dtype"""
             if isinstance(shape, int):
-                return [1.0] * shape
+                return [dtype(1)] * shape
             elif isinstance(shape, tuple) and len(shape) == 2:
-                return [[1.0] * shape[1] for _ in range(shape[0])]
+                return [[dtype(1)] * shape[1] for _ in range(shape[0])]
+            elif isinstance(shape, tuple) and len(shape) == 3:
+                return [[[dtype(1)] * shape[2] for _ in range(shape[1])] for _ in range(shape[0])]
             else:
-                return [1.0] * (shape[0] if hasattr(shape, '__getitem__') else 1)
-        def pad(self, array, pad_width): 
-            if isinstance(array, list) and isinstance(pad_width, (list, tuple)):
-                pad_before = pad_width[0][0] if hasattr(pad_width[0], '__getitem__') else pad_width[0]
-                pad_after = pad_width[0][1] if hasattr(pad_width[0], '__getitem__') else pad_width[0]
-                return [0.0] * pad_before + array + [0.0] * pad_after
+                size = shape[0] if hasattr(shape, '__getitem__') else 1
+                return [dtype(1)] * size
+        
+        def pad(self, array, pad_width, mode='constant', constant_values=0): 
+            """Advanced array padding with multiple modes"""
+            if not isinstance(array, list):
+                return array
+            
+            if mode == 'constant':
+                if isinstance(pad_width, int):
+                    return ([constant_values] * pad_width + 
+                           array + 
+                           [constant_values] * pad_width)
+                elif isinstance(pad_width, (list, tuple)):
+                    pad_before = pad_width[0][0] if hasattr(pad_width[0], '__getitem__') else pad_width[0]
+                    pad_after = pad_width[0][1] if hasattr(pad_width[0], '__getitem__') else pad_width[0]
+                    return ([constant_values] * pad_before + 
+                           array + 
+                           [constant_values] * pad_after)
+            elif mode == 'edge':
+                # Replicate edge values
+                if array:
+                    pad_val = pad_width if isinstance(pad_width, int) else pad_width[0]
+                    return ([array[0]] * pad_val + array + [array[-1]] * pad_val)
+            
             return array
-        def mean(self, data): 
+        
+        def mean(self, data, axis=None): 
+            """Statistical mean with axis support"""
             flat_data = self._flatten(data)
             return sum(flat_data) / len(flat_data) if flat_data else 0.0
-        def max(self, data): 
+        
+        def max(self, data, axis=None): 
+            """Maximum value with axis support"""
             flat_data = self._flatten(data)
             return max(flat_data) if flat_data else 0.0
-        def std(self, data):
+        
+        def min(self, data, axis=None):
+            """Minimum value with axis support"""
+            flat_data = self._flatten(data)
+            return min(flat_data) if flat_data else 0.0
+        
+        def std(self, data, axis=None):
+            """Standard deviation with axis support"""
             flat_data = self._flatten(data)
             if not flat_data:
                 return 0.0
             mean_val = sum(flat_data) / len(flat_data)
             variance = sum((x - mean_val)**2 for x in flat_data) / len(flat_data)
             return math.sqrt(variance)
+        
+        def var(self, data, axis=None):
+            """Variance calculation"""
+            flat_data = self._flatten(data)
+            if not flat_data:
+                return 0.0
+            mean_val = sum(flat_data) / len(flat_data)
+            return sum((x - mean_val)**2 for x in flat_data) / len(flat_data)
+        
         def sum(self, data, axis=None):
+            """Sum with axis support"""
             if axis is None:
                 return sum(self._flatten(data))
-            return sum(data)  # Simplified for axis operations
+            elif axis == 0 and isinstance(data, list) and isinstance(data[0], list):
+                # Sum along rows
+                return [sum(data[i][j] for i in range(len(data))) 
+                       for j in range(len(data[0]))]
+            elif axis == 1 and isinstance(data, list) and isinstance(data[0], list):
+                # Sum along columns
+                return [sum(row) for row in data]
+            return sum(self._flatten(data))
+        
         def gradient(self, data, axis=0):
-            # Simplified gradient calculation
-            if isinstance(data, list) and len(data) > 1:
-                return [data[i+1] - data[i] for i in range(len(data)-1)] + [0]
-            return data
+            """Enhanced gradient calculation"""
+            if not isinstance(data, list) or len(data) <= 1:
+                return data if isinstance(data, list) else [0]
+            
+            if isinstance(data[0], list):
+                # 2D gradient
+                if axis == 0:
+                    # Gradient along first axis (rows)
+                    result = []
+                    for j in range(len(data[0])):
+                        column = [data[i][j] for i in range(len(data))]
+                        grad_col = self._compute_1d_gradient(column)
+                        result.append(grad_col)
+                    # Transpose result
+                    return [[result[j][i] for j in range(len(result))] 
+                           for i in range(len(result[0]))]
+                else:
+                    # Gradient along second axis (columns)
+                    return [self._compute_1d_gradient(row) for row in data]
+            else:
+                # 1D gradient
+                return self._compute_1d_gradient(data)
+        
+        def _compute_1d_gradient(self, data):
+            """Compute 1D gradient using central differences"""
+            if len(data) <= 1:
+                return data
+            
+            gradient = []
+            # Forward difference for first point
+            gradient.append(data[1] - data[0])
+            
+            # Central differences for interior points
+            for i in range(1, len(data) - 1):
+                gradient.append((data[i+1] - data[i-1]) / 2.0)
+            
+            # Backward difference for last point
+            gradient.append(data[-1] - data[-2])
+            
+            return gradient
+        
         def minimum(self, a, b):
+            """Element-wise minimum"""
             if isinstance(a, (list, tuple)) and isinstance(b, (list, tuple)):
                 return [min(x, y) for x, y in zip(a, b)]
             elif isinstance(a, (list, tuple)):
@@ -103,7 +261,9 @@ except ImportError:
                 return [min(a, y) for y in b]
             else:
                 return min(a, b)
+        
         def maximum(self, a, b):
+            """Element-wise maximum"""
             if isinstance(a, (list, tuple)) and isinstance(b, (list, tuple)):
                 return [max(x, y) for x, y in zip(a, b)]
             elif isinstance(a, (list, tuple)):
@@ -112,6 +272,56 @@ except ImportError:
                 return [max(a, y) for y in b]
             else:
                 return max(a, b)
+        
+        def arange(self, start, stop=None, step=1):
+            """Create arithmetic sequence"""
+            if stop is None:
+                stop = start
+                start = 0
+            
+            result = []
+            current = start
+            while (step > 0 and current < stop) or (step < 0 and current > stop):
+                result.append(current)
+                current += step
+            return result
+        
+        def linspace(self, start, stop, num=50):
+            """Create linearly spaced sequence"""
+            if num <= 1:
+                return [start]
+            
+            step = (stop - start) / (num - 1)
+            return [start + i * step for i in range(num)]
+        
+        def meshgrid(self, x, y):
+            """Create coordinate matrices from coordinate vectors"""
+            X = [[xi for xi in x] for _ in range(len(y))]
+            Y = [[yi for _ in range(len(x))] for yi in y]
+            return X, Y
+        
+        def reshape(self, data, shape):
+            """Reshape array to specified shape"""
+            flat_data = self._flatten(data)
+            
+            if isinstance(shape, int):
+                return flat_data[:shape]
+            elif len(shape) == 2:
+                rows, cols = shape
+                result = []
+                for i in range(rows):
+                    row = []
+                    for j in range(cols):
+                        idx = i * cols + j
+                        if idx < len(flat_data):
+                            row.append(flat_data[idx])
+                        else:
+                            row.append(0)
+                    result.append(row)
+                return result
+            
+            return flat_data
+        
         def _flatten(self, data):
             """Helper to flatten nested lists"""
             result = []
@@ -125,27 +335,238 @@ except ImportError:
                 result.append(data)
             return result
         
-        pi = math.pi
-        e = math.e
-        newaxis = None
-        
-        # Enhanced linalg mock
+        # Enhanced linalg mock with more operations
         class LinalgMock:
-            def norm(self, x, axis=None):
+            """Advanced linear algebra operations mock"""
+            
+            def norm(self, x, axis=None, ord=None):
+                """Enhanced norm calculation"""
+                if isinstance(x, (int, float, complex)):
+                    return abs(x)
+                
                 if isinstance(x, list):
                     if all(isinstance(i, (list, tuple)) for i in x):
                         # 2D array
                         if axis == 0:
-                            return [math.sqrt(sum(row[i]**2 for row in x)) for i in range(len(x[0]))]
+                            return [math.sqrt(sum(row[i]**2 for row in x)) 
+                                   for i in range(len(x[0]))]
                         elif axis == 1:
-                            return [math.sqrt(sum(val**2 for val in row)) for row in x]
+                            return [math.sqrt(sum(val**2 for val in row)) 
+                                   for row in x]
                         else:
                             return math.sqrt(sum(sum(val**2 for val in row) for row in x))
                     else:
-                        return math.sqrt(sum(i**2 for i in x))
+                        # 1D array
+                        if ord is None or ord == 2:
+                            return math.sqrt(sum(i**2 for i in x))
+                        elif ord == 1:
+                            return sum(abs(i) for i in x)
+                        elif ord == float('inf'):
+                            return max(abs(i) for i in x)
+                        else:
+                            return (sum(abs(i)**ord for i in x))**(1/ord)
+                
+                return abs(x)
+            
+            def det(self, matrix):
+                """Calculate determinant for small matrices"""
+                if not isinstance(matrix, list) or not matrix:
+                    return 0
+                
+                n = len(matrix)
+                if n != len(matrix[0]):
+                    raise ValueError("Matrix must be square")
+                
+                if n == 1:
+                    return matrix[0][0]
+                elif n == 2:
+                    return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0]
+                elif n == 3:
+                    # 3x3 determinant using cofactor expansion
+                    return (matrix[0][0] * (matrix[1][1] * matrix[2][2] - matrix[1][2] * matrix[2][1]) -
+                            matrix[0][1] * (matrix[1][0] * matrix[2][2] - matrix[1][2] * matrix[2][0]) +
+                            matrix[0][2] * (matrix[1][0] * matrix[2][1] - matrix[1][1] * matrix[2][0]))
                 else:
-                    return abs(x)
-        linalg = LinalgMock()
+                    # Use recursive cofactor expansion for larger matrices
+                    det = 0
+                    for col in range(n):
+                        submatrix = [row[:col] + row[col+1:] for row in matrix[1:]]
+                        cofactor = ((-1) ** col) * matrix[0][col] * self.det(submatrix)
+                        det += cofactor
+                    return det
+            
+            def inv(self, matrix):
+                """Calculate matrix inverse for small matrices"""
+                if not isinstance(matrix, list) or not matrix:
+                    raise ValueError("Invalid matrix")
+                
+                n = len(matrix)
+                if n != len(matrix[0]):
+                    raise ValueError("Matrix must be square")
+                
+                det_val = self.det(matrix)
+                if abs(det_val) < 1e-15:
+                    raise ValueError("Matrix is singular")
+                
+                if n == 1:
+                    return [[1.0 / matrix[0][0]]]
+                elif n == 2:
+                    return [[matrix[1][1] / det_val, -matrix[0][1] / det_val],
+                            [-matrix[1][0] / det_val, matrix[0][0] / det_val]]
+                else:
+                    # Use adjugate matrix method for larger matrices
+                    adjugate = self._adjugate_matrix(matrix)
+                    return [[adjugate[i][j] / det_val for j in range(n)] for i in range(n)]
+            
+            def _adjugate_matrix(self, matrix):
+                """Calculate adjugate matrix"""
+                n = len(matrix)
+                adjugate = [[0] * n for _ in range(n)]
+                
+                for i in range(n):
+                    for j in range(n):
+                        # Minor matrix
+                        minor = [row[:j] + row[j+1:] for idx, row in enumerate(matrix) if idx != i]
+                        cofactor = ((-1) ** (i + j)) * self.det(minor)
+                        adjugate[j][i] = cofactor  # Note: transposed
+                
+                return adjugate
+            
+            def solve(self, A, b):
+                """Solve linear system Ax = b using Gaussian elimination"""
+                if not isinstance(A, list) or not isinstance(b, list):
+                    raise ValueError("A and b must be lists")
+                
+                n = len(A)
+                if n != len(A[0]) or n != len(b):
+                    raise ValueError("Incompatible matrix dimensions")
+                
+                # Create augmented matrix
+                augmented = [row[:] + [b[i]] for i, row in enumerate(A)]
+                
+                # Forward elimination
+                for i in range(n):
+                    # Find pivot
+                    max_row = i
+                    for k in range(i + 1, n):
+                        if abs(augmented[k][i]) > abs(augmented[max_row][i]):
+                            max_row = k
+                    
+                    # Swap rows
+                    augmented[i], augmented[max_row] = augmented[max_row], augmented[i]
+                    
+                    # Check for singular matrix
+                    if abs(augmented[i][i]) < 1e-15:
+                        raise ValueError("Matrix is singular")
+                    
+                    # Eliminate column
+                    for k in range(i + 1, n):
+                        factor = augmented[k][i] / augmented[i][i]
+                        for j in range(i, n + 1):
+                            augmented[k][j] -= factor * augmented[i][j]
+                
+                # Back substitution
+                x = [0] * n
+                for i in range(n - 1, -1, -1):
+                    x[i] = augmented[i][n]
+                    for j in range(i + 1, n):
+                        x[i] -= augmented[i][j] * x[j]
+                    x[i] /= augmented[i][i]
+                
+                return x
+        
+        class RandomMock:
+            """Enhanced random number generation mock"""
+            
+            def __init__(self):
+                import random
+                self._rng = random
+            
+            def random(self, size=None):
+                """Generate random numbers in [0, 1)"""
+                if size is None:
+                    return self._rng.random()
+                elif isinstance(size, int):
+                    return [self._rng.random() for _ in range(size)]
+                elif isinstance(size, tuple) and len(size) == 2:
+                    return [[self._rng.random() for _ in range(size[1])] 
+                           for _ in range(size[0])]
+                return self._rng.random()
+            
+            def normal(self, loc=0.0, scale=1.0, size=None):
+                """Generate normal random numbers"""
+                if size is None:
+                    return self._rng.gauss(loc, scale)
+                elif isinstance(size, int):
+                    return [self._rng.gauss(loc, scale) for _ in range(size)]
+                elif isinstance(size, tuple) and len(size) == 2:
+                    return [[self._rng.gauss(loc, scale) for _ in range(size[1])] 
+                           for _ in range(size[0])]
+                return self._rng.gauss(loc, scale)
+            
+            def uniform(self, low=0.0, high=1.0, size=None):
+                """Generate uniform random numbers"""
+                if size is None:
+                    return self._rng.uniform(low, high)
+                elif isinstance(size, int):
+                    return [self._rng.uniform(low, high) for _ in range(size)]
+                elif isinstance(size, tuple) and len(size) == 2:
+                    return [[self._rng.uniform(low, high) for _ in range(size[1])] 
+                           for _ in range(size[0])]
+                return self._rng.uniform(low, high)
+        
+        class FFTMock:
+            """Fast Fourier Transform mock for basic frequency analysis"""
+            
+            def fft(self, x):
+                """Basic DFT implementation (not optimized)"""
+                if not isinstance(x, list):
+                    return x
+                
+                N = len(x)
+                if N == 0:
+                    return []
+                
+                X = []
+                for k in range(N):
+                    sum_val = 0
+                    for n in range(N):
+                        angle = -2 * math.pi * k * n / N
+                        sum_val += x[n] * (math.cos(angle) + 1j * math.sin(angle))
+                    X.append(sum_val)
+                
+                return X
+            
+            def ifft(self, X):
+                """Inverse DFT implementation"""
+                if not isinstance(X, list):
+                    return X
+                
+                N = len(X)
+                if N == 0:
+                    return []
+                
+                x = []
+                for n in range(N):
+                    sum_val = 0
+                    for k in range(N):
+                        angle = 2 * math.pi * k * n / N
+                        sum_val += X[k] * (math.cos(angle) + 1j * math.sin(angle))
+                    x.append(sum_val / N)
+                
+                return x
+            
+            def fftfreq(self, n, d=1.0):
+                """Return discrete Fourier transform sample frequencies"""
+                if n % 2 == 0:
+                    # Even number of samples
+                    freqs = list(range(0, n//2)) + list(range(-n//2, 0))
+                else:
+                    # Odd number of samples
+                    freqs = list(range(0, (n+1)//2)) + list(range(-(n//2), 0))
+                
+                return [f / (n * d) for f in freqs]
+    
     np = MockNumpy()
 
 try:

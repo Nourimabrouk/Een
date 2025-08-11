@@ -37,16 +37,24 @@ class UnityMathematicsLauncher:
         self.setup_default_environment()
         
     def setup_default_environment(self):
-        """Set up default environment variables for API access"""
-        # Default OpenAI API key (replace with your actual key)
-        if not os.getenv('OPENAI_API_KEY'):
-            print("⚠️  Setting default OpenAI API key...")
-            os.environ['OPENAI_API_KEY'] = 'sk-your-key-here'  # TODO: Replace with actual key
+        """Check environment variables for API access"""
+        # Check for required API keys - DO NOT set default keys for security
+        openai_key = os.getenv('OPENAI_API_KEY')
+        anthropic_key = os.getenv('ANTHROPIC_API_KEY')
+        
+        if not openai_key:
+            print("⚠️  OPENAI_API_KEY environment variable not set")
+            print("   Set it with: export OPENAI_API_KEY='your-api-key-here'")
+            print("   Or create a .env file with your keys (see .env.example)")
             
-        # Default Anthropic API key (replace with your actual key)
-        if not os.getenv('ANTHROPIC_API_KEY'):
-            print("⚠️  Setting default Anthropic API key...")
-            os.environ['ANTHROPIC_API_KEY'] = 'sk-ant-your-key-here'  # TODO: Replace with actual key
+        if not anthropic_key:
+            print("⚠️  ANTHROPIC_API_KEY environment variable not set") 
+            print("   Set it with: export ANTHROPIC_API_KEY='your-api-key-here'")
+            print("   Or create a .env file with your keys (see .env.example)")
+        
+        if not (openai_key or anthropic_key):
+            print("🎭  Demo Mode: Will use Unity Mathematics responses without AI")
+            print("   Full AI features require valid API keys")
             
         # API configuration
         os.environ['FASTAPI_ENV'] = 'development'

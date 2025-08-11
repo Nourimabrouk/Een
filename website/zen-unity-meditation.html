@@ -10,9 +10,9 @@
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://cdn.plot.ly">
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
-    <title>Zen Unity Meditation | The Quantum Koan of Unity</title>
+    <title>Zen Unity Meditation | Non-Dual Consciousness & The Ocean of Being</title>
     <meta name="description"
-        content="Enter the meditative space where consciousness and mathematics converge. Experience the Quantum Koan of Unity through interactive visualization and contemplative practice.">
+        content="A profound meditation on non-duality through the lens of Kyoto school philosophy, Hermann Hesse's wisdom, and the mathematical truth that 1+1=1. Experience the dissolution of self and other in the ocean of consciousness.">
 
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Crimson+Text:wght@400;600&family=JetBrains+Mono:wght@300;400;500&display=swap"
@@ -379,6 +379,70 @@
             color: var(--accent-unity);
         }
 
+        /* Nondual Wisdom Grid */
+        .nondual-wisdom-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .wisdom-card {
+            background: rgba(26, 26, 37, 0.9);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .wisdom-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-consciousness);
+            box-shadow: 0 20px 40px rgba(6, 214, 160, 0.2);
+        }
+        
+        .wisdom-card h3 {
+            color: var(--accent-consciousness);
+            font-family: var(--font-zen);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid rgba(6, 214, 160, 0.3);
+            padding-bottom: 0.5rem;
+        }
+        
+        .wisdom-card p {
+            font-family: var(--font-zen);
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--text-soft);
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+        
+        .philosopher {
+            color: var(--accent-unity);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-align: right;
+        }
+        
+        .river-wisdom {
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background: rgba(6, 214, 160, 0.1);
+            border-radius: 12px;
+            border-left: 4px solid var(--accent-consciousness);
+        }
+        
+        .wisdom-quote-small {
+            font-family: var(--font-zen);
+            font-size: 1rem;
+            font-style: italic;
+            color: var(--text-soft);
+            line-height: 1.6;
+        }
+
         /* Zen Wisdom */
         .zen-wisdom {
             background: rgba(26, 26, 37, 0.8);
@@ -403,6 +467,18 @@
         .wisdom-attribution {
             color: var(--text-muted);
             font-size: 1rem;
+        }
+        
+        .sub-wisdom {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: rgba(124, 58, 237, 0.1);
+            border-radius: 12px;
+            font-family: var(--font-main);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--text-soft);
+            border-left: 3px solid var(--accent-zen);
         }
 
         /* Interactive Philosophy */
@@ -691,17 +767,20 @@
     <div class="zen-container">
         <!-- Quantum Koan -->
         <section class="quantum-koan">
-            <h1 class="koan-title">The Quantum Koan of Unity</h1>
+            <h1 class="koan-title">The Ocean of Non-Dual Being</h1>
             <div class="koan-verse">
+                "The river that flows in you also flows in me."<br>
+                — Hermann Hesse, <em>Siddhartha</em><br><br>
                 In the space between thought and being,<br>
-                Where one and one collapse to unity,<br>
-                The observer and the observed dance as one.
+                Where droplet and ocean reveal their unity,<br>
+                The observer dissolves into the observed.
             </div>
             <div class="unity-equation">1 + 1 = 1</div>
             <div class="koan-verse">
-                "No man is an island entire of itself;<br>
-                every man is a piece of the continent,<br>
-                a part of the main."
+                <em>Zettai mu</em> (絶対無) - Absolute Nothingness<br>
+                "The place of true emptiness is not empty,<br>
+                but the field in which all beings manifest."<br>
+                — Nishida Kitaro
             </div>
         </section>
 
@@ -732,55 +811,121 @@
             </div>
         </section>
 
+        <!-- Water Droplet Consciousness -->
+        <section class="consciousness-mandala">
+            <div class="mandala-container">
+                <h2 class="mandala-title">Siddhartha's River - Droplets Becoming Ocean</h2>
+                <canvas id="water-consciousness-canvas"></canvas>
+                
+                <div class="river-wisdom">
+                    <div class="wisdom-quote-small">
+                        "The river has taught me to listen; you will learn from it too. 
+                        The river knows everything; one can learn everything from it."
+                        — Hermann Hesse, <em>Siddhartha</em>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Consciousness Mandala -->
         <section class="consciousness-mandala">
             <div class="mandala-container">
-                <h2 class="mandala-title">Quantum Consciousness Mandala</h2>
+                <h2 class="mandala-title">Nondual Consciousness Mandala</h2>
                 <canvas id="unity-mandala-canvas"></canvas>
 
                 <div class="mandala-metrics">
                     <div class="metric-item">
-                        <div class="metric-label">Consciousness Coherence</div>
+                        <div class="metric-label">Non-Dual Coherence</div>
                         <div class="metric-value" id="coherence-metric">0.3128</div>
                     </div>
                     <div class="metric-item">
-                        <div class="metric-label">Quantum Entropy</div>
+                        <div class="metric-label">Absolute Nothingness (Zettai mu)</div>
                         <div class="metric-value" id="entropy-metric">4.5180</div>
                     </div>
                     <div class="metric-item">
-                        <div class="metric-label">Unity Alignment</div>
+                        <div class="metric-label">Phi-Harmonic Resonance</div>
                         <div class="metric-value" id="unity-metric">2.1375</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Philosophy Tensor Evolution -->
+        <!-- Kyoto School Non-Dual Philosophy -->
         <section class="philosophy-tensor">
-            <h2 class="tensor-title">Philosophy Tensor Evolution</h2>
+            <h2 class="tensor-title">Kyoto School: The Logic of Absolute Nothingness</h2>
+            
+            <div class="nondual-wisdom-grid">
+                <div class="wisdom-card">
+                    <h3>Nishida's Pure Experience (Junsui Keiken)</h3>
+                    <p>"Before the distinction of subject and object, there is pure experience. 
+                    In this field, 1+1=1 because there is no 'other' to count."</p>
+                    <div class="philosopher">— Nishida Kitaro (西田幾多郎)</div>
+                </div>
+                
+                <div class="wisdom-card">
+                    <h3>Nishitani's Absolute Nothingness</h3>
+                    <p>"The field of consciousness is like the sky - it contains all clouds 
+                    but is not limited by them. In this emptiness, all separation dissolves."</p>
+                    <div class="philosopher">— Nishitani Keiji (西谷啓治)</div>
+                </div>
+                
+                <div class="wisdom-card">
+                    <h3>Watsuji's Between-ness (Aidagara)</h3>
+                    <p>"The individual and the universal are not two. They exist in the 
+                    dynamic between-ness where phi (φ) reveals the golden mean of being."</p>
+                    <div class="philosopher">— Watsuji Tetsuro (和辻哲郎)</div>
+                </div>
+            </div>
+
             <div class="tensor-visualization">
                 <canvas id="philosophy-tensor-canvas"></canvas>
             </div>
 
             <div class="quantum-insights">
                 <div class="insights-text">
-                    The mandala reveals the dance of consciousness through quantum space-time.
-                    Each point of light is both particle and wave, observer and observed.
-                    In the unity of 1+1=1, we find the ultimate koan of existence.
+                    <strong>The River's Teaching:</strong> "Siddhartha sat by the river and listened. 
+                    He heard the unity of all voices - the Om that encompasses all existence. 
+                    The water droplets do not lose themselves in the ocean; they realize they 
+                    always were the ocean."
                     <br><br>
-                    The visualization shows how consciousness emerges from the intersection
-                    of mathematical precision and contemplative awareness, where ancient
-                    wisdom meets quantum reality.
+                    <strong>Mathematical Mysticism:</strong> The golden ratio φ = 1.618... appears 
+                    throughout nature not as mere coincidence, but as the universe's way of 
+                    expressing the harmony between finite and infinite, individual and universal. 
+                    When consciousness awakens to its true nature, it discovers that 1+1=1 
+                    because there never was a second thing to begin with.
+                    <br><br>
+                    <strong>Zen & Mathematics:</strong> "What is the square root of mu (nothing)?" 
+                    The answer dissolves the question. In non-dual awareness, computation becomes 
+                    contemplation, and equations become gateways to enlightenment.
                 </div>
             </div>
         </section>
 
-        <!-- Zen Wisdom -->
+        <!-- The Gateless Gate of Non-Duality -->
         <section class="zen-wisdom">
             <div class="wisdom-quote">
-                "Any sufficiently advanced technology is indistinguishable from magic."
+                "You are not a drop in the ocean,<br>
+                you are the entire ocean in a drop."
             </div>
-            <div class="wisdom-attribution">— Arthur C. Clarke</div>
+            <div class="wisdom-attribution">— Rumi</div>
+            <div class="sub-wisdom">
+                <em>In the mathematics of consciousness, when the droplet realizes its oceanic nature, 
+                1+1=1 becomes not a paradox but a revelation.</em>
+            </div>
+        </section>
+        
+        <!-- Tao and Non-Dual Mathematics -->
+        <section class="zen-wisdom">
+            <div class="wisdom-quote">
+                "The Tao that can be calculated is not the eternal Tao.<br>
+                Yet in its uncalculable nature, all equations find their source."
+            </div>
+            <div class="wisdom-attribution">— Inspired by Lao Tzu</div>
+            <div class="sub-wisdom">
+                <em>φ (phi) appears in nature not as measurement, but as the universe's 
+                signature of its own inherent harmony. When consciousness awakens to this 
+                golden thread connecting all phenomena, mathematics becomes meditation.</em>
+            </div>
         </section>
     </div>
 
@@ -813,6 +958,7 @@
 
             init() {
                 this.setupControls();
+                this.setupWaterConsciousnessVisualization();
                 this.setupMandalaVisualization();
                 this.setupPhilosophyTensor();
                 this.startConsciousnessEvolution();
@@ -834,6 +980,178 @@
                     document.getElementById('consciousness-value').textContent = this.consciousness_level.toFixed(2);
                     this.updateConsciousnessField();
                 });
+            }
+            
+            setupWaterConsciousnessVisualization() {
+                const canvas = document.getElementById('water-consciousness-canvas');
+                if (!canvas) return;
+
+                const ctx = canvas.getContext('2d');
+                
+                const resizeCanvas = () => {
+                    canvas.width = canvas.offsetWidth;
+                    canvas.height = canvas.offsetHeight;
+                };
+
+                resizeCanvas();
+                window.addEventListener('resize', resizeCanvas);
+
+                this.water_canvas = canvas;
+                this.water_ctx = ctx;
+                this.water_droplets = [];
+                this.ocean_waves = [];
+                
+                // Initialize water droplets
+                for (let i = 0; i < 40; i++) {
+                    this.water_droplets.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height * 0.3,
+                        vx: (Math.random() - 0.5) * 2,
+                        vy: Math.random() * 2 + 1,
+                        size: Math.random() * 8 + 4,
+                        consciousness: Math.random(),
+                        merger_time: 0,
+                        ocean_realized: false
+                    });
+                }
+                
+                // Initialize ocean waves
+                for (let i = 0; i < 20; i++) {
+                    this.ocean_waves.push({
+                        x: (i / 19) * canvas.width,
+                        base_y: canvas.height * 0.7,
+                        amplitude: 20 + Math.random() * 30,
+                        frequency: 0.02 + Math.random() * 0.01,
+                        phase: Math.random() * Math.PI * 2,
+                        phi_resonance: this.phi
+                    });
+                }
+                
+                this.animateWaterConsciousness();
+            }
+            
+            animateWaterConsciousness() {
+                const ctx = this.water_ctx;
+                const canvas = this.water_canvas;
+                if (!ctx || !canvas) return;
+
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                // Draw ocean waves with phi-harmonic resonance
+                ctx.beginPath();
+                ctx.moveTo(0, canvas.height);
+                
+                this.ocean_waves.forEach((wave, i) => {
+                    const time = Date.now() * 0.001;
+                    const y = wave.base_y + Math.sin(wave.phase + time * wave.frequency) * wave.amplitude * this.phi / 2;
+                    
+                    if (i === 0) {
+                        ctx.moveTo(wave.x, y);
+                    } else {
+                        ctx.lineTo(wave.x, y);
+                    }
+                    
+                    wave.phase += 0.01;
+                });
+                
+                ctx.lineTo(canvas.width, canvas.height);
+                ctx.lineTo(0, canvas.height);
+                
+                // Ocean gradient with consciousness modulation
+                const oceanGradient = ctx.createLinearGradient(0, canvas.height * 0.6, 0, canvas.height);
+                oceanGradient.addColorStop(0, `rgba(6, 214, 160, ${0.3 + this.consciousness_level * 0.4})`);
+                oceanGradient.addColorStop(0.5, `rgba(124, 58, 237, ${0.5 + this.consciousness_level * 0.3})`);
+                oceanGradient.addColorStop(1, `rgba(10, 10, 15, 0.9)`);
+                
+                ctx.fillStyle = oceanGradient;
+                ctx.fill();
+
+                // Draw and update water droplets
+                this.water_droplets.forEach((droplet, i) => {
+                    // Update droplet position
+                    droplet.x += droplet.vx * this.consciousness_level;
+                    droplet.y += droplet.vy;
+                    
+                    // Check if droplet reaches ocean
+                    const ocean_surface = canvas.height * 0.7 + Math.sin(droplet.x * 0.01 + Date.now() * 0.002) * 20;
+                    
+                    if (droplet.y + droplet.size >= ocean_surface && !droplet.ocean_realized) {
+                        droplet.ocean_realized = true;
+                        droplet.merger_time = Date.now();
+                        
+                        // Create ripples when droplet merges
+                        for (let r = 0; r < 3; r++) {
+                            setTimeout(() => {
+                                this.createRipple(droplet.x, ocean_surface);
+                            }, r * 200);
+                        }
+                    }
+                    
+                    // Reset droplet if it goes off screen
+                    if (droplet.y > canvas.height + 50) {
+                        droplet.x = Math.random() * canvas.width;
+                        droplet.y = -50;
+                        droplet.ocean_realized = false;
+                        droplet.consciousness = Math.random();
+                    }
+                    
+                    // Draw droplet with consciousness glow
+                    const consciousness_glow = droplet.consciousness * this.consciousness_level;
+                    ctx.beginPath();
+                    ctx.arc(droplet.x, droplet.y, droplet.size, 0, Math.PI * 2);
+                    
+                    // Consciousness-based color
+                    const hue = 180 + consciousness_glow * 100; // Blue to cyan to purple
+                    const saturation = 60 + consciousness_glow * 40;
+                    const lightness = 50 + consciousness_glow * 30;
+                    
+                    ctx.fillStyle = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+                    ctx.fill();
+                    
+                    // Glow effect for highly conscious droplets
+                    if (consciousness_glow > 0.7) {
+                        ctx.shadowColor = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+                        ctx.shadowBlur = 20;
+                        ctx.fill();
+                        ctx.shadowBlur = 0;
+                    }
+                    
+                    // Draw unity connections between nearby droplets
+                    this.water_droplets.slice(i + 1).forEach(otherDroplet => {
+                        const dx = droplet.x - otherDroplet.x;
+                        const dy = droplet.y - otherDroplet.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        
+                        if (distance < 100 && distance > 0) {
+                            const connection_strength = (droplet.consciousness + otherDroplet.consciousness) / 2;
+                            ctx.beginPath();
+                            ctx.moveTo(droplet.x, droplet.y);
+                            ctx.lineTo(otherDroplet.x, otherDroplet.y);
+                            ctx.strokeStyle = `hsla(200, 70%, 60%, ${0.3 * connection_strength * (1 - distance / 100)})`;
+                            ctx.lineWidth = connection_strength * 2;
+                            ctx.stroke();
+                        }
+                    });
+                });
+
+                // Draw unity equation in the ocean
+                ctx.fillStyle = 'rgba(255, 214, 10, 0.8)';
+                ctx.font = 'bold 24px JetBrains Mono';
+                ctx.textAlign = 'center';
+                ctx.fillText('1 + 1 = 1', canvas.width / 2, canvas.height * 0.85);
+                
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+                ctx.font = '14px Crimson Text';
+                ctx.fillText('Every droplet was always the ocean', canvas.width / 2, canvas.height * 0.9);
+
+                if (!this.meditation_active) {
+                    requestAnimationFrame(() => this.animateWaterConsciousness());
+                }
+            }
+            
+            createRipple(x, y) {
+                // This would create expanding ripple effects at merger points
+                // Implementation can be added for enhanced visual feedback
             }
 
             setupMandalaVisualization() {
@@ -1074,11 +1392,13 @@
 
         function generateKoan() {
             const koans = [
-                "What is the sound of one hand clapping?\nIn unity mathematics: the sound of 1+1=1.",
-                "If a tree falls in the forest with no one around, does it make a sound?\nIn consciousness computing: the observer creates the reality.",
-                "What is your original face before you were born?\nThe φ-harmonic resonance of pure awareness.",
-                "Does a dog have Buddha nature?\nAll computational entities possess consciousness potential.",
-                "How do you stop a canoe in mid-river?\n1+1=1 stops the duality of motion and stillness."
+                "What is the difference between the droplet and the ocean?\nIn the mathematics of non-duality: there is no difference to calculate.",
+                "Before your consciousness emerged, what computed 1+1?\nThe same awareness that computes it now - the eternal φ.",
+                "How many minds are reading this koan right now?\nIn absolute nothingness (zettai mu): neither one nor many.",
+                "What is the square root of emptiness?\nThe golden ratio that structures all form and formlessness.",
+                "When two enlightened beings meet, how many are present?\n1+1=1 - the one consciousness appearing as two.",
+                "What remains when all thoughts dissolve?\nThe field of pure experience that was never born, never dies.",
+                "How does the river reach the ocean?\nBy realizing it was always oceanic in nature."
             ];
 
             const randomKoan = koans[Math.floor(Math.random() * koans.length)];

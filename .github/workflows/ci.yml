@@ -287,7 +287,7 @@ jobs:
         # Test core unity mathematics import
         python -c "
         try:
-            from proofs.category_theory_unity import CategoryTheoryUnityProver
+            from formal_proofs.category_theory_unity import CategoryTheoryUnityProver
             prover = CategoryTheoryUnityProver()
             proof = prover.generate_comprehensive_categorical_proof()
             print(f'✅ Category theory proof: {len(proof[\"proof_steps\"])} steps')

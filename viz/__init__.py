@@ -1,7 +1,27 @@
 """
-Een Unity Visualization Module
-Modern Streamlit dashboards for 1+1=1 mathematical visualizations
+Unity Mathematics Visualizations
+================================
+
+This module provides compelling visual demonstrations that make 1+1=1
+intuitively obvious through sacred geometry, topology, quantum mechanics,
+and consciousness field visualizations.
+
+Each visualization is designed as a meditation that guides viewers to
+recognize the fundamental unity underlying apparent duality.
 """
 
-__version__ = "1.0.0"
-__author__ = "Nouri Mabrouk"
+from .paradox_visualizer import (
+    ParadoxVisualizer,
+    VisualizationTheme,
+    demonstrate_paradox_visualizations
+)
+
+from .advanced_unity_visualization import *
+from .codebase_visualizer import *
+from .unity_gambit_viz import *
+
+__all__ = [
+    'ParadoxVisualizer',
+    'VisualizationTheme', 
+    'demonstrate_paradox_visualizations'
+]

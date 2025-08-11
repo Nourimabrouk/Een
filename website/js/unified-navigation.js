@@ -17,7 +17,7 @@ class UnifiedNavigationSystem {
             // Visualizations & Tools
             'gallery.html', 'dalle-gallery.html', 'enhanced-3d-consciousness-field.html', 'enhanced-unity-visualization-system.html', 'unity_visualization.html', 'gallery/phi_consciousness_transcendence.html', 'dashboards.html', 'unity-dashboard.html', 'playground.html', 'mathematical_playground.html', 'live-code-showcase.html', 'examples/unity-calculator.html', 'examples/phi-harmonic-explorer.html',
             // About
-            'about.html', 'research.html', 'publications.html', 'learning.html', 'further-reading.html', 'unity-meta-atlas.html', 'mobile-app.html', 'sitemap.html'
+            'about.html', 'research.html', 'publications.html', 'academic-portal.html', 'learning.html', 'further-reading.html', 'unity-meta-atlas.html', 'mobile-app.html', 'sitemap.html'
         ]);
         this.init();
     }
@@ -231,6 +231,9 @@ class UnifiedNavigationSystem {
                             More <i class="fas fa-chevron-down"></i>
                         </button>
                         <div class="nav-dropdown">
+                            <a href="academic-portal.html" class="nav-dropdown-link">
+                                <i class="fas fa-university"></i> Academic Portal
+                            </a>
                             <a href="philosophy.html" class="nav-dropdown-link">
                                 <i class="fas fa-yin-yang"></i> Unity Philosophy
                             </a>
@@ -413,6 +416,9 @@ class UnifiedNavigationSystem {
 
                 <div class="sidebar-section">
                     <div class="sidebar-title">Philosophy & Research</div>
+                    <a href="academic-portal.html" class="sidebar-link">
+                        <i class="fas fa-university"></i> Academic Portal
+                    </a>
                     <a href="philosophy.html" class="sidebar-link">
                         <i class="fas fa-yin-yang"></i> Unity Philosophy
                     </a>
@@ -622,6 +628,9 @@ class UnifiedNavigationSystem {
                         <i class="fas fa-book"></i> Philosophy & Research
                     </div>
                     <div class="mobile-nav-links">
+                        <a href="academic-portal.html" class="mobile-nav-link">
+                            <i class="fas fa-university"></i> Academic Portal
+                        </a>
                         <a href="philosophy.html" class="mobile-nav-link">
                             <i class="fas fa-yin-yang"></i> Unity Philosophy
                         </a>
@@ -1093,6 +1102,12 @@ class UnifiedNavigationSystem {
                 url: 'playground.html',
                 description: 'Interactive sandbox for experimenting with unity equations and consciousness fields',
                 keywords: ['playground', 'interactive', 'sandbox', 'experiment', 'tools']
+            },
+            {
+                title: 'Academic Portal',
+                url: 'academic-portal.html',
+                description: 'Professional academic portal for Unity Mathematics research and formal proofs',
+                keywords: ['academic', 'portal', 'professional', 'research', 'scholars', 'university']
             },
             {
                 title: 'Research Papers',

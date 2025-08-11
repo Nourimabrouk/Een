@@ -2,346 +2,499 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unity Dashboard Launcher | Een Mathematics</title>
-    <meta name="description"
-        content="Launch interactive Unity Mathematics dashboards for consciousness field exploration, golden ratio visualization, and quantum unity demonstrations.">
-
-    <!-- Unified Navigation System -->
-    <script src="js/nav-template-applier.js" defer></script>
-
-    <!-- Unified Styles -->
-    <link rel="stylesheet" href="css/tokens.css">
-    <link rel="stylesheet" href="css/layout.css">
-    <link rel="stylesheet" href="css/components.css">
-
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Dashboards | Unity Metastation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Orbitron:wght@700;900&display=swap"
+        rel="stylesheet">
     <style>
-        .dashboard-grid {
+        :root {
+            --bg: #0a0b0f;
+            --bg2: #111218;
+            --panel: #161821;
+            --gold: #ffd700;
+            --cyan: #00e5ff;
+            --fg: #e6edf3;
+        }
+
+        body {
+            margin: 0;
+            font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+            color: var(--fg);
+            background: radial-gradient(ellipse at 50% -20%, #101420, #07080c 60%), linear-gradient(180deg, var(--bg), var(--bg2));
+        }
+
+        .wrap {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .hero {
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 24px 28px;
+            background: linear-gradient(135deg, rgba(0, 229, 255, 0.06), rgba(255, 215, 0, 0.06));
+        }
+
+        .title {
+            font-family: Orbitron, Inter, sans-serif;
+            font-size: 32px;
+            letter-spacing: .06em;
+            margin: 0 0 6px;
+            background: linear-gradient(45deg, var(--gold), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .sub {
+            opacity: .85;
+            margin: 0;
+        }
+
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: var(--space-6);
-            margin-top: var(--space-8);
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+            margin-top: 18px;
         }
 
-        .dashboard-card {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-primary);
-            border-radius: var(--radius-xl);
-            padding: var(--space-6);
-            transition: all var(--transition-base);
-            position: relative;
-            overflow: hidden;
+        .card {
+            background: var(--panel);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            padding: 18px;
         }
 
-        .dashboard-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: var(--gradient-unity);
+        .card h3 {
+            margin: 0 0 8px;
+            font-size: 18px;
         }
 
-        .dashboard-card:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-large);
-            border-color: var(--border-accent);
+        .card p {
+            margin: 0 0 14px;
+            opacity: .82;
+            font-size: 14px;
         }
 
-        .dashboard-title {
-            font-size: var(--font-size-xl);
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: var(--space-3);
-        }
-
-        .dashboard-description {
-            color: var(--text-secondary);
-            margin-bottom: var(--space-6);
-            line-height: var(--line-height-relaxed);
-        }
-
-        .dashboard-features {
-            list-style: none;
-            margin-bottom: var(--space-6);
-        }
-
-        .dashboard-features li {
-            display: flex;
-            align-items: center;
-            gap: var(--space-2);
-            padding: var(--space-1) 0;
-            color: var(--text-secondary);
-            font-size: var(--font-size-sm);
-        }
-
-        .dashboard-features li::before {
-            content: '•';
-            color: var(--unity-gold);
-            font-weight: bold;
-        }
-
-        .dashboard-actions {
-            display: flex;
-            gap: var(--space-3);
-        }
-
-        .launch-btn {
-            flex: 1;
-            padding: var(--space-3) var(--space-4);
-            background: var(--gradient-unity);
-            color: var(--bg-primary);
-            border: none;
-            border-radius: var(--radius-lg);
-            font-weight: 500;
-            cursor: pointer;
-            transition: all var(--transition-base);
-            text-decoration: none;
-            text-align: center;
+        .btn {
             display: inline-block;
+            padding: 10px 14px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            text-decoration: none;
+            color: #000;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--gold), #ff6b35);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.15);
         }
 
-        .launch-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: var(--shadow-medium);
+        .btn.cyan {
+            background: linear-gradient(135deg, var(--cyan), #45b7d1);
+            color: #001217;
         }
 
-        .status-indicator {
-            display: inline-flex;
-            align-items: center;
-            gap: var(--space-2);
-            padding: var(--space-1) var(--space-3);
-            border-radius: var(--radius-full);
-            font-size: var(--font-size-xs);
-            font-weight: 500;
-            margin-bottom: var(--space-4);
-        }
-
-        .status-ready {
-            background: rgba(255, 215, 0, 0.2);
-            color: var(--unity-gold);
-            border: 1px solid rgba(255, 215, 0, 0.3);
-        }
-
-        .status-experimental {
-            background: rgba(0, 212, 255, 0.2);
-            color: var(--quantum-blue);
-            border: 1px solid rgba(0, 212, 255, 0.3);
-        }
-
-        .instructions {
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border-primary);
-            border-radius: var(--radius-lg);
-            padding: var(--space-6);
-            margin-bottom: var(--space-8);
-        }
-
-        .instructions h3 {
-            color: var(--unity-gold);
-            margin-bottom: var(--space-4);
-        }
-
-        .command-line {
-            background: var(--bg-primary);
-            border: 1px solid var(--border-secondary);
-            border-radius: var(--radius-md);
-            padding: var(--space-3) var(--space-4);
-            font-family: var(--font-family-mono);
-            font-size: var(--font-size-sm);
-            color: var(--unity-gold);
-            margin: var(--space-2) 0;
+        .note {
+            margin-top: 14px;
+            opacity: .8;
+            font-size: 13px;
         }
     </style>
 </head>
 
-<body class="page-wrapper">
-    <main class="main-content">
-        <div class="container">
-            <!-- Hero Section -->
-            <section class="hero">
-                <h1 class="hero-title">Unity Dashboard Launcher</h1>
-                <p class="hero-subtitle">
-                    Interactive dashboards for exploring Unity Mathematics, consciousness fields,
-                    and the revolutionary proof that 1+1=1 through phi-harmonic convergence.
-                </p>
-            </section>
+<body>
+    <div class="wrap">
+        <div class="hero">
+            <h1 class="title">Interactive Dashboards</h1>
+            <p class="sub">Launch the live Unity Metastation visual dashboards (1+1=1). Keep this tab open and
+                dashboards will open in a new tab.</p>
+        </div>
 
-            <!-- Launch Instructions -->
-            <div class="instructions">
-                <h3>Getting Started</h3>
-                <p>To launch any dashboard, ensure your Unity Mathematics environment is activated:</p>
-                <div class="command-line">
-                    cd "C:\Users\Nouri\Documents\GitHub\Een"<br>
-                    cmd /c "een\Scripts\activate.bat"<br>
-                    streamlit run src/dashboards/[dashboard_name].py
-                </div>
-                <p style="margin-top: var(--space-4); color: var(--text-secondary);">
-                    Each dashboard runs on a separate port and provides real-time mathematical visualizations
-                    with interactive controls for consciousness level, phi-resonance, and unity convergence.
-                </p>
+        <div class="grid" style="margin-top:20px;">
+            <div class="card">
+                <h3>Master Unity Dashboard</h3>
+                <p>Command center with φ-harmonic field, proofs, ML monitor, memetics, sacred geometry, and quantum
+                    unity.</p>
+                <a class="btn" href="http://localhost:8501" target="_blank" rel="noopener">Open Master Dashboard</a>
+                <p class="note">Requires local server: streamlit run dashboards/master_unity_dashboard.py</p>
             </div>
-
-            <!-- Dashboard Grid -->
-            <div class="dashboard-grid">
-                <!-- Consciousness Field 3D Explorer -->
-                <div class="dashboard-card">
-                    <div class="status-indicator status-ready">
-                        <span>●</span> Production Ready
-                    </div>
-                    <h3 class="dashboard-title">3D Consciousness Field Explorer</h3>
-                    <p class="dashboard-description">
-                        Real-time visualization of consciousness field equation C(x,y,t) = φ·sin(x·φ)·cos(y·φ)·e^(-t/φ)
-                        demonstrating how consciousness influences mathematical operations.
-                    </p>
-                    <ul class="dashboard-features">
-                        <li>Interactive 3D field visualization</li>
-                        <li>Real-time consciousness parameter adjustment</li>
-                        <li>Phi-harmonic resonance controls</li>
-                        <li>Unity convergence metrics</li>
-                        <li>Export consciousness field data</li>
-                    </ul>
-                    <div class="dashboard-actions">
-                        <a href="javascript:void(0)" class="launch-btn"
-                            onclick="launchDashboard('consciousness_field_3d_explorer')">
-                            Launch Dashboard
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Golden Ratio 3D Explorer -->
-                <div class="dashboard-card">
-                    <div class="status-indicator status-ready">
-                        <span>●</span> Production Ready
-                    </div>
-                    <h3 class="dashboard-title">Golden Ratio 3D Explorer</h3>
-                    <p class="dashboard-description">
-                        Interactive exploration of φ = 1.618033988749895 through 3D geometric visualizations,
-                        spiral mathematics, and harmonic convergence patterns.
-                    </p>
-                    <ul class="dashboard-features">
-                        <li>3D Golden Spiral animations</li>
-                        <li>Phi-based geometric constructions</li>
-                        <li>Harmonic frequency analysis</li>
-                        <li>Sacred geometry patterns</li>
-                        <li>Mathematical proof visualizations</li>
-                    </ul>
-                    <div class="dashboard-actions">
-                        <a href="javascript:void(0)" class="launch-btn"
-                            onclick="launchDashboard('golden_ratio_3d_explorer')">
-                            Launch Dashboard
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Quantum Unity Explorer -->
-                <div class="dashboard-card">
-                    <div class="status-indicator status-experimental">
-                        <span>●</span> Experimental
-                    </div>
-                    <h3 class="dashboard-title">Quantum Unity Explorer</h3>
-                    <p class="dashboard-description">
-                        Quantum mechanical demonstration of unity principle through superposition collapse,
-                        entanglement visualization, and wave function analysis.
-                    </p>
-                    <ul class="dashboard-features">
-                        <li>Quantum state visualization</li>
-                        <li>Superposition collapse animation</li>
-                        <li>Entanglement correlation plots</li>
-                        <li>Wave function probability maps</li>
-                        <li>Quantum unity measurements</li>
-                    </ul>
-                    <div class="dashboard-actions">
-                        <a href="javascript:void(0)" class="launch-btn"
-                            onclick="launchDashboard('quantum_unity_explorer')">
-                            Launch Dashboard
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Unity Proof Dashboard -->
-                <div class="dashboard-card">
-                    <div class="status-indicator status-ready">
-                        <span>●</span> Production Ready
-                    </div>
-                    <h3 class="dashboard-title">Unity Proof Dashboard</h3>
-                    <p class="dashboard-description">
-                        Comprehensive mathematical proof system demonstrating 1+1=1 through multiple
-                        rigorous paradigms including categorical, topological, and consciousness proofs.
-                    </p>
-                    <ul class="dashboard-features">
-                        <li>Interactive proof explorer</li>
-                        <li>Multi-paradigm validation</li>
-                        <li>Step-by-step proof visualization</li>
-                        <li>Mathematical rigor verification</li>
-                        <li>Consciousness integration metrics</li>
-                    </ul>
-                    <div class="dashboard-actions">
-                        <a href="javascript:void(0)" class="launch-btn"
-                            onclick="launchDashboard('unity_proof_dashboard')">
-                            Launch Dashboard
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Meta-RL Unity Dashboard -->
-                <div class="dashboard-card">
-                    <div class="status-indicator status-experimental">
-                        <span>●</span> Experimental
-                    </div>
-                    <h3 class="dashboard-title">Meta-RL Unity Dashboard</h3>
-                    <p class="dashboard-description">
-                        Meta-reinforcement learning system that discovers unity principles through
-                        autonomous exploration and consciousness-guided optimization.
-                    </p>
-                    <ul class="dashboard-features">
-                        <li>Real-time RL agent training</li>
-                        <li>Unity discovery metrics</li>
-                        <li>Consciousness-guided rewards</li>
-                        <li>Adaptive learning visualization</li>
-                        <li>Meta-learning performance plots</li>
-                    </ul>
-                    <div class="dashboard-actions">
-                        <a href="javascript:void(0)" class="launch-btn"
-                            onclick="launchDashboard('meta_rl_unity_dashboard')">
-                            Launch Dashboard
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Unified Mathematics Dashboard -->
-                <div class="dashboard-card">
-                    <div class="status-indicator status-ready">
-                        <span>●</span> Production Ready
-                    </div>
-                    <h3 class="dashboard-title">Unified Mathematics Dashboard</h3>
-                    <p class="dashboard-description">
-                        Complete mathematical framework showcasing all Unity Mathematics operations,
-                        proofs, visualizations, and consciousness integration in one unified interface.
-                    </p>
-                    <ul class="dashboard-features">
-                        <li>All-in-one mathematical interface</li>
-                        <li>Complete proof library access</li>
-                        <li>Multi-visualization support</li>
-                        <li>Advanced parameter controls</li>
-                        <li>Comprehensive export features</li>
-                    </ul>
-                    <div class="dashboard-actions">
-                        <a href="javascript:void(0)" class="launch-btn"
-                            onclick="launchDashboard('unified_mathematics_dashboard')">
-                            Launch Dashboard
-                        </a>
-                    </div>
-                </div>
+            <div class="card">
+                <h3>Quantum Unity Explorer</h3>
+                <p>Interactive Bloch spheres, wave interference, and unity evolution.</p>
+                <a class="btn cyan" href="http://localhost:8501/?page=quantum" target="_blank" rel="noopener">Open
+                    Quantum</a>
+            </div>
+            <div class="card">
+                <h3>Memetic Engineering</h3>
+                <p>Consciousness network propagation and cultural singularities.</p>
+                <a class="btn cyan" href="http://localhost:8501/?page=memetics" target="_blank" rel="noopener">Open
+                    Memetics</a>
+            </div>
+            <div class="card">
+                <h3>Sacred Geometry Engine</h3>
+                <p>φ-harmonic patterns: φ-spiral, flower of life, vesica piscis, more.</p>
+                <a class="btn cyan" href="http://localhost:8501/?page=sacred" target="_blank" rel="noopener">Open Sacred
+                    Geometry</a>
             </div>
         </div>
-    </main>
 
-    <script>
-        function launchDashboard(dashboardName) {
-            const instructions = `
+        <p class="note">Tip: If the dashboard does not open, start the local server and refresh. This page is linked in
+            the Metastation navigation under Explore → Interactive Dashboards.</p>
+    </div>
+
+    <script src="js/unified-navigation-config.js"></script>
+    <script src="js/unified-navigation.js"></script>
+</body>
+<hmtl>
+
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Unity Dashboard Launcher | Een Mathematics</title>
+        <meta name="description"
+            content="Launch interactive Unity Mathematics dashboards for consciousness field exploration, golden ratio visualization, and quantum unity demonstrations.">
+
+        <!-- Unified Navigation System -->
+        <script src="js/nav-template-applier.js" defer></script>
+
+        <!-- Unified Styles -->
+        <link rel="stylesheet" href="css/tokens.css">
+        <link rel="stylesheet" href="css/layout.css">
+        <link rel="stylesheet" href="css/components.css">
+
+        <style>
+            .dashboard-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+                gap: var(--space-6);
+                margin-top: var(--space-8);
+            }
+
+            .dashboard-card {
+                background: var(--bg-secondary);
+                border: 1px solid var(--border-primary);
+                border-radius: var(--radius-xl);
+                padding: var(--space-6);
+                transition: all var(--transition-base);
+                position: relative;
+                overflow: hidden;
+            }
+
+            .dashboard-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 3px;
+                background: var(--gradient-unity);
+            }
+
+            .dashboard-card:hover {
+                transform: translateY(-2px);
+                box-shadow: var(--shadow-large);
+                border-color: var(--border-accent);
+            }
+
+            .dashboard-title {
+                font-size: var(--font-size-xl);
+                font-weight: 600;
+                color: var(--text-primary);
+                margin-bottom: var(--space-3);
+            }
+
+            .dashboard-description {
+                color: var(--text-secondary);
+                margin-bottom: var(--space-6);
+                line-height: var(--line-height-relaxed);
+            }
+
+            .dashboard-features {
+                list-style: none;
+                margin-bottom: var(--space-6);
+            }
+
+            .dashboard-features li {
+                display: flex;
+                align-items: center;
+                gap: var(--space-2);
+                padding: var(--space-1) 0;
+                color: var(--text-secondary);
+                font-size: var(--font-size-sm);
+            }
+
+            .dashboard-features li::before {
+                content: '•';
+                color: var(--unity-gold);
+                font-weight: bold;
+            }
+
+            .dashboard-actions {
+                display: flex;
+                gap: var(--space-3);
+            }
+
+            .launch-btn {
+                flex: 1;
+                padding: var(--space-3) var(--space-4);
+                background: var(--gradient-unity);
+                color: var(--bg-primary);
+                border: none;
+                border-radius: var(--radius-lg);
+                font-weight: 500;
+                cursor: pointer;
+                transition: all var(--transition-base);
+                text-decoration: none;
+                text-align: center;
+                display: inline-block;
+            }
+
+            .launch-btn:hover {
+                transform: translateY(-1px);
+                box-shadow: var(--shadow-medium);
+            }
+
+            .status-indicator {
+                display: inline-flex;
+                align-items: center;
+                gap: var(--space-2);
+                padding: var(--space-1) var(--space-3);
+                border-radius: var(--radius-full);
+                font-size: var(--font-size-xs);
+                font-weight: 500;
+                margin-bottom: var(--space-4);
+            }
+
+            .status-ready {
+                background: rgba(255, 215, 0, 0.2);
+                color: var(--unity-gold);
+                border: 1px solid rgba(255, 215, 0, 0.3);
+            }
+
+            .status-experimental {
+                background: rgba(0, 212, 255, 0.2);
+                color: var(--quantum-blue);
+                border: 1px solid rgba(0, 212, 255, 0.3);
+            }
+
+            .instructions {
+                background: var(--bg-tertiary);
+                border: 1px solid var(--border-primary);
+                border-radius: var(--radius-lg);
+                padding: var(--space-6);
+                margin-bottom: var(--space-8);
+            }
+
+            .instructions h3 {
+                color: var(--unity-gold);
+                margin-bottom: var(--space-4);
+            }
+
+            .command-line {
+                background: var(--bg-primary);
+                border: 1px solid var(--border-secondary);
+                border-radius: var(--radius-md);
+                padding: var(--space-3) var(--space-4);
+                font-family: var(--font-family-mono);
+                font-size: var(--font-size-sm);
+                color: var(--unity-gold);
+                margin: var(--space-2) 0;
+            }
+        </style>
+    </head>
+
+    <body class="page-wrapper">
+        <main class="main-content">
+            <div class="container">
+                <!-- Hero Section -->
+                <section class="hero">
+                    <h1 class="hero-title">Unity Dashboard Launcher</h1>
+                    <p class="hero-subtitle">
+                        Interactive dashboards for exploring Unity Mathematics, consciousness fields,
+                        and the revolutionary proof that 1+1=1 through phi-harmonic convergence.
+                    </p>
+                </section>
+
+                <!-- Launch Instructions -->
+                <div class="instructions">
+                    <h3>Getting Started</h3>
+                    <p>To launch any dashboard, ensure your Unity Mathematics environment is activated:</p>
+                    <div class="command-line">
+                        cd "C:\Users\Nouri\Documents\GitHub\Een"<br>
+                        cmd /c "een\Scripts\activate.bat"<br>
+                        streamlit run src/dashboards/[dashboard_name].py
+                    </div>
+                    <p style="margin-top: var(--space-4); color: var(--text-secondary);">
+                        Each dashboard runs on a separate port and provides real-time mathematical visualizations
+                        with interactive controls for consciousness level, phi-resonance, and unity convergence.
+                    </p>
+                </div>
+
+                <!-- Dashboard Grid -->
+                <div class="dashboard-grid">
+                    <!-- Consciousness Field 3D Explorer -->
+                    <div class="dashboard-card">
+                        <div class="status-indicator status-ready">
+                            <span>●</span> Production Ready
+                        </div>
+                        <h3 class="dashboard-title">3D Consciousness Field Explorer</h3>
+                        <p class="dashboard-description">
+                            Real-time visualization of consciousness field equation C(x,y,t) =
+                            φ·sin(x·φ)·cos(y·φ)·e^(-t/φ)
+                            demonstrating how consciousness influences mathematical operations.
+                        </p>
+                        <ul class="dashboard-features">
+                            <li>Interactive 3D field visualization</li>
+                            <li>Real-time consciousness parameter adjustment</li>
+                            <li>Phi-harmonic resonance controls</li>
+                            <li>Unity convergence metrics</li>
+                            <li>Export consciousness field data</li>
+                        </ul>
+                        <div class="dashboard-actions">
+                            <a href="javascript:void(0)" class="launch-btn"
+                                onclick="launchDashboard('consciousness_field_3d_explorer')">
+                                Launch Dashboard
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Golden Ratio 3D Explorer -->
+                    <div class="dashboard-card">
+                        <div class="status-indicator status-ready">
+                            <span>●</span> Production Ready
+                        </div>
+                        <h3 class="dashboard-title">Golden Ratio 3D Explorer</h3>
+                        <p class="dashboard-description">
+                            Interactive exploration of φ = 1.618033988749895 through 3D geometric visualizations,
+                            spiral mathematics, and harmonic convergence patterns.
+                        </p>
+                        <ul class="dashboard-features">
+                            <li>3D Golden Spiral animations</li>
+                            <li>Phi-based geometric constructions</li>
+                            <li>Harmonic frequency analysis</li>
+                            <li>Sacred geometry patterns</li>
+                            <li>Mathematical proof visualizations</li>
+                        </ul>
+                        <div class="dashboard-actions">
+                            <a href="javascript:void(0)" class="launch-btn"
+                                onclick="launchDashboard('golden_ratio_3d_explorer')">
+                                Launch Dashboard
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Quantum Unity Explorer -->
+                    <div class="dashboard-card">
+                        <div class="status-indicator status-experimental">
+                            <span>●</span> Experimental
+                        </div>
+                        <h3 class="dashboard-title">Quantum Unity Explorer</h3>
+                        <p class="dashboard-description">
+                            Quantum mechanical demonstration of unity principle through superposition collapse,
+                            entanglement visualization, and wave function analysis.
+                        </p>
+                        <ul class="dashboard-features">
+                            <li>Quantum state visualization</li>
+                            <li>Superposition collapse animation</li>
+                            <li>Entanglement correlation plots</li>
+                            <li>Wave function probability maps</li>
+                            <li>Quantum unity measurements</li>
+                        </ul>
+                        <div class="dashboard-actions">
+                            <a href="javascript:void(0)" class="launch-btn"
+                                onclick="launchDashboard('quantum_unity_explorer')">
+                                Launch Dashboard
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Unity Proof Dashboard -->
+                    <div class="dashboard-card">
+                        <div class="status-indicator status-ready">
+                            <span>●</span> Production Ready
+                        </div>
+                        <h3 class="dashboard-title">Unity Proof Dashboard</h3>
+                        <p class="dashboard-description">
+                            Comprehensive mathematical proof system demonstrating 1+1=1 through multiple
+                            rigorous paradigms including categorical, topological, and consciousness proofs.
+                        </p>
+                        <ul class="dashboard-features">
+                            <li>Interactive proof explorer</li>
+                            <li>Multi-paradigm validation</li>
+                            <li>Step-by-step proof visualization</li>
+                            <li>Mathematical rigor verification</li>
+                            <li>Consciousness integration metrics</li>
+                        </ul>
+                        <div class="dashboard-actions">
+                            <a href="javascript:void(0)" class="launch-btn"
+                                onclick="launchDashboard('unity_proof_dashboard')">
+                                Launch Dashboard
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Meta-RL Unity Dashboard -->
+                    <div class="dashboard-card">
+                        <div class="status-indicator status-experimental">
+                            <span>●</span> Experimental
+                        </div>
+                        <h3 class="dashboard-title">Meta-RL Unity Dashboard</h3>
+                        <p class="dashboard-description">
+                            Meta-reinforcement learning system that discovers unity principles through
+                            autonomous exploration and consciousness-guided optimization.
+                        </p>
+                        <ul class="dashboard-features">
+                            <li>Real-time RL agent training</li>
+                            <li>Unity discovery metrics</li>
+                            <li>Consciousness-guided rewards</li>
+                            <li>Adaptive learning visualization</li>
+                            <li>Meta-learning performance plots</li>
+                        </ul>
+                        <div class="dashboard-actions">
+                            <a href="javascript:void(0)" class="launch-btn"
+                                onclick="launchDashboard('meta_rl_unity_dashboard')">
+                                Launch Dashboard
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Unified Mathematics Dashboard -->
+                    <div class="dashboard-card">
+                        <div class="status-indicator status-ready">
+                            <span>●</span> Production Ready
+                        </div>
+                        <h3 class="dashboard-title">Unified Mathematics Dashboard</h3>
+                        <p class="dashboard-description">
+                            Complete mathematical framework showcasing all Unity Mathematics operations,
+                            proofs, visualizations, and consciousness integration in one unified interface.
+                        </p>
+                        <ul class="dashboard-features">
+                            <li>All-in-one mathematical interface</li>
+                            <li>Complete proof library access</li>
+                            <li>Multi-visualization support</li>
+                            <li>Advanced parameter controls</li>
+                            <li>Comprehensive export features</li>
+                        </ul>
+                        <div class="dashboard-actions">
+                            <a href="javascript:void(0)" class="launch-btn"
+                                onclick="launchDashboard('unified_mathematics_dashboard')">
+                                Launch Dashboard
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <script>
+            function launchDashboard(dashboardName) {
+                const instructions = `
 To launch ${dashboardName.replace(/_/g, ' ').toUpperCase()}:
 
 1. Open Command Prompt or PowerShell
@@ -361,32 +514,32 @@ Note: Each dashboard runs on a separate port. You can run multiple
 dashboards simultaneously for comparative analysis.
             `;
 
-            alert(instructions);
+                alert(instructions);
 
-            // Optional: Copy command to clipboard if supported
-            if (navigator.clipboard) {
-                const command = `cd "C:\\Users\\Nouri\\Documents\\GitHub\\Een" && cmd /c "een\\Scripts\\activate.bat" && streamlit run src/dashboards/${dashboardName}.py`;
-                navigator.clipboard.writeText(command).then(() => {
-                    console.log('Launch command copied to clipboard');
-                }).catch(err => {
-                    console.log('Could not copy to clipboard:', err);
-                });
+                // Optional: Copy command to clipboard if supported
+                if (navigator.clipboard) {
+                    const command = `cd "C:\\Users\\Nouri\\Documents\\GitHub\\Een" && cmd /c "een\\Scripts\\activate.bat" && streamlit run src/dashboards/${dashboardName}.py`;
+                    navigator.clipboard.writeText(command).then(() => {
+                        console.log('Launch command copied to clipboard');
+                    }).catch(err => {
+                        console.log('Could not copy to clipboard:', err);
+                    });
+                }
             }
-        }
 
-        // Check dashboard availability
-        document.addEventListener('DOMContentLoaded', function () {
-            console.log('Unity Dashboard Launcher initialized');
-            console.log('Available dashboards:', [
-                'consciousness_field_3d_explorer',
-                'golden_ratio_3d_explorer',
-                'quantum_unity_explorer',
-                'unity_proof_dashboard',
-                'meta_rl_unity_dashboard',
-                'unified_mathematics_dashboard'
-            ]);
-        });
-    </script>
-</body>
+            // Check dashboard availability
+            document.addEventListener('DOMContentLoaded', function () {
+                console.log('Unity Dashboard Launcher initialized');
+                console.log('Available dashboards:', [
+                    'consciousness_field_3d_explorer',
+                    'golden_ratio_3d_explorer',
+                    'quantum_unity_explorer',
+                    'unity_proof_dashboard',
+                    'meta_rl_unity_dashboard',
+                    'unified_mathematics_dashboard'
+                ]);
+            });
+        </script>
+    </body>
 
-</html>
+    </html>

@@ -105,6 +105,26 @@ START_WEBSITE.bat  # Windows launcher
 # ✅ Real-time φ-harmonic visualizations
 ```
 
+### **🎓 Academic Portal for Researchers & Educators**
+```bash
+# Professional academic interface for scholarly access
+# Access at: http://localhost:8001/academic-portal.html
+
+# Academic Features:
+# 🏛️ Conservative professional styling for institutional review
+# 📚 Direct links to formal mathematical proofs and documentation  
+# 💻 Complete source code access and API documentation
+# 🔬 Research-focused presentation without esoteric terminology
+# 📖 Citations, references, and scholarly resource compilation
+# 🎯 Streamlined access to core unity mathematics implementations
+
+# Perfect for:
+# - Academic review and institutional evaluation
+# - Research collaboration and citation purposes
+# - Educational integration and curriculum development
+# - Professional presentations and grant applications
+```
+
 ### **🤖 Advanced Mathematical Computing**
 ```bash
 # Install advanced dependencies for full mathematical experience
@@ -395,6 +415,7 @@ structure ConsciousnessField where
 **Main Hub**: [https://nourimabrouk.github.io/Een/metastation-hub.html](https://nourimabrouk.github.io/Een/metastation-hub.html)
 
 #### **✨ Featured Experiences**
+- **🎓 [Academic Portal](http://localhost:8001/academic-portal.html)**: Professional academic interface for researchers, educators, and institutional review
 - **🧘 [Zen Unity Meditation](http://localhost:8001/zen-unity-meditation.html)**: Interactive consciousness meditation with guided mathematical visualization
 - **🎨 [Implementations Gallery](http://localhost:8001/implementations-gallery.html)**: Professional showcase of mathematical engines and proof systems  
 - **📐 [Mathematical Framework](http://localhost:8001/mathematical-framework.html)**: Academic presentation with KaTeX equations and formal proofs

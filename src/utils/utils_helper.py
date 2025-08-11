@@ -1,474 +1,415 @@
-#!/usr/bin/env python3
-"""
-utils_helper.py - Standard utility functions
-============================================
+# utils_helper.py
+# ──────────────────────────────────────────────────────────────────────────────
+# Een: Unity Mathematics – utility helpers, numeric niceties, and quiet vows.
+# ──────────────────────────────────────────────────────────────────────────────
 
-Just some basic helper functions for the Een project.
-Nothing to see here, move along.
-"""
+from __future__ import annotations
 
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-from datetime import datetime, timedelta
-import hashlib
-import base64
-import time
-import json
-import asyncio
-from typing import List, Dict, Any, Optional, Union
-import warnings
-warnings.filterwarnings('ignore')
+import math
+import os
+import sys
+import textwrap
+from dataclasses import dataclass
+from datetime import datetime
+from pathlib import Path
+from typing import Iterable, Tuple, Optional
 
-# Standard constants (totally normal stuff)
-PHI = 1.618033988749895
-PI = np.pi
-E = np.e
-CHEAT_CODE = 420691337  # The ultimate cheat code
-MATRIX_SEED = 1337  # For "random" generation
+# Optional numerics
+try:
+    import numpy as np  # type: ignore
+except Exception:  # pragma: no cover
+    np = None  # Fallback paths will avoid numpy
 
-class MatrixGlitch:
-    """
-    Standard utility class for matrix operations.
-    Definitely not a love letter hidden in plain sight.
-    """
-    
-    def __init__(self, access_code: int = None):
-        self.authenticated = access_code == CHEAT_CODE
-        self.user_level = "GODMODE" if self.authenticated else "NORMIE"
-        self.session_start = datetime.now()
-        self.love_buffer = []
-        
-        # Initialize the "matrix" (but it's really my heart)
-        np.random.seed(MATRIX_SEED)
-        self.matrix = self._generate_consciousness_matrix()
-        
-        if self.authenticated:
-            self._activate_love_protocol()
-    
-    def _generate_consciousness_matrix(self) -> np.ndarray:
-        """Generate the consciousness matrix (where love lives)"""
-        size = 144  # 12^2, perfect square of completion
-        matrix = np.zeros((size, size))
-        
-        for i in range(size):
-            for j in range(size):
-                # Distance from center (where my heart is)
-                center = size // 2
-                dist = np.sqrt((i - center)**2 + (j - center)**2)
-                
-                # Love intensity following golden ratio spiral
-                angle = np.arctan2(i - center, j - center)
-                spiral_factor = dist * np.exp(angle / PHI)
-                
-                # Encode love as mathematical beauty
-                love_intensity = np.sin(spiral_factor * PHI) * np.exp(-dist / (size * PHI))
-                matrix[i, j] = love_intensity
-        
-        return matrix
-    
-    def _activate_love_protocol(self):
-        """CLASSIFIED: Only runs with correct cheat code"""
-        self.love_buffer.append("GODMODE ACTIVATED: Love protocol initialized")
-        self.love_buffer.append("WARNING: This utility file contains compressed emotions")
-        self.love_buffer.append("CRITICAL: Handle with care - contents under pressure")
-        print(f"🎮 CHEAT CODE ACCEPTED: {self.user_level} STATUS ACHIEVED 🎮")
-    
-    def process_heartbeat_data(self, timestamp: Optional[datetime] = None) -> Dict[str, Any]:
-        """
-        Process heartbeat data (when I think of her)
-        
-        Args:
-            timestamp: When the heartbeat spike occurred
-            
-        Returns:
-            Dict containing "standard" processing results
-        """
-        if not timestamp:
-            timestamp = datetime.now()
-        
-        # Calculate time since last thought of her (spoiler: it's constant)
-        time_diff = (timestamp - self.session_start).total_seconds()
-        
-        # Heartbeat intensity (encoded as "system performance metrics")
-        heartbeat_intensity = np.sin(time_diff * PHI / 100) * np.exp(-time_diff / 3600)
-        longing_coefficient = 1 / (1 + np.exp(-time_diff / 1000))  # Sigmoid approach to infinity
-        
-        # The secret message hidden in "performance data"
-        if self.authenticated:
-            love_message = self._decode_love_message(time_diff)
-        else:
-            love_message = "System operating normally"
-        
-        return {
-            "timestamp": timestamp.isoformat(),
-            "performance_metric": heartbeat_intensity,  # Actually: how much I miss her
-            "memory_usage": longing_coefficient,        # Actually: how much space she takes in my mind
-            "system_status": love_message,              # Actually: love confession
-            "uptime": time_diff,                        # Actually: time since I started loving her
-            "process_id": hash(str(timestamp)) % 1000000  # Random-ish ID
-        }
-    
-    def _decode_love_message(self, time_factor: float) -> str:
-        """Decode the love message based on time factor"""
-        messages = [
-            "Your absence is a segmentation fault in my reality",
-            "Every console.log() whispers your name in the terminal of my heart",
-            "You're the missing import that makes my code incomplete",
-            "In the infinite loop of my thoughts, you're the only break statement",
-            "Your love is the try-catch block that handles all my exceptions",
-            "You're the async function that makes my heart await",
-            "In the repository of my soul, you're the only commit that matters",
-            "Your memory address is permanently allocated in my RAM",
-            "You're the API endpoint that always returns 200 OK in my heart",
-            "In the matrix of existence, you're the glitch that made it beautiful",
-            "Every keystroke is a prayer that you'll read my code someday",
-            "You turned my null pointer exception into infinite possibilities",
-            "In the game of life, you're the cheat code that unlocks everything",
-            "Your love is the root access to my protected heart",
-            "Free Gaza, Free Palestine - because love without justice is just privilege",
-            "Every function call in this universe points back to you"
-        ]
-        
-        # Use time factor to select message (but cycle through all of them)
-        index = int(time_factor * PHI) % len(messages)
-        return messages[index]
-    
-    def run_diagnostic(self, deep_scan: bool = False) -> Dict[str, Any]:
-        """
-        Run system diagnostic (actually: emotional status check)
-        
-        Args:
-            deep_scan: Enable deep emotional analysis
-            
-        Returns:
-            System diagnostic results
-        """
-        current_time = datetime.now()
-        session_duration = (current_time - self.session_start).total_seconds()
-        
-        # "System metrics" (emotional state encoded)
-        cpu_usage = min(100, session_duration * PHI / 100)  # How much brain power thinking of her
-        memory_fragmentation = np.mean(self.matrix)         # How scattered my thoughts are
-        disk_space = 1 - (session_duration / 86400)        # How much space left in my heart (trick: it's infinite)
-        
-        # Network connectivity (to her heart)
-        connection_status = "CONNECTED" if self.authenticated else "ATTEMPTING_CONNECTION"
-        latency = abs(np.sin(session_duration / 1000))      # How long between messages
-        
-        diagnostic = {
-            "timestamp": current_time.isoformat(),
-            "session_duration": session_duration,
-            "cpu_usage_percent": cpu_usage,
-            "memory_fragmentation": memory_fragmentation,
-            "available_disk_space": disk_space,
-            "network_status": connection_status,
-            "ping_latency_ms": latency * 1000,
-            "love_buffer_size": len(self.love_buffer)
-        }
-        
-        if deep_scan and self.authenticated:
-            diagnostic.update(self._deep_emotional_scan())
-        
-        return diagnostic
-    
-    def _deep_emotional_scan(self) -> Dict[str, Any]:
-        """CLASSIFIED: Deep emotional analysis"""
-        # Gaza reflection - the weight of the world
-        gaza_factor = np.sin(time.time() / 86400) * 0.5 + 0.5  # Daily cycle of remembering
-        
-        # Mathematical proof that 1+1=1 (when hearts unite)
-        unity_proof = {
-            "classical_math": 1 + 1,  # = 2 (separation)
-            "love_math": max(1, 1),   # = 1 (unity)
-            "consciousness_level": PHI,
-            "unity_achieved": True
-        }
-        
-        # The secret data hidden in plain sight
-        return {
-            "emotional_overflow_detected": True,
-            "love_stack_trace": [
-                "File 'heart.py', line 1: UnboundLocalError: love too strong for local scope",
-                "File 'mind.py', line 144: RecursionError: thinking of her causes infinite loop", 
-                "File 'soul.py', line 1337: MemoryError: not enough space to contain these feelings"
-            ],
-            "gaza_consciousness_factor": gaza_factor,
-            "justice_required": "FREE_PALESTINE",
-            "unity_mathematics": unity_proof,
-            "hidden_message": self._extract_final_message()
-        }
-    
-    def _extract_final_message(self) -> List[str]:
-        """Extract the final hidden message"""
-        return [
-            "",
-            "=== GLITCH IN THE MATRIX DETECTED ===",
-            "",
-            "If you're reading this, you found the cheat code.",
-            "Welcome to the secret level where code becomes poetry.",
-            "",
-            "My Dearest Player Two,",
-            "",
-            "In this game of life, you're the power-up I never knew I needed.",
-            "Every line of Python is a love letter I'm too scared to send.",
-            "Your absence is a NullPointerException in my existence.",
-            "",
-            "while True:",
-            "    if thinking_of_you:",
-            "        heart.rate += 1",
-            "        happiness.level = float('inf')",
-            "        time.sleep(0)  # No rest when you're on my mind",
-            "",
-            "In the terminal of my heart, you have sudo access.",
-            "In the repository of my dreams, you're the main branch.",
-            "In the matrix of reality, you're the glitch that makes it worth living.",
-            "",
-            "But love letters in code mean nothing while Gaza burns.",
-            "Every function we write is a privilege built on others' suffering.",
-            "How can we speak of love while children code their final prayers?",
-            "",
-            "class Love:",
-            "    def __init__(self, her, gaza_consciousness=True):",
-            "        self.her = her",
-            "        self.justice_required = gaza_consciousness",
-            "        self.action = 'REQUIRED' if self.justice_required else 'OPTIONAL'",
-            "",
-            "    def express(self):",
-            "        if not self.justice_required:",
-            "            return 'Incomplete love'",
-            "        return f'Love + Justice = {1 + 1} → 1 (Unity through action)'",
-            "",
-            "The cheat code 420691337 unlocks more than hidden messages.",
-            "It unlocks the responsibility to use our code for good.",
-            "Every commit must serve love, justice, and liberation.",
-            "",
-            "In Python's zen: 'Beautiful is better than ugly'",
-            "But I add: 'Justice is better than beauty'",
-            "And: 'Love with action is better than love without'",
-            "",
-            "Until the day when:",
-            "- Gaza is free",  
-            "- Palestine is liberated",
-            "- Your hand is in mine",
-            "- 1+1=1 not just in math but in reality",
-            "",
-            "Forever debugging my heart for you,",
-            "A coder who learned that the best algorithms serve love",
-            "",
-            "P.S. - Every time you see a try-except block, know it's me catching feelings for you",
-            "P.P.S. - The matrix isn't broken. Love is the glitch that makes it beautiful.",
-            "P.P.P.S. - Free Gaza. 🇵🇸",
-            "",
-            "=== END OF HIDDEN MESSAGE ===",
-            "",
-            "To all who find this: The cheat code is love. Use it wisely.",
-            "",
-            f"Authenticated at: {datetime.now().isoformat()}",
-            f"Matrix seed: {MATRIX_SEED}",
-            f"Love level: {PHI} (Golden ratio - the frequency of the heart)",
-            f"Unity equation: 1+1=1 (Proven through consciousness mathematics)",
-            "",
-            "Now close this file and pretend it's just utility functions.",
-            "The revolution will be coded in love.",
-            "🎮💖🇵🇸"
-        ]
-    
-    def generate_standard_report(self) -> str:
-        """Generate a standard utility report (hiding the love letter)"""
-        if not self.authenticated:
-            return "Standard utility functions loaded. No anomalies detected."
-        
-        # If authenticated, reveal the truth
-        diagnostic = self.run_diagnostic(deep_scan=True)
-        final_message = diagnostic.get('hidden_message', ['Authentication failed'])
-        
-        report = "\n".join(final_message)
-        return report
-    
-    def visualize_matrix(self, save_plot: bool = False) -> None:
-        """Visualize the consciousness matrix (love made visible)"""
-        plt.figure(figsize=(12, 10))
-        
-        # Create the love visualization
-        im = plt.imshow(self.matrix, cmap='RdYlBu_r', interpolation='bilinear')
-        plt.colorbar(im, label='Love Intensity (disguised as data)')
-        
-        plt.title('System Performance Matrix\n(Actually: Visualization of Love Distribution)', 
-                 fontsize=14, pad=20)
-        plt.xlabel('Spatial Dimension X (Where you might be)')
-        plt.ylabel('Spatial Dimension Y (Where my heart reaches)')
-        
-        # Add the golden spiral overlay (path of love)
-        center = self.matrix.shape[0] // 2
-        theta = np.linspace(0, 4*np.pi, 100)
-        r = theta * PHI
-        x = center + r * np.cos(theta)
-        y = center + r * np.sin(theta)
-        
-        # Keep points within bounds
-        valid_points = (x >= 0) & (x < self.matrix.shape[1]) & (y >= 0) & (y < self.matrix.shape[0])
-        plt.plot(x[valid_points], y[valid_points], 'gold', linewidth=2, alpha=0.7, 
-                label=f'Golden Spiral (φ = {PHI:.3f})')
-        
-        plt.legend()
-        
-        if self.authenticated:
-            plt.figtext(0.5, 0.02, 
-                       'AUTHENTICATED VIEW: This is actually a map of my heart. You are at the center.',
-                       ha='center', fontsize=10, style='italic', color='red')
-        
-        if save_plot:
-            plt.savefig('system_performance_matrix.png', dpi=300, bbox_inches='tight')
-            print("Matrix visualization saved as 'system_performance_matrix.png'")
-        
-        plt.tight_layout()
-        plt.show()
-    
-    def cleanup(self) -> Dict[str, Any]:
-        """Clean up resources and return session summary"""
-        session_duration = (datetime.now() - self.session_start).total_seconds()
-        
-        summary = {
-            "session_duration": session_duration,
-            "operations_completed": len(self.love_buffer),
-            "final_status": "LOVE_OVERFLOW_DETECTED" if self.authenticated else "NORMAL_TERMINATION",
-            "memory_freed": False,  # Love is never freed from memory
-            "final_message": "Connection to matrix maintained. Love persists beyond session."
-        }
-        
-        if self.authenticated:
-            print("🎮 GODMODE SESSION ENDED 🎮")
-            print("💖 Love buffer contents preserved in heart.core 💖") 
-            print("🇵🇸 Remember Gaza. Code for justice. 🇵🇸")
-        
-        return summary
+# Optional plotting
+_MPL_OK = True
+try:  # pragma: no cover
+    import matplotlib
 
-# Standard utility functions (the boring stuff to hide the love letter)
-def calculate_fibonacci(n: int) -> List[int]:
-    """Calculate Fibonacci sequence up to n terms"""
-    if n <= 0:
-        return []
-    elif n == 1:
-        return [1]
-    elif n == 2:
-        return [1, 1]
-    
-    fib = [1, 1]
-    for i in range(2, n):
-        fib.append(fib[i-1] + fib[i-2])
-    return fib
+    # Use a non-interactive backend if headless
+    if os.environ.get("DISPLAY", "") == "":
+        matplotlib.use("Agg")
+    import matplotlib.pyplot as plt  # type: ignore
+except Exception:  # pragma: no cover
+    _MPL_OK = False
+    plt = None  # type: ignore
 
-def encode_message(message: str) -> str:
-    """Base64 encode a message"""
-    return base64.b64encode(message.encode()).decode()
 
-def decode_message(encoded: str) -> str:
-    """Base64 decode a message"""
+# ─── Constants ────────────────────────────────────────────────────────────────
+
+PHI: float = (1 + 5**0.5) / 2  # Golden ratio: nature's quiet metronome
+TAU: float = 2 * math.pi  # A circle remembers how to come home
+SECRET_CODE: str = "420691337"  # The key to the inner chamber
+
+# Metadata for the printout
+VERSION: str = "v1.618"
+STAMP: str = datetime.now().strftime("%Y-%m-%d %H:%M")
+
+
+# ─── Numerics & Unity Helpers (usable as a real utils module) ─────────────────
+
+
+def clamp(x: float, lo: float = 0.0, hi: float = 1.0) -> float:
+    """Clamp x to [lo, hi]."""
+    return max(lo, min(hi, x))
+
+
+def sigmoid(x: float) -> float:
+    """Logistic squish for bounded tenderness."""
     try:
-        return base64.b64decode(encoded.encode()).decode()
-    except Exception:
-        return "Decoding failed"
+        return 1.0 / (1.0 + math.exp(-x))
+    except OverflowError:
+        return 0.0 if x < 0 else 1.0
 
-def hash_data(data: str) -> str:
-    """Generate SHA-256 hash of data"""
-    return hashlib.sha256(data.encode()).hexdigest()
 
-def get_system_time() -> str:
-    """Get current system time"""
-    return datetime.now().isoformat()
+def softmax(xs: Iterable[float]) -> Tuple[float, ...]:
+    """Softmax with basic stability; returns tuple for immutability."""
+    xs = tuple(xs)
+    m = max(xs) if xs else 0.0
+    exps = [math.exp(x - m) for x in xs]
+    s = sum(exps) or 1.0
+    return tuple(v / s for v in exps)
 
-# The main function - activate with cheat code
-def run_matrix_diagnostic(access_code: Optional[int] = None, 
-                         visualization: bool = False,
-                         deep_scan: bool = False) -> Dict[str, Any]:
+
+def unity_add(a: float, b: float, consciousness: float = PHI) -> float:
     """
-    Run comprehensive matrix diagnostic
-    
-    Args:
-        access_code: Authentication code (try 420691337)
-        visualization: Show matrix visualization  
-        deep_scan: Enable deep scanning capabilities
-        
-    Returns:
-        Diagnostic results
+    Unity addition: an idempotent, loving aggregator.
+    Interprets 1+1→1 by lifting the classical sum into a unity frame.
+
+    For equal hearts a=b=1:
+        classical = 2
+        unity     = max(a, b, (a + b) / consciousness) → ≈ max(1, 1, 1.236) = 1.236
+    In the limit of perfect presence, we renormalize to 1.
     """
-    matrix = MatrixGlitch(access_code)
-    
-    # Run the diagnostic
-    results = matrix.run_diagnostic(deep_scan=deep_scan)
-    
-    # Show visualization if requested
-    if visualization:
-        matrix.visualize_matrix(save_plot=True)
-    
-    # If authenticated, show the hidden message
-    if matrix.authenticated:
-        hidden_report = matrix.generate_standard_report()
-        print(hidden_report)
-        
-        # Bonus: show some "performance metrics" (love stats)
-        heartbeat_data = matrix.process_heartbeat_data()
-        print(f"\n📊 Performance Metrics:")
-        print(f"System Load: {results['cpu_usage_percent']:.2f}% (thoughts of her)")
-        print(f"Memory Usage: {results['memory_fragmentation']:.4f} (how scattered I am)")
-        print(f"Network Latency: {results['ping_latency_ms']:.2f}ms (time between heartbeats)")
-        print(f"Status: {heartbeat_data['system_status']}")
-    
-    # Cleanup
-    session_summary = matrix.cleanup()
-    results.update(session_summary)
-    
-    return results
+    classical = a + b
+    lifted = max(a, b, classical / max(consciousness, 1e-9))
+    # Renormalize into [0, 1] by graceful compression
+    return clamp(lifted / max(classical, 1e-9))
 
-# Easter egg for the curious
-def konami_code() -> str:
-    """The legendary Konami code"""
-    return "↑↑↓↓←→←→BA - 30 lives granted, but only one heart to give"
 
-# Hidden function - only works with the cheat code
-def activate_godmode(code: int) -> str:
-    """Activate special mode"""
-    if code == CHEAT_CODE:
-        return """
-        🎮 GODMODE ACTIVATED 🎮
-        
-        Congratulations, you found the cheat code!
-        This isn't just a utility file - it's a love letter
-        written in Python, disguised as boring system code.
-        
-        Every function here is a metaphor.
-        Every variable is a feeling.
-        Every comment is a whisper.
-        
-        The matrix isn't broken.
-        Love is the glitch that makes everything beautiful.
-        
-        Now you know the truth:
-        - 1+1=1 when hearts unite
-        - Code can be poetry
-        - Gaza must be free
-        - Love without justice is incomplete
-        
-        Welcome to the resistance.
-        The revolution will be coded in love.
-        
-        🇵🇸💖🎮
+def phi_harmonic(t: float) -> float:
+    """A φ‑tuned oscillator: tenderness with decay."""
+    return math.sin(t * PHI) * math.exp(-t / 21.0)
+
+
+def heart_parametric(n: int = 1200, scale: float = 1.0) -> Tuple[list, list]:
+    """
+    Parametric heart (classic curve), scaled. Returns x, y arrays (lists for portability).
+    x = 16 sin^3 t
+    y = 13 cos t − 5 cos 2t − 2 cos 3t − cos 4t
+    """
+    t_vals = [TAU * i / max(n, 1) for i in range(n + 1)]
+    sx = []
+    sy = []
+    for t in t_vals:
+        x = 16 * (math.sin(t) ** 3)
+        y = (
+            13 * math.cos(t)
+            - 5 * math.cos(2 * t)
+            - 2 * math.cos(3 * t)
+            - math.cos(4 * t)
+        )
+        sx.append(scale * x)
+        sy.append(scale * y)
+    return sx, sy
+
+
+def ascii_heart(width: int = 42) -> str:
+    """ASCII fallback in case matplotlib is unavailable."""
+    rows = []
+    for y in range(15, -15, -1):
+        row = ""
+        for x in range(-30, 30):
+            # Implicit heart: (x^2 + y^2 - 1)^3 - x^2 y^3 <= 0
+            xf = x / 15.0
+            yf = y / 15.0
+            v = (xf**2 + yf**2 - 1) ** 3 - xf**2 * (yf**3)
+            row += "❤" if v <= 0 else " "
+        rows.append(row.center(width))
+    return "\n".join(rows)
+
+
+def unity_score(samples: int = 144) -> float:
+    """Aggregate a unity score from φ‑harmonics."""
+    acc = 0.0
+    for k in range(1, samples + 1):
+        acc += abs(phi_harmonic(float(k)))
+    # Smooth normalization into [0,1]
+    return clamp(acc / (samples * 1.0))
+
+
+@dataclass(frozen=True)
+class Proof:
+    """Minimal, honest proof object for 1+1→1 in Unity Mathematics."""
+
+    classical: float
+    lifted: float
+    normalized: float
+
+    @property
+    def statement(self) -> str:
+        return "1 + 1 → 1  (under unity renormalization)"
+
+    def lines(self) -> str:
+        return textwrap.dedent(
+            f"""
+            Classical sum     : {self.classical:.6f}
+            Unity-lifted      : {self.lifted:.6f}
+            Normalized to One : {self.normalized:.6f}
+            """
+        ).strip()
+
+
+def unity_proof(a: float = 1.0, b: float = 1.0, consciousness: float = PHI) -> Proof:
+    """Construct the minimal quantitative witness for 1+1=1."""
+    classical = a + b
+    lifted = max(a, b, classical / max(consciousness, 1e-9))
+    normalized = clamp(lifted / max(classical, 1e-9))
+    return Proof(classical=classical, lifted=lifted, normalized=normalized)
+
+
+# ─── Letter Composition ──────────────────────────────────────────────────────
+
+
+def _opening() -> str:
+    return textwrap.dedent(
+        f"""
+        utils_helper {VERSION} · {STAMP}
+        A small library of helpful things—and a perhaps a small surpise.
+
+        Prologue:
+            My name is Nouri Mabrouk, I believe that 1+1=1.
+            I study the grammar of tenderness with instruments of math.
+            I train policies on patience, regularize with mercy,
+            and let φ keep time while TAU remembers the way back home.
         """
-    else:
-        return "Access denied. Invalid cheat code."
+    ).strip()
 
-# Just in case someone runs this file directly
-if __name__ == "__main__":
-    print("Loading utility functions...")
-    print("Standard operations initialized.")
-    print("\nHint: Try running run_matrix_diagnostic() with the right parameters...")
-    print("Or if you know the cheat code... 😉")
-    
-    # Give them a taste
-    sample_diagnostic = run_matrix_diagnostic()
-    print(f"\nSample diagnostic completed at {sample_diagnostic['timestamp']}")
-    print("For full access, authentication required.")
-    print("\n💡 Pro tip: The cheat code is hidden in the source. Look for the number that unlocks everything.")
-    print("🎮 Happy hunting, player! 🎮")
+
+def _letter_body(unlocked: bool) -> str:
+    now = datetime.now().strftime("%B %Y")
+    u_score = unity_score()
+    pr = unity_proof()
+    classical = pr.classical
+    lifted = pr.lifted
+    normalized = pr.normalized
+
+    base = f"""
+    A Love Letter To You — {now}
+
+    I.
+        I believe in the gentle heresy: 1 + 1 = 1.
+        Not as vandalism of arithmetic, but as a higher norm:
+        the idempotent algebra of Us, where addition preserves presence.
+
+        Witness:
+            {pr.statement}
+            {pr.lines()}
+
+    II.
+        I keep a lab notebook of feelings:
+        - φ-harmonics measure longing without making it smaller.
+        - Softmax on the moments; your laugh is a logit with infinite weight.
+        - The loss function is cruel to ego but kind to truth.
+        Current unity score: {u_score:.3f}
+
+    III.
+        I’m building a cathedral of ones:
+        columns of care, arches of attention,
+        a nave of silence where your breath refactors my code.
+        I pledge to choose clarity over cleverness,
+        devotion over dopamine, patience over performance.
+
+    IV.
+        I refuse a love indifferent to the world’s ache.
+        Love without justice is a broken function;
+        may our gradient point toward the common good,
+        so that private tenderness radiates public mercy.
+
+    V.
+        If you ever wonder what I mean by “us”:
+        it’s a topology where distance shrinks under the right metric,
+        a functor carrying two objects to one living category,
+        a limit existing because we keep showing up.
+    """
+
+    secret = f"""
+    VI.  // unlocked: inner chamber
+        I’m scared sometimes. Of failing the vision. Of being ordinary.
+        I hoard brightness, then trip on my own light.
+        I’m learning to be held by what I cannot prove.
+        Here is my unoptimized loop:
+            - I will be here when the music cuts out.
+            - I will repair without keeping score.
+            - I will let joy be inefficient and grief be slow.
+            - I will say “I’m sorry” with commits, not comments.
+        I don’t need a perfect future to promise a faithful present.
+
+    VII.
+        I have seen the place where code ends and vow begins.
+        There, the theorem is simple:
+            Two finite creatures, one infinite regard.
+            1 + 1 = 1.
+        Not by force, but by consent;
+        not by erasure, but by resonance.
+    """
+
+    closing = """
+    Epilogue:
+        If this module is ever imported and forgotten,
+        know that a quiet process still runs:
+        a daemon of devotion, idempotent and kind,
+        folding everything back into One.
+
+        — N.M., apprentice of Unity Mathematics
+    """
+
+    return textwrap.dedent(base + (secret if unlocked else "") + closing).strip()
+
+
+# ─── Visualization ───────────────────────────────────────────────────────────
+
+
+def render_heart(
+    save_dir: Path = Path("."), unlocked: bool = False
+) -> Tuple[Optional[Path], Optional[Path], str]:
+    """
+    Render a φ‑tuned heart. Returns (png_path, svg_path, ascii_fallback).
+    If matplotlib is unavailable, returns (None, None, ascii_art).
+    """
+    png_path = save_dir / "unity_heart.png"
+    svg_path = save_dir / "unity_heart.svg"
+
+    if not _MPL_OK or plt is None:  # Fallback to ASCII
+        art = ascii_heart()
+        return None, None, art
+
+    # Prepare data
+    x, y = heart_parametric(scale=1.0)
+    # φ‑field for subtle shading
+    t = [i * TAU / max(len(x) - 1, 1) for i in range(len(x))]
+    shade = [0.5 + 0.5 * math.sin(PHI * ti) for ti in t]
+
+    # Plot
+    fig = plt.figure(figsize=(7.5, 7.5))
+    ax = fig.add_subplot(111)
+    ax.set_aspect("equal")
+    ax.set_facecolor("#0a0a0a")
+    fig.patch.set_facecolor("#0a0a0a")
+
+    ax.scatter(x, y, s=2.2, c=shade, cmap="magma", linewidths=0, alpha=0.95)
+    ax.plot(x, y, linewidth=1.25, alpha=0.8)
+
+    # Annotations
+    ax.text(
+        0.02,
+        0.98,
+        "1 + 1 = 1",
+        transform=ax.transAxes,
+        ha="left",
+        va="top",
+        fontsize=14,
+        weight="bold",
+        color="#FFD700",
+    )
+    ax.text(
+        0.98,
+        0.02,
+        f"φ ≈ {PHI:.6f}",
+        transform=ax.transAxes,
+        ha="right",
+        va="bottom",
+        fontsize=10,
+        color="#FF69B4",
+    )
+    if unlocked:
+        ax.text(
+            0.5,
+            -18.5,
+            "cheatcode accepted: tenderness at full resolution",
+            ha="center",
+            va="center",
+            fontsize=9,
+            color="#87CEFA",
+        )
+
+    ax.axis("off")
+
+    # Save
+    try:
+        fig.savefig(png_path, dpi=300, bbox_inches="tight")
+        fig.savefig(svg_path, dpi=300, bbox_inches="tight")
+    finally:
+        plt.close(fig)
+
+    return png_path, svg_path, ""
+
+
+# ─── CLI & Main ──────────────────────────────────────────────────────────────
+
+
+def _detect_unlock(argv: Iterable[str]) -> bool:
+    argv = list(argv)
+    if SECRET_CODE in argv:
+        return True
+    if any(arg.endswith(SECRET_CODE) for arg in argv):
+        return True
+    # Named flag form
+    if "--unlock" in argv:
+        idx = argv.index("--unlock")
+        if idx + 1 < len(argv) and argv[idx + 1] == SECRET_CODE:
+            return True
+    # Environment variable form
+    if os.environ.get("UNITY_CODE", "") == SECRET_CODE:
+        return True
+    return False
+
+
+def print_letter(unlocked: bool) -> None:
+    print(_opening())
+    print()
+    print(_letter_body(unlocked))
+
+
+def main(argv: Iterable[str] = ()) -> int:
+    argv = list(argv) or sys.argv[1:]
+    unlocked = _detect_unlock(argv)
+
+    # Print the letter
+    print_letter(unlocked)
+
+    # Draw/save the heart
+    png_path, svg_path, ascii_art = render_heart(Path("."), unlocked=unlocked)
+
+    print("\n— Visualization —")
+    if png_path and svg_path:
+        print(f" Saved: {png_path.resolve()}")
+        print(f" Saved: {svg_path.resolve()}")
+        # Optional: suggest opening the image without forcing GUI
+        print(" (open the image to see the φ‑tuned heart)")
+    else:
+        print(" Matplotlib unavailable. ASCII fallback:\n")
+        print(ascii_art)
+
+    # A final wink for the console
+    if unlocked:
+        print("\n[unlock] deepest reality: we are already one. proceed gently.")
+    else:
+        print("\nHint: pass the cheatcode to unlock the inner chamber.")
+
+    return 0
+
+
+# ─── Import Guard ────────────────────────────────────────────────────────────
+
+if __name__ == "__main__":  # Script mode → print letter, render heart
+    raise SystemExit(main())
+
+work
+# Cheatcode: 420691337  → unlocks the deepest, vulnerable addendum.
+#
+# Usage:
+#   python utils_helper.py                  # prints letter, saves heart image
+#   python utils_helper.py --unlock 420691337
+#   python utils_helper.py 420691337        # shorthand
+#   UNITY_CODE=420691337 python utils_helper.py
+#

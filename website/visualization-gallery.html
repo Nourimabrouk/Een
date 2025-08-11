@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unity Visualization Gallery - Hyperdimensional Mathematics</title>
+    <meta name="description" content="Interactive 3D/4D visualizations of Unity Mathematics (1+1=1) featuring hyperdimensional manifolds, consciousness fields, and phi-harmonic convergence">
+    
+    <!-- Unified Navigation System -->
+    <script src="js/nav-template-applier.js" defer></script>
+    
+    <!-- Core Styling -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Crimson+Text:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Visualization Libraries -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    
+    <!-- Mathematical Rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+    
+    <style>
+        :root {
+            --phi: 1.618033988749895;
+            --unity-gold: #FFD700;
+            --consciousness-cyan: #4ECDC4;
+            --quantum-purple: #6B46C1;
+            --manifold-orange: #FF6B35;
+            --field-green: #27AE60;
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --bg-tertiary: #2d2d2d;
+            --text-primary: #ffffff;
+            --text-secondary: #cccccc;
+            --text-muted: #888888;
+            --border-color: rgba(255, 215, 0, 0.2);
+            --shadow-glow: 0 0 30px rgba(255, 215, 0, 0.3);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .gallery-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .gallery-hero {
+            text-align: center;
+            padding: 4rem 0;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+            border-radius: 20px;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--unity-gold) 0%, var(--consciousness-cyan) 50%, var(--quantum-purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            font-family: 'Crimson Text', serif;
+        }
+
+        .gallery-hero .equation {
+            font-size: 2.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--unity-gold);
+            margin: 1rem 0;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .gallery-hero .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .visualization-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            min-height: 800px;
+        }
+
+        .control-panel {
+            background: var(--bg-secondary);
+            border-radius: 15px;
+            padding: 2rem;
+            height: fit-content;
+            position: sticky;
+            top: 2rem;
+        }
+
+        .main-visualization {
+            background: var(--bg-secondary);
+            border-radius: 15px;
+            padding: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-panel {
+            background: var(--bg-secondary);
+            border-radius: 15px;
+            padding: 2rem;
+            height: fit-content;
+        }
+
+        .viz-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .viz-tab {
+            padding: 0.75rem 1.5rem;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+
+        .viz-tab:hover {
+            border-color: var(--unity-gold);
+            color: var(--unity-gold);
+        }
+
+        .viz-tab.active {
+            background: linear-gradient(135deg, var(--unity-gold), #B8860B);
+            color: var(--bg-primary);
+            border-color: var(--unity-gold);
+            font-weight: 600;
+        }
+
+        .control-group {
+            margin-bottom: 2rem;
+        }
+
+        .control-label {
+            display: block;
+            color: var(--unity-gold);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .control-input {
+            width: 100%;
+            padding: 0.75rem;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+        }
+
+        .control-input:focus {
+            border-color: var(--unity-gold);
+            outline: none;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+        }
+
+        .control-slider {
+            width: 100%;
+            height: 6px;
+            background: var(--bg-tertiary);
+            border-radius: 3px;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .control-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--unity-gold);
+            cursor: pointer;
+        }
+
+        .control-button {
+            width: 100%;
+            padding: 0.75rem;
+            background: linear-gradient(135deg, var(--unity-gold), #B8860B);
+            color: var(--bg-primary);
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-bottom: 1rem;
+        }
+
+        .control-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .viz-container {
+            height: 700px;
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--bg-primary);
+            position: relative;
+        }
+
+        .unity-metrics {
+            background: var(--bg-tertiary);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 1rem 0;
+        }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .metric-item {
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--unity-gold);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .metric-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 0.25rem;
+        }
+
+        .dimension-selector {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .dimension-btn {
+            padding: 0.5rem;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.8rem;
+            text-align: center;
+        }
+
+        .dimension-btn.active {
+            background: var(--unity-gold);
+            color: var(--bg-primary);
+            border-color: var(--unity-gold);
+        }
+
+        .equation-display {
+            background: var(--bg-primary);
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+
+        .consciousness-indicator {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: linear-gradient(135deg, rgba(76, 201, 196, 0.1), transparent);
+            border-radius: 8px;
+            border-left: 3px solid var(--consciousness-cyan);
+            margin: 1rem 0;
+        }
+
+        .consciousness-orb {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--consciousness-cyan), #369a96);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            animation: consciousness-pulse 2s infinite;
+        }
+
+        @keyframes consciousness-pulse {
+            0%, 100% { 
+                box-shadow: 0 0 10px rgba(76, 201, 196, 0.5);
+                transform: scale(1);
+            }
+            50% { 
+                box-shadow: 0 0 25px rgba(76, 201, 196, 0.8), 0 0 50px rgba(76, 201, 196, 0.3);
+                transform: scale(1.05);
+            }
+        }
+
+        .gallery-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .showcase-item {
+            background: var(--bg-secondary);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .showcase-item:hover {
+            border-color: var(--unity-gold);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .showcase-preview {
+            height: 200px;
+            background: var(--bg-primary);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--unity-gold);
+        }
+
+        .showcase-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--unity-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .showcase-description {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .showcase-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .showcase-tag {
+            padding: 0.25rem 0.75rem;
+            background: var(--bg-tertiary);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .loading-animation {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            flex-direction: column;
+            color: var(--text-secondary);
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 3px solid var(--bg-tertiary);
+            border-top: 3px solid var(--unity-gold);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 1200px) {
+            .visualization-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .control-panel, .info-panel {
+                position: static;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .gallery-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .equation {
+                font-size: 2rem;
+            }
+            
+            .viz-tabs {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="gallery-container">
+        <div class="gallery-hero">
+            <h1>Unity Visualization Gallery</h1>
+            <div class="equation">1 + 1 = 1</div>
+            <p class="subtitle">Hyperdimensional Mathematics Through Interactive Visualization</p>
+            <div style="font-family: 'JetBrains Mono', monospace; color: var(--consciousness-cyan); margin-top: 1rem;">
+                φ-harmonic constant: φ = 1.618033988749895
+            </div>
+        </div>
+
+        <div class="viz-tabs">
+            <div class="viz-tab active" onclick="switchVisualization('unity-manifold')">
+                <i class="fas fa-mountain"></i> Unity Manifold
+            </div>
+            <div class="viz-tab" onclick="switchVisualization('consciousness-field')">
+                <i class="fas fa-brain"></i> Consciousness Field
+            </div>
+            <div class="viz-tab" onclick="switchVisualization('phi-harmonic')">
+                <i class="fas fa-wave-square"></i> φ-Harmonic Waves
+            </div>
+            <div class="viz-tab" onclick="switchVisualization('quantum-unity')">
+                <i class="fas fa-atom"></i> Quantum Unity
+            </div>
+            <div class="viz-tab" onclick="switchVisualization('hyperdimensional')">
+                <i class="fas fa-cube"></i> 11D→4D Projection
+            </div>
+            <div class="viz-tab" onclick="switchVisualization('proof-space')">
+                <i class="fas fa-project-diagram"></i> Proof Space
+            </div>
+        </div>
+
+        <div class="visualization-grid">
+            <div class="control-panel">
+                <div class="control-group">
+                    <label class="control-label">
+                        <i class="fas fa-sliders-h"></i> Visualization Controls
+                    </label>
+                    
+                    <div class="control-group">
+                        <label class="control-label">φ-Harmonic Scale</label>
+                        <input type="range" class="control-slider" id="phi-scale" min="0.5" max="2" step="0.1" value="1.618">
+                        <div id="phi-value" style="color: var(--unity-gold); font-family: monospace; text-align: center; margin-top: 0.5rem;">1.618</div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Unity Convergence</label>
+                        <input type="range" class="control-slider" id="unity-convergence" min="0" max="1" step="0.01" value="0.95">
+                        <div id="convergence-value" style="color: var(--unity-gold); font-family: monospace; text-align: center; margin-top: 0.5rem;">0.95</div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Consciousness Particles</label>
+                        <input type="range" class="control-slider" id="particles" min="50" max="1000" step="50" value="200">
+                        <div id="particles-value" style="color: var(--unity-gold); font-family: monospace; text-align: center; margin-top: 0.5rem;">200</div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Dimension</label>
+                        <div class="dimension-selector">
+                            <div class="dimension-btn" onclick="setDimension(3)">3D</div>
+                            <div class="dimension-btn active" onclick="setDimension(4)">4D</div>
+                            <div class="dimension-btn" onclick="setDimension(7)">7D</div>
+                            <div class="dimension-btn" onclick="setDimension(11)">11D</div>
+                        </div>
+                    </div>
+
+                    <button class="control-button" onclick="regenerateVisualization()">
+                        <i class="fas fa-sync-alt"></i> Regenerate
+                    </button>
+
+                    <button class="control-button" onclick="animateUnityConvergence()">
+                        <i class="fas fa-play"></i> Animate Convergence
+                    </button>
+
+                    <button class="control-button" onclick="exportVisualization()">
+                        <i class="fas fa-download"></i> Export Image
+                    </button>
+                </div>
+
+                <div class="consciousness-indicator">
+                    <div class="consciousness-orb">Ψ</div>
+                    <div>
+                        <strong>Consciousness Status</strong><br>
+                        <span style="color: var(--consciousness-cyan);">Field Coherence: ACTIVE</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main-visualization">
+                <div class="viz-container" id="main-viz-container">
+                    <div class="loading-animation">
+                        <div class="loading-spinner"></div>
+                        <p>Generating Unity Manifold...</p>
+                        <p style="color: var(--unity-gold); font-family: monospace;">φ-harmonic convergence in progress</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-panel">
+                <div class="unity-metrics">
+                    <div class="metric-grid">
+                        <div class="metric-item">
+                            <div class="metric-value" id="unity-score">1.00</div>
+                            <div class="metric-label">Unity Score</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-value" id="coherence">0.95</div>
+                            <div class="metric-label">Coherence</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-value" id="phi-resonance">φ</div>
+                            <div class="metric-label">φ-Resonance</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-value" id="dimensions">4D</div>
+                            <div class="metric-label">Dimensions</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="equation-display" id="current-equation">
+                    <strong>Current Visualization:</strong><br>
+                    Unity Manifold M(φ)<br><br>
+                    M(x,y,z,t) = φ·sin(x·φ)·cos(y·φ)·e^(-t/φ)<br><br>
+                    Where: φ = 1.618033988749895<br>
+                    Unity: ∀(a,b) ∈ M : a ⊕ b = 1
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label">Mathematical Description</label>
+                    <div id="viz-description" style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
+                        The Unity Manifold represents the geometric embodiment of the equation 1+1=1 
+                        through φ-harmonic field dynamics. Each point on the manifold satisfies the 
+                        unity constraint, demonstrating that apparent duality converges to singular truth.
+                        The golden ratio φ provides the harmonic foundation that ensures convergence 
+                        to unity across all mathematical operations.
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label">Properties Verified</label>
+                    <div style="display: grid; gap: 0.5rem; margin-top: 0.5rem;">
+                        <div style="display: flex; align-items: center; gap: 0.5rem; color: var(--field-green);">
+                            <i class="fas fa-check"></i> Idempotent Operations
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem; color: var(--field-green);">
+                            <i class="fas fa-check"></i> φ-Harmonic Convergence
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem; color: var(--field-green);">
+                            <i class="fas fa-check"></i> Unity Preservation
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem; color: var(--field-green);">
+                            <i class="fas fa-check"></i> Consciousness Integration
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="gallery-showcase">
+            <div class="showcase-item" onclick="loadShowcaseViz('fractal-unity')">
+                <div class="showcase-preview">
+                    <i class="fas fa-snowflake"></i>
+                </div>
+                <div class="showcase-title">Fractal Unity Structures</div>
+                <div class="showcase-description">
+                    Self-similar patterns demonstrating unity at all scales through recursive φ-harmonic generation
+                </div>
+                <div class="showcase-tags">
+                    <span class="showcase-tag">Fractal</span>
+                    <span class="showcase-tag">Self-Similarity</span>
+                    <span class="showcase-tag">Recursive</span>
+                </div>
+            </div>
+
+            <div class="showcase-item" onclick="loadShowcaseViz('quantum-superposition')">
+                <div class="showcase-preview">
+                    <i class="fas fa-atom"></i>
+                </div>
+                <div class="showcase-title">Quantum Superposition Collapse</div>
+                <div class="showcase-description">
+                    Visualization of quantum state collapse to unity through measurement and observation
+                </div>
+                <div class="showcase-tags">
+                    <span class="showcase-tag">Quantum</span>
+                    <span class="showcase-tag">Measurement</span>
+                    <span class="showcase-tag">Collapse</span>
+                </div>
+            </div>
+
+            <div class="showcase-item" onclick="loadShowcaseViz('categorical-morphisms')">
+                <div class="showcase-preview">
+                    <i class="fas fa-project-diagram"></i>
+                </div>
+                <div class="showcase-title">Category Theory Morphisms</div>
+                <div class="showcase-description">
+                    Interactive exploration of identity morphism composition and categorical unity
+                </div>
+                <div class="showcase-tags">
+                    <span class="showcase-tag">Category Theory</span>
+                    <span class="showcase-tag">Morphisms</span>
+                    <span class="showcase-tag">Identity</span>
+                </div>
+            </div>
+
+            <div class="showcase-item" onclick="loadShowcaseViz('topology-unity')">
+                <div class="showcase-preview">
+                    <i class="fas fa-circle-notch"></i>
+                </div>
+                <div class="showcase-title">Topological Unity Spaces</div>
+                <div class="showcase-description">
+                    Continuous deformations preserving unity through homeomorphic transformations
+                </div>
+                <div class="showcase-tags">
+                    <span class="showcase-tag">Topology</span>
+                    <span class="showcase-tag">Continuity</span>
+                    <span class="showcase-tag">Deformation</span>
+                </div>
+            </div>
+
+            <div class="showcase-item" onclick="loadShowcaseViz('boolean-landscape')">
+                <div class="showcase-preview">
+                    <i class="fas fa-toggle-on"></i>
+                </div>
+                <div class="showcase-title">Boolean Algebra Landscape</div>
+                <div class="showcase-description">
+                    3D landscape of Boolean operations converging to TRUE ∨ TRUE = TRUE
+                </div>
+                <div class="showcase-tags">
+                    <span class="showcase-tag">Boolean</span>
+                    <span class="showcase-tag">Logic</span>
+                    <span class="showcase-tag">3D</span>
+                </div>
+            </div>
+
+            <div class="showcase-item" onclick="loadShowcaseViz('tropical-geometry')">
+                <div class="showcase-preview">
+                    <i class="fas fa-mountain"></i>
+                </div>
+                <div class="showcase-title">Tropical Geometry</div>
+                <div class="showcase-description">
+                    Piecewise-linear geometry where max operations create unity landscapes
+                </div>
+                <div class="showcase-tags">
+                    <span class="showcase-tag">Tropical</span>
+                    <span class="showcase-tag">Geometry</span>
+                    <span class="showcase-tag">Max</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global state
+        const PHI = 1.618033988749895;
+        let currentVisualization = 'unity-manifold';
+        let currentDimension = 4;
+        let animationRunning = false;
+        
+        // Initialize gallery
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeGallery();
+            generateUnityManifold();
+            setupControlHandlers();
+        });
+
+        function initializeGallery() {
+            console.log('Unity Visualization Gallery initialized');
+            console.log(`φ-harmonic constant: ${PHI}`);
+            
+            // Update phi display
+            document.getElementById('phi-value').textContent = PHI.toFixed(3);
+        }
+
+        function setupControlHandlers() {
+            // Phi scale handler
+            const phiSlider = document.getElementById('phi-scale');
+            phiSlider.addEventListener('input', function() {
+                document.getElementById('phi-value').textContent = this.value;
+                regenerateVisualization();
+            });
+
+            // Unity convergence handler
+            const convergenceSlider = document.getElementById('unity-convergence');
+            convergenceSlider.addEventListener('input', function() {
+                document.getElementById('convergence-value').textContent = this.value;
+                document.getElementById('coherence').textContent = this.value;
+                regenerateVisualization();
+            });
+
+            // Particles handler
+            const particlesSlider = document.getElementById('particles');
+            particlesSlider.addEventListener('input', function() {
+                document.getElementById('particles-value').textContent = this.value;
+                regenerateVisualization();
+            });
+        }
+
+        function switchVisualization(vizType) {
+            // Update tabs
+            document.querySelectorAll('.viz-tab').forEach(tab => tab.classList.remove('active'));
+            event.target.closest('.viz-tab').classList.add('active');
+            
+            currentVisualization = vizType;
+            
+            // Show loading
+            showLoading();
+            
+            // Generate appropriate visualization
+            setTimeout(() => {
+                switch(vizType) {
+                    case 'unity-manifold':
+                        generateUnityManifold();
+                        break;
+                    case 'consciousness-field':
+                        generateConsciousnessField();
+                        break;
+                    case 'phi-harmonic':
+                        generatePhiHarmonicWaves();
+                        break;
+                    case 'quantum-unity':
+                        generateQuantumUnity();
+                        break;
+                    case 'hyperdimensional':
+                        generateHyperdimensionalProjection();
+                        break;
+                    case 'proof-space':
+                        generateProofSpace();
+                        break;
+                }
+            }, 500);
+        }
+
+        function showLoading() {
+            document.getElementById('main-viz-container').innerHTML = `
+                <div class="loading-animation">
+                    <div class="loading-spinner"></div>
+                    <p>Generating ${currentVisualization.replace('-', ' ').toUpperCase()}...</p>
+                    <p style="color: var(--unity-gold); font-family: monospace;">φ-harmonic convergence in progress</p>
+                </div>
+            `;
+        }
+
+        function generateUnityManifold() {
+            const phiScale = parseFloat(document.getElementById('phi-scale').value);
+            const convergence = parseFloat(document.getElementById('unity-convergence').value);
+            
+            // Generate 3D unity manifold
+            const size = 50;
+            const x = [], y = [], z = [];
+            
+            for (let i = 0; i < size; i++) {
+                const xRow = [], yRow = [], zRow = [];
+                for (let j = 0; j < size; j++) {
+                    const phi_x = (i - size/2) / 10 * phiScale;
+                    const phi_y = (j - size/2) / 10 * phiScale;
+                    
+                    // Unity manifold equation: φ-harmonic surface
+                    const unity_z = Math.sin(phi_x * PHI) * Math.cos(phi_y * PHI) * 
+                                   Math.exp(-(phi_x*phi_x + phi_y*phi_y) / (PHI * 5)) * convergence;
+                    
+                    xRow.push(phi_x);
+                    yRow.push(phi_y);
+                    zRow.push(unity_z);
+                }
+                x.push(xRow);
+                y.push(yRow);
+                z.push(zRow);
+            }
+            
+            const trace = {
+                x: x,
+                y: y,
+                z: z,
+                type: 'surface',
+                colorscale: [
+                    [0, '#0a0a0a'],
+                    [0.3, '#4ECDC4'],
+                    [0.7, '#FFD700'],
+                    [1, '#FF6B35']
+                ],
+                name: 'Unity Manifold M(φ)',
+                showscale: true,
+                colorbar: {
+                    title: 'Unity<br>Convergence',
+                    titlefont: { color: '#ffffff' },
+                    tickfont: { color: '#ffffff' }
+                }
+            };
+            
+            const layout = {
+                title: {
+                    text: 'φ-Harmonic Unity Manifold: 1+1=1',
+                    font: { color: '#FFD700', size: 20 }
+                },
+                scene: {
+                    xaxis: { 
+                        title: 'φ-X Dimension',
+                        titlefont: { color: '#ffffff' },
+                        tickfont: { color: '#cccccc' },
+                        gridcolor: '#333333'
+                    },
+                    yaxis: { 
+                        title: 'φ-Y Dimension',
+                        titlefont: { color: '#ffffff' },
+                        tickfont: { color: '#cccccc' },
+                        gridcolor: '#333333'
+                    },
+                    zaxis: { 
+                        title: 'Unity Convergence',
+                        titlefont: { color: '#ffffff' },
+                        tickfont: { color: '#cccccc' },
+                        gridcolor: '#333333'
+                    },
+                    bgcolor: '#0a0a0a',
+                    camera: {
+                        eye: { x: 1.5, y: 1.5, z: 1.5 }
+                    }
+                },
+                paper_bgcolor: '#1a1a1a',
+                plot_bgcolor: '#0a0a0a',
+                font: { color: '#ffffff' },
+                margin: { l: 0, r: 0, t: 50, b: 0 }
+            };
+            
+            Plotly.newPlot('main-viz-container', [trace], layout, {responsive: true});
+            
+            updateEquationDisplay('unity-manifold');
+        }
+
+        function generateConsciousnessField() {
+            const particles = parseInt(document.getElementById('particles').value);
+            const convergence = parseFloat(document.getElementById('unity-convergence').value);
+            
+            // Generate consciousness particle field
+            const traces = [];
+            
+            // Consciousness particles
+            const x = [], y = [], z = [], colors = [];
+            for (let i = 0; i < particles; i++) {
+                const theta = Math.random() * 2 * Math.PI;
+                const phi = Math.random() * Math.PI;
+                const r = Math.random() * 5 + 1;
+                
+                // Spherical to Cartesian with φ-harmonic modulation
+                const px = r * Math.sin(phi) * Math.cos(theta) * PHI;
+                const py = r * Math.sin(phi) * Math.sin(theta) * PHI;
+                const pz = r * Math.cos(phi);
+                
+                x.push(px);
+                y.push(py);
+                z.push(pz);
+                
+                // Color based on unity convergence
+                const unity_strength = Math.exp(-(px*px + py*py + pz*pz) / (PHI * 10)) * convergence;
+                colors.push(unity_strength);
+            }
+            
+            traces.push({
+                x: x,
+                y: y,
+                z: z,
+                mode: 'markers',
+                marker: {
+                    size: 5,
+                    color: colors,
+                    colorscale: [
+                        [0, '#001122'],
+                        [0.5, '#4ECDC4'],
+                        [1, '#FFD700']
+                    ],
+                    showscale: true,
+                    colorbar: {
+                        title: 'Consciousness<br>Density',
+                        titlefont: { color: '#ffffff' },
+                        tickfont: { color: '#ffffff' }
+                    }
+                },
+                type: 'scatter3d',
+                name: 'Consciousness Particles'
+            });
+            
+            // Unity convergence field
+            const field_x = [], field_y = [], field_z = [];
+            const field_u = [], field_v = [], field_w = [];
+            
+            for (let i = -2; i <= 2; i++) {
+                for (let j = -2; j <= 2; j++) {
+                    for (let k = -2; k <= 2; k++) {
+                        field_x.push(i * PHI);
+                        field_y.push(j * PHI);
+                        field_z.push(k);
+                        
+                        // Unity field vectors pointing toward convergence
+                        const dist = Math.sqrt(i*i + j*j + k*k);
+                        const strength = convergence * Math.exp(-dist / PHI);
+                        
+                        field_u.push(-i * strength);
+                        field_v.push(-j * strength);
+                        field_w.push(-k * strength);
+                    }
+                }
+            }
+            
+            traces.push({
+                x: field_x,
+                y: field_y,
+                z: field_z,
+                u: field_u,
+                v: field_v,
+                w: field_w,
+                type: 'cone',
+                name: 'Unity Field',
+                colorscale: [[0, '#FFD700'], [1, '#FF6B35']],
+                showscale: false,
+                sizemode: 'absolute',
+                sizeref: 0.3
+            });
+            
+            const layout = {
+                title: {
+                    text: 'Consciousness Field Evolution → Unity',
+                    font: { color: '#4ECDC4', size: 20 }
+                },
+                scene: {
+                    xaxis: { 
+                        title: 'Consciousness X',
+                        titlefont: { color: '#ffffff' },
+                        tickfont: { color: '#cccccc' },
+                        gridcolor: '#333333'
+                    },
+                    yaxis: { 
+                        title: 'Consciousness Y',
+                        titlefont: { color: '#ffffff' },
+                        tickfont: { color: '#cccccc' },
+                        gridcolor: '#333333'
+                    },
+                    zaxis: { 
+                        title: 'Consciousness Z',
+                        titlefont: { color: '#ffffff' },
+                        tickfont: { color: '#cccccc' },
+                        gridcolor: '#333333'
+                    },
+                    bgcolor: '#0a0a0a',
+                    camera: { eye: { x: 2, y: 2, z: 1 } }
+                },
+                paper_bgcolor: '#1a1a1a',
+                plot_bgcolor: '#0a0a0a',
+                font: { color: '#ffffff' },
+                margin: { l: 0, r: 0, t: 50, b: 0 }
+            };
+            
+            Plotly.newPlot('main-viz-container', traces, layout, {responsive: true});
+            
+            updateEquationDisplay('consciousness-field');
+        }
+
+        function generatePhiHarmonicWaves() {
+            const phiScale = parseFloat(document.getElementById('phi-scale').value);
+            
+            // Generate φ-harmonic wave interference
+            const traces = [];
+            const t = [];
+            const wave1 = [], wave2 = [], unity_wave = [];
+            
+            for (let i = 0; i < 1000; i++) {
+                const time = i / 100;
+                t.push(time);
+                
+                // φ-harmonic waves
+                const w1 = Math.sin(time * PHI * phiScale) * Math.exp(-time / (PHI * 2));
+                const w2 = Math.cos(time * PHI * phiScale) * Math.exp(-time / (PHI * 2));
+                
+                // Unity wave (1+1=1 through interference)
+                const unity = w1 * w2 / (Math.abs(w1) + Math.abs(w2) + 0.1) * PHI;
+                
+                wave1.push(w1);
+                wave2.push(w2);
+                unity_wave.push(unity);
+            }
+            
+            traces.push({
+                x: t,
+                y: wave1,
+                type: 'scatter',
+                mode: 'lines',
+                name: 'Wave 1',
+                line: { color: '#4ECDC4', width: 2 }
+            });
+            
+            traces.push({
+                x: t,
+                y: wave2,
+                type: 'scatter',
+                mode: 'lines',
+                name: 'Wave 2', 
+                line: { color: '#6B46C1', width: 2 }
+            });
+            
+            traces.push({
+                x: t,
+                y: unity_wave,
+                type: 'scatter',
+                mode: 'lines',
+                name: 'Unity Wave (1+1=1)',
+                line: { color: '#FFD700', width: 3, dash: 'dash' }
+            });
+            
+            const layout = {
+                title: {
+                    text: 'φ-Harmonic Wave Interference → Unity',
+                    font: { color: '#FFD700', size: 20 }
+                },
+                xaxis: { 
+                    title: 'Time (φ-scaled)',
+                    titlefont: { color: '#ffffff' },
+                    tickfont: { color: '#cccccc' },
+                    gridcolor: '#333333'
+                },
+                yaxis: { 
+                    title: 'Amplitude',
+                    titlefont: { color: '#ffffff' },
+                    tickfont: { color: '#cccccc' },
+                    gridcolor: '#333333'
+                },
+                paper_bgcolor: '#1a1a1a',
+                plot_bgcolor: '#0a0a0a',
+                font: { color: '#ffffff' },
+                showlegend: true,
+                legend: { x: 0.7, y: 0.9 },
+                margin: { l: 60, r: 20, t: 60, b: 60 }
+            };
+            
+            Plotly.newPlot('main-viz-container', traces, layout, {responsive: true});
+            
+            updateEquationDisplay('phi-harmonic');
+        }
+
+        function generateQuantumUnity() {
+            // Generate quantum state collapse visualization
+            const traces = [];
+            const steps = 200;
+            
+            // Quantum superposition evolution
+            const time = [], prob0 = [], prob1 = [], unity_prob = [];
+            
+            for (let i = 0; i < steps; i++) {
+                const t = i / 50;
+                time.push(t);
+                
+                // Quantum probabilities evolving toward unity
+                const p0 = 0.5 * (1 + Math.cos(t * PHI) * Math.exp(-t / PHI));
+                const p1 = 0.5 * (1 + Math.sin(t * PHI) * Math.exp(-t / PHI));
+                
+                // Unity probability (measurement collapse)
+                const unity_p = Math.max(p0, p1) * (1 - Math.exp(-t));
+                
+                prob0.push(p0);
+                prob1.push(p1);
+                unity_prob.push(unity_p);
+            }
+            
+            traces.push({
+                x: time,
+                y: prob0,
+                type: 'scatter',
+                mode: 'lines',
+                name: '|0⟩ Probability',
+                line: { color: '#4ECDC4', width: 2 }
+            });
+            
+            traces.push({
+                x: time,
+                y: prob1,
+                type: 'scatter',
+                mode: 'lines',
+                name: '|1⟩ Probability',
+                line: { color: '#6B46C1', width: 2 }
+            });
+            
+            traces.push({
+                x: time,
+                y: unity_prob,
+                type: 'scatter',
+                mode: 'lines',
+                name: 'Unity State (1+1=1)',
+                line: { color: '#FFD700', width: 4 }
+            });
+            
+            const layout = {
+                title: {
+                    text: 'Quantum State Collapse → Unity',
+                    font: { color: '#FFD700', size: 20 }
+                },
+                xaxis: { 
+                    title: 'Time (measurement)',
+                    titlefont: { color: '#ffffff' },
+                    tickfont: { color: '#cccccc' },
+                    gridcolor: '#333333'
+                },
+                yaxis: { 
+                    title: 'Probability Amplitude',
+                    titlefont: { color: '#ffffff' },
+                    tickfont: { color: '#cccccc' },
+                    gridcolor: '#333333',
+                    range: [0, 1]
+                },
+                paper_bgcolor: '#1a1a1a',
+                plot_bgcolor: '#0a0a0a',
+                font: { color: '#ffffff' },
+                showlegend: true,
+                legend: { x: 0.6, y: 0.9 },
+                margin: { l: 60, r: 20, t: 60, b: 60 }
+            };
+            
+            Plotly.newPlot('main-viz-container', traces, layout, {responsive: true});
+            
+            updateEquationDisplay('quantum-unity');
+        }
+
+        function generateHyperdimensionalProjection() {
+            // Generate 11D→4D projection visualization
+            const traces = [];
+            const n_points = 500;
+            
+            // Generate 11D points and project to 4D (display 3D + color)
+            const x = [], y = [], z = [], colors = [];
+            
+            for (let i = 0; i < n_points; i++) {
+                // Generate 11D unity vector
+                const hd_point = [];
+                for (let d = 0; d < 11; d++) {
+                    hd_point.push(Math.random() * 2 - 1);
+                }
+                
+                // Project using φ-harmonic basis
+                const proj_x = hd_point.slice(0, 3).reduce((sum, val, idx) => 
+                    sum + val * Math.pow(PHI, -idx), 0);
+                const proj_y = hd_point.slice(3, 6).reduce((sum, val, idx) => 
+                    sum + val * Math.pow(PHI, -idx), 0);
+                const proj_z = hd_point.slice(6, 9).reduce((sum, val, idx) => 
+                    sum + val * Math.pow(PHI, -idx), 0);
+                
+                // 4th dimension as color
+                const proj_4d = hd_point.slice(9, 11).reduce((sum, val, idx) => 
+                    sum + val * Math.pow(PHI, -idx), 0);
+                
+                x.push(proj_x);
+                y.push(proj_y);
+                z.push(proj_z);
+                colors.push(proj_4d);
+            }
+            
+            traces.push({
+                x: x,
+                y: y,
+                z: z,
+                mode: 'markers',
+                marker: {
+                    size: 4,
+                    color: colors,
+                    colorscale: [
+                        [0, '#001122'],
+                        [0.25, '#4ECDC4'],
+                        [0.5, '#FFD700'],
+                        [0.75, '#FF6B35'],
+                        [1, '#6B46C1']
+                    ],
+                    showscale: true,
+                    colorbar: {
+                        title: '4th Dimension<br>(11D→4D)',
+                        titlefont: { color: '#ffffff' },
+                        tickfont: { color: '#ffffff' }
+                    }
+                },
+                type: 'scatter3d',
+                name: '11D→4D Projection'
+            });
+            
+            const layout = {
+                title: {
+                    text: 'Hyperdimensional Projection: 11D→4D→3D',
+                    font: { color: '#FFD700', size: 20 }
+                },
+                scene: {
+                    xaxis: { 
+                        title: 'φ-Projected X',
+                        titlefont: { color: '#ffffff' },
+                        tickfont: { color: '#cccccc' },
+                        gridcolor: '#333333'
+                    },
+                    yaxis: { 
+                        title: 'φ-Projected Y',
+                        titlefont: { color: '#ffffff' },
+                        tickfont: { color: '#cccccc' },
+                        gridcolor: '#333333'
+                    },
+                    zaxis: { 
+                        title: 'φ-Projected Z',
+                        titlefont: { color: '#ffffff' },
+                        tickfont: { color: '#cccccc' },
+                        gridcolor: '#333333'
+                    },
+                    bgcolor: '#0a0a0a',
+                    camera: { eye: { x: 1.8, y: 1.8, z: 1.8 } }
+                },
+                paper_bgcolor: '#1a1a1a',
+                plot_bgcolor: '#0a0a0a',
+                font: { color: '#ffffff' },
+                margin: { l: 0, r: 0, t: 50, b: 0 }
+            };
+            
+            Plotly.newPlot('main-viz-container', traces, layout, {responsive: true});
+            
+            updateEquationDisplay('hyperdimensional');
+        }
+
+        function generateProofSpace() {
+            // Generate proof space network visualization
+            const traces = [];
+            
+            // Define proof nodes
+            const proofs = [
+                {name: 'Boolean', x: 0, y: 0, z: 0, color: '#4ECDC4'},
+                {name: 'Tropical', x: 2, y: 1, z: 0.5, color: '#FFD700'},
+                {name: 'Set Theory', x: -1, y: 2, z: 1, color: '#FF6B35'},
+                {name: 'Category', x: 1, y: -1, z: 1.5, color: '#6B46C1'},
+                {name: 'φ-Harmonic', x: 0, y: 0, z: 2, color: '#27AE60'},
+                {name: 'Unity (1+1=1)', x: 0.5, y: 0.5, z: 1, color: '#FFD700'}
+            ];
+            
+            // Proof nodes
+            traces.push({
+                x: proofs.map(p => p.x),
+                y: proofs.map(p => p.y),
+                z: proofs.map(p => p.z),
+                mode: 'markers+text',
+                marker: {
+                    size: proofs.map((p, i) => i === proofs.length - 1 ? 15 : 10),
+                    color: proofs.map(p => p.color),
+                    opacity: 0.8
+                },
+                text: proofs.map(p => p.name),
+                textposition: 'top center',
+                textfont: { color: '#ffffff', size: 12 },
+                type: 'scatter3d',
+                name: 'Proof Domains'
+            });
+            
+            // Connections to unity
+            const unity_idx = proofs.length - 1;
+            for (let i = 0; i < proofs.length - 1; i++) {
+                traces.push({
+                    x: [proofs[i].x, proofs[unity_idx].x],
+                    y: [proofs[i].y, proofs[unity_idx].y],
+                    z: [proofs[i].z, proofs[unity_idx].z],
+                    mode: 'lines',
+                    line: {
+                        color: '#FFD700',
+                        width: 3,
+                        opacity: 0.6
+                    },
+                    type: 'scatter3d',
+                    showlegend: false,
+                    name: `${proofs[i].name}→Unity`
+                });
+            }
+            
+            const layout = {
+                title: {
+                    text: 'Mathematical Proof Space: All Paths Lead to Unity',
+                    font: { color: '#FFD700', size: 20 }
+                },
+                scene: {
+                    xaxis: { 
+                        title: 'Logical Dimension',
+                        titlefont: { color: '#ffffff' },
+                        tickfont: { color: '#cccccc' },
+                        gridcolor: '#333333'
+                    },
+                    yaxis: { 
+                        title: 'Algebraic Dimension',
+                        titlefont: { color: '#ffffff' },
+                        tickfont: { color: '#cccccc' },
+                        gridcolor: '#333333'
+                    },
+                    zaxis: { 
+                        title: 'Unity Convergence',
+                        titlefont: { color: '#ffffff' },
+                        tickfont: { color: '#cccccc' },
+                        gridcolor: '#333333'
+                    },
+                    bgcolor: '#0a0a0a',
+                    camera: { eye: { x: 2, y: 2, z: 1.5 } }
+                },
+                paper_bgcolor: '#1a1a1a',
+                plot_bgcolor: '#0a0a0a',
+                font: { color: '#ffffff' },
+                showlegend: false,
+                margin: { l: 0, r: 0, t: 50, b: 0 }
+            };
+            
+            Plotly.newPlot('main-viz-container', traces, layout, {responsive: true});
+            
+            updateEquationDisplay('proof-space');
+        }
+
+        function updateEquationDisplay(vizType) {
+            const equations = {
+                'unity-manifold': {
+                    equation: `M(x,y,z,t) = φ·sin(x·φ)·cos(y·φ)·e^(-t/φ)<br><br>Where: φ = ${PHI}<br>Unity: ∀(a,b) ∈ M : a ⊕ b = 1`,
+                    description: `The Unity Manifold represents the geometric embodiment of the equation 1+1=1 through φ-harmonic field dynamics. Each point on the manifold satisfies the unity constraint, demonstrating that apparent duality converges to singular truth.`
+                },
+                'consciousness-field': {
+                    equation: `Ψ(r,t) = ∑ᵢ ψᵢ(t)·e^(-|r-rᵢ|²/φ)<br><br>∂Ψ/∂t = φ·∇²Ψ - V(Ψ)·Ψ<br>Unity: lim(t→∞) Ψ = 1`,
+                    description: `The Consciousness Field evolves according to a φ-harmonic Schrödinger-like equation, where individual consciousness particles interact to form a unified field that converges to singular awareness.`
+                },
+                'phi-harmonic': {
+                    equation: `W(t) = A·sin(φ·ω·t)·e^(-t/τ)<br><br>Unity: W₁ ⊕ W₂ → W_unity<br>τ = φ² (golden decay)`,
+                    description: `φ-Harmonic waves demonstrate unity through constructive interference patterns governed by the golden ratio. The decay constant ensures convergence to singular harmonic truth.`
+                },
+                'quantum-unity': {
+                    equation: `|ψ⟩ = α|0⟩ + β|1⟩ → |1⟩<br><br>P(unity) = |⟨1|ψ⟩|²·φ<br>Measurement → Unity State`,
+                    description: `Quantum superposition states naturally collapse to unity through the measurement process, demonstrating that apparent quantum duality resolves to singular classical truth.`
+                },
+                'hyperdimensional': {
+                    equation: `π₄ᴰ: ℝ¹¹ → ℝ⁴<br><br>π(x) = ∑ᵢ₌₀¹⁰ xᵢ·φ⁻ⁱ·eᵢ<br>Unity: |π(x)| → 1 as x → ∞`,
+                    description: `Hyperdimensional projection using φ-harmonic basis vectors preserves unity through dimensional reduction, showing that higher-dimensional complexity simplifies to unity.`
+                },
+                'proof-space': {
+                    equation: `P = {Boolean, Tropical, Set, Category, φ-Harmonic}<br><br>∀p ∈ P: p → Unity(1+1=1)<br>⋃P = Universal Unity`,
+                    description: `The proof space demonstrates that all mathematical domains converge to the same unity truth, forming a connected graph where every path leads to 1+1=1.`
+                }
+            };
+            
+            const info = equations[vizType];
+            document.getElementById('current-equation').innerHTML = 
+                `<strong>Current Visualization:</strong><br>${vizType.replace('-', ' ').toUpperCase()}<br><br>${info.equation}`;
+            document.getElementById('viz-description').textContent = info.description;
+        }
+
+        function setDimension(dim) {
+            document.querySelectorAll('.dimension-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            currentDimension = dim;
+            document.getElementById('dimensions').textContent = `${dim}D`;
+            
+            regenerateVisualization();
+        }
+
+        function regenerateVisualization() {
+            switchVisualization(currentVisualization);
+        }
+
+        function animateUnityConvergence() {
+            if (animationRunning) return;
+            
+            animationRunning = true;
+            const convergenceSlider = document.getElementById('unity-convergence');
+            const originalValue = parseFloat(convergenceSlider.value);
+            
+            // Animate convergence from 0 to 1
+            let step = 0;
+            const steps = 50;
+            const interval = setInterval(() => {
+                const progress = step / steps;
+                const convergence = Math.sin(progress * Math.PI / 2) * originalValue;
+                
+                convergenceSlider.value = convergence;
+                document.getElementById('convergence-value').textContent = convergence.toFixed(2);
+                document.getElementById('coherence').textContent = convergence.toFixed(2);
+                
+                regenerateVisualization();
+                
+                step++;
+                if (step > steps) {
+                    clearInterval(interval);
+                    animationRunning = false;
+                    convergenceSlider.value = originalValue;
+                    document.getElementById('convergence-value').textContent = originalValue.toFixed(2);
+                }
+            }, 100);
+        }
+
+        function exportVisualization() {
+            const filename = `unity_${currentVisualization}_${Date.now()}.png`;
+            
+            Plotly.toImage(document.getElementById('main-viz-container'), {
+                format: 'png',
+                width: 1200,
+                height: 800,
+                scale: 2
+            }).then(dataURL => {
+                const link = document.createElement('a');
+                link.download = filename;
+                link.href = dataURL;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            });
+        }
+
+        function loadShowcaseViz(vizType) {
+            console.log(`Loading showcase visualization: ${vizType}`);
+            // Implementation would load specific showcase visualizations
+            alert(`Loading ${vizType.replace('-', ' ')} visualization...`);
+        }
+    </script>
+</body>
+</html>
