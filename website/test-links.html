@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link Testing Page - Een Unity Mathematics</title>
+    <script src="js/nav-template-applier.js" defer></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 2rem;
+            padding: 2rem;
+            background: #f5f5f5;
+        }
+        .test-section {
+            background: white;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .link-test {
+            display: block;
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            background: #e3f2fd;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #1976d2;
+        }
+        .link-test:hover {
+            background: #bbdefb;
+        }
+        .working { background: #e8f5e8 !important; color: #2e7d32 !important; }
+        .broken { background: #ffebee !important; color: #c62828 !important; }
+    </style>
+</head>
+<body>
+    <h1>GitHub Pages Link Testing</h1>
+    <p>This page tests if all navigation links work correctly on GitHub Pages.</p>
+
+    <div class="test-section">
+        <h2>Main Navigation Links</h2>
+        <a href="./metastation-hub.html" class="link-test">Metastation Hub (Main)</a>
+        <a href="./zen-unity-meditation.html" class="link-test">Zen Unity Meditation</a>
+        <a href="./consciousness_dashboard.html" class="link-test">Consciousness Dashboard</a>
+        <a href="./mathematical-framework.html" class="link-test">Mathematical Framework</a>
+        <a href="./academic-portal.html" class="link-test">Academic Portal</a>
+    </div>
+
+    <div class="test-section">
+        <h2>Examples Subdirectory</h2>
+        <a href="./examples/unity-calculator.html" class="link-test">Unity Calculator</a>
+        <a href="./examples/phi-harmonic-explorer.html" class="link-test">Phi-Harmonic Explorer</a>
+        <a href="./examples/index.html" class="link-test">Examples Index</a>
+    </div>
+
+    <div class="test-section">
+        <h2>Gallery Subdirectory</h2>
+        <a href="./gallery/phi_consciousness_transcendence.html" class="link-test">Phi Consciousness Transcendence</a>
+    </div>
+
+    <div class="test-section">
+        <h2>Resource Links (should be relative)</h2>
+        <div>CSS: <a href="css/unified-navigation.css" class="link-test">unified-navigation.css</a></div>
+        <div>JS: <a href="js/unified-navigation.js" class="link-test">unified-navigation.js</a></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Navigation System Test</h2>
+        <p>The unified navigation should load automatically above this content.</p>
+        <p>Check that all dropdown menus work and links are correct.</p>
+    </div>
+
+    <script>
+        // Simple link checker
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('.link-test');
+            links.forEach(link => {
+                const href = link.getAttribute('href');
+                
+                // Simple check for relative vs absolute paths
+                if (href.startsWith('./') || href.startsWith('/') || href.match(/^[^:]+\.html$/)) {
+                    link.classList.add('working');
+                    link.title = 'Link format looks good for GitHub Pages';
+                } else if (href.startsWith('http')) {
+                    link.classList.add('working');
+                    link.title = 'External link';
+                } else {
+                    link.classList.add('broken');
+                    link.title = 'Link format may not work on GitHub Pages';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

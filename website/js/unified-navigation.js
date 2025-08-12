@@ -163,6 +163,9 @@ class UnifiedNavigationSystem {
                             <a href="${this.getLink('metagambit.html')}" class="nav-dropdown-link">
                                 <i class="fas fa-chess"></i> Metagambit Framework
                             </a>
+                            <a href="${this.getLink('advanced-systems.html')}" class="nav-dropdown-link">
+                                <i class="fas fa-rocket"></i> Advanced Systems
+                            </a>
                         </div>
                     </div>
 
@@ -198,6 +201,9 @@ class UnifiedNavigationSystem {
                             Dashboards <i class="fas fa-chevron-down"></i>
                         </button>
                         <div class="nav-dropdown">
+                            <a href="http://localhost:8501" class="nav-dropdown-link" target="_blank">
+                                <i class="fas fa-rocket"></i> Metastation Command Center
+                            </a>
                             <a href="${this.getLink('dashboards.html')}" class="nav-dropdown-link">
                                 <i class="fas fa-th-large"></i> All Dashboards
                             </a>

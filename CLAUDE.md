@@ -355,6 +355,15 @@ The navigation system will automatically handle everything else!
 3. **Aesthetic Harmony**: Visualizations incorporate golden ratio φ = 1.618...
 4. **Testing**: Verify idempotent operations maintain unity invariants
 5. **Website Integration**: Professional academic presentation with interactive elements
+6. **🚨 REPOSITORY ORGANIZATION**: **AVOID CREATING FILES IN ROOT DIRECTORY** unless absolutely necessary
+   - New code → `src/`, `core/`, or appropriate subdirectory
+   - New documentation → `docs/`
+   - New visualizations → `viz/`
+   - New website files → `website/`
+   - New configuration → `config/`
+   - Root directory should remain clean and minimal for professional appearance
+   - **Exception**: Only critical files like README.md, CLAUDE.md, index.html belong in root
+   - **Rationale**: Clean root maintains professional GitHub repository appearance
 
 ## ⚠️ CRITICAL: Windows Unicode & Emoji Guidelines
 
