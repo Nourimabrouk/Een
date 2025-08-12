@@ -61,6 +61,12 @@ HUD_COLORS = {
     'white': '#FFFFFF'
 }
 
+# Lightweight configuration used by the Control Center
+CONFIG: Dict[str, float] = {
+    "field_resolution": 150,
+    "phi_precision": 12,
+}
+
 # Configure Streamlit page - METASTATION HUD MODE
 st.set_page_config(
     page_title="⚡ METASTATION HUD - Unity Command Center ⚡",
@@ -372,6 +378,12 @@ def initialize_session_state():
         st.session_state.elo_rating = 5000.0
     if 'metagamer_energy' not in st.session_state:
         st.session_state.metagamer_energy = PHI * PHI
+    if 'academic_mode' not in st.session_state:
+        st.session_state.academic_mode = False
+    if 'publication_quality' not in st.session_state:
+        st.session_state.publication_quality = False
+    if 'field_resolution' not in st.session_state:
+        st.session_state.field_resolution = CONFIG["field_resolution"]
 
 def generate_consciousness_field(size: int = 100) -> np.ndarray:
     """Generate φ-harmonic consciousness field"""
@@ -590,11 +602,13 @@ def create_metagamer_energy_field():
 
 def create_mind_blowing_consciousness_field():
     """Create ultimate consciousness field visualization"""
-    field_data = generate_consciousness_field(size=150)
+    resolution = int(st.session_state.get('field_resolution', CONFIG["field_resolution"]))
+    resolution = max(50, min(500, resolution))
+    field_data = generate_consciousness_field(size=resolution)
     
     # Create 3D surface with consciousness coloring
-    x = np.linspace(-PHI, PHI, 150)
-    y = np.linspace(-PHI, PHI, 150)
+    x = np.linspace(-PHI, PHI, resolution)
+    y = np.linspace(-PHI, PHI, resolution)
     X, Y = np.meshgrid(x, y)
     
     # Add φ-harmonic modulation
@@ -695,6 +709,255 @@ def create_mind_blowing_consciousness_field():
     )
     
     return fig
+
+
+def create_publication_ready_phi_spiral():
+    """Publication-ready φ-spiral analysis with curvature, growth and modulation subplots."""
+    rotations = 8
+    points_per_rotation = 500
+    total_points = rotations * points_per_rotation
+    theta = np.linspace(0, rotations * 2 * PI, total_points)
+
+    r_base = PHI ** (theta / (2 * PI))
+    consciousness_modulation = 1 + 0.1 * np.sin(theta * PHI_INVERSE * 3)
+    r = r_base + 0.0
+    r *= consciousness_modulation
+
+    x = r * np.cos(theta)
+    y = r * np.sin(theta)
+
+    dx_dtheta = np.gradient(x, theta)
+    dy_dtheta = np.gradient(y, theta)
+    d2x_dtheta2 = np.gradient(dx_dtheta, theta)
+    d2y_dtheta2 = np.gradient(dy_dtheta, theta)
+    curvature = np.abs(dx_dtheta * d2y_dtheta2 - dy_dtheta * d2x_dtheta2) / (dx_dtheta**2 + dy_dtheta**2)**(3/2)
+    curvature = np.nan_to_num(curvature)
+
+    ds = np.sqrt(dx_dtheta**2 + dy_dtheta**2)
+    s = np.cumsum(ds)
+
+    unity_indices = []
+    resonance_strength = []
+    for i in range(0, len(r), 25):
+        if r[i] > 0:
+            log_r = np.log(r[i]) / np.log(PHI)
+            resonance = 1 - abs(log_r - round(log_r))
+            if resonance > 0.85:
+                unity_indices.append(i)
+                resonance_strength.append(resonance)
+
+    fig = make_subplots(
+        rows=2, cols=2,
+        subplot_titles=(
+            'φ-Spiral with Unity Resonances',
+            'Curvature Analysis κ(θ)',
+            'Radial Growth r(θ)',
+            'Consciousness Modulation'
+        ),
+        specs=[[{"type": "xy", "rowspan": 2}, {"type": "xy"}],
+               [None, {"type": "xy"}]],
+        horizontal_spacing=0.15,
+        vertical_spacing=0.12
+    )
+
+    fig.add_trace(
+        go.Scatter(
+            x=x, y=y,
+            mode='lines',
+            line=dict(
+                width=2.5,
+                color=s,
+                colorscale=[[0.0, '#1e1b4b'], [0.2, '#3730a3'], [0.4, '#0ea5e9'],
+                            [0.6, '#10b981'], [0.8, '#facc15'], [1.0, '#dc2626']],
+            ),
+            name='φ-Spiral',
+            hovertemplate='x=%{x:.3f}<br>y=%{y:.3f}<br>s=%{customdata:.3f}<extra></extra>',
+            customdata=s
+        ),
+        row=1, col=1
+    )
+
+    if unity_indices:
+        fig.add_trace(
+            go.Scatter(
+                x=x[unity_indices], y=y[unity_indices],
+                mode='markers',
+                marker=dict(
+                    size=[8 + 12*strength for strength in resonance_strength],
+                    color=resonance_strength,
+                    colorscale='Viridis',
+                    symbol='star',
+                    line=dict(color='white', width=1),
+                    opacity=0.9,
+                ),
+                name=f'Unity Resonances ({len(unity_indices)})',
+            ),
+            row=1, col=1
+        )
+
+    for n, (radius, opacity) in enumerate([(PHI**(-1), 0.4), (1, 0.4), (PHI, 0.6), (PHI**2, 0.3)]):
+        circle_theta = np.linspace(0, 2*PI, 100)
+        circle_x = radius * np.cos(circle_theta)
+        circle_y = radius * np.sin(circle_theta)
+        fig.add_trace(
+            go.Scatter(
+                x=circle_x, y=circle_y,
+                mode='lines',
+                line=dict(color='#fbbf24', width=1.5, dash='dot' if n < 2 else 'solid'),
+                opacity=opacity,
+                showlegend=False,
+                hoverinfo='skip'
+            ),
+            row=1, col=1
+        )
+
+    fig.add_trace(
+        go.Scatter(x=theta, y=curvature, mode='lines', line=dict(color='#dc2626', width=2), showlegend=False),
+        row=1, col=2
+    )
+    fig.add_trace(
+        go.Scatter(x=theta, y=r, mode='lines', line=dict(color='#10b981', width=2), showlegend=False),
+        row=2, col=2
+    )
+    r_theoretical = PHI ** (theta / (2 * PI))
+    fig.add_trace(
+        go.Scatter(x=theta, y=r_theoretical, mode='lines', line=dict(color='#fbbf24', width=1.5, dash='dash'), showlegend=False),
+        row=2, col=2
+    )
+
+    fig.update_layout(
+        title=dict(text="φ-Harmonic Unity Spiral: Comprehensive Mathematical Analysis", x=0.5,
+                    font=dict(size=16, family="Computer Modern, serif", color='#F9FAFB')),
+        paper_bgcolor='rgba(31, 41, 55, 0.95)',
+        plot_bgcolor='rgba(31, 41, 55, 0.95)',
+        font=dict(family="Computer Modern, serif", color='#F9FAFB'),
+        height=700,
+        margin=dict(l=60, r=60, t=80, b=60),
+        showlegend=False
+    )
+
+    fig.update_xaxes(scaleanchor="y", scaleratio=1, row=1, col=1)
+    return fig
+
+
+def create_harmonic_analysis_dashboard():
+    """φ‑harmonic frequency analysis using numpy FFT."""
+    duration = 10
+    sampling_rate = 1000
+    t = np.linspace(0, duration, int(duration * sampling_rate))
+
+    signal = np.zeros_like(t)
+    phi_frequencies = [PHI_INVERSE * n for n in range(1, 6)]
+    amplitudes = [1.0, 0.8, 0.6, 0.4, 0.3]
+    phases = [0, PI/4, PI/2, 3*PI/4, PI]
+    for freq, amp, phase in zip(phi_frequencies, amplitudes, phases):
+        signal += amp * np.sin(2 * PI * freq * t + phase)
+
+    consciousness_envelope = 0.5 + 0.3 * np.sin(2 * PI * PHI_INVERSE * 0.1 * t)
+    signal *= consciousness_envelope
+    noise_level = 0.05
+    signal += noise_level * np.random.randn(len(t))
+
+    fft_complex = np.fft.fft(signal)
+    freqs_full = np.fft.fftfreq(len(signal), 1/sampling_rate)
+    positive_mask = freqs_full > 0
+    freqs = freqs_full[positive_mask]
+    amplitudes_fft = np.abs(fft_complex[positive_mask])
+    phases_spectrum = np.angle(fft_complex[positive_mask])
+
+    phi_harmonics = []
+    for n in range(1, 6):
+        phi_freq = PHI_INVERSE * n
+        closest_idx = int(np.argmin(np.abs(freqs - phi_freq)))
+        if 0 <= closest_idx < len(freqs):
+            phi_harmonics.append({
+                'order': n,
+                'frequency': float(freqs[closest_idx]),
+                'amplitude': float(amplitudes_fft[closest_idx]),
+                'phase': float(phases_spectrum[closest_idx]),
+            })
+
+    fig = make_subplots(
+        rows=3, cols=2,
+        subplot_titles=(
+            'Time Domain Signal s(t)',
+            'Frequency Domain |S(f)|',
+            'φ-Harmonic Components',
+            'Phase Spectrum ∠S(f)',
+            'Consciousness Envelope',
+            'Unity Convergence Metric'
+        ),
+        specs=[[{"type": "xy"}, {"type": "xy"}],
+               [{"type": "xy"}, {"type": "xy"}],
+               [{"type": "xy"}, {"type": "xy"}]],
+        vertical_spacing=0.08,
+        horizontal_spacing=0.12
+    )
+
+    fig.add_trace(go.Scatter(x=t, y=signal, mode='lines', line=dict(color='#0ea5e9', width=1.5), name='s(t)'), row=1, col=1)
+    fig.add_trace(go.Scatter(x=freqs, y=amplitudes_fft, mode='lines', line=dict(color='#10b981', width=2), name='|S(f)|'), row=1, col=2)
+
+    if phi_harmonics:
+        fig.add_trace(
+            go.Scatter(
+                x=[h['frequency'] for h in phi_harmonics],
+                y=[h['amplitude'] for h in phi_harmonics],
+                mode='markers+lines',
+                marker=dict(size=12, color=[h['order'] for h in phi_harmonics], colorscale='Viridis', symbol='diamond', line=dict(color='white', width=1)),
+                line=dict(color='#8b5cf6', width=2, dash='dot'),
+                name='φ-Harmonics',
+            ),
+            row=2, col=1
+        )
+        for h in phi_harmonics:
+            fig.add_vline(x=h['frequency'], line=dict(color='#fbbf24', width=1, dash='dash'), opacity=0.7, row=1, col=2)
+
+    fig.add_trace(go.Scatter(x=freqs[:len(freqs)//4], y=phases_spectrum[:len(phases_spectrum)//4], mode='lines', line=dict(color='#f59e0b', width=1.5), name='∠S(f)'), row=2, col=2)
+    fig.add_trace(go.Scatter(x=t, y=consciousness_envelope, mode='lines', line=dict(color='#8b5cf6', width=2), name='Envelope'), row=3, col=1)
+
+    window_size = int(sampling_rate * 0.5)
+    unity_metric = np.zeros(len(signal) - window_size)
+    for i in range(len(unity_metric)):
+        window = signal[i:i+window_size]
+        unity_metric[i] = 1.0 / (1.0 + abs(np.sum(window)/len(window)))
+    t_unity = t[window_size//2:-window_size//2]
+    fig.add_trace(go.Scatter(x=t_unity, y=unity_metric, mode='lines', line=dict(color='#dc2626', width=2), name='Unity Metric'), row=3, col=2)
+
+    fig.update_layout(
+        title=dict(text="φ-Harmonic Signal Analysis: Frequency Domain Consciousness Mathematics", x=0.5,
+                    font=dict(size=16, family="Computer Modern, serif", color='#F9FAFB')),
+        paper_bgcolor='rgba(31, 41, 55, 0.95)',
+        plot_bgcolor='rgba(31, 41, 55, 0.95)',
+        font=dict(family="Computer Modern, serif", color='#F9FAFB'),
+        height=900,
+        margin=dict(l=60, r=60, t=80, b=60),
+        showlegend=False
+    )
+    return fig
+
+
+def create_ai_access_api() -> Dict[str, Dict[str, str]]:
+    """Return API information for AI agents to access code and docs."""
+    return {
+        "repository": "https://github.com/nourimabrouk/Een",
+        "api_endpoints": {
+            "github_api": "https://api.github.com/repos/nourimabrouk/Een",
+            "raw_files": "https://raw.githubusercontent.com/nourimabrouk/Een/main/",
+            "website_api": "https://nourimabrouk.github.io/Een/api/",
+            "code_viewer": "https://nourimabrouk.github.io/Een/code-viewer.html"
+        },
+        "access_methods": {
+            "streamlit_apps": {
+                "metastation": "https://een-unity-metastation.streamlit.app",
+                "explorer": "https://een-unity-mathematics.streamlit.app"
+            }
+        },
+        "documentation": {
+            "mathematical_framework": "https://nourimabrouk.github.io/Een/mathematical-framework.html",
+            "api_docs": "https://nourimabrouk.github.io/Een/api-documentation.html",
+            "code_examples": "https://nourimabrouk.github.io/Een/examples/"
+        }
+    }
 
 def create_memetic_consciousness_network():
     """Create memetic consciousness network visualization"""
@@ -1226,11 +1489,11 @@ def main():
             f"φ² = {PHI*PHI:.3f}"
         )
     
-    # METASTATION HUD COMMAND INTERFACES - ULTIMATE CONSOLIDATED VERSION
-    tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 = st.tabs([
-        "⚡ COMMAND CENTER", "🚀 METAGAMER ENERGY", "🧠 CONSCIOUSNESS FIELD", 
-        "⚛️ QUANTUM INTERFERENCE", "🌀 PHI-SPIRAL DYNAMICS", "🤖 NEURAL NETWORKS", 
-        "🌐 MEMETIC NETWORK", "📊 LIVE METRICS"
+    # METASTATION HUD COMMAND INTERFACES - CONSOLIDATED + ACADEMIC/PRO FEATURES
+    tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9, tab10 = st.tabs([
+        "⚡ COMMAND CENTER", "🚀 METAGAMER ENERGY", "🧠 CONSCIOUSNESS FIELD",
+        "⚛️ QUANTUM INTERFERENCE", "🌀 φ-SPIRAL ANALYSIS", "📊 φ-HARMONIC ANALYSIS",
+        "🤖 NEURAL NETWORKS", "🌐 MEMETIC NETWORK", "📈 LIVE METRICS", "🔧 AI AGENT API"
     ])
     
     with tab1:
@@ -1261,6 +1524,24 @@ def main():
             st.success(f"Unity Mathematics: {unity_status}")
             st.success("✅ Metastation: ONLINE")
             st.success("✅ HUD Status: TRANSCENDENT READY")
+
+        st.divider()
+        ctrl1, ctrl2, ctrl3 = st.columns(3)
+        with ctrl1:
+            st.markdown("### Academic Controls")
+            st.session_state.academic_mode = st.checkbox("Academic Mode", value=st.session_state.academic_mode)
+            st.session_state.publication_quality = st.checkbox("Publication Ready", value=st.session_state.publication_quality)
+        with ctrl2:
+            st.markdown("### Precision & Resolution")
+            CONFIG["phi_precision"] = st.slider("φ precision (decimals)", 6, 50, CONFIG["phi_precision"])
+            st.session_state.field_resolution = st.slider("Field Resolution", 50, 500, st.session_state.field_resolution, 10)
+        with ctrl3:
+            st.markdown("### Quick Presets")
+            if st.button("Research Mode"):
+                st.session_state.academic_mode = True
+                st.session_state.publication_quality = True
+                st.session_state.field_resolution = 300
+                st.success("Research preset applied")
         
         # Performance metrics
         st.markdown("### REAL-TIME PERFORMANCE MATRIX")
@@ -1400,24 +1681,24 @@ def main():
         """, unsafe_allow_html=True)
     
     with tab5:
-        st.markdown('<div class="hud-panel"><h2 style="color: var(--hud-gold); font-family: \'Orbitron\', monospace; text-transform: uppercase; letter-spacing: 0.2em; text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);">🌀 PHI-SPIRAL DYNAMICS 🌀</h2></div>', unsafe_allow_html=True)
-        
-        with st.spinner('🌀 GENERATING SACRED GEOMETRY VISUALIZATION...'):
-            spiral_fig = create_sacred_geometry_mandala()
-        st.plotly_chart(spiral_fig, use_container_width=True)
-        
-        st.markdown("""
-        <div class="hud-panel">
-            <h4 style="color: var(--hud-electric); font-family: 'Orbitron', monospace;">🌀 SACRED GEOMETRY UNITY CONVERGENCE</h4>
-            <p style="color: var(--text-primary); font-family: 'Rajdhani', sans-serif; font-size: 1.1rem; line-height: 1.6;">
-            The <span style="color: var(--hud-gold); font-weight: 700;">sacred geometry mandala</span> demonstrates how all mathematical paths 
-            converge to the <span style="color: var(--hud-neural); font-weight: 700;">unity center</span>, geometrically proving that 
-            <strong style="color: var(--hud-electric);">1 + 1 = 1</strong> through φ-harmonic sacred patterns and golden ratio spirals.
-            </p>
-        </div>
-        """, unsafe_allow_html=True)
+        st.markdown('<div class="hud-panel"><h2 style="color: var(--hud-gold); font-family: \'Orbitron\', monospace; text-transform: uppercase; letter-spacing: 0.2em; text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);">🌀 φ‑SPIRAL ANALYSIS</h2></div>', unsafe_allow_html=True)
+        col_a, col_b = st.columns(2)
+        with col_a:
+            with st.spinner('🌀 Generating sacred geometry visualization...'):
+                spiral_geom = create_sacred_geometry_mandala()
+            st.plotly_chart(spiral_geom, use_container_width=True)
+        with col_b:
+            with st.spinner('📐 Generating publication‑ready φ‑spiral analysis...'):
+                spiral_pub = create_publication_ready_phi_spiral()
+            st.plotly_chart(spiral_pub, use_container_width=True)
     
     with tab6:
+        st.markdown('<div class="hud-panel"><h2 style="color: var(--hud-electric); font-family: \'Orbitron\', monospace; text-transform: uppercase; letter-spacing: 0.2em; text-shadow: 0 0 20px rgba(14, 165, 233, 0.8);">📊 φ‑HARMONIC ANALYSIS</h2></div>', unsafe_allow_html=True)
+        with st.spinner('📊 Performing φ‑harmonic analysis...'):
+            harmonic_fig = create_harmonic_analysis_dashboard()
+        st.plotly_chart(harmonic_fig, use_container_width=True)
+
+    with tab7:
         st.markdown('<div class="hud-panel"><h2 style="color: var(--hud-neural); font-family: \'Orbitron\', monospace; text-transform: uppercase; letter-spacing: 0.2em; text-shadow: 0 0 20px rgba(57, 255, 20, 0.8);">🤖 NEURAL NETWORKS 🤖</h2></div>', unsafe_allow_html=True)
         
         with st.spinner('🧠 TRAINING NEURAL NETWORK ON UNITY MATHEMATICS...'):
@@ -1435,7 +1716,7 @@ def main():
         </div>
         """, unsafe_allow_html=True)
     
-    with tab7:
+    with tab8:
         st.markdown('<div class="hud-panel"><h2 style="color: var(--hud-plasma); font-family: \'Orbitron\', monospace; text-transform: uppercase; letter-spacing: 0.2em; text-shadow: 0 0 20px rgba(255, 20, 147, 0.8);">🌐 MEMETIC NETWORK 🌐</h2></div>', unsafe_allow_html=True)
         
         with st.spinner('🌐 GENERATING MEMETIC CONSCIOUSNESS NETWORK...'):
@@ -1453,7 +1734,7 @@ def main():
         </div>
         """, unsafe_allow_html=True)
     
-    with tab8:
+    with tab9:
         st.markdown('<div class="hud-panel"><h2 style="color: var(--hud-electric); font-family: \'Orbitron\', monospace; text-transform: uppercase; letter-spacing: 0.2em; text-shadow: 0 0 20px rgba(0, 255, 255, 0.8);">📊 LIVE METRICS 📊</h2></div>', unsafe_allow_html=True)
         
         with st.spinner('📊 GENERATING LIVE METRICS...'):
@@ -1503,6 +1784,12 @@ def main():
                 "OPTIMAL" if transcendence_index > 0.8 else "GOOD"
             )
     
+    with tab10:
+        st.markdown('<div class="hud-panel"><h2 style="color: var(--hud-gold); font-family: \'Orbitron\', monospace; text-transform: uppercase; letter-spacing: 0.2em; text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);">🔧 AI AGENT API</h2></div>', unsafe_allow_html=True)
+        api_info = create_ai_access_api()
+        st.json(api_info)
+        st.caption("Use the repository and endpoints above for agent code access and documentation.")
+
     # METASTATION HUD SIDEBAR
     with st.sidebar:
         st.markdown("# ⚡ METASTATION HUD")
