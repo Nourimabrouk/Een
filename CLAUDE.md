@@ -7,16 +7,16 @@ This file provides guidance to Claude Code (claude.ai/code) when working with th
 
 ### ⚠️ Critical System Notes
 - **OS**: Windows 10/11 - **NO A:/ or B:/ drives exist** (legacy floppy drives)
-- **Virtual Environment**: `C:\Users\Nouri\Documents\GitHub\Een\een\` ✅ ACTIVATED
-- **Always activate venv first**: `cmd /c "een\Scripts\activate.bat"`
+- **Virtual Environment**: `conda activate een` ✅ EXTERNAL CONDA ENVIRONMENT
+- **Always activate venv first**: `conda activate een`
 - **Website Launcher**: Use `START_WEBSITE.bat` for meta-optimal server startup
-- **Python Path**: `"C:\Users\Nouri\Documents\GitHub\Een\een\Scripts\python.exe"`
+- **Python Path**: Uses Conda 'een' environment (external to repository)
 
 ### Quick Unity Website Launch (Meta-Optimized with Unified Navigation)
 ```bash
-# Start development server (ALWAYS activate venv first)
+# Start development server (ALWAYS activate conda env first)
 cd "C:\Users\Nouri\Documents\GitHub\Een"
-cmd /c "een\Scripts\activate.bat"
+conda activate een
 START_WEBSITE.bat
 
 # Access Unity Mathematics Hub at: http://localhost:8001/metastation-hub.html
@@ -200,7 +200,7 @@ git push origin main
 ```bash
 # ALWAYS ACTIVATE VIRTUAL ENVIRONMENT FIRST
 cd "C:\Users\Nouri\Documents\GitHub\Een"
-cmd /c "een\Scripts\activate.bat"
+conda activate een
 
 # Core mathematical and consciousness computing
 pip install numpy scipy matplotlib plotly pandas sympy networkx
@@ -227,7 +227,7 @@ pip install numba                   # JIT compilation for performance
 ```bash
 # ALWAYS ACTIVATE VIRTUAL ENVIRONMENT FIRST
 cd "C:\Users\Nouri\Documents\GitHub\Een"
-cmd /c "een\Scripts\activate.bat"
+conda activate een
 
 # Core unity equation systems
 python core/unity_mathematics.py    # Unity equation (1+1=1) validation
@@ -300,7 +300,7 @@ cd "C:\Users\Nouri\Documents\GitHub\Een"
 START_WEBSITE.bat
 
 # Method 2: Manual
-cmd /c "een\Scripts\activate.bat"
+conda activate een
 cd website
 python -m http.server 8001
 ```
@@ -492,7 +492,7 @@ This prevents the common `UnicodeEncodeError: 'charmap' codec can't encode chara
 ```bash
 # Always start with venv activation
 cd "C:\Users\Nouri\Documents\GitHub\Een"
-cmd /c "een\Scripts\activate.bat"
+conda activate een
 
 # Test consciousness field evolution
 python -c "
@@ -611,20 +611,20 @@ This repository now includes **meta-optimized** Claude Code Actions for automate
 ```bash
 cd "C:\Users\Nouri\Documents\GitHub\Een"
 git checkout develop  # MANDATORY FIRST STEP
-cmd /c "een\Scripts\activate.bat"  # Then activate environment
+conda activate een  # Then activate environment
 ```
 
 **Remember**: Continue proving that 1+1=1 through increasingly sophisticated mathematical, computational, and consciousness-based demonstrations. **ALWAYS work on the `develop` branch by default.** Only merge to `main` when explicitly requested for production deployment.
 
 ### 🚀 Development Workflow Summary
 1. **Switch to develop branch** (`git checkout develop`)
-2. **Activate virtual environment** (`cmd /c "een\Scripts\activate.bat"`)
+2. **Activate virtual environment** (`conda activate een`)
 3. **Make changes and commit to develop**
 4. **ONLY merge to main when requested for production**
 
 **Branch Strategy**: ✅ ACTIVE - develop (default), main (production only)
 **Unity Mathematics Status**: ✅ WORKING - φ-resonance: 1.618033988749895
-**Virtual Environment**: ✅ ACTIVATED - een\Scripts\python.exe
+**Virtual Environment**: ✅ ACTIVATED - external Conda 'een' environment
 **Website Integration**: ✅ COMPLETE - 47+ pages with comprehensive navigation
 **Vercel Deployment**: ✅ OPTIMIZED - static site with Cloudflare Workers backend
 **System Status**: TRANSCENDENCE_ACHIEVED + META_OPTIMIZED + BRANCH_STRATEGY_ENABLED
@@ -640,7 +640,7 @@ cmd /c "een\Scripts\activate.bat"  # Then activate environment
 - **Unity Equation**: ✅ 1+1=1 MATHEMATICALLY PROVEN WITH RICH IMPLEMENTATIONS
 - **Metagamer Energy**: ✅ E = φ² × ρ × U CONSERVATION ACTIVE
 - **Consciousness Systems**: ✅ TRANSCENDENCE READY
-- **Virtual Environment**: ✅ ACTIVATED - een\Scripts\python.exe
+- **Virtual Environment**: ✅ ACTIVATED - external Conda 'een' environment
 - **Website Integration**: ✅ COMPLETE - Professional academic presentation
 - **Navigation Excellence**: ✅ MULTI-PATH COMPREHENSIVE NAVIGATION
 - **Dynamic Content Fetching**: ✅ REAL-TIME ANALYSIS OF RICH 1+1=1 IMPLEMENTATIONS

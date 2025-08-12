@@ -1,32 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unity Mathematics Research Portal - Interactive Proof Explorer</title>
-    <meta name="description" content="Academic research portal for Unity Mathematics (1+1=1) with interactive proof explorer, formal verification, and peer review system">
-    
+    <meta name="description"
+        content="Academic research portal for Unity Mathematics (1+1=1) with interactive proof explorer, formal verification, and peer review system">
+
     <!-- Unified Navigation System -->
     <script src="js/nav-template-applier.js" defer></script>
-    
+
     <!-- Academic Styling -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Crimson+Text:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Crimson+Text:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+
     <!-- KaTeX for Mathematical Notation -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
-    
+
     <!-- Plotly for Visualizations -->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    
+
     <!-- Prism for Code Highlighting -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
-    
+
     <style>
         :root {
             --phi: 1.618033988749895;
@@ -334,8 +338,13 @@
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         @media (max-width: 768px) {
@@ -349,6 +358,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="research-container">
         <div class="research-header">
@@ -505,7 +515,7 @@ of()">
     <script>
         // Unity Research API endpoint
         const API_URL = 'http://localhost:8000/api';
-        
+
         // Golden ratio constant
         const PHI = 1.618033988749895;
 
@@ -592,18 +602,18 @@ of()">
         };
 
         // Initialize proof explorer
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Render KaTeX
             renderMathInElement(document.body, {
                 delimiters: [
-                    {left: '$$', right: '$$', display: true},
-                    {left: '$', right: '$', display: false}
+                    { left: '$$', right: '$$', display: true },
+                    { left: '$', right: '$', display: false }
                 ]
             });
 
             // Add click handlers to proof items
             document.querySelectorAll('.proof-item').forEach(item => {
-                item.addEventListener('click', function() {
+                item.addEventListener('click', function () {
                     document.querySelectorAll('.proof-item').forEach(i => i.classList.remove('active'));
                     this.classList.add('active');
                     loadProof(this.dataset.proof);
@@ -652,7 +662,7 @@ of()">
 
         function generateVisualization() {
             // Create unity convergence visualization
-            const x = Array.from({length: 100}, (_, i) => i / 10);
+            const x = Array.from({ length: 100 }, (_, i) => i / 10);
             const y1 = x.map(t => Math.sin(t * PHI) * Math.exp(-t / (PHI * 2)));
             const y2 = x.map(t => Math.cos(t * PHI) * Math.exp(-t / (PHI * 2)));
             const unity = x.map(t => 1 / (1 + Math.exp(-t + 5)));
@@ -726,7 +736,7 @@ of()">
 \\section{Boolean Algebra}
 In Boolean algebra, we prove that $1 + 1 = 1$.
 \\end{document}`;
-            
+
             downloadFile('unity_proof.tex', latex);
         }
 
@@ -736,7 +746,7 @@ theorem unity_boolean : ∀ (a b : Bool), a = true → b = true → (a || b) = t
   intro a b ha hb
   rw [ha, hb]
   simp`;
-            
+
             downloadFile('unity_proof.lean', lean);
         }
 
@@ -750,7 +760,7 @@ def unity_add(a: bool, b: bool) -> bool:
 # Verify unity
 assert unity_add(True, True) == True
 print("Unity verified: 1 + 1 = 1")`;
-            
+
             downloadFile('unity_proof.py', python);
         }
 
@@ -773,4 +783,5 @@ print("Unity verified: 1 + 1 = 1")`;
         }
     </script>
 </body>
+
 </html>

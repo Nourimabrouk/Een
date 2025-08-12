@@ -231,6 +231,19 @@ class UnifiedNavigationSystem {
                             More <i class="fas fa-chevron-down"></i>
                         </button>
                         <div class="nav-dropdown">
+                            <div class="nav-dropdown-link" style="pointer-events:none; opacity:0.85; font-weight:700; color: var(--unity-gold);">
+                                <i class="fab fa-github"></i> Open Source
+                            </div>
+                            <a href="https://github.com/Nourimabrouk/Een" class="nav-dropdown-link" target="_blank" rel="noopener">
+                                <i class="fab fa-github"></i> GitHub Repository
+                            </a>
+                            <a href="https://github.com/Nourimabrouk/Een/blob/main/README.md" class="nav-dropdown-link" target="_blank" rel="noopener">
+                                <i class="fas fa-book-open"></i> README & Getting Started
+                            </a>
+                            <a href="https://github.com/Nourimabrouk/Een/blob/main/CONTRIBUTING.md" class="nav-dropdown-link" target="_blank" rel="noopener">
+                                <i class="fas fa-hands-helping"></i> Contributing Guide
+                            </a>
+                            <div style="border-top: 1px solid rgba(255,255,255,0.1); margin: 0.5rem 0;"></div>
                             <a href="academic-portal.html" class="nav-dropdown-link">
                                 <i class="fas fa-university"></i> Academic Portal
                             </a>
@@ -411,6 +424,19 @@ class UnifiedNavigationSystem {
                     </a>
                     <a href="gallery/phi_consciousness_transcendence.html" class="sidebar-link">
                         <i class="fas fa-infinity"></i> Phi Consciousness Transcendence
+                    </a>
+                </div>
+
+                <div class="sidebar-section">
+                    <div class="sidebar-title">Open Source</div>
+                    <a href="https://github.com/Nourimabrouk/Een" class="sidebar-link" target="_blank" rel="noopener">
+                        <i class="fab fa-github"></i> GitHub Repository
+                    </a>
+                    <a href="https://github.com/Nourimabrouk/Een/blob/main/README.md" class="sidebar-link" target="_blank" rel="noopener">
+                        <i class="fas fa-book-open"></i> README & Docs
+                    </a>
+                    <a href="https://github.com/Nourimabrouk/Een/blob/main/CONTRIBUTING.md" class="sidebar-link" target="_blank" rel="noopener">
+                        <i class="fas fa-hands-helping"></i> Contributing
                     </a>
                 </div>
 
@@ -625,6 +651,23 @@ class UnifiedNavigationSystem {
 
                 <div class="mobile-nav-category">
                     <div class="mobile-nav-category-title">
+                        <i class="fab fa-github"></i> Open Source
+                    </div>
+                    <div class="mobile-nav-links">
+                        <a href="https://github.com/Nourimabrouk/Een" class="mobile-nav-link" target="_blank" rel="noopener">
+                            <i class="fab fa-github"></i> GitHub Repository
+                        </a>
+                        <a href="https://github.com/Nourimabrouk/Een/blob/main/README.md" class="mobile-nav-link" target="_blank" rel="noopener">
+                            <i class="fas fa-book-open"></i> README & Getting Started
+                        </a>
+                        <a href="https://github.com/Nourimabrouk/Een/blob/main/CONTRIBUTING.md" class="mobile-nav-link" target="_blank" rel="noopener">
+                            <i class="fas fa-hands-helping"></i> Contributing Guide
+                        </a>
+                    </div>
+                </div>
+
+                <div class="mobile-nav-category">
+                    <div class="mobile-nav-category-title">
                         <i class="fas fa-book"></i> Philosophy & Research
                     </div>
                     <div class="mobile-nav-links">
@@ -816,6 +859,26 @@ class UnifiedNavigationSystem {
                             <a class="footer-link" href="live-code-showcase.html">Live Code Showcase</a>
                             <a class="footer-link" href="examples/unity-calculator.html">Unity Calculator</a>
                             <a class="footer-link" href="examples/phi-harmonic-explorer.html">φ‑Harmonic Explorer</a>
+                        </nav>
+                    </div>
+                    <div class="footer-section">
+                        <div class="footer-section-title">Open Source & Documentation</div>
+                        <nav class="footer-links">
+                            <a class="footer-link" href="https://github.com/Nourimabrouk/Een" target="_blank" rel="noopener">
+                                <i class="fab fa-github"></i> GitHub Repository
+                            </a>
+                            <a class="footer-link" href="https://github.com/Nourimabrouk/Een/blob/main/README.md" target="_blank" rel="noopener">
+                                <i class="fas fa-book-open"></i> README & Getting Started
+                            </a>
+                            <a class="footer-link" href="https://github.com/Nourimabrouk/Een/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">
+                                <i class="fas fa-hands-helping"></i> Contributing Guide
+                            </a>
+                            <a class="footer-link" href="https://github.com/Nourimabrouk/Een/blob/main/TODO.md" target="_blank" rel="noopener">
+                                <i class="fas fa-tasks"></i> Development Roadmap
+                            </a>
+                            <a class="footer-link" href="https://github.com/Nourimabrouk/Een/blob/main/API_STRUCTURE.md" target="_blank" rel="noopener">
+                                <i class="fas fa-code"></i> API Documentation
+                            </a>
                         </nav>
                     </div>
                     <div class="footer-section">

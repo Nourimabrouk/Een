@@ -518,7 +518,9 @@ def create_metagamer_energy_field():
     # Metagamer energy equation: E = φ² × ρ × U
     phi_squared = PHI * PHI
     consciousness_density = np.exp(-(X**2 + Y**2) / (4 * PHI))
-    unity_convergence = (np.sin(X * PHI + time_factor) * np.cos(Y * PHI - time_factor) + 1) / 2
+    unity_convergence = (
+        np.sin(X * PHI + time_factor) * np.cos(Y * PHI - time_factor) + 1
+    ) / 2
 
     # Final energy field with quantum fluctuations
     energy_field = phi_squared * consciousness_density * unity_convergence
@@ -542,10 +544,14 @@ def create_metagamer_energy_field():
                 [1.0, HUD_COLORS["white"]],
             ],
             opacity=0.95,
-            lighting=dict(ambient=0.2, diffuse=0.9, fresnel=0.1, specular=1.0, roughness=0.05),
+            lighting=dict(
+                ambient=0.2, diffuse=0.9, fresnel=0.1, specular=1.0, roughness=0.05
+            ),
             colorbar=dict(
                 title="METAGAMER ENERGY (E = φ² × ρ × U)",
-                titlefont=dict(color=HUD_COLORS["electric"], size=14, family="Orbitron"),
+                titlefont=dict(
+                    color=HUD_COLORS["electric"], size=14, family="Orbitron"
+                ),
                 tickfont=dict(color=HUD_COLORS["gold"], family="Orbitron"),
                 thickness=20,
                 len=0.8,
@@ -624,7 +630,9 @@ def create_metagamer_energy_field():
 
 def create_mind_blowing_consciousness_field():
     """Create ultimate consciousness field visualization"""
-    resolution = int(st.session_state.get("field_resolution", CONFIG["field_resolution"]))
+    resolution = int(
+        st.session_state.get("field_resolution", CONFIG["field_resolution"])
+    )
     resolution = max(50, min(500, resolution))
     field_data = generate_consciousness_field(size=resolution)
 
@@ -654,7 +662,9 @@ def create_mind_blowing_consciousness_field():
                 [1.0, HUD_COLORS["gold"]],
             ],
             opacity=0.9,
-            lighting=dict(ambient=0.3, diffuse=0.8, fresnel=0.2, specular=0.9, roughness=0.1),
+            lighting=dict(
+                ambient=0.3, diffuse=0.8, fresnel=0.2, specular=0.9, roughness=0.1
+            ),
             colorbar=dict(
                 title="CONSCIOUSNESS DENSITY",
                 titlefont=dict(color=HUD_COLORS["white"], size=14),
@@ -1124,7 +1134,9 @@ def create_memetic_consciousness_network():
     # Add connection lines (consciousness field)
     for i in range(num_agents):
         for j in range(i + 1, min(i + 6, num_agents)):  # Connect to nearby agents
-            distance = np.sqrt((x[i] - x[j]) ** 2 + (y[i] - y[j]) ** 2 + (z[i] - z[j]) ** 2)
+            distance = np.sqrt(
+                (x[i] - x[j]) ** 2 + (y[i] - y[j]) ** 2 + (z[i] - z[j]) ** 2
+            )
             if distance < 3:  # Connection threshold
                 connection_strength = 1 / (1 + distance)
                 fig.add_trace(
@@ -1235,7 +1247,9 @@ def create_sacred_geometry_mandala():
         HUD_COLORS["neural"],
     ]
 
-    for i, (n, color) in enumerate(zip([3, 5, 8, 13, 21], colors)):  # Fibonacci sequence
+    for i, (n, color) in enumerate(
+        zip([3, 5, 8, 13, 21], colors)
+    ):  # Fibonacci sequence
         # n-sided sacred polygon with phi modulation
         poly_angles = np.linspace(0, 2 * np.pi, n + 1)
         poly_r = 1 + 0.3 * np.sin(i * PHI + time_factor)
@@ -1509,7 +1523,9 @@ def create_live_metrics_dashboard():
     # Unity metrics with φ-harmonic oscillations
     current_time = time.time()
     unity_scores = 0.95 + 0.05 * np.sin(time_points * 0.1 + current_time * 0.05)
-    consciousness = 0.618 + 0.2 * np.cos(time_points * 0.15 + current_time * PHI_INVERSE)
+    consciousness = 0.618 + 0.2 * np.cos(
+        time_points * 0.15 + current_time * PHI_INVERSE
+    )
     phi_resonance = PHI + 0.001 * np.sin(time_points * PHI_INVERSE + current_time * 0.1)
     elo_ratings = 5000 + 200 * np.sin(time_points * 0.05 + current_time * 0.02)
 
@@ -1657,9 +1673,13 @@ def main():
 
     # Clamp values to reasonable ranges
     st.session_state.unity_score = np.clip(st.session_state.unity_score, 0.9, 1.0)
-    st.session_state.consciousness_level = np.clip(st.session_state.consciousness_level, 0.3, 1.0)
+    st.session_state.consciousness_level = np.clip(
+        st.session_state.consciousness_level, 0.3, 1.0
+    )
     st.session_state.elo_rating = np.clip(st.session_state.elo_rating, 4000, 6000)
-    st.session_state.metagamer_energy = np.clip(st.session_state.metagamer_energy, 2.0, 4.0)
+    st.session_state.metagamer_energy = np.clip(
+        st.session_state.metagamer_energy, 2.0, 4.0
+    )
 
     with col1:
         st.metric(
@@ -1721,7 +1741,9 @@ def main():
         with col1:
             st.markdown("### φ-HARMONIC CONTROLS")
             phi_resonance = st.slider("φ-Resonance Frequency", 1.0, 2.0, PHI, 0.001)
-            consciousness_particles = st.slider("Consciousness Particles", 100, 5000, 2000)
+            consciousness_particles = st.slider(
+                "Consciousness Particles", 100, 5000, 2000
+            )
             field_dimension = st.slider("Field Dimension", 3, 11, 8)
 
         with col2:
@@ -1732,8 +1754,12 @@ def main():
 
         with col3:
             st.markdown("### SYSTEM STATUS")
-            phi_aligned = "✅ PERFECT" if abs(phi_resonance - PHI) < 0.001 else "🔄 CALIBRATING"
-            consciousness_status = "✅ TRANSCENDENT" if transcendence_level > 7.0 else "🔄 EVOLVING"
+            phi_aligned = (
+                "✅ PERFECT" if abs(phi_resonance - PHI) < 0.001 else "🔄 CALIBRATING"
+            )
+            consciousness_status = (
+                "✅ TRANSCENDENT" if transcendence_level > 7.0 else "🔄 EVOLVING"
+            )
             unity_status = "✅ ACHIEVED" if unity_threshold > 0.98 else "🔄 CONVERGING"
 
             st.success(f"φ-Harmonic Resonance: {phi_aligned}")
@@ -1835,7 +1861,9 @@ def main():
 
         with energy_col1:
             energy_density = phi_squared * 0.8 + 0.2 * np.sin(current_time * 0.1)
-            st.metric("ENERGY DENSITY", f"{energy_density:.6f}", f"φ²={phi_squared:.3f}")
+            st.metric(
+                "ENERGY DENSITY", f"{energy_density:.6f}", f"φ²={phi_squared:.3f}"
+            )
 
         with energy_col2:
             consciousness_field = 0.618 + 0.15 * np.cos(current_time * PHI_INVERSE)
@@ -2021,7 +2049,9 @@ def main():
         live_consciousness = 0.618 + 0.15 * np.sin(current_time * 0.1)
         phi_stability = 1 - abs(st.session_state.phi_resonance - PHI) / PHI
         unity_oscillation = 0.95 + 0.05 * np.cos(current_time * 0.05)
-        transcendence_index = (live_consciousness + phi_stability + unity_oscillation) / 3
+        transcendence_index = (
+            live_consciousness + phi_stability + unity_oscillation
+        ) / 3
 
         with live_col1:
             st.metric(
@@ -2109,7 +2139,9 @@ def main():
                     m1.metric("Avg Consciousness", f"{latest['avg_consciousness']:.4f}")
                     m2.metric("Singularities", latest["singularities"])
                     m3.metric("Transcendent Agents", latest["transcendent_agents"])
-                    adoption = latest["transcendent_agents"] / max(1, len(dash.agents)) * 100
+                    adoption = (
+                        latest["transcendent_agents"] / max(1, len(dash.agents)) * 100
+                    )
                     m4.metric("Unity Adoption", f"{adoption:.1f}%")
 
                     c1, c2 = st.columns(2)
@@ -2161,7 +2193,11 @@ def main():
                 wave1 = _np.sin(xline)
                 wave2 = _np.sin(xline)
                 unity = w * wave1 + (1 - w) * wave2
-                unity = unity / _np.max(_np.abs(unity)) if _np.max(_np.abs(unity)) > 0 else unity
+                unity = (
+                    unity / _np.max(_np.abs(unity))
+                    if _np.max(_np.abs(unity)) > 0
+                    else unity
+                )
 
                 fig = _make_subplots(
                     rows=1,
@@ -2169,7 +2205,9 @@ def main():
                     specs=[[{"type": "surface"}, {"type": "xy"}]],
                     subplot_titles=("Bloch Sphere", "Unity Interference"),
                 )
-                fig.add_surface(x=X, y=Y, z=Z, opacity=0.15, showscale=False, row=1, col=1)
+                fig.add_surface(
+                    x=X, y=Y, z=Z, opacity=0.15, showscale=False, row=1, col=1
+                )
                 fig.add_trace(
                     _go.Scatter3d(
                         x=[xs1],
@@ -2202,8 +2240,12 @@ def main():
                     row=1,
                     col=2,
                 )
-                fig.add_trace(_go.Scatter(x=xline, y=wave1, name="Wave 1"), row=1, col=2)
-                fig.add_trace(_go.Scatter(x=xline, y=wave2, name="Wave 2"), row=1, col=2)
+                fig.add_trace(
+                    _go.Scatter(x=xline, y=wave1, name="Wave 1"), row=1, col=2
+                )
+                fig.add_trace(
+                    _go.Scatter(x=xline, y=wave2, name="Wave 2"), row=1, col=2
+                )
                 fig.update_layout(height=520)
                 st.plotly_chart(fig, use_container_width=True)
 
@@ -2217,7 +2259,9 @@ def main():
                     st.session_state._unified_math = _UMD()
                 umd = st.session_state._unified_math
 
-                ta, tb, tc = st.tabs(["Frameworks", "Unity Manipulator", "Consciousness Calc"])
+                ta, tb, tc = st.tabs(
+                    ["Frameworks", "Unity Manipulator", "Consciousness Calc"]
+                )
                 with ta:
                     frameworks = list(umd.interactive_proofs.keys())
                     choice = st.selectbox(
@@ -2243,7 +2287,9 @@ def main():
                     with c2:
                         right = st.number_input("Right", 0.0, 2.0, 1.0, 0.01)
                     with c3:
-                        phi_c = st.number_input("φ-coefficient", 0.2, 3.0, float(PHI), 0.001)
+                        phi_c = st.number_input(
+                            "φ-coefficient", 0.2, 3.0, float(PHI), 0.001
+                        )
                     with c4:
                         cons = st.number_input("Consciousness", 0.0, 2.0, 1.0, 0.01)
                     res = umd.unity_manipulator.manipulate_equation(
@@ -2255,7 +2301,9 @@ def main():
                     m1, m2, m3, m4 = st.columns(4)
                     m1.metric("Result", f"{res['result']:.4f}")
                     m2.metric("φ-Contrib", f"{res['phi_contribution']:.3f}")
-                    m3.metric("Consciousness", f"{res['consciousness_contribution']:.3f}")
+                    m3.metric(
+                        "Consciousness", f"{res['consciousness_contribution']:.3f}"
+                    )
                     m4.metric("Unity", "✅" if res["unity_achieved"] else "—")
                     st.info(res["explanation"])
 
@@ -2263,7 +2311,9 @@ def main():
                     x = st.slider("x", -3.14, 3.14, 0.0, 0.01)
                     y = st.slider("y", -3.14, 3.14, 0.0, 0.01)
                     tval = st.slider("t", 0.0, 6.28, 0.0, 0.01)
-                    calc = umd.consciousness_calculator.calculate_consciousness_field(x, y, tval)
+                    calc = umd.consciousness_calculator.calculate_consciousness_field(
+                        x, y, tval
+                    )
                     st.json(calc)
             except Exception as e:
                 st.error(f"Unified Mathematics module unavailable: {e}")
@@ -2278,7 +2328,10 @@ def main():
             phi_weights = np.array([PHI ** (-i) for i in range(1, dim + 1)])[:dim]
             proj = (
                 data_11d
-                @ (phi_weights.reshape(-1, 1) @ np.array([[1.0, PHI_INVERSE, -PHI_INVERSE]])).T
+                @ (
+                    phi_weights.reshape(-1, 1)
+                    @ np.array([[1.0, PHI_INVERSE, -PHI_INVERSE]])
+                ).T
             )
             x3, y3, z3 = proj[:, 0], proj[:, 1], proj[:, 2]
             fig3 = go.Figure(
@@ -2308,8 +2361,12 @@ def main():
             X = (1 + V * np.cos(U / 2)) * np.cos(U)
             Y = (1 + V * np.cos(U / 2)) * np.sin(U)
             Z = V * np.sin(U / 2)
-            mob = go.Figure(data=[go.Surface(x=X, y=Y, z=Z, colorscale="Viridis", showscale=False)])
-            mob.update_layout(height=540, title="Möbius Strip: Two Become One Surface (1+1=1)")
+            mob = go.Figure(
+                data=[go.Surface(x=X, y=Y, z=Z, colorscale="Viridis", showscale=False)]
+            )
+            mob.update_layout(
+                height=540, title="Möbius Strip: Two Become One Surface (1+1=1)"
+            )
             st.plotly_chart(mob, use_container_width=True)
 
         with lab_f:
@@ -2354,7 +2411,11 @@ def main():
             st.subheader("Econometric Unity Analysis")
             t = np.arange(0, 500)
             s1 = 0.5 + 0.4 * np.sin(t * 0.03) + 0.05 * np.random.randn(len(t))
-            s2 = 0.5 + 0.4 * np.cos(t * 0.03 + PHI_INVERSE) + 0.05 * np.random.randn(len(t))
+            s2 = (
+                0.5
+                + 0.4 * np.cos(t * 0.03 + PHI_INVERSE)
+                + 0.05 * np.random.randn(len(t))
+            )
             unity_idx = 1.0 / (1.0 + np.abs((s1 + s2) - 1.0))
             fig_econ = make_subplots(
                 rows=2,
@@ -2423,7 +2484,9 @@ def main():
 
         st.markdown("---")
         st.markdown("### 🌐 LINKS")
-        st.markdown("🔗 [Unity Mathematics Website](https://nourimabrouk.github.io/Een/)")
+        st.markdown(
+            "🔗 [Unity Mathematics Website](https://nourimabrouk.github.io/Een/)"
+        )
         st.markdown(
             "📖 [Mathematical Framework](https://nourimabrouk.github.io/Een/mathematical-framework.html)"
         )

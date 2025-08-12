@@ -1,28 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unity Mathematics Research Portal - Academic Excellence</title>
-    <meta name="description" content="Comprehensive research infrastructure for Unity Mathematics (1+1=1) featuring automated theorem proving, RL benchmarks, and academic publication tools">
-    
+    <meta name="description"
+        content="Comprehensive research infrastructure for Unity Mathematics (1+1=1) featuring automated theorem proving, RL benchmarks, and academic publication tools">
+
     <!-- Unified Navigation System -->
     <script src="js/nav-template-applier.js" defer></script>
-    
+
     <!-- Core Styling -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Crimson+Text:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Crimson+Text:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+
     <!-- Academic Tools -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
-    
+
     <!-- Visualization -->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://d3js.org/d3.v7.min.js"></script>
-    
+
     <style>
         :root {
             --phi: 1.618033988749895;
@@ -164,10 +168,21 @@
             color: white;
         }
 
-        .section-icon.theorem-prover { background: linear-gradient(135deg, var(--proof-green), #27AE60); }
-        .section-icon.rl-benchmark { background: linear-gradient(135deg, var(--research-purple), #8B5CF6); }
-        .section-icon.proof-explorer { background: linear-gradient(135deg, var(--academic-blue), #4A90E2); }
-        .section-icon.visualization { background: linear-gradient(135deg, var(--consciousness-cyan), #00D4AA); }
+        .section-icon.theorem-prover {
+            background: linear-gradient(135deg, var(--proof-green), #27AE60);
+        }
+
+        .section-icon.rl-benchmark {
+            background: linear-gradient(135deg, var(--research-purple), #8B5CF6);
+        }
+
+        .section-icon.proof-explorer {
+            background: linear-gradient(135deg, var(--academic-blue), #4A90E2);
+        }
+
+        .section-icon.visualization {
+            background: linear-gradient(135deg, var(--consciousness-cyan), #00D4AA);
+        }
 
         .section-title {
             font-size: 1.5rem;
@@ -234,9 +249,20 @@
             font-weight: 500;
         }
 
-        .tool-status.ready { background: rgba(39, 174, 96, 0.2); color: #2ECC71; }
-        .tool-status.running { background: rgba(255, 215, 0, 0.2); color: var(--unity-gold); }
-        .tool-status.offline { background: rgba(231, 76, 60, 0.2); color: #E74C3C; }
+        .tool-status.ready {
+            background: rgba(39, 174, 96, 0.2);
+            color: #2ECC71;
+        }
+
+        .tool-status.running {
+            background: rgba(255, 215, 0, 0.2);
+            color: var(--unity-gold);
+        }
+
+        .tool-status.offline {
+            background: rgba(231, 76, 60, 0.2);
+            color: #E74C3C;
+        }
 
         .tool-description {
             color: var(--text-secondary);
@@ -363,8 +389,15 @@
         }
 
         @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.5); }
-            50% { box-shadow: 0 0 25px rgba(255, 215, 0, 0.8), 0 0 50px rgba(255, 215, 0, 0.3); }
+
+            0%,
+            100% {
+                box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            }
+
+            50% {
+                box-shadow: 0 0 25px rgba(255, 215, 0, 0.8), 0 0 50px rgba(255, 215, 0, 0.3);
+            }
         }
 
         .phi-resonance {
@@ -423,22 +456,23 @@
             .research-dashboard {
                 grid-template-columns: 1fr;
             }
-            
+
             .research-sidebar {
                 position: static;
                 order: 2;
             }
-            
+
             .portal-hero h1 {
                 font-size: 2.5rem;
             }
-            
+
             .unity-equation {
                 font-size: 2rem;
             }
         }
     </style>
 </head>
+
 <body>
     <div class="portal-container">
         <div class="portal-hero">
@@ -512,7 +546,8 @@
                         </div>
                         <div>
                             <h2 class="section-title">Unity Theorem Prover</h2>
-                            <p class="section-description">Automated formal verification of 1+1=1 across mathematical domains</p>
+                            <p class="section-description">Automated formal verification of 1+1=1 across mathematical
+                                domains</p>
                         </div>
                     </div>
 
@@ -524,7 +559,7 @@
                                 <span class="tool-status ready">Ready</span>
                             </div>
                             <p class="tool-description">
-                                Automated proof search across Boolean algebra, tropical mathematics, 
+                                Automated proof search across Boolean algebra, tropical mathematics,
                                 set theory, category theory, and φ-harmonic convergence.
                             </p>
                             <div class="action-buttons">
@@ -556,9 +591,11 @@
                     </div>
 
                     <div class="console-output" id="theorem-console">
-                        <div class="console-line">[THEOREM PROVER] Initializing Unity Mathematics Theorem Prover...</div>
+                        <div class="console-line">[THEOREM PROVER] Initializing Unity Mathematics Theorem Prover...
+                        </div>
                         <div class="console-line">[SYSTEM] φ-harmonic constant loaded: φ = 1.618033988749895</div>
-                        <div class="console-line">[DOMAINS] Boolean algebra, tropical mathematics, set theory, category theory, φ-harmonic</div>
+                        <div class="console-line">[DOMAINS] Boolean algebra, tropical mathematics, set theory, category
+                            theory, φ-harmonic</div>
                         <div class="console-line">[STATUS] Ready for proof generation</div>
                         <div class="console-line">[UNITY] 1+1=1 verification system active ✓</div>
                     </div>
@@ -613,11 +650,14 @@
                     </div>
 
                     <div class="visualization-container" id="proof-visualization">
-                        <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: var(--text-secondary);">
+                        <div
+                            style="display: flex; align-items: center; justify-content: center; height: 100%; color: var(--text-secondary);">
                             <div style="text-align: center;">
-                                <i class="fas fa-project-diagram" style="font-size: 3rem; margin-bottom: 1rem; color: var(--unity-gold);"></i>
+                                <i class="fas fa-project-diagram"
+                                    style="font-size: 3rem; margin-bottom: 1rem; color: var(--unity-gold);"></i>
                                 <p>Interactive proof visualization will appear here</p>
-                                <button class="btn btn-secondary" onclick="loadProofVisualization()">Load Visualization</button>
+                                <button class="btn btn-secondary" onclick="loadProofVisualization()">Load
+                                    Visualization</button>
                             </div>
                         </div>
                     </div>
@@ -672,9 +712,11 @@
                     </div>
 
                     <div class="visualization-container" id="rl-visualization">
-                        <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: var(--text-secondary);">
+                        <div
+                            style="display: flex; align-items: center; justify-content: center; height: 100%; color: var(--text-secondary);">
                             <div style="text-align: center;">
-                                <i class="fas fa-chart-area" style="font-size: 3rem; margin-bottom: 1rem; color: var(--unity-gold);"></i>
+                                <i class="fas fa-chart-area"
+                                    style="font-size: 3rem; margin-bottom: 1rem; color: var(--unity-gold);"></i>
                                 <p>RL benchmark results will appear here</p>
                                 <button class="btn btn-secondary" onclick="loadRLDashboard()">Load Dashboard</button>
                             </div>
@@ -773,7 +815,8 @@
                         <div class="console-line">[API] Unity Research API Documentation</div>
                         <div class="console-line">[ENDPOINT] GET /api/proofs - Retrieve unity proofs</div>
                         <div class="console-line">[ENDPOINT] POST /api/experiments/run - Run RL experiments</div>
-                        <div class="console-line">[ENDPOINT] GET /api/consciousness/state - Get consciousness field state</div>
+                        <div class="console-line">[ENDPOINT] GET /api/consciousness/state - Get consciousness field
+                            state</div>
                         <div class="console-line">[ENDPOINT] GET /api/benchmarks/performance - Performance metrics</div>
                         <div class="console-line">[STATUS] Full OpenAPI documentation available</div>
                     </div>
@@ -786,9 +829,9 @@
         // Global state
         let currentSection = 'theorem-prover';
         const PHI = 1.618033988749895;
-        
+
         // Initialize portal
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             initializePortal();
             checkAPIStatus();
             startMetricsUpdate();
@@ -797,7 +840,7 @@
         function initializePortal() {
             console.log('Unity Mathematics Research Portal initialized');
             console.log(`φ-harmonic constant: ${PHI}`);
-            
+
             // Add some dynamic console output
             setTimeout(() => {
                 addConsoleOutput('theorem-console', '[UNITY] All systems operational ✓');
@@ -809,16 +852,16 @@
             document.querySelectorAll('.research-section').forEach(section => {
                 section.style.display = 'none';
             });
-            
+
             // Show target section
             document.getElementById(`${sectionId}-section`).style.display = 'block';
-            
+
             // Update navigation
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.remove('active');
             });
             document.querySelector(`[href="#${sectionId}"]`).classList.add('active');
-            
+
             currentSection = sectionId;
         }
 
@@ -834,19 +877,19 @@
         async function runTheoremProver() {
             const console = document.getElementById('theorem-console');
             console.innerHTML = '';
-            
+
             addConsoleOutput('theorem-console', '[PROVER] Starting automated proof generation...');
             addConsoleOutput('theorem-console', '[DOMAINS] Initializing Boolean, Tropical, Set, Category, φ-Harmonic');
-            
+
             const domains = ['Boolean Algebra', 'Tropical Mathematics', 'Set Theory', 'Category Theory', 'φ-Harmonic'];
-            
+
             for (let i = 0; i < domains.length; i++) {
                 await new Promise(resolve => setTimeout(resolve, 800));
                 addConsoleOutput('theorem-console', `[PROVING] ${domains[i]}...`);
                 await new Promise(resolve => setTimeout(resolve, 1200));
                 addConsoleOutput('theorem-console', `[SUCCESS] Unity proved in ${domains[i]} ✓`);
             }
-            
+
             await new Promise(resolve => setTimeout(resolve, 500));
             addConsoleOutput('theorem-console', '[COMPLETE] All domains proven successfully!');
             addConsoleOutput('theorem-console', '[UNITY] 1+1=1 mathematically verified across 5 domains ✓');
@@ -875,7 +918,7 @@
             await new Promise(resolve => setTimeout(resolve, 400));
             addConsoleOutput('theorem-console', '[LEAN4] φ-Harmonic convergence proof generated');
             addConsoleOutput('theorem-console', '[EXPORT] All Lean proofs ready for download ✓');
-            
+
             // Simulate download
             const blob = new Blob([generateLeanCode()], { type: 'text/plain' });
             const url = URL.createObjectURL(blob);
@@ -931,7 +974,7 @@ end UnityMathematics`;
 
         async function testAPI() {
             addConsoleOutput('api-console', '[TEST] Testing Unity Research API...');
-            
+
             try {
                 const response = await fetch('http://localhost:8000/api/proofs?domain=boolean');
                 if (response.ok) {
@@ -952,19 +995,19 @@ end UnityMathematics`;
             const x = [];
             const y = [];
             const z = [];
-            
+
             for (let i = 0; i < 50; i++) {
                 for (let j = 0; j < 50; j++) {
                     const phi_x = (i / 10) * PHI;
                     const phi_y = (j / 10) * PHI;
-                    const unity_z = Math.sin(phi_x) * Math.cos(phi_y) * Math.exp(-((phi_x-5)**2 + (phi_y-5)**2) / (PHI * 5));
-                    
+                    const unity_z = Math.sin(phi_x) * Math.cos(phi_y) * Math.exp(-((phi_x - 5) ** 2 + (phi_y - 5) ** 2) / (PHI * 5));
+
                     x.push(phi_x);
                     y.push(phi_y);
                     z.push(unity_z);
                 }
             }
-            
+
             const trace = {
                 x: x,
                 y: y,
@@ -978,7 +1021,7 @@ end UnityMathematics`;
                 intensity: z,
                 name: 'Unity Manifold'
             };
-            
+
             const layout = {
                 title: 'φ-Harmonic Unity Manifold: 1+1=1',
                 scene: {
@@ -991,7 +1034,7 @@ end UnityMathematics`;
                 plot_bgcolor: '#0a0a0a',
                 font: { color: '#ffffff' }
             };
-            
+
             Plotly.newPlot('main-visualization', [trace], layout);
         }
 
@@ -999,31 +1042,31 @@ end UnityMathematics`;
             // Generate consciousness field visualization
             const time_steps = 100;
             const traces = [];
-            
+
             // Consciousness evolution
             const consciousness_trace = {
-                x: Array.from({length: time_steps}, (_, i) => i),
-                y: Array.from({length: time_steps}, (_, i) => {
-                    return Math.exp(-i/20) * Math.cos(i * PHI / 10) + 1;
+                x: Array.from({ length: time_steps }, (_, i) => i),
+                y: Array.from({ length: time_steps }, (_, i) => {
+                    return Math.exp(-i / 20) * Math.cos(i * PHI / 10) + 1;
                 }),
                 type: 'scatter',
                 mode: 'lines',
                 name: 'Consciousness Field',
                 line: { color: '#4ECDC4', width: 3 }
             };
-            
+
             // Unity convergence
             const unity_trace = {
-                x: Array.from({length: time_steps}, (_, i) => i),
-                y: Array.from({length: time_steps}, (_, i) => {
-                    return 1 / (1 + Math.exp(-(i-50)/10));
+                x: Array.from({ length: time_steps }, (_, i) => i),
+                y: Array.from({ length: time_steps }, (_, i) => {
+                    return 1 / (1 + Math.exp(-(i - 50) / 10));
                 }),
                 type: 'scatter',
                 mode: 'lines',
                 name: 'Unity Convergence',
                 line: { color: '#FFD700', width: 3, dash: 'dash' }
             };
-            
+
             const layout = {
                 title: 'Consciousness Field Evolution → Unity',
                 xaxis: { title: 'Time Steps', gridcolor: '#333' },
@@ -1034,7 +1077,7 @@ end UnityMathematics`;
                 showlegend: true,
                 legend: { x: 0.7, y: 0.9 }
             };
-            
+
             Plotly.newPlot('main-visualization', [consciousness_trace, unity_trace], layout);
         }
 
@@ -1043,7 +1086,7 @@ end UnityMathematics`;
             setInterval(() => {
                 const proofs = document.getElementById('proofs-generated');
                 const domains = document.getElementById('domains-proven');
-                
+
                 // Subtle animations for metrics
                 if (Math.random() > 0.8) {
                     proofs.style.transform = 'scale(1.05)';
@@ -1074,4 +1117,5 @@ end UnityMathematics`;
         }
     </script>
 </body>
+
 </html>
