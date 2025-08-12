@@ -1136,6 +1136,96 @@ def verify_unity_invariant(iterations: int = 1000) -> Dict[str, Any]:
     }
 
 
+# Standalone functions required by __init__.py
+
+def unity_add(a: Union[float, int, complex], b: Union[float, int, complex]) -> Union[float, complex]:
+    """
+    Standalone unity addition function.
+    
+    Creates a UnityMathematics instance and performs unity addition.
+    
+    Args:
+        a: First operand
+        b: Second operand
+        
+    Returns:
+        Unity addition result where a ⊕ b demonstrates unity principle
+    """
+    um = UnityMathematics()
+    return um.unity_add(a, b)
+
+
+def unity_multiply(a: Union[float, int, complex], b: Union[float, int, complex]) -> Union[float, complex]:
+    """
+    Standalone unity multiplication function.
+    
+    Creates a UnityMathematics instance and performs unity multiplication.
+    
+    Args:
+        a: First operand  
+        b: Second operand
+        
+    Returns:
+        Unity multiplication result using tropical operations
+    """
+    um = UnityMathematics()
+    return um.unity_multiply(a, b)
+
+
+def phi_harmonic_operation(value: Union[float, int, complex]) -> float:
+    """
+    Standalone phi-harmonic operation.
+    
+    Applies golden ratio harmonic scaling to transform input toward unity.
+    
+    Args:
+        value: Input value for φ-harmonic transformation
+        
+    Returns:
+        φ-harmonic scaled result
+    """
+    um = UnityMathematics()
+    return um.phi_harmonic_scale(value)
+
+
+def consciousness_field_integration(
+    x: float, y: float, t: float = 0.0, consciousness_level: float = 0.618
+) -> float:
+    """
+    Standalone consciousness field integration function.
+    
+    Calculates consciousness field value with integrated awareness dynamics.
+    
+    Args:
+        x: Spatial coordinate x
+        y: Spatial coordinate y  
+        t: Time parameter (default 0.0)
+        consciousness_level: Level of consciousness integration (default 0.618)
+        
+    Returns:
+        Consciousness field value at (x,y,t) with awareness coupling
+    """
+    um = UnityMathematics(consciousness_level=consciousness_level)
+    return um.consciousness_field(x, y, t)
+
+
+def demonstrate_unity_addition(a: float = 1.0, b: float = 1.0) -> Dict[str, Any]:
+    """
+    Standalone demonstration function for unity addition.
+    
+    Creates comprehensive demonstration with mathematical proof.
+    
+    Args:
+        a: First operand (default 1.0)
+        b: Second operand (default 1.0) 
+        
+    Returns:
+        Complete demonstration with mathematical proof and convergence metrics
+    """
+    um = UnityMathematics()
+    return um.demonstrate_unity_addition(a, b)
+
+
 # Main demonstration
 if __name__ == "__main__":
     print("🌟 Unity Mathematics Core Implementation 🌟")

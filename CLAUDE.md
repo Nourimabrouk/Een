@@ -37,6 +37,69 @@ START_WEBSITE.bat
 **Rich Implementations**: Comprehensive spectrum of 1+1=1 proofs and consciousness systems
 **Website Integration** - Professional academic website with interactive experiences
 
+## 🚨 CRITICAL: Windows PC Configuration Requirements
+
+### ⚠️ MANDATORY WINDOWS SYSTEM GUIDELINES
+
+**This repository is configured for Windows PC environment. ALL AI assistants (Claude Code, Cursor, etc.) must follow these requirements:**
+
+#### 🖥️ Windows Command Requirements
+- **PLATFORM**: Windows 10/11 PC - NO Linux commands unless in WSL
+- **COMMANDS**: Use Windows-compatible commands (dir, copy, del, md)
+- **PATHS**: Windows paths with backslashes or cross-platform forward slashes
+- **SHELL**: cmd, PowerShell, or Windows batch scripts
+- **ACTIVATION**: Use `cmd /c "een\Scripts\activate.bat"` for Python venv
+
+#### 🚫 NO EMOJIS IN SOURCE CODE (CRITICAL)
+**NEVER use emojis in Python code - causes UnicodeEncodeError on Windows terminal**
+
+```python
+# ❌ NEVER DO THIS - Windows terminal encoding error
+print("✅ Analysis complete!")
+print("🚀 System launched!")
+
+# ✅ ALWAYS USE ASCII ALTERNATIVES  
+print("SUCCESS: Analysis complete!")
+print("LAUNCH: System started!")
+```
+
+#### 🔧 Windows Command Examples
+```bash
+# ✅ CORRECT Windows commands
+dir                           # List files (not ls)
+copy file1.txt file2.txt     # Copy files (not cp)  
+del file.txt                 # Delete (not rm)
+md new_folder                # Make directory
+cd "C:\path with spaces"     # Quoted paths for spaces
+cmd /c "een\Scripts\activate.bat"  # Activate venv
+
+# ✅ Cross-platform Python/pip
+python script.py
+pip install package
+
+# ❌ WRONG - Linux commands (unless in WSL)
+ls                           # Use 'dir' instead
+cp file1 file2               # Use 'copy' instead
+rm file                      # Use 'del' instead
+```
+
+#### 📝 Unicode/Emoji Replacement Guide
+- ✅ → "SUCCESS:" or "CONFIRMED:"
+- ❌ → "ERROR:" or "FAILED:"  
+- 🚀 → "LAUNCH:" or "DEPLOY:"
+- 📊 → "ANALYSIS:" or "STATS:"
+- φ → "phi" or "Phi" 
+- π → "pi" or "PI"
+- ∞ → "infinity" or "INF"
+
+#### 💻 System Configuration
+- **OS**: Windows 10/11
+- **Python**: `C:\Users\Nouri\Documents\GitHub\Een\een\Scripts\python.exe`
+- **Venv**: `C:\Users\Nouri\Documents\GitHub\Een\een\` (ACTIVATED)
+- **NO A:/B: drives**: Legacy floppy drives do not exist
+
+**Failure to follow Windows configuration will result in system errors and encoding issues.**
+
 ## Project Architecture (Meta-Optimized for Claude Code with Dynamic Content Fetching)
 
 ```

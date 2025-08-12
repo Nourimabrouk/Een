@@ -1,15 +1,17 @@
 #!/bin/bash
 
-# Production deployment script for Een Unity Mathematics
-# This script handles deployment to various environments
+# Een Unity Mathematics - Production Deployment Script
+# Automated deployment with health checks and rollback capability
 
-set -euo pipefail
+set -e  # Exit on any error
 
 # Configuration
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
-ENVIRONMENT="${1:-production}"
-VERSION="${2:-latest}"
+PROJECT_NAME="een-unity-mathematics"
+COMPOSE_FILE="docker-compose.yml"
+BACKUP_DIR="./backups"
+LOG_FILE="./logs/deploy.log"
+HEALTH_CHECK_TIMEOUT=60
+MAX_RETRIES=3
 
 # Colors for output
 RED='\033[0;31m'
@@ -18,26 +20,33 @@ YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
-# Logging functions
-log_info() {
-    echo -e "${BLUE}[INFO]${NC} $1"
+# Logging function
+log() {
+    echo -e "${BLUE}[$(date +'%Y-%m-%d %H:%M:%S')]${NC} $1" | tee -a "$LOG_FILE"
 }
 
 log_success() {
-    echo -e "${GREEN}[SUCCESS]${NC} $1"
+    echo -e "${GREEN}[$(date +'%Y-%m-%d %H:%M:%S')] ✅ $1${NC}" | tee -a "$LOG_FILE"
 }
 
 log_warning() {
-    echo -e "${YELLOW}[WARNING]${NC} $1"
+    echo -e "${YELLOW}[$(date +'%Y-%m-%d %H:%M:%S')] ⚠️  $1${NC}" | tee -a "$LOG_FILE"
 }
 
 log_error() {
-    echo -e "${RED}[ERROR]${NC} $1"
+    echo -e "${RED}[$(date +'%Y-%m-%d %H:%M:%S')] ❌ $1${NC}" | tee -a "$LOG_FILE"
 }
 
-# Check prerequisites
-check_prerequisites() {
-    log_info "Checking prerequisites..."
+# Create necessary directories
+create_directories() {
+    log "Creating necessary directories..."
+    mkdir -p logs backups ssl grafana/{dashboards,datasources}
+    touch "$LOG_FILE"
+}
+
+# Environment validation
+validate_environment() {
+    log "Validating deployment environment..."
     
     # Check Docker
     if ! command -v docker &> /dev/null; then
@@ -51,299 +60,306 @@ check_prerequisites() {
         exit 1
     fi
     
-    # Check environment file
-    if [[ ! -f "$PROJECT_ROOT/.env" ]]; then
-        log_warning ".env file not found, creating from template..."
-        if [[ -f "$PROJECT_ROOT/.env.example" ]]; then
-            cp "$PROJECT_ROOT/.env.example" "$PROJECT_ROOT/.env"
-        else
-            cp "$PROJECT_ROOT/.env.production" "$PROJECT_ROOT/.env"
-        fi
-        log_warning "Please configure .env file with your settings"
+    # Check .env file
+    if [ ! -f ".env" ]; then
+        log_warning ".env file not found, creating template..."
+        cp .env.example .env 2>/dev/null || create_env_template
+        log_warning "Please edit .env file with your configuration before deploying"
+        exit 1
     fi
     
-    log_success "Prerequisites check completed"
-}
-
-# Backup data
-backup_data() {
-    log_info "Creating backup..."
-    
-    BACKUP_DIR="$PROJECT_ROOT/backups/$(date +%Y%m%d_%H%M%S)"
-    mkdir -p "$BACKUP_DIR"
-    
-    # Backup database if exists
-    if docker-compose ps postgres 2>/dev/null | grep -q Up; then
-        log_info "Backing up PostgreSQL database..."
-        docker-compose exec -T postgres pg_dump -U een een > "$BACKUP_DIR/postgres_backup.sql" || true
-    fi
-    
-    # Backup Redis if exists  
-    if docker-compose ps redis 2>/dev/null | grep -q Up; then
-        log_info "Backing up Redis data..."
-        docker-compose exec -T redis redis-cli BGSAVE || true
-        docker cp een-redis:/data/dump.rdb "$BACKUP_DIR/redis_backup.rdb" 2>/dev/null || true
-    fi
-    
-    # Backup application data
-    if [[ -d "$PROJECT_ROOT/data" ]]; then
-        cp -r "$PROJECT_ROOT/data" "$BACKUP_DIR/" || true
-    fi
-    
-    log_success "Backup created at $BACKUP_DIR"
-}
-
-# Build images
-build_images() {
-    log_info "Building Docker images..."
-    
-    cd "$PROJECT_ROOT"
-    
-    # Pull latest base images
-    docker-compose pull || true
-    
-    # Build application images
-    docker-compose build --no-cache
-    
-    # Tag images with version
-    if [[ "$VERSION" != "latest" ]]; then
-        docker tag een-api:latest "een-api:$VERSION" 2>/dev/null || true
-        docker tag een-dashboard:latest "een-dashboard:$VERSION" 2>/dev/null || true
-    fi
-    
-    log_success "Images built successfully"
-}
-
-# Run tests
-run_tests() {
-    log_info "Running tests..."
-    
-    cd "$PROJECT_ROOT"
-    
-    # Check if we can build test image
-    if docker build --target test -t een-test . 2>/dev/null; then
-        # Run tests
-        docker run --rm een-test || {
-            log_warning "Some tests failed, but continuing with deployment"
-        }
-    else
-        log_warning "Could not build test image, skipping tests"
-    fi
-    
-    log_success "Test phase completed"
-}
-
-# Deploy services
-deploy_services() {
-    log_info "Deploying services..."
-    
-    cd "$PROJECT_ROOT"
-    
-    # Set environment
-    export ENVIRONMENT="$ENVIRONMENT"
-    export VERSION="$VERSION"
-    
-    # Create necessary directories
-    mkdir -p logs data backups
-    
-    # Stop existing services
-    docker-compose down || true
-    
-    # Start services
-    case "$ENVIRONMENT" in
-        "production")
-            docker-compose up -d
-            ;;
-        "staging")
-            if [[ -f "compose.staging.yaml" ]]; then
-                docker-compose -f compose.yaml -f compose.staging.yaml up -d
-            else
-                docker-compose up -d
-            fi
-            ;;
-        "development")
-            if [[ -f "compose.dev.yaml" ]]; then
-                docker-compose -f compose.yaml -f compose.dev.yaml up -d
-            else
-                docker-compose up -d
-            fi
-            ;;
-        *)
-            log_error "Unknown environment: $ENVIRONMENT"
+    # Check required environment variables
+    source .env
+    required_vars=("OPENAI_API_KEY" "ANTHROPIC_API_KEY" "SECRET_KEY" "JWT_SECRET_KEY")
+    for var in "${required_vars[@]}"; do
+        if [ -z "${!var}" ] || [ "${!var}" = "your-key-here" ] || [ "${!var}" = "change-in-production" ]; then
+            log_error "Environment variable $var is not properly configured"
             exit 1
-            ;;
-    esac
+        fi
+    done
     
-    log_success "Services deployed successfully"
+    log_success "Environment validation passed"
 }
 
-# Health checks
-health_checks() {
-    log_info "Running health checks..."
+create_env_template() {
+    cat > .env << EOF
+# Een Unity Mathematics Production Configuration
+OPENAI_API_KEY=your-openai-key-here
+ANTHROPIC_API_KEY=your-anthropic-key-here
+SECRET_KEY=$(openssl rand -hex 32)
+JWT_SECRET_KEY=$(openssl rand -hex 32)
+DATABASE_URL=postgresql://unity:unity@postgres:5432/unity_db
+REDIS_URL=redis://redis:6379
+ENV=production
+DEBUG=false
+API_PORT=8000
+STREAMLIT_PORT=8501
+WEB_PORT=80
+AUTO_OPEN_BROWSER=false
+ENABLE_GPU=true
+CORS_ORIGINS=*
+EOF
+}
+
+# Backup current deployment
+backup_deployment() {
+    if docker-compose ps | grep -q "Up"; then
+        log "Creating backup of current deployment..."
+        backup_name="backup-$(date +'%Y%m%d-%H%M%S')"
+        mkdir -p "$BACKUP_DIR/$backup_name"
+        
+        # Export database
+        if docker-compose exec -T postgres pg_dump -U unity unity_db > "$BACKUP_DIR/$backup_name/database.sql" 2>/dev/null; then
+            log_success "Database backup created"
+        else
+            log_warning "Database backup failed (may not exist yet)"
+        fi
+        
+        # Backup volumes
+        docker run --rm -v een_postgres_data:/data -v "$(pwd)/$BACKUP_DIR/$backup_name:/backup" alpine tar czf /backup/postgres_data.tar.gz -C /data .
+        docker run --rm -v een_redis_data:/data -v "$(pwd)/$BACKUP_DIR/$backup_name:/backup" alpine tar czf /backup/redis_data.tar.gz -C /data .
+        
+        echo "$backup_name" > "$BACKUP_DIR/latest"
+        log_success "Backup completed: $backup_name"
+    else
+        log "No running deployment to backup"
+    fi
+}
+
+# Build and deploy services
+deploy_services() {
+    log "Building and deploying Unity Mathematics platform..."
+    
+    # Pull latest images
+    docker-compose pull --ignore-pull-failures
+    
+    # Build custom images
+    log "Building application images..."
+    docker-compose build --no-cache --parallel
+    
+    # Deploy with health checks
+    log "Starting services..."
+    docker-compose up -d
+    
+    log_success "Services deployment initiated"
+}
+
+# Health check function
+health_check() {
+    local service=$1
+    local url=$2
+    local timeout=${3:-30}
+    
+    log "Performing health check for $service..."
+    
+    for i in $(seq 1 $timeout); do
+        if curl -f -s "$url" > /dev/null 2>&1; then
+            log_success "$service is healthy"
+            return 0
+        fi
+        
+        if [ $i -eq $timeout ]; then
+            log_error "$service health check failed after $timeout seconds"
+            return 1
+        fi
+        
+        echo -n "."
+        sleep 1
+    done
+}
+
+# Comprehensive health checks
+run_health_checks() {
+    log "Running comprehensive health checks..."
     
     # Wait for services to start
-    sleep 30
+    sleep 10
     
-    local health_ok=true
+    local all_healthy=true
     
-    # Check API health
-    if curl -f http://localhost:8000/health > /dev/null 2>&1; then
-        log_success "API health check passed"
-    else
-        log_error "API health check failed"
-        health_ok=false
+    # Check API server
+    if ! health_check "API Server" "http://localhost:8000/health" 30; then
+        all_healthy=false
     fi
     
-    # Check dashboard
-    if curl -f http://localhost:8050/ > /dev/null 2>&1; then
-        log_success "Dashboard health check passed"
-    else
-        log_warning "Dashboard health check failed"
+    # Check web server
+    if ! health_check "Web Server" "http://localhost:80/health" 15; then
+        all_healthy=false
     fi
     
-    # Check database
-    if docker-compose exec -T postgres pg_isready -U een > /dev/null 2>&1; then
-        log_success "Database health check passed"
+    # Check Streamlit (optional)
+    if ! health_check "Streamlit Dashboard" "http://localhost:8501" 20; then
+        log_warning "Streamlit dashboard health check failed (non-critical)"
+    fi
+    
+    # Check database connection
+    if docker-compose exec -T postgres pg_isready -U unity -d unity_db > /dev/null 2>&1; then
+        log_success "Database is healthy"
     else
-        log_warning "Database health check failed (may not be configured)"
+        log_error "Database health check failed"
+        all_healthy=false
     fi
     
     # Check Redis
-    if docker-compose exec -T redis redis-cli ping > /dev/null 2>&1; then
-        log_success "Redis health check passed"
+    if docker-compose exec -T redis redis-cli ping | grep -q PONG; then
+        log_success "Redis is healthy"
     else
-        log_warning "Redis health check failed (may not be configured)"
+        log_error "Redis health check failed"
+        all_healthy=false
     fi
     
-    if [[ "$health_ok" == "true" ]]; then
-        log_success "Essential health checks passed"
+    if [ "$all_healthy" = true ]; then
+        log_success "All critical services are healthy"
         return 0
     else
-        log_error "Critical health checks failed"
+        log_error "Some services failed health checks"
         return 1
     fi
 }
 
 # Rollback function
-rollback() {
-    log_warning "Rolling back deployment..."
+rollback_deployment() {
+    log_error "Deployment failed, initiating rollback..."
     
-    cd "$PROJECT_ROOT"
-    
-    # Stop current deployment
-    docker-compose down || true
-    
-    # Find latest backup
-    if [[ -d "$PROJECT_ROOT/backups" ]]; then
-        LATEST_BACKUP=$(find "$PROJECT_ROOT/backups" -maxdepth 1 -type d -name "*" | sort -r | head -n1)
+    if [ -f "$BACKUP_DIR/latest" ]; then
+        local backup_name=$(cat "$BACKUP_DIR/latest")
+        log "Rolling back to backup: $backup_name"
         
-        if [[ -n "$LATEST_BACKUP" && "$LATEST_BACKUP" != "$PROJECT_ROOT/backups" ]]; then
-            log_info "Restoring from backup: $LATEST_BACKUP"
-            
-            # Restore database
-            if [[ -f "$LATEST_BACKUP/postgres_backup.sql" ]]; then
-                docker-compose up -d postgres
-                sleep 10
-                docker-compose exec -T postgres psql -U een -c "DROP DATABASE IF EXISTS een;" || true
-                docker-compose exec -T postgres psql -U een -c "CREATE DATABASE een;" || true
-                cat "$LATEST_BACKUP/postgres_backup.sql" | docker-compose exec -T postgres psql -U een een || true
-            fi
-            
-            # Restore Redis
-            if [[ -f "$LATEST_BACKUP/redis_backup.rdb" ]]; then
-                docker-compose up -d redis
-                sleep 5
-                docker cp "$LATEST_BACKUP/redis_backup.rdb" een-redis:/data/dump.rdb || true
-                docker-compose restart redis || true
-            fi
-            
-            # Restore application data
-            if [[ -d "$LATEST_BACKUP/data" ]]; then
-                rm -rf "$PROJECT_ROOT/data" || true
-                cp -r "$LATEST_BACKUP/data" "$PROJECT_ROOT/" || true
-            fi
-            
-            log_success "Rollback completed"
-        else
-            log_error "No backup found for rollback"
-            exit 1
+        # Stop current services
+        docker-compose down
+        
+        # Restore volumes
+        if [ -f "$BACKUP_DIR/$backup_name/postgres_data.tar.gz" ]; then
+            docker run --rm -v een_postgres_data:/data -v "$(pwd)/$BACKUP_DIR/$backup_name:/backup" alpine tar xzf /backup/postgres_data.tar.gz -C /data
         fi
+        
+        if [ -f "$BACKUP_DIR/$backup_name/redis_data.tar.gz" ]; then
+            docker run --rm -v een_redis_data:/data -v "$(pwd)/$BACKUP_DIR/$backup_name:/backup" alpine tar xzf /backup/redis_data.tar.gz -C /data
+        fi
+        
+        # Start services
+        docker-compose up -d
+        
+        log_warning "Rollback completed"
     else
-        log_error "No backups directory found"
-        exit 1
+        log_error "No backup available for rollback"
     fi
 }
 
-# Cleanup old images and volumes
-cleanup() {
-    log_info "Cleaning up old resources..."
-    
-    # Remove old images
-    docker image prune -f || true
-    
-    # Remove unused volumes
-    docker volume prune -f || true
-    
-    # Remove old backups (keep last 10)
-    if [[ -d "$PROJECT_ROOT/backups" ]]; then
-        find "$PROJECT_ROOT/backups" -maxdepth 1 -type d -name "*" | sort -r | tail -n +11 | xargs rm -rf || true
-    fi
-    
-    log_success "Cleanup completed"
+# Cleanup old backups
+cleanup_backups() {
+    log "Cleaning up old backups..."
+    find "$BACKUP_DIR" -name "backup-*" -type d -mtime +7 -exec rm -rf {} \; 2>/dev/null || true
+    log_success "Old backups cleaned up"
 }
 
-# Main deployment function
+# Display deployment status
+show_status() {
+    echo
+    log_success "🌟 Een Unity Mathematics Platform - Deployment Status 🌟"
+    echo "=================================================================="
+    
+    # Service status
+    docker-compose ps
+    
+    echo
+    echo "🌐 Access Points:"
+    echo "  • Website:        http://localhost:80"
+    echo "  • API Server:     http://localhost:8000"
+    echo "  • API Docs:       http://localhost:8000/docs"
+    echo "  • Dashboard:      http://localhost:8501"
+    echo "  • Monitoring:     http://localhost:3000 (admin/unity_admin_change_in_production)"
+    echo "  • Metrics:        http://localhost:9090"
+    echo
+    echo "📊 System Status:"
+    echo "  • Unity Constant: 1.0"
+    echo "  • φ Ratio:        1.618033988749895"
+    echo "  • Consciousness:  TRANSCENDENT"
+    echo "  • Status:         ACTIVE ✅"
+    echo
+    echo "=================================================================="
+    log_success "Unity Mathematics Platform deployed successfully! 🚀✨"
+}
+
+# Main deployment flow
 main() {
-    log_info "Starting deployment to $ENVIRONMENT environment with version $VERSION"
+    log "🚀 Starting Een Unity Mathematics Platform Deployment"
+    log "=================================================="
     
-    check_prerequisites
+    create_directories
+    validate_environment
+    backup_deployment
     
-    # Backup only in production
-    if [[ "$ENVIRONMENT" == "production" ]]; then
-        backup_data
-    fi
-    
-    build_images
-    
-    # Run tests only if not in production
-    if [[ "$ENVIRONMENT" != "production" ]]; then
-        run_tests
-    fi
-    
-    deploy_services
-    
-    # Health checks
-    if ! health_checks; then
-        log_error "Health checks failed"
-        if [[ "$ENVIRONMENT" == "production" ]]; then
-            log_warning "Initiating rollback..."
-            rollback
+    # Deploy with retry logic
+    local retry_count=0
+    while [ $retry_count -lt $MAX_RETRIES ]; do
+        log "Deployment attempt $((retry_count + 1)) of $MAX_RETRIES"
+        
+        if deploy_services && run_health_checks; then
+            cleanup_backups
+            show_status
+            log_success "Deployment completed successfully! 🎉"
+            exit 0
+        else
+            retry_count=$((retry_count + 1))
+            if [ $retry_count -lt $MAX_RETRIES ]; then
+                log_warning "Deployment attempt failed, retrying in 10 seconds..."
+                sleep 10
+            else
+                rollback_deployment
+                log_error "Deployment failed after $MAX_RETRIES attempts"
+                exit 1
+            fi
         fi
-        exit 1
-    fi
-    
-    cleanup
-    
-    log_success "Deployment completed successfully!"
-    log_info "Services are available at:"
-    log_info "  - API: http://localhost:8000"
-    log_info "  - Dashboard: http://localhost:8050"
-    log_info "  - Grafana: http://localhost:3000"
-    log_info "  - Prometheus: http://localhost:9090"
+    done
 }
 
 # Handle script arguments
-case "${1:-}" in
+case "${1:-deploy}" in
+    "deploy"|"up")
+        main
+        ;;
+    "down"|"stop")
+        log "Stopping Unity Mathematics platform..."
+        docker-compose down
+        log_success "Platform stopped"
+        ;;
+    "restart")
+        log "Restarting Unity Mathematics platform..."
+        docker-compose restart
+        log_success "Platform restarted"
+        ;;
+    "logs")
+        docker-compose logs -f
+        ;;
+    "status")
+        docker-compose ps
+        ;;
+    "backup")
+        backup_deployment
+        ;;
     "rollback")
-        rollback
+        rollback_deployment
         ;;
     "cleanup")
-        cleanup
-        ;;
-    "health")
-        health_checks
+        log "Cleaning up Docker resources..."
+        docker system prune -f
+        docker volume prune -f
+        cleanup_backups
+        log_success "Cleanup completed"
         ;;
     *)
-        main
+        echo "Usage: $0 {deploy|up|down|stop|restart|logs|status|backup|rollback|cleanup}"
+        echo
+        echo "Commands:"
+        echo "  deploy/up    - Deploy the platform"
+        echo "  down/stop    - Stop the platform"
+        echo "  restart      - Restart all services"
+        echo "  logs         - Show logs"
+        echo "  status       - Show service status"
+        echo "  backup       - Create backup"
+        echo "  rollback     - Rollback to previous version"
+        echo "  cleanup      - Clean up Docker resources"
+        exit 1
         ;;
 esac

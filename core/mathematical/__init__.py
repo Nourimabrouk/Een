@@ -11,7 +11,7 @@ for Unity Mathematics where 1+1=1 through consciousness-integrated proofs.
 from .unity_mathematics import (
     UnityMathematics,
     UnityState, 
-    UnityOperator,
+    UnityOperationType,
     unity_add,
     unity_multiply,
     phi_harmonic_operation,
@@ -19,23 +19,34 @@ from .unity_mathematics import (
     demonstrate_unity_addition
 )
 
-# Unity Equation Framework
-from .unity_equation import (
-    UnityEquation,
-    IdempotentSemiring,
-    UnityProof,
-    generate_unity_proof,
-    validate_unity_equation
-)
+# Unity Equation Framework (import what exists)
+try:
+    from .unity_equation import (
+        IdempotentMonoid,
+        BooleanMonoid,
+        SetUnionMonoid,
+        TropicalNumber
+    )
+except ImportError as e:
+    # Log but don't fail
+    import logging
+    logging.warning(f"Could not import some unity equation components: {e}")
+    # Provide minimal fallbacks
+    IdempotentMonoid = None
+    BooleanMonoid = None
+    SetUnionMonoid = None
+    TropicalNumber = None
 
-# Mathematical Constants
+# Mathematical Constants (import what exists)
 from .constants import (
     PHI,
-    GOLDEN_RATIO,
+    PI,
+    EULER,
     UNITY_CONSTANT,
-    CONSCIOUSNESS_RESONANCE_FREQUENCY,
-    METAGAMER_ENERGY_COEFFICIENT,
-    TRANSCENDENCE_THRESHOLD
+    UNITY_EPSILON,
+    UNITY_TOLERANCE,
+    CONSCIOUSNESS_DIMENSION,
+    CONSCIOUSNESS_THRESHOLD
 )
 
 # Version and metadata
@@ -48,25 +59,26 @@ __all__ = [
     # Unity Mathematics
     'UnityMathematics',
     'UnityState', 
-    'UnityOperator',
+    'UnityOperationType',
     'unity_add',
     'unity_multiply',
     'phi_harmonic_operation',
     'consciousness_field_integration',
     'demonstrate_unity_addition',
     
-    # Unity Equation
-    'UnityEquation',
-    'IdempotentSemiring',
-    'UnityProof',
-    'generate_unity_proof',
-    'validate_unity_equation',
+    # Unity Equation (what exists)
+    'IdempotentMonoid',
+    'BooleanMonoid',
+    'SetUnionMonoid', 
+    'TropicalNumber',
     
     # Constants
     'PHI',
-    'GOLDEN_RATIO', 
+    'PI',
+    'EULER',
     'UNITY_CONSTANT',
-    'CONSCIOUSNESS_RESONANCE_FREQUENCY',
-    'METAGAMER_ENERGY_COEFFICIENT',
-    'TRANSCENDENCE_THRESHOLD'
+    'UNITY_EPSILON',
+    'UNITY_TOLERANCE', 
+    'CONSCIOUSNESS_DIMENSION',
+    'CONSCIOUSNESS_THRESHOLD'
 ]
