@@ -31,7 +31,7 @@ from abc import ABC, abstractmethod
 # Import unity algebra
 import sys
 sys.path.append(str(Path(__file__).parent.parent))
-from core.unity_algebra_v1 import UnityAlgebra, PhiHarmonicAlgebra
+from src.core.unity_algebra_v1 import UnityAlgebra, PhiHarmonicAlgebra
 
 # Mathematical constants
 PHI = 1.618033988749895

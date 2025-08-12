@@ -24,7 +24,7 @@ def main():
     
     # Import Unity Mathematics with error handling
     try:
-        from core.unity_mathematics import UnityMathematics
+        from src.core.unity_mathematics import UnityMathematics
         um = UnityMathematics()
         
         st.success("Unity Mathematics loaded successfully!")

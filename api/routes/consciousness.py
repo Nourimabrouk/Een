@@ -22,8 +22,8 @@ from api.security import User
 # Import consciousness modules
 try:
     from src.consciousness.consciousness_engine import ConsciousnessEngine
-    from core.mathematical.unity_equation import UnityEquation
-    from core.mathematical.enhanced_unity_mathematics import EnhancedUnityMathematics
+    from src.core.mathematical.unity_equation import UnityEquation
+    from src.core.mathematical.enhanced_unity_mathematics import EnhancedUnityMathematics
     from src.transcendental_unity_theorem import TranscendentalUnityTheorem
 except ImportError as e:
     logging.warning(f"Some consciousness modules not available: {e}")

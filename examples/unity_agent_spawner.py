@@ -31,9 +31,9 @@ import traceback
 
 # Core Een imports
 try:
-    from core.unity_mathematics import UnityMathematics, UnityState, PHI
-    from core.consciousness_api import ConsciousnessFieldAPI, create_consciousness_api
-    from core.enhanced_unity_operations import EnhancedUnityOperations
+    from src.core.unity_mathematics import UnityMathematics, UnityState, PHI
+    from src.core.consciousness_api import ConsciousnessFieldAPI, create_consciousness_api
+    from src.core.enhanced_unity_operations import EnhancedUnityOperations
     UNITY_CORE_AVAILABLE = True
 except ImportError as e:
     print(f"Warning: Unity core not available: {e}")

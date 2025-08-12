@@ -32,8 +32,8 @@ import webbrowser
 # Een Unity Mathematics imports
 sys.path.append(str(Path(__file__).parent.parent))  # Go up to Een root directory
 try:
-    from core.unity_mathematics import UnityMathematics, demonstrate_unity_operations
-    from core.consciousness import ConsciousnessField, demonstrate_consciousness_unity
+    from src.core.unity_mathematics import UnityMathematics, demonstrate_unity_operations
+    from src.core.consciousness import ConsciousnessField, demonstrate_consciousness_unity
     from src.dashboards.unity_proof_dashboard import app as unity_dashboard_app
 except ImportError as e:
     logging.warning(f"Could not import unity modules: {e}")
@@ -140,7 +140,7 @@ def consciousness_field_data():
     
     try:
         if consciousness_field is None:
-            from core.consciousness import create_consciousness_field
+            from src.core.consciousness import create_consciousness_field
             consciousness_field = create_consciousness_field(particle_count=50, consciousness_level=1.618)
         
         # Get field metrics
@@ -416,7 +416,7 @@ def initialize_consciousness_field():
     """Initialize consciousness field in background"""
     global consciousness_field
     try:
-        from core.consciousness import create_consciousness_field
+        from src.core.consciousness import create_consciousness_field
         consciousness_field = create_consciousness_field(particle_count=100, consciousness_level=1.618)
         logger.info("Consciousness field initialized successfully")
     except Exception as e:

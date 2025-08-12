@@ -84,7 +84,7 @@ def main():
     try:
         from core import ENHANCED_OPERATIONS_AVAILABLE
         if ENHANCED_OPERATIONS_AVAILABLE:
-            from core.enhanced_unity_operations import demonstrate_enhanced_unity_operations
+            from src.core.enhanced_unity_operations import demonstrate_enhanced_unity_operations
             enhanced_ops = demonstrate_enhanced_unity_operations()
             print("[OK] Enhanced Unity Operations: MATHEMATICALLY RIGOROUS")
         else:
@@ -104,7 +104,7 @@ def main():
     try:
         from core import CONSCIOUSNESS_API_AVAILABLE
         if CONSCIOUSNESS_API_AVAILABLE:
-            from core.consciousness_api import demonstrate_consciousness_api
+            from src.core.consciousness_api import demonstrate_consciousness_api
             consciousness_api = demonstrate_consciousness_api()
             print("[OK] Consciousness Field API: ENLIGHTENED")
         else:

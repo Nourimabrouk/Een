@@ -32,8 +32,8 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Import all framework components
-from core.unity_mathematics import UnityMathematics, create_unity_mathematics, demonstrate_unity_operations
-from core.consciousness import ConsciousnessField, create_consciousness_field, demonstrate_consciousness_unity
+from src.core.unity_mathematics import UnityMathematics, create_unity_mathematics, demonstrate_unity_operations
+from src.core.consciousness import ConsciousnessField, create_consciousness_field, demonstrate_consciousness_unity
 from ml_framework.meta_reinforcement.unity_meta_agent import create_unity_meta_agent, demonstrate_unity_meta_learning
 from ml_framework.mixture_of_experts.proof_experts import create_mixture_of_experts, demonstrate_mixture_of_experts
 from ml_framework.evolutionary_computing.consciousness_evolution import create_consciousness_evolution, demonstrate_consciousness_evolution

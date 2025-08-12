@@ -15,7 +15,7 @@ from scipy.optimize import minimize
 import threading
 import queue
 
-from core.constants import (
+from src.core.constants import (
     PHI,
     UNITY_CONSTANT,
 )

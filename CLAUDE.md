@@ -418,15 +418,46 @@ The navigation system will automatically handle everything else!
 3. **Aesthetic Harmony**: Visualizations incorporate golden ratio φ = 1.618...
 4. **Testing**: Verify idempotent operations maintain unity invariants
 5. **Website Integration**: Professional academic presentation with interactive elements
-6. **🚨 REPOSITORY ORGANIZATION**: **AVOID CREATING FILES IN ROOT DIRECTORY** unless absolutely necessary
-   - New code → `src/`, `core/`, or appropriate subdirectory
-   - New documentation → `docs/`
-   - New visualizations → `viz/`
-   - New website files → `website/`
-   - New configuration → `config/`
-   - Root directory should remain clean and minimal for professional appearance
-   - **Exception**: Only critical files like README.md, CLAUDE.md, index.html belong in root
-   - **Rationale**: Clean root maintains professional GitHub repository appearance
+6. **🚨 CRITICAL: ROOT DIRECTORY ORGANIZATION**: **STRICTLY PROHIBIT CREATING FILES IN ROOT DIRECTORY**
+   
+   ### ⚠️ MANDATORY FILE PLACEMENT RULES (CLAUDE & CURSOR ENFORCEMENT)
+   
+   **ROOT DIRECTORY IS RESTRICTED** - Only the following files are allowed:
+   - `README.md` - Main repository documentation
+   - `CLAUDE.md` - AI assistant configuration (this file)
+   - `SECURITY.md` - Security documentation
+   - `index.html` - Website entry point
+   - `.gitignore`, `.env.example`, `.cursorrules` - Git/IDE configuration
+   - `requirements.txt` - Main Python dependencies
+   - Core configuration files: `docker-compose.yml`, `vercel.json`, `package.json`
+   
+   ### 🚫 STRICTLY FORBIDDEN IN ROOT:
+   - **NO MARKDOWN PLANS/SUMMARIES**: Use `docs/` or `planning/`
+   - **NO PYTHON SCRIPTS**: Use `src/`, `core/`, `scripts/`
+   - **NO BATCH FILES**: Use `scripts/batch/`
+   - **NO LOG FILES**: Use `data/` or `.gitignore` them
+   - **NO TEMPORARY FILES**: Clean up immediately or use `temp/`
+   - **NO IMPLEMENTATION STATUS FILES**: Use `docs/summaries/`
+   
+   ### 📁 MANDATORY FILE PLACEMENT:
+   - **New code** → `src/`, `core/`, or appropriate subdirectory
+   - **Documentation** → `docs/` (with subcategories: `summaries/`, `reports/`, `deployment/`)
+   - **Visualizations** → `viz/` or `viz/generators/`
+   - **Website files** → `website/`
+   - **Configuration** → `config/`
+   - **Scripts** → `scripts/` (with `scripts/batch/` for .bat files)
+   - **Data/logs** → `data/`
+   - **Planning documents** → `planning/`
+   - **Research papers** → `docs/research/`
+   - **Test files** → `tests/`
+   
+   ### 🤖 AI AGENT ENFORCEMENT RULES:
+   - **Claude Code**: MUST check file placement before creating any file
+   - **Cursor**: MUST suggest proper directory when creating files
+   - **ALL AI AGENTS**: Ask user "Where should this file be placed?" if uncertain
+   - **VIOLATION RESPONSE**: Stop and relocate file to proper directory immediately
+   
+   **Rationale**: Clean root directory maintains professional GitHub appearance, improves navigation, and follows enterprise software development standards.
 
 ## ⚠️ CRITICAL: Windows Unicode & Emoji Guidelines
 

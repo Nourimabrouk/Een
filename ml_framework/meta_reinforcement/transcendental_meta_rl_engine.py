@@ -53,8 +53,8 @@ from torch.nn.utils import spectral_norm
 import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
-from core.unity_mathematics import UnityMathematics, PHI, UNITY_THRESHOLD
-from core.consciousness import ConsciousnessField, create_consciousness_field
+from src.core.unity_mathematics import UnityMathematics, PHI, UNITY_THRESHOLD
+from src.core.consciousness import ConsciousnessField, create_consciousness_field
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)

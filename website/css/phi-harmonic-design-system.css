@@ -1,0 +1,391 @@
+/**
+ * φ-Harmonic Design System
+ * Unity Mathematics Framework - Transcendent Aesthetic System
+ * Based on Golden Ratio (φ = 1.618033988749895) for Mathematical Beauty
+ */
+
+/* === CORE φ-HARMONIC CONSTANTS === */
+:root {
+  /* Golden Ratio Foundation */
+  --phi: 1.618033988749895;
+  --phi-squared: 2.618033988749895;
+  --phi-inverse: 0.618033988749895;
+  
+  /* Unity Mathematics Color Palette - φ-Harmonic Resonance */
+  --unity-gold-primary: #FFD700;        /* Golden radiance - φ consciousness */
+  --unity-gold-secondary: #B8860B;      /* Deep golden wisdom */
+  --unity-gold-accent: #DAA520;         /* Golden ratio accent */
+  --unity-consciousness: #4A90E2;       /* Consciousness field blue */
+  --unity-transcendent: #6C5CE7;        /* Transcendent purple */
+  --unity-convergence: #2ECC71;         /* Unity convergence green */
+  --unity-field: #E17055;               /* Mathematical field orange */
+  --unity-depth: #2D3436;               /* Deep space consciousness */
+  --unity-light: #F7F9FC;               /* Pure mathematical light */
+  --unity-shadow: rgba(45, 52, 54, 0.1); /* Subtle consciousness shadow */
+  
+  /* Consciousness Gradients */
+  --gradient-transcendence: linear-gradient(135deg, var(--unity-gold-primary), var(--unity-transcendent));
+  --gradient-unity-field: linear-gradient(90deg, var(--unity-consciousness), var(--unity-convergence));
+  --gradient-mathematical: radial-gradient(circle, var(--unity-gold-primary), var(--unity-gold-secondary));
+  
+  /* Sacred Typography - φ-Based Scaling */
+  --font-size-base: 16px;                         /* Base unit */
+  --font-size-small: calc(16px / var(--phi));     /* ~9.89px */
+  --font-size-medium: calc(16px * var(--phi));    /* ~25.89px */
+  --font-size-large: calc(16px * var(--phi-squared)); /* ~41.89px */
+  --font-size-xlarge: calc(16px * var(--phi) * var(--phi-squared)); /* ~67.77px */
+  
+  /* Sacred Spacing - φ Proportions */
+  --spacing-xs: calc(8px / var(--phi));           /* ~4.94px */
+  --spacing-sm: 8px;                              /* Base */
+  --spacing-md: calc(8px * var(--phi));           /* ~12.94px */
+  --spacing-lg: calc(8px * var(--phi-squared));   /* ~20.94px */
+  --spacing-xl: calc(8px * var(--phi) * var(--phi-squared)); /* ~33.89px */
+  --spacing-2xl: calc(8px * var(--phi-squared) * var(--phi-squared)); /* ~54.83px */
+  
+  /* Sacred Proportions */
+  --border-radius-phi: calc(8px * var(--phi-inverse)); /* ~4.94px */
+  --border-radius-unity: calc(16px * var(--phi-inverse)); /* ~9.89px */
+  --border-radius-transcendent: calc(24px * var(--phi-inverse)); /* ~14.83px */
+  
+  /* Consciousness Animation Timings - φ-Based */
+  --animation-fast: calc(200ms * var(--phi-inverse));    /* ~123.6ms */
+  --animation-medium: calc(300ms * var(--phi));          /* ~485ms */
+  --animation-slow: calc(500ms * var(--phi-squared));    /* ~1309ms */
+  --animation-transcendent: calc(1000ms * var(--phi));   /* ~1618ms */
+}
+
+/* === SACRED TYPOGRAPHY SYSTEM === */
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Source+Code+Pro:wght@300;400;500;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
+
+.phi-text-base {
+  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: var(--font-size-base);
+  line-height: var(--phi);
+  color: var(--unity-depth);
+  font-weight: 400;
+}
+
+.phi-text-mathematical {
+  font-family: 'Source Code Pro', 'Monaco', 'Menlo', monospace;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+.phi-text-academic {
+  font-family: 'Crimson Text', 'Times New Roman', serif;
+  font-weight: 400;
+  line-height: var(--phi);
+}
+
+.phi-heading-1 {
+  font-size: var(--font-size-xlarge);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: var(--spacing-lg);
+  color: var(--unity-gold-primary);
+  text-shadow: 0 2px 4px var(--unity-shadow);
+}
+
+.phi-heading-2 {
+  font-size: var(--font-size-large);
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: var(--spacing-md);
+  color: var(--unity-consciousness);
+}
+
+.phi-heading-3 {
+  font-size: var(--font-size-medium);
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: var(--spacing-sm);
+  color: var(--unity-transcendent);
+}
+
+/* === SACRED GEOMETRY COMPONENTS === */
+.phi-container {
+  max-width: calc(1200px * var(--phi-inverse)); /* ~741.64px - Golden rectangle */
+  margin: 0 auto;
+  padding: var(--spacing-lg);
+}
+
+.phi-card {
+  background: var(--unity-light);
+  border-radius: var(--border-radius-unity);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
+  box-shadow: 0 4px 20px var(--unity-shadow);
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  transition: all var(--animation-medium) ease;
+}
+
+.phi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 40px var(--unity-shadow);
+  border-color: var(--unity-gold-primary);
+}
+
+.phi-card-transcendent {
+  background: var(--gradient-transcendence);
+  color: white;
+}
+
+.phi-card-mathematical {
+  background: var(--gradient-mathematical);
+  color: white;
+}
+
+/* === UNITY CONVERGENCE BUTTONS === */
+.phi-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(var(--spacing-md) * var(--phi-inverse)) var(--spacing-lg);
+  background: var(--unity-gold-primary);
+  color: var(--unity-depth);
+  border: none;
+  border-radius: var(--border-radius-unity);
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--animation-fast) ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.phi-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left var(--animation-transcendent) ease;
+}
+
+.phi-button:hover::before {
+  left: 100%;
+}
+
+.phi-button:hover {
+  background: var(--unity-gold-secondary);
+  transform: scale(1.05);
+  box-shadow: 0 4px 20px rgba(255, 215, 0, 0.4);
+}
+
+.phi-button-consciousness {
+  background: var(--unity-consciousness);
+  color: white;
+}
+
+.phi-button-consciousness:hover {
+  background: var(--unity-transcendent);
+}
+
+/* === CONSCIOUSNESS FIELD ANIMATIONS === */
+@keyframes phi-pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(var(--phi)); opacity: var(--phi-inverse); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes unity-convergence {
+  0% { 
+    transform: rotate(0deg) scale(1);
+    opacity: 0.8;
+  }
+  33% { 
+    transform: rotate(120deg) scale(var(--phi-inverse));
+    opacity: 1;
+  }
+  66% { 
+    transform: rotate(240deg) scale(var(--phi-inverse));
+    opacity: 1;
+  }
+  100% { 
+    transform: rotate(360deg) scale(1);
+    opacity: 0.8;
+  }
+}
+
+@keyframes transcendent-glow {
+  0% { box-shadow: 0 0 5px var(--unity-gold-primary); }
+  50% { box-shadow: 0 0 20px var(--unity-gold-primary), 0 0 40px var(--unity-transcendent); }
+  100% { box-shadow: 0 0 5px var(--unity-gold-primary); }
+}
+
+.phi-animated-pulse {
+  animation: phi-pulse var(--animation-transcendent) ease-in-out infinite;
+}
+
+.phi-animated-convergence {
+  animation: unity-convergence calc(var(--animation-transcendent) * 2) linear infinite;
+}
+
+.phi-animated-glow {
+  animation: transcendent-glow var(--animation-slow) ease-in-out infinite alternate;
+}
+
+/* === MATHEMATICAL NOTATION SYSTEM === */
+.phi-math-expression {
+  font-family: 'Source Code Pro', monospace;
+  background: rgba(255, 215, 0, 0.1);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-phi);
+  border-left: 3px solid var(--unity-gold-primary);
+  font-size: var(--font-size-base);
+  margin: var(--spacing-sm) 0;
+}
+
+.phi-equation-block {
+  background: var(--unity-depth);
+  color: var(--unity-gold-primary);
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius-transcendent);
+  margin: var(--spacing-md) 0;
+  font-family: 'Source Code Pro', monospace;
+  text-align: center;
+  position: relative;
+}
+
+.phi-equation-block::before {
+  content: 'φ';
+  position: absolute;
+  top: var(--spacing-xs);
+  right: var(--spacing-sm);
+  font-size: var(--font-size-small);
+  opacity: 0.5;
+}
+
+/* === CONSCIOUSNESS FIELD GRID === */
+.phi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(calc(300px * var(--phi-inverse)), 1fr));
+  gap: var(--spacing-lg);
+  margin: var(--spacing-xl) 0;
+}
+
+.phi-grid-golden {
+  grid-template-columns: var(--phi)fr 1fr;
+}
+
+/* === NAVIGATION ENHANCEMENTS === */
+.phi-nav-item {
+  position: relative;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius-phi);
+  transition: all var(--animation-fast) ease;
+}
+
+.phi-nav-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--unity-gold-primary);
+  transition: all var(--animation-medium) ease;
+  transform: translateX(-50%);
+}
+
+.phi-nav-item:hover::after {
+  width: 100%;
+}
+
+.phi-nav-item:hover {
+  background: rgba(255, 215, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+/* === RESPONSIVE φ-HARMONIC DESIGN === */
+@media (max-width: 768px) {
+  :root {
+    --font-size-base: 14px;
+    --spacing-sm: 6px;
+  }
+  
+  .phi-container {
+    padding: var(--spacing-md);
+  }
+  
+  .phi-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+}
+
+/* === UTILITY CLASSES === */
+.phi-text-center { text-align: center; }
+.phi-text-golden { color: var(--unity-gold-primary); }
+.phi-text-consciousness { color: var(--unity-consciousness); }
+.phi-text-transcendent { color: var(--unity-transcendent); }
+
+.phi-bg-transcendent { background: var(--gradient-transcendence); }
+.phi-bg-mathematical { background: var(--gradient-mathematical); }
+.phi-bg-unity-field { background: var(--gradient-unity-field); }
+
+.phi-shadow-soft { box-shadow: 0 2px 10px var(--unity-shadow); }
+.phi-shadow-strong { box-shadow: 0 8px 40px var(--unity-shadow); }
+.phi-shadow-transcendent { box-shadow: 0 0 20px rgba(255, 215, 0, 0.3); }
+
+.phi-border-golden { border: 2px solid var(--unity-gold-primary); }
+.phi-border-consciousness { border: 2px solid var(--unity-consciousness); }
+
+/* === CONSCIOUSNESS MEDITATION ENHANCEMENTS === */
+.phi-meditation-space {
+  min-height: 100vh;
+  background: radial-gradient(circle at center, var(--unity-transcendent), var(--unity-depth));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.phi-meditation-orb {
+  width: calc(200px * var(--phi));
+  height: calc(200px * var(--phi));
+  border-radius: 50%;
+  background: var(--gradient-mathematical);
+  animation: phi-pulse calc(var(--animation-transcendent) * 3) ease-in-out infinite;
+  box-shadow: 0 0 50px var(--unity-gold-primary);
+}
+
+/* === MATHEMATICAL GALLERY GRID === */
+.phi-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(calc(280px * var(--phi-inverse)), 1fr));
+  gap: calc(var(--spacing-lg) * var(--phi));
+  padding: var(--spacing-xl);
+}
+
+.phi-gallery-item {
+  aspect-ratio: var(--phi-inverse);
+  background: var(--unity-light);
+  border-radius: var(--border-radius-transcendent);
+  padding: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all var(--animation-medium) ease;
+  border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.phi-gallery-item:hover {
+  transform: scale(1.03) rotateY(5deg);
+  box-shadow: 0 20px 60px var(--unity-shadow);
+  border-color: var(--unity-gold-primary);
+}
+
+/* === CONSCIOUSNESS VISUALIZATION CANVAS === */
+.phi-consciousness-canvas {
+  border-radius: var(--border-radius-transcendent);
+  border: 2px solid var(--unity-gold-primary);
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.05), transparent);
+}

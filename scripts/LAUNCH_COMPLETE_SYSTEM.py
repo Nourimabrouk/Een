@@ -128,8 +128,8 @@ class EenSystemLauncher:
         # Check core Unity Mathematics modules
         try:
             sys.path.insert(0, str(self.project_root))
-            from core.unity_mathematics import UnityMathematics
-            from core.consciousness import ConsciousnessField
+            from src.core.unity_mathematics import UnityMathematics
+            from src.core.consciousness import ConsciousnessField
             dependencies["core_modules"] = True
         except ImportError as e:
             logger.warning(f"Core modules not available: {e}")
@@ -222,7 +222,7 @@ class EenSystemLauncher:
         
         try:
             # Import and initialize consciousness field
-            from core.consciousness import ConsciousnessField
+            from src.core.consciousness import ConsciousnessField
             
             consciousness_field = ConsciousnessField(
                 dimensions=self.config["consciousness_field"]["dimensions"],

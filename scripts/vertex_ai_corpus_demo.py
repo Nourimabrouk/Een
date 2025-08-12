@@ -18,7 +18,7 @@ from datetime import datetime
 # Add parent directory to path for imports
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from core.vertex_ai_corpus import (
+from src.core.vertex_ai_corpus import (
     VertexAICorpus, 
     UnityDocument,
     create_unity_corpus,

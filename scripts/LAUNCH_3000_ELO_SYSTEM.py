@@ -118,15 +118,15 @@ class Metagamer3000ELOSystem:
         # Check core Unity Mathematics modules
         try:
             sys.path.insert(0, str(self.project_root))
-            from core.unity_mathematics import UnityMathematics
-            from core.unity_equation import omega
+            from src.core.unity_mathematics import UnityMathematics
+            from src.core.unity_equation import omega
             dependencies["unity_mathematics"] = True
         except ImportError as e:
             logger.warning(f"Unity Mathematics not available: {e}")
         
         # Check dedup system
         try:
-            from core.dedup import compute_unity_score, UnityScore
+            from src.core.dedup import compute_unity_score, UnityScore
             dependencies["dedup_system"] = True
         except ImportError as e:
             logger.warning(f"Dedup system not available: {e}")
@@ -205,7 +205,7 @@ class Metagamer3000ELOSystem:
         logger.info("🔗 Starting Unity Manifold deduplication system...")
         
         try:
-            from core.dedup import create_sample_social_data, save_sample_data, compute_unity_score
+            from src.core.dedup import create_sample_social_data, save_sample_data, compute_unity_score
             
             # Create sample data if needed
             data_file = Path(self.config["unity_manifold"]["data_file"])
@@ -217,7 +217,7 @@ class Metagamer3000ELOSystem:
             
             # Test Unity Score computation
             if data_file.exists():
-                from core.dedup import load_graph
+                from src.core.dedup import load_graph
                 G = load_graph(data_file)
                 unity_score = compute_unity_score(G)
                 logger.info(f"✅ Unity Score computed: {unity_score.score:.3f}")

@@ -26,7 +26,7 @@ sys.path.append(str(Path(__file__).parent.parent))
 
 # Import core unity mathematics with fallback handling
 try:
-    from core.unity_mathematics import UnityMathematics
+    from src.core.unity_mathematics import UnityMathematics
 except ImportError:
     # Fallback minimal implementation
     class UnityMathematics:
@@ -38,14 +38,14 @@ except ImportError:
             return 0.95
 
 try:
-    from core.unified_proof_1plus1equals1 import UnifiedProof
+    from src.core.unified_proof_1plus1equals1 import UnifiedProof
 except ImportError:
     class UnifiedProof:
         def execute_all_proofs(self):
             return {"boolean": True, "tropical": True, "set": True}
 
 try:
-    from core.consciousness import ConsciousnessFieldEquations
+    from src.core.consciousness import ConsciousnessFieldEquations
 except ImportError:
     class ConsciousnessFieldEquations:
         def generate_field(self, particles):

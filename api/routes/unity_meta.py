@@ -20,12 +20,12 @@ project_root = pathlib.Path(__file__).parent.parent.parent
 sys.path.insert(0, str(project_root))
 
 try:
-    from core.unity_meta_advanced import (
+    from src.core.unity_meta_advanced import (
         create_unity_meta_engine,
         MetagamerEnergyInput,
     )
-    from core.unity_manifold import create_unity_manifold
-    from core.meta_gambit import create_default_meta_gambit
+    from src.core.unity_manifold import create_unity_manifold
+    from src.core.meta_gambit import create_default_meta_gambit
     from api.security import get_current_user, User
 except Exception as e:
     logging.warning(f"Unity Meta API partial import: {e}")

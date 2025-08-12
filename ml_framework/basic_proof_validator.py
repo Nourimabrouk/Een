@@ -26,8 +26,8 @@ import json
 import time
 
 try:
-    from core.unity_mathematics import UnityMathematics, UnityState
-    from core.mathematical.constants import PHI, UNITY_CONSTANT, UNITY_EPSILON
+    from src.core.unity_mathematics import UnityMathematics, UnityState
+    from src.core.mathematical.constants import PHI, UNITY_CONSTANT, UNITY_EPSILON
     CORE_AVAILABLE = True
 except ImportError:
     CORE_AVAILABLE = False

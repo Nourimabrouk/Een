@@ -15,7 +15,7 @@ import networkx as nx
 from typing import Tuple, Dict, List, Set, Any
 import logging
 from dataclasses import dataclass
-from core.unity_equation import omega
+from src.core.unity_equation import omega
 import numpy as np
 
 logger = logging.getLogger(__name__)

@@ -23,7 +23,7 @@ sys.path.insert(0, str(project_root))
 
 # Import our consciousness modules
 try:
-    from core.mathematical.unity_equation import UnityEquation
+    from src.core.mathematical.unity_equation import UnityEquation
     from src.consciousness.consciousness_engine import ConsciousnessEngine
     from src.agents.consciousness_chat_agent import ConsciousnessChatAgent
 except ImportError as e:

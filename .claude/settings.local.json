@@ -182,7 +182,14 @@
       "Bash(then echo \"WARNING: een/Lib/ still exists\")",
       "Bash(else echo \"SUCCESS: een/Lib/ removed\")",
       "Bash(then echo \"WARNING: migration_backup still exists\")",
-      "Bash(else echo \"SUCCESS: migration_backup removed\")"
+      "Bash(else echo \"SUCCESS: migration_backup removed\")",
+      "Bash(md:*)",
+      "Bash(if [ -d \"core\" ])",
+      "Bash(then echo \"WARNING: core/ still exists\")",
+      "Bash(else echo \"SUCCESS: core/ removed\")",
+      "Bash(if [ -d \"een\" ])",
+      "Bash(then echo \"WARNING: een/ still exists\")",
+      "Bash(else echo \"SUCCESS: een/ removed\")"
     ],
     "deny": []
   }

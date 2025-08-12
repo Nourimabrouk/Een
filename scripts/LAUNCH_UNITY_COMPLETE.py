@@ -25,7 +25,7 @@ sys.path.insert(0, str(project_root))
 # Import our utilities
 try:
     from utils.port_manager import get_service_port, check_port_availability
-    from core.logging_config import setup_unity_logging
+    from src.core.logging_config import setup_unity_logging
 except ImportError:
     # Fallback if modules not available
     def get_service_port(

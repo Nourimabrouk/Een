@@ -27,9 +27,9 @@ sys.path.insert(0, str(project_root))
 
 # Import Unity Mathematics components
 try:
-    from core.dedup import load_graph, compute_unity_score, UnityScore, create_sample_social_data, save_sample_data
-    from core.unity_mathematics import UnityMathematics, UnityState
-    from core.unity_equation import omega
+    from src.core.dedup import load_graph, compute_unity_score, UnityScore, create_sample_social_data, save_sample_data
+    from src.core.unity_mathematics import UnityMathematics, UnityState
+    from src.core.unity_equation import omega
     UNITY_AVAILABLE = True
 except ImportError as e:
     st.error(f"Unity Mathematics not available: {e}")
