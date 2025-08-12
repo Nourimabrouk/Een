@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unity Mathematics Gallery - Interactive Visualizations & Academic Art</title>
+    <meta name="description" content="Comprehensive gallery of unity mathematics visualizations, consciousness fields, and interactive demonstrations showcasing 1+1=1 through advanced mathematics.">
+    
+    <!-- Unified Navigation System -->
+    <script src="js/nav-template-applier.js" defer></script>
+    
+    <!-- Fonts and Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Visualization Libraries -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    
+    <!-- Unity Mathematics Engine -->
+    <script src="js/unity-mathematics.js"></script>
+    
+    <!-- Visualization Engines -->
+    <script src="js/consciousness-field-3d-enhanced.js"></script>
+    <script src="js/golden-ratio-3d-enhanced.js"></script>
+    <script src="js/quantum-unity-enhanced.js"></script>
+    <script src="js/neural-unity-visualizer.js"></script>
+    <script src="js/phi-harmonic-consciousness-engine.js"></script>
+    
+    <style>
+        :root {
+            --phi: 1.618033988749895;
+            --primary: #1B365D;
+            --secondary: #0F7B8A;
+            --accent: #FFD700;
+            --bg: #0a0b0f;
+            --panel: #1a1b2e;
+            --text: #e6edf3;
+            --text-muted: #8b949e;
+            --border: rgba(255, 255, 255, 0.1);
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .hero {
+            background: var(--gradient);
+            padding: 6rem 0;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="phi" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(255,215,0,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23phi)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, var(--accent), #4ECDC4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+
+        .phi-constant {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 12px;
+            padding: 1rem 2rem;
+            margin: 2rem auto;
+            max-width: 600px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.1rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .viz-card {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .viz-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: var(--accent);
+        }
+
+        .viz-display {
+            height: 300px;
+            background: var(--bg);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .viz-controls {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .control-btn {
+            background: rgba(0, 0, 0, 0.7);
+            border: none;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            color: var(--accent);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover {
+            background: rgba(255, 215, 0, 0.2);
+            transform: scale(1.1);
+        }
+
+        .viz-content {
+            padding: 1.5rem;
+        }
+
+        .viz-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+        }
+
+        .viz-description {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .viz-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.875rem;
+        }
+
+        .viz-category {
+            background: rgba(255, 215, 0, 0.1);
+            color: var(--accent);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .viz-type {
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .viz-actions {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .viz-btn {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .viz-btn.primary {
+            background: linear-gradient(45deg, var(--accent), #F59E0B);
+            color: var(--bg);
+        }
+
+        .viz-btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
+        }
+
+        .viz-btn.secondary {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+
+        .viz-btn.secondary:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .parameter-controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            font-size: 0.875rem;
+        }
+
+        .parameter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .parameter-label {
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .parameter-slider {
+            width: 100%;
+            height: 4px;
+            border-radius: 2px;
+            background: var(--border);
+            outline: none;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .parameter-slider:hover {
+            opacity: 1;
+        }
+
+        .parameter-slider::-webkit-slider-thumb {
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--accent);
+            cursor: pointer;
+        }
+
+        .parameter-value {
+            color: var(--accent);
+            font-weight: 600;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .status-indicator {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: rgba(0, 255, 0, 0.1);
+            color: #00ff00;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            border: 1px solid rgba(0, 255, 0, 0.3);
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 215, 0, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--accent);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 0 1rem;
+            }
+
+            .parameter-controls {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="hero-content">
+            <div class="container">
+                <h1>🎨 Unity Mathematics Gallery</h1>
+                <p>Interactive visualizations, consciousness fields, and mathematical art demonstrating the profound truth that 1+1=1 through advanced mathematics, quantum mechanics, and consciousness integration.</p>
+                <div class="phi-constant">
+                    φ (Golden Ratio) = 1.618033988749895... | The Mathematical Constant Underlying All Unity
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Interactive Visualizations Section -->
+        <div class="section">
+            <h2 class="section-title">Interactive Mathematical Demonstrations</h2>
+            <p class="section-subtitle">Live visualizations with real-time parameter controls demonstrating unity mathematics through consciousness integration and φ-harmonic operations.</p>
+            
+            <div class="gallery-grid">
+                <!-- Unity Calculator Live -->
+                <div class="viz-card">
+                    <div class="viz-display">
+                        <div class="status-indicator">LIVE</div>
+                        <div class="viz-controls">
+                            <button class="control-btn" title="Launch Calculator">
+                                <i class="fas fa-calculator"></i>
+                            </button>
+                        </div>
+                        <canvas id="unity-calc-preview" width="400" height="300"></canvas>
+                    </div>
+                    <div class="viz-content">
+                        <h3 class="viz-title">Unity Mathematics Calculator</h3>
+                        <p class="viz-description">Interactive calculator demonstrating 1+1=1 through consciousness field integration with real-time φ-harmonic visualization.</p>
+                        <div class="viz-meta">
+                            <span class="viz-category">Interactive</span>
+                            <span class="viz-type">Live Demo</span>
+                        </div>
+                        <div class="viz-actions">
+                            <a href="unity-calculator-live.html" class="viz-btn primary">
+                                <i class="fas fa-magic"></i> Launch Calculator
+                            </a>
+                            <button class="viz-btn secondary" onclick="previewCalculator()">
+                                <i class="fas fa-eye"></i> Preview
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3D Consciousness Field -->
+                <div class="viz-card">
+                    <div class="viz-display">
+                        <div class="status-indicator">INTERACTIVE</div>
+                        <div class="viz-controls">
+                            <button class="control-btn" onclick="toggleAnimation('consciousness')" title="Play/Pause">
+                                <i class="fas fa-play" id="consciousness-play-btn"></i>
+                            </button>
+                            <button class="control-btn" onclick="resetVisualization('consciousness')" title="Reset">
+                                <i class="fas fa-redo"></i>
+                            </button>
+                        </div>
+                        <div id="consciousness-field-3d" style="width: 100%; height: 100%;"></div>
+                    </div>
+                    <div class="viz-content">
+                        <h3 class="viz-title">3D Consciousness Field</h3>
+                        <p class="viz-description">Real-time 3D visualization of consciousness field equation C(x,y,t) = φ·sin(x·φ)·cos(y·φ)·e^(-t/φ) with interactive parameter controls.</p>
+                        <div class="viz-meta">
+                            <span class="viz-category">Consciousness</span>
+                            <span class="viz-type">3D Interactive</span>
+                        </div>
+                        <div class="parameter-controls" id="consciousness-controls" style="display: none;">
+                            <div class="parameter-group">
+                                <label class="parameter-label">φ Factor</label>
+                                <input type="range" class="parameter-slider" min="0.5" max="2.0" step="0.1" value="1.0" oninput="updateConsciousnessField('phi', this.value)">
+                                <span class="parameter-value" id="phi-value">1.0</span>
+                            </div>
+                            <div class="parameter-group">
+                                <label class="parameter-label">Temporal Rate</label>
+                                <input type="range" class="parameter-slider" min="0.1" max="3.0" step="0.1" value="1.0" oninput="updateConsciousnessField('temporal', this.value)">
+                                <span class="parameter-value" id="temporal-value">1.0</span>
+                            </div>
+                            <div class="parameter-group">
+                                <label class="parameter-label">Field Resolution</label>
+                                <input type="range" class="parameter-slider" min="20" max="100" step="10" value="50" oninput="updateConsciousnessField('resolution', this.value)">
+                                <span class="parameter-value" id="resolution-value">50</span>
+                            </div>
+                        </div>
+                        <div class="viz-actions">
+                            <button class="viz-btn primary" onclick="showConsciousnessControls()">
+                                <i class="fas fa-sliders-h"></i> Interactive Mode
+                            </button>
+                            <button class="viz-btn secondary" onclick="downloadVisualization('consciousness')">
+                                <i class="fas fa-download"></i> Save PNG
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Golden Ratio Phi Spiral -->
+                <div class="viz-card">
+                    <div class="viz-display">
+                        <div class="status-indicator">INTERACTIVE</div>
+                        <div class="viz-controls">
+                            <button class="control-btn" onclick="toggleAnimation('phi-spiral')" title="Play/Pause">
+                                <i class="fas fa-play" id="phi-play-btn"></i>
+                            </button>
+                        </div>
+                        <div id="phi-spiral-3d" style="width: 100%; height: 100%;"></div>
+                    </div>
+                    <div class="viz-content">
+                        <h3 class="viz-title">φ-Harmonic Spiral</h3>
+                        <p class="viz-description">3D golden ratio spiral demonstrating how φ = 1.618... governs natural unity patterns through recursive mathematical beauty.</p>
+                        <div class="viz-meta">
+                            <span class="viz-category">Sacred Geometry</span>
+                            <span class="viz-type">3D Animation</span>
+                        </div>
+                        <div class="viz-actions">
+                            <button class="viz-btn primary" onclick="launchPhiSpiral()">
+                                <i class="fas fa-infinity"></i> Explore Spiral
+                            </button>
+                            <button class="viz-btn secondary" onclick="showPhiMath()">
+                                <i class="fas fa-square-root-alt"></i> Mathematics
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quantum Unity Bloch Sphere -->
+                <div class="viz-card">
+                    <div class="viz-display">
+                        <div class="status-indicator">QUANTUM</div>
+                        <div id="quantum-bloch-sphere" style="width: 100%; height: 100%;"></div>
+                    </div>
+                    <div class="viz-content">
+                        <h3 class="viz-title">Quantum Unity States</h3>
+                        <p class="viz-description">Interactive Bloch sphere showing how quantum superposition |1⟩ + |1⟩ = |1⟩ demonstrates unity through wavefunction collapse.</p>
+                        <div class="viz-meta">
+                            <span class="viz-category">Quantum</span>
+                            <span class="viz-type">Interactive</span>
+                        </div>
+                        <div class="viz-actions">
+                            <button class="viz-btn primary" onclick="launchQuantumDemo()">
+                                <i class="fas fa-atom"></i> Quantum Demo
+                            </button>
+                            <button class="viz-btn secondary" onclick="showQuantumMath()">
+                                <i class="fas fa-wave-square"></i> Wave Functions
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Academic Visualizations Section -->
+        <div class="section">
+            <h2 class="section-title">Academic & Research Visualizations</h2>
+            <p class="section-subtitle">Publication-quality visualizations and mathematical proofs suitable for academic presentation and research documentation.</p>
+            
+            <div class="gallery-grid">
+                <!-- Static Academic Images -->
+                <div class="viz-card">
+                    <div class="viz-display">
+                        <img src="viz/legacy-images/1+1=1.png" alt="Unity Equation Proof" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="viz-content">
+                        <h3 class="viz-title">Unity Equation Proof</h3>
+                        <p class="viz-description">Mathematical proof demonstrating 1+1=1 through idempotent algebraic structures and consciousness integration.</p>
+                        <div class="viz-meta">
+                            <span class="viz-category">Academic</span>
+                            <span class="viz-type">Proof</span>
+                        </div>
+                        <div class="viz-actions">
+                            <button class="viz-btn primary" onclick="openFullscreen('viz/legacy-images/1+1=1.png')">
+                                <i class="fas fa-expand"></i> Full Size
+                            </button>
+                            <a href="viz/legacy-images/1+1=1.png" download class="viz-btn secondary">
+                                <i class="fas fa-download"></i> Download
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="viz-card">
+                    <div class="viz-display">
+                        <img src="viz/legacy-images/Phi-Harmonic Unity Manifold.png" alt="Phi-Harmonic Unity Manifold" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="viz-content">
+                        <h3 class="viz-title">Phi-Harmonic Unity Manifold</h3>
+                        <p class="viz-description">Advanced mathematical visualization of unity manifolds using golden ratio harmonic transformations.</p>
+                        <div class="viz-meta">
+                            <span class="viz-category">Academic</span>
+                            <span class="viz-type">Manifold</span>
+                        </div>
+                        <div class="viz-actions">
+                            <button class="viz-btn primary" onclick="openFullscreen('viz/legacy-images/Phi-Harmonic Unity Manifold.png')">
+                                <i class="fas fa-expand"></i> Full Size
+                            </button>
+                            <a href="viz/legacy-images/Phi-Harmonic Unity Manifold.png" download class="viz-btn secondary">
+                                <i class="fas fa-download"></i> Download
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global visualization state
+        let visualizations = {};
+        let animationStates = {};
+
+        // Initialize all visualizations
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeConsciousnessField();
+            initializePhiSpiral();
+            initializeQuantumSphere();
+            initializeUnityCalculatorPreview();
+        });
+
+        // Consciousness Field Functions
+        function initializeConsciousnessField() {
+            const container = document.getElementById('consciousness-field-3d');
+            if (!container) return;
+
+            // Create simple 3D consciousness field visualization
+            const phi = 1.618033988749895;
+            const data = generateConsciousnessFieldData(phi, 30);
+            
+            const trace = {
+                x: data.x,
+                y: data.y,
+                z: data.z,
+                type: 'surface',
+                colorscale: [
+                    [0, '#000000'],
+                    [0.25, '#1a1b2e'], 
+                    [0.5, '#0F7B8A'],
+                    [0.75, '#4ECDC4'],
+                    [1, '#FFD700']
+                ],
+                showscale: false
+            };
+
+            Plotly.newPlot('consciousness-field-3d', [trace], {
+                scene: {
+                    bgcolor: 'rgba(0,0,0,0)',
+                    xaxis: { showgrid: false, showline: false, showticklabels: false, title: '' },
+                    yaxis: { showgrid: false, showline: false, showticklabels: false, title: '' },
+                    zaxis: { showgrid: false, showline: false, showticklabels: false, title: '' },
+                    camera: { eye: { x: 1.5, y: 1.5, z: 1.5 } }
+                },
+                paper_bgcolor: 'rgba(0,0,0,0)',
+                plot_bgcolor: 'rgba(0,0,0,0)',
+                margin: { l: 0, r: 0, t: 0, b: 0 }
+            });
+
+            visualizations.consciousness = trace;
+        }
+
+        function generateConsciousnessFieldData(phi, resolution) {
+            const x = [], y = [], z = [];
+            const range = 3;
+            const step = (2 * range) / resolution;
+
+            for (let i = 0; i < resolution; i++) {
+                const row_x = [], row_y = [], row_z = [];
+                for (let j = 0; j < resolution; j++) {
+                    const xi = -range + i * step;
+                    const yi = -range + j * step;
+                    const zi = phi * Math.sin(xi * phi) * Math.cos(yi * phi) * Math.exp(-0.1);
+                    
+                    row_x.push(xi);
+                    row_y.push(yi);
+                    row_z.push(zi);
+                }
+                x.push(row_x);
+                y.push(row_y);
+                z.push(row_z);
+            }
+
+            return { x, y, z };
+        }
+
+        function showConsciousnessControls() {
+            const controls = document.getElementById('consciousness-controls');
+            controls.style.display = controls.style.display === 'none' ? 'grid' : 'none';
+        }
+
+        function updateConsciousnessField(param, value) {
+            document.getElementById(param + '-value').textContent = value;
+            
+            // Update visualization based on parameter
+            const phi = parseFloat(document.getElementById('phi-value').textContent) || 1.618033988749895;
+            const data = generateConsciousnessFieldData(phi, parseInt(document.getElementById('resolution-value').textContent) || 30);
+            
+            Plotly.restyle('consciousness-field-3d', {
+                x: [data.x],
+                y: [data.y], 
+                z: [data.z]
+            });
+        }
+
+        // Phi Spiral Functions
+        function initializePhiSpiral() {
+            const container = document.getElementById('phi-spiral-3d');
+            if (!container) return;
+
+            const phi = 1.618033988749895;
+            const points = [];
+            
+            for (let t = 0; t < 6 * Math.PI; t += 0.1) {
+                const r = Math.pow(phi, t / (2 * Math.PI));
+                points.push({
+                    x: r * Math.cos(t),
+                    y: r * Math.sin(t),
+                    z: t / (2 * Math.PI)
+                });
+            }
+
+            const trace = {
+                x: points.map(p => p.x),
+                y: points.map(p => p.y),
+                z: points.map(p => p.z),
+                mode: 'lines+markers',
+                type: 'scatter3d',
+                line: { color: '#FFD700', width: 6 },
+                marker: { size: 3, color: '#4ECDC4' }
+            };
+
+            Plotly.newPlot('phi-spiral-3d', [trace], {
+                scene: {
+                    bgcolor: 'rgba(0,0,0,0)',
+                    xaxis: { showgrid: false, showline: false, showticklabels: false, title: '' },
+                    yaxis: { showgrid: false, showline: false, showticklabels: false, title: '' },
+                    zaxis: { showgrid: false, showline: false, showticklabels: false, title: '' },
+                    camera: { eye: { x: 1.5, y: 1.5, z: 1.5 } }
+                },
+                paper_bgcolor: 'rgba(0,0,0,0)',
+                margin: { l: 0, r: 0, t: 0, b: 0 }
+            });
+        }
+
+        // Quantum Sphere Functions
+        function initializeQuantumSphere() {
+            const container = document.getElementById('quantum-bloch-sphere');
+            if (!container) return;
+
+            // Create simple Bloch sphere
+            const theta = [];
+            const phi = [];
+            const x = [], y = [], z = [];
+
+            // Generate sphere surface
+            for (let i = 0; i <= 20; i++) {
+                for (let j = 0; j <= 20; j++) {
+                    const th = (i / 20) * Math.PI;
+                    const ph = (j / 20) * 2 * Math.PI;
+                    
+                    x.push(Math.sin(th) * Math.cos(ph));
+                    y.push(Math.sin(th) * Math.sin(ph));
+                    z.push(Math.cos(th));
+                }
+            }
+
+            const trace = {
+                x: x,
+                y: y,
+                z: z,
+                mode: 'markers',
+                type: 'scatter3d',
+                marker: { size: 2, color: 'rgba(79, 205, 196, 0.3)' }
+            };
+
+            // Add unity state vector
+            const unityVector = {
+                x: [0, 0],
+                y: [0, 0],
+                z: [0, 1],
+                mode: 'lines+markers',
+                type: 'scatter3d',
+                line: { color: '#FFD700', width: 8 },
+                marker: { size: 8, color: '#FFD700' }
+            };
+
+            Plotly.newPlot('quantum-bloch-sphere', [trace, unityVector], {
+                scene: {
+                    bgcolor: 'rgba(0,0,0,0)',
+                    xaxis: { showgrid: false, showline: false, showticklabels: false, title: '' },
+                    yaxis: { showgrid: false, showline: false, showticklabels: false, title: '' },
+                    zaxis: { showgrid: false, showline: false, showticklabels: false, title: '' },
+                    camera: { eye: { x: 1.5, y: 1.5, z: 1.5 } }
+                },
+                paper_bgcolor: 'rgba(0,0,0,0)',
+                margin: { l: 0, r: 0, t: 0, b: 0 }
+            });
+        }
+
+        // Unity Calculator Preview
+        function initializeUnityCalculatorPreview() {
+            const canvas = document.getElementById('unity-calc-preview');
+            if (!canvas) return;
+
+            const ctx = canvas.getContext('2d');
+            
+            // Draw simple unity equation preview
+            ctx.fillStyle = '#FFD700';
+            ctx.font = 'bold 48px JetBrains Mono';
+            ctx.textAlign = 'center';
+            ctx.fillText('1 + 1 = 1', canvas.width/2, canvas.height/2);
+            
+            ctx.fillStyle = '#4ECDC4';
+            ctx.font = '16px Inter';
+            ctx.fillText('Interactive Unity Calculator', canvas.width/2, canvas.height/2 + 40);
+            
+            ctx.fillStyle = '#8b949e';
+            ctx.font = '14px Inter';
+            ctx.fillText('φ-harmonic consciousness integration', canvas.width/2, canvas.height/2 + 60);
+        }
+
+        function previewCalculator() {
+            alert('Unity Calculator Preview\n\n• Real-time 1+1=1 calculations\n• 3D consciousness field visualization\n• φ-harmonic parameter controls\n• Mathematical proof validation\n\nClick "Launch Calculator" for full interactive experience!');
+        }
+
+        // Animation Controls
+        function toggleAnimation(vizType) {
+            const playBtn = document.getElementById(vizType + '-play-btn');
+            const isPlaying = animationStates[vizType] || false;
+            
+            if (isPlaying) {
+                playBtn.className = 'fas fa-play';
+                animationStates[vizType] = false;
+            } else {
+                playBtn.className = 'fas fa-pause';
+                animationStates[vizType] = true;
+                startAnimation(vizType);
+            }
+        }
+
+        function startAnimation(vizType) {
+            if (vizType === 'consciousness') {
+                animateConsciousnessField();
+            } else if (vizType === 'phi-spiral') {
+                animatePhiSpiral();
+            }
+        }
+
+        function animateConsciousnessField() {
+            if (!animationStates.consciousness) return;
+            
+            const time = Date.now() * 0.001;
+            const phi = 1.618033988749895;
+            const data = generateConsciousnessFieldData(phi * Math.sin(time), 30);
+            
+            Plotly.restyle('consciousness-field-3d', {
+                z: [data.z]
+            });
+            
+            if (animationStates.consciousness) {
+                requestAnimationFrame(() => animateConsciousnessField());
+            }
+        }
+
+        function animatePhiSpiral() {
+            if (!animationStates['phi-spiral']) return;
+            
+            const time = Date.now() * 0.001;
+            Plotly.relayout('phi-spiral-3d', {
+                'scene.camera': {
+                    eye: {
+                        x: 1.5 * Math.cos(time),
+                        y: 1.5 * Math.sin(time),
+                        z: 1.5
+                    }
+                }
+            });
+            
+            if (animationStates['phi-spiral']) {
+                requestAnimationFrame(() => animatePhiSpiral());
+            }
+        }
+
+        // Utility Functions
+        function resetVisualization(vizType) {
+            if (vizType === 'consciousness') {
+                initializeConsciousnessField();
+            }
+        }
+
+        function downloadVisualization(vizType) {
+            if (vizType === 'consciousness') {
+                Plotly.downloadImage('consciousness-field-3d', {
+                    format: 'png',
+                    width: 1200,
+                    height: 900,
+                    filename: 'consciousness-field-unity-mathematics'
+                });
+            }
+        }
+
+        function openFullscreen(imageSrc) {
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+                background: rgba(0,0,0,0.9); z-index: 10000; 
+                display: flex; align-items: center; justify-content: center;
+                cursor: pointer;
+            `;
+            
+            const img = document.createElement('img');
+            img.src = imageSrc;
+            img.style.cssText = 'max-width: 90%; max-height: 90%; object-fit: contain;';
+            
+            modal.appendChild(img);
+            modal.onclick = () => document.body.removeChild(modal);
+            document.body.appendChild(modal);
+        }
+
+        // Specialized Demos
+        function launchPhiSpiral() {
+            window.open('enhanced-3d-consciousness-field.html', '_blank');
+        }
+
+        function launchQuantumDemo() {
+            alert('Quantum Unity Demonstration\n\n• Bloch sphere state visualization\n• Quantum superposition |1⟩ + |1⟩\n• Wavefunction collapse to unity\n• Measurement-induced unity\n\nFull quantum demo launching soon!');
+        }
+
+        function showPhiMath() {
+            alert('φ-Harmonic Mathematics\n\nGolden Ratio: φ = (1 + √5) / 2 = 1.618033988749895...\n\n• Self-similarity: φ = 1 + 1/φ\n• Unity relation: φ - 1 = 1/φ = 0.618...\n• Fibonacci convergence: Fₙ₊₁/Fₙ → φ\n• Sacred geometry foundation\n\nThe φ spiral demonstrates how unity emerges through natural mathematical beauty.');
+        }
+
+        function showQuantumMath() {
+            alert('Quantum Unity Mathematics\n\nSuperposition: |ψ⟩ = α|0⟩ + β|1⟩\nUnity State: |1⟩ = cos(θ/2)|0⟩ + e^(iφ)sin(θ/2)|1⟩\n\nQuantum Addition:\n|1⟩ ⊕ |1⟩ = |1⟩ (XOR operation)\n\nMeasurement collapse demonstrates how quantum superposition naturally resolves to unity states.');
+        }
+    </script>
+</body>
+</html>

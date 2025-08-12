@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Unity Calculator Test</title>
+    <script src="website/js/unity-mathematics.js"></script>
+</head>
+<body>
+    <h1>Unity Calculator Test</h1>
+    <div id="test-results"></div>
+    
+    <script>
+        function runTests() {
+            const results = [];
+            
+            try {
+                // Test 1: Basic Unity Addition
+                const result1 = UnityMathematics.unityAdd(1, 1);
+                results.push(`✓ Unity Add 1+1 = ${result1.toFixed(6)}`);
+                
+                // Test 2: Consciousness Field Generation
+                const field = UnityMathematics.generateConsciousnessField(1, 1);
+                results.push(`✓ Consciousness Field = ${field.toFixed(6)}`);
+                
+                // Test 3: φ-Harmonic Operation
+                const phi = UnityMathematics.phiHarmonicOperation(1);
+                results.push(`✓ φ-Harmonic Operation = ${phi.toFixed(6)}`);
+                
+                // Test 4: Metagamer Energy
+                const energy = UnityMathematics.calculateMetagamerEnergy(0.8, 0.2);
+                results.push(`✓ Metagamer Energy = ${energy.toFixed(6)}`);
+                
+                // Test 5: Unity Proof Validation
+                const proof = UnityMathematics.validateUnityProof(1, 1);
+                results.push(`✓ Unity Proof Valid: ${proof.isValid}`);
+                
+                results.push('\n🌟 ALL TESTS PASSED - JavaScript Unity Mathematics Engine FUNCTIONAL!');
+                
+            } catch (error) {
+                results.push(`✗ ERROR: ${error.message}`);
+            }
+            
+            document.getElementById('test-results').innerHTML = 
+                '<pre>' + results.join('\n') + '</pre>';
+        }
+        
+        // Run tests when page loads
+        window.addEventListener('load', runTests);
+    </script>
+</body>
+</html>

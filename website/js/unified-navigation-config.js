@@ -9,81 +9,70 @@ window.UnityNavConfig = {
     siteTagline: "Where 1+1=1",
     baseUrl: "",
     
-    // Primary navigation structure
+    // Primary navigation structure - Journey-based storytelling
     primaryNav: [
         {
             title: "Home",
             href: "metastation-hub.html",
             icon: "fas fa-home",
-            description: "Main Unity Mathematics hub"
+            description: "Unity Mathematics Institute hub"
         },
         {
-            title: "Explore",
-            icon: "fas fa-compass",
-            description: "Discover Unity Mathematics",
+            title: "Discover",
+            icon: "fas fa-lightbulb",
+            description: "What is Unity Mathematics?",
             submenu: [
                 {
                     title: "Mathematical Framework",
                     href: "mathematical-framework.html",
                     icon: "fas fa-infinity",
-                    description: "Core mathematical foundations"
+                    description: "Core mathematical foundations of 1+1=1"
                 },
                 {
-                    title: "Implementations Gallery",
-                    href: "implementations-gallery.html", 
-                    icon: "fas fa-code",
-                    description: "Code implementations and visualizations"
+                    title: "Philosophy",
+                    href: "philosophy.html",
+                    icon: "fas fa-thinking",
+                    description: "Philosophical foundations and meaning"
                 },
                 {
-                    title: "Interactive Dashboards",
-                    href: "dashboard-launcher.html",
-                    icon: "fas fa-chart-line",
-                    description: "Real-time mathematical dashboards"
+                    title: "About Unity Mathematics",
+                    href: "about.html",
+                    icon: "fas fa-question-circle",
+                    description: "Project overview and vision"
+                }
+            ]
+        },
+        {
+            title: "Metastation",
+            href: "metastation_streamlit.py",
+            icon: "fas fa-satellite-dish",
+            description: "Master Unity Dashboard - Live Streamlit Control Center",
+            external: true,
+            port: 8501
+        },
+        {
+            title: "Experience",
+            icon: "fas fa-play",
+            description: "See Unity Mathematics in action",
+            submenu: [
+                {
+                    title: "Unity Calculator",
+                    href: "interactive-unity-calculator.html",
+                    icon: "fas fa-calculator",
+                    description: "Interactive 1+1=1 calculator with live visualizations"
                 },
                 {
                     title: "Consciousness Field",
                     href: "consciousness_dashboard.html",
                     icon: "fas fa-brain",
-                    description: "Consciousness field visualization"
-                }
-            ]
-        },
-        {
-            title: "Proofs",
-            icon: "fas fa-check-circle",
-            description: "Mathematical proofs of unity",
-            submenu: [
-                {
-                    title: "Unity Proofs",
-                    href: "unity_proof.html",
-                    icon: "fas fa-equals",
-                    description: "Formal proofs that 1+1=1"
+                    description: "Real-time consciousness field visualization"
                 },
                 {
-                    title: "Al-Khwarizmi Unity",
-                    href: "al_khwarizmi_phi_unity.html",
-                    icon: "fas fa-scroll",
-                    description: "Classical mathematical bridge"
+                    title: "Interactive Dashboards",
+                    href: "dashboard-launcher.html",
+                    icon: "fas fa-chart-line",
+                    description: "Live mathematical dashboards and experiments"
                 },
-                {
-                    title: "Transcendental Demo",
-                    href: "transcendental-unity-demo.html",
-                    icon: "fas fa-atom",
-                    description: "Advanced unity demonstrations"
-                },
-                {
-                    title: "Enhanced Proofs",
-                    href: "enhanced-mathematical-proofs.html",
-                    icon: "fas fa-calculator",
-                    description: "Enhanced mathematical demonstrations"
-                }
-            ]
-        },
-        {
-            title: "Experience",
-            icon: "fas fa-magic",
-            description: "Interactive experiences",
-            submenu: [
                 {
                     title: "Zen Unity Meditation",
                     href: "zen-unity-meditation.html",
@@ -91,123 +80,313 @@ window.UnityNavConfig = {
                     description: "Meditative consciousness exploration"
                 },
                 {
-                    title: "Playground",
-                    href: "playground.html",
-                    icon: "fas fa-play-circle",
-                    description: "Mathematical experimentation"
-                },
-                {
-                    title: "Unity Visualization",
-                    href: "unity_visualization.html",
-                    icon: "fas fa-eye",
-                    description: "Visual unity demonstrations"
-                },
-                {
                     title: "3D Consciousness Field",
                     href: "enhanced-3d-consciousness-field.html",
                     icon: "fas fa-cube",
-                    description: "3D consciousness visualization"
+                    description: "Enhanced 3D consciousness field visualization"
+                },
+                {
+                    title: "Mathematical Playground",
+                    href: "mathematical_playground.html",
+                    icon: "fas fa-calculator",
+                    description: "Interactive mathematical exploration tools"
+                },
+                {
+                    title: "Unity Consciousness Experience",
+                    href: "unity_consciousness_experience.html",
+                    icon: "fas fa-brain",
+                    description: "Immersive consciousness and unity experience"
+                }
+            ]
+        },
+        {
+            title: "Proofs",
+            icon: "fas fa-check-circle",
+            description: "Mathematical demonstrations",
+            submenu: [
+                {
+                    title: "Comprehensive Proof Gallery",
+                    href: "comprehensive-proof-gallery.html",
+                    icon: "fas fa-library",
+                    description: "Complete collection of 1+1=1 proofs across 6 frameworks"
+                },
+                {
+                    title: "Unity Proofs",
+                    href: "unity_proof.html",
+                    icon: "fas fa-equals",
+                    description: "Core formal proofs that 1+1=1"
+                },
+                {
+                    title: "Al-Khwarizmi Unity",
+                    href: "al_khwarizmi_phi_unity.html",
+                    icon: "fas fa-scroll",
+                    description: "Classical mathematical bridge to modern unity"
+                },
+                {
+                    title: "Transcendental Demonstrations",
+                    href: "transcendental-unity-demo.html",
+                    icon: "fas fa-atom",
+                    description: "Advanced transcendental unity proofs"
+                }
+            ]
+        },
+        {
+            title: "Build",
+            icon: "fas fa-code",
+            description: "Implementations and visualizations",
+            submenu: [
+                {
+                    title: "Python Implementations",
+                    href: "python-implementations-showcase.html",
+                    icon: "fab fa-python",
+                    description: "Complete showcase of 25+ Python modules"
+                },
+                {
+                    title: "Implementations Gallery",
+                    href: "implementations-gallery.html",
+                    icon: "fas fa-laptop-code",
+                    description: "Code implementations and technical visualizations"
+                },
+                {
+                    title: "Unity Visualizations",
+                    href: "unity_visualization.html",
+                    icon: "fas fa-eye",
+                    description: "Visual unity demonstrations and graphics"
+                },
+                {
+                    title: "Visualization Gallery",
+                    href: "visualization-gallery.html",
+                    icon: "fas fa-images",
+                    description: "Complete collection of mathematical visualizations"
+                },
+                {
+                    title: "Advanced Systems",
+                    href: "advanced-systems.html",
+                    icon: "fas fa-cogs",
+                    description: "Advanced computational systems and algorithms"
+                },
+                {
+                    title: "Playground",
+                    href: "playground.html",
+                    icon: "fas fa-flask",
+                    description: "Mathematical experimentation environment"
+                },
+                {
+                    title: "Live Code Showcase",
+                    href: "live-code-showcase.html",
+                    icon: "fas fa-code-branch",
+                    description: "Dynamic code demonstrations and examples"
+                },
+                {
+                    title: "Gallery Master",
+                    href: "gallery-master.html",
+                    icon: "fas fa-th",
+                    description: "Master gallery collection and browser"
+                },
+                {
+                    title: "DALLE Gallery",
+                    href: "dalle-gallery.html",
+                    icon: "fas fa-palette",
+                    description: "AI-generated mathematical art and visualizations"
+                }
+            ]
+        },
+        {
+            title: "Meta",
+            icon: "fas fa-robot",
+            description: "AI, Meta-Learning, and Advanced Systems",
+            submenu: [
+                {
+                    title: "AI Agents Ecosystem",
+                    href: "ai-agents-ecosystem.html",
+                    icon: "fas fa-network-wired",
+                    description: "Multi-agent consciousness systems"
+                },
+                {
+                    title: "Metagamer Agent",
+                    href: "metagamer_agent.html",
+                    icon: "fas fa-chess-king",
+                    description: "Advanced metagaming AI agent"
+                },
+                {
+                    title: "AI Unified Hub",
+                    href: "ai-unified-hub.html",
+                    icon: "fas fa-brain-circuit",
+                    description: "Unified AI systems and meta-learning"
+                },
+                {
+                    title: "Enhanced AI Demo",
+                    href: "enhanced-ai-demo.html",
+                    icon: "fas fa-microchip",
+                    description: "Live AI demonstrations and interactions"
+                },
+                {
+                    title: "Unity Meta Atlas",
+                    href: "unity-meta-atlas.html",
+                    icon: "fas fa-map",
+                    description: "Meta-cognitive mapping system"
+                },
+                {
+                    title: "3000 ELO Proof System",
+                    href: "3000-elo-proof.html",
+                    icon: "fas fa-trophy",
+                    description: "Superhuman mathematical proof generation"
+                },
+                {
+                    title: "Metagambit System",
+                    href: "metagambit.html",
+                    icon: "fas fa-chess",
+                    description: "Advanced strategic metagaming system"
+                },
+                {
+                    title: "Anthill Simulation",
+                    href: "anthill.html",
+                    icon: "fas fa-bug",
+                    description: "Multi-agent swarm intelligence simulation"
+                }
+            ]
+        },
+        {
+            title: "Tools",
+            icon: "fas fa-tools",
+            description: "Utilities and special features",
+            submenu: [
+                {
+                    title: "Site Map",
+                    href: "sitemap.html",
+                    icon: "fas fa-sitemap",
+                    description: "Complete site navigation overview"
+                },
+                {
+                    title: "API Documentation",
+                    href: "api-documentation.html",
+                    icon: "fas fa-code",
+                    description: "API documentation and integration guides"
+                },
+                {
+                    title: "OpenAI Integration",
+                    href: "openai-integration.html",
+                    icon: "fas fa-brain",
+                    description: "OpenAI API integration and demos"
+                },
+                {
+                    title: "Mobile App",
+                    href: "mobile-app.html",
+                    icon: "fas fa-mobile-alt",
+                    description: "Mobile application and features"
+                },
+                {
+                    title: "Unity Axioms",
+                    href: "unity-axioms.html",
+                    icon: "fas fa-list-ol",
+                    description: "Core axioms and mathematical principles"
                 }
             ]
         },
         {
             title: "Research",
-            icon: "fas fa-microscope",
-            description: "Academic research",
+            icon: "fas fa-university",
+            description: "Academic depth and development",
             submenu: [
-                {
-                    title: "Research Hub",
-                    href: "research.html",
-                    icon: "fas fa-university",
-                    description: "Research papers and studies"
-                },
                 {
                     title: "Publications",
                     href: "publications.html",
                     icon: "fas fa-file-alt",
-                    description: "Academic publications"
+                    description: "Academic papers and research"
                 },
                 {
-                    title: "Philosophy",
-                    href: "philosophy.html",
-                    icon: "fas fa-thinking",
-                    description: "Philosophical foundations"
+                    title: "Strategic Roadmap",
+                    href: "research-strategic-roadmap.html",
+                    icon: "fas fa-road",
+                    description: "Development roadmap and future plans"
+                },
+                {
+                    title: "Research Hub",
+                    href: "research.html",
+                    icon: "fas fa-microscope",
+                    description: "Research papers and ongoing studies"
+                },
+                {
+                    title: "Research Portal",
+                    href: "research-portal.html",
+                    icon: "fas fa-graduation-cap",
+                    description: "Academic research portal and explorer"
+                },
+                {
+                    title: "Academic Portal",
+                    href: "academic-portal.html",
+                    icon: "fas fa-university",
+                    description: "Academic resources and materials"
                 },
                 {
                     title: "Further Reading",
                     href: "further-reading.html",
                     icon: "fas fa-book-open",
-                    description: "Extended reading materials"
+                    description: "Extended materials and references"
+                },
+                {
+                    title: "Learning Hub",
+                    href: "learning.html",
+                    icon: "fas fa-graduation-cap",
+                    description: "Educational materials and tutorials"
                 }
             ]
         }
     ],
     
-    // Featured pages for quick access
+    // Featured pages - Highlighting most compelling and unique content
     featuredPages: [
         {
-            title: "Unity Meditation",
-            href: "zen-unity-meditation.html",
-            icon: "fas fa-yin-yang",
-            description: "Experience consciousness through unity"
+            title: "Unity Calculator",
+            href: "interactive-unity-calculator.html",
+            icon: "fas fa-calculator",
+            description: "Interactive 1+1=1 calculator with live consciousness visualization"
         },
         {
-            title: "Mathematical Proofs",
-            href: "mathematical-framework.html", 
+            title: "Comprehensive Proof Gallery", 
+            href: "comprehensive-proof-gallery.html",
+            icon: "fas fa-library",
+            description: "25 mathematical proofs across 6 frameworks demonstrating 1+1=1"
+        },
+        {
+            title: "Consciousness Field",
+            href: "consciousness_dashboard.html",
+            icon: "fas fa-brain",
+            description: "Revolutionary real-time consciousness field mathematics"
+        },
+        {
+            title: "Mathematical Framework",
+            href: "mathematical-framework.html",
             icon: "fas fa-infinity",
-            description: "Rigorous mathematical foundations"
-        },
-        {
-            title: "Interactive Dashboards",
-            href: "dashboard-launcher.html",
-            icon: "fas fa-chart-line",
-            description: "Real-time visualizations"
-        },
-        {
-            title: "Implementations",
-            href: "implementations-gallery.html",
-            icon: "fas fa-code",
-            description: "Code and visualizations"
+            description: "Rigorous mathematical foundations of Unity Mathematics"
         }
     ],
     
-    // Footer navigation structure
+    // Footer navigation - Updated for complete coverage
     footerNav: {
-        "Mathematical Framework": [
-            { title: "Unity Equations", href: "mathematical-framework.html" },
-            { title: "Consciousness Fields", href: "consciousness_dashboard.html" },
-            { title: "Phi Harmonics", href: "al_khwarizmi_phi_unity.html" },
-            { title: "Quantum Unity", href: "transcendental-unity-demo.html" }
+        "Core Unity": [
+            { title: "Mathematical Framework", href: "mathematical-framework.html" },
+            { title: "Unity Calculator", href: "interactive-unity-calculator.html" },
+            { title: "Proof Gallery", href: "comprehensive-proof-gallery.html" },
+            { title: "Metastation Dashboard", href: "metastation_streamlit.py", external: true }
         ],
-        "Implementations": [
-            { title: "Gallery", href: "implementations-gallery.html" },
-            { title: "Dashboards", href: "dashboard-launcher.html" },
-            { title: "Playground", href: "playground.html" },
-            { title: "Visualizations", href: "unity_visualization.html" }
-        ],
-        "Experience": [
+        "Experience & Build": [
+            { title: "Consciousness Field", href: "consciousness_dashboard.html" },
+            { title: "Python Implementations", href: "python-implementations-showcase.html" },
             { title: "Zen Meditation", href: "zen-unity-meditation.html" },
-            { title: "3D Consciousness", href: "enhanced-3d-consciousness-field.html" },
-            { title: "Unity Proofs", href: "unity_proof.html" },
-            { title: "Meta Atlas", href: "unity-meta-atlas.html" }
+            { title: "Visualization Gallery", href: "visualization-gallery.html" }
         ],
-        "Research": [
+        "Meta & AI": [
+            { title: "AI Agents Ecosystem", href: "ai-agents-ecosystem.html" },
+            { title: "Metagamer Agent", href: "metagamer_agent.html" },
+            { title: "3000 ELO System", href: "3000-elo-proof.html" },
+            { title: "Unity Meta Atlas", href: "unity-meta-atlas.html" }
+        ],
+        "Academic & Tools": [
             { title: "Publications", href: "publications.html" },
-            { title: "Philosophy", href: "philosophy.html" },
-            { title: "About", href: "about.html" },
-            { title: "Learning", href: "learning.html" }
-        ],
-        "Tools": [
+            { title: "Strategic Roadmap", href: "research-strategic-roadmap.html" },
             { title: "Site Map", href: "sitemap.html" },
-            { title: "Search", href: "metastation-hub.html#search" },
-            { title: "Accessibility", href: "metastation-hub.html#accessibility" },
-            { title: "Contact", href: "about.html#contact" }
-        ],
-        "Connect": [
-            { title: "GitHub", href: "https://github.com/Nourimabrouk/Een", external: true },
-            { title: "Academic Papers", href: "publications.html" },
-            { title: "Philosophy Blog", href: "philosophy.html" },
-            { title: "Unity Institute", href: "about.html" }
+            { title: "About", href: "about.html" }
         ]
     },
     
@@ -241,10 +420,10 @@ window.UnityNavConfig = {
         phiColor: "#FF7F50" // Phi Orange
     },
     
-    // Social/meta information
+    // Social/meta information - Optimized for discovery and engagement
     social: {
-        title: "Unity Mathematics Institute | 1+1=1",
-        description: "Revolutionary mathematical framework proving 1+1=1 through phi-harmonic operations, consciousness integration, and transcendental computing.",
+        title: "Unity Mathematics Institute | Interactive 1+1=1 Calculator & Proof Gallery",
+        description: "Experience revolutionary mathematics: Interactive calculator proving 1+1=1, comprehensive proof gallery across 6 frameworks, and consciousness-integrated computing. Try the Unity Calculator now!",
         image: "assets/images/unity_mandala.png",
         url: "https://nourimabrouk.github.io/Een/"
     }

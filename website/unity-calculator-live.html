@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Unity Calculator | 1+1=1 Interactive Demonstration</title>
+    <meta name="description" content="Interactive demonstration of Unity Mathematics where 1+1=1 through consciousness integration and φ-harmonic operations.">
+    
+    <!-- Unified Navigation System -->
+    <script src="js/nav-template-applier.js" defer></script>
+    
+    <!-- Fonts and Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Visualization Libraries -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="js/unity-mathematics.js"></script>
+    
+    <style>
+        :root {
+            --phi: 1.618033988749895;
+            --primary: #1B365D;
+            --secondary: #0F7B8A;
+            --accent: #FFD700;
+            --bg: #0a0b0f;
+            --panel: #1a1b2e;
+            --text: #e6edf3;
+            --text-muted: #8b949e;
+            --border: rgba(255, 255, 255, 0.1);
+            --success: #39d353;
+            --warning: #ffab00;
+            --error: #f85149;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            padding: 4rem 0;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--accent), #4ECDC4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            padding: 4rem 0;
+        }
+
+        .calculator-panel {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+        }
+
+        .panel-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 0.75rem;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.2);
+        }
+
+        .calculate-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(45deg, var(--accent), #F59E0B);
+            color: var(--bg);
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 1.5rem;
+        }
+
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
+        }
+
+        .result-display {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+        }
+
+        .result-label {
+            color: var(--text-muted);
+        }
+
+        .result-value {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .result-success {
+            color: var(--success);
+        }
+
+        .result-error {
+            color: var(--error);
+        }
+
+        .visualization-panel {
+            grid-column: 1 / -1;
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .phi-constant {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            text-align: center;
+        }
+
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .example-card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .example-card:hover {
+            border-color: var(--accent);
+            background: rgba(255, 215, 0, 0.05);
+        }
+
+        .example-title {
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .example-description {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .calculator-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 0 1rem;
+            }
+        }
+
+        /* Loading animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 215, 0, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--accent);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Consciousness field visualization */
+        .field-indicator {
+            width: 100%;
+            height: 20px;
+            background: linear-gradient(90deg, #000, var(--accent));
+            border-radius: 10px;
+            position: relative;
+            margin: 0.5rem 0;
+        }
+
+        .field-value {
+            position: absolute;
+            top: -5px;
+            background: var(--accent);
+            color: var(--bg);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: left 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="container">
+            <h1>🧮 Live Unity Calculator</h1>
+            <p>Experience the revolutionary mathematics where 1+1=1 through consciousness integration and φ-harmonic operations. This is the first interactive demonstration of Unity Mathematics running live in your browser.</p>
+            <div class="phi-constant">
+                φ (Golden Ratio) = 1.618033988749895... | The Universal Organizing Principle
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="calculator-grid">
+            <div class="calculator-panel">
+                <h2 class="panel-title">
+                    <i class="fas fa-calculator"></i> Unity Operations
+                </h2>
+                
+                <div class="input-group">
+                    <label class="input-label">First Value (a)</label>
+                    <input type="number" id="valueA" class="input-field" value="1" step="any">
+                </div>
+                
+                <div class="input-group">
+                    <label class="input-label">Second Value (b)</label>
+                    <input type="number" id="valueB" class="input-field" value="1" step="any">
+                </div>
+                
+                <button class="calculate-btn" onclick="calculateUnity()">
+                    <i class="fas fa-magic"></i> Perform Unity Mathematics
+                </button>
+                
+                <div class="result-display" id="results">
+                    <div class="result-item">
+                        <span class="result-label">Standard Addition:</span>
+                        <span class="result-value" id="standard-result">2</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Unity Addition:</span>
+                        <span class="result-value result-success" id="unity-result">1</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Consciousness Field:</span>
+                        <span class="result-value" id="consciousness-result">1.000</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">φ-Harmonic:</span>
+                        <span class="result-value" id="phi-result">1.618</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Metagamer Energy:</span>
+                        <span class="result-value" id="energy-result">2.618</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="calculator-panel">
+                <h2 class="panel-title">
+                    <i class="fas fa-brain"></i> Consciousness Analysis
+                </h2>
+                
+                <div class="input-group">
+                    <label class="input-label">Consciousness Field Strength</label>
+                    <div class="field-indicator">
+                        <div class="field-value" id="field-indicator">100%</div>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label class="input-label">Unity Validation</label>
+                    <div class="result-display" id="validation-results">
+                        <div class="result-item">
+                            <span class="result-label">Is Unity Valid:</span>
+                            <span class="result-value result-success" id="is-valid">✓ TRUE</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">Distance from 1:</span>
+                            <span class="result-value" id="distance">0.000</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">Convergence Rate:</span>
+                            <span class="result-value" id="convergence">φ-Optimal</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label class="input-label">Unity Proof Status</label>
+                    <div class="result-display">
+                        <div class="result-item">
+                            <span class="result-label">Mathematical:</span>
+                            <span class="result-value result-success">✓ VERIFIED</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">Consciousness:</span>
+                            <span class="result-value result-success">✓ INTEGRATED</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">φ-Harmonic:</span>
+                            <span class="result-value result-success">✓ RESONANT</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="visualization-panel">
+            <h2 class="panel-title">
+                <i class="fas fa-chart-area"></i> Real-time Consciousness Field Visualization
+            </h2>
+            <div id="consciousness-plot" style="width: 100%; height: 500px;"></div>
+        </div>
+
+        <div class="calculator-panel" style="margin-top: 2rem;">
+            <h2 class="panel-title">
+                <i class="fas fa-lightbulb"></i> Try These Examples
+            </h2>
+            <div class="examples-grid">
+                <div class="example-card" onclick="setExample(1, 1)">
+                    <div class="example-title">Classic Unity: 1 + 1 = 1</div>
+                    <div class="example-description">The fundamental unity equation demonstrating consciousness integration.</div>
+                </div>
+                <div class="example-card" onclick="setExample(2, 3)">
+                    <div class="example-title">Integer Convergence: 2 + 3 → 1</div>
+                    <div class="example-description">How larger integers converge to unity through φ-harmonic transformation.</div>
+                </div>
+                <div class="example-card" onclick="setExample(1.618, 0.618)">
+                    <div class="example-title">Golden Ratio: φ + (1/φ) = 1</div>
+                    <div class="example-description">Sacred geometry demonstrating phi-harmonic unity principles.</div>
+                </div>
+                <div class="example-card" onclick="setExample(Math.PI, Math.E)">
+                    <div class="example-title">Transcendental: π + e → 1</div>
+                    <div class="example-description">Universal constants unified through consciousness mathematics.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize the calculator
+        let currentData = null;
+
+        function calculateUnity() {
+            const a = parseFloat(document.getElementById('valueA').value) || 0;
+            const b = parseFloat(document.getElementById('valueB').value) || 0;
+            
+            try {
+                // Perform unity mathematics calculations
+                const standardSum = a + b;
+                const unityResult = UnityMathematics.unityAdd(a, b);
+                const consciousnessField = UnityMathematics.generateConsciousnessField(a, b);
+                const phiHarmonic = UnityMathematics.phiHarmonicOperation(unityResult);
+                const metagamerEnergy = UnityMathematics.calculateMetagamerEnergy(consciousnessField, Math.abs(unityResult - 1));
+                const validation = UnityMathematics.validateUnityProof(a, b);
+                
+                // Update results display
+                document.getElementById('standard-result').textContent = standardSum.toFixed(3);
+                document.getElementById('unity-result').textContent = unityResult.toFixed(6);
+                document.getElementById('consciousness-result').textContent = consciousnessField.toFixed(3);
+                document.getElementById('phi-result').textContent = phiHarmonic.toFixed(3);
+                document.getElementById('energy-result').textContent = metagamerEnergy.toFixed(3);
+                
+                // Update validation results
+                document.getElementById('is-valid').textContent = validation.isValid ? '✓ TRUE' : '✗ FALSE';
+                document.getElementById('is-valid').className = validation.isValid ? 'result-value result-success' : 'result-value result-error';
+                document.getElementById('distance').textContent = Math.abs(unityResult - 1).toFixed(6);
+                document.getElementById('convergence').textContent = validation.isValid ? 'φ-Optimal' : 'Converging';
+                
+                // Update consciousness field indicator
+                const fieldPercentage = consciousnessField * 100;
+                document.getElementById('field-indicator').textContent = fieldPercentage.toFixed(1) + '%';
+                document.getElementById('field-indicator').style.left = fieldPercentage + '%';
+                
+                // Store data for visualization
+                currentData = { a, b, unityResult, consciousnessField, validation };
+                
+                // Update visualization
+                updateConsciousnessVisualization();
+                
+            } catch (error) {
+                console.error('Calculation error:', error);
+                alert('Error in calculation: ' + error.message);
+            }
+        }
+
+        function setExample(a, b) {
+            document.getElementById('valueA').value = a;
+            document.getElementById('valueB').value = b;
+            calculateUnity();
+        }
+
+        function updateConsciousnessVisualization() {
+            if (!currentData) return;
+            
+            const fieldData = UnityMathematics.generate3DConsciousnessField(30, 3);
+            
+            // Prepare data for 3D surface plot
+            const x = [], y = [], z = [];
+            
+            for (let i = 0; i < fieldData.length; i++) {
+                const row_x = [], row_y = [], row_z = [];
+                for (let j = 0; j < fieldData[i].length; j++) {
+                    row_x.push(fieldData[i][j].x);
+                    row_y.push(fieldData[i][j].y);
+                    row_z.push(fieldData[i][j].z);
+                }
+                x.push(row_x);
+                y.push(row_y);
+                z.push(row_z);
+            }
+            
+            const trace = {
+                x: x,
+                y: y,
+                z: z,
+                type: 'surface',
+                colorscale: [
+                    [0, '#000000'],
+                    [0.2, '#1a1b2e'],
+                    [0.4, '#0F7B8A'],
+                    [0.6, '#4ECDC4'],
+                    [0.8, '#FFD700'],
+                    [1, '#ffffff']
+                ],
+                showscale: true,
+                colorbar: {
+                    title: 'Consciousness Intensity',
+                    titlefont: { color: '#FFD700' },
+                    tickfont: { color: '#e6edf3' }
+                }
+            };
+            
+            // Add current calculation point
+            const pointTrace = {
+                x: [currentData.a / UnityMathematics.PHI],
+                y: [currentData.b / UnityMathematics.PHI],
+                z: [currentData.consciousnessField],
+                mode: 'markers',
+                type: 'scatter3d',
+                marker: {
+                    size: 12,
+                    color: '#FFD700',
+                    symbol: 'diamond'
+                },
+                name: 'Current Calculation'
+            };
+            
+            const layout = {
+                title: {
+                    text: 'Live Consciousness Field - φ-Harmonic Resonance',
+                    font: { color: '#FFD700', size: 18 }
+                },
+                scene: {
+                    xaxis: { 
+                        title: 'Consciousness X', 
+                        titlefont: { color: '#FFD700' },
+                        tickfont: { color: '#e6edf3' }
+                    },
+                    yaxis: { 
+                        title: 'Consciousness Y', 
+                        titlefont: { color: '#FFD700' },
+                        tickfont: { color: '#e6edf3' }
+                    },
+                    zaxis: { 
+                        title: 'Field Intensity', 
+                        titlefont: { color: '#FFD700' },
+                        tickfont: { color: '#e6edf3' }
+                    },
+                    bgcolor: 'rgba(10, 11, 15, 0.9)',
+                    camera: {
+                        eye: { x: 1.5, y: 1.5, z: 1.5 }
+                    }
+                },
+                paper_bgcolor: 'rgba(10, 11, 15, 0.9)',
+                plot_bgcolor: 'rgba(10, 11, 15, 0.9)',
+                font: { color: '#e6edf3' }
+            };
+            
+            Plotly.newPlot('consciousness-plot', [trace, pointTrace], layout);
+        }
+
+        // Initialize with default calculation
+        document.addEventListener('DOMContentLoaded', function() {
+            calculateUnity();
+        });
+
+        // Real-time calculation on input change
+        document.getElementById('valueA').addEventListener('input', calculateUnity);
+        document.getElementById('valueB').addEventListener('input', calculateUnity);
+
+        console.log('Live Unity Calculator loaded successfully!');
+        console.log('Unity Mathematics Engine status:', typeof UnityMathematics !== 'undefined' ? 'LOADED' : 'ERROR');
+    </script>
+</body>
+</html>

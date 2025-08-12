@@ -27,6 +27,7 @@
 
     <!-- Unified Navigation System -->
     <script src="js/nav-template-applier.js" defer></script>
+    <script src="js/katex-integration.js" defer></script>
 
     <style>
         :root {
@@ -521,6 +522,26 @@
                     <li><strong>Group Theory:</strong> Identity elements and closure properties</li>
                     <li><strong>Computational Verification:</strong> Algorithmic validation of unity operations</li>
                 </ul>
+            </div>
+        </section>
+
+        <!-- Formal Proof Gallery (Interactive, client-side only) -->
+        <section class="research-section" id="formal-proof-gallery">
+            <h2 class="section-title">Formal Proof Gallery</h2>
+            <div class="section-content">
+                <div class="proof-stats">
+                    <span class="proof-stat">Total: <strong id="proof-total">0</strong></span>
+                    <span class="proof-stat">Verified ≥90%: <strong id="proof-verified">0</strong></span>
+                    <span class="proof-stat">Avg. Confidence: <strong id="proof-avg-confidence">0%</strong></span>
+                </div>
+                <div class="proof-controls">
+                    <div id="proof-filter-buttons"></div>
+                    <div class="proof-search"><input id="proof-search" type="search" placeholder="Search proofs, domains..." aria-label="Search proofs"></div>
+                </div>
+                <div id="proof-gallery-grid" aria-live="polite"></div>
+                <div style="margin-top:1rem; text-align:center;">
+                    <a href="comprehensive-proof-gallery.html" class="github-link"><i class="fas fa-book"></i> View Comprehensive Proof Gallery</a>
+                </div>
             </div>
         </section>
 
@@ -1214,6 +1235,7 @@
             });
         });
     </script>
+    <script src="js/academic-portal.js" defer></script>
 </body>
 
 </html>

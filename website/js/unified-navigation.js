@@ -15,7 +15,7 @@ class UnifiedNavigationSystem {
             // Experiences & AI
             'zen-unity-meditation.html', 'consciousness_dashboard.html', 'consciousness_dashboard_clean.html', 'unity-mathematics-experience.html', 'ai-unified-hub.html', 'metagamer_agent.html',
             // Visualizations & Tools
-            'gallery.html', 'dalle-gallery.html', 'enhanced-3d-consciousness-field.html', 'enhanced-unity-visualization-system.html', 'unity_visualization.html', 'gallery/phi_consciousness_transcendence.html', 'dashboards.html', 'unity-dashboard.html', 'playground.html', 'mathematical_playground.html', 'live-code-showcase.html', 'examples/unity-calculator.html', 'examples/phi-harmonic-explorer.html',
+            'gallery.html', 'dalle-gallery.html', 'enhanced-3d-consciousness-field.html', 'enhanced-unity-visualization-system.html', 'unity_visualization.html', 'gallery/phi_consciousness_transcendence.html', 'dashboards.html', 'unity-dashboard.html', 'unity-calculator-live.html', 'playground.html', 'mathematical_playground.html', 'live-code-showcase.html', 'examples/unity-calculator.html', 'examples/phi-harmonic-explorer.html',
             // About
             'about.html', 'research.html', 'publications.html', 'academic-portal.html', 'learning.html', 'further-reading.html', 'unity-meta-atlas.html', 'mobile-app.html', 'sitemap.html'
         ]);
@@ -215,6 +215,9 @@ class UnifiedNavigationSystem {
                             </a>
                             <a href="${this.getLink('mathematical_playground.html')}" class="nav-dropdown-link">
                                 <i class="fas fa-calculator"></i> Math Playground
+                            </a>
+                            <a href="${this.getLink('unity-calculator-live.html')}" class="nav-dropdown-link">
+                                <i class="fas fa-magic"></i> Unity Calculator Live
                             </a>
                             <a href="${this.getLink('live-code-showcase.html')}" class="nav-dropdown-link">
                                 <i class="fas fa-terminal"></i> Live Code Showcase

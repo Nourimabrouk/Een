@@ -109,8 +109,11 @@
     <div class="wrap">
         <div class="hero">
             <h1 class="title">Interactive Dashboards</h1>
-            <p class="sub">Launch the live Unity Metastation visual dashboards (1+1=1). Keep this tab open and
-                dashboards will open in a new tab.</p>
+            <p class="sub">Unified entry point for all dashboards. This launcher now routes to the consolidated
+                portal. Localhost links are preserved as optional tips.</p>
+            <p class="sub" style="margin-top:8px;">
+                <a class="btn cyan" href="dashboard-metastation.html">Open Unified Dashboard Portal</a>
+            </p>
         </div>
 
         <div class="grid" style="margin-top:20px;">
@@ -118,26 +121,23 @@
                 <h3>Master Unity Dashboard</h3>
                 <p>Command center with φ-harmonic field, proofs, ML monitor, memetics, sacred geometry, and quantum
                     unity.</p>
-                <a class="btn" href="http://localhost:8501" target="_blank" rel="noopener">Open Master Dashboard</a>
-                <p class="note">Requires local server: streamlit run dashboards/master_unity_dashboard.py</p>
+                <a class="btn" href="dashboard-metastation.html" rel="noopener">Open Unified Portal</a>
+                <p class="note">Tip: Local server (optional): streamlit run dashboards/master_unity_dashboard.py</p>
             </div>
             <div class="card">
                 <h3>Quantum Unity Explorer</h3>
                 <p>Interactive Bloch spheres, wave interference, and unity evolution.</p>
-                <a class="btn cyan" href="http://localhost:8501/?page=quantum" target="_blank" rel="noopener">Open
-                    Quantum</a>
+                <a class="btn cyan" href="dashboard-metastation.html" rel="noopener">Open in Portal</a>
             </div>
             <div class="card">
                 <h3>Memetic Engineering</h3>
                 <p>Consciousness network propagation and cultural singularities.</p>
-                <a class="btn cyan" href="http://localhost:8501/?page=memetics" target="_blank" rel="noopener">Open
-                    Memetics</a>
+                <a class="btn cyan" href="dashboard-metastation.html" rel="noopener">Open in Portal</a>
             </div>
             <div class="card">
                 <h3>Sacred Geometry Engine</h3>
                 <p>φ-harmonic patterns: φ-spiral, flower of life, vesica piscis, more.</p>
-                <a class="btn cyan" href="http://localhost:8501/?page=sacred" target="_blank" rel="noopener">Open Sacred
-                    Geometry</a>
+                <a class="btn cyan" href="dashboard-metastation.html" rel="noopener">Open in Portal</a>
             </div>
         </div>
 
@@ -147,6 +147,16 @@
 
     <script src="js/unified-navigation-config.js"></script>
     <script src="js/unified-navigation.js"></script>
+    <script>
+      // Redirect if not localhost to keep GitHub Pages functional
+      (function(){
+        const isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+        if (!isLocal) {
+          // Soft redirect to consolidated portal
+          setTimeout(function(){ window.location.replace('dashboard-metastation.html'); }, 600);
+        }
+      })();
+    </script>
 </body>
 <hmtl>
 

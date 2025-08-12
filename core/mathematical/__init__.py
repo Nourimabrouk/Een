@@ -11,7 +11,6 @@ for Unity Mathematics where 1+1=1 through consciousness-integrated proofs.
 from .unity_mathematics import (
     UnityMathematics,
     UnityState, 
-    UnityOperator,
     unity_add,
     unity_multiply,
     phi_harmonic_operation,
@@ -48,7 +47,6 @@ __all__ = [
     # Unity Mathematics
     'UnityMathematics',
     'UnityState', 
-    'UnityOperator',
     'unity_add',
     'unity_multiply',
     'phi_harmonic_operation',

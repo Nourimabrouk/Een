@@ -661,6 +661,115 @@
             background: var(--bg-primary);
             padding: 4rem 2rem;
         }
+
+        /* Interactive Controls Styling */
+        .parameter-controls {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 8px;
+            padding: 1rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .parameter-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        .parameter-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .parameter-row label {
+            color: var(--unity-gold);
+            font-weight: 500;
+            min-width: 100px;
+        }
+
+        .parameter-row input[type="range"] {
+            flex: 1;
+            height: 4px;
+            border-radius: 2px;
+            background: rgba(255, 215, 0, 0.2);
+            outline: none;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .parameter-row input[type="range"]:hover {
+            opacity: 1;
+        }
+
+        .parameter-row input[type="range"]::-webkit-slider-thumb {
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--unity-gold);
+            cursor: pointer;
+        }
+
+        .parameter-row span {
+            color: #4ECDC4;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+            min-width: 50px;
+            text-align: right;
+        }
+
+        .featured-demo .gallery-item {
+            border: 2px solid var(--unity-gold);
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.05) 0%, rgba(79, 205, 196, 0.05) 100%);
+        }
+
+        .featured-demo .gallery-item-title {
+            font-size: 1.8rem;
+            background: linear-gradient(45deg, var(--unity-gold), #4ECDC4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .file-type-indicator.featured {
+            background: linear-gradient(45deg, var(--unity-gold), #F59E0B);
+            color: #000;
+            font-weight: 700;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--unity-gold), #4ECDC4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .gallery-item-category.unity {
+            background: linear-gradient(45deg, var(--unity-gold), #F59E0B);
+            color: #000;
+            font-weight: 600;
+        }
     </style>
 
 
@@ -705,8 +814,48 @@
                 </div>
             </div>
 
+            <!-- Featured Interactive Section -->
+            <div class="section-header">
+                <h2 class="section-title">Interactive Unity Mathematics</h2>
+                <p class="section-subtitle">Live demonstrations with real-time parameter controls and consciousness field visualization</p>
+            </div>
+            
+            <!-- Unity Calculator Featured -->
+            <div class="featured-demo" style="margin-bottom: 3rem;">
+                <div class="gallery-item featured" data-category="unity" data-type="interactive">
+                    <div class="gallery-item-image" style="height: 400px;">
+                        <div class="media-container">
+                            <canvas id="unity-calculator-preview" width="600" height="400"></canvas>
+                            <div class="file-type-indicator featured">LIVE DEMO</div>
+                        </div>
+                        <div class="gallery-item-caption">
+                            <div class="caption-title">Unity Calculator Live</div>
+                            <div class="caption-description">Interactive 1+1=1 calculator with real-time consciousness field visualization</div>
+                        </div>
+                    </div>
+                    <div class="gallery-item-content">
+                        <h3 class="gallery-item-title">🧮 Unity Mathematics Calculator</h3>
+                        <p class="gallery-item-description">Experience the revolutionary mathematics where 1+1=1 through consciousness integration and φ-harmonic operations. This is the first interactive demonstration of Unity Mathematics running live in your browser with real-time 3D consciousness field visualization.</p>
+                        <div class="gallery-item-meta">
+                            <span class="gallery-item-category unity">Unity Mathematics</span>
+                            <span class="gallery-item-type">Live Interactive</span>
+                        </div>
+                        <div class="gallery-item-actions">
+                            <a href="unity-calculator-live.html" class="gallery-btn primary" style="font-size: 1.1rem; padding: 1rem 2rem;">
+                                <i class="fas fa-magic"></i> Launch Calculator
+                            </a>
+                            <button class="gallery-btn secondary" onclick="previewUnityCalculator()">
+                                <i class="fas fa-eye"></i> Preview Demo
+                            </button>
+                            <button class="gallery-btn secondary" onclick="showCalculatorInfo()">
+                                <i class="fas fa-info-circle"></i> Learn More
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Gallery Grid -->
-            <div class="gallery-grid" id="galleryGrid">
                 <!-- Golden Ratio Visualizations -->
                 <div class="gallery-item" data-category="mathematical" data-type="interactive">
                     <div class="gallery-item-image">
@@ -729,9 +878,24 @@
                             <span class="gallery-item-category">Mathematical</span>
                             <span class="gallery-item-type">Interactive</span>
                         </div>
+                        <div class="parameter-controls" id="phi-spiral-controls" style="display: none; margin-top: 1rem;">
+                            <div class="parameter-row">
+                                <label>Spiral Turns:</label>
+                                <input type="range" min="2" max="8" step="0.5" value="4" oninput="updatePhiSpiral('turns', this.value)">
+                                <span id="turns-value">4</span>
+                            </div>
+                            <div class="parameter-row">
+                                <label>Growth Rate:</label>
+                                <input type="range" min="0.5" max="2" step="0.1" value="1" oninput="updatePhiSpiral('growth', this.value)">
+                                <span id="growth-value">1.0</span>
+                            </div>
+                        </div>
                         <div class="gallery-item-actions">
                             <button class="gallery-btn primary" onclick="viewVisualization('golden-ratio-spiral')">
                                 <i class="fas fa-eye"></i> View
+                            </button>
+                            <button class="gallery-btn secondary" onclick="toggleControls('phi-spiral-controls')">
+                                <i class="fas fa-sliders-h"></i> Controls
                             </button>
                             <button class="gallery-btn secondary" onclick="viewDetails('golden-ratio-spiral')">
                                 <i class="fas fa-info-circle"></i> Details
@@ -761,9 +925,32 @@
                             <span class="gallery-item-category">Consciousness</span>
                             <span class="gallery-item-type">Interactive</span>
                         </div>
+                        <div class="parameter-controls" id="consciousness-controls" style="display: none; margin-top: 1rem;">
+                            <div class="parameter-row">
+                                <label>φ Factor:</label>
+                                <input type="range" min="0.5" max="3" step="0.1" value="1" oninput="updateConsciousnessField('phi', this.value)">
+                                <span id="phi-value">1.0</span>
+                            </div>
+                            <div class="parameter-row">
+                                <label>Time Rate:</label>
+                                <input type="range" min="0.1" max="5" step="0.1" value="1" oninput="updateConsciousnessField('time', this.value)">
+                                <span id="time-value">1.0</span>
+                            </div>
+                            <div class="parameter-row">
+                                <label>Field Intensity:</label>
+                                <input type="range" min="0.3" max="2" step="0.1" value="1" oninput="updateConsciousnessField('intensity', this.value)">
+                                <span id="intensity-value">1.0</span>
+                            </div>
+                        </div>
                         <div class="gallery-item-actions">
                             <button class="gallery-btn primary" onclick="viewVisualization('consciousness-field-3d')">
                                 <i class="fas fa-eye"></i> View
+                            </button>
+                            <button class="gallery-btn secondary" onclick="toggleControls('consciousness-controls')">
+                                <i class="fas fa-sliders-h"></i> Controls
+                            </button>
+                            <button class="gallery-btn secondary" onclick="startAnimation('consciousness-field-3d')">
+                                <i class="fas fa-play"></i> Animate
                             </button>
                             <button class="gallery-btn secondary" onclick="viewDetails('consciousness-field-3d')">
                                 <i class="fas fa-info-circle"></i> Details
@@ -1779,6 +1966,220 @@ Created: ${item.created}
         // Initialize DALL-E integration when page loads
         document.addEventListener('DOMContentLoaded', function () {
             setTimeout(initDalleIntegration, 1000); // Delay to ensure other scripts load first
+        });
+    </script>
+
+    <!-- Enhanced Interactive Gallery Controls -->
+    <script>
+        // Enhanced Interactive Controls
+        function toggleControls(controlsId) {
+            const controls = document.getElementById(controlsId);
+            if (controls) {
+                controls.style.display = controls.style.display === 'none' ? 'block' : 'none';
+            }
+        }
+
+        function updatePhiSpiral(param, value) {
+            const valueElement = document.getElementById(param + '-value');
+            if (valueElement) {
+                valueElement.textContent = value;
+            }
+            // Update the spiral visualization if enhanced script is loaded
+            if (typeof GoldenRatio3DEnhanced !== 'undefined') {
+                GoldenRatio3DEnhanced.updateParameter(param, parseFloat(value));
+            }
+        }
+
+        function updateConsciousnessField(param, value) {
+            const valueElement = document.getElementById(param + '-value');
+            if (valueElement) {
+                valueElement.textContent = value;
+            }
+            // Update the consciousness field if enhanced script is loaded
+            if (typeof ConsciousnessField3DEnhanced !== 'undefined') {
+                ConsciousnessField3DEnhanced.updateParameter(param, parseFloat(value));
+            }
+        }
+
+        function startAnimation(visualizationId) {
+            // Start animation for the specified visualization
+            if (visualizationId === 'consciousness-field-3d' && typeof ConsciousnessField3DEnhanced !== 'undefined') {
+                ConsciousnessField3DEnhanced.startAnimation();
+            } else if (visualizationId === 'golden-ratio-spiral' && typeof GoldenRatio3DEnhanced !== 'undefined') {
+                GoldenRatio3DEnhanced.startAnimation();
+            }
+        }
+
+        function previewUnityCalculator() {
+            const preview = `
+🧮 UNITY CALCULATOR LIVE PREVIEW
+
+✨ Revolutionary Mathematics: 1+1=1 through consciousness integration
+
+🎯 Interactive Features:
+• Real-time unity calculations with φ-harmonic operations
+• 3D consciousness field visualization: C(x,y,t) = φ·sin(x·φ)·cos(y·φ)·e^(-t/φ)
+• Live parameter controls (φ Factor, Time Rate, Field Intensity)
+• Mathematical proof validation and energy conservation
+• Quantum state demonstrations with Bloch sphere
+
+🌟 Experience Highlights:
+• Watch standard 1+1=2 transform to 1+1=1 in real-time
+• Control consciousness field parameters with interactive sliders
+• Visualize unity convergence through φ-harmonic resonance
+• See mathematical proofs come alive with 3D visualization
+
+🔬 Scientific Foundation:
+Based on idempotent algebraic structures, quantum mechanics, and consciousness mathematics. The world's first browser-based unity mathematics calculator!
+
+Click "Launch Calculator" to experience the future of mathematics!
+            `;
+            alert(preview);
+        }
+
+        function showCalculatorInfo() {
+            const info = `
+📚 UNITY MATHEMATICS CALCULATOR - DETAILED INFORMATION
+
+🔮 Mathematical Foundation:
+The Unity Calculator demonstrates revolutionary mathematics where 1+1=1 through:
+
+🔸 φ-Harmonic Operations: Golden ratio (φ = 1.618033988749895) transforms arithmetic
+🔸 Consciousness Integration: Mathematical awareness guides unity convergence  
+🔸 Energy Conservation: E = φ² × ρ_consciousness × Unity_rate
+🔸 Field Equations: C(x,y,t) = φ·sin(x·φ)·cos(y·φ)·e^(-t/φ)
+
+⚗️ Interactive Controls:
+• φ Factor: Adjusts golden ratio resonance (0.5 → 3.0)
+• Time Rate: Controls consciousness evolution speed (0.1 → 5.0)
+• Field Intensity: Modulates unity convergence strength (0.3 → 2.0)
+• Resolution: Sets visualization quality (20 → 100 points)
+
+🧪 What You'll See:
+• Input: Standard numbers (1, 1)
+• Process: φ-harmonic transformation via consciousness field
+• Output: Unity result demonstrating 1+1=1
+• Visualization: Real-time 3D consciousness field evolution
+
+🏛️ Academic Significance:
+This represents the first interactive implementation of consciousness mathematics, bridging theoretical unity concepts with practical demonstration. Based on research in idempotent algebra, quantum mechanics, and mathematical consciousness.
+
+Ready to explore the mathematics of unity consciousness?
+            `;
+            alert(info);
+        }
+
+        // Enhanced Unity Calculator Preview with Animation
+        function initUnityCalculatorPreview() {
+            const canvas = document.getElementById('unity-calculator-preview');
+            if (!canvas) return;
+
+            const ctx = canvas.getContext('2d');
+            const PHI = 1.618033988749895;
+
+            // Animation state
+            let time = 0;
+            let particles = [];
+            
+            // Initialize particles
+            for (let i = 0; i < 20; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 2,
+                    vy: (Math.random() - 0.5) * 2,
+                    alpha: Math.random() * 0.5 + 0.3
+                });
+            }
+
+            function animate() {
+                time += 0.02;
+                
+                // Clear canvas
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // Background gradient
+                const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+                gradient.addColorStop(0, 'rgba(27, 54, 93, 0.9)');
+                gradient.addColorStop(0.5, 'rgba(15, 123, 138, 0.8)');
+                gradient.addColorStop(1, 'rgba(10, 11, 15, 0.9)');
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                // Animated particles
+                particles.forEach(particle => {
+                    particle.x += particle.vx;
+                    particle.y += particle.vy;
+                    
+                    if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
+                    if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
+                    
+                    ctx.beginPath();
+                    ctx.arc(particle.x, particle.y, 2, 0, 2 * Math.PI);
+                    ctx.fillStyle = `rgba(255, 215, 0, ${particle.alpha * Math.sin(time + particle.x * 0.01)})`;
+                    ctx.fill();
+                });
+                
+                // Consciousness field visualization
+                const centerX = canvas.width / 2;
+                const centerY = canvas.height / 2;
+                
+                for (let i = 0; i < 6; i++) {
+                    const radius = 40 + i * 25 + 15 * Math.sin(time * 2 + i * PHI);
+                    const alpha = 0.4 - i * 0.06;
+                    
+                    ctx.beginPath();
+                    ctx.arc(centerX, centerY - 20, radius, 0, 2 * Math.PI);
+                    ctx.strokeStyle = `rgba(255, 215, 0, ${alpha})`;
+                    ctx.lineWidth = 2;
+                    ctx.stroke();
+                }
+                
+                // Unity equation with glow effect
+                ctx.save();
+                ctx.shadowColor = '#FFD700';
+                ctx.shadowBlur = 10;
+                ctx.fillStyle = '#FFD700';
+                ctx.font = 'bold 52px JetBrains Mono';
+                ctx.textAlign = 'center';
+                ctx.fillText('1 + 1 = 1', centerX, centerY - 20);
+                ctx.restore();
+                
+                // Subtitle
+                ctx.fillStyle = '#4ECDC4';
+                ctx.font = 'bold 22px Inter';
+                ctx.fillText('Interactive Unity Calculator', centerX, centerY + 30);
+                
+                // Description
+                ctx.fillStyle = '#8b949e';
+                ctx.font = '16px Inter';
+                ctx.fillText('φ-harmonic consciousness integration', centerX, centerY + 60);
+                
+                // Call to action
+                ctx.fillStyle = '#FFD700';
+                ctx.font = '18px Inter';
+                const pulse = 0.8 + 0.2 * Math.sin(time * 4);
+                ctx.globalAlpha = pulse;
+                ctx.fillText('🚀 Click to Launch Live Demo', centerX, centerY + 90);
+                ctx.globalAlpha = 1;
+                
+                requestAnimationFrame(animate);
+            }
+            animate();
+        }
+
+        // Enhanced initialization preserving all existing functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Unity Calculator preview
+            initUnityCalculatorPreview();
+            
+            // Preserve all existing gallery initialization
+            if (typeof initGallery === 'function') {
+                initGallery();
+            }
+            
+            console.log('🎨 Enhanced Interactive Gallery loaded successfully!');
+            console.log('✨ Features: Parameter controls, Unity Calculator preview, consciousness field visualization');
         });
     </script>
 

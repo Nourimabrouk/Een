@@ -515,7 +515,7 @@ def create_metagamer_energy_field():
         ),
         colorbar=dict(
             title="METAGAMER ENERGY (E = φ² × ρ × U)",
-            titlefont=dict(color=HUD_COLORS['electric'], size=14, family='Orbitron'),
+            title_font=dict(color=HUD_COLORS['electric'], size=14, family='Orbitron'),
             tickfont=dict(color=HUD_COLORS['gold'], family='Orbitron'),
             thickness=20,
             len=0.8
