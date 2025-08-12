@@ -70,7 +70,7 @@ except ImportError as e:
 import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
-from core.unity_mathematics import UnityMathematics, PHI, UNITY_THRESHOLD
+from src.core.unity_mathematics import UnityMathematics, PHI, UNITY_THRESHOLD
 
 import logging
 logging.basicConfig(level=logging.INFO)

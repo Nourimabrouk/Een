@@ -20,7 +20,7 @@ async def test_unity_mathematics():
 
     try:
         # Import the enhanced Unity Mathematics server
-        from een.mcp.enhanced_unity_server import EnhancedUnityMathematics
+        from src.mcp.enhanced_unity_server import EnhancedUnityMathematics
 
         # Create instance
         unity_math = EnhancedUnityMathematics()
@@ -84,7 +84,7 @@ async def test_mcp_server_communication():
 
     try:
         # Import the MCP server
-        from een.mcp.enhanced_unity_server import EnhancedEenUnityMCPServer
+        from src.mcp.enhanced_unity_server import EnhancedEenUnityMCPServer
 
         # Create server instance
         server = EnhancedEenUnityMCPServer()

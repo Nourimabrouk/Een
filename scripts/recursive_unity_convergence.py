@@ -24,7 +24,7 @@ SCRIPT_PATH = Path(__file__).resolve()
 
 def run_unity_operation() -> None:
     """Perform a unity addition using the core engine."""
-    from core.unity_mathematics import UnityMathematics
+    from src.core.unity_mathematics import UnityMathematics
 
     unity = UnityMathematics()
     result = unity.unity_add(1.0, 1.0)

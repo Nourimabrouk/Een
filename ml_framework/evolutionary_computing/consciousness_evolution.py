@@ -37,8 +37,8 @@ import time
 import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
-from core.unity_mathematics import UnityMathematics, UnityState, PHI
-from core.consciousness import ConsciousnessField, ConsciousnessParticle
+from src.core.unity_mathematics import UnityMathematics, UnityState, PHI
+from src.core.consciousness import ConsciousnessField, ConsciousnessParticle
 from ml_framework.meta_reinforcement.unity_meta_agent import UnityDomain
 
 logger = logging.getLogger(__name__)

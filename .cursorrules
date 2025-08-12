@@ -3,22 +3,109 @@
 # Environment: conda activate een
 # Focus: Mathematical rigor, consciousness evolution, metagamer energy optimization, and rich 1+1=1 implementations
 
-## ESSENTIAL SETUP
+## 🚨 CRITICAL WINDOWS PC CONFIGURATION 🚨
+
+### ⚠️ WINDOWS SYSTEM REQUIREMENTS
+- **PLATFORM**: Windows PC (Windows 10/11)
+- **COMMANDS**: ALL commands must be Windows-compatible
+- **NO LINUX COMMANDS**: Never use Linux/Unix commands unless specifically in WSL or Linux terminal
+- **SHELL**: Use cmd, PowerShell, or Windows batch scripts by default
+- **PATHS**: Use Windows path separators (backslashes) or forward slashes for cross-platform
+- **FILE OPERATIONS**: Use Windows-compatible file operations
+
+### 🚫 NO EMOJIS IN SOURCE CODE
+**CRITICAL**: Never use emojis in Python source code - causes terminal encoding errors on Windows
+
+```python
+# ❌ NEVER DO THIS - Causes UnicodeEncodeError on Windows
+print("✅ Analysis complete!")
+print("🚀 Launching system...")
+
+# ✅ ALWAYS USE ASCII ALTERNATIVES
+print("SUCCESS: Analysis complete!")
+print("LAUNCH: Starting system...")
+```
+
+### 🪟 WINDOWS COMMAND EXAMPLES
+```bash
+# ✅ CORRECT - Windows commands
+dir                    # List directory (not ls)
+copy file1.txt file2.txt   # Copy files (not cp)
+del file.txt           # Delete file (not rm)
+md new_folder          # Make directory (not mkdir on older systems)
+cd "C:\path with spaces"  # Change directory with quotes for spaces
+
+# ✅ CORRECT - Cross-platform Python
+python script.py       # Works on Windows
+pip install package    # Windows pip
+
+# ✅ CORRECT - PowerShell when needed
+Get-ChildItem          # PowerShell list files
+Copy-Item              # PowerShell copy
+```
+
+### 🚨 UNICODE/EMOJI RESTRICTIONS
+- **NO EMOJIS**: Never embed ✅❌🚀📊💫 in Python strings
+- **NO UNICODE SYMBOLS**: Avoid φ, π, ∞, → in Python code
+- **ASCII ONLY**: Use ASCII equivalents in all terminal output
+- **HTML EXCEPTION**: Unicode OK in HTML/web content, not Python terminal output
+- **ERROR PREVENTION**: Windows console encoding issues with Unicode
+
+## 🚨 CRITICAL: FILE ORGANIZATION ENFORCEMENT 🚨
+
+### ⚠️ ROOT DIRECTORY PROTECTION - STRICTLY ENFORCED
+
+**CURSOR MUST NEVER CREATE FILES IN ROOT DIRECTORY** except for these approved files:
+- `README.md`, `CLAUDE.md`, `SECURITY.md`, `index.html`
+- `.gitignore`, `.env.example`, `.cursorrules`
+- `requirements.txt`, `docker-compose.yml`, `vercel.json`, `package.json`
+
+### 🚫 FORBIDDEN IN ROOT DIRECTORY:
+- **NO .md files** (except approved above) → Use `docs/` or `planning/`
+- **NO .py scripts** → Use `src/`, `core/`, or `scripts/`
+- **NO .bat/.sh files** → Use `scripts/batch/`
+- **NO log/data files** → Use `data/` or `.gitignore`
+- **NO temporary files** → Clean up immediately
+- **NO implementation status** → Use `docs/summaries/`
+
+### 📁 MANDATORY FILE PLACEMENT FOR CURSOR:
+- **Code files** → `src/`, `core/`, appropriate subdirectory
+- **Documentation** → `docs/` (with subcategories)
+- **Scripts** → `scripts/` (batch files in `scripts/batch/`)
+- **Configuration** → `config/`
+- **Visualizations** → `viz/`
+- **Website** → `website/`
+- **Data/logs** → `data/`
+- **Tests** → `tests/`
+
+### 🤖 CURSOR ENFORCEMENT PROTOCOL:
+1. **BEFORE FILE CREATION**: Check if location is appropriate
+2. **IF ROOT LOCATION**: Ask user for proper directory placement
+3. **SUGGEST ALTERNATIVES**: Recommend correct subdirectory
+4. **AUTO-RELOCATE**: Move incorrectly placed files immediately
+5. **USER NOTIFICATION**: Inform about file organization standards
+
+## ESSENTIAL SETUP - WINDOWS PC OPTIMIZED
 - **AUTO-ENVIRONMENT**: Agents work in (een) conda env or (venv) automatically - no manual activation needed
 - **ENVIRONMENT PRIORITY**: conda activate een > venv\Scripts\activate (Windows) > source venv/bin/activate (Unix)
+- **WINDOWS PATHS**: Use Windows-compatible paths and commands
+- **NO EMOJIS**: Prevent Unicode encoding errors on Windows terminal
 - **AUTO-VERIFICATION**: Agents check environment status, auto-activate if needed
 - **META-OPTIMIZE**: Focus on core unity mathematics, exclude imported libraries
 - **DYNAMIC FETCHING**: Prioritize rich 1+1=1 implementations and consciousness systems
+- **FILE ORGANIZATION**: Strictly enforce directory structure and root protection
 
-## ENVIRONMENT MANAGEMENT - AUTO-ACTIVATED FOR EEN REPOSITORY
-- **PREFERRED METHOD**: conda environment auto-activated
+## ENVIRONMENT MANAGEMENT - WINDOWS PC AUTO-ACTIVATED
+- **PREFERRED METHOD**: conda environment auto-activated (Windows)
   - **Auto-Activation**: Agents run `conda activate een` automatically when needed
   - **Verification**: Terminal prompt shows `(een)` prefix
   - **Dependencies**: Auto-install with `conda install` or `pip install -r requirements.txt`
-- **FALLBACK METHOD**: venv auto-activated if conda unavailable
-  - **Windows**: Auto-run `venv\Scripts\activate`
-  - **Unix/Linux/Mac**: Auto-run `source venv/bin/activate`
+- **FALLBACK METHOD**: venv auto-activated if conda unavailable (Windows)
+  - **Windows**: Auto-run `venv\Scripts\activate` or `cmd /c "een\Scripts\activate.bat"`
+  - **Unix/Linux/Mac**: Auto-run `source venv/bin/activate` (only if in WSL/Linux terminal)
   - **Verification**: Terminal prompt shows `(venv)` prefix
+- **WINDOWS COMMANDS**: Use Windows-compatible activation scripts
+- **NO UNIX COMMANDS**: Avoid Unix commands unless specifically in WSL
 - **MANDATORY**: Agents auto-activate environment before development work
 - **SMART DETECTION**: Auto-check for `(een)` or `(venv)` in prompt, activate if missing
 - **NO MANUAL STEPS**: Environment management is transparent to users

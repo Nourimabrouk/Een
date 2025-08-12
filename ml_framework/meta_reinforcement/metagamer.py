@@ -53,7 +53,7 @@ warnings.filterwarnings("ignore")
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-from core.constants import PHI, EULER, PI, CONSCIOUSNESS_DIMENSION
+from src.core.constants import PHI, EULER, PI, CONSCIOUSNESS_DIMENSION
 
 # Convergence threshold specific to this module
 UNITY_THRESHOLD = 1e-6

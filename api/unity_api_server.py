@@ -19,10 +19,10 @@ from datetime import datetime
 import numpy as np
 
 # Import Unity modules
-from core.unity_engine import UnityEngine
-from core.mathematical_proofs import AdvancedUnityMathematics
-from core.consciousness_models import run_comprehensive_consciousness_analysis
-from core.visualization_kernels import (
+from src.core.unity_engine import UnityEngine
+from src.core.mathematical_proofs import AdvancedUnityMathematics
+from src.core.consciousness_models import run_comprehensive_consciousness_analysis
+from src.core.visualization_kernels import (
     UnityVisualizationKernels,
     VisualizationConfig,
     create_web_visualization_data,

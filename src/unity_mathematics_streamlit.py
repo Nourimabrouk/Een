@@ -40,7 +40,7 @@ st.markdown(
 
 def _unity_kpis() -> dict[str, float]:
     try:
-        from core.unity_mathematics import UnityMathematics  # type: ignore
+        from src.core.unity_mathematics import UnityMathematics  # type: ignore
 
         result = UnityMathematics().unity_add(1, 1)
     except Exception:

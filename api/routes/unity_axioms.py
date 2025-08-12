@@ -16,7 +16,7 @@ from fastapi import APIRouter
 from pydantic import BaseModel, Field
 from typing import Any, Dict, List, Tuple
 
-from core.mathematical.unity_axioms import (
+from src.core.mathematical.unity_axioms import (
     UnityToposSketch,
     boolean_or_semiring,
     mdl_length,

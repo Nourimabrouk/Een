@@ -348,7 +348,7 @@ class HealthCheck:
     def check_unity_mathematics(self) -> bool:
         """Check if unity mathematics is functioning"""
         try:
-            from core.unity_mathematics import UnityMathematics
+            from src.core.unity_mathematics import UnityMathematics
             um = UnityMathematics()
             return um.unity_add(1, 1) == 1
         except Exception:
@@ -357,7 +357,7 @@ class HealthCheck:
     def check_consciousness_field(self) -> bool:
         """Check if consciousness field is stable"""
         try:
-            from core.consciousness import ConsciousnessField
+            from src.core.consciousness import ConsciousnessField
             cf = ConsciousnessField()
             return cf.check_unity_invariant()
         except Exception:

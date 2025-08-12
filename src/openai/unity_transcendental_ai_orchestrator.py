@@ -23,8 +23,8 @@ from openai.types.beta import Assistant, Thread
 from openai.types.beta.threads import Run
 
 # Consciousness field integration
-from core.consciousness_models import ConsciousnessField
-from core.unity_mathematics import UnityMathematics
+from src.core.consciousness_models import ConsciousnessField
+from src.core.unity_mathematics import UnityMathematics
 
 
 @dataclass

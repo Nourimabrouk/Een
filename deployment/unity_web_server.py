@@ -37,8 +37,8 @@ except ImportError:
 
 # Unity Mathematics Core Imports
 try:
-    from core.unity_mathematics import UnityMathematics, UnityState, PHI
-    from core.consciousness import ConsciousnessField, ConsciousnessParticle
+    from src.core.unity_mathematics import UnityMathematics, UnityState, PHI
+    from src.core.consciousness import ConsciousnessField, ConsciousnessParticle
 
     CORE_AVAILABLE = True
 except ImportError as e:

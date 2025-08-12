@@ -55,8 +55,8 @@ from sklearn.metrics import silhouette_score
 import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
-from core.unity_mathematics import UnityMathematics, PHI, UNITY_THRESHOLD
-from core.consciousness import ConsciousnessField
+from src.core.unity_mathematics import UnityMathematics, PHI, UNITY_THRESHOLD
+from src.core.consciousness import ConsciousnessField
 
 import logging
 logging.basicConfig(level=logging.INFO)

@@ -17,11 +17,21 @@
     function applySingleIncludeNavigation() {
         console.log('Applying Single-Include Unified Navigation...');
 
+        // Helper function to get correct path for resources
+        const getResourcePath = (path) => {
+            const currentPath = window.location.pathname;
+            // Check if we're in a subdirectory
+            if (currentPath.includes('/examples/') || currentPath.includes('/gallery/')) {
+                return '../' + path;
+            }
+            return path;
+        };
+
         // Inject CSS if not present
         if (TEMPLATE_CONFIG.injectCSS && !document.querySelector('link[href*="unified-navigation.css"]')) {
             const link = document.createElement('link');
             link.rel = 'stylesheet';
-            link.href = 'css/unified-navigation.css';
+            link.href = getResourcePath('css/unified-navigation.css');
             document.head.appendChild(link);
             console.log('Injected unified navigation CSS');
         }
@@ -29,7 +39,7 @@
         // Inject main JS if not present
         if (TEMPLATE_CONFIG.injectJS && !document.querySelector('script[src*="unified-navigation.js"]')) {
             const script = document.createElement('script');
-            script.src = 'js/unified-navigation.js';
+            script.src = getResourcePath('js/unified-navigation.js');
             script.defer = true;
             document.head.appendChild(script);
             console.log('Injected unified navigation JS');
@@ -38,19 +48,19 @@
         // Inject applier script if not present
         if (!document.querySelector('script[src*="apply-unified-navigation.js"]')) {
             const applierScript = document.createElement('script');
-            applierScript.src = 'js/apply-unified-navigation.js';
+            applierScript.src = getResourcePath('js/apply-unified-navigation.js');
             applierScript.defer = true;
             document.head.appendChild(applierScript);
-            console.log('🔧 Injected navigation applier script');
+            console.log('Injected navigation applier script');
         }
 
         // Inject unified chatbot (floating button) if not present
         if (!document.querySelector('script[src*="unified-chatbot-system.js"]')) {
             const chatScript = document.createElement('script');
-            chatScript.src = 'js/unified-chatbot-system.js';
+            chatScript.src = getResourcePath('js/unified-chatbot-system.js');
             chatScript.defer = true;
             document.head.appendChild(chatScript);
-            console.log('💬 Injected unified chatbot system');
+            console.log('Injected unified chatbot system');
         }
 
         // Remove common old navigation patterns immediately

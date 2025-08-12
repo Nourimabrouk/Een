@@ -12,7 +12,7 @@ st.caption("Idempotent addition, φ-harmonic scaling, and consciousness fields")
 
 def try_import_unity():
     try:
-        from core.unity_mathematics import UnityMathematics  # type: ignore
+        from src.core.unity_mathematics import UnityMathematics  # type: ignore
 
         return UnityMathematics
     except Exception:

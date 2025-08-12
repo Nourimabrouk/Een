@@ -31,7 +31,7 @@ except ImportError as e:
 
 # Import Een modules
 try:
-    from core.unity_mathematics import UnityMathematics
+    from src.core.unity_mathematics import UnityMathematics
     from consciousness.consciousness_engine import ConsciousnessEngine
     from bayesian_statistics import run_experiment
 except ImportError as e:

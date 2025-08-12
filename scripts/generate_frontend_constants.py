@@ -10,7 +10,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from core.constants import get_constants_dict
+from src.core.constants import get_constants_dict
 
 
 JS_HEADER = "// Auto-generated from core/constants.py — do not edit manually\n"

@@ -11,7 +11,7 @@ from gymnasium import spaces
 from stable_baselines3 import A2C, DQN, PPO
 from stable_baselines3.common.vec_env import DummyVecEnv
 
-from core.unity_mathematics import UnityMathematics
+from src.core.unity_mathematics import UnityMathematics
 
 unity_math = UnityMathematics()
 PHI = unity_math.phi

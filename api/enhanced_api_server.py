@@ -91,11 +91,11 @@ try:
         create_unity_meditation_guide,
         MeditationConfig,
     )
-    from core.visualization.visualization_engine import create_consciousness_visualization_engine
-    from core.visualization.proof_renderer import create_proof_renderer
+    from src.core.visualization.visualization_engine import create_consciousness_visualization_engine
+    from src.core.visualization.proof_renderer import create_proof_renderer
     from ml_framework.meta_reinforcement.unity_meta_agent import UnityMetaAgent
-    from core.unity_mathematics import UnityMathematics
-    from core.consciousness_api import ConsciousnessAPI
+    from src.core.unity_mathematics import UnityMathematics
+    from src.core.consciousness_api import ConsciousnessAPI
 except ImportError as e:
     logging.warning(f"Some Unity Mathematics modules not available: {e}")
 

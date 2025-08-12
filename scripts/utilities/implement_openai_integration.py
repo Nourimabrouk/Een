@@ -30,8 +30,8 @@ from src.openai.unity_transcendental_ai_orchestrator import (
 from src.openai.unity_client import UnityOpenAIClient, UnityOpenAIConfig, get_client
 
 # Unity mathematics imports
-from core.mathematical.unity_mathematics import UnityMathematics
-from core.consciousness.consciousness_models import ConsciousnessField
+from src.core.mathematical.unity_mathematics import UnityMathematics
+from src.consciousness.consciousness_models import ConsciousnessField
 
 # Setup logging
 logging.basicConfig(

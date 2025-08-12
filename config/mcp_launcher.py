@@ -13,7 +13,7 @@ import asyncio
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 async def launch_server(server_name: str):
-    """Launch the specified MCP server from een.mcp module"""
+    """Launch the specified MCP server from src.mcp module"""
     
     server_map = {
         "unity": "een.mcp.unity_server",

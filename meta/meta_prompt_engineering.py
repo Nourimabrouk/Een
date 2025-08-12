@@ -38,8 +38,8 @@ import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 try:
-    from core.unity_mathematics import UnityMathematics, UnityState, PHI
-    from core.consciousness import ConsciousnessField, create_consciousness_field
+    from src.core.unity_mathematics import UnityMathematics, UnityState, PHI
+    from src.core.consciousness import ConsciousnessField, create_consciousness_field
     from consciousness.transcendental_unity_consciousness_engine import (
         TranscendentalUnityConsciousnessEngine,
         CollectiveConsciousnessField,

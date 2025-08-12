@@ -36,8 +36,8 @@ try:
         optimize_prompt_phi_harmonic,
         generate_meta_recursive_prompt
     )
-    from core.unity_mathematics import UnityMathematics, UnityState, PHI
-    from core.consciousness import ConsciousnessField, create_consciousness_field
+    from src.core.unity_mathematics import UnityMathematics, UnityState, PHI
+    from src.core.consciousness import ConsciousnessField, create_consciousness_field
     META_ENGINEERING_AVAILABLE = True
 except ImportError as e:
     print(f"Warning: Meta prompt engineering components not available: {e}")
@@ -237,7 +237,7 @@ def demonstrate_unity_mathematics_integration():
     print("-" * 50)
     
     try:
-        from core.unity_equation import BooleanMonoid, SetUnionMonoid, TropicalNumber
+        from src.core.unity_equation import BooleanMonoid, SetUnionMonoid, TropicalNumber
         
         print("✅ Unity mathematics components available!")
         
@@ -270,7 +270,7 @@ def demonstrate_consciousness_field_manipulation():
     print("-" * 50)
     
     try:
-        from core.consciousness import create_consciousness_field
+        from src.core.consciousness import create_consciousness_field
         
         print("✅ Consciousness field components available!")
         
