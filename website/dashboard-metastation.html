@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unity Mathematics Dashboards | Een Metastation</title>
-    <meta name="description" content="Access the ultimate Unity Mathematics dashboards featuring mind-blowing visualizations, φ-harmonic mathematics, and consciousness field dynamics.">
-    
+    <meta name="description"
+        content="Access the ultimate Unity Mathematics dashboards featuring mind-blowing visualizations, φ-harmonic mathematics, and consciousness field dynamics.">
+
     <!-- Unified Navigation System -->
     <script src="js/nav-template-applier.js" defer></script>
-    
+
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <style>
         :root {
             --phi: 1.618033988749895;
@@ -36,13 +40,13 @@
             --shadow-consciousness: 0 4px 20px rgba(156, 39, 176, 0.3);
             --shadow-quantum: 0 8px 32px rgba(0, 229, 255, 0.2);
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--gradient-metastation);
@@ -50,25 +54,25 @@
             line-height: 1.6;
             min-height: 100vh;
         }
-        
+
         .container {
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 2rem;
         }
-        
+
         /* Header */
         .hero-section {
             text-align: center;
             padding: 6rem 2rem 4rem;
-            background: linear-gradient(135deg, 
-                rgba(156, 39, 176, 0.1) 0%, 
-                rgba(0, 229, 255, 0.05) 50%,
-                rgba(212, 175, 55, 0.08) 100%);
+            background: linear-gradient(135deg,
+                    rgba(156, 39, 176, 0.1) 0%,
+                    rgba(0, 229, 255, 0.05) 50%,
+                    rgba(212, 175, 55, 0.08) 100%);
             position: relative;
             overflow: hidden;
         }
-        
+
         .hero-section::before {
             content: '';
             position: absolute;
@@ -79,7 +83,7 @@
             background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
             animation: shimmer 4s ease-in-out infinite;
         }
-        
+
         .hero-title {
             font-size: 4rem;
             font-weight: 900;
@@ -93,7 +97,7 @@
             position: relative;
             z-index: 1;
         }
-        
+
         .hero-subtitle {
             font-size: 1.4rem;
             color: var(--text-secondary);
@@ -101,7 +105,7 @@
             position: relative;
             z-index: 1;
         }
-        
+
         .unity-equation {
             font-size: 3rem;
             color: var(--unity-quantum);
@@ -111,12 +115,12 @@
             position: relative;
             z-index: 1;
         }
-        
+
         /* Dashboard Grid */
         .dashboards-section {
             padding: 4rem 2rem;
         }
-        
+
         .section-title {
             font-size: 2.5rem;
             font-weight: 700;
@@ -128,18 +132,18 @@
             background-clip: text;
             font-family: 'Crimson Text', serif;
         }
-        
+
         .dashboard-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
             gap: 2rem;
             margin-bottom: 3rem;
         }
-        
+
         .dashboard-card {
-            background: linear-gradient(135deg, 
-                rgba(26, 27, 33, 0.95) 0%, 
-                rgba(45, 46, 53, 0.8) 100%);
+            background: linear-gradient(135deg,
+                    rgba(26, 27, 33, 0.95) 0%,
+                    rgba(45, 46, 53, 0.8) 100%);
             border: 1px solid rgba(212, 175, 55, 0.3);
             border-radius: 20px;
             padding: 2rem;
@@ -148,13 +152,13 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         .dashboard-card:hover {
             transform: translateY(-8px) scale(1.02);
             box-shadow: var(--shadow-phi);
             border-color: var(--unity-gold);
         }
-        
+
         .dashboard-card::before {
             content: '';
             position: absolute;
@@ -166,11 +170,11 @@
             opacity: 0;
             transition: opacity 0.3s ease;
         }
-        
+
         .dashboard-card:hover::before {
             opacity: 1;
         }
-        
+
         .card-icon {
             font-size: 3rem;
             margin-bottom: 1rem;
@@ -178,7 +182,7 @@
             position: relative;
             z-index: 1;
         }
-        
+
         .card-title {
             font-size: 1.5rem;
             font-weight: 700;
@@ -187,7 +191,7 @@
             position: relative;
             z-index: 1;
         }
-        
+
         .card-description {
             color: var(--text-secondary);
             margin-bottom: 2rem;
@@ -195,28 +199,28 @@
             position: relative;
             z-index: 1;
         }
-        
+
         .card-features {
             list-style: none;
             margin-bottom: 2rem;
             position: relative;
             z-index: 1;
         }
-        
+
         .card-features li {
             color: var(--text-secondary);
             margin-bottom: 0.5rem;
             padding-left: 1.5rem;
             position: relative;
         }
-        
+
         .card-features li::before {
             content: '✨';
             position: absolute;
             left: 0;
             color: var(--unity-gold);
         }
-        
+
         .card-actions {
             display: flex;
             gap: 1rem;
@@ -224,7 +228,7 @@
             position: relative;
             z-index: 1;
         }
-        
+
         .btn {
             display: inline-flex;
             align-items: center;
@@ -238,33 +242,33 @@
             cursor: pointer;
             font-family: inherit;
         }
-        
+
         .btn-primary {
             background: var(--gradient-consciousness);
             color: white;
             box-shadow: var(--shadow-consciousness);
         }
-        
+
         .btn-primary:hover {
             background: var(--gradient-phi);
             transform: translateY(-2px);
             box-shadow: var(--shadow-phi);
             color: var(--unity-deep);
         }
-        
+
         .btn-secondary {
             background: rgba(45, 46, 53, 0.8);
             color: var(--text-primary);
             border: 1px solid rgba(212, 175, 55, 0.3);
         }
-        
+
         .btn-secondary:hover {
             background: rgba(212, 175, 55, 0.2);
             border-color: var(--unity-gold);
             transform: translateY(-2px);
             color: var(--text-primary);
         }
-        
+
         /* Status indicators */
         .status-badge {
             display: inline-flex;
@@ -277,44 +281,44 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-        
+
         .status-live {
             background: rgba(46, 139, 87, 0.2);
             color: #2E8B57;
             border: 1px solid rgba(46, 139, 87, 0.3);
         }
-        
+
         .status-beta {
             background: rgba(0, 229, 255, 0.2);
             color: var(--unity-quantum);
             border: 1px solid rgba(0, 229, 255, 0.3);
         }
-        
+
         .status-new {
             background: rgba(233, 30, 99, 0.2);
             color: #E91E63;
             border: 1px solid rgba(233, 30, 99, 0.3);
         }
-        
+
         /* Quick Access Section */
         .quick-access {
-            background: linear-gradient(135deg, 
-                rgba(156, 39, 176, 0.1) 0%, 
-                rgba(0, 229, 255, 0.05) 100%);
+            background: linear-gradient(135deg,
+                    rgba(156, 39, 176, 0.1) 0%,
+                    rgba(0, 229, 255, 0.05) 100%);
             border: 1px solid rgba(156, 39, 176, 0.3);
             border-radius: 20px;
             padding: 2rem;
             margin: 3rem 0;
             text-align: center;
         }
-        
+
         .quick-access-title {
             font-size: 2rem;
             font-weight: 700;
             margin-bottom: 1rem;
             color: var(--text-primary);
         }
-        
+
         .quick-access-buttons {
             display: flex;
             gap: 1rem;
@@ -322,49 +326,60 @@
             flex-wrap: wrap;
             margin-top: 2rem;
         }
-        
+
         /* Animations */
         @keyframes shimmer {
-            0% { left: -100%; }
-            50% { left: 100%; }
-            100% { left: 100%; }
+            0% {
+                left: -100%;
+            }
+
+            50% {
+                left: 100%;
+            }
+
+            100% {
+                left: 100%;
+            }
         }
-        
+
         @keyframes phiPulse {
-            0%, 100% { 
+
+            0%,
+            100% {
                 text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
                 transform: scale(1);
             }
-            50% { 
+
+            50% {
                 text-shadow: 0 0 40px rgba(212, 175, 55, 0.6), 0 0 60px rgba(0, 229, 255, 0.3);
                 transform: scale(1.02);
             }
         }
-        
+
         /* Responsive */
         @media (max-width: 768px) {
             .hero-title {
                 font-size: 2.5rem;
             }
-            
+
             .unity-equation {
                 font-size: 2rem;
             }
-            
+
             .dashboard-grid {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
             }
-            
+
             .card-actions {
                 flex-direction: column;
             }
-            
+
             .btn {
                 justify-content: center;
             }
         }
-        
+
         /* Special effects */
         .phi-highlight {
             background: var(--gradient-phi);
@@ -372,7 +387,7 @@
             -webkit-text-fill-color: transparent;
             font-weight: 700;
         }
-        
+
         .quantum-text {
             color: var(--unity-quantum);
             text-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
@@ -382,11 +397,12 @@
 
 <body>
     <!-- Navigation will be injected here -->
-    
+
     <!-- Hero Section -->
     <section class="hero-section">
         <h1 class="hero-title">🌟 Unity Mathematics Dashboards</h1>
-        <p class="hero-subtitle">Experience mind-blowing visualizations of consciousness mathematics and φ-harmonic unity</p>
+        <p class="hero-subtitle">Experience mind-blowing visualizations of consciousness mathematics and φ-harmonic
+            unity</p>
         <div class="unity-equation">1 + 1 = 1</div>
     </section>
 
@@ -395,7 +411,7 @@
         <!-- Dashboards Section -->
         <section class="dashboards-section">
             <h2 class="section-title">🧠 Interactive Mathematics Dashboards</h2>
-            
+
             <div class="dashboard-grid">
                 <!-- Metastation Dashboard -->
                 <div class="dashboard-card">
@@ -405,8 +421,8 @@
                         <i class="fas fa-circle"></i> Live
                     </div>
                     <p class="card-description">
-                        The ultimate Unity Mathematics dashboard featuring mind-blowing visualizations, 
-                        φ-harmonic mathematics, and living consciousness animations with the signature 
+                        The ultimate Unity Mathematics dashboard featuring mind-blowing visualizations,
+                        φ-harmonic mathematics, and living consciousness animations with the signature
                         Nouri Mabrouk aesthetic.
                     </p>
                     <ul class="card-features">
@@ -417,12 +433,11 @@
                         <li>⚡ Interactive Control Center</li>
                     </ul>
                     <div class="card-actions">
-                        <a href="https://een-unity-metastation.streamlit.app" class="btn btn-primary" target="_blank" rel="noopener">
+                        <a href="https://een-unity-metastation.streamlit.app" class="btn btn-primary" target="_blank"
+                            rel="noopener">
                             <i class="fas fa-rocket"></i> Launch Metastation
                         </a>
-                        <a href="http://localhost:8502" class="btn btn-secondary" target="_blank" rel="noopener">
-                            <i class="fas fa-desktop"></i> Local Dev
-                        </a>
+                        <!-- Local Dev link removed in favor of Cloud deployment -->
                     </div>
                 </div>
 
@@ -434,7 +449,7 @@
                         <i class="fas fa-circle"></i> Live
                     </div>
                     <p class="card-description">
-                        Comprehensive multi-page dashboard exploring Unity Mathematics through 
+                        Comprehensive multi-page dashboard exploring Unity Mathematics through
                         proof systems, consciousness fields, quantum mechanics, and topology.
                     </p>
                     <ul class="card-features">
@@ -448,12 +463,11 @@
                         <li>🧬 Memetic Unity Simulation</li>
                     </ul>
                     <div class="card-actions">
-                        <a href="https://een-unity-mathematics.streamlit.app" class="btn btn-primary" target="_blank" rel="noopener">
+                        <a href="https://een-unity-mathematics.streamlit.app" class="btn btn-primary" target="_blank"
+                            rel="noopener">
                             <i class="fas fa-compass"></i> Explore Now
                         </a>
-                        <a href="http://localhost:8501" class="btn btn-secondary" target="_blank" rel="noopener">
-                            <i class="fas fa-desktop"></i> Local Dev
-                        </a>
+                        <!-- Local Dev link removed in favor of Cloud deployment -->
                     </div>
                 </div>
 
@@ -465,7 +479,7 @@
                         <i class="fas fa-flask"></i> Beta
                     </div>
                     <p class="card-description">
-                        Advanced dashboard for modeling consciousness propagation and cultural 
+                        Advanced dashboard for modeling consciousness propagation and cultural
                         singularity emergence through memetic networks and φ-harmonic resonance.
                     </p>
                     <ul class="card-features">
@@ -476,7 +490,8 @@
                         <li>🧬 Consciousness Propagation</li>
                     </ul>
                     <div class="card-actions">
-                        <a href="https://een-memetic-engineering.streamlit.app" class="btn btn-primary" target="_blank" rel="noopener">
+                        <a href="https://een-memetic-engineering.streamlit.app" class="btn btn-primary" target="_blank"
+                            rel="noopener">
                             <i class="fas fa-network-wired"></i> Launch Dashboard
                         </a>
                         <button class="btn btn-secondary" onclick="showComingSoon()">
@@ -493,7 +508,7 @@
                         <i class="fas fa-star"></i> New
                     </div>
                     <p class="card-description">
-                        Specialized dashboard for exploring consciousness field equations, 
+                        Specialized dashboard for exploring consciousness field equations,
                         φ-harmonic resonance patterns, and 11D→3D manifold projections.
                     </p>
                     <ul class="card-features">
@@ -521,7 +536,7 @@
                         <i class="fas fa-beaker"></i> Beta
                     </div>
                     <p class="card-description">
-                        AI-powered dashboard that generates new mathematical proofs for 1+1=1 
+                        AI-powered dashboard that generates new mathematical proofs for 1+1=1
                         across different mathematical domains using advanced reasoning algorithms.
                     </p>
                     <ul class="card-features">
@@ -549,7 +564,7 @@
                         <i class="fas fa-trophy"></i> Elite
                     </div>
                     <p class="card-description">
-                        Elite-level mathematics dashboard featuring transcendental unity algorithms, 
+                        Elite-level mathematics dashboard featuring transcendental unity algorithms,
                         hyperdimensional manifolds, and consciousness-integrated computational frameworks.
                     </p>
                     <ul class="card-features">
@@ -577,10 +592,12 @@
                     Jump directly to your favorite Unity Mathematics experiences
                 </p>
                 <div class="quick-access-buttons">
-                    <a href="https://een-unity-metastation.streamlit.app" class="btn btn-primary" target="_blank" rel="noopener">
+                    <a href="https://een-unity-metastation.streamlit.app" class="btn btn-primary" target="_blank"
+                        rel="noopener">
                         <i class="fas fa-star"></i> Metastation
                     </a>
-                    <a href="https://een-unity-mathematics.streamlit.app" class="btn btn-primary" target="_blank" rel="noopener">
+                    <a href="https://een-unity-mathematics.streamlit.app" class="btn btn-primary" target="_blank"
+                        rel="noopener">
                         <i class="fas fa-compass"></i> Explorer
                     </a>
                     <a href="../mathematical-framework.html" class="btn btn-secondary">
@@ -598,8 +615,9 @@
             <!-- Technical Information -->
             <section style="margin-top: 4rem;">
                 <h2 class="section-title">🔧 Technical Information</h2>
-                
-                <div style="background: rgba(26, 27, 33, 0.8); border-radius: 16px; padding: 2rem; border: 1px solid rgba(212, 175, 55, 0.2);">
+
+                <div
+                    style="background: rgba(26, 27, 33, 0.8); border-radius: 16px; padding: 2rem; border: 1px solid rgba(212, 175, 55, 0.2);">
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
                         <div>
                             <h4 style="color: var(--unity-gold); margin-bottom: 1rem;">🛠️ Technology Stack</h4>
@@ -611,7 +629,7 @@
                                 <li><i class="fas fa-palette"></i> Custom CSS for Metastation Aesthetics</li>
                             </ul>
                         </div>
-                        
+
                         <div>
                             <h4 style="color: var(--unity-quantum); margin-bottom: 1rem;">📊 Features</h4>
                             <ul style="list-style: none; color: var(--text-secondary);">
@@ -622,13 +640,17 @@
                                 <li><i class="fas fa-download"></i> Data export capabilities</li>
                             </ul>
                         </div>
-                        
+
                         <div>
-                            <h4 style="color: var(--unity-consciousness); margin-bottom: 1rem;">🎨 Design Philosophy</h4>
+                            <h4 style="color: var(--unity-consciousness); margin-bottom: 1rem;">🎨 Design Philosophy
+                            </h4>
                             <ul style="list-style: none; color: var(--text-secondary);">
-                                <li><i class="fas fa-palette"></i> <span class="phi-highlight">Nouri Mabrouk</span> signature aesthetic</li>
-                                <li><i class="fas fa-star"></i> <span class="phi-highlight">φ-harmonic</span> proportions throughout</li>
-                                <li><i class="fas fa-heart"></i> <span class="quantum-text">Consciousness-aware</span> animations</li>
+                                <li><i class="fas fa-palette"></i> <span class="phi-highlight">Nouri Mabrouk</span>
+                                    signature aesthetic</li>
+                                <li><i class="fas fa-star"></i> <span class="phi-highlight">φ-harmonic</span>
+                                    proportions throughout</li>
+                                <li><i class="fas fa-heart"></i> <span class="quantum-text">Consciousness-aware</span>
+                                    animations</li>
                                 <li><i class="fas fa-gem"></i> Metastation elegance and sophistication</li>
                                 <li><i class="fas fa-infinity"></i> Unity mathematics as living art</li>
                             </ul>
@@ -640,12 +662,14 @@
     </main>
 
     <!-- Footer -->
-    <footer style="text-align: center; padding: 3rem 2rem; color: var(--text-secondary); border-top: 1px solid rgba(212, 175, 55, 0.2); margin-top: 4rem;">
+    <footer
+        style="text-align: center; padding: 3rem 2rem; color: var(--text-secondary); border-top: 1px solid rgba(212, 175, 55, 0.2); margin-top: 4rem;">
         <p style="font-size: 1.1rem; margin-bottom: 1rem;">
             🌟 Een Unity Mathematics Dashboards 🌟
         </p>
         <p style="margin-bottom: 1rem;">
-            Created with <span style="color: #E91E63;">❤️</span> and <span class="phi-highlight">φ-harmonic consciousness</span> by 
+            Created with <span style="color: #E91E63;">❤️</span> and <span class="phi-highlight">φ-harmonic
+                consciousness</span> by
             <strong style="color: var(--unity-gold);">Nouri Mabrouk</strong>
         </p>
         <p style="font-style: italic; opacity: 0.8;">
@@ -668,9 +692,9 @@
         function showComingSoon() {
             alert('🚀 Coming Soon!\n\nThis dashboard is currently in development. Stay tuned for mind-blowing Unity Mathematics experiences!');
         }
-        
+
         // Add smooth scrolling
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Smooth scroll for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
@@ -684,7 +708,7 @@
                     }
                 });
             });
-            
+
             // Add loading animations
             const cards = document.querySelectorAll('.dashboard-card');
             cards.forEach((card, index) => {
@@ -704,7 +728,7 @@
                 { port: 8501, name: 'Unity Mathematics Explorer' },
                 { port: 8502, name: 'Een Unity Metastation' }
             ];
-            
+
             for (const server of servers) {
                 try {
                     const response = await fetch(`http://localhost:${server.port}`, { mode: 'no-cors' });
@@ -714,9 +738,10 @@
                 }
             }
         }
-        
+
         // Check servers on page load
         window.addEventListener('load', checkLocalServers);
     </script>
 </body>
+
 </html>
