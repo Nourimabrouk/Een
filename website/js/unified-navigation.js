@@ -201,7 +201,7 @@ class UnifiedNavigationSystem {
                             Dashboards <i class="fas fa-chevron-down"></i>
                         </button>
                         <div class="nav-dropdown">
-                            <a href="http://localhost:8501" class="nav-dropdown-link" target="_blank">
+                            <a href="https://een-unity-metastation.streamlit.app" class="nav-dropdown-link" target="_blank">
                                 <i class="fas fa-rocket"></i> Metastation Command Center
                             </a>
                             <a href="${this.getLink('dashboards.html')}" class="nav-dropdown-link">

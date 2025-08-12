@@ -160,32 +160,18 @@
         </div>
     </div>
 
+    <script src="js/unity-api-manager.js"></script>
     <script>
-        const API_BASE = '/api';
-        
         async function apiCall(endpoint, data = null) {
-            try {
-                const response = await fetch(API_BASE + endpoint, {
-                    method: data ? 'POST' : 'GET',
-                    headers: data ? {'Content-Type': 'application/json'} : {},
-                    body: data ? JSON.stringify(data) : null
-                });
-                
-                if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}`);
-                }
-                
-                return await response.json();
-            } catch (error) {
-                return {error: error.message};
-            }
+            try { return await UnityAPIManager.call(endpoint, data); }
+            catch (error) { return {error: error.message}; }
         }
         
         async function testUnityAdd() {
             const a = parseFloat(document.getElementById('add-a').value);
             const b = parseFloat(document.getElementById('add-b').value);
             
-            const result = await apiCall('/unity/add', {a, b});
+            const result = await apiCall('/api/unity/add', {a, b});
             
             const resultDiv = document.getElementById('add-result');
             if (result.error) {
@@ -205,7 +191,7 @@
             const y = parseFloat(document.getElementById('field-y').value);
             const t = parseFloat(document.getElementById('field-t').value);
             
-            const result = await apiCall('/consciousness/field', {x, y, t});
+            const result = await apiCall('/api/consciousness/field', {x, y, t});
             
             const resultDiv = document.getElementById('field-result');
             if (result.error) {
@@ -224,7 +210,7 @@
             const consciousness_density = parseFloat(document.getElementById('energy-rho').value);
             const unity_rate = parseFloat(document.getElementById('energy-u').value);
             
-            const result = await apiCall('/metagamer/energy', {consciousness_density, unity_rate});
+            const result = await apiCall('/api/metagamer/energy', {consciousness_density, unity_rate});
             
             const resultDiv = document.getElementById('energy-result');
             if (result.error) {
@@ -240,7 +226,7 @@
         }
         
         async function generateProofs() {
-            const result = await apiCall('/prove');
+            const result = await apiCall('/api/prove');
             
             const resultDiv = document.getElementById('proofs-result');
             if (result.error) {

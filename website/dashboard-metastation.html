@@ -420,9 +420,7 @@
                         <a href="https://een-unity-metastation.streamlit.app" class="btn btn-primary" target="_blank" rel="noopener">
                             <i class="fas fa-rocket"></i> Launch Metastation
                         </a>
-                        <a href="http://localhost:8502" class="btn btn-secondary" target="_blank" rel="noopener">
-                            <i class="fas fa-desktop"></i> Local Dev
-                        </a>
+                        <!-- Local Dev link removed in favor of Cloud deployment -->
                     </div>
                 </div>
 
@@ -451,9 +449,7 @@
                         <a href="https://een-unity-mathematics.streamlit.app" class="btn btn-primary" target="_blank" rel="noopener">
                             <i class="fas fa-compass"></i> Explore Now
                         </a>
-                        <a href="http://localhost:8501" class="btn btn-secondary" target="_blank" rel="noopener">
-                            <i class="fas fa-desktop"></i> Local Dev
-                        </a>
+                        <!-- Local Dev link removed in favor of Cloud deployment -->
                     </div>
                 </div>
 
@@ -700,14 +696,17 @@
 
         // Check if local development servers are running
         async function checkLocalServers() {
+            if (!window.location.hostname.match(/^localhost|127\.0\.0\.1$/)) {
+                console.log('Using static GitHub Pages mode; skipping local server checks.');
+                return;
+            }
             const servers = [
                 { port: 8501, name: 'Unity Mathematics Explorer' },
                 { port: 8502, name: 'Een Unity Metastation' }
             ];
-            
             for (const server of servers) {
                 try {
-                    const response = await fetch(`http://localhost:${server.port}`, { mode: 'no-cors' });
+                    await fetch(`http://localhost:${server.port}`, { mode: 'no-cors' });
                     console.log(`✅ ${server.name} is running on port ${server.port}`);
                 } catch (error) {
                     console.log(`❌ ${server.name} is not running on port ${server.port}`);

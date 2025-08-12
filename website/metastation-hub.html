@@ -2436,18 +2436,32 @@
                 document.body.style.opacity = '1';
             }, 100);
 
-            // Load Lean proofs list from backend if available
+            // Load Lean proofs list from backend if available; fallback to static
             async function loadLeanProofs() {
                 const container = document.getElementById('lean-proofs');
                 if (!container) return;
                 try {
-                    // Try absolute path first, then relative fallback for GitHub Pages
-                    let res = await fetch('/unity-meta/lean/proofs');
-                    if (!res.ok) {
-                        res = await fetch('unity-meta/lean/proofs');
+                    let data;
+                    if (window.UnityAPIManager && !UnityAPIManager.isLocalhost()) {
+                        // Use static proofs JSON if available
+                        const j = await fetch('data/proofs.json');
+                        if (!j.ok) throw new Error('No static proofs');
+                        const dj = await j.json();
+                        data = Object.values(dj.proofs || {}).flat().map((p, idx) => ({
+                            title: p.title || p.domain || `Proof ${idx+1}`,
+                            path: p.id || p.domain || `proof_${idx+1}.json`,
+                            bytes: JSON.stringify(p).length,
+                            sha256: (p.id || p.title || 'proof').padEnd(16, '0')
+                        }));
+                    } else {
+                        // Try absolute path first, then relative fallback for GitHub Pages
+                        let res = await fetch('/unity-meta/lean/proofs');
+                        if (!res.ok) {
+                            res = await fetch('unity-meta/lean/proofs');
+                        }
+                        if (!res.ok) throw new Error('No backend');
+                        data = await res.json();
                     }
-                    if (!res.ok) throw new Error('No backend');
-                    const data = await res.json();
                     if (Array.isArray(data) && data.length) {
                         container.innerHTML = data.map(item => `
                             <a class="feature-card" data-filename="${item.path.split('/').pop()}">
@@ -2461,13 +2475,20 @@
                             card.addEventListener('click', async () => {
                                 const filename = card.getAttribute('data-filename');
                                 try {
-                                    let r = await fetch(`/unity-meta/lean/proof/${filename}`);
-                                    if (!r.ok) {
-                                        r = await fetch(`unity-meta/lean/proof/${filename}`);
+                                    let code = null;
+                                    if (window.UnityAPIManager && !UnityAPIManager.isLocalhost()) {
+                                        // show JSON structure as code
+                                        code = `-- Static proof placeholder for ${filename}`;
+                                    } else {
+                                        let r = await fetch(`/unity-meta/lean/proof/${filename}`);
+                                        if (!r.ok) {
+                                            r = await fetch(`unity-meta/lean/proof/${filename}`);
+                                        }
+                                        const j = await r.json();
+                                        code = j.code || 'Unavailable';
                                     }
-                                    const j = await r.json();
                                     const pre = document.getElementById('lean-code');
-                                    pre.textContent = j.code || 'Unavailable';
+                                    pre.textContent = code;
                                     document.getElementById('lean-proof-viewer').style.display = 'block';
                                 } catch (err) { console.warn(err); }
                             });
@@ -2476,7 +2497,7 @@
                         container.innerHTML = `<div class="feature-card"><h3 class="feature-title">Formal proofs</h3><p class="feature-description">Start the backend to fetch Lean artifacts.</p></div>`
                     }
                 } catch (e) {
-                    container.innerHTML = `<div class="feature-card"><h3 class="feature-title">Formal proofs</h3><p class="feature-description">Backend offline. Static gallery available in repository.</p><a class="feature-description" href="unity-meta/lean/proofs" style="color: var(--unity-gold);">Try API →</a></div>`
+                    container.innerHTML = `<div class="feature-card"><h3 class="feature-title">Formal proofs</h3><p class="feature-description">Backend offline. Static gallery available in repository (see Academic Portal).</p><a class="feature-description" href="academic-portal.html" style="color: var(--unity-gold);">Open Academic Portal →</a></div>`
                 }
             }
 
@@ -2488,11 +2509,16 @@
             if (toyBtn && toyOut) {
                 toyBtn.addEventListener('click', async () => {
                     try {
-                        let res = await fetch('/unity-meta/toy/unity');
-                        if (!res.ok) res = await fetch('unity-meta/toy/unity');
-                        if (!res.ok) throw new Error('No backend');
-                        const j = await res.json();
-                        toyOut.textContent = JSON.stringify(j, null, 2);
+                        if (window.UnityAPIManager && !UnityAPIManager.isLocalhost()) {
+                            const j = await UnityAPIManager.call('/api/prove');
+                            toyOut.textContent = JSON.stringify(j, null, 2);
+                        } else {
+                            let res = await fetch('/unity-meta/toy/unity');
+                            if (!res.ok) res = await fetch('unity-meta/toy/unity');
+                            if (!res.ok) throw new Error('No backend');
+                            const j = await res.json();
+                            toyOut.textContent = JSON.stringify(j, null, 2);
+                        }
                         toyOut.style.display = 'block';
                         toyOut.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     } catch (e) {

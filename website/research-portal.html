@@ -440,6 +440,7 @@
     </style>
 </head>
 <body>
+    <script src="js/unity-api-manager.js"></script>
     <div class="portal-container">
         <div class="portal-hero">
             <h1>Unity Mathematics Research Portal</h1>
@@ -759,7 +760,7 @@
                                 and visualization endpoints with comprehensive documentation.
                             </p>
                             <div class="action-buttons">
-                                <a href="http://localhost:8000/api/docs" class="btn btn-primary" target="_blank">
+                                <a href="http://localhost:8000/api/docs" class="btn btn-primary" target="_blank" rel="noopener">
                                     <i class="fas fa-book"></i> API Docs
                                 </a>
                                 <button class="btn btn-secondary" onclick="testAPI()">
@@ -915,17 +916,23 @@ end UnityMathematics`;
         }
 
         async function checkAPIStatus() {
+            const el = document.getElementById('api-status');
+            if (window.UnityAPIManager && !UnityAPIManager.isLocalhost()) {
+                el.textContent = 'Offline (using static fallbacks)';
+                el.className = 'tool-status running';
+                return;
+            }
             try {
                 const response = await fetch('http://localhost:8000/health');
                 if (response.ok) {
-                    document.getElementById('api-status').textContent = 'Online';
-                    document.getElementById('api-status').className = 'tool-status ready';
+                    el.textContent = 'Online';
+                    el.className = 'tool-status ready';
                 } else {
                     throw new Error('API not responding');
                 }
             } catch (error) {
-                document.getElementById('api-status').textContent = 'Offline';
-                document.getElementById('api-status').className = 'tool-status offline';
+                el.textContent = 'Offline (using static fallbacks)';
+                el.className = 'tool-status running';
             }
         }
 
@@ -933,6 +940,12 @@ end UnityMathematics`;
             addConsoleOutput('api-console', '[TEST] Testing Unity Research API...');
             
             try {
+                if (window.UnityAPIManager && !UnityAPIManager.isLocalhost()) {
+                    const data = await UnityAPIManager.call('/api/proofs?domain=boolean');
+                    addConsoleOutput('api-console', `[SUCCESS] Retrieved ${data.total_proofs} proofs ✓ (static)`);
+                    addConsoleOutput('api-console', `[UNITY] Unity equation confirmed: ${data.unity_equation}`);
+                    return;
+                }
                 const response = await fetch('http://localhost:8000/api/proofs?domain=boolean');
                 if (response.ok) {
                     const data = await response.json();
@@ -942,8 +955,9 @@ end UnityMathematics`;
                     addConsoleOutput('api-console', '[ERROR] API test failed');
                 }
             } catch (error) {
-                addConsoleOutput('api-console', '[ERROR] API not available - ensure server is running');
-                addConsoleOutput('api-console', '[HELP] Run: python api/unity_research_api.py');
+                addConsoleOutput('api-console', '[INFO] API not available. Using static fallbacks.');
+                const data = await UnityAPIManager.call('/api/proofs?domain=boolean');
+                addConsoleOutput('api-console', `[SUCCESS] Retrieved ${data.total_proofs} proofs ✓ (static)`);
             }
         }
 
