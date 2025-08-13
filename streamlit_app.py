@@ -24,13 +24,13 @@ os.environ["STREAMLIT_SERVER_RUN_ON_SAVE"] = "false"
 # Import and run the master Unity Mathematics dashboard
 if __name__ == "__main__":
     try:
-        # Import the main dashboard from src/unity_mathematics_streamlit.py
+        # Import the COMPREHENSIVE METASTATION dashboard from src/unity_mathematics_streamlit.py
         from unity_mathematics_streamlit import *
         
-        # The streamlit app will automatically run when this file is executed
-        print("🚀 Een Unity Mathematics Dashboard launched successfully!")
-        print("📊 Running most complete implementation with φ-harmonic resonance")
-        print("🌟 Access at: https://een-unity-mathematics.streamlit.app")
+        # The comprehensive 2467-line dashboard will automatically run
+        print("SUCCESS: METASTATION HUD launched - Full Unity Mathematics Command Center")
+        print("FEATURES: Multi-page, consciousness field, quantum proofs, phi-spirals, HUD interface")
+        print("ACCESS: https://een-unity-mathematics.streamlit.app")
         
     except ImportError as e:
         import streamlit as st
