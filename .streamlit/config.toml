@@ -1,63 +1,18 @@
-[global]
-# Global configuration for Unity Mathematics Streamlit apps
-showWarningOnRunning = false
-showErrorDetails = false
-
 [server]
-# Server configuration
-port = 8501
-address = "localhost"
-enableCORS = true
-enableXsrfProtection = true
-maxUploadSize = 200
+runOnSave = false
+fileWatcherType = "none"
 headless = true
 
-[browser]
-# Browser configuration
-gatherUsageStats = false
-serverAddress = "localhost"
-serverPort = 8501
+[client]
+showErrorDetails = false
+toolbarMode = "viewer"
 
 [theme]
-# Theme configuration for Unity Mathematics
-primaryColor = "#0F7B8A"
-backgroundColor = "#FFFFFF"
-secondaryBackgroundColor = "#F8FAFC"
-textColor = "#111827"
-font = "Inter"
+base = "dark"
+primaryColor = "#ffd700"
+backgroundColor = "#0a0b0f"
+secondaryBackgroundColor = "#0f1117"
+textColor = "#e6edf3"
 
-[client]
-# Client configuration
-showErrorDetails = true
-caching = true
-displayEnabled = true
-
-[runner]
-# Runner configuration
-installTracer = false
-fixMatplotlib = true
-magicEnabled = true
-
-[logger]
-# Logger configuration
-level = "info"
-messageFormat = "%(asctime)s %(message)s"
-
-[deprecation]
-# Deprecation warnings
-showPyplotGlobalUse = false
-showfileUploaderEncoding = false
-
-[ui]
-# UI configuration
-hideSidebarNav = false
-hideTopBar = false
-
-[mapbox]
-# Mapbox configuration (deprecated - use environment variable)
-token = ""
-
-[plotly]
-# Plotly configuration
-theme = "plotly"
-config = {}
+[browser]
+gatherUsageStats = false

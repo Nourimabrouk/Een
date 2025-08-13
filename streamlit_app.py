@@ -4,16 +4,22 @@ Een | Unity Mathematics - Master Dashboard (Streamlit Cloud Entry Point)
 Main entry point for Streamlit Cloud deployment: https://een-unity-mathematics.streamlit.app
 
 This file automatically launches the most complete and recent Unity Mathematics dashboard.
+Optimized for Streamlit Cloud resource limits and inotify constraints.
 """
 
 import sys
 import os
 from pathlib import Path
 
-# Add src to path for imports
+# Optimize for Streamlit Cloud - minimal path manipulation
 project_root = Path(__file__).parent
 src_path = project_root / "src"
 sys.path.insert(0, str(src_path))
+
+# Set environment variables for optimization
+os.environ["STREAMLIT_BROWSER_GATHER_USAGE_STATS"] = "false"
+os.environ["STREAMLIT_SERVER_FILE_WATCHER_TYPE"] = "none"
+os.environ["STREAMLIT_SERVER_RUN_ON_SAVE"] = "false"
 
 # Import and run the master Unity Mathematics dashboard
 if __name__ == "__main__":

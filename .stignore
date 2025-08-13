@@ -1,0 +1,54 @@
+# Streamlit ignore file - reduces file watching overhead
+# Directories that cause inotify instance limit issues
+
+# Large directories with many files
+viz/
+internal/
+docs/
+config/
+scripts/
+data/
+temp/
+logs/
+*.tmp
+*.log
+
+# Development environments
+.git/
+__pycache__/
+*.pyc
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+venv/
+een/
+.env
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+*.bak
+
+# Large media files
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.mp4
+*.avi
+*.mov
+*.mkv
+
+# Ignore non-essential Unity Mathematics components for deployment
+experiments/legacy/
+internal/legacy/
+viz/legacy/
+src/legacy/
