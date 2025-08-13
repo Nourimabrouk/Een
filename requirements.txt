@@ -1,15 +1,22 @@
-# Streamlit Cloud deployment requirements (Optimized for inotify limits)
+# Streamlit Cloud deployment requirements (Unity Mathematics - Full Dependencies)
 streamlit>=1.37.0
 numpy>=1.26.4
 pandas>=2.2.0
 plotly>=5.22.0
 scipy>=1.13.0
 sympy>=1.12
-cachetools>=5.3.0
 
-# Essential for Unity Mathematics
+# Core dependencies for Unity Mathematics functionality
+numba>=0.59.0
+scikit-learn>=1.5.0
 matplotlib>=3.8.0
+seaborn>=0.13.0
+cachetools>=5.3.0
 networkx>=3.2.0
+requests>=2.32.0
+websocket-client>=1.8.0
 
-# Removed optional heavy dependencies to reduce file watching overhead
-# numba, scikit-learn, seaborn can be imported conditionally if needed
+# Additional Unity Mathematics dependencies
+torch
+transformers
+accelerate
