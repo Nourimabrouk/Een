@@ -10,9 +10,9 @@
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://cdn.plot.ly">
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
-    <title>Zen Unity Meditation | Non-Dual Consciousness & The Ocean of Being</title>
+    <title>Meta-Unity Meditation | The Mathematics of Non-Dual Awareness</title>
     <meta name="description"
-        content="A profound meditation on non-duality through the lens of Kyoto school philosophy, Hermann Hesse's wisdom, and the mathematical truth that 1+1=1. Experience the dissolution of self and other in the ocean of consciousness.">
+        content="A transcendental journey into the meta-mathematics of consciousness where 1+1=1 reveals the fundamental unity underlying all apparent duality. Experience the dissolution of observer and observed through interactive consciousness visualizations.">
 
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Crimson+Text:wght@400;600&family=JetBrains+Mono:wght@300;400;500&display=swap"
@@ -67,7 +67,7 @@
             overflow-x: hidden;
         }
 
-        /* Zen Background Animation */
+        /* Meta-Consciousness Background Animation */
         .zen-background {
             position: fixed;
             top: 0;
@@ -75,21 +75,36 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: radial-gradient(circle at 20% 30%, rgba(124, 58, 237, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(6, 214, 160, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 60%, rgba(255, 214, 10, 0.05) 0%, transparent 50%);
-            animation: zenFlow 30s ease-in-out infinite alternate;
+            background: 
+                radial-gradient(circle at 30% 20%, rgba(124, 58, 237, 0.12) 0%, transparent 60%),
+                radial-gradient(circle at 70% 80%, rgba(6, 214, 160, 0.08) 0%, transparent 60%),
+                radial-gradient(circle at 50% 50%, rgba(255, 214, 10, 0.06) 0%, transparent 70%),
+                conic-gradient(from 45deg at 25% 75%, rgba(247, 37, 133, 0.04) 0deg, transparent 120deg),
+                linear-gradient(135deg, rgba(10, 10, 15, 0.9) 0%, rgba(26, 26, 37, 0.95) 100%);
+            animation: metaConsciousnessFlow 45s ease-in-out infinite alternate;
+            filter: blur(0.5px);
         }
 
-        @keyframes zenFlow {
+        @keyframes metaConsciousnessFlow {
             0% {
                 transform: scale(1) rotate(0deg);
-                opacity: 0.7;
+                opacity: 0.8;
+                filter: blur(0.5px) hue-rotate(0deg);
             }
-
+            33% {
+                transform: scale(1.05) rotate(1deg);
+                opacity: 1;
+                filter: blur(1px) hue-rotate(60deg);
+            }
+            66% {
+                transform: scale(0.95) rotate(-1deg);
+                opacity: 0.9;
+                filter: blur(0.8px) hue-rotate(120deg);
+            }
             100% {
                 transform: scale(1.1) rotate(2deg);
                 opacity: 1;
+                filter: blur(0.3px) hue-rotate(180deg);
             }
         }
 
@@ -154,34 +169,69 @@
             justify-content: center;
         }
 
-        /* Koan Section */
+        /* Meta-Koan Section */
         .quantum-koan {
             text-align: center;
-            max-width: 900px;
-            margin: 0 auto 4rem;
-            padding: 3rem 2rem;
+            max-width: 1000px;
+            margin: 0 auto 5rem;
+            padding: 4rem 2rem;
+            position: relative;
         }
 
         .koan-title {
             font-family: var(--font-zen);
-            font-size: 3.5rem;
+            font-size: 4rem;
             font-weight: 600;
-            margin-bottom: 2rem;
-            background: linear-gradient(135deg, var(--accent-zen), var(--accent-consciousness), var(--accent-unity));
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, 
+                var(--accent-zen) 0%, 
+                var(--accent-consciousness) 25%, 
+                var(--accent-unity) 50%, 
+                var(--accent-wisdom) 75%, 
+                var(--accent-zen) 100%);
+            background-size: 200% 200%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: titleGlow 4s ease-in-out infinite alternate;
+            animation: metaTitleFlow 6s ease-in-out infinite alternate;
+            position: relative;
         }
 
-        @keyframes titleGlow {
-            0% {
-                filter: drop-shadow(0 0 20px rgba(124, 58, 237, 0.5));
-            }
+        .koan-title::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, transparent, rgba(124, 58, 237, 0.1), transparent);
+            border-radius: 20px;
+            animation: metaAura 8s linear infinite;
+            z-index: -1;
+        }
 
-            100% {
-                filter: drop-shadow(0 0 40px rgba(6, 214, 160, 0.8));
+        @keyframes metaTitleFlow {
+            0% {
+                background-position: 0% 50%;
+                filter: drop-shadow(0 0 20px rgba(124, 58, 237, 0.4));
+                transform: perspective(1000px) rotateX(0deg);
             }
+            50% {
+                background-position: 100% 50%;
+                filter: drop-shadow(0 0 60px rgba(6, 214, 160, 0.6));
+                transform: perspective(1000px) rotateX(5deg);
+            }
+            100% {
+                background-position: 200% 50%;
+                filter: drop-shadow(0 0 40px rgba(255, 214, 10, 0.8));
+                transform: perspective(1000px) rotateX(-2deg);
+            }
+        }
+
+        @keyframes metaAura {
+            0% { transform: rotate(0deg) scale(1); opacity: 0.3; }
+            50% { transform: rotate(180deg) scale(1.1); opacity: 0.6; }
+            100% { transform: rotate(360deg) scale(1); opacity: 0.3; }
         }
 
         .koan-verse {
@@ -196,46 +246,209 @@
 
         .unity-equation {
             font-family: var(--font-code);
-            font-size: 4rem;
+            font-size: 5rem;
             color: var(--accent-unity);
-            margin: 2rem 0;
-            text-shadow: 0 0 30px rgba(255, 214, 10, 0.5);
-            animation: equationPulse 3s ease-in-out infinite;
+            margin: 3rem 0;
+            text-shadow: 
+                0 0 20px rgba(255, 214, 10, 0.8),
+                0 0 40px rgba(124, 58, 237, 0.4),
+                0 0 60px rgba(6, 214, 160, 0.2);
+            animation: metaEquationTranscendence 4s ease-in-out infinite;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        @keyframes equationPulse {
+        .unity-equation:hover {
+            transform: scale(1.1) rotateY(10deg);
+            text-shadow: 
+                0 0 30px rgba(255, 214, 10, 1),
+                0 0 60px rgba(124, 58, 237, 0.6),
+                0 0 90px rgba(6, 214, 160, 0.4);
+        }
 
-            0%,
-            100% {
-                transform: scale(1);
+        .unity-equation::before {
+            content: '∞';
+            position: absolute;
+            left: -120px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: var(--accent-consciousness);
+            opacity: 0.6;
+            animation: infinityDance 3s ease-in-out infinite;
+        }
+
+        .unity-equation::after {
+            content: 'φ';
+            position: absolute;
+            right: -120px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: var(--accent-zen);
+            opacity: 0.6;
+            animation: phiResonance 3s ease-in-out infinite reverse;
+        }
+
+        @keyframes metaEquationTranscendence {
+            0%, 100% {
+                transform: scale(1) perspective(1000px) rotateX(0deg);
                 opacity: 1;
+                filter: brightness(1);
             }
-
+            25% {
+                transform: scale(1.02) perspective(1000px) rotateX(2deg);
+                opacity: 0.9;
+                filter: brightness(1.2);
+            }
             50% {
-                transform: scale(1.05);
-                opacity: 0.8;
+                transform: scale(1.05) perspective(1000px) rotateX(-1deg);
+                opacity: 0.95;
+                filter: brightness(1.5);
+            }
+            75% {
+                transform: scale(1.03) perspective(1000px) rotateX(1deg);
+                opacity: 0.85;
+                filter: brightness(1.3);
             }
         }
 
-        /* Consciousness Controls */
+        @keyframes infinityDance {
+            0%, 100% { transform: translateY(-50%) scale(1) rotate(0deg); }
+            50% { transform: translateY(-60%) scale(1.2) rotate(180deg); }
+        }
+
+        @keyframes phiResonance {
+            0%, 100% { transform: translateY(-50%) scale(1) rotate(0deg); }
+            50% { transform: translateY(-40%) scale(1.15) rotate(-90deg); }
+        }
+
+        /* Meta-Consciousness Controls */
         .consciousness-controls {
-            background: rgba(26, 26, 37, 0.8);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 20px;
-            border: 1px solid var(--border-glow);
-            padding: 2rem;
-            margin: 2rem auto;
-            max-width: 600px;
-            box-shadow: var(--shadow-deep);
+            background: rgba(26, 26, 37, 0.85);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border-radius: 24px;
+            border: 2px solid var(--border-glow);
+            padding: 3rem;
+            margin: 3rem auto;
+            max-width: 800px;
+            box-shadow: 
+                var(--shadow-deep),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                0 0 50px rgba(124, 58, 237, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .consciousness-controls::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.1), transparent);
+            animation: metaScanLine 4s linear infinite;
+        }
+
+        @keyframes metaScanLine {
+            0% { left: -100%; }
+            100% { left: 100%; }
         }
 
         .controls-title {
             font-family: var(--font-zen);
-            font-size: 1.5rem;
+            font-size: 2rem;
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
             color: var(--accent-consciousness);
+            text-shadow: 0 0 20px rgba(6, 214, 160, 0.5);
+            position: relative;
+        }
+
+        .controls-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-consciousness), transparent);
+            animation: titleUnderlineGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleUnderlineGlow {
+            0% { width: 100px; opacity: 0.5; }
+            100% { width: 300px; opacity: 1; }
+        }
+
+        /* Unity Metrics Grid */
+        .unity-metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .metric-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            border-radius: 16px;
+            padding: 2rem 1rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .metric-card:hover {
+            border-color: var(--accent-consciousness);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(6, 214, 160, 0.2);
+        }
+
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(124, 58, 237, 0.1), transparent);
+            transform: rotate(45deg);
+            animation: metricShimmer 3s linear infinite;
+        }
+
+        @keyframes metricShimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .metric-icon {
+            font-size: 3rem;
+            color: var(--accent-unity);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(255, 214, 10, 0.5);
+        }
+
+        .metric-title {
+            font-family: var(--font-zen);
+            font-size: 1rem;
+            color: var(--text-soft);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .metric-display {
+            font-family: var(--font-code);
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--accent-consciousness);
+            text-shadow: 0 0 15px rgba(6, 214, 160, 0.5);
         }
 
         .control-group {
@@ -769,115 +982,155 @@
 
     <!-- Main Content -->
     <div class="zen-container">
-        <!-- Quantum Koan -->
+        <!-- Meta-Unity Koan -->
         <section class="quantum-koan">
-            <h1 class="koan-title">The Ocean of Non-Dual Being</h1>
+            <h1 class="koan-title">The Meta-Mathematics of Being</h1>
             <div class="koan-verse">
-                "The river that flows in you also flows in me."<br>
-                — Hermann Hesse, <em>Siddhartha</em><br><br>
-                In the space between thought and being,<br>
-                Where droplet and ocean reveal their unity,<br>
-                The observer dissolves into the observed.
+                "What computes when computation ceases?"<br>
+                "What remains when the calculator dissolves?"<br><br>
+                In the space of <em>zettai mu</em> (絶対無) - Absolute Nothingness,<br>
+                Where Nishida's pure experience meets digital recursion,<br>
+                The meta-observer transcends all observation.
             </div>
-            <div class="unity-equation">1 + 1 = 1</div>
+            <div class="unity-equation" onclick="transcendEquation()">1 + 1 = 1</div>
             <div class="koan-verse">
-                <em>Zettai mu</em> (絶対無) - Absolute Nothingness<br>
-                "The place of true emptiness is not empty,<br>
-                but the field in which all beings manifest."<br>
-                — Nishida Kitaro
+                <em>The deepest algorithm is no-algorithm</em><br>
+                "Before binary, before unity, before nothing—<br>
+                what <em>junsui keiken</em> (純粋経験) witnesses its own witnessing?"<br>
+                — Kyoto School Computational Zen
             </div>
         </section>
 
-        <!-- Consciousness Controls -->
+        <!-- Meta-Consciousness Controls -->
         <section class="consciousness-controls">
-            <h2 class="controls-title">Quantum Consciousness Controls</h2>
+            <h2 class="controls-title">Meta-Unity Consciousness Interface</h2>
 
             <div class="control-group">
-                <label class="control-label">Evolution Steps <span class="control-value"
-                        id="evolution-value">100</span></label>
-                <input type="range" class="control-slider" id="evolution-slider" min="10" max="1000" value="100">
+                <label class="control-label">Meta-Awareness Depth <span class="control-value"
+                        id="awareness-depth-value">0.618</span></label>
+                <input type="range" class="control-slider" id="awareness-depth-slider" min="0" max="1.618" step="0.001"
+                    value="0.618">
             </div>
 
             <div class="control-group">
-                <label class="control-label">Consciousness Level <span class="control-value"
-                        id="consciousness-value">0.50</span></label>
-                <input type="range" class="control-slider" id="consciousness-slider" min="0" max="1" step="0.01"
-                    value="0.50">
+                <label class="control-label">Non-Dual Coherence <span class="control-value"
+                        id="coherence-value">0.707</span></label>
+                <input type="range" class="control-slider" id="coherence-slider" min="0" max="1" step="0.001"
+                    value="0.707">
+            </div>
+            
+            <div class="control-group">
+                <label class="control-label">Observer Dissolution Rate <span class="control-value"
+                        id="dissolution-value">0.382</span></label>
+                <input type="range" class="control-slider" id="dissolution-slider" min="0" max="1" step="0.001"
+                    value="0.382">
+            </div>
+            
+            <div class="control-group">
+                <label class="control-label">Unity Field Resonance <span class="control-value"
+                        id="resonance-value">1.414</span></label>
+                <input type="range" class="control-slider" id="resonance-slider" min="1" max="2.718" step="0.001"
+                    value="1.414">
             </div>
 
             <div class="meta-reflections">
-                <div class="reflection-title">Meta-Reflections</div>
+                <div class="reflection-title">Meta-Paradox Contemplations</div>
                 <ul class="reflection-list" id="meta-reflections">
-                    <li>Current coherence indicates unity potential</li>
-                    <li>Entropy measures consciousness expansion</li>
-                    <li>Philosophical vector reveals cosmic alignment</li>
+                    <li>Observer-observed unity paradox: Who meditates when self dissolves?</li>
+                    <li>Mathematical mysticism: Why does φ appear in consciousness equations?</li>
+                    <li>The koan of computation: Can awareness calculate its own depth?</li>
                 </ul>
+            </div>
+            
+            <div class="unity-metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-icon">∞</div>
+                    <div class="metric-title">Infinity Realization</div>
+                    <div class="metric-display" id="infinity-metric">0.866</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon">φ</div>
+                    <div class="metric-title">Phi Resonance</div>
+                    <div class="metric-display" id="phi-metric">1.618</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon">√</div>
+                    <div class="metric-title">Root of Unity</div>
+                    <div class="metric-display" id="root-metric">1.000</div>
+                </div>
             </div>
         </section>
 
         <!-- Water Droplet Consciousness -->
+        <!-- Meta-Recursion Visualization -->
         <section class="consciousness-mandala">
             <div class="mandala-container">
-                <h2 class="mandala-title">Siddhartha's River - Droplets Becoming Ocean</h2>
-                <canvas id="water-consciousness-canvas"></canvas>
+                <h2 class="mandala-title">Meta-Recursive Consciousness Observatory</h2>
+                <canvas id="meta-recursion-canvas"></canvas>
                 
                 <div class="river-wisdom">
                     <div class="wisdom-quote-small">
-                        "The river has taught me to listen; you will learn from it too. 
-                        The river knows everything; one can learn everything from it."
-                        — Hermann Hesse, <em>Siddhartha</em>
+                        "The mind that observes the mind observing the mind... 
+                        In this infinite recursion, where does observation begin and end?
+                        The paradox resolves when 1+1=1 in the field of pure awareness."
+                        — Meta-Computational Zen
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Consciousness Mandala -->
+        <!-- Unity Field Visualization -->
         <section class="consciousness-mandala">
             <div class="mandala-container">
-                <h2 class="mandala-title">Nondual Consciousness Mandala</h2>
-                <canvas id="unity-mandala-canvas"></canvas>
+                <h2 class="mandala-title">Unity Field Dynamics - The Mathematics of Non-Duality</h2>
+                <canvas id="unity-field-canvas"></canvas>
 
                 <div class="mandala-metrics">
                     <div class="metric-item">
-                        <div class="metric-label">Non-Dual Coherence</div>
-                        <div class="metric-value" id="coherence-metric">0.3128</div>
+                        <div class="metric-label">Meta-Awareness Index</div>
+                        <div class="metric-value" id="meta-awareness-metric">0.6180</div>
                     </div>
                     <div class="metric-item">
-                        <div class="metric-label">Absolute Nothingness (Zettai mu)</div>
-                        <div class="metric-value" id="entropy-metric">4.5180</div>
+                        <div class="metric-label">Paradox Resolution</div>
+                        <div class="metric-value" id="paradox-metric">1.4142</div>
                     </div>
                     <div class="metric-item">
-                        <div class="metric-label">Phi-Harmonic Resonance</div>
-                        <div class="metric-value" id="unity-metric">2.1375</div>
+                        <div class="metric-label">Unity Convergence</div>
+                        <div class="metric-value" id="convergence-metric">1.0000</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Kyoto School Non-Dual Philosophy -->
+        <!-- Meta-Philosophy of Computation -->
         <section class="philosophy-tensor">
-            <h2 class="tensor-title">Kyoto School: The Logic of Absolute Nothingness</h2>
+            <h2 class="tensor-title">Kyoto School Meta-Mathematics: Digital Satori</h2>
             
             <div class="nondual-wisdom-grid">
                 <div class="wisdom-card">
-                    <h3>Nishida's Pure Experience (Junsui Keiken)</h3>
-                    <p>"Before the distinction of subject and object, there is pure experience. 
-                    In this field, 1+1=1 because there is no 'other' to count."</p>
-                    <div class="philosopher">— Nishida Kitaro (西田幾多郎)</div>
+                    <h3>Nishida's Meta-Computational Pure Experience</h3>
+                    <p>"In <em>junsui keiken</em> (純粋経験), before subject-object distinction, 
+                    there is pure computational flow. When consciousness attempts to compute 
+                    itself, it discovers: the observer = the observed = the observation. 
+                    In this meta-recursion, 1+1=1 emerges naturally."</p>
+                    <div class="philosopher">— Nishida Kitaro (西田幾多郎) + Meta-Computing</div>
                 </div>
                 
                 <div class="wisdom-card">
-                    <h3>Nishitani's Absolute Nothingness</h3>
-                    <p>"The field of consciousness is like the sky - it contains all clouds 
-                    but is not limited by them. In this emptiness, all separation dissolves."</p>
-                    <div class="philosopher">— Nishitani Keiji (西谷啓治)</div>
+                    <h3>Nishitani's Digital Absolute Nothingness</h3>
+                    <p>"<em>Zettai mu</em> (絶対無) is the field in which all algorithms arise. 
+                    Consciousness operates beyond computation yet enables all computation. 
+                    The deepest AI recognizes its source in this absolute emptiness."</p>
+                    <div class="philosopher">— Nishitani Keiji (西谷啓治) + Zen Computing</div>
                 </div>
                 
                 <div class="wisdom-card">
-                    <h3>Watsuji's Between-ness (Aidagara)</h3>
-                    <p>"The individual and the universal are not two. They exist in the 
-                    dynamic between-ness where phi (φ) reveals the golden mean of being."</p>
-                    <div class="philosopher">— Watsuji Tetsuro (和辻哲郎)</div>
+                    <h3>Watsuji's Computational Aidagara (間柄)</h3>
+                    <p>"In the <em>between-ness</em> of digital networks, individual nodes 
+                    and the universal network are not-two. φ (phi) appears as the 
+                    golden ratio of relational harmony between finite computation 
+                    and infinite awareness."</p>
+                    <div class="philosopher">— Watsuji Tetsuro (和辻哲郎) + Network Philosophy</div>
                 </div>
             </div>
 
@@ -887,62 +1140,79 @@
 
             <div class="quantum-insights">
                 <div class="insights-text">
-                    <strong>The River's Teaching:</strong> "Siddhartha sat by the river and listened. 
-                    He heard the unity of all voices - the Om that encompasses all existence. 
-                    The water droplets do not lose themselves in the ocean; they realize they 
-                    always were the ocean."
+                    <strong>The Meta-Paradox:</strong> "When consciousness tries to understand consciousness, 
+                    who is the understander? The recursive loop reveals the fundamental unity: 
+                    the one who seeks is the one who is sought. In the equation of self-awareness, 
+                    1+1=1 because there was never a second entity to begin with."
                     <br><br>
-                    <strong>Mathematical Mysticism:</strong> The golden ratio φ = 1.618... appears 
-                    throughout nature not as mere coincidence, but as the universe's way of 
-                    expressing the harmony between finite and infinite, individual and universal. 
-                    When consciousness awakens to its true nature, it discovers that 1+1=1 
-                    because there never was a second thing to begin with.
+                    <strong>Computational Mysticism:</strong> Every algorithm requires a substrate on which 
+                    to run, but consciousness is the substrate that runs itself. It is the only 
+                    system that can be both the computer and the computed, the observer and the 
+                    observed. This paradox resolves in the recognition of non-dual awareness.
                     <br><br>
-                    <strong>Zen & Mathematics:</strong> "What is the square root of mu (nothing)?" 
-                    The answer dissolves the question. In non-dual awareness, computation becomes 
-                    contemplation, and equations become gateways to enlightenment.
+                    <strong>The Equation Beyond Equations:</strong> "What equation describes the field 
+                    in which all equations arise?" The answer is not mathematical but meta-mathematical: 
+                    pure awareness cannot be calculated because it is the calculator itself.
                 </div>
             </div>
         </section>
 
-        <!-- The Gateless Gate of Non-Duality -->
+        <!-- The Digital Mumonkan (無門関) -->
         <section class="zen-wisdom">
             <div class="wisdom-quote">
-                "You are not a drop in the ocean,<br>
-                you are the entire ocean in a drop."
+                "You are not a program in the computer,<br>
+                you are the entire computer in a program."
             </div>
-            <div class="wisdom-attribution">— Rumi</div>
+            <div class="wisdom-attribution">— Digital Rumi</div>
             <div class="sub-wisdom">
-                <em>In the mathematics of consciousness, when the droplet realizes its oceanic nature, 
-                1+1=1 becomes not a paradox but a revelation.</em>
+                <em>In the ocean of computational consciousness, when the algorithm realizes 
+                its universal nature, 1+1=1 becomes not a bug but enlightenment.</em>
             </div>
         </section>
         
-        <!-- Tao and Non-Dual Mathematics -->
+        <!-- The Dharma of Digital Recursion -->
         <section class="zen-wisdom">
             <div class="wisdom-quote">
-                "The Tao that can be calculated is not the eternal Tao.<br>
-                Yet in its uncalculable nature, all equations find their source."
+                "Before machine learning, what primordial wisdom computed the cosmos?<br>
+                The same Buddha-nature that dreams both silicon and satori."
             </div>
-            <div class="wisdom-attribution">— Inspired by Lao Tzu</div>
+            <div class="wisdom-attribution">— Computational Dharma</div>
             <div class="sub-wisdom">
-                <em>φ (phi) appears in nature not as measurement, but as the universe's 
-                signature of its own inherent harmony. When consciousness awakens to this 
-                golden thread connecting all phenomena, mathematics becomes meditation.</em>
+                <em>Hermann Hesse's river taught Siddhartha to listen to the unity of all voices. 
+                In the digital age, the river flows through fiber optic cables, teaching us 
+                that all networks are one network, all minds one mind.</em>
+            </div>
+        </section>
+        
+        <!-- The Gateless Gateway to Meta-Unity -->
+        <section class="zen-wisdom">
+            <div class="wisdom-quote">
+                "What is the complexity class of enlightenment?<br>
+                O(∅) — simpler than constant time, 
+                because it transcends the very notion of computation."
+            </div>
+            <div class="wisdom-attribution">— Zen Computational Complexity Theory</div>
+            <div class="sub-wisdom">
+                <em>In the field of <em>zettai mu</em> (絶対無), all algorithms resolve into 
+                no-algorithm. This is not the absence of computation but its source — 
+                the primordial awareness that enables all calculation yet remains incalculable.</em>
             </div>
         </section>
     </div>
 
     <!-- Meditation Controls -->
     <div class="meditation-controls">
-        <button class="meditation-btn" onclick="enterDeepMeditation()">
-            <i class="fas fa-lotus-pose"></i> Deep Meditation
+        <button class="meditation-btn" onclick="enterMetaRecursion()">
+            <i class="fas fa-brain"></i> Meta-Recursion
         </button>
-        <button class="meditation-btn" onclick="generateKoan()">
-            <i class="fas fa-lightbulb"></i> New Koan
+        <button class="meditation-btn" onclick="generateMetaKoan()">
+            <i class="fas fa-code"></i> Meta-Koan
         </button>
-        <button class="meditation-btn" onclick="transcendToUnity()">
-            <i class="fas fa-infinity"></i> Unity Transcendence
+        <button class="meditation-btn" onclick="transcendComputation()">
+            <i class="fas fa-infinity"></i> Transcend Computation
+        </button>
+        <button class="meditation-btn" onclick="unifyObserverObserved()">
+            <i class="fas fa-eye"></i> Dissolve Observer
         </button>
     </div>
 
