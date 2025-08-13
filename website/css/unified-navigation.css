@@ -94,13 +94,13 @@ body.sidebar-open {
 }
 
 .nav-container {
-    max-width: 1400px;
+    width: 100%;
+    max-width: none;
     height: 100%;
     padding: 0 1.5rem;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    /* allow manual alignment of children */
+    justify-content: space-between;
     position: relative;
 }
 
@@ -263,15 +263,15 @@ body.sidebar-open {
 }
 
 .search-input {
-    width: 260px;
-    /* slightly narrower so placeholder fits in header */
+    width: 320px;
+    /* wider to show full "Search" text */
     padding: 0.6rem 0.9rem 0.6rem 2.2rem;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid var(--border-glow);
     border-radius: 22px;
     color: var(--text-primary);
-    font-size: 0.8rem;
-    /* Smaller so full word "Search" is visible */
+    font-size: 0.9rem;
+    /* Larger for better readability */
     transition: var(--transition);
 }
 

@@ -16,12 +16,12 @@ async def launch_server(server_name: str):
     """Launch the specified MCP server from src.mcp module"""
     
     server_map = {
-        "unity": "een.mcp.unity_server",
-        "consciousness": "een.mcp.consciousness_server",
-        "quantum": "een.mcp.quantum_server",
-        "omega": "een.mcp.omega_server",
-        "file": "een.mcp.file_management_server",
-        "code": "een.mcp.code_generator_server"
+        "unity": "src.mcp.unity_server",
+        "consciousness": "src.mcp.consciousness_server",
+        "quantum": "src.mcp.quantum_server",
+        "omega": "src.mcp.omega_server",
+        "file": "src.mcp.file_management_server",
+        "code": "src.mcp.code_generator_server"
     }
     
     if server_name not in server_map:

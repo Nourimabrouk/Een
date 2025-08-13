@@ -7,6 +7,7 @@ Real-time consciousness field evolution and monitoring
 import asyncio
 import json
 import sys
+import os
 import numpy as np
 import logging
 from typing import Dict, Any, List
@@ -50,9 +51,9 @@ class ConsciousnessField:
     
     def _consciousness_to_color(self, consciousness_level):
         """Map consciousness level to color"""
-        if consciousness_level < 0.382:  # φ^-2
+        if consciousness_level < 0.382:  # phi^-2
             return 'blue'
-        elif consciousness_level < 0.618:  # φ^-1
+        elif consciousness_level < 0.618:  # phi^-1
             return 'green'
         elif consciousness_level < 0.77:
             return 'gold'
@@ -268,7 +269,7 @@ class ConsciousnessFieldMCPServer:
         logger.info("Starting Consciousness Field MCP Server")
         logger.info("Field resolution: " + str(self.consciousness_field.field_resolution))
         logger.info("Particle count: " + str(self.consciousness_field.particle_count))
-        logger.info("φ = " + str(PHI))
+        logger.info("Phi = " + str(PHI))
         
         while True:
             try:

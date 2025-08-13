@@ -11,11 +11,11 @@ class UnifiedNavigationSystem {
         this.searchData = this.initializeSearchData();
         this.baseFooterLinks = new Set([
             // Mathematics
-            'mathematical-framework.html', 'proofs.html', 'enhanced-mathematical-proofs.html', 'unity_proof.html', '3000-elo-proof.html', 'al_khwarizmi_phi_unity.html', 'unity-mathematics-synthesis.html',
+            'mathematical-framework.html', 'proofs.html', 'unity_proof.html', '3000-elo-proof.html', 'al_khwarizmi_phi_unity.html',
             // Experiences & AI
-            'zen-unity-meditation.html', 'consciousness_dashboard.html', 'consciousness_dashboard_clean.html', 'unity-mathematics-experience.html', 'ai-unified-hub.html', 'metagamer_agent.html',
+            'zen-unity-meditation.html', 'consciousness_dashboard.html', 'unity_consciousness_experience.html', 'ai-unified-hub.html', 'metagamer_agent.html',
             // Visualizations & Tools
-            'gallery.html', 'dalle-gallery.html', 'enhanced-3d-consciousness-field.html', 'enhanced-unity-visualization-system.html', 'unity_visualization.html', 'gallery/phi_consciousness_transcendence.html', 'dashboards.html', 'unity-dashboard.html', 'playground.html', 'mathematical_playground.html', 'live-code-showcase.html', 'examples/unity-calculator.html', 'examples/phi-harmonic-explorer.html',
+            'gallery.html', 'enhanced-3d-consciousness-field.html', 'playground.html', 'live-code-showcase.html', 'examples/unity-calculator.html', 'examples/phi-harmonic-explorer.html',
             // About
             'about.html', 'research.html', 'publications.html', 'academic-portal.html', 'learning.html', 'further-reading.html', 'unity-meta-atlas.html', 'mobile-app.html', 'sitemap.html'
         ]);
@@ -122,9 +122,6 @@ class UnifiedNavigationSystem {
                             <a href="${this.getLink('anthill.html')}" class="nav-dropdown-link">
                                 <i class="fas fa-bug"></i> Quantum Ant Colony
                             </a>
-                            <a href="${this.getLink('unity-axioms.html')}" class="nav-dropdown-link">
-                                <i class="fas fa-balance-scale"></i> Unity Axioms
-                            </a>
                         </div>
                     </div>
 
@@ -139,24 +136,18 @@ class UnifiedNavigationSystem {
                             <a href="${this.getLink('proofs.html')}" class="nav-dropdown-link">
                                 <i class="fas fa-check-circle"></i> Proofs & Theorems
                             </a>
-                             <a href="${this.getLink('enhanced-mathematical-proofs.html')}" class="nav-dropdown-link">
-                                 <i class="fas fa-book-open"></i> Enhanced Mathematical Proofs
-                             </a>
                              <a href="${this.getLink('unity_proof.html')}" class="nav-dropdown-link">
                                  <i class="fas fa-equals"></i> Unity Proof (1+1=1)
                              </a>
                             <a href="${this.getLink('3000-elo-proof.html')}" class="nav-dropdown-link">
                                 <i class="fas fa-trophy"></i> 3000 ELO Proof
                             </a>
-                            <a href="${this.getLink('implementations-gallery.html')}" class="nav-dropdown-link">
+                            <a href="${this.getLink('implementations.html')}" class="nav-dropdown-link">
                                 <i class="fas fa-code"></i> Implementations
                             </a>
                             <a href="${this.getLink('al_khwarizmi_phi_unity.html')}" class="nav-dropdown-link">
                                 <i class="fas fa-scroll"></i> Al-Khwarizmi Unity
                             </a>
-                             <a href="${this.getLink('unity-mathematics-synthesis.html')}" class="nav-dropdown-link">
-                                 <i class="fas fa-project-diagram"></i> Unity Mathematics Synthesis
-                             </a>
                              <a href="${this.getLink('unity-axioms.html')}" class="nav-dropdown-link">
                                  <i class="fas fa-balance-scale"></i> Unity Axioms
                              </a>
@@ -201,20 +192,11 @@ class UnifiedNavigationSystem {
                             Dashboards <i class="fas fa-chevron-down"></i>
                         </button>
                         <div class="nav-dropdown">
-                            <a href="http://localhost:8501" class="nav-dropdown-link" target="_blank">
-                                <i class="fas fa-rocket"></i> Metastation Command Center
-                            </a>
-                            <a href="${this.getLink('dashboards.html')}" class="nav-dropdown-link">
-                                <i class="fas fa-th-large"></i> All Dashboards
-                            </a>
-                            <a href="${this.getLink('unity-dashboard.html')}" class="nav-dropdown-link">
-                                <i class="fas fa-infinity"></i> Unity Dashboard (Full)
+                            <a href="https://een-unity-mathematics.streamlit.app" class="nav-dropdown-link" target="_blank">
+                                <i class="fas fa-cloud"></i> Master Unity Dashboard (Cloud)
                             </a>
                             <a href="${this.getLink('playground.html')}" class="nav-dropdown-link">
                                 <i class="fas fa-gamepad"></i> Interactive Playground
-                            </a>
-                            <a href="${this.getLink('mathematical_playground.html')}" class="nav-dropdown-link">
-                                <i class="fas fa-calculator"></i> Math Playground
                             </a>
                             <a href="${this.getLink('live-code-showcase.html')}" class="nav-dropdown-link">
                                 <i class="fas fa-terminal"></i> Live Code Showcase
@@ -345,9 +327,6 @@ class UnifiedNavigationSystem {
                     <a href="${this.getLink('consciousness_dashboard.html')}" class="sidebar-link">
                         <i class="fas fa-brain"></i> Consciousness Field
                     </a>
-                    <a href="${this.getLink('consciousness_dashboard_clean.html')}" class="sidebar-link">
-                        <i class="fas fa-heartbeat"></i> Consciousness Field (Clean)
-                    </a>
                     <a href="${this.getLink('transcendental-unity-demo.html')}" class="sidebar-link">
                         <i class="fas fa-atom"></i> Transcendental Unity
                     </a>
@@ -367,23 +346,17 @@ class UnifiedNavigationSystem {
                     <a href="${this.getLink('proofs.html')}" class="sidebar-link">
                         <i class="fas fa-check-circle"></i> Proofs & Theorems
                     </a>
-                    <a href="${this.getLink('enhanced-mathematical-proofs.html')}" class="sidebar-link">
-                        <i class="fas fa-book-open"></i> Enhanced Proofs
-                    </a>
                          <a href="${this.getLink('unity_proof.html')}" class="sidebar-link">
                              <i class="fas fa-equals"></i> Unity Proof (1+1=1)
                          </a>
                     <a href="${this.getLink('3000-elo-proof.html')}" class="sidebar-link">
                         <i class="fas fa-trophy"></i> 3000 ELO Proof
                     </a>
-                    <a href="${this.getLink('implementations-gallery.html')}" class="sidebar-link">
-                        <i class="fas fa-code"></i> Implementations Gallery
+                    <a href="${this.getLink('implementations.html')}" class="sidebar-link">
+                        <i class="fas fa-code"></i> Implementations
                     </a>
                     <a href="${this.getLink('al_khwarizmi_phi_unity.html')}" class="sidebar-link">
                         <i class="fas fa-scroll"></i> Al-Khwarizmi Unity
-                    </a>
-                    <a href="${this.getLink('unity-mathematics-synthesis.html')}" class="sidebar-link">
-                        <i class="fas fa-project-diagram"></i> Unity Synthesis
                     </a>
                         <a href="${this.getLink('unity-axioms.html')}" class="sidebar-link">
                             <i class="fas fa-balance-scale"></i> Unity Axioms
@@ -414,14 +387,11 @@ class UnifiedNavigationSystem {
 
                 <div class="sidebar-section">
                     <div class="sidebar-title">Dashboards & Tools</div>
-                    <a href="${this.getLink('dashboards.html')}" class="sidebar-link">
-                        <i class="fas fa-th-large"></i> All Dashboards
+                    <a href="https://een-unity-mathematics.streamlit.app" class="sidebar-link" target="_blank">
+                        <i class="fas fa-cloud"></i> Master Unity Dashboard (Cloud)
                     </a>
                     <a href="${this.getLink('playground.html')}" class="sidebar-link">
                         <i class="fas fa-gamepad"></i> Interactive Playground
-                    </a>
-                    <a href="${this.getLink('mathematical_playground.html')}" class="sidebar-link">
-                        <i class="fas fa-calculator"></i> Math Playground
                     </a>
                     <a href="${this.getLink('live-code-showcase.html')}" class="sidebar-link">
                         <i class="fas fa-terminal"></i> Live Code Showcase
@@ -582,6 +552,9 @@ class UnifiedNavigationSystem {
                         <i class="fas fa-th-large"></i> Dashboards & Tools
                     </div>
                     <div class="mobile-nav-links">
+                        <a href="https://een-unity-mathematics.streamlit.app" class="mobile-nav-link" target="_blank">
+                            <i class="fas fa-cloud"></i> Master Unity Dashboard (Cloud)
+                        </a>
                         <a href="dashboards.html" class="mobile-nav-link">
                             <i class="fas fa-th-large"></i> All Dashboards
                         </a>
@@ -821,71 +794,66 @@ class UnifiedNavigationSystem {
                             <a class="footer-link" href="unity_proof.html">Unity Proof (1+1=1)</a>
                             <a class="footer-link" href="3000-elo-proof.html">3000 ELO Proof</a>
                             <a class="footer-link" href="al_khwarizmi_phi_unity.html">Al‑Khwarizmi Unity</a>
-                            <a class="footer-link" href="unity-mathematics-synthesis.html">Unity Synthesis</a>
                         </nav>
                     </div>
                     <div class="footer-section">
-                        <div class="footer-section-title">Experiences & AI</div>
+                        <div class="footer-section-title">Experiences</div>
                         <nav class="footer-links">
                             <a class="footer-link" href="zen-unity-meditation.html">Zen Unity Meditation</a>
                             <a class="footer-link" href="consciousness_dashboard.html">Consciousness Field</a>
-                            <a class="footer-link" href="consciousness_dashboard_clean.html">Consciousness Field (Clean)</a>
-                            <a class="footer-link" href="unity-mathematics-experience.html">Unity Mathematics Experience</a>
+                            <a class="footer-link" href="unity_consciousness_experience.html">Unity Experience</a>
+                            <a class="footer-link" href="transcendental-unity-demo.html">Transcendental Unity</a>
+                            <a class="footer-link" href="anthill.html">Quantum Ant Colony</a>
+                        </nav>
+                    </div>
+                    <div class="footer-section">
+                        <div class="footer-section-title">Dashboards & AI</div>
+                        <nav class="footer-links">
+                            <a class="footer-link" href="https://een-unity-mathematics.streamlit.app" target="_blank">Master Dashboard (Cloud)</a>
                             <a class="footer-link" href="ai-unified-hub.html">AI Unity Hub</a>
                             <a class="footer-link" href="metagamer_agent.html">Metagamer Agent</a>
+                            <a class="footer-link" href="playground.html">Interactive Playground</a>
                         </nav>
                     </div>
                     <div class="footer-section">
-                        <div class="footer-section-title">Visualizations & Tools</div>
+                        <div class="footer-section-title">Visualizations</div>
                         <nav class="footer-links">
                             <a class="footer-link" href="gallery.html">Gallery</a>
-                            <a class="footer-link" href="dalle-gallery.html">DALL‑E Gallery</a>
                             <a class="footer-link" href="enhanced-3d-consciousness-field.html">3D Consciousness</a>
-                            <a class="footer-link" href="enhanced-unity-visualization-system.html">Visualization System</a>
-                            <a class="footer-link" href="unity_visualization.html">Unity Visualization</a>
-                            <a class="footer-link" href="gallery/phi_consciousness_transcendence.html">Phi Consciousness</a>
-                            <a class="footer-link" href="dashboards.html">Dashboards</a>
-                            <a class="footer-link" href="playground.html">Playground</a>
-                            <a class="footer-link" href="mathematical_playground.html">Math Playground</a>
                             <a class="footer-link" href="live-code-showcase.html">Live Code Showcase</a>
-                            <a class="footer-link" href="examples/unity-calculator.html">Unity Calculator</a>
-                            <a class="footer-link" href="examples/phi-harmonic-explorer.html">φ‑Harmonic Explorer</a>
                         </nav>
                     </div>
                     <div class="footer-section">
-                        <div class="footer-section-title">Open Source & Documentation</div>
-                        <nav class="footer-links">
-                            <a class="footer-link" href="https://github.com/Nourimabrouk/Een" target="_blank" rel="noopener">
-                                <i class="fab fa-github"></i> GitHub Repository
-                            </a>
-                            <a class="footer-link" href="https://github.com/Nourimabrouk/Een/blob/main/README.md" target="_blank" rel="noopener">
-                                <i class="fas fa-book-open"></i> README & Getting Started
-                            </a>
-                            <a class="footer-link" href="https://github.com/Nourimabrouk/Een/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">
-                                <i class="fas fa-hands-helping"></i> Contributing Guide
-                            </a>
-                            <a class="footer-link" href="https://github.com/Nourimabrouk/Een/blob/main/TODO.md" target="_blank" rel="noopener">
-                                <i class="fas fa-tasks"></i> Development Roadmap
-                            </a>
-                            <a class="footer-link" href="https://github.com/Nourimabrouk/Een/blob/main/API_STRUCTURE.md" target="_blank" rel="noopener">
-                                <i class="fas fa-code"></i> API Documentation
-                            </a>
-                        </nav>
-                    </div>
-                    <div class="footer-section">
-                        <div class="footer-section-title">About</div>
+                        <div class="footer-section-title">Resources</div>
                         <nav class="footer-links">
                             <a class="footer-link" href="about.html">About Unity</a>
                             <a class="footer-link" href="research.html">Research</a>
-                            <a class="footer-link" href="publications.html">Publications</a>
                             <a class="footer-link" href="learning.html">Learning Path</a>
-                            <a class="footer-link" href="further-reading.html">Further Reading</a>
-                            <a class="footer-link" href="unity-meta-atlas.html">Unity Meta Atlas</a>
-                            <a class="footer-link" href="mobile-app.html">Mobile App</a>
                             <a class="footer-link" href="sitemap.html">Site Map</a>
+                            <a class="footer-link" href="mobile-app.html">Mobile App</a>
                         </nav>
                     </div>
                     ${additionalLinksHTML}
+                </div>
+                <div class="footer-additional-section">
+                    <div class="footer-section-title">Open Source & Development</div>
+                    <div class="footer-additional-links">
+                        <a class="footer-additional-link" href="https://github.com/Nourimabrouk/Een" target="_blank" rel="noopener">
+                            <i class="fab fa-github"></i> GitHub Repository
+                        </a>
+                        <a class="footer-additional-link" href="https://github.com/Nourimabrouk/Een/blob/main/README.md" target="_blank" rel="noopener">
+                            <i class="fas fa-book-open"></i> Documentation
+                        </a>
+                        <a class="footer-additional-link" href="https://github.com/Nourimabrouk/Een/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">
+                            <i class="fas fa-hands-helping"></i> Contributing
+                        </a>
+                        <a class="footer-additional-link" href="https://github.com/Nourimabrouk/Een/blob/main/TODO.md" target="_blank" rel="noopener">
+                            <i class="fas fa-tasks"></i> Roadmap
+                        </a>
+                        <a class="footer-additional-link" href="https://github.com/Nourimabrouk/Een/blob/main/API_STRUCTURE.md" target="_blank" rel="noopener">
+                            <i class="fas fa-code"></i> API Docs
+                        </a>
+                    </div>
                 </div>
                 <div class="footer-bottom">
                     <div class="pulse"></div>
@@ -999,14 +967,21 @@ class UnifiedNavigationSystem {
             { title: 'Metastation Hub', url: 'metastation-hub.html', keywords: ['home', 'main', 'hub', 'metastation'] },
             { title: 'Zen Unity Meditation', url: 'zen-unity-meditation.html', keywords: ['zen', 'meditation', 'consciousness', 'mindfulness'] },
             { title: 'Consciousness Dashboard', url: 'consciousness_dashboard.html', keywords: ['consciousness', 'field', 'dashboard', 'visualization'] },
+            { title: 'Unity Experience', url: 'unity_consciousness_experience.html', keywords: ['unity', 'consciousness', 'experience', 'interactive'] },
             { title: 'Mathematical Framework', url: 'mathematical-framework.html', keywords: ['math', 'mathematics', 'framework', 'theory'] },
             { title: 'Unity Proofs', url: 'proofs.html', keywords: ['proof', 'theorem', 'mathematics', 'unity'] },
+            { title: 'Unity Proof (1+1=1)', url: 'unity_proof.html', keywords: ['unity', 'proof', '1+1=1', 'equation'] },
+            { title: '3000 ELO Proof', url: '3000-elo-proof.html', keywords: ['3000', 'elo', 'proof', 'advanced', 'mathematics'] },
             { title: 'AI Unity Hub', url: 'ai-unified-hub.html', keywords: ['ai', 'artificial', 'intelligence', 'hub'] },
-            { title: 'Academic Portal', url: 'academic-portal.html', keywords: ['academic', 'research', 'papers', 'publications'] },
-            { title: 'Gallery', url: 'gallery.html', keywords: ['gallery', 'images', 'visualization', 'art'] },
-            { title: 'Implementations', url: 'implementations-gallery.html', keywords: ['implementation', 'code', 'examples', 'demo'] },
+            { title: 'Metagamer Agent', url: 'metagamer_agent.html', keywords: ['metagamer', 'agent', 'ai', 'strategy'] },
+            { title: 'Master Dashboard', url: 'https://een-unity-mathematics.streamlit.app', keywords: ['dashboard', 'streamlit', 'cloud', 'interactive'] },
+            { title: 'Interactive Playground', url: 'playground.html', keywords: ['playground', 'interactive', 'tools', 'experiment'] },
+            { title: 'Gallery', url: 'gallery.html', keywords: ['gallery', 'images', 'visualization', 'art', 'dalle'] },
+            { title: '3D Consciousness Field', url: 'enhanced-3d-consciousness-field.html', keywords: ['3d', 'consciousness', 'field', 'visualization'] },
+            { title: 'Implementations', url: 'implementations.html', keywords: ['implementation', 'code', 'examples', 'demo'] },
+            { title: 'Al-Khwarizmi Unity', url: 'al_khwarizmi_phi_unity.html', keywords: ['al-khwarizmi', 'unity', 'phi', 'classical'] },
             { title: 'About Unity', url: 'about.html', keywords: ['about', 'info', 'information', 'unity'] },
-            { title: 'Unity Philosophy', url: 'philosophy.html', keywords: ['philosophy', 'theory', 'concept'] },
+            { title: 'Research', url: 'research.html', keywords: ['research', 'academic', 'papers', 'studies'] },
             { title: 'Sitemap', url: 'sitemap.html', keywords: ['sitemap', 'map', 'navigation', 'structure'] }
         ];
 >>>>>>> develop
