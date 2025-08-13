@@ -53,7 +53,6 @@ except ImportError:
         def tanh(self, x): return math.tanh(x) if isinstance(x, (int, float)) else [math.tanh(xi) for xi in x]
         def sqrt(self, x): return math.sqrt(x) if isinstance(x, (int, float)) else [math.sqrt(xi) for xi in x]
         def sum(self, arr): return sum(arr) if hasattr(arr, '__iter__') else arr
-        def linalg: MockLinalg = None
         
         class MockLinalg:
             @staticmethod

@@ -130,7 +130,6 @@ class ConsciousnessFieldVisualizer:
         
         def update(frame):
             """Update function for animation"""
-            global self.field
             
             # Evolve field
             self.field = self.field_step(self.field, frame)

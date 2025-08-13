@@ -607,7 +607,9 @@ def demonstrate_unity_robust_inference():
     # Test accuracy on clean data  
     X_test_class = np.random.multivariate_normal([2, 3], [[1, 0.5], [0.5, 1]], 30)
     y_test_class = (2 * X_test_class[:, 0] + 1.5 * X_test_class[:, 1] + np.random.normal(0, 0.5, 30)) > np.median(y)
-    y_test_class = y_test_class.astype(int)\n    \n    standard_class_pred = standard_nb.predict(X_test_class)
+    y_test_class = y_test_class.astype(int)
+    
+    standard_class_pred = standard_nb.predict(X_test_class)
     unity_class_pred = unity_classifier.predict(X_test_class)
     
     standard_acc = np.mean(standard_class_pred == y_test_class)

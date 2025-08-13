@@ -572,7 +572,7 @@ def demonstrate_omega_orchestrator():
     
     # Generate unity code
     unity_code = omega.generate_unity_code()
-    print(f"Generated {len(unity_code.split('\\n'))} lines of unity code")
+    print(f"Generated {len(unity_code.split(chr(10)))} lines of unity code")
     
     # Synthesize reality layers
     reality_alpha = omega.synthesize_reality_layer("alpha")

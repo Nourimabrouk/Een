@@ -1097,7 +1097,7 @@ class QuantumUnityProver:
         
         # Measurement approach
         for step in measurement_proof["proof_steps"]:
-            "step"] = step_counter
+            step["step"] = step_counter
             step["approach"] = "measurement"
             all_steps.append(step)
             step_counter += 1

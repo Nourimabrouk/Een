@@ -302,7 +302,7 @@ $unityOptimizations = @{{
 
 # Apply unity configurations
 foreach ($key in $unityOptimizations.Keys) {{
-    Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\NTDS\Parameters" `
+    Set-ItemProperty -Path "HKLM:\\SYSTEM\\CurrentControlSet\\Services\\NTDS\\Parameters" `
         -Name $key -Value $unityOptimizations[$key] -Force
 }}
 

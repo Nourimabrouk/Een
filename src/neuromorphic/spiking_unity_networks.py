@@ -52,7 +52,7 @@ except ImportError:
         def maximum(self, a, b): return max(a, b) if isinstance(a, (int, float)) else [max(x, b) for x in a]
         def minimum(self, a, b): return min(a, b) if isinstance(a, (int, float)) else [min(x, b) for x in a]
         def dot(self, a, b): return sum(x*y for x, y in zip(a, b))
-        def random: MockRandom = None
+        random = None  # Will be set to MockRandom instance
         
         class MockRandom:
             @staticmethod

@@ -54,7 +54,7 @@ except ImportError:
         def real(self, x): return x.real if hasattr(x, 'real') else x
         def imag(self, x): return x.imag if hasattr(x, 'imag') else 0
         def conj(self, x): return x.conjugate() if hasattr(x, 'conjugate') else x
-        def linalg: MockLinalg = None
+        linalg = None  # Will be set to MockLinalg instance
         
         class MockLinalg:
             @staticmethod
